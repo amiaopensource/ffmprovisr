@@ -25,11 +25,18 @@ class Generate
   def video_input
     #TODO deny gracefully if not . format
     # if nil, mandelbrot
+    if input[:video_input] == ""
+      "mandelbrot"
+    else
     "-i #{input[:video_input]}"
+    end
   end
 
   def video_output
     #TODO deny gracefully if not . format
+    if input[:video_input] == ""
+      "new_video.mp4"
+    else
     input[:video_output]
   end
 
