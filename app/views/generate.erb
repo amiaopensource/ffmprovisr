@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+<link href ="stylesheets/css/bootstrap.css" rel="stylesheet">
+<link href ="stylesheets/css/bootstrap-responsive.css" rel="stylesheet">
+<p>
+<form action="/" method="POST">
+      Video format: 
+    <select name="input[video_format]">
+    <option value="nil">Select video format</option>
+    <option value="mp4">Mp4</option>
+    <option value="h264">h264</option>
+    <option value="flv">FLV</option>
+    </select>
+  <br /><br />
+  Video input: <input type="text" name="input[video_input]">
+  <br /><br />
+  Video output: <input type="text" name="input[video_output]">
+  <br /><br />
+  <button type="submit" class="btn">Submit</button>
+
+  </form>
+
+  <br />
+  <br />
+  <br />
+  Command: <textarea rows="1" cols="75" action="output">
+<%= @output %>
+</textarea>
+</p>
+</body>
+</html>
+
+
