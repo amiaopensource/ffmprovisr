@@ -39,5 +39,6 @@ class Generate
     else
     input[:video_output]
   end
+end
 
 end
