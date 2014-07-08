@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>ffmprovisor</h1>
+  <p>
+    <div class="form-group">
+      <form>
+            Video format: 
+          <select name="input[video_format]">
+          <option value="nil">Select video format</option>
+          <option value="mp4">Mp4</option>
+          <option value="h264">h264</option>
+          <option value="flv">FLV</option>
+          </select>
+        <br /><br />
+        Video input: <input type="text" name="input[video_input]">
+        <br /><br />
+        Video output: <input type="text" name="input[video_output]">
+        <br /><br />
+        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+
+        </form>
+
+        <br />
+        Command: <textarea rows="1" cols="75" action="output">
+      <%= @output %>
+      </textarea>
+    </div>
+  </p>
+</div>
+
+
+

@@ -1,5 +1,5 @@
-class Generate
-  attr_reader :output, :input
+class Generate  < ActiveRecord::Base
+  attr_reader :input
 
   def initialize(input)
     @input = input
