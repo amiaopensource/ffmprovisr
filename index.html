@@ -1,27 +1,75 @@
+<!DOCTYPE html>
 <html>
 <head>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="css/font-awesome.min.css">
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/bootstrap.min.css">
+<link href="css/jquery.steps.css" rel="stylesheet" >
+<title>Demo</title>
+<meta charset="utf-8">
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="js/jquery.steps.js"></script>
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
 
-<body>
+<div class="content">
+    <h1>➺ ffmproviser ❥</h1>
+
+    <script>
+        $(function ()
+        {
+            $("#form").steps({
+                headerTag: "h2",
+                bodyTag: "section",
+                transitionEffect: "slideLeft"
+            });
+        });
+    </script>
+
+    <div id="form">
+        <h2>First Question</h2>
+        <section>
+<form id="form-3" action="#">
+    <h1>Question</h1>
+    <fieldset>
+        <legend>Intro question</legend>
+ 
+        <label for="userName">User name *</label>
+        <input id="userName" name="userName" type="text">
+        <label for="password">Password *</label>
+        <input id="password" name="password" type="text">
+        <label for="confirm">Confirm Password *</label>
+        <input id="confirm" name="confirm" type="text">
+        <p>(*) Mandatory</p>
+    </fieldset>
+        </section>
+
+        <h2>Second Step</h2>
+        <section>
+    <h1>Profile</h1>
+    <fieldset>
+
+
+    </fieldset>
+        </section>
+
+        <h2>Third Step</h2>
+        <section>
 
 
 
+        </section>
+
+        <h2>Forth Step</h2>
+        <section>
 
 
 
+        </section>
+    </div>
+</div>
 
-<!-- blah blah blah -->
-
-<!-- function newQuestion(){ $question.hide(); $question.first().show();
-$form.on("click", ".new-question", function() {
-  $(this).parent().parent().next().slideDown("slow");
-});
-} -->
-
-
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-</body>
+    </body>
 </html>
