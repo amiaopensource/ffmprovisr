@@ -1,75 +1,69 @@
 <!DOCTYPE html>
 <html>
-<head>
-<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link href="css/jquery.steps.css" rel="stylesheet" >
-<title>Demo</title>
-<meta charset="utf-8">
+  <head>
+    <title>ffmproviser</title>
+    <meta charset="utf-8">
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="js/jquery.steps.js"></script>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="css/jquery.steps.css" rel="stylesheet" >
 
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-</head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/forms.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  </head>
 
-<div class="content">
-    <h1>➺ ffmproviser ❥</h1>
+    <div class="container">
+      <h1>➺ ffmproviser ❥</h1>
 
-    <script>
-        $(function ()
-        {
-            $("#form").steps({
-                headerTag: "h2",
-                bodyTag: "section",
-                transitionEffect: "slideLeft"
-            });
-        });
-    </script>
+<!-- form begins -->
 
-    <div id="form">
-        <h2>First Question</h2>
-        <section>
-<form id="form-3" action="#">
-    <h1>Question</h1>
-    <fieldset>
-        <legend>Intro question</legend>
- 
-        <label for="userName">User name *</label>
-        <input id="userName" name="userName" type="text">
-        <label for="password">Password *</label>
-        <input id="password" name="password" type="text">
-        <label for="confirm">Confirm Password *</label>
-        <input id="confirm" name="confirm" type="text">
-        <p>(*) Mandatory</p>
-    </fieldset>
-        </section>
+      <div class="well">
+        <fieldset>
+          <legend>First form</legend>
+          <!-- First we need a select question option... form or not? -->
+          <h4>What is your question?</h4>
+          <ul>
+            <li>Display info</li>
+            <li>Export for web</li>
+          </ul>
+        </fieldset>
+       </div>
 
-        <h2>Second Step</h2>
-        <section>
-    <h1>Profile</h1>
-    <fieldset>
+      <div id="file_names">
+        <div class="well">
+        <fieldset>
+          <legend>Input and Output</legend>
+            <div class="control-group">
+            <label class="control-label" for="input_name">Input</label>
+              <div class="controls">
+              <input type="text" name="input_name" id="input_name" placeholder="input" />
+              </div>
+            </div>
+            <div class="control-group">
+            <label class="control-label" for="output_name">Output</label>
+              <div class="controls">
+              <input type="text" name="output_name" id="output_name" placeholder="output" />
+              </div>
+            </div>
+          <br/>
+          <input type="button" class="btn btn-large btn-primary" name="generate" id="generate" value="Generate" />
+        </fieldset>
+        </div>
+      </div>
 
+      <div class="well">
+        <fieldset>
+          <legend>Your command line:</legend>
+          <textarea name="command_line" id="command_line" rows="3" cols="100"></textarea>
+        </fieldset>
+      </div>
 
-    </fieldset>
-        </section>
+    </div> <!-- container -->
 
-        <h2>Third Step</h2>
-        <section>
-
-
-
-        </section>
-
-        <h2>Forth Step</h2>
-        <section>
-
-
-
-        </section>
+    <div class="footer">
+      <p>Made with ♥ by <a href="http://www.ashleyblewer.com">Ashley Blewer</a></p>
     </div>
-</div>
-
-    </body>
+  </body>
 </html>
