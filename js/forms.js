@@ -1,12 +1,7 @@
 $(document).ready(function() {
   
-  var $question = $('.question'),
-      $nextQ = $('.next-question');
-
-  $question.hide();
-  $question.first().show();
-
-  $nextQ.click(function() {
-    $question.next().slideDown("slow");
+  $('#generate').click(function(){
+    $('#command_line').val("ffmpeg " + $('#input_name').val() + " " + $('#output_name').val())
   });
+
 });
