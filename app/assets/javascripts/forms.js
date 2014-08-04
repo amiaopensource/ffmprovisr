@@ -6,4 +6,9 @@ $(document).ready(function() {
       " -o " + $('#output_name').val())
   });
 
+  $('#display_generate').click(function(){
+    $('#display_command_line').val("ffmpeg" + 
+      " -i " + $('#input_name').val())
+  });
+
 });

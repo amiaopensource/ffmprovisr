@@ -7,9 +7,11 @@
         <fieldset>
           <legend>First form</legend>
           <!-- First we need a select question option... form or not? -->
-          <h4>What is your question?</h4>
+          <h4>What do you want to do?</h4>
           <ul>
-            <li>Display info</li>
+            <li>
+              Display info
+            </li>
             <li>Export for web</li>
             <li>Add subtitles track</li>
             <li>Remove audio track</li>
@@ -20,11 +22,11 @@
 
 <!-- todo: yield for form depending on choice above -->
 
-  <%= render "web" %>
-  
+  <div class="formloader">
+    <%= render "display" %>
+  </div>
+<!--   <%= render "web" %> -->
 
 
-    <div class="footer">
-      <p>Made with ♥ by <a href="http://www.ashleyblewer.com">Ashley Blewer</a></p>
-    </div>
-  </body>
+
+    
