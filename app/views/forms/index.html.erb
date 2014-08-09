@@ -5,12 +5,11 @@
 
       <div class="well">
         <fieldset>
-          <legend>First form</legend>
-          <!-- First we need a select question option... form or not? -->
-          <h4>What do you want to do?</h4>
+          <legend>What do you want to do?</legend>
+          <h3>Select from the following.</h3>
           <ul>
             <li>
-              Display info
+              <div id="show_display_info">Display info</div>
             </li>
             <li>Export for web</li>
             <li>Add subtitles track</li>
@@ -20,13 +19,16 @@
         </fieldset>
        </div>
 
-<!-- todo: yield for form depending on choice above -->
-
-  <div class="formloader">
-    <%= render "display" %>
+  <div id="formloader">
+    <div class="display_info" style="display:none;">
+    <%= render "display_info" %>
   </div>
-<!--   <%= render "web" %> -->
+  </div>
 
+<%#= render "web" %> 
 
-
-    
+<script>
+$( "#show_display_info" ).click(function() {
+  $( ".display_info" ).toggle();
+}); 
+</script>
