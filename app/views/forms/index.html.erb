@@ -11,8 +11,12 @@
             <li>
               <div id="show_display_info">Display info</div>
             </li>
-            <li>Export for web</li>
-            <li>Add subtitles track</li>
+            <li>
+              <div id="show_web">Export for web</div>
+            </li>
+            <li>
+              <div id="show_add_subtitles">Add subtitles track</div>
+            </li>
             <li>Remove audio track</li>
             <li>Add audio track</li>
           </ul>
@@ -22,13 +26,11 @@
   <div id="formloader">
     <div class="display_info" style="display:none;">
     <%= render "display_info" %>
+    </div>
+    <div class="web" style="display:none;">
+    <%= render "web" %>
+    </div>
+    <div class="add_subtitles" style="display:none;">
+    <%= render "add_subtitles" %>
+    </div>
   </div>
-  </div>
-
-<%#= render "web" %> 
-
-<script>
-$( "#show_display_info" ).click(function() {
-  $( ".display_info" ).toggle();
-}); 
-</script>
