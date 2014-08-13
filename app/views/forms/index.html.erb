@@ -1,24 +1,31 @@
     <div class="container">
-      <h1>➺ ffmproviser ❥</h1>
+      <div class="text-center">
+        <h1>➺ ffmproviser ❥</h1>
+      </div>
 
 <!-- form begins -->
 
       <div class="well">
         <fieldset>
           <legend>What do you want to do?</legend>
-          <h3>Select from the following.</h3>
+          <h4>Select from the following.</h4>
+          <br />
           <ul>
             <li>
               <div id="show_display_info">Display info</div>
             </li>
             <li>
-              <div id="show_web">Export for web</div>
-            </li>
-            <li>
               <div id="show_add_subtitles">Add subtitles track</div>
             </li>
-            <li>Remove audio track</li>
-            <li>Add audio track</li>
+            <li>
+              <div id="show_remove_audio_track">Remove audio track</div>
+            </li>
+            <li>
+              <div id="show_add_audio_track">Add audio track (replace)</div>
+            </li>
+            <li>
+              <div id="show_web"><s>Export for web</s></div>
+            </li>
           </ul>
         </fieldset>
        </div>
@@ -32,5 +39,11 @@
     </div>
     <div class="add_subtitles" style="display:none;">
     <%= render "add_subtitles" %>
+    </div>
+    <div class="remove_audio_track" style="display:none;">
+    <%= render "remove_audio_track" %>
+    </div>
+    <div class="add_audio_track" style="display:none;">
+    <%= render "add_audio_track" %>
     </div>
   </div>
