@@ -3,9 +3,9 @@
       <fieldset>
         <legend>Input</legend>
           <div class="form-group">
-          <label class="control-label" for="input_name">Input</label>
+          <label class="control-label" for="r_audio_input_name">Input</label>
             <div class="controls">
-            <input type="text" name="input_name" id="input_name" placeholder="input" />
+            <input type="text" name="r_audio_input_name" id="r_audio_input_name" placeholder="input" />
             </div>
           </div>
         <br/>
@@ -17,9 +17,9 @@
     <fieldset>
       <legend>Audio track</legend>
         <div class="form-group">
-        <label class="control-label" for="subtitles_name">Audio track</label>
+        <label class="control-label" for="r_audio_track_name">Audio track</label>
           <div class="controls">
-          <input type="text" name="subtitles_name" id="subtitles_name" placeholder="audio.mp3" />
+          <input type="text" name="r_audio_track_name" id="r_audio_track_name" placeholder="subtitles" />
           </div>
         </div>
     </fieldset>
@@ -29,23 +29,22 @@
     <fieldset>
       <legend>Output</legend>
         <div class="form-group">
-        <label class="control-label" for="output_name">Output</label>
+        <label class="control-label" for="r_audio_output_name">Output</label>
           <div class="controls">
-          <input type="text" name="output_name" id="output_name" placeholder="output" />
+          <input type="text" name="r_audio_output_name" id="r_audio_output_name" placeholder="output" />
           </div>
         </div>
           </fieldset>
           <br/>
           <fieldset>
-      <input type="button" class="btn btn-large btn-primary" name="add_subtitles_generate" id="add_subtitles_generate" value="Generate" />
+      <input type="button" class="btn btn-large btn-primary" name="remove_subtitles_generate" id="remove_audio_track_generate" value="Generate" />
           </fieldset>
     </div>
 
     <div class="well">
       <fieldset>
         <legend>Your command line:</legend>
-        <textarea name="subtitles_command_line" id="subtitles_command_line" rows="3" cols="100"></textarea>
+        <textarea name="remove_audio_track_command_line" id="remove_audio_track_command_line" rows="3" cols="100"></textarea>
       </fieldset>
     </div>
 
-  </div> <!-- container -->

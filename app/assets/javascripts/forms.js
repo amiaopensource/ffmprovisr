@@ -20,6 +20,7 @@ $(document).ready(function() {
     $( ".remove_audio_track" ).toggle();
   });
 
+
   $('#generate').click(function(){
     $('#command_line').val("ffmpeg" + 
       " -i " + $('#input_name').val() + 
