@@ -1,5 +1,10 @@
 $(document).ready(function() {
 
+  $( ".reload" ).click(function() {
+    location.reload();
+  });
+
+
   $( "#show_display_info" ).click(function() {
     $( ".display_info" ).toggle();
   });
