@@ -1,8 +1,8 @@
 $(document).ready(function() {
 
-  $( ".reload" ).click(function() {
-    location.reload();
-  });
+    $( ".reload" ).click(function() {
+      location.reload();
+    });
 
 
   $( "#show_display_info" ).click(function() {
@@ -23,6 +23,10 @@ $(document).ready(function() {
 
   $( "#show_remove_audio_track" ).click(function() {
     $( ".remove_audio_track" ).toggle();
+  });
+
+  $( "#show_webm_for_web" ).click(function() {
+    $( ".webm_for_web" ).toggle();
   });
 
 
@@ -57,4 +61,13 @@ $(document).ready(function() {
       " -i " + $('#r_audio_input_name').val() + " " + $('#r_audio_track_name').val() + " -vcodec copy -an " + $('#r_audio_output_name').val())
   });
 
+  $('#webm_for_web_generate').click(function(){
+    $('#webm_for_web_command_line').val("ffmpeg" + 
+      " -i " + $('#webm_input_name').val() + 
+      " -codec:v libvpx -quality good -cpu-used 0 -b:v 500k -qmin 10 -qmax 42 -maxrate 500k -bufsize 1000k -threads 4 -vf scale=-1:480 -codec:a libvorbis -b:a 128k " + 
+      $('#webm_output_name').val())
+  });
+
 });
+
+
