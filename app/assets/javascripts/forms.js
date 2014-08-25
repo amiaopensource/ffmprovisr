@@ -4,7 +4,6 @@ $(document).ready(function() {
       location.reload();
     });
 
-
   $( "#show_display_info" ).click(function() {
     $( ".display_info" ).toggle();
   });
@@ -79,7 +78,4 @@ $(document).ready(function() {
       $('#h264_output_name').val())
   });
 
-
 });
-
-
