@@ -16,7 +16,19 @@
   </head>
   <body>
 
-    <%= yield %>
+    <!-- break div into two here -->
+    <div class="row">
+      <div class="container">
+        <%= yield %>
+      </div>
+      <div class="container">
+        <h3>Making ffmpeg easier</h3>
+        <p>FFmpeg is a pretty powerful framework for audio-visual materials. Unfortunately, it also has a steep learning curve. This app helps users through the bash command generation process so that more people can reap the benefits of the ffmpeg library. </p>
+        <p>This project is very much a work in progress. Each button displays a form to help fulfill a popular user request. To use, click on the button and fill out the form. After clicking the Generate button, a command line will appear in the box below. That line can be copied and pasted into a Terminal, with the assumption that the video file is located in the same directory that the user currently is in.</p>
+<!--         <p>For FFmpeg basics, here are some resources:</p>
+        <p>For bash and command line basics, here are some resources:</p> -->
+      </div>
+    </div>
 
     
     <div class="footer text-center">
