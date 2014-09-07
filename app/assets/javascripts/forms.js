@@ -6,6 +6,8 @@ $(document).ready(function() {
 
   $( "#show_display_info" ).click(function() {
     $( ".display_info" ).toggle();
+    $( ".add_subtitles").hide();
+
   });
 
   $( "#show_web" ).click(function() {
