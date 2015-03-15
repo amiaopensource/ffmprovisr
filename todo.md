@@ -2,9 +2,7 @@ TO DO
 
 ffmpeg questions and answers:
 
-
 Examples via http://www.catswhocode.com/blog/19-ffmpeg-commands-for-all-needs
-
 
 Getting infos from a video file
 ffmpeg -i video.avi
