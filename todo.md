@@ -1,15 +1,5 @@
 TO DO
 
-javascript for hiding form questions 
-
-function newQuestion(){ $question.hide(); $question.first().show();
-$form.on("click", ".new-question", function() {
-  $(this).parent().parent().next().slideDown("slow");
-});
-}
-
-
-
 ffmpeg questions and answers:
 
 
