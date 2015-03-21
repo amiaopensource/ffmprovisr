@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ffmprovisr</title>
+    <meta charset="utf-8">
+
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="css/jquery.steps.css" rel="stylesheet" >
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/forms.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  </head>
+
+  <div class="container">
+
+  <div class="text-center">
+    <h1>➺ ffmprovisr ❥</h1>
+    <br/>
+  </div>
+
+<!-- form begins -->
+<div class="row">
+
+      <div class="well col-md-4 col-md-offset-1">
+        <fieldset>
+          <legend>What do you want to do?</legend>
+          <h4>Select from the following.</h4>
+          <br />
+          <ul>
+            <li>
+              <div id="show_display_info"><button type="button" class="btn btn-default">Display Info</button></div><br/>
+            </li>
+            <li>
+              <div id="show_add_subtitles"><button type="button" class="btn btn-default">Add subtitles track</button></div><br/>
+            </li>
+            <li>
+              <div id="show_remove_audio_track"><button type="button" class="btn btn-default">Remove audio track</button></div><br/>
+            </li>
+            <li>
+              <div id="show_add_audio_track"><button type="button" class="btn btn-default">Add audio track (replace)</button></div><br/>
+            </li>
+            <li>
+              <div id="show_webm_for_web"><button type="button" class="btn btn-default">Export to webm for web</button></div><br/>
+            </li>
+            <li>
+              <div id="show_h264_for_web"><button type="button" class="btn btn-default">Export to h264 for web</button></div><br/>
+            </li>
+          </ul>
+        </fieldset>
+       </div>
+
+       <div class="well col-md-6 col-md-offset-1">
+
+        <h3>Making ffmpeg easier</h3>
+        <p>FFmpeg is a pretty powerful framework for audio-visual materials. Unfortunately, it also has a steep learning curve. This app helps users through the bash command generation process so that more people can reap the benefits of the ffmpeg library. </p>
+        <p>This project is very much a work in progress. Each button displays a form to help fulfill a popular user request. To use, click on the button and fill out the form. After clicking the Generate button, a command line will appear in the box below. That line can be copied and pasted into a Terminal, with the assumption that the video file is located in the same directory that the user currently is in.</p>
+        <p>For FFmpeg basics, check out their <a href="https://www.ffmpeg.org/">official website.</a></p>
+        <p>For bash and command line basics, try the <a href="http://cli.learncodethehardway.org/book/">Command Line Crash Course</a></p>
+    </div>
+
+</div> <!-- row -->
+  <div id="formloader">
+    <div class="display_info" style="display:none;">
+      <div id="file_names">
+        <div class="well">
+        <fieldset>
+          <legend>Input</legend>
+            <div class="form-group">
+            <label class="control-label" for="input_name">Input</label>
+              <div class="controls">
+              <input type="text" name="input_name" id="input_name" placeholder="input" />
+              </div>
+            </div>
+          <br/>
+          <input type="button" class="btn btn-large btn-primary" name="display_generate" id="display_generate" value="Generate" />
+        </fieldset>
+        </div>
+      </div>
+
+      <div class="well">
+        <fieldset>
+          <legend>Your command line:</legend>
+          <textarea name="display_command_line" id="display_command_line" rows="1" cols="100"></textarea>
+        </fieldset>
+      </div>
+    </div>
+    <div class="web" style="display:none;">
+      <div id="file_names">
+        
+        <div class="well">
+        <fieldset>
+          <legend>Input and Output</legend>
+            <div class="form-group">
+            <label class="control-label" for="input_name">Input</label>
+              <div class="controls">
+              <input type="text" name="input_name" id="input_name" placeholder="input" />
+              </div>
+            </div>
+            <div class="form-group">
+            <label class="control-label" for="output_name">Output</label>
+              <div class="controls">
+              <input type="text" name="output_name" id="output_name" placeholder="output" />
+              </div>
+            </div>
+          <br/>
+          <input type="button" class="btn btn-large btn-primary" name="generate" id="web_generate" value="Generate" />
+        </fieldset>
+        </div>
+      </div>
+
+      <div class="well">
+        <fieldset>
+          <legend>Your command line:</legend>
+          <textarea name="command_line" id="command_line" rows="3" cols="100"></textarea>
+        </fieldset>
+      </div>
+    </div>
+    <div class="add_subtitles" style="display:none;">
+          <div id="file_names">
+      <div class="well">
+      <fieldset>
+        <legend>Input</legend>
+          <div class="form-group">
+          <label class="control-label" for="subtitles_input_name">Input</label>
+            <div class="controls">
+            <input type="text" name="subtitles_input_name" id="subtitles_input_name" placeholder="input" />
+            </div>
+          </div>
+        <br/>
+      </fieldset>
+      </div>
+    </div>
+
+    <div class="well">
+    <fieldset>
+      <legend>Subtitles file (.srt)</legend>
+        <div class="form-group">
+        <label class="control-label" for="subtitles_name">Subtitles</label>
+          <div class="controls">
+          <input type="text" name="subtitles_name" id="subtitles_name" placeholder="subtitles" />
+          </div>
+        </div>
+    </fieldset>
+    </div>
+
+    <div class="well">
+    <fieldset>
+      <legend>Output</legend>
+        <div class="form-group">
+        <label class="control-label" for="subtitles_output_name">Output</label>
+          <div class="controls">
+          <input type="text" name="subtitles_output_name" id="subtitles_output_name" placeholder="output" />
+          </div>
+        </div>
+          </fieldset>
+          <br/>
+          <fieldset>
+      <input type="button" class="btn btn-large btn-primary" name="add_subtitles_generate" id="add_subtitles_generate" value="Generate" />
+          </fieldset>
+    </div>
+
+          <div class="well">
+            <fieldset>
+              <legend>Your command line:</legend>
+              <textarea name="subtitles_command_line" id="subtitles_command_line" rows="3" cols="100"></textarea>
+            </fieldset>
+          </div>
+          </div>
+          <div class="remove_audio_track" style="display:none;">
+              <div id="file_names">
+          <div class="well">
+          <fieldset>
+            <legend>Input</legend>
+              <div class="form-group">
+              <label class="control-label" for="r_audio_input_name">Input</label>
+                <div class="controls">
+                <input type="text" name="r_audio_input_name" id="r_audio_input_name" placeholder="input" />
+                </div>
+              </div>
+            <br/>
+          </fieldset>
+          </div>
+        </div>
+
+        <div class="well">
+        <fieldset>
+          <legend>Audio track</legend>
+            <div class="form-group">
+            <label class="control-label" for="r_audio_track_name">Audio track</label>
+              <div class="controls">
+              <input type="text" name="r_audio_track_name" id="r_audio_track_name" placeholder="subtitles" />
+              </div>
+            </div>
+        </fieldset>
+        </div>
+
+        <div class="well">
+        <fieldset>
+          <legend>Output</legend>
+            <div class="form-group">
+            <label class="control-label" for="r_audio_output_name">Output</label>
+              <div class="controls">
+              <input type="text" name="r_audio_output_name" id="r_audio_output_name" placeholder="output" />
+              </div>
+            </div>
+              </fieldset>
+              <br/>
+              <fieldset>
+          <input type="button" class="btn btn-large btn-primary" name="remove_subtitles_generate" id="remove_audio_track_generate" value="Generate" />
+              </fieldset>
+        </div>
+
+        <div class="well">
+          <fieldset>
+            <legend>Your command line:</legend>
+            <textarea name="remove_audio_track_command_line" id="remove_audio_track_command_line" rows="3" cols="100"></textarea>
+          </fieldset>
+        </div>
+          </div>
+          <div class="webm_for_web" style="display:none;">
+            <div id="file_names">
+        <div class="well">
+        <fieldset>
+          <legend>Input and Output</legend>
+            <div class="form-group">
+            <label class="control-label" for="webm_input_name">Input</label>
+              <div class="controls">
+              <input type="text" name="webm_input_name" id="webm_input_name" placeholder="input" />
+              </div>
+            </div>
+            <div class="form-group">
+            <label class="control-label" for="webm_output_name">Output</label>
+              <div class="controls">
+              <input type="text" name="webm_output_name" id="webm_output_name" placeholder="output" />
+              </div>
+            </div>
+          <br/>
+          <input type="button" class="btn btn-large btn-primary" name="generate" id="webm_for_web_generate" value="Generate" />
+        </fieldset>
+        </div>
+      </div>
+
+      <div class="well">
+        <fieldset>
+          <legend>Your command line:</legend>
+          <textarea name="webm_for_web_command_line" id="webm_for_web_command_line" rows="3" cols="100"></textarea>
+        </fieldset>
+      </div>
+    </div>
+    <div class="h264_for_web" style="display:none;">
+      <div id="file_names">
+        <div class="well">
+        <fieldset>
+          <legend>Input and Output</legend>
+            <div class="form-group">
+            <label class="control-label" for="h264_input_name">Input</label>
+              <div class="controls">
+              <input type="text" name="h264_input_name" id="h264_input_name" placeholder="input" />
+              </div>
+            </div>
+            <div class="form-group">
+            <label class="control-label" for="h264_output_name">Output</label>
+              <div class="controls">
+              <input type="text" name="h264_output_name" id="h264_output_name" placeholder="output" />
+              </div>
+            </div>
+          <br/>
+          <input type="button" class="btn btn-large btn-primary" name="generate" id="h264_for_web_generate" value="Generate" />
+        </fieldset>
+        </div>
+      </div>
+
+      <div class="well">
+        <fieldset>
+          <legend>Your command line:</legend>
+          <textarea name="h264_for_web_command_line" id="h264_for_web_command_line" rows="3" cols="100"></textarea>
+        </fieldset>
+      </div>
+    </div>
+    <div class="add_audio_track" style="display:none;">
+      <div id="file_names">
+        <div class="well">
+        <fieldset>
+          <legend>Input</legend>
+            <div class="form-group">
+            <label class="control-label" for="audio_input_name">Input</label>
+              <div class="controls">
+              <input type="text" name="audio_input_name" id="audio_input_name" placeholder="input" />
+              </div>
+            </div>
+          <br/>
+        </fieldset>
+        </div>
+
+        <div class="well">
+        <fieldset>
+          <legend>Audio track</legend>
+            <div class="form-group">
+            <label class="control-label" for="audio_track_name">Audio track</label>
+              <div class="controls">
+              <input type="text" name="audio_track_name" id="audio_track_name" placeholder="audio.mp3" />
+              </div>
+            </div>
+        </fieldset>
+        </div>
+
+        <div class="well">
+        <fieldset>
+          <legend>Output</legend>
+            <div class="form-group">
+            <label class="control-label" for="audio_output_name">Output</label>
+              <div class="controls">
+              <input type="text" name="audio_output_name" id="audio_output_name" placeholder="output" />
+              </div>
+            </div>
+              </fieldset>
+              <br/>
+              <fieldset>
+          <input type="button" class="btn btn-large btn-primary" name="add_subtitles_generate" id="add_audio_track_generate" value="Generate" />
+              </fieldset>
+        </div>
+      </div>
+
+      <div class="well">
+        <fieldset>
+          <legend>Your command line:</legend>
+          <textarea name="add_audio_track_command_line" id="add_audio_track_command_line" rows="3" cols="100"></textarea>
+        </fieldset>
+      </div>
+
+      </div> <!-- container -->
+    </div>
+  </div>
+
+      <div class="text-center">
+        <div class="reload">
+          <p><button type="button" class="btn btn-default">Start over!</button></p>
+        </div>
+      </div>
+
+</div> <!-- container -->
+
+
+    <div class="footer">
+      <p>Made with ♥ by <a href="http://www.ashleyblewer.com">Ashley Blewer</a></p>
+    </div>
+  </body>
+</html>

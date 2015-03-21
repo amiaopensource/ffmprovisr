@@ -1,3 +1,13 @@
+function showMore(){
+    document.getElementById('more').style.display  = 'none';
+    document.getElementById('less').style.display  = 'block';
+}
+
+function showLess(){
+    document.getElementById('more').style.display  = 'block';
+    document.getElementById('less').style.display  = 'none';
+}
+
 $(document).ready(function() {
 
   $( ".reload" ).click(function() {
