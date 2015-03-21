@@ -1,13 +1,3 @@
-function showMore(){
-    document.getElementById('more').style.display  = 'none';
-    document.getElementById('less').style.display  = 'block';
-}
-
-function showLess(){
-    document.getElementById('more').style.display  = 'block';
-    document.getElementById('less').style.display  = 'none';
-}
-
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
@@ -15,12 +5,15 @@ $(function () {
 $(document).ready(function() {
 
   $( ".reload" ).click(function() {
-    location.reload();
+    window.location.href.reload();
   });
 
   $( "#show_display_info" ).click(function() {
     $( "#formloader > div" ).hide();
     $( ".display_info" ).show();
+    $('html,body').animate({
+        scrollTop: $("#formloader").offset().top},
+        'slow');
   });
 
   $( "#show_web" ).click(function() {
