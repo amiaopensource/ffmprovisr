@@ -4,45 +4,52 @@ $(function () {
 
 $(document).ready(function() {
 
+  function chillScroll(){
+    $('html,body').animate({
+    scrollTop: $("#formloader").offset().top},
+    'slow'); 
+    $( "#formloader > div" ).hide(); 
+  };
+
   $( ".reload" ).click(function() {
-    window.location.href.reload();
+    $('html,body').animate({
+    scrollTop: $("html").offset().top},
+    'fast'); 
+    $( "#formloader > div" ).delay(500).hide(0);
   });
 
   $( "#show_display_info" ).click(function() {
-    $( "#formloader > div" ).hide();
+    chillScroll();
     $( ".display_info" ).show();
-    $('html,body').animate({
-        scrollTop: $("#formloader").offset().top},
-        'slow');
   });
 
   $( "#show_web" ).click(function() {
-    $( "#formloader > div" ).hide();
+    chillScroll();
     $( ".web" ).show();
   });
 
   $( "#show_add_subtitles" ).click(function() {
-    $( "#formloader > div" ).hide();
+    chillScroll();
     $( ".add_subtitles" ).show();
   });
 
   $( "#show_add_audio_track" ).click(function() {
-    $( "#formloader > div" ).hide();
+    chillScroll();
     $( ".add_audio_track" ).show();
   });
 
   $( "#show_remove_audio_track" ).click(function() {
-    $( "#formloader > div" ).hide();
+    chillScroll();
     $( ".remove_audio_track" ).show();
   });
 
   $( "#show_webm_for_web" ).click(function() {
-    $( "#formloader > div" ).hide();
+    chillScroll();
     $( ".webm_for_web" ).show();
   });
 
   $( "#show_h264_for_web" ).click(function() {
-    $( "#formloader > div" ).hide();
+    chillScroll();
     $( ".h264_for_web" ).show();
   });
 
