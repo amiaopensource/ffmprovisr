@@ -13,14 +13,14 @@ span .btn {
   backface-visibility: hidden;
   -moz-osx-font-smoothing: grayscale;
   position: relative;
-  padding-right: 2.5em;
+  padding-left: 2.5em;
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
 }
 span .btn:before {
   content: "\f1c8";
   position: absolute;
-  right: 1em;
+  left: 1em;
   padding: 0 1px;
   font-family: FontAwesome;
   -webkit-transform: translateZ(0);
