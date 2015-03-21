@@ -8,6 +8,10 @@ function showLess(){
     document.getElementById('less').style.display  = 'none';
 }
 
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
 $(document).ready(function() {
 
   $( ".reload" ).click(function() {
