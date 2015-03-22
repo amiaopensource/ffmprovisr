@@ -50,6 +50,10 @@
               <span id="show_webm_for_web"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Export to compressed webm file for web use">Export to webm for web</button></span>
 
               <span id="show_h264_for_web"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Export to compressed h264 file for web use">Export to h264 for web</button></span>
+
+              <span id="show_img_to_vid"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="This command will transform all the images from the current directory (named image1.jpg, image2.jpg, etc) to a video file named video.mpg">Convert images to video</button></span>
+
+              <span id="show_vid_to_img"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Export to compressed h264 file for web use">Convert video to images</button></span>
        </div>
 
 
@@ -244,6 +248,8 @@
         </fieldset>
       </div>
     </div>
+
+<!-- h264 for web -->
     <div class="h264_for_web" style="display:none;">
       <div id="file_names">
         <div class="well">
@@ -274,6 +280,8 @@
         </fieldset>
       </div>
     </div>
+
+<!-- Add audio track -->
     <div class="add_audio_track" style="display:none;">
       <div id="file_names">
         <div class="well">
@@ -300,7 +308,6 @@
             </div>
         </fieldset>
         </div>
-
         <div class="well">
         <fieldset>
           <legend>Output</legend>
@@ -317,17 +324,70 @@
               </fieldset>
         </div>
       </div>
-
       <div class="well">
         <fieldset>
           <legend>Your command line:</legend>
           <textarea name="add_audio_track_command_line" id="add_audio_track_command_line" rows="3" cols="100"></textarea>
         </fieldset>
       </div>
+    </div>
+
+<!-- img to vid -->
+    <div class="img_to_vid" style="display:none;">
+      <div id="file_names">
+        <div class="well">
+        <fieldset>
+          <legend>Input and Output</legend>
+            <div class="form-group">
+            <label class="control-label" for="img_output_name">Output</label>
+              <div class="controls">
+              <input type="text" name="img_output_name" id="img_output_name" placeholder="video.mpg" />
+              </div>
+            </div>
+          <br/>
+          <input type="button" class="btn btn-large btn-primary" name="generate" id="img_to_vid_generate" value="Generate" />
+        </fieldset>
+        </div>
+      </div>
+
+      <div class="well">
+        <fieldset>
+          <legend>Your command line:</legend>
+          <textarea name="img_to_vid_command_line" id="img_to_vid_command_line" rows="3" cols="100"></textarea>
+        </fieldset>
+      </div>
+    </div>
+
+
+<!-- vid to img -->
+    <div class="vid_to_img" style="display:none;">
+      <div id="file_names">
+        <div class="well">
+        <fieldset>
+          <legend>Output</legend>
+            <div class="form-group">
+            <label class="control-label" for="vid_output_name">Output</label>
+              <div class="controls">
+              <input type="text" name="vid_output_name" id="vid_output_name" placeholder="video.mpg" />
+              </div>
+            </div>
+          <br/>
+          <input type="button" class="btn btn-large btn-primary" name="generate" id="vid_to_img_generate" value="Generate" />
+        </fieldset>
+        </div>
+      </div>
+
+      <div class="well">
+        <fieldset>
+          <legend>Your command line:</legend>
+          <textarea name="vid_to_img_command_line" id="vid_to_img_command_line" rows="3" cols="100"></textarea>
+        </fieldset>
+      </div>
+    </div>
+
 
       </div> <!-- container -->
     </div>
-  </div>
 
       <div class="text-center">
         <div class="reload">

@@ -53,6 +53,16 @@ $(document).ready(function() {
     $( ".h264_for_web" ).show();
   });
 
+  $( "#show_img_to_vid" ).click(function() {
+    chillScroll();
+    $( ".img_to_vid" ).show();
+  });
+
+  $( "#show_vid_to_img" ).click(function() {
+    chillScroll();
+    $( ".vid_to_img" ).show();
+  });
+
 
   $('#generate').click(function(){
     $('#command_line').val("ffmpeg" + 
@@ -99,4 +109,16 @@ $(document).ready(function() {
       $('#h264_output_name').val())
   });
 
+  $('#img_to_vid_generate').click(function(){
+    // ffmpeg -f image2 -i image%d.jpg video.mpg
+    $('#img_to_vid_command_line').val("ffmpeg" + 
+      " -f image2 -i image%d.jpg " + $('#img_output_name').val())
+  });
+
+  $('#vid_to_img_generate').click(function(){
+      // ffmpeg -i video.mpg image%d.jpg
+    $('#vid_to_img_command_line').val("ffmpeg" + 
+      " -i " + $('#vid_output_name').val() + 
+      " image%d.jpg")
+  });
 });
