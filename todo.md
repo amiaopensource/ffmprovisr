@@ -4,13 +4,6 @@ ffmpeg questions and answers:
 
 Examples via http://www.catswhocode.com/blog/19-ffmpeg-commands-for-all-needs
 
-Turn X images to a video sequence
-ffmpeg -f image2 -i image%d.jpg video.mpg
-This command will transform all the images from the current directory (named image1.jpg, image2.jpg, etc…) to a video file named video.mpg.
-
-Turn a video to X images
-ffmpeg -i video.mpg image%d.jpg
-This command will generate the files named image1.jpg, image2.jpg, …
 
 The following image formats are also availables : PGM, PPM, PAM, PGMYUV, JPEG, GIF, PNG, TIFF, SGI.
 
