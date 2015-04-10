@@ -4,10 +4,9 @@ ffmpeg questions and answers:
 
 Examples via http://www.catswhocode.com/blog/19-ffmpeg-commands-for-all-needs
 
-
 The following image formats are also availables : PGM, PPM, PAM, PGMYUV, JPEG, GIF, PNG, TIFF, SGI.
 
-Encode a video sequence for the iPpod/iPhone
+Encode a video sequence for the iPod/iPhone
 ffmpeg -i source_video.avi input -acodec aac -ab 128kb -vcodec mpeg4 -b 1200kb -mbd 2 -flags +4mv+trell -aic 2 -cmp 2 -subcmp 2 -s 320x180 -title X final_video.mp4
 Explanations :
 
