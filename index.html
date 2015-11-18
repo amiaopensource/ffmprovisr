@@ -55,7 +55,7 @@
         </p>
 
         <p>This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! </p>
-        
+
         <ul>
           <li>ffmpeg : starts the command</li>
           <li>-i : i for info dudes!</li>
@@ -98,6 +98,34 @@
   </div>
 </div>
 <!-- ends WAV to MP3 -->
+
+
+<!-- batch processing -->
+<span data-toggle="modal" data-target=".batch_processing"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="FFMPEG batch processing within a single folder">Batch processing</button></span>
+<div class="modal fade batch_processing" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- where the text goes -->
+      <div class="well">
+        <h3>FFMPEG batch processing within a single folder</h3>
+
+        <p>
+          <code>Create Bash Script named “Rewrap.MXF.sh” to do Batch FFMPEG Processing</code>
+        </p>
+
+        <p>Re-wrap .MFX files in a specified directory to .mov files by using this code within a .sh file. The shell script (.sh file) and all MXF files must be contained in the same directory, and the script must be run from the directory itself (cd ~/Desktop/MXF_file_directory). Execute .sh file with the command <code>sh Rewrap-MXF.sh</code></p>
+        
+        <ul>
+          <li>-acodec copy (copy audio codec)</li>
+          <li>-vcodec copy (copy video codec)</li>
+        </ul>
+
+        <p>Modify the ffmpeg script as needed to perform different transcodes :)</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends batch processing -->
 
 
 <!-- One thumbnail -->
