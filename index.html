@@ -125,6 +125,37 @@
 </div>
 <!-- ends Multi thumbnail -->
 
+<!-- Pull specs -->
+<button type="button" class="btn btn-default" data-toggle="modal" data-target=".pull_specs">Pull specs</button>
+
+<div class="modal fade pull_specs" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- where the text goes -->
+      <div class="well">
+        <h2>ffprobe -i filename.avi -show_format -show_streams -print_format xml</h2>
+      </div>
+
+      <div class="well">
+        <p>This command extracts technical metadata from a video file and displays it in xml. </p>
+        <p>ffmpeg documentation on ffprobe (full list of flags, commands, [https://www.ffmpeg.org/ffprobe.html](https://www.ffmpeg.org/ffprobe.html)) </p>
+      </div>
+
+      <div class="well">
+        <ul>
+          <li>ffprobe: calls the program</li>
+          <li>-i:  tells ffprobe to expect input files</li>
+          <li>-show_format: outputs file container</li>
+          <li>-show_streams: outputs audio and video codec</li>
+          <li>-show_data: adds “hexdump” to show_streams command output</li>
+          <li>-print_format: Set the output printing format (in this example “xml”)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends Pull specs -->
+
 </div> <!-- end this well (and this ends well) -->
 </div> <!-- row -->
 
