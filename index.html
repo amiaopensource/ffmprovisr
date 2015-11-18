@@ -42,6 +42,9 @@
             <!-- sample example -->
               <span id="show_display_info"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Displays information about a media file">Display Info</button></span>
             <!-- ends sample example -->
+            <!-- one thumbnail -->
+              <span id="show_one_thumbnail"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Generate one thumbnail for videos">One thumbnail</button></span>
+            <!-- ends one thumbnail -->
        </div>
 
 
@@ -71,7 +74,30 @@
     </div>
 <!-- ends sample example -->
 
+<!-- generate one thumbnail for videos -->
+    <div class="one_thumbnail" style="display:none;">
 
+      <div class="well">
+        <h2>ffmpeg -i [file path] -ss 00:00:20 -f image2 -vframes 1 thumb.png</h2>
+      </div>
+
+      <div class="well">
+        <p>This first command will grab a thumbnail 20 seconds into the video.</p>
+      </div>
+
+      <div class="well">
+        <ul>
+          <li>ffmpeg: calls the program</li>
+          <li>-i for input</li>
+          <li>-ss 00:00:20: seeks video file to 20 seconds into the video </li>
+          <li>-f image2: Forces the file format. image2 is an image file demuxer.</li>
+          <li>-vframes 1: sets the number of frames (in this example, one frame)</li>
+          <li>thumb.png: output name and format</li>
+        </ul>
+      </div>
+
+    </div>
+<!-- ends generate one thumbnail for videos -->
 
 
 

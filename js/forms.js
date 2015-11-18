@@ -23,6 +23,10 @@ $(document).ready(function() {
     $( ".display_info" ).show();
   });
 
+  $( "#show_one_thumbnail" ).click(function() {
+    chillScroll();
+    $( ".one_thumbnail" ).show();
+  });
   $( "#show_web" ).click(function() {
     chillScroll();
     $( ".web" ).show();
