@@ -39,27 +39,22 @@
       <div class="well col-md-6 col-md-offset-2">
           <h3>What do you want to do?</h3>
           <h5>Select from the following.</h5>
-            <!-- sample example -->
-              <span id="show_display_info"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Displays information about a media file">Display Info</button></span>
-            <!-- ends sample example -->
             <!-- one thumbnail -->
-              <span id="show_one_thumbnail"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Generate one thumbnail for videos">One thumbnail</button></span>
+              <span class="one_thumbnail"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Generate one thumbnail for videos">One thumbnail</button></span>
             <!-- ends one thumbnail -->
-       </div>
 
 
-</div> <!-- row -->
-
-<!-- FORMS!-->
-  <div id="formloader">
 
 <!-- sample example -->
-    <div class="display_info" style="display:none;">
+<button type="button" class="btn btn-default" data-toggle="modal" data-target=".example">Sample example</button>
 
+<div class="modal fade example" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- where the text goes -->
       <div class="well">
         <h2>ffmpeg -i [sample file path]</h2>
       </div>
-
       <div class="well">
         <ul>
           <li>ffmpeg : starts the command</li>
@@ -67,16 +62,21 @@
           <li>[sample file path] : path to sample file</li>
         </ul>
       </div>
-
       <div class="well">
         <p>This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! </p>
       </div>
     </div>
+  </div>
+</div>
 <!-- ends sample example -->
 
-<!-- generate one thumbnail for videos -->
-    <div class="one_thumbnail" style="display:none;">
+<!-- One thumbnail -->
+<button type="button" class="btn btn-default" data-toggle="modal" data-target=".one_thumbnail">One thumbnail</button>
 
+<div class="modal fade one_thumbnail" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- where the text goes -->
       <div class="well">
         <h2>ffmpeg -i [file path] -ss 00:00:20 -f image2 -vframes 1 thumb.png</h2>
       </div>
@@ -95,19 +95,15 @@
           <li>thumb.png: output name and format</li>
         </ul>
       </div>
-
     </div>
-<!-- ends generate one thumbnail for videos -->
+  </div>
+</div>
+<!-- ends One thumbnail -->
 
 
+</div> <!-- end this well (and this ends well) -->
+</div> <!-- row -->
 
-<!-- where to add more stuff -->
-
-
-
-
-
-  </div> <!-- ends formloader -->
 
 
     <div class="footer text-center">
