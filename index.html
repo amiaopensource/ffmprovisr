@@ -95,6 +95,35 @@
 </div>
 <!-- ends One thumbnail -->
 
+<!-- Multi thumbnail -->
+<button type="button" class="btn btn-default" data-toggle="modal" data-target=".multi_thumbnail">One thumbnail</button>
+
+<div class="modal fade multi_thumbnail" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- where the text goes -->
+      <div class="well">
+        <h2>ffmpeg -i {path/inputfile.extension} -f image2 -vf fps=fps=1/60 out%d.png</h2>
+      </div>
+
+      <div class="well">
+        <p>This will grab a thumbnail every minute and output sequential png files.</p>
+      </div>
+
+      <div class="well">
+        <ul>
+          <li>ffmpeg: calls the program</li>
+          <li>-i for input</li>
+          <li>-ss 00:00:20: seeks video file to 20 seconds into the video</li>
+          <li>-f image2: Forces the file format. image2 is an image file demuxer</li>
+          <li>-vf fps=fps=1/60: -vf is an alias for -filter:v, which creates a filtergraph to use for the streams. The rest of the command identifies filtering by frames per second, and sets the frames per second at 1/60 (which is one per minute).</li>
+          <li>out%d.png: Names the output file. The %d is a regular expression that adds a number (d is for digit) and increments with each frame (out1.png, out2.png, out3.png…)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends Multi thumbnail -->
 
 </div> <!-- end this well (and this ends well) -->
 </div> <!-- row -->
