@@ -135,11 +135,9 @@
       <div class="well">
         <h3>Join multiple files together</h3>
         <p><code>ffprobe -i filename.avi -show_format -show_streams -print_format xml</code></p>
-      </div>
 
         <p>This command extracts technical metadata from a video file and displays it in xml. </p>
         <p>ffmpeg documentation on ffprobe (full list of flags, commands, <a href="https://www.ffmpeg.org/ffprobe.html">https://www.ffmpeg.org/ffprobe.html</a>) </p>
-      </div>
 
         <ul>
           <li>ffprobe: calls the program</li>
@@ -156,22 +154,18 @@
 <!-- ends Pull specs -->
 
 <!-- Join files together -->
-<span data-toggle="modal" data-target=".pull_specs"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Join files together">Concatenate two or more files into a single file</button></span>
+<span data-toggle="modal" data-target=".join_files"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Join files together">Concatenate two or more files into a single file</button></span>
 
-<div class="modal fade pull_specs" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<div class="modal fade join_files" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <!-- where the text goes -->
       <div class="well">
         <h3>ffmpeg -f concat -i mylist.txt -c copy [output]</h3>
-      </div>
 
-      <div class="well">
         <p>This command takes two or more files of the same filetype and joins them together to make a single file. All that the program needs is a list specifying the files that should be concatenated.  However, it only works if the files to be combined have the exact same codec and technical specifications.  </p>
         <p>ffmpeg documentation on concatenating files (full list of flags, commands, <a href="https://trac.ffmpeg.org/wiki/Concatenate">https://trac.ffmpeg.org/wiki/Concatenate</a>) </p>
-      </div>
 
-      <div class="well">
         <ul>
          <li>ffmpeg: calls the program</li>
          <li>-f: forces the input file format</li>
