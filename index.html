@@ -53,18 +53,52 @@
         <p>
           <code>ffmpeg -i [sample file path]</code>
         </p>
+
+        <p>This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! </p>
+        
         <ul>
           <li>ffmpeg : starts the command</li>
           <li>-i : i for info dudes!</li>
           <li>[sample file path] : path to sample file</li>
         </ul>
 
-        <p>This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! </p>
       </div>
     </div>
   </div>
 </div>
 <!-- ends sample example -->
+
+
+<!-- WAV to MP3 -->
+<span data-toggle="modal" data-target=".wav_to_mp3"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Converts WAV to MP3">WAV to MP3</button></span>
+<div class="modal fade wav_to_mp3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- where the text goes -->
+      <div class="well">
+        <h3>WAV to MP3</h3>
+
+        <p>
+          <code>ffmpeg -i [inputfile.wav] -sample_fmt s16p -ar 44100 [outputfile.mp3]</code>
+        </p>
+
+        <p>This will convert your wav files to mp3s.</p>
+
+        <ul>
+          <li>ffmpeg : starts the command</li>
+          <li>-i for input</li>
+          <li>[inputfile.wav] : file you would like to convert to mp3</li>
+          <li>-sample_fmt s16p: sample format. This will give you 16 bit audio (To see a list of supported sample formats, type:  ffmpeg -sample_fmts)</li>
+          <li>-ar 44100 : audio sampling frequency</li>
+          <li>[outputfile.mp3] : outputname and format</li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends WAV to MP3 -->
+
 
 <!-- One thumbnail -->
 <span data-toggle="modal" data-target=".one_thumbnail"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Export one thumbnail per video file">One thumbnail</button></span>
