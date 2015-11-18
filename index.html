@@ -103,14 +103,14 @@
     <div class="modal-content">
       <!-- where the text goes -->
       <div class="well">
-        <h2>ffmpeg -i {path/inputfile.extension} -f image2 -vf fps=fps=1/60 out%d.png</h2>
-      </div>
+      <h3>Many thumbnails</h3>
+        <p>
+          <code>ffmpeg -i {path/inputfile.extension} -f image2 -vf fps=fps=1/60 out%d.png
+          </code>
+        </p>
 
-      <div class="well">
         <p>This will grab a thumbnail every minute and output sequential png files.</p>
-      </div>
 
-      <div class="well">
         <ul>
           <li>ffmpeg: calls the program</li>
           <li>-i for input</li>
