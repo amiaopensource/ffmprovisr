@@ -156,6 +156,40 @@
 </div>
 <!-- ends Pull specs -->
 
+<!-- Join files together -->
+<span data-toggle="modal" data-target=".pull_specs"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Pull specs from video file">Pull specs</button></span>
+
+<div class="modal fade pull_specs" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- where the text goes -->
+      <div class="well">
+        <h2>ffmpeg -f concat -i mylist.txt -c copy [output]</h2>
+      </div>
+
+      <div class="well">
+        <p>This command takes two or more files of the same filetype and joins them together to make a single file. All that the program needs is a list specifying the files that should be concatenated.  However, it only works if the files to be combined have the exact same codec and technical specifications.  </p>
+        <p>ffmpeg documentation on concatenating files (full list of flags, commands, <a href="https://trac.ffmpeg.org/wiki/Concatenate">https://trac.ffmpeg.org/wiki/Concatenate</a>) </p>
+      </div>
+
+      <div class="well">
+        <ul>
+         <li>ffmpeg: calls the program</li>
+         <li>-f: forces the input file format</li>
+         <li>concat: ffmpeg’s concatenate command</li>
+         <li>-i: tells ffmpeg to expect input files</li>
+         <li>mylist.txt: a text file indicating the list of files to be concatenated. Should be formatted as:</li>
+            <li>file [path to file 1]</li>
+            <li>file [path to file 2]</li>
+            <li>-c copy: specifies the encoder for the output file by telling the program to copy the codecs of the original files and use them for the output file</li>
+            <li>[output]: desired filename for the output file</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends Pull specs -->
+
 </div> <!-- end this well (and this ends well) -->
 </div> <!-- row -->
 
