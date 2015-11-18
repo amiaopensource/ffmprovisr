@@ -133,15 +133,14 @@
     <div class="modal-content">
       <!-- where the text goes -->
       <div class="well">
-        <h3>ffprobe -i filename.avi -show_format -show_streams -print_format xml</h3>
+        <h3>Join multiple files together</h3>
+        <p><code>ffprobe -i filename.avi -show_format -show_streams -print_format xml</code></p>
       </div>
 
-      <div class="well">
         <p>This command extracts technical metadata from a video file and displays it in xml. </p>
         <p>ffmpeg documentation on ffprobe (full list of flags, commands, <a href="https://www.ffmpeg.org/ffprobe.html">https://www.ffmpeg.org/ffprobe.html</a>) </p>
       </div>
 
-      <div class="well">
         <ul>
           <li>ffprobe: calls the program</li>
           <li>-i:  tells ffprobe to expect input files</li>
@@ -157,7 +156,7 @@
 <!-- ends Pull specs -->
 
 <!-- Join files together -->
-<span data-toggle="modal" data-target=".pull_specs"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Join files together">Join files together</button></span>
+<span data-toggle="modal" data-target=".pull_specs"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Join files together">Concatenate two or more files into a single file</button></span>
 
 <div class="modal fade pull_specs" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
@@ -179,10 +178,10 @@
          <li>concat: ffmpeg’s concatenate command</li>
          <li>-i: tells ffmpeg to expect input files</li>
          <li>mylist.txt: a text file indicating the list of files to be concatenated. Should be formatted as:</li>
-            <li>file [path to file 1]</li>
-            <li>file [path to file 2]</li>
-            <li>-c copy: specifies the encoder for the output file by telling the program to copy the codecs of the original files and use them for the output file</li>
-            <li>[output]: desired filename for the output file</li>
+            <li><li>file [path to file 1]</li></li>
+            <li><li>file [path to file 2]</li></li>
+         <li>-c copy: specifies the encoder for the output file by telling the program to copy the codecs of the original files and use them for the output file</li>
+         <li>[output]: desired filename for the output file</li>
         </ul>
       </div>
     </div>
