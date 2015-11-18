@@ -48,16 +48,17 @@
     <div class="modal-content">
       <!-- where the text goes -->
       <div class="well">
-        <h2>ffmpeg -i [sample file path]</h2>
-      </div>
-      <div class="well">
+        <h3>Sample example</h3>
+
+        <p>
+          <code>ffmpeg -i [sample file path]</code>
+        </p>
         <ul>
           <li>ffmpeg : starts the command</li>
           <li>-i : i for info dudes!</li>
           <li>[sample file path] : path to sample file</li>
         </ul>
-      </div>
-      <div class="well">
+
         <p>This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! </p>
       </div>
     </div>
@@ -71,16 +72,15 @@
 <div class="modal fade one_thumbnail" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <!-- where the text goes -->
       <div class="well">
-        <h2>ffmpeg -i [file path] -ss 00:00:20 -f image2 -vframes 1 thumb.png</h2>
-      </div>
+        <h3>One thumbnail</h3>
 
-      <div class="well">
+        <p>
+          <code>ffmpeg -i [file path] -ss 00:00:20 -f image2 -vframes 1 thumb.png
+          </code></p>
+
         <p>This command will grab a thumbnail 20 seconds into the video.</p>
-      </div>
 
-      <div class="well">
         <ul>
           <li>ffmpeg: calls the program</li>
           <li>-i for input</li>
@@ -133,7 +133,7 @@
     <div class="modal-content">
       <!-- where the text goes -->
       <div class="well">
-        <h2>ffprobe -i filename.avi -show_format -show_streams -print_format xml</h2>
+        <h3>ffprobe -i filename.avi -show_format -show_streams -print_format xml</h3>
       </div>
 
       <div class="well">
@@ -164,7 +164,7 @@
     <div class="modal-content">
       <!-- where the text goes -->
       <div class="well">
-        <h2>ffmpeg -f concat -i mylist.txt -c copy [output]</h2>
+        <h3>ffmpeg -f concat -i mylist.txt -c copy [output]</h3>
       </div>
 
       <div class="well">
