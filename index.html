@@ -133,7 +133,7 @@
     <div class="modal-content">
       <!-- where the text goes -->
       <div class="well">
-        <h3>Join multiple files together</h3>
+        <h3>Pull specs from video file</h3>
         <p><code>ffprobe -i filename.avi -show_format -show_streams -print_format xml</code></p>
 
         <p>This command extracts technical metadata from a video file and displays it in xml. </p>
@@ -161,7 +161,8 @@
     <div class="modal-content">
       <!-- where the text goes -->
       <div class="well">
-        <h3>ffmpeg -f concat -i mylist.txt -c copy [output]</h3>
+        <h3>Join files together</h3>
+        <p><code>ffmpeg -f concat -i mylist.txt -c copy [output] </code></p>
 
         <p>This command takes two or more files of the same filetype and joins them together to make a single file. All that the program needs is a list specifying the files that should be concatenated.  However, it only works if the files to be combined have the exact same codec and technical specifications.  </p>
         <p>ffmpeg documentation on concatenating files (full list of flags, commands, <a href="https://trac.ffmpeg.org/wiki/Concatenate">https://trac.ffmpeg.org/wiki/Concatenate</a>) </p>
@@ -173,8 +174,8 @@
          <li>-i: tells ffmpeg to expect input files</li>
          <li>mylist.txt: a text file indicating the list of files to be concatenated. Should be formatted as:</li>
             <ul>
-            <li>file [path to file 1]</li>
-            <li>file [path to file 2]</li>
+              <li>file [path to file 1]</li>
+              <li>file [path to file 2]</li>
             </ul>
          <li>-c copy: specifies the encoder for the output file by telling the program to copy the codecs of the original files and use them for the output file</li>
          <li>[output]: desired filename for the output file</li>
