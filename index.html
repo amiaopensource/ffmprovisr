@@ -107,10 +107,10 @@
     <div class="modal-content">
       <!-- where the text goes -->
       <div class="well">
-        <h3>FFMPEG batch processing within a single folder</h3>
+        <h3>Create Bash Script named “Rewrap.MXF.sh” to do Batch FFMPEG Processing</h3>
 
         <p>
-          <code>Create Bash Script named “Rewrap.MXF.sh” to do Batch FFMPEG Processing</code>
+          <code>for f in *.MXF; do ffmpeg -i "$f" -acodec copy -vcodec copy "${f%.MXF}.mov"; done</code>
         </p>
 
         <p>Re-wrap .MFX files in a specified directory to .mov files by using this code within a .sh file. The shell script (.sh file) and all MXF files must be contained in the same directory, and the script must be run from the directory itself (cd ~/Desktop/MXF_file_directory). Execute .sh file with the command <code>sh Rewrap-MXF.sh</code></p>
@@ -127,6 +127,36 @@
 </div>
 <!-- ends batch processing -->
 
+
+<!-- Create frame md5s -->
+<span data-toggle="modal" data-target=".create_frame_md5s"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="This will create an md5 checksum per frame">Create frame md5s</button></span>
+<div class="modal fade create_frame_md5s" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- where the text goes -->
+      <div class="well">
+        <h3>Create frame md5s</h3>
+
+        <p>
+          <code>ffmpeg -i [inputfile.extension] -an -f framemd5 [outputfile.framemd5]</code>
+        </p>
+
+        <p>This will create an md5 checksum per frame</p>
+        
+        <ul>
+          <li>ffmpeg: starts the command</li>
+          <li>-i for input</li>
+          <li>[inputfile.extension]: the file you want to create framemd5 checksums for</li>
+          <li>-an: ignores the audio track</li>
+          <li>-f framemed5: file type</li>
+          <li>[outputfile.framemd5]: output name and format</li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends Create frame md5s -->
 
 <!-- One thumbnail -->
 <span data-toggle="modal" data-target=".one_thumbnail"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Export one thumbnail per video file">One thumbnail</button></span>
