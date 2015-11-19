@@ -69,6 +69,48 @@
 <!-- ends sample example -->
 
 
+<!-- Create GIF -->
+<span data-toggle="modal" data-target=".create_gif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create a GIF from a video">Create GIF</button></span>
+<!-- Change the above data-target field, the button text, and the below div class (the word after modal fade) -->
+<div class="modal fade create_gif" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- where the text goes -->
+      <div class="well">
+        <h3>Create GIF</h3>
+
+        <p>Part 1: Create 3 second clip from an existing source file (no audio necessary) </p>
+
+        <p>
+          <code>ffmpeg -ss HH:MM:SS -i input.mov -c:v copy -c:a copy -t 3 output.mov</code>
+        </p>
+
+        <ul>
+          <li>ffmpeg : starts the command</li>
+          <li>-ss HH:MM:SS: The starting point of the gift</li>
+          <li>-t 3: the number of seconds after the starting point repeated in the gif</li>
+        </ul>
+
+        <p>Part 2: Make the gif</p>
+
+        <p>
+          <code>ffmpeg -i input.mov -vf scale=500:-1 -t 10 -r 30 output.gif</code>
+        </p>
+
+        <ul>
+          <li>ffmpeg : starts the command</li>
+          <li>-vf scale: width:height in pixels (a negative number keeps it in proportion)</li>
+          <li>-t 10: Maximum length of running time</li>
+          <li>-r 30: run at 30 frames per second</li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends Create GIF -->
+
+
 <!-- WAV to MP3 -->
 <span data-toggle="modal" data-target=".wav_to_mp3"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Converts WAV to MP3">WAV to MP3</button></span>
 <div class="modal fade wav_to_mp3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
