@@ -477,6 +477,47 @@
 <!-- ends Split audio and video tracks -->
 
 
+<!-- Transcode to h.264 -->
+<span data-toggle="modal" data-target=".transcode_h264"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode to an h.264 access file">Transcode to h.264</button></span>
+
+<div class="modal fade transcode_h264" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- where the text goes -->
+      <div class="well">
+        <h3>Transcode to h.264</h3>
+        <p><code>ffmpeg -i [input file] -vcodec libx264 -acodec copy [output file.mp4]</code></p>
+
+        <p>This command takes an input file and transcodes it to h.264 with an .mp4 wrapper, keeping the audio the same codec as the original. The libx264 codec defaults to a “medium” preset for compression quality and a CRF of 23. CRF stands for constant rate factor and determines the quality and file size of the resulting h.264 video. A low CRF means high quality and large file size; a high CRF means the opposite.  </p>
+
+        <ul>
+        <li>ffmpeg: Calls the program ffmpeg</li>
+		<li>-i: Tells ffmpeg to expect an input file</li>
+		<li>[input file]: Tells ffmpeg the location of the file you want to process</li>
+		<li>-vcodec libx264: Tells ffmpeg to change the video codec of the file to h264 -acodec copy: tells ffmpeg not to change the audio codec</li>
+		<li>[output file.mp4]: Specifies the name and location of the new file, including the desired codec extension</li>
+        </ul>
+        
+        <p>In order to use the same basic command to make a higher quality file, you can add some of these presets:</p>
+        <p><code>ffmpeg -i [input file] -vcodec libx264 -acodec copy -preset veryslow -crf 18 [output file.mp4]</code></p>
+        
+        <li>-preset veryslow: This option tells ffmpeg to use the slowest preset possible for the best compression quality</li>
+		<li>-crf 18: Specifying a lower CRF will make a larger file with better visual quality</li>
+		
+		<p>libx264 also defaults to 4:2:2 chroma subsampling. Some versions of Quicktime can't read x264 files in 4:2:2. In order to allow the video to play in all Quicktime players, you can specify 4:2:0 chroma subsampling instead:</p>
+		<p><code>ffmpeg -i [input file] -vcodec libx264 -pix_fmt yuv420p -acodec copy -preset veryslow -crf 18 [output file.mp4]</code></p>
+
+		<li>-pix_fmt yuv420p: Specifies a pixel format of YUV 4:2:0 to allow the file to play in a standard Quicktime player</li>
+
+
+        
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends Transcode to h.264 -->
+
+
 </div> <!-- end this well (and this ends well) -->
 </div> <!-- row -->
 
