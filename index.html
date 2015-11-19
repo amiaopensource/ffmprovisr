@@ -158,6 +158,46 @@
 </div>
 <!-- ends Create frame md5s -->
 
+
+<!-- Transcode to ProRes -->
+<span data-toggle="modal" data-target=".to_prores"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="This will create an md5 checksum per frame">Transcode to ProRes</button></span>
+<div class="modal fade to_prores" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- where the text goes -->
+      <div class="well">
+        <h3>Transcode into a deinterlaced Apple ProRes LT</h3>
+
+        <p>
+          <code>ffmpeg -i input.mov -vcodec prores -profile:v 1 -acodec pcm_s16le -vf yadif output.mov</code>
+        </p>
+
+        <p>This command transcodes an input file (input.mov) into a deinterlaced Apple ProRes LT .mov file with 16-bit linear PCM encoded audio. The file is deinterlaced using the yadif (Yet Another De-Interlacing Filter) command.</p>
+        
+        <ul>
+          <li>ffmpeg: Calls the program ffmpeg</li>
+          <li>-i: Tells ffmpeg to expect an input file</li>
+          <li>[inputfile]: Specifies the name and location of the file you want to transcode into ProRes</li>
+          <li>-vcodec prores: Tells ffmpeg to transcode the video stream into Apple ProRes</li>
+          <li>-profile:v 1: Declares profile of Apple ProRes you want to use. The profiles are explained below:</li>
+          <ul>
+            <li>0 : ProRes422 (Proxy)</li>
+            <li>1 : ProRes422 (LT)</li>
+            <li>2 : ProRes422 (Normal)</li>
+            <li>3 : ProRes422 (HQ)</li>
+          </ul>
+          <li>-acodec pcm_s16le: Tells ffmpeg to encode the audio stream in 16-bit Linear PCM</li>
+          <li>-vf yadif: Runs a deinterlacing video filter (yet another deinterlacing filter) on the new file</li>
+          <li>[output.mov]: Specifies the name, location, and extension of the new ProRes file</li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends Transcode to ProRes -->
+
+
 <!-- One thumbnail -->
 <span data-toggle="modal" data-target=".one_thumbnail"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Export one thumbnail per video file">One thumbnail</button></span>
 
