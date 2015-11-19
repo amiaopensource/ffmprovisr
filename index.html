@@ -279,6 +279,91 @@
 <!-- ends Join files together -->
 
 
+<!-- Excerpt from beginning -->
+<span data-toggle="modal" data-target=".excerpt_from_start"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create an excerpt, starting from the beginning of the file">Excerpt from beginning</button></span>
+
+<div class="modal fade excerpt_from_start" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- where the text goes -->
+      <div class="well">
+        <h3>Excerpt from beginning</h3>
+        <p><code>ffmpeg -i [input file] -t 5 -c copy [output]</code></p>
+
+        <p>This command captures a certain portion of a video file, starting from the beginning and continuing for the amount of time (in seconds) specified in the script. This can be used to create a preview file, or to remove unwanted content from the end of the file. To be more specific, use timecode, such as 00:00:05. </p>
+
+        <ul>
+         <li>ffmpeg: Calls the program ffmpeg</li>
+		 <li>-i: Tells ffmpeg to expect input files</li>
+		 <li>[input file]: Specifies the location of the file you want to capture a clip from</li>
+		 <li>-t 5: Tells ffmpeg to stop copying from the input file after a certain time, and specifies the number of seconds after which to stop copying. In this case, 5 seconds is specified</li>
+		 <li>-c copy: Specifies the encoder for the output file by telling ffmpeg to copy the codecs of the original file and use them for the new output file</li>
+		 <li>[output]: Specifies the filename and location for the new file</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends Excerpt from beginning -->
+
+
+<!-- Excerpt from middle -->
+<span data-toggle="modal" data-target=".excerpt_from_middle"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Capture five seconds from the middle of a video file">Excerpt from middle</button></span>
+
+<div class="modal fade excerpt_from_middle" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- where the text goes -->
+      <div class="well">
+        <h3>Excerpt from middle</h3>
+        <p><code>ffmpeg -i [input file] -ss 5 -t 5 -c copy [output]</code></p>
+
+        <p>This command captures a certain portion of a video file, starting from a designated point in the file and taking an excerpt as long as the amount of time (in seconds) specified in the script. This can be used to create a preview or clip out a desired segment. To be more specific, use timecode, such as 00:00:05. </p>
+
+        <ul>
+         <li>ffmpeg: Calls the program ffmpeg</li>
+		 <li>-i: Tells ffmpeg to expect input files</li>
+		 <li>[input file]: Specifies the location of the file you want to capture a clip from</li>
+		 <li>-ss 5: Tells ffmpeg what timecode in the file to look for to start copying, and specifies the number of seconds into the video that ffmpeg should start copying. To be more specific, you can use timecode such as 00:00:05</li>
+		 <li>-t 5: Tells ffmpeg to stop copying from the input file after a certain time, and specifies the number of seconds after which to stop copying. In this case, 5 seconds is specified</li>
+		 <li>-c copy: Specifies the encoder for the output file by telling ffmpeg to copy the codecs of the original file and use them for the new output file</li>
+		 <li>[output]: Specifies the filename and location for the new file</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends Excerpt from middle -->
+
+
+<!-- Excerpt to end -->
+<span data-toggle="modal" data-target=".excerpt_to_end"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create a new video file with the first five seconds trimmed off the original">Excerpt to end</button></span>
+
+<div class="modal fade excerpt_to_end" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- where the text goes -->
+      <div class="well">
+        <h3>Excerpt to end</h3>
+        <p><code>ffmpeg -i [input file] -ss 5 -c copy [output]</code></p>
+
+        <p>This command copies a video file starting from a specified time, removing the first few seconds from the output. This can be used to create an excerpt, or remove unwanted content from the beginning of a video file.</p>
+
+
+        <ul>
+         <li>ffmpeg: Calls the program ffmpeg</li>
+		 <li>-i: Tells ffmpeg to expect input files</li>
+		 <li>[input file]: Specifies the location of the file you want to capture a clip from</li>
+		 <li>-ss 5: Tells ffmpeg what timecode in the file to look for to start copying, and specifies the number of seconds into the video that ffmpeg should start copying. To be more specific, you can use timecode such as 00:00:05</li>
+		 <li>-t 5: Tells ffmpeg to stop copying from the input file after a certain time, and specifies the number of seconds after which to stop copying. In this case, 5 seconds is specified</li>
+		 <li>-c copy: Specifies the encoder for the output file by telling ffmpeg to copy the codecs of the original file and use them for the new output file</li>
+		 <li>[output]: Specifies the filename and location for the new file</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends Excerpt to end -->
 
 
 </div> <!-- end this well (and this ends well) -->
