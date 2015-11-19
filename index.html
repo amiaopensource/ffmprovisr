@@ -405,6 +405,34 @@
 </div>
 <!-- ends Excerpt to end -->
 
+<!-- Split audio and video tracks -->
+<span data-toggle="modal" data-target=".split_audio_video"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create separate audio and video tracks from an audiovisual file">Split audio and video tracks</button></span>
+
+<div class="modal fade split_audio_video" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- where the text goes -->
+      <div class="well">
+        <h3>Split audio and video tracks</h3>
+        <p><code>ffmpeg -i [input file] -map 0:0 [video output file] -map 0:1 [audio output file] </code></p>
+
+        <p>This command splits the original input file into a video and audio stream. The -map command identifies which streams are mapped to which file. To ensure that you’re mapping the right streams to the right file, run ffprobe before writing the script to identify which stream is 0:0, which is 0:1, etc. </p>
+
+        <ul>
+        <li>ffmpeg: calls the program</li>
+		<li>-i: tells ffmpeg to expect input file</li>	
+		<li>[input file]: the file you want to split</li>
+		<li>-map 0:0: tells ffmpeg to grab one of the streams, and identifies the first stream (stream 0:0) to map</li>
+		<li>[video output file]: desired filename for the video output file</li>
+		<li>-map 0:1: tells ffmpeg to grab one of the streams, and identifies the second stream (stream 0:1) to map</li>
+		<li>[audio output file]: desired filename for the audio output file</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends Split audio and video tracks -->
+
 
 </div> <!-- end this well (and this ends well) -->
 </div> <!-- row -->
