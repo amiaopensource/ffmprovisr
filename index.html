@@ -158,6 +158,46 @@
 </div>
 <!-- ends Create frame md5s -->
 
+
+<!-- Transcode to ProRes -->
+<span data-toggle="modal" data-target=".to_prores"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="This will transcode to deinterlaced Apple ProRes LT">Transcode to ProRes</button></span>
+<div class="modal fade to_prores" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- where the text goes -->
+      <div class="well">
+        <h3>Transcode into a deinterlaced Apple ProRes LT</h3>
+
+        <p>
+          <code>ffmpeg -i input.mov -vcodec prores -profile:v 1 -acodec pcm_s16le -vf yadif output.mov</code>
+        </p>
+
+        <p>This command transcodes an input file (input.mov) into a deinterlaced Apple ProRes LT .mov file with 16-bit linear PCM encoded audio. The file is deinterlaced using the yadif (Yet Another De-Interlacing Filter) command.</p>
+        
+        <ul>
+          <li>ffmpeg: Calls the program ffmpeg</li>
+          <li>-i: Tells ffmpeg to expect an input file</li>
+          <li>[inputfile]: Specifies the name and location of the file you want to transcode into ProRes</li>
+          <li>-vcodec prores: Tells ffmpeg to transcode the video stream into Apple ProRes</li>
+          <li>-profile:v 1: Declares profile of Apple ProRes you want to use. The profiles are explained below:</li>
+          <ul>
+            <li>0 : ProRes422 (Proxy)</li>
+            <li>1 : ProRes422 (LT)</li>
+            <li>2 : ProRes422 (Normal)</li>
+            <li>3 : ProRes422 (HQ)</li>
+          </ul>
+          <li>-acodec pcm_s16le: Tells ffmpeg to encode the audio stream in 16-bit Linear PCM</li>
+          <li>-vf yadif: Runs a deinterlacing video filter (yet another deinterlacing filter) on the new file</li>
+          <li>[output.mov]: Specifies the name, location, and extension of the new ProRes file</li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends Transcode to ProRes -->
+
+
 <!-- One thumbnail -->
 <span data-toggle="modal" data-target=".one_thumbnail"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Export one thumbnail per video file">One thumbnail</button></span>
 
@@ -280,6 +320,119 @@
 <!-- ends Join files together -->
 
 
+<!-- Excerpt from beginning -->
+<span data-toggle="modal" data-target=".excerpt_from_start"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create an excerpt, starting from the beginning of the file">Excerpt from beginning</button></span>
+
+<div class="modal fade excerpt_from_start" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- where the text goes -->
+      <div class="well">
+        <h3>Excerpt from beginning</h3>
+        <p><code>ffmpeg -i [input file] -t 5 -c copy [output]</code></p>
+
+        <p>This command captures a certain portion of a video file, starting from the beginning and continuing for the amount of time (in seconds) specified in the script. This can be used to create a preview file, or to remove unwanted content from the end of the file. To be more specific, use timecode, such as 00:00:05. </p>
+
+        <ul>
+         <li>ffmpeg: Calls the program ffmpeg</li>
+		 <li>-i: Tells ffmpeg to expect input files</li>
+		 <li>[input file]: Specifies the location of the file you want to capture a clip from</li>
+		 <li>-t 5: Tells ffmpeg to stop copying from the input file after a certain time, and specifies the number of seconds after which to stop copying. In this case, 5 seconds is specified</li>
+		 <li>-c copy: Specifies the encoder for the output file by telling ffmpeg to copy the codecs of the original file and use them for the new output file</li>
+		 <li>[output]: Specifies the filename and location for the new file</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends Excerpt from beginning -->
+
+
+<!-- Excerpt from middle -->
+<span data-toggle="modal" data-target=".excerpt_from_middle"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Capture five seconds from the middle of a video file">Excerpt from middle</button></span>
+
+<div class="modal fade excerpt_from_middle" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- where the text goes -->
+      <div class="well">
+        <h3>Excerpt from middle</h3>
+        <p><code>ffmpeg -i [input file] -ss 5 -t 5 -c copy [output]</code></p>
+
+        <p>This command captures a certain portion of a video file, starting from a designated point in the file and taking an excerpt as long as the amount of time (in seconds) specified in the script. This can be used to create a preview or clip out a desired segment. To be more specific, use timecode, such as 00:00:05. </p>
+
+        <ul>
+         <li>ffmpeg: Calls the program ffmpeg</li>
+		 <li>-i: Tells ffmpeg to expect input files</li>
+		 <li>[input file]: Specifies the location of the file you want to capture a clip from</li>
+		 <li>-ss 5: Tells ffmpeg what timecode in the file to look for to start copying, and specifies the number of seconds into the video that ffmpeg should start copying. To be more specific, you can use timecode such as 00:00:05</li>
+		 <li>-t 5: Tells ffmpeg to stop copying from the input file after a certain time, and specifies the number of seconds after which to stop copying. In this case, 5 seconds is specified</li>
+		 <li>-c copy: Specifies the encoder for the output file by telling ffmpeg to copy the codecs of the original file and use them for the new output file</li>
+		 <li>[output]: Specifies the filename and location for the new file</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends Excerpt from middle -->
+
+
+<!-- Excerpt to end -->
+<span data-toggle="modal" data-target=".excerpt_to_end"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create a new video file with the first five seconds trimmed off the original">Excerpt to end</button></span>
+
+<div class="modal fade excerpt_to_end" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- where the text goes -->
+      <div class="well">
+        <h3>Excerpt to end</h3>
+        <p><code>ffmpeg -i [input file] -ss 5 -c copy [output]</code></p>
+
+        <p>This command copies a video file starting from a specified time, removing the first few seconds from the output. This can be used to create an excerpt, or remove unwanted content from the beginning of a video file.</p>
+
+
+        <ul>
+         <li>ffmpeg: Calls the program ffmpeg</li>
+		 <li>-i: Tells ffmpeg to expect input files</li>
+		 <li>[input file]: Specifies the location of the file you want to capture a clip from</li>
+		 <li>-ss 5: Tells ffmpeg what timecode in the file to look for to start copying, and specifies the number of seconds into the video that ffmpeg should start copying. To be more specific, you can use timecode such as 00:00:05</li>
+		 <li>-t 5: Tells ffmpeg to stop copying from the input file after a certain time, and specifies the number of seconds after which to stop copying. In this case, 5 seconds is specified</li>
+		 <li>-c copy: Specifies the encoder for the output file by telling ffmpeg to copy the codecs of the original file and use them for the new output file</li>
+		 <li>[output]: Specifies the filename and location for the new file</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends Excerpt to end -->
+
+<!-- Split audio and video tracks -->
+<span data-toggle="modal" data-target=".split_audio_video"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create separate audio and video tracks from an audiovisual file">Split audio and video tracks</button></span>
+
+<div class="modal fade split_audio_video" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- where the text goes -->
+      <div class="well">
+        <h3>Split audio and video tracks</h3>
+        <p><code>ffmpeg -i [input file] -map 0:0 [video output file] -map 0:1 [audio output file] </code></p>
+
+        <p>This command splits the original input file into a video and audio stream. The -map command identifies which streams are mapped to which file. To ensure that you’re mapping the right streams to the right file, run ffprobe before writing the script to identify which stream is 0:0, which is 0:1, etc. </p>
+
+        <ul>
+        <li>ffmpeg: calls the program</li>
+		<li>-i: tells ffmpeg to expect input file</li>	
+		<li>[input file]: the file you want to split</li>
+		<li>-map 0:0: tells ffmpeg to grab one of the streams, and identifies the first stream (stream 0:0) to map</li>
+		<li>[video output file]: desired filename for the video output file</li>
+		<li>-map 0:1: tells ffmpeg to grab one of the streams, and identifies the second stream (stream 0:1) to map</li>
+		<li>[audio output file]: desired filename for the audio output file</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends Split audio and video tracks -->
 
 
 </div> <!-- end this well (and this ends well) -->
