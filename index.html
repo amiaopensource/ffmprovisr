@@ -131,7 +131,7 @@ Change the above data-target field, the button text, and the below div class (th
           <li>-i for input</li>
           <li>[inputfile.wav] : file you would like to convert to mp3</li>
           <li>-sample_fmt s16p: sample format. This will give you 16 bit audio (To see a list of supported sample formats, type:  ffmpeg -sample_fmts)</li>
-          <li>-ar 44100 : audio sampling frequency</li>
+          <li>-ar 44100: Sets the audio sampling frequency to 44.1 kH (CD quality).</li>
           <li>[outputfile.mp3] : outputname and format</li>
         </ul>
 
@@ -556,7 +556,7 @@ Change the above data-target field, the button text, and the below div class (th
         <h3>H.264 from DCP</h3>
         <p><code>ffmpeg -i video.mxf -i audio.mxf -c:v libx264 -pix_fmt yuv420p output.mp4</code></p>
 
-        <p>This will transcode mxf wrapped video and audio files to an h.264 encoded .mp4 file.</p>
+        <p>This will transcode mxf wrapped video and audio files to an h.264 encoded .mp4 file. Please note this only works for non-encrypted DCPs.</p>
 
         <ul>
         <li>ffmpeg: Calls the program ffmpeg</li>
