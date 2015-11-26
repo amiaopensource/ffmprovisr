@@ -517,6 +517,34 @@ Change the above data-target field, the button text, and the below div class (th
 </div>
 <!-- ends Transcode to h.264 -->
 
+<!-- Generate H.264 from DCP -->
+<span data-toggle="modal" data-target=".dcp_to_h264"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode from DCP to an h.264 access file">Generate H.264 from DCP</button></span>
+
+<div class="modal fade dcp_to_h264" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- where the text goes -->
+      <div class="well">
+        <h3>Generate H.264 from DCP</h3>
+        <p><code>ffmpeg -i video.mxf -i audio.mxf -c:v libx264 -pix_fmt yuv420p output.mp4</code></p>
+
+        <p>This will transcode mxf wrapped video and audio files to an h.264 encoded .mp4 file</p>
+
+        <ul>
+        <li>ffmpeg: Calls the program ffmpeg</li>
+    <li>-i: for input video file and audio file</li>
+    <li>-c:v: transcodes video to h.264</li>
+    <li>-pix_fmt: sets pixel format to yuv420p</li>
+    <li>[output.mp4] states out filename and extension</li>
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends Generate H.264 from DCP -->
+
+
 
 </div> <!-- end this well (and this ends well) -->
 </div> <!-- row -->
