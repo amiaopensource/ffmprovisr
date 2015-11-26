@@ -100,7 +100,7 @@ Change the above data-target field, the button text, and the below div class (th
         <ul>
           <li>ffmpeg : starts the command</li>
           <li>-vf scale: width:height in pixels (a negative number keeps it in proportion)</li>
-          <li>-t 10: Maximum length of running time</li>
+          <li>-t 10: maximum length of running time in seconds</li>
           <li>-r 30: run at 30 frames per second</li>
         </ul>
 
@@ -131,7 +131,7 @@ Change the above data-target field, the button text, and the below div class (th
           <li>-i for input</li>
           <li>[inputfile.wav] : file you would like to convert to mp3</li>
           <li>-sample_fmt s16p: sample format. This will give you 16 bit audio (To see a list of supported sample formats, type:  ffmpeg -sample_fmts)</li>
-          <li>-ar 44100 : audio sampling frequency</li>
+          <li>-ar 44100 : audio sampling frequency (44.1 kHz is the CD quality)</li>
           <li>[outputfile.mp3] : outputname and format</li>
         </ul>
 
@@ -319,7 +319,7 @@ Change the above data-target field, the button text, and the below div class (th
           <li>-show_format: outputs file container</li>
           <li>-show_streams: outputs audio and video codec</li>
           <li>-show_data: adds “hexdump” to show_streams command output</li>
-          <li>-print_format: Set the output printing format (in this example “xml”)</li>
+          <li>-print_format: Set the output printing format (in this example “xml”; “json“ and “flat“ are other output formats)</li>
         </ul>
       </div>
     </div>
