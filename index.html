@@ -79,7 +79,7 @@ Change the above data-target field, the button text, and the below div class (th
       <div class="well">
         <h3>Create GIF</h3>
 
-        <p>Part 1: Create 3 second clip from an existing source file (no audio necessary) </p>
+        <p>Part 1: Create 3 second clip from an existing source file (no audio necessary)</p>
 
         <p>
           <code>ffmpeg -ss HH:MM:SS -i <i>input</i> -c:v copy -c:a copy -t 3 <i>output</i></code>
@@ -96,14 +96,14 @@ Change the above data-target field, the button text, and the below div class (th
         <p>Part 2: Make the gif</p>
 
         <p>
-          <code>ffmpeg -i input.mov -vf scale=500:-1 -t 10 -r 30 output.gif</code>
+          <code>ffmpeg -i <i>input</i> -vf scale=500:-1 -t 10 -r 30 <i>output.gif</i></code>
         </p>
 
         <ul>
-          <li>ffmpeg : starts the command</li>
-          <li>-vf scale: width:height in pixels (a negative number keeps it in proportion)</li>
-          <li>-t 10: Maximum length of running time</li>
-          <li>-r 30: run at 30 frames per second</li>
+          <li><b>ffmpeg</b> starts the command</li>
+          <li><b>-vf scale=<i>width</i>:<i>height</i></b> in pixels (a negative number keeps it in proportion)</li>
+          <li><b>-t 10</b> running time in seconds (here 10)</li>
+          <li><b>-r 30</b> run at 30 fps (frames per second)</li>
         </ul>
 
       </div>
@@ -213,7 +213,7 @@ Change the above data-target field, the button text, and the below div class (th
         <h3>Transcode into a deinterlaced Apple ProRes LT</h3>
 
         <p>
-          <code>ffmpeg -i input.mov -vcodec prores -profile:v 1 -acodec pcm_s16le -vf yadif output.mov</code>
+          <code>ffmpeg -i input.mov -c:v prores -profile:v 1 -c:a pcm_s16le -vf yadif output.mov</code>
         </p>
 
         <p>This command transcodes an input file (input.mov) into a deinterlaced Apple ProRes LT .mov file with 16-bit linear PCM encoded audio. The file is deinterlaced using the yadif (Yet Another De-Interlacing Filter) command.</p>
@@ -222,15 +222,15 @@ Change the above data-target field, the button text, and the below div class (th
           <li>ffmpeg: Calls the program ffmpeg</li>
           <li>-i: Tells ffmpeg to expect an input file</li>
           <li>[inputfile]: Specifies the name and location of the file you want to transcode into ProRes</li>
-          <li>-vcodec prores: Tells ffmpeg to transcode the video stream into Apple ProRes</li>
-          <li>-profile:v 1: Declares profile of Apple ProRes you want to use. The profiles are explained below:</li>
+          <li>-c:v prores: Tells ffmpeg to transcode the video stream into Apple ProRes 422</li>
+          <li>-profile:v 1: Declares profile of ProRes you want to use. The profiles are explained below:</li>
           <ul>
             <li>0 : ProRes422 (Proxy)</li>
             <li>1 : ProRes422 (LT)</li>
             <li>2 : ProRes422 (Normal)</li>
             <li>3 : ProRes422 (HQ)</li>
           </ul>
-          <li>-acodec pcm_s16le: Tells ffmpeg to encode the audio stream in 16-bit Linear PCM</li>
+          <li>-c:a pcm_s16le: Tells ffmpeg to encode the audio stream in 16-bit linear PCM</li>
           <li>-vf yadif: Runs a deinterlacing video filter (yet another deinterlacing filter) on the new file</li>
           <li>[output.mov]: Specifies the name, location, and extension of the new ProRes file</li>
         </ul>
@@ -351,7 +351,7 @@ Change the above data-target field, the button text, and the below div class (th
           <li>-show_format: outputs file container</li>
           <li>-show_streams: outputs audio and video codec</li>
           <li>-show_data: adds “hexdump” to show_streams command output</li>
-          <li>-print_format: Set the output printing format (in this example “xml”)</li>
+          <li>-print_format: Set the output printing format (in this example “xml”; other formats are “json” and “flat”)</li>
         </ul>
       </div>
     </div>
@@ -518,7 +518,7 @@ Change the above data-target field, the button text, and the below div class (th
       <!-- where the text goes -->
       <div class="well">
         <h3>Transcode to h.264</h3>
-        <p><code>ffmpeg -i [input file] -vcodec libx264 -acodec copy [output file.mp4]</code></p>
+        <p><code>ffmpeg -i [input file] -c:v libx264 -c:a copy [output file.mp4]</code></p>
 
         <p>This command takes an input file and transcodes it to h.264 with an .mp4 wrapper, keeping the audio the same codec as the original. The libx264 codec defaults to a “medium” preset for compression quality and a CRF of 23. CRF stands for constant rate factor and determines the quality and file size of the resulting h.264 video. A low CRF means high quality and large file size; a high CRF means the opposite.  </p>
 
@@ -526,7 +526,8 @@ Change the above data-target field, the button text, and the below div class (th
         <li>ffmpeg: Calls the program ffmpeg</li>
 		<li>-i: Tells ffmpeg to expect an input file</li>
 		<li>[input file]: Tells ffmpeg the location of the file you want to process</li>
-		<li>-vcodec libx264: Tells ffmpeg to change the video codec of the file to h264 -acodec copy: tells ffmpeg not to change the audio codec</li>
+		<li>-c:v libx264: Tells ffmpeg to change the video codec of the file to h264</li>
+		<li>-c:a copy: tells ffmpeg not to change the audio codec</li>
 		<li>[output file.mp4]: Specifies the name and location of the new file, including the desired codec extension</li>
         </ul>
         
@@ -537,7 +538,7 @@ Change the above data-target field, the button text, and the below div class (th
 		<li>-crf 18: Specifying a lower CRF will make a larger file with better visual quality</li>
 		
 		<p>libx264 also defaults to 4:2:2 chroma subsampling. Some versions of Quicktime can't read x264 files in 4:2:2. In order to allow the video to play in all Quicktime players, you can specify 4:2:0 chroma subsampling instead:</p>
-		<p><code>ffmpeg -i [input file] -vcodec libx264 -pix_fmt yuv420p -acodec copy -preset veryslow -crf 18 [output file.mp4]</code></p>
+		<p><code>ffmpeg -i [input file] -c:v libx264 -pix_fmt yuv420p -c:a copy -preset veryslow -crf 18 [output file.mp4]</code></p>
 
 		<li>-pix_fmt yuv420p: Specifies a pixel format of YUV 4:2:0 to allow the file to play in a standard Quicktime player</li>
         
