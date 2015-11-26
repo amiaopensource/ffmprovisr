@@ -556,7 +556,7 @@ Change the above data-target field, the button text, and the below div class (th
         <h3>H.264 from DCP</h3>
         <p><code>ffmpeg -i video.mxf -i audio.mxf -c:v libx264 -pix_fmt yuv420p output.mp4</code></p>
 
-        <p>This will transcode mxf wrapped video and audio files to an h.264 encoded .mp4 file</p>
+        <p>This will transcode mxf wrapped video and audio files to an h.264 encoded .mp4 file.</p>
 
         <ul>
         <li>ffmpeg: Calls the program ffmpeg</li>
@@ -572,6 +572,37 @@ Change the above data-target field, the button text, and the below div class (th
 </div>
 <!-- ends H.264 from DCP -->
 
+
+<!-- Create ISO -->
+<span data-toggle="modal" data-target=".create_iso"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create ISO files for DVD access">Create ISO</button></span>
+
+<div class="modal fade create_iso" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- where the text goes -->
+      <div class="well">
+        <h3>Create ISO files for DVD access</h3>
+
+        <p>Create an ISO file that can be used to burn a DVD. Please note, you will have to install dvdauthor. To install dvd author using Homebrew run: <code>brew install dvdauthor</code></p>
+
+        <p><code>ffmpeg -i [inputfile.extension] -aspect 4:3 -target ntsc-dvd [outputfile.mpg]</code></p>
+
+        <p>This command will take any file and create an MPEG file that dvdauthor can use to create an ISO.</p>
+
+        <ul>
+          <li>ffmpeg: Calls the program ffmpeg</li>
+          <li>-i: for input video file and audio file</li>
+          <li>[inputfile.extension]: Specifies the location of the file you that you want to transcode into an MPEG</li>
+          <li>-aspect 4:3: Declares the aspect ratio of the resulting video file. You can also use 16:9.</li>
+          <li>-target [DVD region]: Specifies the region for your DVD. This could be ntsc-dvd or pal-dvd 
+outputfile.mpg: Specifies the name and location of your output file </li>
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends Create ISO -->
 
 
 
