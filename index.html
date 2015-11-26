@@ -82,13 +82,15 @@ Change the above data-target field, the button text, and the below div class (th
         <p>Part 1: Create 3 second clip from an existing source file (no audio necessary) </p>
 
         <p>
-          <code>ffmpeg -ss HH:MM:SS -i input.mov -c:v copy -c:a copy -t 3 output.mov</code>
+          <code>ffmpeg -ss HH:MM:SS -i <i>input</i> -c:v copy -c:a copy -t 3 <i>output</i></code>
         </p>
 
         <ul>
-          <li>ffmpeg : starts the command</li>
-          <li>-ss HH:MM:SS: The starting point of the gift</li>
-          <li>-t 3: the number of seconds after the starting point repeated in the gif</li>
+          <li><b>ffmpeg</b> starts the command</li>
+          <li><b>-i</b> input file (path, name and extension)</li>
+          <li><b>-ss HH:MM:SS</b> starting point of the gift</li>
+          <li><b>-t 3</b> number of seconds after the starting point repeated in the gif (here 3)</li>
+          <li>output file (path, name and extension)</li>
         </ul>
 
         <p>Part 2: Make the gif</p>
@@ -131,7 +133,7 @@ Change the above data-target field, the button text, and the below div class (th
           <li>-i for input</li>
           <li>[inputfile.wav] : file you would like to convert to mp3</li>
           <li>-sample_fmt s16p: sample format. This will give you 16 bit audio (To see a list of supported sample formats, type:  ffmpeg -sample_fmts)</li>
-          <li>-ar 44100: Sets the audio sampling frequency to 44.1 kH (CD quality).</li>
+          <li>-ar 44100: Sets the audio sampling frequency to 44.1 kHz (CD quality).</li>
           <li>[outputfile.mp3] : outputname and format</li>
         </ul>
 
