@@ -525,7 +525,7 @@ Change the above data-target field, the button text, and the below div class (th
     <div class="modal-content">
       <!-- where the text goes -->
       <div class="well">
-        <h3 H.264 from DCP</h3>
+        <h3>H.264 from DCP</h3>
         <p><code>ffmpeg -i video.mxf -i audio.mxf -c:v libx264 -pix_fmt yuv420p output.mp4</code></p>
 
         <p>This will transcode mxf wrapped video and audio files to an h.264 encoded .mp4 file</p>
@@ -543,6 +543,36 @@ Change the above data-target field, the button text, and the below div class (th
   </div>
 </div>
 <!-- ends H.264 from DCP -->
+
+
+<!-- Generate thumbnails -->
+<span data-toggle="modal" data-target=".dcp_to_h264"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Generate thumbnails from a video at regular intervals" Generate thumbnails</button></span>
+
+<div class="modal fade dcp_to_h264" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- where the text goes -->
+      <div class="well">
+        <h3> Generate thumbnails from a video at regular intervals</h3>
+        <p><code>ffmpeg -i [inputfile] -ss 00:12.235 -i "$f" -vframes 1 [outputfile]</code></p>
+
+        <p>Create one thumbnail in JPEG format from a video file at a specific time. In this example: 0hours:0minutes:12sec.235msec</p>
+
+        <ul>
+          <li>ffmpeg: Calls the program ffmpeg</li>
+          <li>-i: for input video file</li>
+          <li>[inputfile]: Specifies the file that you want to create a thumbnail from</li>
+          <li>-vframes: Tells ffmpeg to create a still image from file</li>
+          <li>-ss: Specifies the specific point in input file where the still will be captured</li>
+          <li>[outputfile]: Specifies the desired name, location, and format of the image</li>
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends Generate thumbnails -->
+
 
 
 
