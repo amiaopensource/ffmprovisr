@@ -605,6 +605,35 @@ outputfile.mpg: Specifies the name and location of your output file </li>
 <!-- ends Create ISO -->
 
 
+<!-- NTSC to h264 -->
+<span data-toggle="modal" data-target=".ntsc_to_h264"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Upscaled, Pillar-boxed HD H.264 Access Files from SD NTSC source">NTSC to h264</button></span>
+
+<div class="modal fade ntsc_to_h264" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- where the text goes -->
+      <div class="well">
+        <h3>Upscaled, Pillar-boxed HD H.264 Access Files from SD NTSC source</h3>
+
+        <p><code>ffmpeg -i [inputfile] -c:v libx264 -pix_fmt yuv420p -filter:v "scale=1440:1080, pad=1920:1080:240:0" -vf yadif [outputfile]</code></p>
+
+        <p>Pad without specifying pad width, just put the input video in the middle of the output: pad=1920:1080:(ow-iw)/2:(oh-ih)/2</p>
+
+        <ul>
+          <li>ffmpeg: Calls the program ffmpeg</li>
+          <li>-i: for input video file and audio file</li>
+          <li>-c:v libx264: encodes video stream with libx264 (h264)</li>
+          <li>-pix_fmt yuv420p - creates YUV colorspace, progressive scan</li>
+          <li>-filter:v: calls an option to apply a filter to the video stream. scale=1440:1080, pad=1920:1080:240:0": does the math! resizes the video frame then pads the area around the 4:3 aspect to complete 16:9.</li>
+          <li>-vf yadif: deinterlaces the file (optional)</li>
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends NTSC to h264 -->
+
 
 
 
