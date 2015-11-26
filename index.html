@@ -299,6 +299,36 @@ Change the above data-target field, the button text, and the below div class (th
 </div>
 <!-- ends Multi thumbnail -->
 
+
+<!-- Generate thumbnails -->
+<span data-toggle="modal" data-target=".thumbnails"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Generate thumbnails from a video at regular intervals">Generate thumbnails</button></span>
+
+<div class="modal fade thumbnails" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- where the text goes -->
+      <div class="well">
+        <h3> Generate thumbnails from a video at regular intervals</h3>
+        <p><code>ffmpeg -i [inputfile] -ss 00:12.235 -i "$f" -vframes 1 [outputfile]</code></p>
+
+        <p>Create one thumbnail in JPEG format from a video file at a specific time. In this example: 0hours:0minutes:12sec.235msec</p>
+
+        <ul>
+          <li>ffmpeg: Calls the program ffmpeg</li>
+          <li>-i: for input video file</li>
+          <li>[inputfile]: Specifies the file that you want to create a thumbnail from</li>
+          <li>-vframes: Tells ffmpeg to create a still image from file</li>
+          <li>-ss: Specifies the specific point in input file where the still will be captured</li>
+          <li>[outputfile]: Specifies the desired name, location, and format of the image</li>
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends Generate thumbnails -->
+
+
 <!-- Pull specs -->
 <span data-toggle="modal" data-target=".pull_specs"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Pull specs from video file">Pull specs</button></span>
 
@@ -508,8 +538,6 @@ Change the above data-target field, the button text, and the below div class (th
 		<p><code>ffmpeg -i [input file] -vcodec libx264 -pix_fmt yuv420p -acodec copy -preset veryslow -crf 18 [output file.mp4]</code></p>
 
 		<li>-pix_fmt yuv420p: Specifies a pixel format of YUV 4:2:0 to allow the file to play in a standard Quicktime player</li>
-
-
         
       </div>
     </div>
@@ -518,7 +546,7 @@ Change the above data-target field, the button text, and the below div class (th
 <!-- ends Transcode to h.264 -->
 
 <!-- H.264 from DCP -->
-<span data-toggle="modal" data-target=".dcp_to_h264"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode from DCP to an h.264 access file" H.264 from DCP</button></span>
+<span data-toggle="modal" data-target=".dcp_to_h264"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode from DCP to an h.264 access file">H.264 from DCP</button></span>
 
 <div class="modal fade dcp_to_h264" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
@@ -545,33 +573,7 @@ Change the above data-target field, the button text, and the below div class (th
 <!-- ends H.264 from DCP -->
 
 
-<!-- Generate thumbnails -->
-<span data-toggle="modal" data-target=".dcp_to_h264"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Generate thumbnails from a video at regular intervals" Generate thumbnails</button></span>
 
-<div class="modal fade dcp_to_h264" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <!-- where the text goes -->
-      <div class="well">
-        <h3> Generate thumbnails from a video at regular intervals</h3>
-        <p><code>ffmpeg -i [inputfile] -ss 00:12.235 -i "$f" -vframes 1 [outputfile]</code></p>
-
-        <p>Create one thumbnail in JPEG format from a video file at a specific time. In this example: 0hours:0minutes:12sec.235msec</p>
-
-        <ul>
-          <li>ffmpeg: Calls the program ffmpeg</li>
-          <li>-i: for input video file</li>
-          <li>[inputfile]: Specifies the file that you want to create a thumbnail from</li>
-          <li>-vframes: Tells ffmpeg to create a still image from file</li>
-          <li>-ss: Specifies the specific point in input file where the still will be captured</li>
-          <li>[outputfile]: Specifies the desired name, location, and format of the image</li>
-        </ul>
-        
-      </div>
-    </div>
-  </div>
-</div>
-<!-- ends Generate thumbnails -->
 
 
 
