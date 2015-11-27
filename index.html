@@ -20,26 +20,24 @@
 <body>
 <div class="container">
 
-  <div class="text-center">
-    <h1>➺ ffmprovisr ❥</h1>
-    <br/>
-  </div>
+<div class="text-center">
+  <h1>➺ ffmprovisr ❥</h1>
+</div>
 
 <!-- BUTTONS! -->
 <div class="row">
 
-       <div class="well col-md-3 col-md-offset-0">
-        <br>
-          <h5>Making FFmpeg Easier</h5>
-          <p>FFmpeg is a powerful tool for manipulating audiovisual files. Unfortunately, it also has a steep learning curve, especially for users unfamiliar with a command line interface. This app helps users through the command generation process so that more people can reap the benefits of FFmpeg. </p>
-          <p>Each button displays helpful information about how to perform a wide variety of tasks using FFmpeg. To use this site, click on the task you would like to perform. A new window will open up with a sample command and a description of how that command works. You can copy this command and understand how the command works with a breakdown of each of the flags.</p>
-          <p>For FFmpeg basics, check out the program's <a href="https://www.ffmpeg.org/">official website.</a></p>
-          <p>For Bash and command line basics, try the <a href="http://cli.learncodethehardway.org/book/">Command Line Crash Course</a></p>
-      </div>
+<div class="well col-md-3 col-md-offset-0">
+  <h5>Making FFmpeg Easier</h5>
+  <p>FFmpeg is a powerful tool for manipulating audiovisual files. Unfortunately, it also has a steep learning curve, especially for users unfamiliar with a command line interface. This app helps users through the command generation process so that more people can reap the benefits of FFmpeg.</p>
+  <p>Each button displays helpful information about how to perform a wide variety of tasks using FFmpeg. To use this site, click on the task you would like to perform. A new window will open up with a sample command and a description of how that command works. You can copy this command and understand how the command works with a breakdown of each of the flags.</p>
+  <p>For FFmpeg basics, check out the program's <a href="https://www.ffmpeg.org/" target="_blank">official website</a>.</p>
+  <p>For Bash and command line basics, try the <a href="http://cli.learncodethehardway.org/book/" target="_blank">Command Line Crash Course</a>.</p>
+</div>
 
-      <div class="well col-md-6 col-md-offset-2">
-          <h3>What do you want to do?</h3>
-          <h5>Select from the following.</h5>
+<div class="well col-md-6 col-md-offset-2">
+  <h3>What do you want to do?</h3>
+  <h5>Select from the following.</h5>
 
 <!-- sample example -->
 <!-- <span data-toggle="modal" data-target=".*****unique name*****"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="*****Hover-over description*****">*****Small title****</button></span>
@@ -69,102 +67,72 @@ Change the above data-target field, the button text, and the below div class (th
 </div> -->
 <!-- ends sample example -->
 
-
 <!-- Create GIF -->
 <span data-toggle="modal" data-target=".create_gif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create a GIF from a video">Create GIF</button></span>
-<!-- Change the above data-target field, the button text, and the below div class (the word after modal fade) -->
 <div class="modal fade create_gif" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <!-- where the text goes -->
       <div class="well">
         <h3>Create GIF</h3>
-
         <p>Part 1: Create 3 second clip from an existing source file (no audio necessary)</p>
-
-        <p>
-          <code>ffmpeg -ss HH:MM:SS -i <i>input</i> -c:v copy -c:a copy -t 3 <i>output</i></code>
-        </p>
-
-        <ul>
-          <li><b>ffmpeg</b> starts the command</li>
-          <li><b>-i</b> input file (path, name and extension)</li>
-          <li><b>-ss HH:MM:SS</b> starting point of the gif</li>
-          <li><b>-t 3</b> number of seconds after the starting point repeated in the gif (here 3; can be specified also with a full timestamp, i.e. here 00:00:03)</li>
-          <li>output file (path, name and extension)</li>
-        </ul>
-
+        <p><code>ffmpeg -ss HH:MM:SS -i <i>input</i> -c:v copy -c:a copy -t 3 <i>output</i></code></p>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-ss <i>HH:MM:SS</i></dt><dd>starting point of the gif</dd>
+          <dt>-t <i>3</i></dt><dd>number of seconds after the starting point repeated in the gif (here 3; can be specified also with a full timestamp, i.e. here 00:00:03)</dd>
+          <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
+        </dl>
         <p>Part 2: Make the gif</p>
-
-        <p>
-          <code>ffmpeg -i <i>input</i> -vf scale=500:-1 -t 10 -r 30 <i>output.gif</i></code>
-        </p>
-
-        <ul>
-          <li><b>ffmpeg</b> starts the command</li>
-          <li><b>-vf scale=<i>width</i>:<i>height</i></b> in pixels (a negative number keeps it in proportion)</li>
-          <li><b>-t 10</b> running time in seconds (here 10)</li>
-          <li><b>-r 30</b> run at 30 fps (frames per second)</li>
-        </ul>
-
+        <p><code>ffmpeg -i <i>input</i> -vf scale=500:-1 -t 10 -r 30 <i>output.gif</i></code></p>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-vf scale=<i>width</i>:<i>height</i></dt><dd>in pixels (a negative number keeps it in proportion)</dd>
+          <dt>-t <i>10</i></dt><dd>running time in seconds (here 10)</dd>
+          <dt>-r <i>30</i></dt><dd>run at 30 fps (frames per second)</dd>
+          <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
+        </dl>
       </div>
     </div>
   </div>
 </div>
 <!-- ends Create GIF -->
 
-
 <!-- WAV to MP3 -->
 <span data-toggle="modal" data-target=".wav_to_mp3"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Converts WAV to MP3">WAV to MP3</button></span>
 <div class="modal fade wav_to_mp3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <!-- where the text goes -->
       <div class="well">
         <h3>WAV to MP3</h3>
-
-        <p>
-          <code>ffmpeg -i [inputfile.wav] -sample_fmt s16p -ar 44100 [outputfile.mp3]</code>
-        </p>
-
+        <p><code>ffmpeg -i [inputfile.wav] -sample_fmt s16p -ar 44100 [outputfile.mp3]</code></p>
         <p>This will convert your wav files to mp3s.</p>
-
-        <ul>
-          <li>ffmpeg : starts the command</li>
-          <li>-i for input</li>
-          <li>[inputfile.wav] : file you would like to convert to mp3</li>
-          <li>-sample_fmt s16p: sample format. This will give you 16 bit audio (To see a list of supported sample formats, type:  <code>ffmpeg -sample_fmts</code>)</li>
-          <li>-ar 44100: Sets the audio sampling frequency to 44.1 kHz (CD quality).</li>
-          <li>[outputfile.mp3] : outputname and format</li>
-        </ul>
-
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-sample_fmt <i>s16p</i></dt><dd>sample format. This will give you 16 bit audio (To see a list of supported sample formats, type: <code>ffmpeg -sample_fmts</code>)</dd>
+          <dt>-ar <i>44100</i></dt><dd>Sets the audio sampling frequency to 44.1 kHz (CD quality).</dd>
+          <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
+        </dl>
       </div>
     </div>
   </div>
 </div>
 <!-- ends WAV to MP3 -->
 
-
 <!-- batch processing -->
 <span data-toggle="modal" data-target=".batch_processing"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="FFMPEG batch processing within a single folder">Batch processing</button></span>
 <div class="modal fade batch_processing" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <!-- where the text goes -->
       <div class="well">
-        <h3>Create Bash Script named “Rewrap.MXF.sh” to do Batch FFMPEG Processing</h3>
-
-        <p>
-          <code>for f in *.MXF; do ffmpeg -i "$f" -acodec copy -vcodec copy "${f%.MXF}.mov"; done</code>
-        </p>
-
+        <h3>Create Bash Script named “Rewrap.MXF.sh” to do Batch FFmpeg Processing</h3>
+        <p><code>for f in *.MXF; do ffmpeg -i "$f" -c:a copy -c:v copy "${f%.MXF}.mov"; done</code></p>
         <p>Re-wrap .MFX files in a specified directory to .mov files by using this code within a .sh file. The shell script (.sh file) and all MXF files must be contained in the same directory, and the script must be run from the directory itself (cd ~/Desktop/MXF_file_directory). Execute .sh file with the command <code>sh Rewrap-MXF.sh</code></p>
-        
         <ul>
-          <li>-acodec copy (copy audio codec)</li>
-          <li>-vcodec copy (copy video codec)</li>
+          <li>-c:a copy (copy audio codec)</li>
+          <li>-c:v copy (copy video codec)</li>
         </ul>
-
         <p>Modify the ffmpeg script as needed to perform different transcodes :)</p>
       </div>
     </div>
@@ -172,92 +140,67 @@ Change the above data-target field, the button text, and the below div class (th
 </div>
 <!-- ends batch processing -->
 
-
 <!-- Create frame md5s -->
 <span data-toggle="modal" data-target=".create_frame_md5s"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="This will create an md5 checksum per frame">Create frame md5s</button></span>
 <div class="modal fade create_frame_md5s" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <!-- where the text goes -->
       <div class="well">
         <h3>Create frame md5s</h3>
-
-        <p>
-          <code>ffmpeg -i [inputfile.extension] -an -f framemd5 [outputfile.framemd5]</code>
-        </p>
-
+        <p><code>ffmpeg -i [inputfile.extension] -an -f framemd5 [outputfile.framemd5]</code></p>
         <p>This will create an md5 checksum per frame</p>
-        
-        <ul>
-          <li>ffmpeg: starts the command</li>
-          <li>-i for input</li>
-          <li>[inputfile.extension]: the file you want to create framemd5 checksums for</li>
-          <li>-an: ignores the audio stream (audio no)</li>
-          <li>-f framemed5: file type</li>
-          <li>[outputfile.framemd5]: output name and format</li>
-        </ul>
-
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-an</dt><dd>ignores the audio stream (audio no)</dd>
+          <dt>-f framemed5</dt><dd>file type</dd>
+          <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
+        </dl>
       </div>
     </div>
   </div>
 </div>
 <!-- ends Create frame md5s -->
 
-
 <!-- Transcode to ProRes -->
 <span data-toggle="modal" data-target=".to_prores"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="This will transcode to deinterlaced Apple ProRes LT">Transcode to ProRes</button></span>
 <div class="modal fade to_prores" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <!-- where the text goes -->
       <div class="well">
         <h3>Transcode into a deinterlaced Apple ProRes LT</h3>
-
-        <p>
-          <code>ffmpeg -i input.mov -c:v prores -profile:v 1 -c:a pcm_s16le -vf yadif output.mov</code>
-        </p>
-
+        <p><code>ffmpeg -i input.mov -c:v prores -profile:v 1 -c:a pcm_s16le -vf yadif output.mov</code></p>
         <p>This command transcodes an input file (input.mov) into a deinterlaced Apple ProRes LT .mov file with 16-bit linear PCM encoded audio. The file is deinterlaced using the yadif (Yet Another De-Interlacing Filter) command.</p>
-        
-        <ul>
-          <li>ffmpeg: Calls the program ffmpeg</li>
-          <li>-i: Tells ffmpeg to expect an input file</li>
-          <li>[inputfile]: Specifies the name and location of the file you want to transcode into ProRes</li>
-          <li>-c:v prores: Tells ffmpeg to transcode the video stream into Apple ProRes 422</li>
-          <li>-profile:v 1: Declares profile of ProRes you want to use. The profiles are explained below:
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-c:v prores</dt><dd>Tells ffmpeg to transcode the video stream into Apple ProRes 422</dd>
+          <dt>-profile:v <i>1</i></dt><dd>Declares profile of ProRes you want to use. The profiles are explained below:
           <ul>
-            <li>0 : ProRes422 (Proxy)</li>
-            <li>1 : ProRes422 (LT)</li>
-            <li>2 : ProRes422 (Normal)</li>
-            <li>3 : ProRes422 (HQ)</li>
-          </ul></li>
-          <li>-c:a pcm_s16le: Tells ffmpeg to encode the audio stream in 16-bit linear PCM</li>
-          <li>-vf yadif: Runs a deinterlacing video filter (yet another deinterlacing filter) on the new file</li>
-          <li>[output.mov]: Specifies the name, location, and extension of the new ProRes file</li>
-        </ul>
-
+            <li>0 = ProRes 422 (Proxy)</li>
+            <li>1 = ProRes 422 (LT)</li>
+            <li>2 = ProRes 422 (Standard)</li>
+            <li>3 = ProRes 422 (HQ)</li>
+          </ul></dd>
+          <dt>-c:a pcm_s16le</dt><dd>Tells ffmpeg to encode the audio stream in 16-bit linear PCM</dd>
+          <dt>-vf yadif</dt><dd>Runs a deinterlacing video filter (yet another deinterlacing filter) on the new file</dd>
+          <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
+        </dl>
       </div>
     </div>
   </div>
 </div>
 <!-- ends Transcode to ProRes -->
 
-
 <!-- One thumbnail -->
 <span data-toggle="modal" data-target=".one_thumbnail"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Export one thumbnail per video file">One thumbnail</button></span>
-
 <div class="modal fade one_thumbnail" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="well">
         <h3>One thumbnail</h3>
-
-        <p>
-          <code>ffmpeg -i [file path] -ss 00:00:20 -f image2 -vframes 1 thumb.png
-          </code></p>
-
+        <p><code>ffmpeg -i [file path] -ss 00:00:20 -f image2 -vframes 1 thumb.png</code></p>
         <p>This command will grab a thumbnail 20 seconds into the video.</p>
-
         <ul>
           <li>ffmpeg: calls the program</li>
           <li>-i for input</li>
@@ -274,20 +217,13 @@ Change the above data-target field, the button text, and the below div class (th
 
 <!-- Multi thumbnail -->
 <span data-toggle="modal" data-target=".multi_thumbnail"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Export many thumbnails per video file">Many thumbnails</button></span>
-
 <div class="modal fade multi_thumbnail" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <!-- where the text goes -->
       <div class="well">
       <h3>Many thumbnails</h3>
-        <p>
-          <code>ffmpeg -i {path/inputfile.extension} -f image2 -vf fps=fps=1/60 out%d.png
-          </code>
-        </p>
-
+        <p><code>ffmpeg -i {path/inputfile.extension} -f image2 -vf fps=fps=1/60 out%d.png</code></p>
         <p>This will grab a thumbnail every minute and output sequential png files.</p>
-
         <ul>
           <li>ffmpeg: calls the program</li>
           <li>-i for input</li>
@@ -309,13 +245,10 @@ Change the above data-target field, the button text, and the below div class (th
 <div class="modal fade thumbnails" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <!-- where the text goes -->
       <div class="well">
         <h3> Generate thumbnails from a video at regular intervals</h3>
         <p><code>ffmpeg -i [inputfile] -ss 00:12.235 -i "$f" -vframes 1 [outputfile]</code></p>
-
         <p>Create one thumbnail in JPEG format from a video file at a specific time. In this example: 0hours:0minutes:12sec.235msec</p>
-
         <ul>
           <li>ffmpeg: Calls the program ffmpeg</li>
           <li>-i: for input video file</li>
@@ -331,10 +264,8 @@ Change the above data-target field, the button text, and the below div class (th
 </div>
 <!-- ends Generate thumbnails -->
 
-
 <!-- Pull specs -->
 <span data-toggle="modal" data-target=".pull_specs"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Pull specs from video file">Pull specs</button></span>
-
 <div class="modal fade pull_specs" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -342,13 +273,11 @@ Change the above data-target field, the button text, and the below div class (th
       <div class="well">
         <h3>Pull specs from video file</h3>
         <p><code>ffprobe -i filename.avi -show_format -show_streams -print_format xml</code></p>
-
         <p>This command extracts technical metadata from a video file and displays it in xml. </p>
         <p>ffmpeg documentation on ffprobe (full list of flags, commands, <a href="https://www.ffmpeg.org/ffprobe.html">https://www.ffmpeg.org/ffprobe.html</a>) </p>
-
         <ul>
           <li>ffprobe: calls the program</li>
-          <li>-i:  tells ffprobe to expect input files</li>
+          <li>-i: tells ffprobe to expect input files</li>
           <li>-show_format: outputs file container</li>
           <li>-show_streams: outputs audio and video codec</li>
           <li>-show_data: adds “hexdump” to show_streams command output</li>
@@ -362,29 +291,24 @@ Change the above data-target field, the button text, and the below div class (th
 
 <!-- Join files together -->
 <span data-toggle="modal" data-target=".join_files"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Join (concatenate) two or more files into a single file">Join files together</button></span>
-
 <div class="modal fade join_files" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <!-- where the text goes -->
       <div class="well">
         <h3>Join files together</h3>
         <p><code>ffmpeg -f concat -i mylist.txt -c copy [output] </code></p>
-
-        <p>This command takes two or more files of the same file type and joins them together to make a single file. All that the program needs is a text file with a list specifying the files that should be joined.  However, it only works properly if the files to be combined have the exact same codec and technical specifications. Be careful, ffmpeg may appear to have successfully joined two video files with different codecs, but may only bring over the audio from the second file or have other weird behaviors. Don’t use this command for joining files with different codecs and technical specs and always preview your resulting video file!
-</p>
+        <p>This command takes two or more files of the same file type and joins them together to make a single file. All that the program needs is a text file with a list specifying the files that should be joined.  However, it only works properly if the files to be combined have the exact same codec and technical specifications. Be careful, ffmpeg may appear to have successfully joined two video files with different codecs, but may only bring over the audio from the second file or have other weird behaviors. Don’t use this command for joining files with different codecs and technical specs and always preview your resulting video file!</p>
         <p>ffmpeg documentation on concatenating files (full list of flags, commands, <a href="https://trac.ffmpeg.org/wiki/Concatenate">https://trac.ffmpeg.org/wiki/Concatenate</a>) </p>
-
         <ul>
-         <li>ffmpeg: calls the program</li>
-         <li>-f: forces ffmpeg to keep the same file format of the joined files</li>
-         <li>concat: ffmpeg’s concatenate command. This tells ffmpeg to join the files.</li>
-         <li>-i: tells ffmpeg to expect input files</li>
-         <li>mylist.txt: specifies the location of a text file with a list of files to be concatenated. You should create a text file that is formatted as follows:
-            <ul>
-              <li>file [path to file 1]</li>
-              <li>file [path to file 2]</li>
-            </ul></li>
+          <li>ffmpeg: calls the program</li>
+          <li>-f: forces ffmpeg to keep the same file format of the joined files</li>
+          <li>concat: ffmpeg’s concatenate command. This tells ffmpeg to join the files.</li>
+          <li>-i: tells ffmpeg to expect input files</li>
+          <li>mylist.txt: specifies the location of a text file with a list of files to be concatenated. You should create a text file that is formatted as follows:
+          <ul>
+            <li>file [path to file 1]</li>
+            <li>file [path to file 2]</li>
+          </ul></li>
          <li>-c copy: specifies the encoder for the output file by telling ffmpeg to copy the codecs of the original files and use them for the output file</li>
          <li>[output]: specifies the filename and location for the output file</li>
         </ul>
@@ -394,27 +318,22 @@ Change the above data-target field, the button text, and the below div class (th
 </div>
 <!-- ends Join files together -->
 
-
 <!-- Excerpt from beginning -->
 <span data-toggle="modal" data-target=".excerpt_from_start"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create an excerpt, starting from the beginning of the file">Excerpt from beginning</button></span>
-
 <div class="modal fade excerpt_from_start" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <!-- where the text goes -->
       <div class="well">
         <h3>Excerpt from beginning</h3>
         <p><code>ffmpeg -i [input file] -t 5 -c copy [output]</code></p>
-
         <p>This command captures a certain portion of a video file, starting from the beginning and continuing for the amount of time (in seconds) specified in the script. This can be used to create a preview file, or to remove unwanted content from the end of the file. To be more specific, use timecode, such as 00:00:05. </p>
-
         <ul>
-         <li>ffmpeg: Calls the program ffmpeg</li>
-		 <li>-i: Tells ffmpeg to expect input files</li>
-		 <li>[input file]: Specifies the location of the file you want to capture a clip from</li>
-		 <li>-t 5: Tells ffmpeg to stop copying from the input file after a certain time, and specifies the number of seconds after which to stop copying. In this case, 5 seconds is specified</li>
-		 <li>-c copy: Specifies the encoder for the output file by telling ffmpeg to copy the codecs of the original file and use them for the new output file</li>
-		 <li>[output]: Specifies the filename and location for the new file</li>
+          <li>ffmpeg: Calls the program ffmpeg</li>
+	  <li>-i: Tells ffmpeg to expect input files</li>
+	  <li>[input file]: Specifies the location of the file you want to capture a clip from</li>
+	  <li>-t 5: Tells ffmpeg to stop copying from the input file after a certain time, and specifies the number of seconds after which to stop copying. In this case, 5 seconds is specified</li>
+	  <li>-c copy: Specifies the encoder for the output file by telling ffmpeg to copy the codecs of the original file and use them for the new output file</li>
+	  <li>[output]: Specifies the filename and location for the new file</li>
         </ul>
       </div>
     </div>
@@ -422,20 +341,15 @@ Change the above data-target field, the button text, and the below div class (th
 </div>
 <!-- ends Excerpt from beginning -->
 
-
 <!-- Excerpt from middle -->
 <span data-toggle="modal" data-target=".excerpt_from_middle"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Capture five seconds from the middle of a video file">Excerpt from middle</button></span>
-
 <div class="modal fade excerpt_from_middle" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <!-- where the text goes -->
       <div class="well">
         <h3>Excerpt from middle</h3>
         <p><code>ffmpeg -i [input file] -ss 5 -t 5 -c copy [output]</code></p>
-
-        <p>This command captures a certain portion of a video file, starting from a designated point in the file and taking an excerpt as long as the amount of time (in seconds) specified in the script. This can be used to create a preview or clip out a desired segment. To be more specific, use timecode, such as 00:00:05. </p>
-
+        <p>This command captures a certain portion of a video file, starting from a designated point in the file and taking an excerpt as long as the amount of time (in seconds) specified in the script. This can be used to create a preview or clip out a desired segment. To be more specific, use timecode, such as 00:00:05.</p>
         <ul>
           <li>ffmpeg: Calls the program ffmpeg</li>
 	  <li>-i: Tells ffmpeg to expect input files</li>
@@ -451,29 +365,23 @@ Change the above data-target field, the button text, and the below div class (th
 </div>
 <!-- ends Excerpt from middle -->
 
-
 <!-- Excerpt to end -->
 <span data-toggle="modal" data-target=".excerpt_to_end"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create a new video file with the first five seconds trimmed off the original">Excerpt to end</button></span>
-
 <div class="modal fade excerpt_to_end" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <!-- where the text goes -->
       <div class="well">
         <h3>Excerpt to end</h3>
         <p><code>ffmpeg -i [input file] -ss 5 -c copy [output]</code></p>
-
         <p>This command copies a video file starting from a specified time, removing the first few seconds from the output. This can be used to create an excerpt, or remove unwanted content from the beginning of a video file.</p>
-
-
         <ul>
-         <li>ffmpeg: Calls the program ffmpeg</li>
-		 <li>-i: Tells ffmpeg to expect input files</li>
-		 <li>[input file]: Specifies the location of the file you want to capture a clip from</li>
-		 <li>-ss 5: Tells ffmpeg what timecode in the file to look for to start copying, and specifies the number of seconds into the video that ffmpeg should start copying. To be more specific, you can use timecode such as 00:00:05</li>
-		 <li>-t 5: Tells ffmpeg to stop copying from the input file after a certain time, and specifies the number of seconds after which to stop copying. In this case, 5 seconds is specified</li>
-		 <li>-c copy: Specifies the encoder for the output file by telling ffmpeg to copy the codecs of the original file and use them for the new output file</li>
-		 <li>[output]: Specifies the filename and location for the new file</li>
+          <li>ffmpeg: Calls the program ffmpeg</li>
+          <li>-i: Tells ffmpeg to expect input files</li>
+          <li>[input file]: Specifies the location of the file you want to capture a clip from</li>
+          <li>-ss 5: Tells ffmpeg what timecode in the file to look for to start copying, and specifies the number of seconds into the video that ffmpeg should start copying. To be more specific, you can use timecode such as 00:00:05</li>
+	  <li>-t 5: Tells ffmpeg to stop copying from the input file after a certain time, and specifies the number of seconds after which to stop copying. In this case, 5 seconds is specified</li>
+	  <li>-c copy: Specifies the encoder for the output file by telling ffmpeg to copy the codecs of the original file and use them for the new output file</li>
+	  <li>[output]: Specifies the filename and location for the new file</li>
         </ul>
       </div>
     </div>
@@ -483,25 +391,21 @@ Change the above data-target field, the button text, and the below div class (th
 
 <!-- Split audio and video tracks -->
 <span data-toggle="modal" data-target=".split_audio_video"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create separate audio and video tracks from an audiovisual file">Split audio and video tracks</button></span>
-
 <div class="modal fade split_audio_video" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <!-- where the text goes -->
       <div class="well">
         <h3>Split audio and video tracks</h3>
         <p><code>ffmpeg -i [input file] -map 0:0 [video output file] -map 0:1 [audio output file] </code></p>
-
-        <p>This command splits the original input file into a video and audio stream. The -map command identifies which streams are mapped to which file. To ensure that you’re mapping the right streams to the right file, run ffprobe before writing the script to identify which stream is 0:0, which is 0:1, etc. </p>
-
+        <p>This command splits the original input file into a video and audio stream. The -map command identifies which streams are mapped to which file. To ensure that you’re mapping the right streams to the right file, run ffprobe before writing the script to identify which stream is 0:0, which is 0:1, etc.</p>
         <ul>
-        <li>ffmpeg: calls the program</li>
-		<li>-i: tells ffmpeg to expect input file</li>	
-		<li>[input file]: the file you want to split</li>
-		<li>-map 0:0: tells ffmpeg to grab one of the streams, and identifies the first stream (stream 0:0) to map</li>
-		<li>[video output file]: desired filename for the video output file</li>
-		<li>-map 0:1: tells ffmpeg to grab one of the streams, and identifies the second stream (stream 0:1) to map</li>
-		<li>[audio output file]: desired filename for the audio output file</li>
+          <li>ffmpeg: calls the program</li>
+          <li>-i: tells ffmpeg to expect input file</li>
+          <li>[input file]: the file you want to split</li>
+          <li>-map 0:0: tells ffmpeg to grab one of the streams, and identifies the first stream (stream 0:0) to map</li>
+          <li>[video output file]: desired filename for the video output file</li>
+          <li>-map 0:1: tells ffmpeg to grab one of the streams, and identifies the second stream (stream 0:1) to map</li>
+          <li>[audio output file]: desired filename for the audio output file</li>
         </ul>
       </div>
     </div>
@@ -509,40 +413,31 @@ Change the above data-target field, the button text, and the below div class (th
 </div>
 <!-- ends Split audio and video tracks -->
 
-
 <!-- Transcode to h.264 -->
 <span data-toggle="modal" data-target=".transcode_h264"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode to an h.264 access file">Transcode to h.264</button></span>
-
 <div class="modal fade transcode_h264" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <!-- where the text goes -->
       <div class="well">
         <h3>Transcode to h.264</h3>
         <p><code>ffmpeg -i [input file] -c:v libx264 -c:a copy [output file.mp4]</code></p>
-
-        <p>This command takes an input file and transcodes it to h.264 with an .mp4 wrapper, keeping the audio the same codec as the original. The libx264 codec defaults to a “medium” preset for compression quality and a CRF of 23. CRF stands for constant rate factor and determines the quality and file size of the resulting h.264 video. A low CRF means high quality and large file size; a high CRF means the opposite.  </p>
-
+        <p>This command takes an input file and transcodes it to h.264 with an .mp4 wrapper, keeping the audio the same codec as the original. The libx264 codec defaults to a “medium” preset for compression quality and a CRF of 23. CRF stands for constant rate factor and determines the quality and file size of the resulting h.264 video. A low CRF means high quality and large file size; a high CRF means the opposite.</p>
         <ul>
-        <li>ffmpeg: Calls the program ffmpeg</li>
-		<li>-i: Tells ffmpeg to expect an input file</li>
-		<li>[input file]: Tells ffmpeg the location of the file you want to process</li>
-		<li>-c:v libx264: Tells ffmpeg to change the video codec of the file to h264</li>
-		<li>-c:a copy: tells ffmpeg not to change the audio codec</li>
-		<li>[output file.mp4]: Specifies the name and location of the new file, including the desired codec extension</li>
+          <li>ffmpeg: Calls the program ffmpeg</li>
+          <li>-i: Tells ffmpeg to expect an input file</li>
+          <li>[input file]: Tells ffmpeg the location of the file you want to process</li>
+          <li>-c:v libx264: Tells ffmpeg to change the video codec of the file to h264</li>
+          <li>-c:a copy: tells ffmpeg not to change the audio codec</li>
+          <li>[output file.mp4]: Specifies the name and location of the new file, including the desired codec extension</li>
         </ul>
-        
         <p>In order to use the same basic command to make a higher quality file, you can add some of these presets:</p>
         <p><code>ffmpeg -i [input file] -vcodec libx264 -acodec copy -preset veryslow -crf 18 [output file.mp4]</code></p>
- 
         <ul>
           <li>-preset veryslow: This option tells ffmpeg to use the slowest preset possible for the best compression quality</li>
 	  <li>-crf 18: Specifying a lower CRF will make a larger file with better visual quality</li>
 	</ul>
-
 	<p>libx264 also defaults to 4:2:2 chroma subsampling. Some versions of Quicktime can't read x264 files in 4:2:2. In order to allow the video to play in all Quicktime players, you can specify 4:2:0 chroma subsampling instead:</p>
 	<p><code>ffmpeg -i [input file] -c:v libx264 -pix_fmt yuv420p -c:a copy -preset veryslow -crf 18 [output file.mp4]</code></p>
-
 	<ul>
 	  <li>-pix_fmt yuv420p: Specifies a pixel format of YUV 4:2:0 to allow the file to play in a standard Quicktime player</li>
         </ul>
@@ -554,78 +449,59 @@ Change the above data-target field, the button text, and the below div class (th
 
 <!-- H.264 from DCP -->
 <span data-toggle="modal" data-target=".dcp_to_h264"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode from DCP to an h.264 access file">H.264 from DCP</button></span>
-
 <div class="modal fade dcp_to_h264" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <!-- where the text goes -->
       <div class="well">
         <h3>H.264 from DCP</h3>
         <p><code>ffmpeg -i video.mxf -i audio.mxf -c:v libx264 -pix_fmt yuv420p output.mp4</code></p>
-
         <p>This will transcode mxf wrapped video and audio files to an h.264 encoded .mp4 file. Please note this only works for non-encrypted DCPs.</p>
-
         <ul>
-        <li>ffmpeg: Calls the program ffmpeg</li>
-    <li>-i: for input video file and audio file</li>
-    <li>-c:v: transcodes video to h.264</li>
-    <li>-pix_fmt: sets pixel format to yuv420p</li>
-    <li>[output.mp4] states out filename and extension</li>
+          <li>ffmpeg: Calls the program ffmpeg</li>
+          <li>-i: for input video file and audio file</li>
+          <li>-c:v: transcodes video to h.264</li>
+          <li>-pix_fmt: sets pixel format to yuv420p</li>
+          <li>[output.mp4] states out filename and extension</li>
         </ul>
-        
       </div>
     </div>
   </div>
 </div>
 <!-- ends H.264 from DCP -->
 
-
 <!-- Create ISO -->
 <span data-toggle="modal" data-target=".create_iso"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create ISO files for DVD access">Create ISO</button></span>
-
 <div class="modal fade create_iso" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <!-- where the text goes -->
       <div class="well">
         <h3>Create ISO files for DVD access</h3>
-
         <p>Create an ISO file that can be used to burn a DVD. Please note, you will have to install dvdauthor. To install dvd author using Homebrew run: <code>brew install dvdauthor</code></p>
-
         <p><code>ffmpeg -i [inputfile.extension] -aspect 4:3 -target ntsc-dvd [outputfile.mpg]</code></p>
-
         <p>This command will take any file and create an MPEG file that dvdauthor can use to create an ISO.</p>
-
         <ul>
           <li>ffmpeg: Calls the program ffmpeg</li>
           <li>-i: for input video file and audio file</li>
           <li>[inputfile.extension]: Specifies the location of the file you that you want to transcode into an MPEG</li>
           <li>-aspect 4:3: Declares the aspect ratio of the resulting video file. You can also use 16:9.</li>
-          <li>-target [DVD region]: Specifies the region for your DVD. This could be ntsc-dvd or pal-dvd 
-outputfile.mpg: Specifies the name and location of your output file </li>
+          <li>-target [DVD region]: Specifies the region for your DVD. This could be ntsc-dvd or pal-dvd</li>
+          <li>outputfile.mpg: Specifies the name and location of your output file</li>
         </ul>
-        
       </div>
     </div>
   </div>
 </div>
 <!-- ends Create ISO -->
 
-
 <!-- NTSC to h264 -->
 <span data-toggle="modal" data-target=".ntsc_to_h264"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Upscaled, Pillar-boxed HD H.264 Access Files from SD NTSC source">NTSC to h264</button></span>
-
 <div class="modal fade ntsc_to_h264" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <!-- where the text goes -->
       <div class="well">
         <h3>Upscaled, Pillar-boxed HD H.264 Access Files from SD NTSC source</h3>
-
         <p><code>ffmpeg -i [inputfile] -c:v libx264 -pix_fmt yuv420p -filter:v "scale=1440:1080, pad=1920:1080:240:0" -vf yadif [outputfile]</code></p>
-
         <p>Pad without specifying pad width, just put the input video in the middle of the output: pad=1920:1080:(ow-iw)/2:(oh-ih)/2</p>
-
         <dl>
           <dt>ffmpeg</dt><dd>Calls the program ffmpeg</dd>
           <dt>-i</dt><dd>for input video file and audio file</dd>
@@ -634,26 +510,19 @@ outputfile.mpg: Specifies the name and location of your output file </li>
           <dt>-filter:v</dt><dd>calls an option to apply a filter to the video stream. scale=1440:1080, pad=1920:1080:240:0": does the math! resizes the video frame then pads the area around the 4:3 aspect to complete 16:9.</dd>
           <dt>-vf yadif</dt><dd>deinterlaces the file (optional)</dd>
         </dl>
-        
       </div>
     </div>
   </div>
 </div>
 <!-- ends NTSC to h264 -->
 
-
-
-
-
 </div> <!-- end this well (and this ends well) -->
 </div> <!-- row -->
 
+<div class="footer text-center">
+  <p>Made with ♥ at <a href="http://wiki.curatecamp.org/index.php/Association_of_Moving_Image_Archivists_%26_Digital_Library_Federation_Hack_Day_2015">AMIA #AVhack15</a>! Contribute to the project via <a href="https://github.com/amiaopensource/ffmprovisr">our Github page</a>!</p>
+</div>
 
-
-    <div class="footer text-center">
-      <p>Made with ♥ at <a href="http://wiki.curatecamp.org/index.php/Association_of_Moving_Image_Archivists_%26_Digital_Library_Federation_Hack_Day_2015">AMIA #AVhack15</a>! Contribute to the project via <a href="https://github.com/amiaopensource/ffmprovisr">our Github page</a>!</p>
-    </div>
-
-  </div> <!-- class="container" -->
-  </body>
+</div> <!-- class="container" -->
+</body>
 </html>
