@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>ffmprovisr</title>
     <meta charset="utf-8">
@@ -17,7 +17,8 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   </head>
 
-  <div class="container">
+<body>
+<div class="container">
 
   <div class="text-center">
     <h1>➺ ffmprovisr ❥</h1>
@@ -88,8 +89,8 @@ Change the above data-target field, the button text, and the below div class (th
         <ul>
           <li><b>ffmpeg</b> starts the command</li>
           <li><b>-i</b> input file (path, name and extension)</li>
-          <li><b>-ss HH:MM:SS</b> starting point of the gift</li>
-          <li><b>-t 3</b> number of seconds after the starting point repeated in the gif (here 3)</li>
+          <li><b>-ss HH:MM:SS</b> starting point of the gif</li>
+          <li><b>-t 3</b> number of seconds after the starting point repeated in the gif (here 3; can be specified also with a full timestamp, i.e. here 00:00:03)</li>
           <li>output file (path, name and extension)</li>
         </ul>
 
@@ -132,7 +133,7 @@ Change the above data-target field, the button text, and the below div class (th
           <li>ffmpeg : starts the command</li>
           <li>-i for input</li>
           <li>[inputfile.wav] : file you would like to convert to mp3</li>
-          <li>-sample_fmt s16p: sample format. This will give you 16 bit audio (To see a list of supported sample formats, type:  ffmpeg -sample_fmts)</li>
+          <li>-sample_fmt s16p: sample format. This will give you 16 bit audio (To see a list of supported sample formats, type:  <code>ffmpeg -sample_fmts</code>)</li>
           <li>-ar 44100: Sets the audio sampling frequency to 44.1 kHz (CD quality).</li>
           <li>[outputfile.mp3] : outputname and format</li>
         </ul>
@@ -191,7 +192,7 @@ Change the above data-target field, the button text, and the below div class (th
           <li>ffmpeg: starts the command</li>
           <li>-i for input</li>
           <li>[inputfile.extension]: the file you want to create framemd5 checksums for</li>
-          <li>-an: ignores the audio track</li>
+          <li>-an: ignores the audio stream (audio no)</li>
           <li>-f framemed5: file type</li>
           <li>[outputfile.framemd5]: output name and format</li>
         </ul>
@@ -223,13 +224,13 @@ Change the above data-target field, the button text, and the below div class (th
           <li>-i: Tells ffmpeg to expect an input file</li>
           <li>[inputfile]: Specifies the name and location of the file you want to transcode into ProRes</li>
           <li>-c:v prores: Tells ffmpeg to transcode the video stream into Apple ProRes 422</li>
-          <li>-profile:v 1: Declares profile of ProRes you want to use. The profiles are explained below:</li>
+          <li>-profile:v 1: Declares profile of ProRes you want to use. The profiles are explained below:
           <ul>
             <li>0 : ProRes422 (Proxy)</li>
             <li>1 : ProRes422 (LT)</li>
             <li>2 : ProRes422 (Normal)</li>
             <li>3 : ProRes422 (HQ)</li>
-          </ul>
+          </ul></li>
           <li>-c:a pcm_s16le: Tells ffmpeg to encode the audio stream in 16-bit linear PCM</li>
           <li>-vf yadif: Runs a deinterlacing video filter (yet another deinterlacing filter) on the new file</li>
           <li>[output.mov]: Specifies the name, location, and extension of the new ProRes file</li>
@@ -379,11 +380,11 @@ Change the above data-target field, the button text, and the below div class (th
          <li>-f: forces ffmpeg to keep the same file format of the joined files</li>
          <li>concat: ffmpeg’s concatenate command. This tells ffmpeg to join the files.</li>
          <li>-i: tells ffmpeg to expect input files</li>
-         <li>mylist.txt: specifies the location of a text file with a list of files to be concatenated. You should create a text file that is formatted as follows:</li>
+         <li>mylist.txt: specifies the location of a text file with a list of files to be concatenated. You should create a text file that is formatted as follows:
             <ul>
               <li>file [path to file 1]</li>
               <li>file [path to file 2]</li>
-            </ul>
+            </ul></li>
          <li>-c copy: specifies the encoder for the output file by telling ffmpeg to copy the codecs of the original files and use them for the output file</li>
          <li>[output]: specifies the filename and location for the output file</li>
         </ul>
@@ -436,13 +437,13 @@ Change the above data-target field, the button text, and the below div class (th
         <p>This command captures a certain portion of a video file, starting from a designated point in the file and taking an excerpt as long as the amount of time (in seconds) specified in the script. This can be used to create a preview or clip out a desired segment. To be more specific, use timecode, such as 00:00:05. </p>
 
         <ul>
-         <li>ffmpeg: Calls the program ffmpeg</li>
-		 <li>-i: Tells ffmpeg to expect input files</li>
-		 <li>[input file]: Specifies the location of the file you want to capture a clip from</li>
-		 <li>-ss 5: Tells ffmpeg what timecode in the file to look for to start copying, and specifies the number of seconds into the video that ffmpeg should start copying. To be more specific, you can use timecode such as 00:00:05</li>
-		 <li>-t 5: Tells ffmpeg to stop copying from the input file after a certain time, and specifies the number of seconds after which to stop copying. In this case, 5 seconds is specified</li>
-		 <li>-c copy: Specifies the encoder for the output file by telling ffmpeg to copy the codecs of the original file and use them for the new output file</li>
-		 <li>[output]: Specifies the filename and location for the new file</li>
+          <li>ffmpeg: Calls the program ffmpeg</li>
+	  <li>-i: Tells ffmpeg to expect input files</li>
+	  <li>[input file]: Specifies the location of the file you want to capture a clip from</li>
+	  <li>-ss 5: Tells ffmpeg what timecode in the file to look for to start copying, and specifies the number of seconds into the video that ffmpeg should start copying. To be more specific, you can use timecode such as 00:00:05</li>
+	  <li>-t 5: Tells ffmpeg to stop copying from the input file after a certain time, and specifies the number of seconds after which to stop copying. In this case, 5 seconds is specified</li>
+	  <li>-c copy: Specifies the encoder for the output file by telling ffmpeg to copy the codecs of the original file and use them for the new output file</li>
+	  <li>[output]: Specifies the filename and location for the new file</li>
         </ul>
       </div>
     </div>
@@ -533,15 +534,18 @@ Change the above data-target field, the button text, and the below div class (th
         
         <p>In order to use the same basic command to make a higher quality file, you can add some of these presets:</p>
         <p><code>ffmpeg -i [input file] -vcodec libx264 -acodec copy -preset veryslow -crf 18 [output file.mp4]</code></p>
-        
-        <li>-preset veryslow: This option tells ffmpeg to use the slowest preset possible for the best compression quality</li>
-		<li>-crf 18: Specifying a lower CRF will make a larger file with better visual quality</li>
-		
-		<p>libx264 also defaults to 4:2:2 chroma subsampling. Some versions of Quicktime can't read x264 files in 4:2:2. In order to allow the video to play in all Quicktime players, you can specify 4:2:0 chroma subsampling instead:</p>
-		<p><code>ffmpeg -i [input file] -c:v libx264 -pix_fmt yuv420p -c:a copy -preset veryslow -crf 18 [output file.mp4]</code></p>
+ 
+        <ul>
+          <li>-preset veryslow: This option tells ffmpeg to use the slowest preset possible for the best compression quality</li>
+	  <li>-crf 18: Specifying a lower CRF will make a larger file with better visual quality</li>
+	</ul>
 
-		<li>-pix_fmt yuv420p: Specifies a pixel format of YUV 4:2:0 to allow the file to play in a standard Quicktime player</li>
-        
+	<p>libx264 also defaults to 4:2:2 chroma subsampling. Some versions of Quicktime can't read x264 files in 4:2:2. In order to allow the video to play in all Quicktime players, you can specify 4:2:0 chroma subsampling instead:</p>
+	<p><code>ffmpeg -i [input file] -c:v libx264 -pix_fmt yuv420p -c:a copy -preset veryslow -crf 18 [output file.mp4]</code></p>
+
+	<ul>
+	  <li>-pix_fmt yuv420p: Specifies a pixel format of YUV 4:2:0 to allow the file to play in a standard Quicktime player</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -649,5 +653,7 @@ outputfile.mpg: Specifies the name and location of your output file </li>
     <div class="footer text-center">
       <p>Made with ♥ at <a href="http://wiki.curatecamp.org/index.php/Association_of_Moving_Image_Archivists_%26_Digital_Library_Federation_Hack_Day_2015">AMIA #AVhack15</a>! Contribute to the project via <a href="https://github.com/amiaopensource/ffmprovisr">our Github page</a>!</p>
     </div>
+
+  </div> <!-- class="container" -->
   </body>
 </html>
