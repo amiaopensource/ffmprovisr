@@ -7,7 +7,7 @@
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Sanchez' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/css.css">
     <link href="css/jquery.steps.css" rel="stylesheet" >
@@ -619,14 +619,14 @@ outputfile.mpg: Specifies the name and location of your output file </li>
 
         <p>Pad without specifying pad width, just put the input video in the middle of the output: pad=1920:1080:(ow-iw)/2:(oh-ih)/2</p>
 
-        <ul>
-          <li>ffmpeg: Calls the program ffmpeg</li>
-          <li>-i: for input video file and audio file</li>
-          <li>-c:v libx264: encodes video stream with libx264 (h264)</li>
-          <li>-pix_fmt yuv420p - creates YUV colorspace, progressive scan</li>
-          <li>-filter:v: calls an option to apply a filter to the video stream. scale=1440:1080, pad=1920:1080:240:0": does the math! resizes the video frame then pads the area around the 4:3 aspect to complete 16:9.</li>
-          <li>-vf yadif: deinterlaces the file (optional)</li>
-        </ul>
+        <dl>
+          <dt>ffmpeg</dt><dd>Calls the program ffmpeg</dd>
+          <dt>-i</dt><dd>for input video file and audio file</dd>
+          <dt>-c:v libx264</dt><dd>encodes video stream with libx264 (h264)</dd>
+          <dt>-pix_fmt yuv420p - creates YUV colorspace, progressive scan</dd>
+          <dt>-filter:v</dt><dd>calls an option to apply a filter to the video stream. scale=1440:1080, pad=1920:1080:240:0": does the math! resizes the video frame then pads the area around the 4:3 aspect to complete 16:9.</dd>
+          <dt>-vf yadif</dt><dd>deinterlaces the file (optional)</dd>
+        </dl>
         
       </div>
     </div>
