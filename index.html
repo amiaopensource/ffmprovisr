@@ -69,7 +69,6 @@ Change the above data-target field, the button text, and the below div class (th
 
 <!-- Create GIF -->
 <span data-toggle="modal" data-target=".create_gif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create a GIF from a video">Create GIF</button></span>
-<!-- Change the above data-target field, the button text, and the below div class (the word after modal fade) -->
 <div class="modal fade create_gif" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -77,21 +76,22 @@ Change the above data-target field, the button text, and the below div class (th
         <h3>Create GIF</h3>
         <p>Part 1: Create 3 second clip from an existing source file (no audio necessary)</p>
         <p><code>ffmpeg -ss HH:MM:SS -i <i>input</i> -c:v copy -c:a copy -t 3 <i>output</i></code></p>
-        <ul>
-          <li><b>ffmpeg</b> starts the command</li>
-          <li><b>-i</b> input file (path, name and extension)</li>
-          <li><b>-ss HH:MM:SS</b> starting point of the gif</li>
-          <li><b>-t 3</b> number of seconds after the starting point repeated in the gif (here 3; can be specified also with a full timestamp, i.e. here 00:00:03)</li>
-          <li>output file (path, name and extension)</li>
-        </ul>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-ss <i>HH:MM:SS</i></dt><dd>starting point of the gif</dd>
+          <dt>-t <i>3</i></dt><dd>number of seconds after the starting point repeated in the gif (here 3; can be specified also with a full timestamp, i.e. here 00:00:03)</dd>
+          <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
+        </dl>
         <p>Part 2: Make the gif</p>
         <p><code>ffmpeg -i <i>input</i> -vf scale=500:-1 -t 10 -r 30 <i>output.gif</i></code></p>
-        <ul>
-          <li><b>ffmpeg</b> starts the command</li>
-          <li><b>-vf scale=<i>width</i>:<i>height</i></b> in pixels (a negative number keeps it in proportion)</li>
-          <li><b>-t 10</b> running time in seconds (here 10)</li>
-          <li><b>-r 30</b> run at 30 fps (frames per second)</li>
-        </ul>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-vf scale=<i>width</i>:<i>height</i></dt><dd>in pixels (a negative number keeps it in proportion)</dd>
+          <dt>-t <i>10</i></dt><dd>running time in seconds (here 10)</dd>
+          <dt>-r <i>30</i></dt><dd>run at 30 fps (frames per second)</dd>
+          <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
+        </dl>
       </div>
     </div>
   </div>
@@ -107,14 +107,13 @@ Change the above data-target field, the button text, and the below div class (th
         <h3>WAV to MP3</h3>
         <p><code>ffmpeg -i [inputfile.wav] -sample_fmt s16p -ar 44100 [outputfile.mp3]</code></p>
         <p>This will convert your wav files to mp3s.</p>
-        <ul>
-          <li>ffmpeg : starts the command</li>
-          <li>-i for input</li>
-          <li>[inputfile.wav]: file you would like to convert to mp3</li>
-          <li>-sample_fmt s16p: sample format. This will give you 16 bit audio (To see a list of supported sample formats, type:  <code>ffmpeg -sample_fmts</code>)</li>
-          <li>-ar 44100: Sets the audio sampling frequency to 44.1 kHz (CD quality).</li>
-          <li>[outputfile.mp3]: outputname and format</li>
-        </ul>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-sample_fmt <i>s16p</i></dt><dd>sample format. This will give you 16 bit audio (To see a list of supported sample formats, type: <code>ffmpeg -sample_fmts</code>)</dd>
+          <dt>-ar <i>44100</i></dt><dd>Sets the audio sampling frequency to 44.1 kHz (CD quality).</dd>
+          <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
+        </dl>
       </div>
     </div>
   </div>
@@ -150,14 +149,13 @@ Change the above data-target field, the button text, and the below div class (th
         <h3>Create frame md5s</h3>
         <p><code>ffmpeg -i [inputfile.extension] -an -f framemd5 [outputfile.framemd5]</code></p>
         <p>This will create an md5 checksum per frame</p>
-        <ul>
-          <li>ffmpeg: starts the command</li>
-          <li>-i for input</li>
-          <li>[inputfile.extension]: the file you want to create framemd5 checksums for</li>
-          <li>-an: ignores the audio stream (audio no)</li>
-          <li>-f framemed5: file type</li>
-          <li>[outputfile.framemd5]: output name and format</li>
-        </ul>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-an</dt><dd>ignores the audio stream (audio no)</dd>
+          <dt>-f framemed5</dt><dd>file type</dd>
+          <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
+        </dl>
       </div>
     </div>
   </div>
@@ -173,22 +171,21 @@ Change the above data-target field, the button text, and the below div class (th
         <h3>Transcode into a deinterlaced Apple ProRes LT</h3>
         <p><code>ffmpeg -i input.mov -c:v prores -profile:v 1 -c:a pcm_s16le -vf yadif output.mov</code></p>
         <p>This command transcodes an input file (input.mov) into a deinterlaced Apple ProRes LT .mov file with 16-bit linear PCM encoded audio. The file is deinterlaced using the yadif (Yet Another De-Interlacing Filter) command.</p>
-        <ul>
-          <li>ffmpeg: Calls the program ffmpeg</li>
-          <li>-i: Tells ffmpeg to expect an input file</li>
-          <li>[inputfile]: Specifies the name and location of the file you want to transcode into ProRes</li>
-          <li>-c:v prores: Tells ffmpeg to transcode the video stream into Apple ProRes 422</li>
-          <li>-profile:v 1: Declares profile of ProRes you want to use. The profiles are explained below:
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-c:v prores</dt><dd>Tells ffmpeg to transcode the video stream into Apple ProRes 422</dd>
+          <dt>-profile:v <i>1</i></dt><dd>Declares profile of ProRes you want to use. The profiles are explained below:
           <ul>
             <li>0 = ProRes 422 (Proxy)</li>
             <li>1 = ProRes 422 (LT)</li>
             <li>2 = ProRes 422 (Standard)</li>
             <li>3 = ProRes 422 (HQ)</li>
-          </ul></li>
-          <li>-c:a pcm_s16le: Tells ffmpeg to encode the audio stream in 16-bit linear PCM</li>
-          <li>-vf yadif: Runs a deinterlacing video filter (yet another deinterlacing filter) on the new file</li>
-          <li>[output.mov]: Specifies the name, location, and extension of the new ProRes file</li>
-        </ul>
+          </ul></dd>
+          <dt>-c:a pcm_s16le</dt><dd>Tells ffmpeg to encode the audio stream in 16-bit linear PCM</dd>
+          <dt>-vf yadif</dt><dd>Runs a deinterlacing video filter (yet another deinterlacing filter) on the new file</dd>
+          <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
+        </dl>
       </div>
     </div>
   </div>
