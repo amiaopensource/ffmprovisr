@@ -31,7 +31,7 @@
   <h5>Making FFmpeg Easier</h5>
   <p>FFmpeg is a powerful tool for manipulating audiovisual files. Unfortunately, it also has a steep learning curve, especially for users unfamiliar with a command line interface. This app helps users through the command generation process so that more people can reap the benefits of FFmpeg.</p>
   <p>Each button displays helpful information about how to perform a wide variety of tasks using FFmpeg. To use this site, click on the task you would like to perform. A new window will open up with a sample command and a description of how that command works. You can copy this command and understand how the command works with a breakdown of each of the flags.</p>
-  <p>For FFmpeg basics, check out the program's <a href="https://www.ffmpeg.org/" target="_blank">official website</a>.</p>
+  <p>For FFmpeg basics, check out the program’s <a href="https://www.ffmpeg.org/" target="_blank">official website</a>.</p>
   <p>For Bash and command line basics, try the <a href="http://cli.learncodethehardway.org/book/" target="_blank">Command Line Crash Course</a>.</p>
 </div>
 
@@ -48,19 +48,14 @@ Change the above data-target field, the button text, and the below div class (th
       where the text goes
       <div class="well">
         <h3>*****Longer title*****</h3>
-
-        <p>
-          <code>ffmpeg -i [sample file path]</code>
-        </p>
-
-        <p>This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! </p>
-
-        <ul>
-          <li>ffmpeg : starts the command</li>
-          <li>-i : i for info dudes!</li>
-          <li>[sample file path] : path to sample file</li>
-        </ul>
-
+        <p> <code>ffmpeg -i <i>input_file</i></code>  *****code goes here***** <i>output_file</i></p>
+        <p>This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info!</p>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>*****parameter*****</dt><dd>*****comments*****</dd>
+          <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
+        </dl>
       </div>
     </div>
   </div>
@@ -201,14 +196,14 @@ Change the above data-target field, the button text, and the below div class (th
         <h3>One thumbnail</h3>
         <p><code>ffmpeg -i [file path] -ss 00:00:20 -f image2 -vframes 1 thumb.png</code></p>
         <p>This command will grab a thumbnail 20 seconds into the video.</p>
-        <ul>
-          <li>ffmpeg: calls the program</li>
-          <li>-i for input</li>
-          <li>-ss 00:00:20: seeks video file to 20 seconds into the video </li>
-          <li>-f image2: Forces the file format. image2 is an image file demuxer.</li>
-          <li>-vframes 1: sets the number of frames (in this example, one frame)</li>
-          <li>thumb.png: output name and format</li>
-        </ul>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-ss <i>00:00:20</i></dt><dd>seeks video file to 20 seconds into the video</dd>
+          <dt>-f image2</dt><dd>Forces the file format. image2 is an image file demuxer.</dd>
+          <dt>-vframes <i>1</i></dt><dd>sets the number of frames (in this example, one frame)</dd>
+          <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
+        </dl>
       </div>
     </div>
   </div>
@@ -224,40 +219,37 @@ Change the above data-target field, the button text, and the below div class (th
       <h3>Many thumbnails</h3>
         <p><code>ffmpeg -i {path/inputfile.extension} -f image2 -vf fps=fps=1/60 out%d.png</code></p>
         <p>This will grab a thumbnail every minute and output sequential png files.</p>
-        <ul>
-          <li>ffmpeg: calls the program</li>
-          <li>-i for input</li>
-          <li>-ss 00:00:20: seeks video file to 20 seconds into the video</li>
-          <li>-f image2: Forces the file format. image2 is an image file demuxer</li>
-          <li>-vf fps=fps=1/60: -vf is an alias for -filter:v, which creates a filtergraph to use for the streams. The rest of the command identifies filtering by frames per second, and sets the frames per second at 1/60 (which is one per minute).</li>
-          <li>out%d.png: Names the output file. The %d is a regular expression that adds a number (d is for digit) and increments with each frame (out1.png, out2.png, out3.png…)</li>
-        </ul>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-ss <i>00:00:20</i></dt><dd>seeks video file to 20 seconds into the video</dd>
+          <dt>-f image2</dt><dd>Forces the file format. image2 is an image file demuxer.</dd>
+          <dt>-vf fps=fps=1/60</dt><dd>-vf is an alias for -filter:v, which creates a filtergraph to use for the streams. The rest of the command identifies filtering by frames per second, and sets the frames per second at 1/60 (which is one per minute).</dd>
+          <dt><i>output file</i></dt><dd>path, name and extension of the output file. In the example out%d.png where %d is a regular expression that adds a number (d is for digit) and increments with each frame (out1.png, out2.png, out3.png…).</dd>
+        </dl>
       </div>
     </div>
   </div>
 </div>
 <!-- ends Multi thumbnail -->
 
-
+<!-- ##### RK: TO BE COMPLETED: -i "$f" ##### -->
 <!-- Generate thumbnails -->
 <span data-toggle="modal" data-target=".thumbnails"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Generate thumbnails from a video at regular intervals">Generate thumbnails</button></span>
-
 <div class="modal fade thumbnails" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="well">
         <h3> Generate thumbnails from a video at regular intervals</h3>
-        <p><code>ffmpeg -i [inputfile] -ss 00:12.235 -i "$f" -vframes 1 [outputfile]</code></p>
+        <p><code>ffmpeg -i <i>input_file</i> -ss <i>00:12.235</i> -i "$f" -vframes 1 <i>output_file</i></code></p>
         <p>Create one thumbnail in JPEG format from a video file at a specific time. In this example: 0hours:0minutes:12sec.235msec</p>
-        <ul>
-          <li>ffmpeg: Calls the program ffmpeg</li>
-          <li>-i: for input video file</li>
-          <li>[inputfile]: Specifies the file that you want to create a thumbnail from</li>
-          <li>-vframes: Tells ffmpeg to create a still image from file</li>
-          <li>-ss: Specifies the specific point in input file where the still will be captured</li>
-          <li>[outputfile]: Specifies the desired name, location, and format of the image</li>
-        </ul>
-        
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-vframes <i>1</i></dt><dd>Tells ffmpeg to create a still image from file.</dd>
+          <dt>-ss <i>00:12.235</i></dt><dd>Specifies the specific point in input file where the still will be captured.</dd>
+          <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+        </dl>
       </div>
     </div>
   </div>
@@ -269,20 +261,19 @@ Change the above data-target field, the button text, and the below div class (th
 <div class="modal fade pull_specs" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <!-- where the text goes -->
       <div class="well">
         <h3>Pull specs from video file</h3>
-        <p><code>ffprobe -i filename.avi -show_format -show_streams -print_format xml</code></p>
+        <p><code>ffprobe -i <i>input_file</i> -show_format -show_streams -show_data -print_format xml</code></p>
         <p>This command extracts technical metadata from a video file and displays it in xml. </p>
-        <p>ffmpeg documentation on ffprobe (full list of flags, commands, <a href="https://www.ffmpeg.org/ffprobe.html">https://www.ffmpeg.org/ffprobe.html</a>) </p>
-        <ul>
-          <li>ffprobe: calls the program</li>
-          <li>-i: tells ffprobe to expect input files</li>
-          <li>-show_format: outputs file container</li>
-          <li>-show_streams: outputs audio and video codec</li>
-          <li>-show_data: adds “hexdump” to show_streams command output</li>
-          <li>-print_format: Set the output printing format (in this example “xml”; other formats are “json” and “flat”)</li>
-        </ul>
+        <p>ffmpeg documentation on ffprobe (full list of flags, commands, <a href="https://www.ffmpeg.org/ffprobe.html" target="_blank">www.ffmpeg.org/ffprobe.html</a>) </p>
+        <dl>
+          <dt>ffprobe</dt><dd>starts the command</dd>
+          <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-show_format</dt><dd>outputs file container informations</dd>
+          <dt>-show_streams</dt><dd>outputs audio and video codec informations</dd>
+          <dt>-show_data</dt><dd>adds “hexdump” to show_streams command output</dd>
+          <dt>-print_format</dt><dd>Set the output printing format (in this example “xml”; other formats are “json” and “flat”)</dd>
+        </dl>
       </div>
     </div>
   </div>
@@ -296,22 +287,21 @@ Change the above data-target field, the button text, and the below div class (th
     <div class="modal-content">
       <div class="well">
         <h3>Join files together</h3>
-        <p><code>ffmpeg -f concat -i mylist.txt -c copy [output] </code></p>
+        <p><code>ffmpeg -f concat -i mylist.txt -c:a copy -c:v copy <i>output_file</i></code></p>
         <p>This command takes two or more files of the same file type and joins them together to make a single file. All that the program needs is a text file with a list specifying the files that should be joined.  However, it only works properly if the files to be combined have the exact same codec and technical specifications. Be careful, ffmpeg may appear to have successfully joined two video files with different codecs, but may only bring over the audio from the second file or have other weird behaviors. Don’t use this command for joining files with different codecs and technical specs and always preview your resulting video file!</p>
         <p>ffmpeg documentation on concatenating files (full list of flags, commands, <a href="https://trac.ffmpeg.org/wiki/Concatenate">https://trac.ffmpeg.org/wiki/Concatenate</a>) </p>
-        <ul>
-          <li>ffmpeg: calls the program</li>
-          <li>-f: forces ffmpeg to keep the same file format of the joined files</li>
-          <li>concat: ffmpeg’s concatenate command. This tells ffmpeg to join the files.</li>
-          <li>-i: tells ffmpeg to expect input files</li>
-          <li>mylist.txt: specifies the location of a text file with a list of files to be concatenated. You should create a text file that is formatted as follows:
-          <ul>
-            <li>file [path to file 1]</li>
-            <li>file [path to file 2]</li>
-          </ul></li>
-         <li>-c copy: specifies the encoder for the output file by telling ffmpeg to copy the codecs of the original files and use them for the output file</li>
-         <li>[output]: specifies the filename and location for the output file</li>
-        </ul>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-f concat</dt><dd>forces ffmpeg to concatenate the files and to keep the same file format</dd>
+          <dt>-i <i>mylist.txt</i></dt><dd>path, name and extension of the input file. This text file contains the list of files to be concatenated and should be formatted as follows:
+            <pre><i>path_name_and_extension_to_the_first_file
+path_name_and_extension_to_the_second_file
+. . .
+path_name_and_extension_to_the_last_file</i></pre></dd>
+          <dt>-c:a copy</dt><dd>the audio codec is copied</dd>
+          <dt>-c:v copy</dt><dd>the video codec is copied</dd>
+          <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+        </dl>
       </div>
     </div>
   </div>
@@ -325,16 +315,16 @@ Change the above data-target field, the button text, and the below div class (th
     <div class="modal-content">
       <div class="well">
         <h3>Excerpt from beginning</h3>
-        <p><code>ffmpeg -i [input file] -t 5 -c copy [output]</code></p>
-        <p>This command captures a certain portion of a video file, starting from the beginning and continuing for the amount of time (in seconds) specified in the script. This can be used to create a preview file, or to remove unwanted content from the end of the file. To be more specific, use timecode, such as 00:00:05. </p>
-        <ul>
-          <li>ffmpeg: Calls the program ffmpeg</li>
-	  <li>-i: Tells ffmpeg to expect input files</li>
-	  <li>[input file]: Specifies the location of the file you want to capture a clip from</li>
-	  <li>-t 5: Tells ffmpeg to stop copying from the input file after a certain time, and specifies the number of seconds after which to stop copying. In this case, 5 seconds is specified</li>
-	  <li>-c copy: Specifies the encoder for the output file by telling ffmpeg to copy the codecs of the original file and use them for the new output file</li>
-	  <li>[output]: Specifies the filename and location for the new file</li>
-        </ul>
+        <p><code>ffmpeg -i <i>input_file</i> -t <i>5</i> -c:v copy -c:a copy <i>output_file</i></code></p>
+        <p>This command captures a certain portion of a video file, starting from the beginning and continuing for the amount of time (in seconds) specified in the script. This can be used to create a preview file, or to remove unwanted content from the end of the file. To be more specific, use timecode, such as 00:00:05.</p>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-t <i>5</i></dt><dd>Tells ffmpeg to stop copying from the input file after a certain time, and specifies the number of seconds after which to stop copying. In this case, 5 seconds is specified.</dd>
+          <dt>-c:a copy</dt><dd>the audio codec is copied</dd>
+          <dt>-c:v copy</dt><dd>the video codec is copied</dd>
+          <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+        </dl>
       </div>
     </div>
   </div>
@@ -348,17 +338,17 @@ Change the above data-target field, the button text, and the below div class (th
     <div class="modal-content">
       <div class="well">
         <h3>Excerpt from middle</h3>
-        <p><code>ffmpeg -i [input file] -ss 5 -t 5 -c copy [output]</code></p>
+        <p><code>ffmpeg -i <i>input_file</i> -ss <i>5</i> -t <i>10</i> -c:v copy -c:a copy <i>output_file</i></code></p>
         <p>This command captures a certain portion of a video file, starting from a designated point in the file and taking an excerpt as long as the amount of time (in seconds) specified in the script. This can be used to create a preview or clip out a desired segment. To be more specific, use timecode, such as 00:00:05.</p>
-        <ul>
-          <li>ffmpeg: Calls the program ffmpeg</li>
-	  <li>-i: Tells ffmpeg to expect input files</li>
-	  <li>[input file]: Specifies the location of the file you want to capture a clip from</li>
-	  <li>-ss 5: Tells ffmpeg what timecode in the file to look for to start copying, and specifies the number of seconds into the video that ffmpeg should start copying. To be more specific, you can use timecode such as 00:00:05</li>
-	  <li>-t 5: Tells ffmpeg to stop copying from the input file after a certain time, and specifies the number of seconds after which to stop copying. In this case, 5 seconds is specified</li>
-	  <li>-c copy: Specifies the encoder for the output file by telling ffmpeg to copy the codecs of the original file and use them for the new output file</li>
-	  <li>[output]: Specifies the filename and location for the new file</li>
-        </ul>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-ss <i>5</i></dt><dd>Tells ffmpeg what timecode in the file to look for to start copying, and specifies the number of seconds into the video that ffmpeg should start copying. To be more specific, you can use timecode such as 00:00:05.</dd>
+          <dt>-t <i>10</i></dt><dd>Tells ffmpeg to stop copying from the input file after a certain time, and specifies the number of seconds after which to stop copying. In this case, 10 seconds is specified.</dd>
+          <dt>-c:a copy</dt><dd>the audio codec is copied</dd>
+          <dt>-c:v copy</dt><dd>the video codec is copied</dd>
+          <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+        </dl>
       </div>
     </div>
   </div>
@@ -372,17 +362,16 @@ Change the above data-target field, the button text, and the below div class (th
     <div class="modal-content">
       <div class="well">
         <h3>Excerpt to end</h3>
-        <p><code>ffmpeg -i [input file] -ss 5 -c copy [output]</code></p>
+        <p><code>ffmpeg -i <i>input_file</i> -ss <i>5</i> -c:v copy -c:a copy <i>output_file</i></code></p>
         <p>This command copies a video file starting from a specified time, removing the first few seconds from the output. This can be used to create an excerpt, or remove unwanted content from the beginning of a video file.</p>
-        <ul>
-          <li>ffmpeg: Calls the program ffmpeg</li>
-          <li>-i: Tells ffmpeg to expect input files</li>
-          <li>[input file]: Specifies the location of the file you want to capture a clip from</li>
-          <li>-ss 5: Tells ffmpeg what timecode in the file to look for to start copying, and specifies the number of seconds into the video that ffmpeg should start copying. To be more specific, you can use timecode such as 00:00:05</li>
-	  <li>-t 5: Tells ffmpeg to stop copying from the input file after a certain time, and specifies the number of seconds after which to stop copying. In this case, 5 seconds is specified</li>
-	  <li>-c copy: Specifies the encoder for the output file by telling ffmpeg to copy the codecs of the original file and use them for the new output file</li>
-	  <li>[output]: Specifies the filename and location for the new file</li>
-        </ul>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-ss <i>5</i></dt><dd>Tells ffmpeg what timecode in the file to look for to start copying, and specifies the number of seconds into the video that ffmpeg should start copying. To be more specific, you can use timecode such as 00:00:05.</dd>
+          <dt>-c:a copy</dt><dd>the audio codec is copied</dd>
+          <dt>-c:v copy</dt><dd>the video codec is copied</dd>
+          <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+        </dl>
       </div>
     </div>
   </div>
@@ -396,73 +385,71 @@ Change the above data-target field, the button text, and the below div class (th
     <div class="modal-content">
       <div class="well">
         <h3>Split audio and video tracks</h3>
-        <p><code>ffmpeg -i [input file] -map 0:0 [video output file] -map 0:1 [audio output file] </code></p>
+        <p><code>ffmpeg -i <i>input_file</i> -map <i>0:0 video_output_file</i> -map <i>0:1 audio_output_file</i></code></p>
         <p>This command splits the original input file into a video and audio stream. The -map command identifies which streams are mapped to which file. To ensure that you’re mapping the right streams to the right file, run ffprobe before writing the script to identify which stream is 0:0, which is 0:1, etc.</p>
-        <ul>
-          <li>ffmpeg: calls the program</li>
-          <li>-i: tells ffmpeg to expect input file</li>
-          <li>[input file]: the file you want to split</li>
-          <li>-map 0:0: tells ffmpeg to grab one of the streams, and identifies the first stream (stream 0:0) to map</li>
-          <li>[video output file]: desired filename for the video output file</li>
-          <li>-map 0:1: tells ffmpeg to grab one of the streams, and identifies the second stream (stream 0:1) to map</li>
-          <li>[audio output file]: desired filename for the audio output file</li>
-        </ul>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-map <i>0:0</i></dt><dd>grabs the first streams (0:0) and to map it into:</dd>
+          <dt><i>video_output_file</i></dt><dd>path, name and extension of the video output file</dd>
+          <dt>-map <i>0:1</i></dt><dd>grabs the second streams (0:1) and to map it into:</dd>
+          <dt><i>audio_output_file</i></dt><dd>path, name and extension of the audio output file</dd>
+        </dl>
       </div>
     </div>
   </div>
 </div>
 <!-- ends Split audio and video tracks -->
 
-<!-- Transcode to h.264 -->
-<span data-toggle="modal" data-target=".transcode_h264"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode to an h.264 access file">Transcode to h.264</button></span>
+<!-- Transcode to H.264 -->
+<span data-toggle="modal" data-target=".transcode_h264"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode to an H.264 access file">Transcode to h.264</button></span>
 <div class="modal fade transcode_h264" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="well">
-        <h3>Transcode to h.264</h3>
-        <p><code>ffmpeg -i [input file] -c:v libx264 -c:a copy [output file.mp4]</code></p>
-        <p>This command takes an input file and transcodes it to h.264 with an .mp4 wrapper, keeping the audio the same codec as the original. The libx264 codec defaults to a “medium” preset for compression quality and a CRF of 23. CRF stands for constant rate factor and determines the quality and file size of the resulting h.264 video. A low CRF means high quality and large file size; a high CRF means the opposite.</p>
-        <ul>
-          <li>ffmpeg: Calls the program ffmpeg</li>
-          <li>-i: Tells ffmpeg to expect an input file</li>
-          <li>[input file]: Tells ffmpeg the location of the file you want to process</li>
-          <li>-c:v libx264: Tells ffmpeg to change the video codec of the file to h264</li>
-          <li>-c:a copy: tells ffmpeg not to change the audio codec</li>
-          <li>[output file.mp4]: Specifies the name and location of the new file, including the desired codec extension</li>
-        </ul>
+        <h3>Transcode to H.264</h3>
+        <p><code>ffmpeg -i <i>input_file</i> -c:v <i>libx264</i> -c:a copy <i>output_file</i></code></p>
+        <p>This command takes an input file and transcodes it to H.264 with an .mp4 wrapper, keeping the audio the same codec as the original. The libx264 codec defaults to a “medium” preset for compression quality and a CRF of 23. CRF stands for constant rate factor and determines the quality and file size of the resulting H.264 video. A low CRF means high quality and large file size; a high CRF means the opposite.</p>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-c:v libx264</dt><dd>tells ffmpeg to change the video codec of the file to H.264</dd>
+          <dt>-c:a copy</dt><dd>tells ffmpeg not to change the audio codec</dd>
+          <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+        </dl>
         <p>In order to use the same basic command to make a higher quality file, you can add some of these presets:</p>
-        <p><code>ffmpeg -i [input file] -vcodec libx264 -acodec copy -preset veryslow -crf 18 [output file.mp4]</code></p>
-        <ul>
-          <li>-preset veryslow: This option tells ffmpeg to use the slowest preset possible for the best compression quality</li>
-	  <li>-crf 18: Specifying a lower CRF will make a larger file with better visual quality</li>
-	</ul>
-	<p>libx264 also defaults to 4:2:2 chroma subsampling. Some versions of Quicktime can't read x264 files in 4:2:2. In order to allow the video to play in all Quicktime players, you can specify 4:2:0 chroma subsampling instead:</p>
-	<p><code>ffmpeg -i [input file] -c:v libx264 -pix_fmt yuv420p -c:a copy -preset veryslow -crf 18 [output file.mp4]</code></p>
-	<ul>
-	  <li>-pix_fmt yuv420p: Specifies a pixel format of YUV 4:2:0 to allow the file to play in a standard Quicktime player</li>
-        </ul>
+        <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -preset veryslow -crf 18 -c:a copy <i>output_file</i></code></p>
+        <dl>
+          <dt>-preset <i>veryslow</i></dt><dd>This option tells ffmpeg to use the slowest preset possible for the best compression quality.</dd>
+          <dt>-crf <i>18</i></dt><dd>Specifying a lower CRF will make a larger file with better visual quality.</dd>
+        </dl>
+        <p>libx264 also defaults to 4:2:2 chroma subsampling. Some versions of QuickTime can’t read H.264 files in 4:2:2. In order to allow the video to play in all QuickTime players, you can specify 4:2:0 chroma subsampling instead:</p>
+        <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -pix_fmt yuv420p -preset veryslow -crf 18 -c:a copy <i>output_file</i></code></p>
+        <dl>
+          <dt>-pix_fmt <i>yuv420p</i></dt><dd>Specifies a pixel format of YUV 4:2:0 to allow the file to play in a standard QuickTime player.</dd>
+        </dl>
       </div>
     </div>
   </div>
 </div>
-<!-- ends Transcode to h.264 -->
+<!-- ends Transcode to H.264 -->
 
 <!-- H.264 from DCP -->
-<span data-toggle="modal" data-target=".dcp_to_h264"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode from DCP to an h.264 access file">H.264 from DCP</button></span>
+<span data-toggle="modal" data-target=".dcp_to_h264"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode from DCP to an H.264 access file">H.264 from DCP</button></span>
 <div class="modal fade dcp_to_h264" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="well">
         <h3>H.264 from DCP</h3>
-        <p><code>ffmpeg -i video.mxf -i audio.mxf -c:v libx264 -pix_fmt yuv420p output.mp4</code></p>
-        <p>This will transcode mxf wrapped video and audio files to an h.264 encoded .mp4 file. Please note this only works for non-encrypted DCPs.</p>
-        <ul>
-          <li>ffmpeg: Calls the program ffmpeg</li>
-          <li>-i: for input video file and audio file</li>
-          <li>-c:v: transcodes video to h.264</li>
-          <li>-pix_fmt: sets pixel format to yuv420p</li>
-          <li>[output.mp4] states out filename and extension</li>
-        </ul>
+        <p><code>ffmpeg -i <i>input_file</i>.mxf -c:v <i>libx264</i> -pix_fmt <i>yuv420p output_file</i></code></p>
+        <p>This will transcode mxf wrapped video and audio files to an H.264 encoded .mp4 file. Please note this only works for non-encrypted DCPs.</p>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input_file</i></dt><dd>path and name of the video input file. This extension must be .mxf</dd>
+          <dt>-c:v <i>lixb264</i></dt><dd>transcodes video to H.264</dd>
+          <dt>-pix_fmt <i>yuv420p</i></dt><dd>sets pixel format to yuv420p</dd>
+          <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+        </dl>
       </div>
     </div>
   </div>
@@ -477,46 +464,46 @@ Change the above data-target field, the button text, and the below div class (th
       <div class="well">
         <h3>Create ISO files for DVD access</h3>
         <p>Create an ISO file that can be used to burn a DVD. Please note, you will have to install dvdauthor. To install dvd author using Homebrew run: <code>brew install dvdauthor</code></p>
-        <p><code>ffmpeg -i [inputfile.extension] -aspect 4:3 -target ntsc-dvd [outputfile.mpg]</code></p>
+        <p><code>ffmpeg -i <i>input_file</i> -aspect <i>4:3</i> -target <i>ntsc-dvd output_file</i>.mpg</code></p>
         <p>This command will take any file and create an MPEG file that dvdauthor can use to create an ISO.</p>
-        <ul>
-          <li>ffmpeg: Calls the program ffmpeg</li>
-          <li>-i: for input video file and audio file</li>
-          <li>[inputfile.extension]: Specifies the location of the file you that you want to transcode into an MPEG</li>
-          <li>-aspect 4:3: Declares the aspect ratio of the resulting video file. You can also use 16:9.</li>
-          <li>-target [DVD region]: Specifies the region for your DVD. This could be ntsc-dvd or pal-dvd</li>
-          <li>outputfile.mpg: Specifies the name and location of your output file</li>
-        </ul>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-aspect <i>4:3</i></dt><dd>declares the aspect ratio of the resulting video file. You can also use 16:9.</dd>
+          <dt>-target <i>ntsc-dvd</i></dt><dd>specifies the region for your DVD. This could be also pal-dvd.</dd>
+          <dt><i>output_file</i>.mpg</dt><dd>path and name of the output file. The extension must be .mpg</dd>
+        </dl>
       </div>
     </div>
   </div>
 </div>
 <!-- ends Create ISO -->
 
-<!-- NTSC to h264 -->
-<span data-toggle="modal" data-target=".ntsc_to_h264"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Upscaled, Pillar-boxed HD H.264 Access Files from SD NTSC source">NTSC to h264</button></span>
+<!-- NTSC to H.264 -->
+<span data-toggle="modal" data-target=".ntsc_to_h264"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Upscaled, Pillar-boxed HD H.264 Access Files from SD NTSC source">NTSC to H.264</button></span>
 <div class="modal fade ntsc_to_h264" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="well">
         <h3>Upscaled, Pillar-boxed HD H.264 Access Files from SD NTSC source</h3>
-        <p><code>ffmpeg -i [inputfile] -c:v libx264 -pix_fmt yuv420p -filter:v "scale=1440:1080, pad=1920:1080:240:0" -vf yadif [outputfile]</code></p>
-        <p>Pad without specifying pad width, just put the input video in the middle of the output: pad=1920:1080:(ow-iw)/2:(oh-ih)/2</p>
+        <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -pix_fmt yuv420p -filter:v "scale=1440:1080, pad=1920:1080:240:0" -vf yadif <i>output_file</i></code></p>
+        <p>Pad without specifying pad width, just put the input video in the middle of the output: <code>pad=1920:1080:(ow-iw)/2:(oh-ih)/2</code></p>
         <dl>
-          <dt>ffmpeg</dt><dd>Calls the program ffmpeg</dd>
-          <dt>-i</dt><dd>for input video file and audio file</dd>
-          <dt>-c:v libx264</dt><dd>encodes video stream with libx264 (h264)</dd>
-          <dt>-pix_fmt yuv420p - creates YUV colorspace, progressive scan</dd>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-c:v libx264</dt><dd>encodes video stream with libx264 (H.264)</dd>
+          <dt>-pix_fmt yuv420p</dt><dd>creates YUV 4:2:0 planar colorspace</dd>
           <dt>-filter:v</dt><dd>calls an option to apply a filter to the video stream. scale=1440:1080, pad=1920:1080:240:0": does the math! resizes the video frame then pads the area around the 4:3 aspect to complete 16:9.</dd>
           <dt>-vf yadif</dt><dd>deinterlaces the file (optional)</dd>
+          <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
         </dl>
       </div>
     </div>
   </div>
 </div>
-<!-- ends NTSC to h264 -->
+<!-- ends NTSC to H.264 -->
 
-</div> <!-- end this well (and this ends well) -->
+</div> <!-- end "well col-md-6 col-md-offset-2" -->
 </div> <!-- row -->
 
 <div class="footer text-center">
