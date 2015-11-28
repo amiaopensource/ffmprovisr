@@ -503,6 +503,27 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
 </div>
 <!-- ends NTSC to H.264 -->
 
+<!-- 4:3 to 16:9 -->
+<span data-toggle="modal" data-target=".4-3_16-9"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transform 4:3 aspect ratio into 16:9 with pillarbox">4:3 to 16:9</button></span>
+<div class="modal fade create_iso" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="well">
+        <h3>Transform 4:3 aspect ratio into 16:9 with pillarbox</h3>
+        <p>Transform a video file with 4:3 aspect ratio into a video file with 16:9 aspect ration by correct pillarboxing.</p>
+        <p><code>ffmpeg -i <i>input_file</i> -filter:v "pad=ih*16/9:ih:(ow-iw)/2:(oh-ih)/2" <i>output_file</i></code></p>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-filter:v "ih*16/9:ih:(ow-iw)/2:(oh-ih)/2"</dt><dd>video padding<br/>This resolution independent formula is actually padding any aspect ratio into 16:9, because the video filter uses relative values for input width (iw), input height (ih), output width (ow) and output height (oh).</dd>
+          <dt><i>output_file</i>.mpg</dt><dd>path and name of the output file</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends 4:3 to 16:9 -->
+
 </div> <!-- end "well col-md-6 col-md-offset-2" -->
 </div> <!-- row -->
 
