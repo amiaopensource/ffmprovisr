@@ -515,7 +515,7 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
         <dl>
           <dt>ffmpeg</dt><dd>starts the command</dd>
           <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-          <dt>-filter:v "ih*16/9:ih:(ow-iw)/2:(oh-ih)/2"</dt><dd>video padding<br/>This resolution independent formula is actually padding any aspect ratio into 16:9, because the video filter uses relative values for input width (iw), input height (ih), output width (ow) and output height (oh).</dd>
+          <dt>-filter:v "pad=ih*16/9:ih:(ow-iw)/2:(oh-ih)/2"</dt><dd>video padding<br/>This resolution independent formula is actually padding any aspect ratio into 16:9, because the video filter uses relative values for input width (iw), input height (ih), output width (ow) and output height (oh).</dd>
           <dt><i>output_file</i>.mpg</dt><dd>path and name of the output file</dd>
         </dl>
       </div>
@@ -523,6 +523,27 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
   </div>
 </div>
 <!-- ends 4:3 to 16:9 -->
+
+<!-- 16:9 to 4:3 -->
+<span data-toggle="modal" data-target=".HD_SD"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transform 16:9 aspect ratio video into 4:3 with letterbox">16:9 to 4:3</button></span>
+<div class="modal fade HD_SD" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="well">
+        <h3>Transform 16:9 aspect ratio video into 4:3 with letterbox</h3>
+        <p>Transform a video file with 16:9 aspect ratio into a video file with 4:3 aspect ration by correct letterboxing.</p>
+        <p><code>ffmpeg -i <i>input_file</i> -filter:v "pad=iw:iw*3/4:(ow-iw)/2:(oh-ih)/2" <i>output_file</i></code></p>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-filter:v "pad=iw:iw*3/4:(ow-iw)/2:(oh-ih)/2"</dt><dd>video padding<br/>This resolution independent formula is actually padding any aspect ratio into 4:3, because the video filter uses relative values for input width (iw), input height (ih), output width (ow) and output height (oh).</dd>
+          <dt><i>output_file</i>.mpg</dt><dd>path and name of the output file</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends 16:9 to 4:3 -->
 
 </div> <!-- end "well col-md-6 col-md-offset-2" -->
 </div> <!-- row -->
