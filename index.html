@@ -386,13 +386,13 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
       <div class="well">
         <h3>Split audio and video tracks</h3>
         <p><code>ffmpeg -i <i>input_file</i> -map <i>0:0 video_output_file</i> -map <i>0:1 audio_output_file</i></code></p>
-        <p>This command splits the original input file into a video and audio stream. The -map command identifies which streams are mapped to which file. To ensure that you’re mapping the right streams to the right file, run ffprobe before writing the script to identify which stream is 0:0, which is 0:1, etc.</p>
+        <p>This command splits the original input file into a video and audio stream. The -map command identifies which streams are mapped to which file. To ensure that you’re mapping the right streams to the right file, run ffprobe before writing the script to identify which stream is 0:0 and which is 0:1.</p>
         <dl>
           <dt>ffmpeg</dt><dd>starts the command</dd>
           <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-          <dt>-map <i>0:0</i></dt><dd>grabs the first streams (0:0) and to map it into:</dd>
+          <dt>-map <i>0:0</i></dt><dd>grabs the first streams (0:0) and maps it into:</dd>
           <dt><i>video_output_file</i></dt><dd>path, name and extension of the video output file</dd>
-          <dt>-map <i>0:1</i></dt><dd>grabs the second streams (0:1) and to map it into:</dd>
+          <dt>-map <i>0:1</i></dt><dd>grabs the second streams (0:1) and maps it into:</dd>
           <dt><i>audio_output_file</i></dt><dd>path, name and extension of the audio output file</dd>
         </dl>
       </div>
