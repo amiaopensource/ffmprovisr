@@ -402,7 +402,7 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
 <!-- ends Split audio and video tracks -->
 
 <!-- Transcode to H.264 -->
-<span data-toggle="modal" data-target=".transcode_h264"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode to an H.264 access file">Transcode to h.264</button></span>
+<span data-toggle="modal" data-target=".transcode_h264"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode to an H.264 access file">Transcode to H.264</button></span>
 <div class="modal fade transcode_h264" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -421,7 +421,7 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
         <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -preset veryslow -crf 18 -c:a copy <i>output_file</i></code></p>
         <dl>
           <dt>-preset <i>veryslow</i></dt><dd>This option tells ffmpeg to use the slowest preset possible for the best compression quality.</dd>
-          <dt>-crf <i>18</i></dt><dd>Specifying a lower CRF will make a larger file with better visual quality.</dd>
+          <dt>-crf <i>18</i></dt><dd>Specifying a lower CRF will make a larger file with better visual quality. 18 is often considered a “visually lossless” compression.</dd>
         </dl>
         <p>libx264 also defaults to 4:2:2 chroma subsampling. Some versions of QuickTime can’t read H.264 files in 4:2:2. In order to allow the video to play in all QuickTime players, you can specify 4:2:0 chroma subsampling instead:</p>
         <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -pix_fmt yuv420p -preset veryslow -crf 18 -c:a copy <i>output_file</i></code></p>
@@ -493,7 +493,7 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
           <dt>-i</dt><dd>for input video file and audio file</dd>
           <dt>-c:v libx264</dt><dd>encodes video stream with libx264 (h264)</dd>
           <dt>-pix_fmt yuv420p</dt><dd> specifies a pixel format of YUV 4:2:0</dd>
-          <dt>-filter:v</dt><dd>calls an option to apply a filter to the video stream. scale=1440:1080, pad=1920:1080:240:0": does the math! resizes the video frame then pads the area around the 4:3 aspect to complete 16:9.</dd>
+          <dt>-filter:v</dt><dd>calls an option to apply a filter to the video stream. scale=1440:1080, pad=1920:1080:240:0": does the math! resizes the video frame then pads the area around the 4:3 aspect to complete 16:9. The very same scaling filter also downscales a bigger image size into HD.</dd>
           <dt>-vf yadif</dt><dd>deinterlaces the file (optional)</dd>
           <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
         </dl>
