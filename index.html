@@ -506,7 +506,7 @@ Change the above data-target field, the button text, and the below div class (th
           <dt>ffmpeg</dt><dd>Calls the program ffmpeg</dd>
           <dt>-i</dt><dd>for input video file and audio file</dd>
           <dt>-c:v libx264</dt><dd>encodes video stream with libx264 (h264)</dd>
-          <dt>-pix_fmt yuv420p - creates YUV colorspace, progressive scan</dd>
+          <dt>-pix_fmt yuv420p</dt><dd> specifies a pixel format of YUV 4:2:0</dd>
           <dt>-filter:v</dt><dd>calls an option to apply a filter to the video stream. scale=1440:1080, pad=1920:1080:240:0": does the math! resizes the video frame then pads the area around the 4:3 aspect to complete 16:9.</dd>
           <dt>-vf yadif</dt><dd>deinterlaces the file (optional)</dd>
         </dl>
