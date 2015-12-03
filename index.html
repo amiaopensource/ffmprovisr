@@ -125,8 +125,8 @@ Change the above data-target field, the button text, and the below div class (th
         <p><code>for f in *.MXF; do ffmpeg -i "$f" -c:a copy -c:v copy "${f%.MXF}.mov"; done</code></p>
         <p>Re-wrap .MFX files in a specified directory to .mov files by using this code within a .sh file. The shell script (.sh file) and all MXF files must be contained in the same directory, and the script must be run from the directory itself (cd ~/Desktop/MXF_file_directory). Execute .sh file with the command <code>sh Rewrap-MXF.sh</code></p>
         <dl>
-          <dt>-c:a copy (copy audio codec)</dt>
-          <dt>-c:v copy (copy video codec)</dt>
+          <dt>-c:a copy</dt><dd>copy audio codec</dd>
+          <dt>-c:v copy</dt><dd>copy video codec</dd>
         </dl>
         <p>Modify the ffmpeg script as needed to perform different transcodes :)</p>
       </div>
