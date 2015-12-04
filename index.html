@@ -551,12 +551,12 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="well">
-        <h3>Flip the video image horizontally and/or vertically.</h3>
+        <h3>Flip the video image horizontally and/or vertically</h3>
         <p><code>ffmpeg -i <i>input_file</i> -filter:v "hflip,vflip" <i>output_file</i></code></p>
         <dl>
           <dt>ffmpeg</dt><dd>starts the command</dd>
           <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-          <dt>-filter:v -filter:v "hflip,vflip"</dt><dd>flips the image horizontally and vertically<br/>By using only one of the parameters hflip or vflip for filtering the image is flipped on that axis only. The quote marks are not mandatory.</dd>
+          <dt>-filter:v "hflip,vflip"</dt><dd>flips the image horizontally and vertically<br/>By using only one of the parameters hflip or vflip for filtering the image is flipped on that axis only. The quote marks are not mandatory.</dd>
           <dt><i>output_file</i>.mpg</dt><dd>path and name of the output file</dd>
         </dl>
       </div>
