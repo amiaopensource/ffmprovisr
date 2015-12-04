@@ -545,6 +545,26 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
 </div>
 <!-- ends 16:9 to 4:3 -->
 
+<!-- Flip image -->
+<span data-toggle="modal" data-target=".flip_image"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Flip the image">Flip image</button></span>
+<div class="modal fade flip_image" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="well">
+        <h3>Flip the video image horizontally and/or vertically.</h3>
+        <p><code>ffmpeg -i <i>input_file</i> -filter:v "hflip,vflip" <i>output_file</i></code></p>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-filter:v -filter:v "hflip,vflip"</dt><dd>flips the image horizontally and vertically<br/>By using only one of the parameters hflip or vflip for filtering the image is flipped on that axis only. The quote marks are not mandatory.</dd>
+          <dt><i>output_file</i>.mpg</dt><dd>path and name of the output file</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends Filp image -->
+
 </div> <!-- end "well col-md-6 col-md-offset-2" -->
 </div> <!-- row -->
 
