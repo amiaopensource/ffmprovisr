@@ -192,11 +192,11 @@ Change the above data-target field, the button text, and the below div class (th
     <div class="modal-content">
       <div class="well">
         <h3>One thumbnail</h3>
-        <p><code>ffmpeg -i [file path] -ss 00:00:20 -vframes 1 thumb.png</code></p>
+        <p><code>ffmpeg -i <i>input_file</i> -ss 00:00:20 -vframes 1 thumb.png</code></p>
         <p>This command will grab a thumbnail 20 seconds into the video.</p>
         <dl>
           <dt>ffmpeg</dt><dd>starts the command</dd>
-          <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
           <dt>-ss <i>00:00:20</i></dt><dd>seeks video file to 20 seconds into the video</dd>
           <dt>-vframes <i>1</i></dt><dd>sets the number of frames (in this example, one frame)</dd>
           <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
@@ -214,14 +214,14 @@ Change the above data-target field, the button text, and the below div class (th
     <div class="modal-content">
       <div class="well">
       <h3>Many thumbnails</h3>
-        <p><code>ffmpeg -i {path/inputfile.extension} -vf fps=1/60 out%d.png</code></p>
+        <p><code>ffmpeg -i <i>input_file</i> -vf fps=1/60 out%d.png</code></p>
         <p>This will grab a thumbnail every minute and output sequential png files.</p>
         <dl>
           <dt>ffmpeg</dt><dd>starts the command</dd>
-          <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
           <dt>-ss <i>00:00:20</i></dt><dd>seeks video file to 20 seconds into the video</dd>
           <dt>-vf fps=1/60</dt><dd>-vf is an alias for -filter:v, which creates a filtergraph to use for the streams. The rest of the command identifies filtering by frames per second, and sets the frames per second at 1/60 (which is one per minute). Omitting this will output all frames from the video</dd>
-          <dt><i>output file</i></dt><dd>path, name and extension of the output file. In the example out%d.png where %d is a regular expression that adds a number (d is for digit) and increments with each frame (out1.png, out2.png, out3.png…).</dd>
+          <dt><i>output file</i></dt><dd>path, name and extension of the output file. In the example out%d.png where %d is a regular expression that adds a number (d is for digit) and increments with each frame (out1.png, out2.png, out3.png…). You may also chose a regular expression like out%04d.png which gives 4 digits with leading 0 (out0001.png, out0002.png, out0003.png, …).</dd>
         </dl>
       </div>
     </div>
@@ -229,7 +229,6 @@ Change the above data-target field, the button text, and the below div class (th
 </div>
 <!-- ends Multi thumbnail -->
 
-<!-- ##### RK: TO BE COMPLETED: -i "$f" ##### -->
 <!-- Generate thumbnails -->
 <span data-toggle="modal" data-target=".thumbnails"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Generate thumbnails from a video at regular intervals">Generate thumbnails</button></span>
 <div class="modal fade thumbnails" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
@@ -268,7 +267,7 @@ Change the above data-target field, the button text, and the below div class (th
           <dt>-show_format</dt><dd>outputs file container informations</dd>
           <dt>-show_streams</dt><dd>outputs audio and video codec informations</dd>
           <dt>-show_data</dt><dd>adds “hexdump” to show_streams command output</dd>
-          <dt>-print_format</dt><dd>Set the output printing format (in this example “xml”; other formats are “json” and “flat”)</dd>
+          <dt>-print_format</dt><dd>Set the output printing format (in this example “xml”; other formats include “json” and “flat”)</dd>
         </dl>
       </div>
     </div>
@@ -546,7 +545,7 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
           <dt>ffmpeg</dt><dd>starts the command</dd>
           <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
           <dt>-filter:v "hflip,vflip"</dt><dd>flips the image horizontally and vertically<br/>By using only one of the parameters hflip or vflip for filtering the image is flipped on that axis only. The quote marks are not mandatory.</dd>
-          <dt><i>output_file</i>.mpg</dt><dd>path and name of the output file</dd>
+          <dt><i>output_file</i></dt><dd>path and name of the output file</dd>
         </dl>
       </div>
     </div>
