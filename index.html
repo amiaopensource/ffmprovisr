@@ -75,7 +75,7 @@ Change the above data-target field, the button text, and the below div class (th
         <p>The first command will use the palettegen filter to create a custom palette, then the second command will create the GIF with the paletteuse filter. The result is a high quality GIF.</p>
         <dl>
           <dt>ffmpeg</dt><dd>starts the command</dd>
-          <dt>-ss <i>HH:MM:SS</i></dt><dd>starting point of the gif. If a plain numberical value is used it will be interpreted as seconds</dd>
+          <dt>-ss <i>HH:MM:SS</i></dt><dd>starting point of the gif. If a plain numerical value is used it will be interpreted as seconds</dd>
           <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
           <dt>-filter_complex "fps=<i>frame rate</i>,scale=<i>width</i>:<i>height</i>,palettegen"</dt><dd>a complex filtergraph using the fps filter to set frame rate, the scale filter to resize, and the palettegen filter to generate the palette. The scale value of <i>-1</i> preserves the aspect ratio</dd>
           <dt>-t <i>3</i></dt><dd>duration in seconds (here 3; can be specified also with a full timestamp, i.e. here 00:00:03)</dd>
@@ -134,20 +134,20 @@ Change the above data-target field, the button text, and the below div class (th
 <!-- ends batch processing -->
 
 <!-- Create frame md5s -->
-<span data-toggle="modal" data-target=".create_frame_md5s"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="This will create an md5 checksum per frame">Create frame md5s</button></span>
+<span data-toggle="modal" data-target=".create_frame_md5s"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="This will create an MD5 checksum per video frame">Create MD5 checksums</button></span>
 <div class="modal fade create_frame_md5s" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="well">
-        <h3>Create frame md5s</h3>
-        <p><code>ffmpeg -i [inputfile.extension] -an -f framemd5 [outputfile.framemd5]</code></p>
-        <p>This will create an md5 checksum per video frame</p>
+        <h3>Create MD5 checksums</h3>
+        <p><code>ffmpeg -i <i>input_file</i> -f framemd5 -an <i>output_file</i></code></p>
+        <p>This will create an MD5 checksum per video frame.</p>
         <dl>
           <dt>ffmpeg</dt><dd>starts the command</dd>
-          <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-f framemed5</dt><dd>library used to calculate the MD5 checksums</dd>
           <dt>-an</dt><dd>ignores the audio stream (audio no)</dd>
-          <dt>-f framemed5</dt><dd>file type</dd>
-          <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
+          <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
         </dl>
       </div>
     </div>
@@ -162,11 +162,11 @@ Change the above data-target field, the button text, and the below div class (th
     <div class="modal-content">
       <div class="well">
         <h3>Transcode into a deinterlaced Apple ProRes LT</h3>
-        <p><code>ffmpeg -i input.mov -c:v prores -profile:v 1 -c:a pcm_s16le -vf yadif output.mov</code></p>
-        <p>This command transcodes an input file (input.mov) into a deinterlaced Apple ProRes LT .mov file with 16-bit linear PCM encoded audio. The file is deinterlaced using the yadif filter (Yet Another De-Interlacing Filter).</p>
+        <p><code>ffmpeg -i <i>input_file</i> -c:v prores -profile:v 1 -vf yadif -c:a pcm_s16le <i>output_file</i>.mov</code></p>
+        <p>This command transcodes an input file into a deinterlaced Apple ProRes 422 LT file with 16-bit linear PCM encoded audio. The file is deinterlaced using the yadif filter (Yet Another De-Interlacing Filter).</p>
         <dl>
           <dt>ffmpeg</dt><dd>starts the command</dd>
-          <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
           <dt>-c:v prores</dt><dd>Tells ffmpeg to transcode the video stream into Apple ProRes 422</dd>
           <dt>-profile:v <i>1</i></dt><dd>Declares profile of ProRes you want to use. The profiles are explained below:
           <ul>
@@ -175,9 +175,9 @@ Change the above data-target field, the button text, and the below div class (th
             <li>2 = ProRes 422 (Standard)</li>
             <li>3 = ProRes 422 (HQ)</li>
           </ul></dd>
-          <dt>-c:a pcm_s16le</dt><dd>Tells ffmpeg to encode the audio stream in 16-bit linear PCM</dd>
           <dt>-vf yadif</dt><dd>Runs a deinterlacing video filter (yet another deinterlacing filter) on the new file</dd>
-          <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
+          <dt>-c:a pcm_s16le</dt><dd>Tells ffmpeg to encode the audio stream in 16-bit linear PCM</dd>
+          <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
         </dl>
       </div>
     </div>
@@ -235,7 +235,7 @@ Change the above data-target field, the button text, and the below div class (th
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="well">
-        <h3> Generate thumbnails from a video at regular intervals</h3>
+        <h3>Generate thumbnails from a video at regular intervals</h3>
         <p><code>ffmpeg -i <i>input_file</i> -ss <i>00:12.235</i> -i "$f" -vframes 1 <i>output_file</i></code></p>
         <p>Create one thumbnail in JPEG format from a video file at a specific time. In this example: 0hours:0minutes:12sec.235msec</p>
         <dl>
@@ -259,14 +259,14 @@ Change the above data-target field, the button text, and the below div class (th
       <div class="well">
         <h3>Pull specs from video file</h3>
         <p><code>ffprobe -i <i>input_file</i> -show_format -show_streams -show_data -print_format xml</code></p>
-        <p>This command extracts technical metadata from a video file and displays it in xml. </p>
-        <p>ffmpeg documentation on ffprobe (full list of flags, commands, <a href="https://www.ffmpeg.org/ffprobe.html" target="_blank">www.ffmpeg.org/ffprobe.html</a>) </p>
+        <p>This command extracts technical metadata from a video file and displays it in xml.</p>
+        <p>ffmpeg documentation on ffprobe (full list of flags, commands, <a href="https://www.ffmpeg.org/ffprobe.html" target="_blank">www.ffmpeg.org/ffprobe.html</a>)</p>
         <dl>
           <dt>ffprobe</dt><dd>starts the command</dd>
           <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
           <dt>-show_format</dt><dd>outputs file container informations</dd>
           <dt>-show_streams</dt><dd>outputs audio and video codec informations</dd>
-          <dt>-show_data</dt><dd>adds “hexdump” to show_streams command output</dd>
+          <dt>-show_data</dt><dd>adds a short “hexdump” to show_streams command output</dd>
           <dt>-print_format</dt><dd>Set the output printing format (in this example “xml”; other formats include “json” and “flat”)</dd>
         </dl>
       </div>
@@ -283,8 +283,8 @@ Change the above data-target field, the button text, and the below div class (th
       <div class="well">
         <h3>Join files together</h3>
         <p><code>ffmpeg -f concat -i mylist.txt -c copy <i>output_file</i></code></p>
-        <p>This command takes two or more files of the same file type and joins them together to make a single file. All that the program needs is a text file with a list specifying the files that should be joined.  However, it only works properly if the files to be combined have the exact same codec and technical specifications. Be careful, ffmpeg may appear to have successfully joined two video files with different codecs, but may only bring over the audio from the second file or have other weird behaviors. Don’t use this command for joining files with different codecs and technical specs and always preview your resulting video file!</p>
-        <p>ffmpeg documentation on concatenating files (full list of flags, commands, <a href="https://trac.ffmpeg.org/wiki/Concatenate">https://trac.ffmpeg.org/wiki/Concatenate</a>) </p>
+        <p>This command takes two or more files of the same file type and joins them together to make a single file. All that the program needs is a text file with a list specifying the files that should be joined. However, it only works properly if the files to be combined have the exact same codec and technical specifications. Be careful, ffmpeg may appear to have successfully joined two video files with different codecs, but may only bring over the audio from the second file or have other weird behaviors. Don’t use this command for joining files with different codecs and technical specs and always preview your resulting video file!</p>
+        <p>ffmpeg documentation on concatenating files (full list of flags, commands, <a href="https://trac.ffmpeg.org/wiki/Concatenate">https://trac.ffmpeg.org/wiki/Concatenate</a>)</p>
         <dl>
           <dt>ffmpeg</dt><dd>starts the command</dd>
           <dt>-f concat</dt><dd>forces ffmpeg to concatenate the files and to keep the same file format</dd>
@@ -504,7 +504,7 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
           <dt>ffmpeg</dt><dd>starts the command</dd>
           <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
           <dt>-filter:v "pad=ih*16/9:ih:(ow-iw)/2:(oh-ih)/2"</dt><dd>video padding<br/>This resolution independent formula is actually padding any aspect ratio into 16:9 by pillarboxing, because the video filter uses relative values for input width (iw), input height (ih), output width (ow) and output height (oh).</dd>
-          <dt><i>output_file</i>.mpg</dt><dd>path and name of the output file</dd>
+          <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
         </dl>
       </div>
     </div>
@@ -525,7 +525,7 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
           <dt>ffmpeg</dt><dd>starts the command</dd>
           <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
           <dt>-filter:v "pad=iw:iw*3/4:(ow-iw)/2:(oh-ih)/2"</dt><dd>video padding<br/>This resolution independent formula is actually padding any aspect ratio into 4:3 by letterboxing, because the video filter uses relative values for input width (iw), input height (ih), output width (ow) and output height (oh).</dd>
-          <dt><i>output_file</i>.mpg</dt><dd>path and name of the output file</dd>
+          <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
         </dl>
       </div>
     </div>
@@ -545,7 +545,7 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
           <dt>ffmpeg</dt><dd>starts the command</dd>
           <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
           <dt>-filter:v "hflip,vflip"</dt><dd>flips the image horizontally and vertically<br/>By using only one of the parameters hflip or vflip for filtering the image is flipped on that axis only. The quote marks are not mandatory.</dd>
-          <dt><i>output_file</i></dt><dd>path and name of the output file</dd>
+          <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
         </dl>
       </div>
     </div>
