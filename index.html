@@ -499,11 +499,13 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
       <div class="well">
         <h3>Transform 4:3 aspect ratio into 16:9 with pillarbox</h3>
         <p>Transform a video file with 4:3 aspect ratio into a video file with 16:9 aspect ration by correct pillarboxing.</p>
-        <p><code>ffmpeg -i <i>input_file</i> -filter:v "pad=ih*16/9:ih:(ow-iw)/2:(oh-ih)/2" <i>output_file</i></code></p>
+        <p><code>ffmpeg -i <i>input_file</i> -filter:v "pad=ih*16/9:ih:(ow-iw)/2:(oh-ih)/2" -c:a copy <i>output_file</i></code></p>
         <dl>
           <dt>ffmpeg</dt><dd>starts the command</dd>
           <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
           <dt>-filter:v "pad=ih*16/9:ih:(ow-iw)/2:(oh-ih)/2"</dt><dd>video padding<br/>This resolution independent formula is actually padding any aspect ratio into 16:9 by pillarboxing, because the video filter uses relative values for input width (iw), input height (ih), output width (ow) and output height (oh).</dd>
+          <dt>-c:a</dt><dd>re-encodes using the same audio codec<br/>
+          For silent videos you can replace -c:a copy by <code>-an</code>.</dd>
           <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
         </dl>
       </div>
@@ -520,11 +522,13 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
       <div class="well">
         <h3>Transform 16:9 aspect ratio video into 4:3 with letterbox</h3>
         <p>Transform a video file with 16:9 aspect ratio into a video file with 4:3 aspect ration by correct letterboxing.</p>
-        <p><code>ffmpeg -i <i>input_file</i> -filter:v "pad=iw:iw*3/4:(ow-iw)/2:(oh-ih)/2" <i>output_file</i></code></p>
+        <p><code>ffmpeg -i <i>input_file</i> -filter:v "pad=iw:iw*3/4:(ow-iw)/2:(oh-ih)/2" -c:a copy <i>output_file</i></code></p>
         <dl>
           <dt>ffmpeg</dt><dd>starts the command</dd>
           <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
           <dt>-filter:v "pad=iw:iw*3/4:(ow-iw)/2:(oh-ih)/2"</dt><dd>video padding<br/>This resolution independent formula is actually padding any aspect ratio into 4:3 by letterboxing, because the video filter uses relative values for input width (iw), input height (ih), output width (ow) and output height (oh).</dd>
+          <dt>-c:a</dt><dd>re-encodes using the same audio codec<br/>
+          For silent videos you can replace -c:a copy by <code>-an</code>.</dd>
           <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
         </dl>
       </div>
@@ -540,11 +544,13 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
     <div class="modal-content">
       <div class="well">
         <h3>Flip the video image horizontally and/or vertically</h3>
-        <p><code>ffmpeg -i <i>input_file</i> -filter:v "hflip,vflip" <i>output_file</i></code></p>
+        <p><code>ffmpeg -i <i>input_file</i> -filter:v "hflip,vflip" -c:a copy <i>output_file</i></code></p>
         <dl>
           <dt>ffmpeg</dt><dd>starts the command</dd>
           <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
           <dt>-filter:v "hflip,vflip"</dt><dd>flips the image horizontally and vertically<br/>By using only one of the parameters hflip or vflip for filtering the image is flipped on that axis only. The quote marks are not mandatory.</dd>
+          <dt>-c:a</dt><dd>re-encodes using the same audio codec<br/>
+          For silent videos you can replace -c:a copy by <code>-an</code>.</dd>
           <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
         </dl>
       </div>
