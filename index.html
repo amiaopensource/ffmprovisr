@@ -559,11 +559,40 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
 </div>
 <!-- ends Filp image -->
 
+<!-- Modify speed -->
+<span data-toggle="modal" data-target=".modify_speed"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Modify image and sound speed">Modify speed</button></span>
+<div class="modal fade modify_speed" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="well">
+        <h3>Modify image and sound speed</h3>
+        <p>E.g. for converting 24fps to 25fps with audio pitch compensation for PAL access copies. (Thanks @kieranjol!)</p>
+        <p><code>ffmpeg -i <i>input_file</i> -filter_complex "[0:v]setpts=<i>input_fps</i>/<i>output_fps</i>*PTS[v]; [0:a]atempo=<i>output_fps</i>/<i>input_fps</i>[a]" -map "[v]" -map "[a]" <i>output_file</i></code></p>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-filter_complex "[0:v]setpts=<i>input_fps</i>/<i>output_fps</i>*PTS[v]; [0:a]atempo=<i>output_fps</i>/<i>input_fps</i>[a]"</dt><dd>flips the image horizontally and vertically<br/>A complex filter is needed: the <code>setpts</code> video filter modifies the PTS (presentation time stamp) of the video stream, and the <code>atempo</code> audio filter modifies the speed of the audio stream while keeping the same sound pitch.<br/>
+          A complex filter is needed here, in order to handle video stream and the audio stream separately. Note that the parameter’s order for the image and for the sound are inverted.
+          <ul>
+            <li>In the video filter <code>setpts</code> the numerator <code>input_fps</code> sets the input speed and the denominator <code>output_fps</code> sets the output speed; both values are given in frames per second.</li>
+            <li>In the sound filter <code>atempo</code> the numerator <code>output_fps</code> sets the output speed and the denominator <code>input_fps</code> sets the input speed; both values are given in frames per second.</li>
+          </ul>
+          The different filters in a complex filter can be divided either by comma or semicolon. The quotation marks allow to insert a space between the filters for readability.</dd>
+          <dt>-map "[v]"</dt><dd>maps the video stream and:</dd>
+          <dt>-map "[a]"</dt><dd>maps the audio stream together into:</dd>
+          <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends Modify speed -->
+
 </div> <!-- end "well col-md-6 col-md-offset-2" -->
 </div> <!-- row -->
 
 <div class="footer text-center">
-  <p>Made with ♥ at <a href="http://wiki.curatecamp.org/index.php/Association_of_Moving_Image_Archivists_%26_Digital_Library_Federation_Hack_Day_2015">AMIA #AVhack15</a>! Contribute to the project via <a href="https://github.com/amiaopensource/ffmprovisr">our Github page</a>!</p>
+  <p>Made with ♥ at <a href="http://wiki.curatecamp.org/index.php/Association_of_Moving_Image_Archivists_%26_Digital_Library_Federation_Hack_Day_2015">AMIA #AVhack15</a>! Contribute to the project via <a href="https://github.com/amiaopensource/ffmprovisr">our GitHub page</a>!</p>
 </div>
 
 </div> <!-- class="container" -->
