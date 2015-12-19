@@ -6,6 +6,10 @@ dd {
   padding-left:24px;
 }
 
+dt {
+  font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+}
+
 h1 {
   letter-spacing:8px;
   font-size:86px;
