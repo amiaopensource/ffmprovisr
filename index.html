@@ -122,7 +122,7 @@ Change the above data-target field, the button text, and the below div class (th
         <p>Re-wrap .MFX files in a specified directory to .mov files by using this code within a .sh file. The shell script (.sh file) and all MXF files must be contained in the same directory, and the script must be run from the directory itself (cd ~/Desktop/MXF_file_directory). Execute .sh file with the command <code>sh Rewrap-MXF.sh</code></p>
         <dl>
           <dt>-map 0</dt><dd>select all input streams to map to output</dd>
-          <dt>-c copy</dt><dd>enable stream copy. This will re-mux wihout re-encoding, so quality is preserved</dd>
+          <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
         </dl>
         <p>Modify the ffmpeg script as needed to perform different transcodes :)</p>
       </div>
@@ -403,7 +403,7 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
           <dt>ffmpeg</dt><dd>starts the command</dd>
           <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
           <dt>-c:v libx264</dt><dd>tells ffmpeg to change the video codec of the file to H.264</dd>
-          <dt>-c:a copy</dt><dd>tells ffmpeg not to change the audio codec</dd>
+          <dt>-c:a copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
           <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
         </dl>
         <p>In order to use the same basic command to make a higher quality file, you can add some of these presets:</p>
@@ -504,7 +504,7 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
           <dt>ffmpeg</dt><dd>starts the command</dd>
           <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
           <dt>-filter:v "pad=ih*16/9:ih:(ow-iw)/2:(oh-ih)/2"</dt><dd>video padding<br/>This resolution independent formula is actually padding any aspect ratio into 16:9 by pillarboxing, because the video filter uses relative values for input width (iw), input height (ih), output width (ow) and output height (oh).</dd>
-          <dt>-c:a copy</dt><dd>re-encodes using the same audio codec<br/>
+          <dt>-c:a copy</dt><dd>use stream copy mode to re-mux instead of re-encode<br/>
           For silent videos you can replace <code>-c:a copy</code> by <code>-an</code>.</dd>
           <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
         </dl>
@@ -527,7 +527,7 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
           <dt>ffmpeg</dt><dd>starts the command</dd>
           <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
           <dt>-filter:v "pad=iw:iw*3/4:(ow-iw)/2:(oh-ih)/2"</dt><dd>video padding<br/>This resolution independent formula is actually padding any aspect ratio into 4:3 by letterboxing, because the video filter uses relative values for input width (iw), input height (ih), output width (ow) and output height (oh).</dd>
-          <dt>-c:a copy</dt><dd>re-encodes using the same audio codec<br/>
+          <dt>-c:a copy</dt><dd>use stream copy mode to re-mux instead of re-encode<br/>
           For silent videos you can replace <code>-c:a copy</code> by <code>-an</code>.</dd>
           <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
         </dl>
@@ -549,7 +549,7 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
           <dt>ffmpeg</dt><dd>starts the command</dd>
           <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
           <dt>-filter:v "hflip,vflip"</dt><dd>flips the image horizontally and vertically<br/>By using only one of the parameters hflip or vflip for filtering the image is flipped on that axis only. The quote marks are not mandatory.</dd>
-          <dt>-c:a copy</dt><dd>re-encodes using the same audio codec<br/>
+          <dt>-c:a copy</dt><dd>use stream copy mode to re-mux instead of re-encode<br/>
           For silent videos you can replace <code>-c:a copy</code> by <code>-an</code>.</dd>
           <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
         </dl>
