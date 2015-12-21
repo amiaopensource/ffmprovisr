@@ -430,13 +430,15 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
     <div class="modal-content">
       <div class="well">
         <h3>H.264 from DCP</h3>
-        <p><code>ffmpeg -i <i>input_file</i>.mxf -c:v <i>libx264</i> -pix_fmt <i>yuv420p output_file</i></code></p>
+        <p><code>ffmpeg -i <i>input_video_file</i>.mxf -i <i>input_audio_file</i>.mxf -c:v <i>libx264</i> -pix_fmt <i>yuv420p</i> -c:a <i>copy</i> <i>output_file</i></code></p>
         <p>This will transcode mxf wrapped video and audio files to an H.264 encoded .mp4 file. Please note this only works for non-encrypted DCPs.</p>
         <dl>
           <dt>ffmpeg</dt><dd>starts the command</dd>
-          <dt>-i <i>input_file</i></dt><dd>path and name of the video input file. This extension must be .mxf</dd>
+          <dt>-i <i>input_video_file</i></dt><dd>path and name of the video input file. This extension must be .mxf</dd>
+          <dt>-i <i>input_audio_file</i></dt><dd>path and name of the audio input file. This extension must be .mxf</dd>
           <dt>-c:v <i>libx264</i></dt><dd>transcodes video to H.264</dd>
           <dt>-pix_fmt <i>yuv420p</i></dt><dd>sets pixel format to yuv420p</dd>
+          <dt>-c:a <i>copy</i></dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
           <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
         </dl>
       </div>
