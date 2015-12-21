@@ -430,7 +430,7 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
     <div class="modal-content">
       <div class="well">
         <h3>H.264 from DCP</h3>
-        <p><code>ffmpeg -i <i>input_video_file</i>.mxf -i <i>input_audio_file</i>.mxf -c:v <i>libx264</i> -pix_fmt <i>yuv420p</i> -c:a <i>copy</i> <i>output_file</i></code></p>
+        <p><code>ffmpeg -i <i>input_video_file</i>.mxf -i <i>input_audio_file</i>.mxf -c:v <i>libx264</i> -pix_fmt <i>yuv420p</i> -c:a <i>copy output_file</i></code></p>
         <p>This will transcode mxf wrapped video and audio files to an H.264 encoded .mp4 file. Please note this only works for non-encrypted DCPs.</p>
         <dl>
           <dt>ffmpeg</dt><dd>starts the command</dd>
