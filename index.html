@@ -68,20 +68,20 @@ Change the above data-target field, the button text, and the below div class (th
       <div class="well">
         <h3>Create GIF</h3>
         <p>Create high quality GIF</p>
-        <p><code>ffmpeg -ss HH:MM:SS -i <i>input</i> -filter_complex "fps=10,scale=500:-1:flags=lanczos,palettegen" -t 3 <i>palette.png</i></code></p>
-        <p><code>ffmpeg -ss HH:MM:SS -i <i>input</i> -i palette.png -filter_complex "[0:v]fps=10,scale=500:-1:flags=lanczos[v],[v][1:v]paletteuse" -t 3 -loop 6 <i>output</i></code></p>
+        <p><code>ffmpeg -ss HH:MM:SS -i <i>input_file</i> -filter_complex "fps=10,scale=500:-1:flags=lanczos,palettegen" -t 3 <i>palette.png</i></code></p>
+        <p><code>ffmpeg -ss HH:MM:SS -i <i>input_file</i> -i palette.png -filter_complex "[0:v]fps=10,scale=500:-1:flags=lanczos[v],[v][1:v]paletteuse" -t 3 -loop 6 <i>output_file</i></code></p>
         <p>The first command will use the palettegen filter to create a custom palette, then the second command will create the GIF with the paletteuse filter. The result is a high quality GIF.</p>
         <dl>
           <dt>ffmpeg</dt><dd>starts the command</dd>
           <dt>-ss <i>HH:MM:SS</i></dt><dd>starting point of the gif. If a plain numerical value is used it will be interpreted as seconds</dd>
-          <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
           <dt>-filter_complex "fps=<i>frame rate</i>,scale=<i>width</i>:<i>height</i>,palettegen"</dt><dd>a complex filtergraph using the fps filter to set frame rate, the scale filter to resize, and the palettegen filter to generate the palette. The scale value of <i>-1</i> preserves the aspect ratio</dd>
           <dt>-t <i>3</i></dt><dd>duration in seconds (here 3; can be specified also with a full timestamp, i.e. here 00:00:03)</dd>
           <dt>-loop <i>6</i></dt><dd>number of times to loop the gif. A value of <i>-1</i> will disable looping. Omitting <i>-loop</i> will use the default which will loop infinitely</dd>
-          <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
+          <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
         </dl>
         <p>Simpler GIF creation</p>
-        <p><code>ffmpeg -ss HH:MM:SS -i <i>input</i> -vf "fps=10,scale=500:-1" -t 3 -loop 6 <i>output</i></code></p>
+        <p><code>ffmpeg -ss HH:MM:SS -i <i>input_file</i> -vf "fps=10,scale=500:-1" -t 3 -loop 6 <i>output_file</i></code></p>
         <p>This is a quick and easy method. Dithering is more apparent than the above method using the palette* filters, but the file size will be smaller. Perfect for that "legacy" GIF look.</p>
       </div>
     </div>
@@ -96,14 +96,14 @@ Change the above data-target field, the button text, and the below div class (th
     <div class="modal-content">
       <div class="well">
         <h3>WAV to MP3</h3>
-        <p><code>ffmpeg -i [inputfile.wav] -sample_fmt s16p -ar 44100 [outputfile.mp3]</code></p>
-        <p>This will convert your wav files to mp3s.</p>
+        <p><code>ffmpeg -i <i>input_file</i>.wav -sample_fmt s16p -ar 44100 <i>output_file</i>.mp3</code></p>
+        <p>This will convert your WAV files to MP3s.</p>
         <dl>
           <dt>ffmpeg</dt><dd>starts the command</dd>
-          <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-i <i>input_file</i></dt><dd>path and name of the input file</dd>
           <dt>-sample_fmt <i>s16p</i></dt><dd>sample format. This will give you 16 bit audio (To see a list of supported sample formats, type: <code>ffmpeg -sample_fmts</code>)</dd>
           <dt>-ar <i>44100</i></dt><dd>Sets the audio sampling frequency to 44.1 kHz (CD quality). This can be omitted to use the same sampling frequency as the input</dd>
-          <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
+          <dt><i>output_file</i></dt><dd>path and name of the output file</dd>
         </dl>
       </div>
     </div>
@@ -430,13 +430,15 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
     <div class="modal-content">
       <div class="well">
         <h3>H.264 from DCP</h3>
-        <p><code>ffmpeg -i <i>input_file</i>.mxf -c:v <i>libx264</i> -pix_fmt <i>yuv420p output_file</i></code></p>
+        <p><code>ffmpeg -i <i>input_video_file</i>.mxf -i <i>input_audio_file</i>.mxf -c:v <i>libx264</i> -pix_fmt <i>yuv420p</i> -c:a <i>copy output_file</i></code></p>
         <p>This will transcode mxf wrapped video and audio files to an H.264 encoded .mp4 file. Please note this only works for non-encrypted DCPs.</p>
         <dl>
           <dt>ffmpeg</dt><dd>starts the command</dd>
-          <dt>-i <i>input_file</i></dt><dd>path and name of the video input file. This extension must be .mxf</dd>
+          <dt>-i <i>input_video_file</i></dt><dd>path and name of the video input file. This extension must be .mxf</dd>
+          <dt>-i <i>input_audio_file</i></dt><dd>path and name of the audio input file. This extension must be .mxf</dd>
           <dt>-c:v <i>libx264</i></dt><dd>transcodes video to H.264</dd>
           <dt>-pix_fmt <i>yuv420p</i></dt><dd>sets pixel format to yuv420p</dd>
+          <dt>-c:a <i>copy</i></dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
           <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
         </dl>
       </div>
