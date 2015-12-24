@@ -592,7 +592,7 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="well">
-        <h3>Created centered opaque text watermark</h3>
+        <h3>Create centered opaque text watermark</h3>
         <p>E.g For creating access copies with your institutions name</p>
         <p><code>ffmpeg -i <i>input_file</i> -vf drawtext="fontfile=<i>font_path</i>:fontsize=<i>font_size</i>:text=<i>watermark_text</i>:fontcolor=<i>font_colour</i>:alpha=0.4:x=w/2-tw/2:y=h/2-th/2" <i>output_file</i></code></p>
         <dl>
@@ -600,8 +600,9 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
           <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
           <dt>-vf "drawtext=fontfile=<i>font_path</i>:fontsize=<i>font_size</i>:text=<i>watermark_text</i>:fontcolor=<i>font_colour</i>:alpha=0.4:x=w/2-tw/2:y=h/2-th/2"</dt><dd>This calls the drawtext filters with the following options:
           <dl>
-            <dt>In the video filter <code>setpts</code> the numerator <code>input_fps</code> sets the input speed and the denominator <code>output_fps</code> sets the output speed; both values are given in frames per second.</dt>
-            <dt>In the sound filter <code>atempo</code> the numerator <code>output_fps</code> sets the output speed and the denominator <code>input_fps</code> sets the input speed; both values are given in frames per second.</dt>
+            <dt>fontfile=<i>font_path </dt><dd> Set path to font. For example in OSX: <code>"fontfile=/Library/Fonts/AppleGothic.ttf"</code></dd>
+            <dt>fontsize=<i>font_size </dt><dd> Set font size. <code>24 is a good value for SD. Ideally this is proportional to video size, for example <code>videoheight/12</code></dd>
+            <dt>fontfile=<i>font_path </dt><dd> Set path to font. For example in OSX: <code>"fontfile=/Library/Fonts/AppleGothic.ttf"</code></dd>
           </dl>
           The different filters in a complex filter can be divided either by comma or semicolon. The quotation marks allow to insert a space between the filters for readability.</dd>
           <dt>-map "[v]"</dt><dd>maps the video stream and:</dd>
