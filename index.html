@@ -586,6 +586,33 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
   </div>
 </div>
 <!-- ends Modify speed -->
+<!-- Text Watermark -->
+<span data-toggle="modal" data-target=".text_watermark"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create opaque centered text watermark ">Text Watermark</button></span>
+<div class="modal fade text_watermark" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="well">
+        <h3>Created centered opaque text watermark</h3>
+        <p>E.g For creating access copies with your institutions name</p>
+        <p><code>ffmpeg -i <i>input_file</i> -vf drawtext="fontfile=<i>font_path</i>:fontsize=<i>font_size</i>:text=<i>watermark_text</i>:fontcolor=<i>font_colour</i>:alpha=0.4:x=w/2-tw/2:y=h/2-th/2" <i>output_file</i></code></p>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-vf "drawtext=fontfile=<i>font_path</i>:fontsize=<i>font_size</i>:text=<i>watermark_text</i>:fontcolor=<i>font_colour</i>:alpha=0.4:x=w/2-tw/2:y=h/2-th/2"</dt><dd>This calls the drawtext filters with the following options:
+          <dl>
+            <dt>In the video filter <code>setpts</code> the numerator <code>input_fps</code> sets the input speed and the denominator <code>output_fps</code> sets the output speed; both values are given in frames per second.</dt>
+            <dt>In the sound filter <code>atempo</code> the numerator <code>output_fps</code> sets the output speed and the denominator <code>input_fps</code> sets the input speed; both values are given in frames per second.</dt>
+          </dl>
+          The different filters in a complex filter can be divided either by comma or semicolon. The quotation marks allow to insert a space between the filters for readability.</dd>
+          <dt>-map "[v]"</dt><dd>maps the video stream and:</dd>
+          <dt>-map "[a]"</dt><dd>maps the audio stream together into:</dd>
+          <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends Text watermark -->
 
 </div> <!-- end "well col-md-6 col-md-offset-2" -->
 </div> <!-- row -->
