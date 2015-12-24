@@ -601,13 +601,13 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
           <dt>-vf "drawtext=fontfile=<i>font_path</i>:fontsize=<i>font_size</i>:text=<i>watermark_text</i>:fontcolor=<i>font_colour</i>:alpha=0.4:x=w/2-tw/2:y=h/2-th/2"</dt><dd>This calls the drawtext filters with the following options:
           <dl>
             <dt>fontfile=<i>font_path </dt><dd> Set path to font. For example in OSX: <code>"fontfile=/Library/Fonts/AppleGothic.ttf"</code></dd>
-            <dt>fontsize=<i>font_size </dt><dd> Set font size. <code>24</code> is a good value for SD. Ideally this is proportional to video size, for example use ffprobe to acquire video height and divide by 12</dd>
+            <dt>fontsize=<i>font_size </dt><dd> Set font size. <code>24</code> is a good value for SD. Ideally this value is proportional to video size, for example use ffprobe to acquire video height and divide by 14.</dd>
             <dt>text=<i>watermark_text</i> </dt><dd> Set the content of your watermark text. For example: <code>"text="FFMPROVISR HACK DAY NEVAR ENDS"</code></dd>
             <dt>fontcolor=<i>font_colour</i> </dt><dd> Set colour of font. Can be a text string such as <code>"fontcolor=white"</code> or a hexadecimal value such as <code>"fontcolor=0xFFFFFF"</code></dd>
             <dt>alpha=0.4</dt><dd> Set transparency value.</dd>
             <dt>x=w/2-tw/2:y=h/2-th/2</dt><dd> Sets <i>x</i> and <i>y</i> coordinates for the watermark. These relative values will centre your watermark regardless of video dimensions.</dd>
           </dl>
-          <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+          <dt><i>output_file</i></dt><dd>path, name and extension of the output file.</dd>
         </dl>
       </div>
     </div>
