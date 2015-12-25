@@ -599,11 +599,11 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
         <dl>
           <dt>ffmpeg</dt><dd>starts the command</dd>
           <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-          <dt>-vf drawtext=</dt><dd>This calls the drawtext filters with the following options:
+          <dt>-vf drawtext=</dt><dd>This calls the drawtext filter with the following options:
           <dl>
             <dt>fontfile=<i>font_path</i></dt><dd> Set path to font. For example in OSX: <code>fontfile=/Library/Fonts/AppleGothic.ttf</code></dd>
             <dt>fontsize=<i>font_size</i></dt><dd> Set font size. <code>35</code> is a good starting point for SD. Ideally this value is proportional to video size, for example use ffprobe to acquire video height and divide by 14.</dd>
-            <dt>text=<i>watermark_text</i> </dt><dd> Set the content of your watermark text. For example: <code>text='FFMPROVISR HACK DAY NEVAR ENDS'</code></dd>
+            <dt>text=<i>watermark_text</i> </dt><dd> Set the content of your watermark text. For example: <code>text='FFMPROVISR EXAMPLE TEXT'</code></dd>
             <dt>fontcolor=<i>font_colour</i> </dt><dd> Set colour of font. Can be a text string such as <code>fontcolor=white</code> or a hexadecimal value such as <code>fontcolor=0xFFFFFF</code></dd>
             <dt>alpha=0.4</dt><dd> Set transparency value.</dd>
             <dt>x=(w-text_w)/2:y=(h-text_h)/2</dt><dd> Sets <i>x</i> and <i>y</i> coordinates for the watermark. These relative values will centre your watermark regardless of video dimensions.</dd>
@@ -639,7 +639,7 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
             <dt>rate=<i>timecode_rate</i></dt><dd> Framerate of video. For example <code>25/1</code></dd>
             <dt>x=(w-text_w)/2:y=h/1.2</dt><dd> Sets <i>x</i> and <i>y</i> coordinates for the timecode. These relative values will horizontally centre your timecode in the bottom third regardless of video dimensions.</dd>
           </dl>
-          Note: <code>-vf</code> is a shotrcut for <code>-filter:v</code>.</dd>
+          Note: <code>-vf</code> is a shortcut for <code>-filter:v</code>.</dd>
           <dt><i>output_file</i></dt><dd>path, name and extension of the output file.</dd>
         </dl>
       </div>
@@ -647,6 +647,28 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
   </div>
 </div>
 <!-- ends Burn in timecode -->
+<!-- Check FFv1 fixity -->
+<span data-toggle="modal" data-target=".check_FFv1_fixity"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="This decodes your video and verifies the internal crc checksums">Check FFv1 fixity</button></span>
+<div class="modal fade check_FFv1_fixity" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="well">
+        <h3>Check FFv1 Version 3 fixity</h3>
+        <p><code>ffmpeg -i <i>input_file</i> -f null -</code></p>
+        <p>This decodes your video and displays any crc checksum mismatches. These errors will display in your terminal like this: <code>[ffv1 @ 0x1b04660] CRC mismatch 350FBD8A!at 0.272000 seconds
+</code></p>
+        <p>Frame crcs are enabled by default in FFv1 Version 3.</p>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-f null</dt><dd>Video is decoded with the <code>null</code> muxer. This allows video decoding without creating an output file.</dd>
+          <dt>-</dt><dd>Ffmpeg syntax requires a specified output, and <code>-</code> is just a place holder. No file is actually created. </dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends Check FFv1 Fixity  -->
 
 </div> <!-- end "well col-md-6 col-md-offset-2" -->
 </div> <!-- row -->
