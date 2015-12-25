@@ -586,6 +586,7 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
   </div>
 </div>
 <!-- ends Modify speed -->
+
 <!-- Text Watermark -->
 <span data-toggle="modal" data-target=".text_watermark"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create opaque centered text watermark ">Text Watermark</button></span>
 <div class="modal fade text_watermark" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
@@ -607,6 +608,7 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
             <dt>alpha=0.4</dt><dd> Set transparency value.</dd>
             <dt>x=(w-text_w)/2:y=(h-text_h)/2</dt><dd> Sets <i>x</i> and <i>y</i> coordinates for the watermark. These relative values will centre your watermark regardless of video dimensions.</dd>
           </dl>
+          <code>-vf</code> is a shortcut for <code>-filter:v</code>.</dd>
           <dt><i>output_file</i></dt><dd>path, name and extension of the output file.</dd>
         </dl>
       </div>
@@ -614,6 +616,7 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
   </div>
 </div>
 <!-- ends Text watermark -->
+
 <!-- Burn in timecode-->
 <span data-toggle="modal" data-target=".burn_in_timecode"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Burn in timecode ">Burn in timecode</button></span>
 <div class="modal fade burn_in_timecode" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
@@ -635,7 +638,7 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
             <dt>boxcolor=<i>box_colour</i></dt><dd> Set colour of box. Can be a text string such as <code>fontcolor=black</code> or a hexadecimal value such as <code>fontcolor=0x000000</code></dd>
             <dt>rate=<i>timecode_rate</i></dt><dd> Framerate of video. For example <code>25/1</code></dd>
             <dt>x=(w-text_w)/2:y=h/1.2</dt><dd> Sets <i>x</i> and <i>y</i> coordinates for the timecode. These relative values will horizontally centre your timecode in the bottom third regardless of video dimensions.</dd>
-          </dl>
+          </dl><code>-vf</code> is a shotrcut for <code>-filter:v</code>.</dd>
           <dt><i>output_file</i></dt><dd>path, name and extension of the output file.</dd>
         </dl>
       </div>
