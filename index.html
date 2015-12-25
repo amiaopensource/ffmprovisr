@@ -647,6 +647,28 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
   </div>
 </div>
 <!-- ends Burn in timecode -->
+<!-- Check FFv1 fixity -->
+<span data-toggle="modal" data-target=".check_FFv1_fixity"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="This decodes your video and verifies the internal crc checksums">Check FFv1 fixity</button></span>
+<div class="modal fade check_FFv1_fixity" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="well">
+        <h3>Check FFv1 Version 3 fixity</h3>
+        <p><code>ffmpeg -i <i>input_file</i> -f null -</code></p>
+        <p>This decodes your video and displays any crc checksum mismatches. These errors will display in your terminal like this: <code>[ffv1 @ 0x1b04660] CRC mismatch 350FBD8A!at 0.272000 seconds
+</code></p>
+        <p>Frame crcs are enabled by default in FFv1 Version 3.</p>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-f null</dt><dd>Video is decoded with the <code>null</code> muxer. This allows video decoding without creating an output file.</dd>
+          <dt>-</dt><dd>Ffmpeg syntax requires a specified output, and <code>-</code> is just a place holder. No file is actually created. </dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends Check FFv1 Fixity  -->
 
 </div> <!-- end "well col-md-6 col-md-offset-2" -->
 </div> <!-- row -->
