@@ -614,6 +614,35 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
   </div>
 </div>
 <!-- ends Text watermark -->
+<!-- Burn in timecode-->
+<span data-toggle="modal" data-target=".burn_in_timecode"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Burn in timecode ">Burn in timecode</button></span>
+<div class="modal fade burn_in_timecode" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="well">
+        <h3>Create a burnt in timecode on your image</h3>
+        <p><code>ffmpeg -i <i>input_file</i> -vf drawtext="fontfile=<i>font_path</i>:fontsize=<i>font_size</i>:timecode=<i>starting_timecode</i>:fontcolor=<i>font_colour</i>:box=1 :boxcolor=<i>box_colour</i>:rate=<i>timecode_rate</i>:x=(w-text_w)/2:y=h/1.2" <i>output_file</i></code></p>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-vf drawtext=</dt><dd>This calls the drawtext filter with the following options:
+          <dl>
+            <dt>fontfile=<i>font_path</i></dt><dd> Set path to font. For example in OSX: <code>fontfile=/Library/Fonts/AppleGothic.ttf</code></dd>
+            <dt>fontsize=<i>font_size</i></dt><dd> Set font size. <code>35</code> is a good starting point for SD. Ideally this value is proportional to video size, for example use ffprobe to acquire video height and divide by 14.</dd>
+            <dt>timecode=<i>starting_timecode</i> </dt><dd> Set the timecode to be displayed for the first frame. Timecode is to be represented as <code>hh:mm:ss[:;.]ff</code>. Colon escaping is determined by O.S, for example in Ubuntu <code>timecode='09\\:50\\:01\\:23'</code>. Ideally, this value would be generated from the file itself using ffprobe.</dd>
+            <dt>fontcolor=<i>font_colour</i> </dt><dd> Set colour of font. Can be a text string such as <code>fontcolor=white</code> or a hexadecimal value such as <code>fontcolor=0xFFFFFF</code></dd>
+            <dt>box=1</dt><dd> Enable box around timecode</dd>
+            <dt>boxcolor=<i>box_colour</i></dt><dd> Set colour of box. Can be a text string such as <code>fontcolor=black</code> or a hexadecimal value such as <code>fontcolor=0x000000</code></dd>
+            <dt>rate=<i>timecode_rate</i></dt><dd> Framerate of video. For example <code>25/1</code></dd>
+            <dt>x=(w-text_w)/2:y=h/1.2</dt><dd> Sets <i>x</i> and <i>y</i> coordinates for the timecode. These relative values will horizontally centre your timecode in the bottom third regardless of video dimensions.</dd>
+          </dl>
+          <dt><i>output_file</i></dt><dd>path, name and extension of the output file.</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends Burn in timecode -->
 
 </div> <!-- end "well col-md-6 col-md-offset-2" -->
 </div> <!-- row -->
