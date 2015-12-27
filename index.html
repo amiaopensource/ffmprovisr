@@ -661,12 +661,12 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
         <p><code>ffmpeg -i <i>input_file</i> -f null -</code></p>
         <p>This decodes your video and displays any crc checksum mismatches. These errors will display in your terminal like this: <code>[ffv1 @ 0x1b04660] CRC mismatch 350FBD8A!at 0.272000 seconds
 </code></p>
-        <p>Frame crcs are enabled by default in FFv1 Version 3.</p>
+        <p>Frame crcs are enabled by default in FFV1 Version 3.</p>
         <dl>
           <dt>ffmpeg</dt><dd>starts the command</dd>
           <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
           <dt>-f null</dt><dd>Video is decoded with the <code>null</code> muxer. This allows video decoding without creating an output file.</dd>
-          <dt>-</dt><dd>Ffmpeg syntax requires a specified output, and <code>-</code> is just a place holder. No file is actually created. </dd>
+          <dt>-</dt><dd>FFmpeg syntax requires a specified output, and <code>-</code> is just a place holder. No file is actually created. </dd>
         </dl>
       </div>
     </div>
@@ -697,8 +697,9 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
   </div>
 </div>
 <!-- Images to video -->
+
 <!-- Transcode to FFV1.mkv -->
-<span data-toggle="modal" data-target=".create_FFV1_mkv"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode your file with the FFv1 Version 3 Codec in a matroska container">Create FFv1.mkv</button></span>
+<span data-toggle="modal" data-target=".create_FFV1_mkv"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode your file with the FFV1 Version 3 Codec in a matroska container">Create FFV1.mkv</button></span>
 <div class="modal fade create_FFV1_mkv" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
