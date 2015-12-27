@@ -697,6 +697,36 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
   </div>
 </div>
 <!-- Images to video -->
+<!-- Transcode to FFv1.mkv -->
+<span data-toggle="modal" data-target=".create_ffv1_mkv"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode your file with the FFv1 Version 3 Codec in a matroska container">Create FFv1.mkv</button></span>
+<div class="modal fade create_ffv1_mkv" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="well">
+        <h3>Create FFv1 Version 3 video in a Matroska container with framemd5 of input</h3>
+        <p><code>ffmpeg -i <i>input_file</i> -map 0 -dn -c:v ffv1 -level 3 -g 1 -slicecrc 1 -slices 16 -c:a copy <i>output_file</i>.mkv -f framemd5 -an <i>md5_output_file</i></code></p>
+        <p>This will losslessly trancode your video with the FFv1 Version 3 codec in a Matroska container. In order to verify losslessness, a framemd5 of the source video is also generated. For more information on FFv1 encoding, <a href="https://trac.ffmpeg.org/wiki/Encode/FFV1" target="_blank">try the ffmpeg wiki.</a> </p>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command.</dd>
+          <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file.</dd>
+          <dt>-map 0</dt><dd>Map all streams that are present in the input file. This is important as ffmpeg will map only one stream of each type (video, audio, subtitles) by default to the output video.</dd>
+          <dt>-dn</dt><dd>ignore data streams (data no). The matroska container does not allow data tracks.</dd>
+          <dt>-c:v ffv1</dt><dd>specifies the FFv1 video codec.</dd>
+          <dt>-level 3</dt><dd>specifies Version 3 of the FFv1 codec.</dd>
+          <dt>-g 1</dt><dd>specifies intra-frame encoding, or GOP=1.</dd>
+          <dt>-slicecrc 1</dt><dd>Adds CRC information for each slice. This makes it possible for a decoder to detect errors in the bitstream, rather than blindly decoding a broken slice.</dd>
+          <dt>-slices 16</dt><dd>Each frame is split into 16 slices. 16 is a good trade-off between filesize and encoding time. <a href="http://ndsr.nycdigital.org/diving-in-head-first/" target="_blank">Click here for more information.</a> </dd>
+          <dt>-c:a copy</dt><dd>copies all mapped audio streams.</dd>
+          <dt><i>output_file</i>.mkv</dt><dd>path and name of the output file. Use the <code>.mkv</code> extension to save your file in a matroska container. Optionally, choose a different extension if you want a different container, such as <code>.mov</code> or <code>.avi.</code></dd>
+          <dt>-f framemd5</dt><dd> Decodes video with the framemd5 muxer in order to generate md5 checksums for every frame of your input file. This allows you to verify losslessness when compared against the framemd5s of the output file.</dd>
+          <dt>-an</dt><dd>ignores the audio stream when creating framemd5 (audio no)</dd>
+          <dt><i>framemd5_output_file</i></dt><dd>path, name and extension of the framemd5 file.</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends Transcode to FFv1.mkv-->
 
 </div> <!-- end "well col-md-6 col-md-offset-2" -->
 </div> <!-- row -->
