@@ -684,8 +684,7 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
         <p><code>ffmpeg -f image2 -i <i>input_file_%06d.ext</i> -c:v v210 -an <i>output_file</i></code></p>
         <dl>
           <dt>ffmpeg</dt><dd>starts the command</dd>
-          <dt>-f image2</dt><dd>forces the image file de-muxer for single image files
-</dd>
+          <dt>-f image2</dt><dd>forces the image file de-muxer for single image files</dd>
           <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file<br/>
           This must match the naming convention actually used! The regex %06d matches six digits long numbers, possibly with leading zeroes. This allows to read in ascending order, one image after the other, the full sequence inside one folder. For image sequences starting with 086400 (i.e. captured with a timecode starting at 01:00:00:00 and at 24 fps), add the flag <code>-start_number 086400</code> before <code>-i input_file_%06d.ext</code>. The extension for TIFF files is .tif or maybe .tiff; the extension for DPX files is .dpx (or eventually .cin for old files).</dd>
           <dt>-c:v v210</dt><dd>encodes an uncompressed 10-bit video stream</dd>
@@ -696,7 +695,7 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
     </div>
   </div>
 </div>
-<!-- Images to video -->
+<!-- ends Images to video -->
 
 <!-- Transcode to FFV1.mkv -->
 <span data-toggle="modal" data-target=".create_FFV1_mkv"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode your file with the FFV1 Version 3 Codec in a matroska container">Create FFV1.mkv</button></span>
@@ -728,6 +727,28 @@ path_name_and_extension_to_the_last_file</i></pre></dd>
   </div>
 </div>
 <!-- ends Transcode to FFV1.mkv-->
+
+<!-- Play image sequance -->
+<span data-toggle="modal" data-target=".play_im_sq"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Play an image sequence directly as moving images">Play an image sequence</button></span>
+<div class="modal fade play_im_sq" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="well">
+        <h3>Play an image sequence</h3>
+        <p>Play an image sequence directly as moving images, without having to create a video first.</p>
+        <p><code>ffplay <i>input_file_%06d.ext</i></code></p>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file<br/>
+          This must match the naming convention actually used! The regex %06d matches six digits long numbers, possibly with leading zeroes. This allows to read in ascending order, one image after the other, the full sequence inside one folder. The extension for TIFF files is .tif or maybe .tiff; the extension for DPX files is .dpx (or eventually .cin for old files).<br/>
+          The showing speed depends on the image’s file size and on the computing power. It is usually to slow, yet you can visualise immediately the moving images without having to recode and remux into a new file.<br/>
+          You can click into the visualisation window to jump: to the beginning on the left side, to the on the right side, and to every other position proportionally in between.</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ends Play image sequance -->
 
 </div> <!-- end "well col-md-6 col-md-offset-2" -->
 </div> <!-- row -->
