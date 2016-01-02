@@ -417,6 +417,7 @@
   <!-- ends Excerpt to end -->
 
   <!-- Excerpt from end -->
+  <!--
   <span data-toggle="modal" data-target=".excerpt_from_end"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create a new video file with the final five seconds of the original">Excerpt from end</button></span>
   <div class="modal fade excerpt_from_end" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg">
@@ -424,11 +425,11 @@
         <div class="well">
           <h3>Excerpt from end</h3>
           <p><code>ffmpeg -i <i>input_file</i> -sseof <i>-5</i> -c copy <i>output_file</i></code></p>
-          <p>This command copies a video file starting from a specified time before the end of the file, removing everything before from the output. This can be used to create an excerpt, or extract content from the end of a video file.</p>
+          <p>This command copies a video file starting from a specified time before the end of the file, removing everything before from the output. This can be used to create an excerpt, or extract content from the end of a video file (e.g. for extracting the closing credits).</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-ss <i>5</i></dt><dd>Tells ffmpeg what timecode in the file to look for to start copying, and specifies the number of seconds from the end of the video that ffmpeg should start copying. The end of the file has index 0 and the minus sign is needed to reference earlier portions. To be more specific, you can use timecode such as 00:00:05.</dd>
+            <dt>-sseof <i>-5</i></dt><dd>Tells ffmpeg what timecode in the file to look for to start copying, and specifies the number of seconds from the end of the video that ffmpeg should start copying. The end of the file has index 0 and the minus sign is needed to reference earlier portions. To be more specific, you can use timecode such as 00:00:05.</dd>
             <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
@@ -436,6 +437,7 @@
       </div>
     </div>
   </div>
+-->
   <!-- ends Excerpt from end -->
 
   <!-- Create ISO -->
