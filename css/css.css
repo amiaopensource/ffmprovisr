@@ -46,7 +46,6 @@ div {
   position: absolute;
   left: 1em;
   padding: 0 1px;
-  font-family: FontAwesome;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   -webkit-transition-duration: 0.3s;
