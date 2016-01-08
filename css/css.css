@@ -42,7 +42,7 @@ div {
   transition-duration: 0.3s;
 }
 .btn:before {
-  content: "\f1c8";
+  content: "💫";
   position: absolute;
   left: 1em;
   padding: 0 1px;
