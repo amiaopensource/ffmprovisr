@@ -567,7 +567,7 @@
           <p><code>ffmpeg -f lavfi -i mandelbrot -t 10 <i>output_file</i></code></p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-f lavfi</dt><dd>tells ffmpeg to use the Libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi">[more]</a></dd>
+            <dt>-f lavfi</dt><dd>tells ffmpeg to use the Libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">[more]</a></dd>
             <dt>-i mandelbrot</dt><dd>asks for the madelbrot test filter as input</dd>
             <dt>-t 10</dt><dd>specifies recording time of 10 seconds</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file. Try different file extensions such as mkv, mov, mp4, or avi.</dd>
@@ -588,7 +588,7 @@
           <p><code>ffmpeg -f lavfi -i smpte_bars -t 10 <i>output_file</i></code></p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-f lavfi</dt><dd>tells ffmpeg to use the Libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi">[more]</a></dd>
+            <dt>-f lavfi</dt><dd>tells ffmpeg to use the Libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">[more]</a></dd>
             <dt>-i smptebars</dt><dd>asks for the smptebars test filter as input</dd>
             <dt>-t 10</dt><dd>specifies recording time of 10 seconds</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file. Try different file extensions such as mkv, mov, mp4, or avi.</dd>
@@ -609,8 +609,8 @@
           <p><code>ffmpeg -f lavfi -i testsrc -t 10 <i>output_file</i></code></p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-f lavfi</dt><dd>tells ffmpeg to use the Libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi">[more]</a></dd>
-            <dt>-i test</dt><dd>asks for the test filter pattern as input</dd>
+            <dt>-f lavfi</dt><dd>tells ffmpeg to use the libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">[more]</a></dd>
+            <dt>-i testsrc</dt><dd>asks for the testsrc filter pattern as input <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc" target="_blank">[more]</a></dd>
             <dt>-t 10</dt><dd>specifies recording time of 10 seconds</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file. Try different file extensions such as mkv, mov, mp4, or avi.</dd>
           </dl>
@@ -633,7 +633,7 @@
           <h3>Join files together</h3>
           <p><code>ffmpeg -f concat -i mylist.txt -c copy <i>output_file</i></code></p>
           <p>This command takes two or more files of the same file type and joins them together to make a single file. All that the program needs is a text file with a list specifying the files that should be joined. However, it only works properly if the files to be combined have the exact same codec and technical specifications. Be careful, ffmpeg may appear to have successfully joined two video files with different codecs, but may only bring over the audio from the second file or have other weird behaviors. Don’t use this command for joining files with different codecs and technical specs and always preview your resulting video file!</p>
-          <p>ffmpeg documentation on concatenating files (full list of flags, commands, <a href="https://trac.ffmpeg.org/wiki/Concatenate">https://trac.ffmpeg.org/wiki/Concatenate</a>)</p>
+          <p>ffmpeg documentation on concatenating files (full list of flags, commands, <a href="https://trac.ffmpeg.org/wiki/Concatenate" target="_blank">https://trac.ffmpeg.org/wiki/Concatenate</a>)</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-f concat</dt><dd>forces ffmpeg to concatenate the files and to keep the same file format</dd>
@@ -695,8 +695,6 @@
     </div>
   </div>
   <!-- ends Split audio and video tracks -->
-
-
 
   <!-- Flip image -->
   <span data-toggle="modal" data-target=".flip_image"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Flip the image">Flip image</button></span>
@@ -862,7 +860,7 @@ Change the above data-target field, the button text, and the below div class (th
 </div> <!-- row -->
 
 <div class="footer text-center">
-  <p>Made with ♥ at <a href="http://wiki.curatecamp.org/index.php/Association_of_Moving_Image_Archivists_%26_Digital_Library_Federation_Hack_Day_2015">AMIA #AVhack15</a>! Contribute to the project via <a href="https://github.com/amiaopensource/ffmprovisr">our GitHub page</a>!</p>
+  <p>Made with ♥ at <a href="http://wiki.curatecamp.org/index.php/Association_of_Moving_Image_Archivists_%26_Digital_Library_Federation_Hack_Day_2015" target="_blank">AMIA #AVhack15</a>! Contribute to the project via <a href="https://github.com/amiaopensource/ffmprovisr">our GitHub page</a>!</p>
 </div>
 
 </div> <!-- class="container" -->
