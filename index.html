@@ -553,6 +553,74 @@
   <!-- ends Check FFV1 Fixity  -->
 
   </div>
+
+  <div class="well">
+    <h4>Test videos</h4>
+
+  <!-- Mandelbrot -->
+  <span data-toggle="modal" data-target=".mandelbrot"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Make a mandelbrot test pattern video">Mandelbrot</button></span>
+  <div class="modal fade mandelbrot" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Makes a mandelbrot test pattern video</h3>
+          <p><code>ffmpeg -f lavfi -i mandelbrot -t 10 <i>output_file</i></code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-f lavfi</dt><dd>tells ffmpeg to use the Libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi">[more]</a></dd>
+            <dt>-i mandelbrot</dt><dd>asks for the madelbrot test filter as input</dd>
+            <dt>-t 10</dt><dd>specifies recording time of 10 seconds</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file. Try different file extensions such as mkv, mov, mp4, or avi.</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Mandelbrot -->
+
+  <!-- SMPTE bars -->
+  <span data-toggle="modal" data-target=".smpte_bars"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Make a SMPTE bars test pattern video">SMPTE bars</button></span>
+  <div class="modal fade smpte_bars" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Makes a SMPTE bars test pattern video</h3>
+          <p><code>ffmpeg -f lavfi -i smpte_bars -t 10 <i>output_file</i></code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-f lavfi</dt><dd>tells ffmpeg to use the Libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi">[more]</a></dd>
+            <dt>-i smptebars</dt><dd>asks for the smptebars test filter as input</dd>
+            <dt>-t 10</dt><dd>specifies recording time of 10 seconds</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file. Try different file extensions such as mkv, mov, mp4, or avi.</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends SMPTE bars -->
+
+  <!-- Test pattern video -->
+  <span data-toggle="modal" data-target=".test"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Make a test pattern video">Test pattern</button></span>
+  <div class="modal fade test" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Make a test pattern video</h3>
+          <p><code>ffmpeg -f lavfi -i testsrc -t 10 <i>output_file</i></code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-f lavfi</dt><dd>tells ffmpeg to use the Libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi">[more]</a></dd>
+            <dt>-i test</dt><dd>asks for the test filter pattern as input</dd>
+            <dt>-t 10</dt><dd>specifies recording time of 10 seconds</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file. Try different file extensions such as mkv, mov, mp4, or avi.</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Test pattern video -->
+
+  </div>
   <div class="well">
   <h4>Other</h4>
 
@@ -763,7 +831,6 @@
     </div>
   </div>
   <!-- ends Images to video -->
-
 </div><!-- closes the well -->
 
 
