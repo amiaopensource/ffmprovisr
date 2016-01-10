@@ -1,4 +1,4 @@
-# ffmprovisr
+# [ffmprovisr](http://amiaopensource.github.io/ffmprovisr)
 
 Repository of useful FFmpeg command lines for archivists! [AMIA hackday](http://wiki.curatecamp.org/index.php/Association_of_Moving_Image_Archivists_%26_Digital_Library_Federation_Hack_Day_2015) edition. 
 
