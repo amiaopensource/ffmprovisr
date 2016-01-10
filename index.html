@@ -55,7 +55,7 @@
             <dt>-id3v2_version <i>3</i></dt><dd>Write ID3v2 tag. This will add metadata to a newer MP3 format, assuming you’ve embedded metadata into the WAV file.</dd>
             <dt>-dither_method <i>modified_e_weighted</i></dt><dd>Dither makes sure you don’t unnecessarily truncate the dynamic range of your audio.</dd>
             <dt>-out_sample_rate <i>48k</i></dt><dd>Sets the audio sampling frequency to 48 kHz. This can be omitted to use the same sampling frequency as the input.</dd>
-            <dt>-b:a <i>320k</i></dt><dd>This sets the bit rate at the highest rate the mp3 format allows. Reduce this to 160k for mono files.</dd>
+            <dt>-b:a <i>320k</i></dt><dd>This sets the bit rate at the highest rate the MP3 format allows. Reduce this to 160k for mono files.</dd>
             <dt><i>output_file</i></dt><dd>path and name of the output file</dd>
           </dl>
         </div>
@@ -236,7 +236,7 @@
             <dt>-level 3</dt><dd>specifies Version 3 of the FFV1 codec.</dd>
             <dt>-g 1</dt><dd>specifies intra-frame encoding, or GOP=1.</dd>
             <dt>-slicecrc 1</dt><dd>Adds CRC information for each slice. This makes it possible for a decoder to detect errors in the bitstream, rather than blindly decoding a broken slice.</dd>
-            <dt>-slices 16</dt><dd>Each frame is split into 16 slices. 16 is a good trade-off between filesize and encoding time. <a href="http://ndsr.nycdigital.org/diving-in-head-first/" target="_blank">Click here for more information.</a> </dd>
+            <dt>-slices 16</dt><dd>Each frame is split into 16 slices. 16 is a good trade-off between filesize and encoding time. <a href="http://ndsr.nycdigital.org/diving-in-head-first/" target="_blank">[more]</a> </dd>
             <dt>-c:a copy</dt><dd>copies all mapped audio streams.</dd>
             <dt><i>output_file</i>.mkv</dt><dd>path and name of the output file. Use the <code>.mkv</code> extension to save your file in a matroska container. Optionally, choose a different extension if you want a different container, such as <code>.mov</code> or <code>.avi.</code></dd>
             <dt>-f framemd5</dt><dd> Decodes video with the framemd5 muxer in order to generate md5 checksums for every frame of your input file. This allows you to verify losslessness when compared against the framemd5s of the output file.</dd>
@@ -619,6 +619,46 @@
     </div>
   </div>
   <!-- ends Test pattern video -->
+
+  <!-- Play HD SMPTE bars -->
+  <span data-toggle="modal" data-target=".play_hd_smpte"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Test an HD video projector by playing the SMPTE colour bars pattern">Play HD SMPTE bars</button></span>
+  <div class="modal fade play_hd_smpte" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Play HD SMPTE bars</h3>
+          <p>Test an HD video projector by playing the SMPTE colour bars pattern.</p>
+          <p><code>ffplay -f lavfi -i smptehdbars=size=1920x1080</code></p>
+          <dl>
+            <dt>ffplay</dt><dd>starts the command</dd>
+            <dt>-f lavfi</dt><dd>tells ffmpeg to use the libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">[more]</a></dd>
+            <dt>-i smptehdbars=size=1920x1080</dt><dd>asks for the smptehdbars filter pattern as input and sets the HD resolution. This generates a colour bars pattern, based on the SMPTE RP 219–2002. <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc" target="_blank">[more]</a></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Play HD SMPTE bars -->
+
+  <!-- Play VGA SMPTE bars -->
+  <span data-toggle="modal" data-target=".play_vga_smpte"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Test a VGA video projector by playing the SMPTE colour bars pattern">Play VGA SMPTE bars</button></span>
+  <div class="modal fade play_vga_smpte" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Play VGA SMPTE bars</h3>
+          <p>Test a VGA (SD) video projector by playing the SMPTE colour bars pattern.</p>
+          <p><code>ffplay -f lavfi -i smptebars=size=640x480</code></p>
+          <dl>
+            <dt>ffplay</dt><dd>starts the command</dd>
+            <dt>-f lavfi</dt><dd>tells ffmpeg to use the libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">[more]</a></dd>
+            <dt>-i smptebars=size=640x480</dt><dd>asks for the smptehdbars filter pattern as input and sets the VGA (SD) resolution. This generates a colour bars pattern, based on the SMPTE Engineering Guideline EG 1–1990. <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc" target="_blank">[more]</a></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Play VGA SMPTE bars -->
 
   </div>
   <div class="well">
