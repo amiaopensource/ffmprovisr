@@ -640,6 +640,26 @@
   </div>
   <!-- ends Play HD SMPTE bars -->
 
+  <!-- Play VGA SMPTE bars -->
+  <span data-toggle="modal" data-target=".play_vga_smpte"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Test a VGA video projector by playing the SMPTE colour bars pattern">Play VGA SMPTE bars</button></span>
+  <div class="modal fade play_vga_smpte" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Play VGA SMPTE bars</h3>
+          <p>Test a VGA (SD) video projector by playing the SMPTE colour bars pattern.</p>
+          <p><code>ffplay -f lavfi -i smptebars=size=640x480</code></p>
+          <dl>
+            <dt>ffplay</dt><dd>starts the command</dd>
+            <dt>-f lavfi</dt><dd>tells ffmpeg to use the libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">[more]</a></dd>
+            <dt>-i smptebars=size=640x480</dt><dd>asks for the smptehdbars filter pattern as input and sets the HD resolution. This generates a colour bars pattern, based on the SMPTE Engineering Guideline EG 1–1990. <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc" target="_blank">[more]</a></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Play VGA SMPTE bars -->
+
   </div>
   <div class="well">
   <h4>Other</h4>
