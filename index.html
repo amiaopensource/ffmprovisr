@@ -564,11 +564,12 @@
       <div class="modal-content">
         <div class="well">
           <h3>Makes a mandelbrot test pattern video</h3>
-          <p><code>ffmpeg -f lavfi -i mandelbrot -t 10 <i>output_file</i></code></p>
+          <p><code>ffmpeg -f lavfi -i mandelbrot=size=1280x720:rate=25 -c:v libx264 -t 10 <i>output_file</i></code></p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-f lavfi</dt><dd>tells ffmpeg to use the Libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">[more]</a></dd>
-            <dt>-i mandelbrot</dt><dd>asks for the madelbrot test filter as input</dd>
+            <dt>-i mandelbrot=size=1280x720:rate=25</dt><dd>asks for the mandelbrot test filter as input. Adjusting the <code>size</code> and <code>rate</code> options allow you to choose a specific frame size and framerate. <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc" target="_blank">[more]</a></dd>
+            <dt>-c:v <i>libx264</i></dt><dd>transcodes video from rawvideo to H.264. Set <code>-pix_fmt</code> to <code>yuv420p</code> for greater H.264 compatibility with media players.</dd>
             <dt>-t 10</dt><dd>specifies recording time of 10 seconds</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file. Try different file extensions such as mkv, mov, mp4, or avi.</dd>
           </dl>
@@ -585,13 +586,14 @@
       <div class="modal-content">
         <div class="well">
           <h3>Makes a SMPTE bars test pattern video</h3>
-          <p><code>ffmpeg -f lavfi -i smpte_bars -t 10 <i>output_file</i></code></p>
+          <p><code>ffmpeg -f lavfi -i smptebars=size=720x576:rate=25 -c:v prores -t 10 <i>output_file</i></code></p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-f lavfi</dt><dd>tells ffmpeg to use the Libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">[more]</a></dd>
-            <dt>-i smptebars</dt><dd>asks for the smptebars test filter as input</dd>
+            <dt>-i smptebars=size=720x576:rate=25</dt><dd>asks for the smptebars test filter as input. Adjusting the <code>size</code> and <code>rate</code> options allow you to choose a specific frame size and framerate. <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc" target="_blank">[more]</a></dd>
+            <dt>-c:v <i>prores</i></dt><dd>transcodes video from rawvideo to Apple ProRes 4:2:2.</dd>
             <dt>-t 10</dt><dd>specifies recording time of 10 seconds</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file. Try different file extensions such as mkv, mov, mp4, or avi.</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file. Try different file extensions such as mov or avi.</dd>
           </dl>
         </div>
       </div>
@@ -606,11 +608,12 @@
       <div class="modal-content">
         <div class="well">
           <h3>Make a test pattern video</h3>
-          <p><code>ffmpeg -f lavfi -i testsrc -t 10 <i>output_file</i></code></p>
+          <p><code>ffmpeg -f lavfi -i testsrc=size=720x576:rate=25 -c:v v210 -t 10 <i>output_file</i></code></p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-f lavfi</dt><dd>tells ffmpeg to use the libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">[more]</a></dd>
-            <dt>-i testsrc</dt><dd>asks for the testsrc filter pattern as input <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc" target="_blank">[more]</a></dd>
+            <dt>-i testsrc=size=720x576:rate=25</dt><dd>asks for the testsrc filter pattern as input. Adjusting the <code>size</code> and <code>rate</code> options allow you to choose a specific frame size and framerate. <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc" target="_blank">[more]</a></dd>
+            <dt>-c:v <i>v210</i></dt><dd>transcodes video from rawvideo to 10-bit Uncompressed YUV 4:2:2. Alter this setting to set your desired codec.</dd>
             <dt>-t 10</dt><dd>specifies recording time of 10 seconds</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file. Try different file extensions such as mkv, mov, mp4, or avi.</dd>
           </dl>
