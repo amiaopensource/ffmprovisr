@@ -18,6 +18,10 @@ To contribute to this project directly (and more quickly), clone this repository
 
 If you are having trouble with the coding it yourself or with github knowledge, feel free to [submit an issue](https://github.com/amiaopensource/ffmprovisr/issues) with the kind of command you would like to see added to the site.
 
+## Code of Conduct
+
+You can read our contributor code of conduct [here](https://github.com/amiaopensource/ffmprovisr/blob/gh-pages/code_of_conduct.md).
+
 ## AVHack Team:
 
 [Ashley Blewer](https://github.com/ablwr), Eddy Colloton, Rebecca Dillmeier, Jonathan Farbowitz, Rebecca Fraimow, Samuel Gutterman, Kelly Haydon, [Reto Kromer](http://reto.ch/), Nicole Martin, Kieran O'Leary, Catriona Schlosser, Ben Turkus
