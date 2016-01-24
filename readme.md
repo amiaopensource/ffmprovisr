@@ -20,4 +20,4 @@ If you are having trouble with the coding it yourself or with github knowledge, 
 
 ## AVHack Team:
 
-[Ashley Blewer](https://github.com/ablwr), Eddy Colloton, Rebecca Dillmeier, Jonathan Farbowitz, Rebecca Fraimow, Samuel Gutterman, Kelly Haydon, Reto Kromer, Nicole Martin, Kieran O'Leary, Catriona Schlosser, Ben Turkus
+[Ashley Blewer](https://github.com/ablwr), Eddy Colloton, Rebecca Dillmeier, Jonathan Farbowitz, Rebecca Fraimow, Samuel Gutterman, Kelly Haydon, [Reto Kromer](http://reto.ch/), Nicole Martin, Kieran O'Leary, Catriona Schlosser, Ben Turkus
