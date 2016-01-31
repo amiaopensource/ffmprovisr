@@ -4,7 +4,7 @@ Repository of useful FFmpeg command lines for archivists! [AMIA hackday](http://
 
 ## What is this?
 
-Project Objective: To facilitate better understanding of ffmpeg through collaborative sharing of useful scripts and detailed flag-level description of how each script works so archivists can copy-paste and produce their own scripts but also understand how and why they work.
+Project Objective: To facilitate better understanding of FFmpeg through collaborative sharing of useful scripts and detailed flag-level description of how each script works so archivists can copy-paste and produce their own scripts but also understand how and why they work.
 
 ## How do I see it?
 
