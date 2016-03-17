@@ -861,7 +861,7 @@
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-f image2</dt><dd>forces the image file de-muxer for single image files</dd>
-            <dt>-framerate 24</dt><dd>Sets the framerate input framerate to 24fps. The image2 demuxer defaults to 25fps.</dd>
+            <dt>-framerate 24</dt><dd>Sets the input framerate to 24 fps. The image2 demuxer defaults to 25 fps.</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file<br/>
             This must match the naming convention actually used! The regex %06d matches six digits long numbers, possibly with leading zeroes. This allows to read in ascending order, one image after the other, the full sequence inside one folder. For image sequences starting with 086400 (i.e. captured with a timecode starting at 01:00:00:00 and at 24 fps), add the flag <code>-start_number 086400</code> before <code>-i input_file_%06d.ext</code>. The extension for TIFF files is .tif or maybe .tiff; the extension for DPX files is .dpx (or eventually .cin for old files).</dd>
             <dt>-c:v v210</dt><dd>encodes an uncompressed 10-bit video stream</dd>
