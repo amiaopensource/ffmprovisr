@@ -248,6 +248,26 @@
     </div>
   </div>
   <!-- ends Transcode to FFV1.mkv-->
+  <!-- Change display aspect ratio without re-encoding video-->
+  <span data-toggle="modal" data-target=".change_DAR"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Change Display Aspect Ratio without re-encoding">Change Display Aspect Ratio</button></span>
+  <div class="modal fade change_DAR" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Change Display Aspect Ratio without reencoding video</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v copy -aspect 4:3 <i>output_file</i></code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file<br/>
+            <dt>-c:v copy</dt><dd>Copy all mapped video streams.</dd>
+            <dt>-aspect 4:3</dt><dd>Change Display Aspect Ratio to <code>4:3</code>. Experiment with other aspect ratios such as <code>16:9</code>. If used together with <code>-c:v copy</code>, it will affect the aspect ratio stored at container level, but not the aspect ratio stored in encoded frames, if it exists. </dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Change display aspect ratio without re-encoding video -->
 
   </div>
   <div class="well">
@@ -873,6 +893,26 @@
     </div>
   </div>
   <!-- ends Images to video -->
+  <!-- Set field order -->
+  <span data-toggle="modal" data-target=".set_field_order"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Set field order for interlaced video">Set field order</button></span>
+  <div class="modal fade set_field_order" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Change field order of an interlaced video</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v prores -filter:v setfield=tff <i>output_file</i></code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file<br/>
+            <dt>-filter:v <i>setfield=tff</i></dt><dd>Sets the field order to top field first. Use <code>setfield=bff</code> for bottom field first. <br/>    
+            <dt>-c:v prores</dt><dd>Tells ffmpeg to transcode the video stream into Apple ProRes 422. Experiment with using other codecs.</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends set field order -->
 </div><!-- closes the well -->
 
 
