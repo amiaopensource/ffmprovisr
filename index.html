@@ -759,6 +759,28 @@
   </div>
   <!-- ends Split audio and video tracks -->
 
+  <!-- Extract audio from an AV file -->
+  <span data-toggle="modal" data-target=".extract_audio"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Extract audio without loss from an AV file">Extract audio from an AV file</button></span>
+  <div class="modal fade extract_audio" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Extract audio from an AV file</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -c:a copy -vn <i>output_file</i></code></p>
+          <p>This command extracts the audio stream without loss from an audiovisual file.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-c:a copy</dt><dd>re-encodes using the same audio codec</dd>
+            <dt>-vn</dt><dd>no video stream</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Extract audio from am AV file -->
+
   <!-- Flip image -->
   <span data-toggle="modal" data-target=".flip_image"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Flip the image">Flip image</button></span>
   <div class="modal fade flip_image" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
