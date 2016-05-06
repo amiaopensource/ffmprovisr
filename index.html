@@ -101,25 +101,21 @@
       <div class="modal-content">
         <div class="well">
           <h3>Transcode to H.264</h3>
-          <p><code>ffmpeg -i <i>input_file</i> -c:v <i>libx264</i> -c:a copy <i>output_file</i></code></p>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -pix_fmt yuv420p -c:a copy <i>output_file</i></code></p>
           <p>This command takes an input file and transcodes it to H.264 with an .mp4 wrapper, keeping the audio the same codec as the original. The libx264 codec defaults to a “medium” preset for compression quality and a CRF of 23. CRF stands for constant rate factor and determines the quality and file size of the resulting H.264 video. A low CRF means high quality and large file size; a high CRF means the opposite.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-c:v libx264</dt><dd>tells ffmpeg to change the video codec of the file to H.264</dd>
+            <dt>-pix_fmt yuv420p</dt><dd> libx264 will use a chroma subsampling scheme that is the closest match to that of the input. This can result in YUV 4:2:0, 4:2:2, or 4:4:4 chroma subsampling. QuickTime and most other non-FFmpeg based players can’t decode H.264 files that are not 4:2:0. In order to allow the video to play in all players, you can specify 4:2:0 chroma subsampling.</dd>            
             <dt>-c:a copy</dt><dd>tells ffmpeg not to change the audio codec</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
           <p>In order to use the same basic command to make a higher quality file, you can add some of these presets:</p>
-          <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -preset veryslow -crf 18 -c:a copy <i>output_file</i></code></p>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -pix_fmt yuv420p -preset veryslow -crf 18 -c:a copy <i>output_file</i></code></p>
           <dl>
             <dt>-preset <i>veryslow</i></dt><dd>This option tells ffmpeg to use the slowest preset possible for the best compression quality.</dd>
             <dt>-crf <i>18</i></dt><dd>Specifying a lower CRF will make a larger file with better visual quality. 18 is often considered a “visually lossless” compression.</dd>
-          </dl>
-          <p>libx264 will use a chroma subsampling scheme that is the closest match to that of the input. This can result in YUV 4:2:0, 4:2:2, or 4:4:4 chroma subsampling. QuickTime and most other non-FFmpeg based players can’t decode H.264 files that are not 4:2:0. In order to allow the video to play in all players, you can specify 4:2:0 chroma subsampling:</p>
-          <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -pix_fmt yuv420p -preset veryslow -crf 18 -c:a copy <i>output_file</i></code></p>
-          <dl>
-            <dt>-pix_fmt <i>yuv420p</i></dt><dd>Specifies a pixel format of YUV 4:2:0 to allow the file to play in a standard QuickTime player.</dd>
           </dl>
         </div>
       </div>
