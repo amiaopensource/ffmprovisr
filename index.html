@@ -763,13 +763,7 @@
         <div class="well">
           <h3>Combine audio tracks into one in a video file</h3>
           <p><code>ffmpeg -i <i>input_file</i> -filter_complex "[0:a:0][0:a:1]amerge[out]" -map 0:v -map "[out]" -c:v copy -shortest <i>output_file</i></code></p>
-          <p>This command combines two audio tracks present in a video file
-          into one stream. It can be useful in situations where a downstream
-          process, like YouTube's automatic captioning, expect one audio
-          track. To ensure that you’re mapping the right audio tracks run 
-          ffprobe before writing the script to identify which tracks are 
-          desired. More than two audio streams can be combined by extending the
-          pattern present in the -filter_complex option.</p>
+          <p>This command combines two audio tracks present in a video file into one stream. It can be useful in situations where a downstream process, like YouTube’s automatic captioning, expect one audio track. To ensure that you’re mapping the right audio tracks run ffprobe before writing the script to identify which tracks are desired. More than two audio streams can be combined by extending the pattern present in the -filter_complex option.</p>
           <dl>
             <dt>ffmpeg</dt>
             <dd>starts the command</dd>
