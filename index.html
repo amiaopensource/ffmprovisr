@@ -755,6 +755,45 @@
   </div>
   <!-- ends Split audio and video tracks -->
 
+  <!-- Combine audio tracks  -->
+  <span data-toggle="modal" data-target=".combine_audio"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Combine audio tracks">Combine audio tracks</button></span>
+  <div class="modal fade combine_audio" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Combine audio tracks into one in a video file</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -filter_complex "[0:a:0][0:a:1]amerge[out]" -map 0:v -map "[out]" -c:v copy -shortest <i>output_file</i></code></p>
+          <p>This command combines two audio tracks present in a video file
+          into one stream. It can be useful in situations where a downstream
+          process, like YouTube's automatic captioning, expect one audio
+          track. To ensure that you’re mapping the right audio tracks run 
+          ffprobe before writing the script to identify which tracks are 
+          desired. More than two audio streams can be combined by extending the
+          pattern present in the -filter_complex option.</p>
+          <dl>
+            <dt>ffmpeg</dt>
+            <dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt>
+            <dd>path, name and extension of the input file</dd>
+            <dt>-filter_complex <i>[0:a:0][0:a:1]amerge[out]</i></dt>
+            <dd>combines the two audio tracks into one</dd>
+            <dt>-map <i>0:v</i></dt>
+            <dd>map the video</dd>
+            <dt>-map <i>"[out]"</i></dt>
+            <dd>map the combined audio defined by the filter</dd>
+            <dt>-c:v <i>copy</i></dt>
+            <dd>copy the audio</dd>
+            <dt>-shortest</dt>
+            <dd>limit to the shortest stream</dd>
+            <dt><i>video_output_file</i></dt>
+            <dd>path, name and extension of the video output file</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Combine audio tracks  -->
+
   <!-- Extract audio from an AV file -->
   <span data-toggle="modal" data-target=".extract_audio"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Extract audio without loss from an AV file">Extract audio</button></span>
   <div class="modal fade extract_audio" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
