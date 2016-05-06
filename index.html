@@ -944,6 +944,47 @@
     </div>
   </div>
   <!-- ends Images to video -->
+
+  <!-- Create video from image and audio  -->
+  <span data-toggle="modal" data-target=".image-audio"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create video from image and audio">Create video from image and audio</button></span>
+  <div class="modal fade image-audio" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Create a video from an image and audio file.</h3>
+          <p><code>ffmpeg -r 1 -loop 1 -i <i>image_file</i> -i <i>audio_file</i> -acodec copy -shortest -vf scale=1280:720 <i>output_file</i></code></p>
+          <p>This command will take an image file (e.g. image.jpg) and an 
+          audio file (e.g. audio.mp3) and combine them into a video file that 
+          contains the audio track with the image used as the video. It can be
+          useful in a situation where you might want to upload an audio file to
+          a platform like YouTube. You may want to adjust the scaling with -vf
+          to suit your needs.</p>
+          <dl>
+            <dt>ffmpeg</dt>
+            <dd>starts the command</dd>
+            <dt>-r <i>1</i></dt>
+            <dd>set the framerate</dd>
+            <dt>-loop <i>1</i></dt>
+            <dd>loop the first input stream</dd>
+            <dt>-i <i>image_file</i></dt>
+            <dd>path, name and extension of the image file</dd>
+            <dt>-i <i>audio_file</i></dt>
+            <dd>path, name and extension of the audio file</dd>
+            <dt>-acodec <i>copy</i></dt>
+            <dd>copy the audio</dd>
+            <dt>-shortest</dt>
+            <dd>finish encoding when the shortest input stream ends</dd>
+            <dt>-vf <i>scale=1280:720</i></dt>
+            <dd>filter the video to scale it to 1280x720 for YouTube</dd>
+            <dt><i>video_output_file</i></dt>
+            <dd>path, name and extension of the video output file</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Create video from image and audio -->
+
   <!-- Set field order -->
   <span data-toggle="modal" data-target=".set_field_order"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Set field order for interlaced video">Set field order</button></span>
   <div class="modal fade set_field_order" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
