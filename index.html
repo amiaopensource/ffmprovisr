@@ -953,12 +953,7 @@
         <div class="well">
           <h3>Create a video from an image and audio file.</h3>
           <p><code>ffmpeg -r 1 -loop 1 -i <i>image_file</i> -i <i>audio_file</i> -acodec copy -shortest -vf scale=1280:720 <i>output_file</i></code></p>
-          <p>This command will take an image file (e.g. image.jpg) and an 
-          audio file (e.g. audio.mp3) and combine them into a video file that 
-          contains the audio track with the image used as the video. It can be
-          useful in a situation where you might want to upload an audio file to
-          a platform like YouTube. You may want to adjust the scaling with -vf
-          to suit your needs.</p>
+          <p>This command will take an image file (e.g. image.jpg) and an audio file (e.g. audio.mp3) and combine them into a video file that contains the audio track with the image used as the video. It can be useful in a situation where you might want to upload an audio file to a platform like YouTube. You may want to adjust the scaling with -vf to suit your needs.</p>
           <dl>
             <dt>ffmpeg</dt>
             <dd>starts the command</dd>
@@ -971,11 +966,11 @@
             <dt>-i <i>audio_file</i></dt>
             <dd>path, name and extension of the audio file</dd>
             <dt>-acodec <i>copy</i></dt>
-            <dd>copy the audio</dd>
+            <dd>copy the audio. -acodec is an alias for -c:a</dd>
             <dt>-shortest</dt>
             <dd>finish encoding when the shortest input stream ends</dd>
             <dt>-vf <i>scale=1280:720</i></dt>
-            <dd>filter the video to scale it to 1280x720 for YouTube</dd>
+            <dd>filter the video to scale it to 1280x720 for YouTube. -vf is an alias for -filter:v</dd>
             <dt><i>video_output_file</i></dt>
             <dd>path, name and extension of the video output file</dd>
           </dl>
