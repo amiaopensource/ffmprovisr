@@ -1007,7 +1007,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
-          <h3>Trim a video with re-encoding</h3>
+          <h3>Trim a video without re-encoding</h3>
           <p><code>ffmpeg -i <i>input_file</i> -ss 00:02:00 to 00:55:00 -c copy <i>output_file</i></code></p>
           <p>This command trims the beginning and end of a video file.</p>
           <dl>
@@ -1017,7 +1017,7 @@
 		   <dt>to 00:55:00</dt><dd>sets out point at 00:55:00</dd>
            <dt>-c copy</dt><dd>use stream copy mode (no re-encoding)</dd>
            <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
-		   Note: watch out when using <code>-ss</code> with <code>-c copy</code> when the source is an interframe codec (e.g., H.264). Since ffmpeg must split on i-frames, it will seek to the nearest i-frame to begin the stream copy. 
+		   Note: watch out when using <code>-ss</code> with <code>-c copy</code> when the source is encoded with an interframe codec (e.g., H.264). Since ffmpeg must split on i-frames, it will seek to the nearest i-frame to begin the stream copy. 
 		  </dl>
         </div>
       </div>
