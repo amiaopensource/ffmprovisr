@@ -400,7 +400,7 @@
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-ss 00:02:00</dt><dd>sets in point at 00:02:00</dd>
 		    <dt>-to 00:55:00</dt><dd>sets out point at 00:55:00</dd>
-            <dt>-c copy</dt><dd>use stream copy mode (no re-encoding)
+            <dt>-c copy</dt><dd>use stream copy mode (no re-encoding)<br/>
 			<i>Note:</i> watch out when using <code>-ss</code> with <code>-c copy</code> if the source is encoded with an interframe codec (e.g., H.264). Since ffmpeg must split on i-frames, it will seek to the nearest i-frame to begin the stream copy.</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
 		  </dl>	
@@ -717,7 +717,7 @@
   </div>
   <!-- ends Join files together -->
 
-  <!-- Play image sequance -->
+  <!-- Play image sequence -->
   <span data-toggle="modal" data-target=".play_im_sq"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Play an image sequence directly as moving images">Play an image sequence</button></span>
   <div class="modal fade play_im_sq" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg">
@@ -725,19 +725,22 @@
         <div class="well">
           <h3>Play an image sequence</h3>
           <p>Play an image sequence directly as moving images, without having to create a video first.</p>
-          <p><code>ffplay <i>input_file_%06d.ext</i></code></p>
+          <p><code>ffplay -framerate 5 <i>input_file_%06d.ext</i></code></p>
           <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>ffplay</dt><dd>starts the command</dd>
+			<dt>-framerate 5</dt><dd>plays image sequence at rate of 5 images per second</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file<br/>
-            This must match the naming convention actually used! The regex %06d matches six digits long numbers, possibly with leading zeroes. This allows to read in ascending order, one image after the other, the full sequence inside one folder. The extension for TIFF files is .tif or maybe .tiff; the extension for DPX files is .dpx (or eventually .cin for old files).<br/>
-            The showing speed depends on the image’s file size and on the computing power. It is usually too slow, yet you can visualise immediately the moving images without having to recode and remux into a new file.<br/>
-            You can click into the visualisation window to jump: to the beginning on the left side, to the on the right side, and to every other position proportionally in between.</dd>
+            This must match the naming convention used! The regex %06d matches six-digit-long numbers, possibly with leading zeroes. This allows the full sequence to be read in ascending order, one image after the other.<br/>
+			The extension for TIFF files is .tif or maybe .tiff; the extension for DPX files is .dpx (or even .cin for old files). Screenshots are often in .png format.<br/>
           </dl>
+		  <p>Notes:</p>
+		  <p>If <code>-framerate</code> is omitted, the playback speed depends on the image’s file size and on the computer's processing power. It may be rather slow for large image files.<p/>
+          <p>You can navigate durationally by clicking within the playback window. Clicking towards the left-hand side of the playback window takes you towards the beginning of the playback sequence; clicking towards the right takes you towards the end of the sequence.</p>
         </div>
       </div>
     </div>
   </div>
-  <!-- ends Play image sequance -->
+  <!-- ends Play image sequence -->
 
   <!-- Split audio and video tracks -->
   <span data-toggle="modal" data-target=".split_audio_video"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create separate audio and video tracks from an audiovisual file">Split audio and video tracks</button></span>
