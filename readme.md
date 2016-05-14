@@ -28,4 +28,4 @@ You can read our contributor code of conduct [here](https://github.com/amiaopens
 
 ## AVHack Team:
 
-[Ashley Blewer](https://github.com/ablwr), Eddy Colloton, Rebecca Dillmeier, Jonathan Farbowitz, Rebecca Fraimow, Samuel Gutterman, Kelly Haydon, [Reto Kromer](http://reto.ch/), Nicole Martin, Kieran O'Leary, Catriona Schlosser, Ben Turkus
+[Ashley Blewer](https://github.com/ablwr), Eddy Colloton, Rebecca Dillmeier, Jonathan Farbowitz, Rebecca Fraimow, Samuel Gutterman, Kelly Haydon, [Reto Kromer](https://github.com/retokromer), Nicole Martin, [Katherine Frances Nagels](https://github.com/kfrn), Kieran O'Leary, Catriona Schlosser, Ben Turkus
