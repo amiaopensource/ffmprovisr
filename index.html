@@ -728,7 +728,8 @@
           <p><code>ffplay -framerate 5 <i>input_file_%06d.ext</i></code></p>
           <dl>
             <dt>ffplay</dt><dd>starts the command</dd>
-			<dt>-framerate 5</dt><dd>plays image sequence at rate of 5 images per second</dd>
+			<dt>-framerate 5</dt><dd>plays image sequence at rate of 5 images per second<br/>
+			<em>Note</em>: this low framerate will produce a slideshow effect.</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file<br/>
             This must match the naming convention used! The regex %06d matches six-digit-long numbers, possibly with leading zeroes. This allows the full sequence to be read in ascending order, one image after the other.<br/>
 			The extension for TIFF files is .tif or maybe .tiff; the extension for DPX files is .dpx (or even .cin for old files). Screenshots are often in .png format.<br/>
