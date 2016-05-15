@@ -244,6 +244,7 @@
     </div>
   </div>
   <!-- ends Transcode to FFV1.mkv-->
+  
   <!-- Change display aspect ratio without re-encoding video-->
   <span data-toggle="modal" data-target=".change_DAR"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Change Display Aspect Ratio without re-encoding">Change Display Aspect Ratio</button></span>
   <div class="modal fade change_DAR" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
@@ -399,17 +400,16 @@
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-ss 00:02:00</dt><dd>sets in point at 00:02:00</dd>
-		    <dt>-to 00:55:00</dt><dd>sets out point at 00:55:00</dd>
+	    <dt>-to 00:55:00</dt><dd>sets out point at 00:55:00</dd>
             <dt>-c copy</dt><dd>use stream copy mode (no re-encoding)<br/>
-			<i>Note:</i> watch out when using <code>-ss</code> with <code>-c copy</code> if the source is encoded with an interframe codec (e.g., H.264). Since ffmpeg must split on i-frames, it will seek to the nearest i-frame to begin the stream copy.</dd>
+	    <i>Note:</i> watch out when using <code>-ss</code> with <code>-c copy</code> if the source is encoded with an interframe codec (e.g., H.264). Since ffmpeg must split on i-frames, it will seek to the nearest i-frame to begin the stream copy.</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
-		  </dl>	
-		  <p>Variation: trim video by setting duration, by using <code>-t</code> instead of <code>-to</code></p>
-		  <p><code>ffmpeg -i <i>input_file</i> -ss 00:05:00 -t 10 -c copy <i>output_file</i></code></p>
-		  <dl>  
-			<dt>-ss 00:05:00 -t 10</dt>
-		    <dd>Beginning five minutes into the original video, this command will create a 10-second-long excerpt.</dd>
-		  </dl>
+	  </dl>	
+          <p>Variation: trim video by setting duration, by using <code>-t</code> instead of <code>-to</code></p>
+	  <p><code>ffmpeg -i <i>input_file</i> -ss 00:05:00 -t 10 -c copy <i>output_file</i></code></p>
+	  <dl>  
+	    <dt>-ss 00:05:00 -t 10</dt><dd>Beginning five minutes into the original video, this command will create a 10-second-long excerpt.</dd>
+          </dl>
         </div>
       </div>
     </div>
@@ -728,14 +728,14 @@
           <p><code>ffplay -framerate 5 <i>input_file_%06d.ext</i></code></p>
           <dl>
             <dt>ffplay</dt><dd>starts the command</dd>
-			<dt>-framerate 5</dt><dd>plays image sequence at rate of 5 images per second<br/>
-			<em>Note</em>: this low framerate will produce a slideshow effect.</dd>
+	    <dt>-framerate 5</dt><dd>plays image sequence at rate of 5 images per second<br/>
+	    <i>Note</i>: this low framerate will produce a slideshow effect.</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file<br/>
             This must match the naming convention used! The regex %06d matches six-digit-long numbers, possibly with leading zeroes. This allows the full sequence to be read in ascending order, one image after the other.<br/>
-			The extension for TIFF files is .tif or maybe .tiff; the extension for DPX files is .dpx (or even .cin for old files). Screenshots are often in .png format.<br/>
+	    The extension for TIFF files is .tif or maybe .tiff; the extension for DPX files is .dpx (or even .cin for old files). Screenshots are often in .png format.</dd>
           </dl>
-		  <p>Notes:</p>
-		  <p>If <code>-framerate</code> is omitted, the playback speed depends on the image’s file size and on the computer's processing power. It may be rather slow for large image files.<p/>
+          <p><i>Notes:</i></p>
+	  <p>If <code>-framerate</code> is omitted, the playback speed depends on the image’s file size and on the computer’s processing power. It may be rather slow for large image files.<p/>
           <p>You can navigate durationally by clicking within the playback window. Clicking towards the left-hand side of the playback window takes you towards the beginning of the playback sequence; clicking towards the right takes you towards the end of the sequence.</p>
         </div>
       </div>
@@ -776,22 +776,14 @@
           <p><code>ffmpeg -i <i>input_file</i> -filter_complex "[0:a:0][0:a:1]amerge[out]" -map 0:v -map "[out]" -c:v copy -shortest <i>output_file</i></code></p>
           <p>This command combines two audio tracks present in a video file into one stream. It can be useful in situations where a downstream process, like YouTube’s automatic captioning, expect one audio track. To ensure that you’re mapping the right audio tracks run ffprobe before writing the script to identify which tracks are desired. More than two audio streams can be combined by extending the pattern present in the -filter_complex option.</p>
           <dl>
-            <dt>ffmpeg</dt>
-            <dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt>
-            <dd>path, name and extension of the input file</dd>
-            <dt>-filter_complex <i>[0:a:0][0:a:1]amerge[out]</i></dt>
-            <dd>combines the two audio tracks into one</dd>
-            <dt>-map <i>0:v</i></dt>
-            <dd>map the video</dd>
-            <dt>-map <i>"[out]"</i></dt>
-            <dd>map the combined audio defined by the filter</dd>
-            <dt>-c:v <i>copy</i></dt>
-            <dd>copy the video</dd>
-            <dt>-shortest</dt>
-            <dd>limit to the shortest stream</dd>
-            <dt><i>video_output_file</i></dt>
-            <dd>path, name and extension of the video output file</dd>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-filter_complex <i>[0:a:0][0:a:1]amerge[out]</i></dt><dd>combines the two audio tracks into one</dd>
+            <dt>-map <i>0:v</i></dt><dd>map the video</dd>
+            <dt>-map <i>"[out]"</i></dt><dd>map the combined audio defined by the filter</dd>
+            <dt>-c:v <i>copy</i></dt><dd>copy the video</dd>
+            <dt>-shortest</dt><dd>limit to the shortest stream</dd>
+            <dt><i>video_output_file</i></dt><dd>path, name and extension of the video output file</dd>
           </dl>
         </div>
       </div>
