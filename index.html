@@ -699,18 +699,22 @@
           <h3>Join files together</h3>
           <p><code>ffmpeg -f concat -i mylist.txt -c copy <i>output_file</i></code></p>
           <p>This command takes two or more files of the same file type and joins them together to make a single file. All that the program needs is a text file with a list specifying the files that should be joined. However, it only works properly if the files to be combined have the exact same codec and technical specifications. Be careful, ffmpeg may appear to have successfully joined two video files with different codecs, but may only bring over the audio from the second file or have other weird behaviors. Don’t use this command for joining files with different codecs and technical specs and always preview your resulting video file!</p>
-          <p>ffmpeg documentation on concatenating files (full list of flags, commands, <a href="https://trac.ffmpeg.org/wiki/Concatenate" target="_blank">https://trac.ffmpeg.org/wiki/Concatenate</a>)</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-f concat</dt><dd>forces ffmpeg to concatenate the files and to keep the same file format</dd>
-            <dt>-i <i>mylist.txt</i></dt><dd>path, name and extension of the input file. This text file contains the list of files to be concatenated and should be formatted as follows:
-              <pre><i>path_name_and_extension_to_the_first_file
-  path_name_and_extension_to_the_second_file
-  . . .
-  path_name_and_extension_to_the_last_file</i></pre></dd>
+            <dt>-i <i>mylist.txt</i></dt><dd>path, name and extension of the input file. Per the <a href="https://www.ffmpeg.org/ffmpeg-formats.html#Options">ffmpeg documentation</a>, it is preferable to specify relative rather than absolute file paths, as allowing absolute file paths may pose a security risk.<br>
+            This text file contains the list of files to be concatenated and should be formatted as follows:
+            <pre>file '<i>./first_file.ext</i>'
+file '<i>./second_file.ext</i>'
+. . .
+file '<i>./last_file.ext</i>'</pre>
+In the above, <strong>file</strong> is simply the word "file".<br/>
+<i>Note</i>: If specifying absolute file paths in the .txt file, add <code>-safe 0</code> before the input file.<br/>
+e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></code></dd>
             <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
+          <p>For more information, see the <a href="https://trac.ffmpeg.org/wiki/Concatenate">ffmpeg wiki page on concatenating files</a>.</p>
         </div>
       </div>
     </div>
