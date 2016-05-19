@@ -26,6 +26,41 @@ If you are having trouble with the coding it yourself or with github knowledge, 
 
 You can read our contributor code of conduct [here](https://github.com/amiaopensource/ffmprovisr/blob/gh-pages/code_of_conduct.md).
 
+## Contributors
+* Gathered using [octohatrack](https://github.com/LABHR/octohatrack)
+
+GitHub Contributors:
+ablwr (Ashley)
+edsu (Ed Summers)
+jfarbowitz (Jonathan Farbowitz)
+kfrn (Katherine Frances Nagels)
+kgrons (Kathryn Gronsbell)
+kieranjol (Kieran O'Leary)
+llogan (Lou)
+retokromer (Reto Kromer)
+rfraimow
+
+All Contributors:
+ablwr (Ashley)
+brainwane (Sumana Harihareswara)
+dericed (Dave Rice)
+edsu (Ed Summers)
+jamessam (Jim)
+jfarbowitz (Jonathan Farbowitz)
+jronallo (Jason Ronallo)
+kfrn (Katherine Frances Nagels)
+kgrons (Kathryn Gronsbell)
+kieranjol (Kieran O'Leary)
+llogan (Lou)
+mulvya
+retokromer (Reto Kromer)
+rfraimow
+todrobbins (Tod Robbins)
+
+Repo: amiaopensource/ffmprovisr
+GitHub Contributors: 9
+All Contributors: 15
+
 ## AVHack Team:
 
 [Ashley Blewer](https://github.com/ablwr), Eddy Colloton, Rebecca Dillmeier, [Jonathan Farbowitz](https://github.com/jfarbowitz), Rebecca Fraimow, Samuel Gutterman, Kelly Haydon, [Reto Kromer](https://github.com/retokromer), Nicole Martin, [Katherine Frances Nagels](https://github.com/kfrn), [Kieran O'Leary](https://github.com/kieranjol), Catriona Schlosser, Ben Turkus
