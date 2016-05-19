@@ -30,36 +30,36 @@ You can read our contributor code of conduct [here](https://github.com/amiaopens
 * Gathered using [octohatrack](https://github.com/LABHR/octohatrack)
 
 GitHub Contributors:
-ablwr (Ashley)
-edsu (Ed Summers)
-jfarbowitz (Jonathan Farbowitz)
-kfrn (Katherine Frances Nagels)
-kgrons (Kathryn Gronsbell)
-kieranjol (Kieran O'Leary)
-llogan (Lou)
-retokromer (Reto Kromer)
-rfraimow
+* ablwr (Ashley)
+* edsu (Ed Summers) 
+* jfarbowitz (Jonathan Farbowitz) 
+* kfrn (Katherine Frances Nagels) 
+* kgrons (Kathryn Gronsbell) 
+* kieranjol (Kieran O'Leary) 
+* llogan (Lou) 
+* retokromer (Reto Kromer) 
+* rfraimow 
 
 All Contributors:
-ablwr (Ashley)
-brainwane (Sumana Harihareswara)
-dericed (Dave Rice)
-edsu (Ed Summers)
-jamessam (Jim)
-jfarbowitz (Jonathan Farbowitz)
-jronallo (Jason Ronallo)
-kfrn (Katherine Frances Nagels)
-kgrons (Kathryn Gronsbell)
-kieranjol (Kieran O'Leary)
-llogan (Lou)
-mulvya
-retokromer (Reto Kromer)
-rfraimow
-todrobbins (Tod Robbins)
+* ablwr (Ashley) 
+* brainwane (Sumana Harihareswara) 
+* dericed (Dave Rice) 
+* edsu (Ed Summers) 
+* jamessam (Jim) 
+* jfarbowitz (Jonathan Farbowitz) 
+* jronallo (Jason Ronallo) 
+* kfrn (Katherine Frances Nagels) 
+* kgrons (Kathryn Gronsbell) 
+* kieranjol (Kieran O'Leary) 
+* llogan (Lou) 
+* mulvya 
+* retokromer (Reto Kromer) 
+* rfraimow 
+* todrobbins (Tod Robbins) 
 
 Repo: amiaopensource/ffmprovisr
-GitHub Contributors: 9
-All Contributors: 15
+* GitHub Contributors: 9
+* All Contributors: 15
 
 ## AVHack Team:
 
