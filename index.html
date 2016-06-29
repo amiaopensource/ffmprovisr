@@ -41,7 +41,7 @@
 
   <!-- WAV to MP3 -->
   <span data-toggle="modal" data-target="#wav_to_mp3"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Converts WAV to MP3">WAV to MP3</button></span>
-  <div id="wav_to_mp3" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="wav_to_mp3" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -98,7 +98,7 @@
 
   <!-- Transcode to H.264 -->
   <span data-toggle="modal" data-target="#transcode_h264"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode to an H.264 access file">Transcode to H.264</button></span>
-  <div id="transcode_h264" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="transcode_h264" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -199,7 +199,7 @@
 
   <!-- 16:9 to 4:3 -->
   <span data-toggle="modal" data-target="#HD_SD"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transform 16:9 aspect ratio video into 4:3 with letterbox">16:9 to 4:3</button></span>
-  <div id="HD_SD" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="HD_SD" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -223,7 +223,7 @@
 
   <!-- Transcode to FFV1.mkv -->
   <span data-toggle="modal" data-target="#create_FFV1_mkv"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode your file with the FFV1 Version 3 Codec in a matroska container">Create FFV1.mkv</button></span>
-  <div id="create_FFV1_mkv" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="create_FFV1_mkv" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -255,7 +255,7 @@
   
   <!-- Change display aspect ratio without re-encoding video-->
   <span data-toggle="modal" data-target="#change_DAR"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Change Display Aspect Ratio without re-encoding">Change Display Aspect Ratio</button></span>
-  <div id="change_DAR" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="change_DAR" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -275,13 +275,37 @@
   </div>
   <!-- ends Change display aspect ratio without re-encoding video -->
 
+ <!-- MKV to MP4 -->
+  <span data-toggle="modal" data-target="#mkv_to_mp4"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Converts MKV to MP4">MKV to MP4</button></span>
+  <div id="mkv_to_mp4" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>MKV to MP4</h3>
+          <p><code>ffmpeg -i <i>input_file</i>.mkw -c:v copy -c:a aac <i>output_file</i>.mp4</code></p>
+          <p>This will convert your Matroska (MKV) files to MP4 files.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path and name of the input file</dd>
+            <dt>-c:v copy</dt><dd>re-encodes using the same video codec</dd>
+            <dt>-c:a aac</dt><dd>re-encodes using the AAC audio codec</dd>
+            <dt><i>output_file</i></dt><dd>path and name of the output file<br/>
+            For silent videos you can replace <code>-c:a aac</code> by <code>-an</code>.</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends MKV to MP4 -->
+
   </div>
   <div class="well">
   <h4>Make derivative variations</h4>
 
   <!-- Create GIF -->
   <span data-toggle="modal" data-target="#create_gif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create a GIF from a video">Create GIF</button></span>
-  <div id="create_gif" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="create_gif" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -311,7 +335,7 @@
 
   <!-- One thumbnail -->
   <span data-toggle="modal" data-target="#one_thumbnail"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Export one thumbnail per video file">One thumbnail</button></span>
-  <div id="one_thumbnail" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="one_thumbnail" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -334,7 +358,7 @@
 
   <!-- Multi thumbnail -->
   <span data-toggle="modal" data-target="#multi_thumbnail"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Export many thumbnails per video file">Many thumbnails</button></span>
-  <div id="multi_thumbnail" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="multi_thumbnail" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -357,7 +381,7 @@
 
   <!-- Generate thumbnails -->
   <span data-toggle="modal" data-target="#thumbnails"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Generate thumbnails from a video at regular intervals">Generate thumbnails</button></span>
-  <div id="thumbnails" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="thumbnails" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -380,7 +404,7 @@
 
   <!-- Excerpt from beginning -->
   <span data-toggle="modal" data-target="#excerpt_from_start"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create an excerpt, starting from the beginning of the file">Excerpt from beginning</button></span>
-  <div id="excerpt_from_start" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="excerpt_from_start" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -403,7 +427,7 @@
 
   <!-- Trim -->
   <span data-toggle="modal" data-target="#trim"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Trim video">Trim video</button></span>
-  <div id="trim" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="trim" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -433,7 +457,7 @@
 
   <!-- Excerpt to end -->
   <span data-toggle="modal" data-target="#excerpt_to_end"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create a new video file with the first five seconds trimmed off the original">Excerpt to end</button></span>
-  <div id="excerpt_to_end" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="excerpt_to_end" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -456,7 +480,7 @@
 
   <!-- Excerpt from end -->
   <span data-toggle="modal" data-target="#excerpt_from_end"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create a new video file with the final five seconds of the original">Excerpt from end</button></span>
-  <div id="excerpt_from_end" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="excerpt_from_end" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -479,7 +503,7 @@
 
   <!-- Create ISO -->
   <span data-toggle="modal" data-target="#create_iso"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create ISO files for DVD access">Create ISO</button></span>
-  <div id="create_iso" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="create_iso" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -507,7 +531,7 @@
 
   <!-- batch processing -->
   <span data-toggle="modal" data-target="#batch_processing"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="FFMPEG batch processing within a single folder">Batch processing</button></span>
-  <div id="batch_processing" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="batch_processing" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -529,7 +553,7 @@
 
   <!-- Create frame md5s -->
   <span data-toggle="modal" data-target="#create_frame_md5s"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="This will create an MD5 checksum per video frame">Create MD5 checksums</button></span>
-  <div id="create_frame_md5s" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="create_frame_md5s" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -552,7 +576,7 @@
 
   <!-- Pull specs -->
   <span data-toggle="modal" data-target="#pull_specs"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Pull specs from video file">Pull specs</button></span>
-  <div id="pull_specs" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="pull_specs" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -577,7 +601,7 @@
 
   <!-- Check FFV1 fixity -->
   <span data-toggle="modal" data-target="#check_FFV1_fixity"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="This decodes your video and verifies the internal crc checksums">Check FFV1 fixity</button></span>
-  <div id="check_FFV1_fixity" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="check_FFV1_fixity" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -605,7 +629,7 @@
 
   <!-- Mandelbrot -->
   <span data-toggle="modal" data-target="#mandelbrot"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Make a mandelbrot test pattern video">Mandelbrot</button></span>
-  <div id="mandelbrot" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="mandelbrot" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -628,7 +652,7 @@
 
   <!-- SMPTE bars -->
   <span data-toggle="modal" data-target="#smpte_bars"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Make a SMPTE bars test pattern video">SMPTE bars</button></span>
-  <div id="smpte_bars" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="smpte_bars" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -651,7 +675,7 @@
 
   <!-- Test pattern video -->
   <span data-toggle="modal" data-target="#test"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Make a test pattern video">Test pattern</button></span>
-  <div id="test" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="test" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -674,7 +698,7 @@
 
   <!-- Play HD SMPTE bars -->
   <span data-toggle="modal" data-target="#play_hd_smpte"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Test an HD video projector by playing the SMPTE colour bars pattern">Play HD SMPTE bars</button></span>
-  <div id="play_hd_smpte" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="play_hd_smpte" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -695,7 +719,7 @@
 
   <!-- Play VGA SMPTE bars -->
   <span data-toggle="modal" data-target="#play_vga_smpte"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Test a VGA video projector by playing the SMPTE colour bars pattern">Play VGA SMPTE bars</button></span>
-  <div id="play_vga_smpte" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="play_vga_smpte" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -720,7 +744,7 @@
 
   <!-- Join files together -->
   <span data-toggle="modal" data-target="#join_files"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Join (concatenate) two or more files into a single file">Join files together</button></span>
-  <div id="join_files" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="join_files" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -752,7 +776,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Play image sequence -->
   <span data-toggle="modal" data-target="#play_im_sq"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Play an image sequence directly as moving images">Play an image sequence</button></span>
-  <div id="play_im_seq" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="play_im_seq" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -779,7 +803,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Split audio and video tracks -->
   <span data-toggle="modal" data-target="#split_audio_video"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create separate audio and video tracks from an audiovisual file">Split audio and video tracks</button></span>
-  <div id="split_audio_video" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="split_audio_video" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -803,7 +827,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Combine audio tracks  -->
   <span data-toggle="modal" data-target="#combine_audio"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Combine audio tracks">Combine audio tracks</button></span>
-  <div id="combine_audio" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="combine_audio" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -829,7 +853,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Extract audio from an AV file -->
   <span data-toggle="modal" data-target="#extract_audio"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Extract audio without loss from an AV file">Extract audio</button></span>
-  <div id="extract_audio" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="extract_audio" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -852,7 +876,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Flip image -->
   <span data-toggle="modal" data-target="#flip_image"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Flip the image">Flip image</button></span>
-  <div id="flip_image" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="flip_image" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -875,7 +899,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Modify speed -->
   <span data-toggle="modal" data-target="#modify_speed"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Modify image and sound speed">Modify speed</button></span>
-  <div id="modify_speed" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="modify_speed" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -904,7 +928,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Text Watermark -->
   <span data-toggle="modal" data-target="#text_watermark"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create opaque centered text watermark ">Text Watermark</button></span>
-  <div id="text_watermark" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="text_watermark" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -935,7 +959,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Burn in timecode-->
   <span data-toggle="modal" data-target="#burn_in_timecode"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Burn in timecode ">Burn in timecode</button></span>
-  <div id="burn_in_timecode" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="burn_in_timecode" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -967,7 +991,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Images to video -->
   <span data-toggle="modal" data-target="#images_2_video"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode an image sequence into uncompressed 10-bit video">Image sequence into video</button></span>
-  <div id="images_2_video" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="images_2_video" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -992,7 +1016,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Create video from image and audio  -->
   <span data-toggle="modal" data-target="#image-audio"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create video from image and audio">Create video from image and audio</button></span>
-  <div id="image-audio" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="image-audio" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
@@ -1019,7 +1043,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Set field order -->
   <span data-toggle="modal" data-target="#set_field_order"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Set field order for interlaced video">Set field order</button></span>
-  <div id="set_field_order" class="modal fade"  tabindex="-1" role="dialog">
+  <div id="set_field_order" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
