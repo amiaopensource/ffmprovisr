@@ -9,7 +9,7 @@ $(document).ready(function() {
     $(window.location.hash).modal('show');
     // add direct link to modal window
     $(".link").empty();
-    $(".link").append("<small>Link to this command: "+window.location.href+"</small>");
+    $(".link").append("<small>Link to this command: <a href="+window.location.href+">"+window.location.href+"</a></small>");
   }
 
   // add hash to URL when modal is opened
@@ -17,7 +17,7 @@ $(document).ready(function() {
     window.location.hash = $(this).attr("data-target");
     // add direct link to modal window
     $(".link").empty();
-    $(".link").append("<small>Link to this command: "+window.location.href+"</small>");
+    $(".link").append("<small>Link to this command: <a href="+window.location.href+">"+window.location.href+"</a></small>");
   });
 
   // remove hash from URL when modal is closed
