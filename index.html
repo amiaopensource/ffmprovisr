@@ -87,7 +87,8 @@
             </ul></dd>
             <dt>-vf yadif</dt><dd>Runs a deinterlacing video filter (yet another deinterlacing filter) on the new file</dd>
             <dt>-c:a pcm_s16le</dt><dd>Tells ffmpeg to encode the audio stream in 16-bit linear PCM</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file<br/>
+            The extension for the QuickTime container is <code>.mov</code>.</dd>
           </dl>
           <p class="link"></p>
         </div>
@@ -286,11 +287,14 @@
           <p>This will convert your Matroska (MKV) files to MP4 files.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path and name of the input file</dd>
+            <dt>-i <i>input_file</i></dt><dd>path and name of the input file<br/>
+            The extension for the Matroska container is <code>.mkv</code>.</dd>
             <dt>-c:v copy</dt><dd>re-encodes using the same video codec</dd>
             <dt>-c:a aac</dt><dd>re-encodes using the AAC audio codec<br/>
+            Note that sadly MP4 cannot contain sound encoded by a PCM (Pulse-Code Modulation) audio codec.<br/>
             For silent videos you can replace <code>-c:a aac</code> by <code>-an</code>.</dd>
-            <dt><i>output_file</i></dt><dd>path and name of the output file</dd>
+            <dt><i>output_file</i></dt><dd>path and name of the output file<br/>
+            The extension for the MP4 container is <code>.mp4</code>.</dd>
           </dl>
           <p class="link"></p>
         </div>
@@ -438,15 +442,15 @@
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-ss 00:02:00</dt><dd>sets in point at 00:02:00</dd>
-	    <dt>-to 00:55:00</dt><dd>sets out point at 00:55:00</dd>
+            <dt>-to 00:55:00</dt><dd>sets out point at 00:55:00</dd>
             <dt>-c copy</dt><dd>use stream copy mode (no re-encoding)<br/>
-	    <i>Note:</i> watch out when using <code>-ss</code> with <code>-c copy</code> if the source is encoded with an interframe codec (e.g., H.264). Since ffmpeg must split on i-frames, it will seek to the nearest i-frame to begin the stream copy.</dd>
+            <i>Note:</i> watch out when using <code>-ss</code> with <code>-c copy</code> if the source is encoded with an interframe codec (e.g., H.264). Since ffmpeg must split on i-frames, it will seek to the nearest i-frame to begin the stream copy.</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
-	  </dl>	
+          </dl>	
           <p>Variation: trim video by setting duration, by using <code>-t</code> instead of <code>-to</code></p>
-	  <p><code>ffmpeg -i <i>input_file</i> -ss 00:05:00 -t 10 -c copy <i>output_file</i></code></p>
-	  <dl>  
-	    <dt>-ss 00:05:00 -t 10</dt><dd>Beginning five minutes into the original video, this command will create a 10-second-long excerpt.</dd>
+          <p><code>ffmpeg -i <i>input_file</i> -ss 00:05:00 -t 10 -c copy <i>output_file</i></code></p>
+          <dl>
+            <dt>-ss 00:05:00 -t 10</dt><dd>Beginning five minutes into the original video, this command will create a 10-second-long excerpt.</dd>
           </dl>
           <p class="link"></p>
         </div>
@@ -785,14 +789,14 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
           <p><code>ffplay -framerate 5 <i>input_file_%06d.ext</i></code></p>
           <dl>
             <dt>ffplay</dt><dd>starts the command</dd>
-	    <dt>-framerate 5</dt><dd>plays image sequence at rate of 5 images per second<br/>
-	    <i>Note</i>: this low framerate will produce a slideshow effect.</dd>
+            <dt>-framerate 5</dt><dd>plays image sequence at rate of 5 images per second<br/>
+            <i>Note</i>: this low framerate will produce a slideshow effect.</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file<br/>
             This must match the naming convention used! The regex %06d matches six-digit-long numbers, possibly with leading zeroes. This allows the full sequence to be read in ascending order, one image after the other.<br/>
-	    The extension for TIFF files is .tif or maybe .tiff; the extension for DPX files is .dpx (or even .cin for old files). Screenshots are often in .png format.</dd>
+            The extension for TIFF files is .tif or maybe .tiff; the extension for DPX files is .dpx (or even .cin for old files). Screenshots are often in .png format.</dd>
           </dl>
           <p><i>Notes:</i></p>
-	  <p>If <code>-framerate</code> is omitted, the playback speed depends on the images’ file sizes and on the computer’s processing power. It may be rather slow for large image files.</p>
+          <p>If <code>-framerate</code> is omitted, the playback speed depends on the images’ file sizes and on the computer’s processing power. It may be rather slow for large image files.</p>
           <p>You can navigate durationally by clicking within the playback window. Clicking towards the left-hand side of the playback window takes you towards the beginning of the playback sequence; clicking towards the right takes you towards the end of the sequence.</p>
           <p class="link"></p>
         </div>
