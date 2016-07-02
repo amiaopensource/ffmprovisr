@@ -87,7 +87,8 @@
             </ul></dd>
             <dt>-vf yadif</dt><dd>Runs a deinterlacing video filter (yet another deinterlacing filter) on the new file</dd>
             <dt>-c:a pcm_s16le</dt><dd>Tells ffmpeg to encode the audio stream in 16-bit linear PCM</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file<br/>
+            The extension for the QuickTime container is <code>.mov</code>.</dd>
           </dl>
           <p class="link"></p>
         </div>
@@ -286,12 +287,14 @@
           <p>This will convert your Matroska (MKV) files to MP4 files.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path and name of the input file</dd>
+            <dt>-i <i>input_file</i></dt><dd>path and name of the input file<br/>
+            The extension for the Matroska container is <code>.mkv</code>.</dd>
             <dt>-c:v copy</dt><dd>re-encodes using the same video codec</dd>
             <dt>-c:a aac</dt><dd>re-encodes using the AAC audio codec<br/>
             Note that sadly MP4 cannot contain sound encoded by a PCM (Pulse-Code Modulation) audio codec.<br/>
             For silent videos you can replace <code>-c:a aac</code> by <code>-an</code>.</dd>
-            <dt><i>output_file</i></dt><dd>path and name of the output file</dd>
+            <dt><i>output_file</i></dt><dd>path and name of the output file<br/>
+            The extension for the MP4 container is <code>.mp4</code>.</dd>
           </dl>
           <p class="link"></p>
         </div>
