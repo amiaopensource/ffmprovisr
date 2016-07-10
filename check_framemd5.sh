@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
   SCRIPT=$(basename $0)
  VERSION='2016-07-10'
-  AUTHOR='Kieran O\'Leary, Reto Kromer'
+  AUTHOR='ffmprovisr'
      RED='\033[1;31m'
    BLUE='\033[1;34m'
       NC='\033[0m'
