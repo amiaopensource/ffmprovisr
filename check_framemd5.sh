@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
   SCRIPT=$(basename $0)
  VERSION='2016-07-10'
   AUTHOR='Kieran O\'Leary, Reto Kromer'
