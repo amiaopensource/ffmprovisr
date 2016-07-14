@@ -548,7 +548,7 @@
         <div class="well">
           <h3>Create Bash Script named “Rewrap-MXF.sh” to do Batch FFmpeg Processing</h3>
           <p><code>for f in *.MXF; do ffmpeg -i "$f" -map 0 -c copy "${f%.MXF}.mov"; done</code></p>
-          <p>Re-wrap .MFX files in a specified directory to .mov files by using this code within a .sh file. The shell script (.sh file) and all MXF files must be contained in the same directory, and the script must be run from the directory itself (cd ~/Desktop/MXF_file_directory). Execute .sh file with the command <code>sh Rewrap-MXF.sh</code></p>
+          <p>Re-wrap <code>.MFX</code> files in a specified directory to <code>.mov</code> files by using this code within a <code>.sh</code> file. The shell script (.sh file) and all MXF files must be contained in the same directory, and the script must be run from the directory itself (cd ~/Desktop/MXF_file_directory). Execute <code>.sh</code> file with the command <code>sh Rewrap-MXF.sh</code></p>
           <dl>
             <dt>-map 0</dt><dd>select all input streams to map to output</dd>
             <dt>-c copy</dt><dd>enable stream copy. This will re-mux wihout re-encoding, so quality is preserved</dd>
