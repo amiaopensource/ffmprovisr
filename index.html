@@ -237,19 +237,19 @@
         <div class="well">
           <h3>Create FFV1 Version 3 video in a Matroska container with framemd5 of input</h3>
           <p><code>ffmpeg -i <i>input_file</i> -map 0 -dn -c:v ffv1 -level 3 -g 1 -slicecrc 1 -slices 16 -c:a copy <i>output_file</i>.mkv -f framemd5 -an <i>md5_output_file</i></code></p>
-          <p>This will losslessly trancode your video with the FFV1 Version 3 codec in a Matroska container. In order to verify losslessness, a framemd5 of the source video is also generated. For more information on FFV1 encoding, <a href="https://trac.ffmpeg.org/wiki/Encode/FFV1" target="_blank">try the ffmpeg wiki.</a> </p>
+          <p>This will losslessly trancode your video with the FFV1 Version 3 codec in a Matroska container. In order to verify losslessness, a framemd5 of the source video is also generated. For more information on FFV1 encoding, <a href="https://trac.ffmpeg.org/wiki/Encode/FFV1" target="_blank">try the ffmpeg wiki</a>.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command.</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file.</dd>
             <dt>-map 0</dt><dd>Map all streams that are present in the input file. This is important as ffmpeg will map only one stream of each type (video, audio, subtitles) by default to the output video.</dd>
-            <dt>-dn</dt><dd>ignore data streams (data no). The matroska container does not allow data tracks.</dd>
+            <dt>-dn</dt><dd>ignore data streams (data no). The Matroska container does not allow data tracks.</dd>
             <dt>-c:v ffv1</dt><dd>specifies the FFV1 video codec.</dd>
             <dt>-level 3</dt><dd>specifies Version 3 of the FFV1 codec.</dd>
             <dt>-g 1</dt><dd>specifies intra-frame encoding, or GOP=1.</dd>
             <dt>-slicecrc 1</dt><dd>Adds CRC information for each slice. This makes it possible for a decoder to detect errors in the bitstream, rather than blindly decoding a broken slice.</dd>
-            <dt>-slices 16</dt><dd>Each frame is split into 16 slices. 16 is a good trade-off between filesize and encoding time. <a href="http://ndsr.nycdigital.org/diving-in-head-first/" target="_blank">[more]</a> </dd>
+            <dt>-slices 16</dt><dd>Each frame is split into 16 slices. 16 is a good trade-off between filesize and encoding time. <a href="http://ndsr.nycdigital.org/diving-in-head-first/" target="_blank">[more]</a></dd>
             <dt>-c:a copy</dt><dd>copies all mapped audio streams.</dd>
-            <dt><i>output_file</i>.mkv</dt><dd>path and name of the output file. Use the <code>.mkv</code> extension to save your file in a matroska container. Optionally, choose a different extension if you want a different container, such as <code>.mov</code> or <code>.avi.</code></dd>
+            <dt><i>output_file</i>.mkv</dt><dd>path and name of the output file. Use the <code>.mkv</code> extension to save your file in a Matroska container. Optionally, choose a different extension if you want a different container, such as <code>.mov</code> or <code>.avi</code>.</dd>
             <dt>-f framemd5</dt><dd> Decodes video with the framemd5 muxer in order to generate md5 checksums for every frame of your input file. This allows you to verify losslessness when compared against the framemd5s of the output file.</dd>
             <dt>-an</dt><dd>ignores the audio stream when creating framemd5 (audio no)</dd>
             <dt><i>framemd5_output_file</i></dt><dd>path, name and extension of the framemd5 file.</dd>
@@ -273,7 +273,7 @@
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-c:v copy</dt><dd>Copy all mapped video streams.</dd>
-            <dt>-aspect 4:3</dt><dd>Change Display Aspect Ratio to <code>4:3</code>. Experiment with other aspect ratios such as <code>16:9</code>. If used together with <code>-c:v copy</code>, it will affect the aspect ratio stored at container level, but not the aspect ratio stored in encoded frames, if it exists. </dd>
+            <dt>-aspect 4:3</dt><dd>Change Display Aspect Ratio to <code>4:3</code>. Experiment with other aspect ratios such as <code>16:9</code>. If used together with <code>-c:v copy</code>, it will affect the aspect ratio stored at container level, but not the aspect ratio stored in encoded frames, if it exists.</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
           <p class="link"></p>
@@ -658,9 +658,8 @@
   <!-- ends Check interlacement   -->
 
   </div>
-
   <div class="well">
-    <h4>Test videos</h4>
+  <h4>Test videos</h4>
 
   <!-- Mandelbrot -->
   <span data-toggle="modal" data-target="#mandelbrot"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Make a mandelbrot test pattern video">Mandelbrot</button></span>
@@ -1114,7 +1113,6 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
             <dt>-show_streams</dt><dd>Shows metadata of stream properties</dd>
           </dl>
           <p>Values that are set to 'unknown' and 'undetermined' may be unspecified within the stream. An unknown aspect ratio would be expressed as '0:1'. Streams with many unknown properties may have interoperability issues or not play as intended. In many cases, an unknown or undetermined value may be accurate because the information about the source is unclear, but often the value is intended to be known. In many cases the stream will played with an assumed value if undetermined (for instance a display_aspect_ratio of '0:1' may be played as 'WIDTH:HEIGHT'), but this may or may not be what is intended. Use carefully.</p>
-          <p class="link"></p>
           <h4>Set aspect ratio</h4>
           <p>If the display_aspect_ratio is set to '0:1' it may be clarified with the <i>-aspect</i> option and stream copy.</p>
           <p><code>ffmpeg -i <i>input_file</i> -c copy -map 0 -aspect DAR_NUM:DAR_DEN <i>output_file</i></code></p>
