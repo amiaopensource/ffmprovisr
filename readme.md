@@ -8,15 +8,17 @@ Project Objective: To facilitate better understanding of FFmpeg through collabor
 
 ## How do I see it?
 
-Code stuff in the gh-pages branch. Readme is right here. The site is live and lives on github pages. You can see it [here](http://amiaopensource.github.io/ffmprovisr).
+Code stuff in the gh-pages branch (the default primary branch). Readme is right here. The site is live and lives on github pages. You can see it [here](http://amiaopensource.github.io/ffmprovisr).
 
 ## How do I contribute?
 
 You are welcome to edit the codebase yourself or just supply the information and ask it to be added to the site.
 
-To contribute to this project directly (and more quickly), clone this repository and create a new branch (`git checkout -b your-branch-name`) and add or modify a new block in index.html. Then submit a pull request and someone can review and integrate your code. There is a commented-out sample available in index.html that can be used to build your own block.
+To contribute to this project directly (and more quickly), clone this repository and create a new branch (`git checkout -b your-branch-name`) and add or modify a new block in index.html. Then submit a pull request and someone can review and integrate your code. There is a commented-out sample available at the bottom of index.html that can be used to build your own block.
 
-If you are having trouble with the coding it yourself or with github knowledge, feel free to [submit an issue](https://github.com/amiaopensource/ffmprovisr/issues) with the kind of command you would like to see added to the site.
+If you are having trouble with the coding it yourself or with github, feel free to [submit an issue](https://github.com/amiaopensource/ffmprovisr/issues) with the kind of command you would like to see added to the site.
+
+If you want to help but don't have a new script to add, you can help us by testing out the scripts available, by refining or clarifying the documentation, or [creating an issue](https://github.com/amiaopensource/ffmprovisr/issues) for anything that sounds confusing and requires clarification.
 
 ## License
 
