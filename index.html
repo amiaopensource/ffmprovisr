@@ -634,6 +634,29 @@
   </div>
   <!-- ends Check FFV1 Fixity  -->
 
+  <!-- Check interlacement  -->
+  <span data-toggle="modal" data-target="#check_interlacement"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="This identifies interlacement patterns in a video file">Check interlacement </button></span>
+  <div id="check_interlacement" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Check video file interlacement patterns</h3>
+          <p><code>ffmpeg -i <i>input file</i> -filter:v idet -f null -</code></p>
+          <p></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-filter:v idet</dt><dd>This calls the  <a href="https://ffmpeg.org/ffmpeg-filters.html#idet">idet (detect video interlacing type) filter</a>.</dd>
+            <dt>-f null</dt><dd>Video is decoded with the <code>null</code> muxer. This allows video decoding without creating an output file.</dd>
+            <dt>-</dt><dd>FFmpeg syntax requires a specified output, and <code>-</code> is just a place holder. No file is actually created. </dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Check interlacement   -->
+
   </div>
 
   <div class="well">
