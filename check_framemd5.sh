@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-  SCRIPT=$(basename $0)
- VERSION='2016-07-10'
+  SCRIPT=$(basename "${0}")
+ VERSION='2016-07-23'
   AUTHOR='ffmprovisr'
      RED='\033[1;31m'
    BLUE='\033[1;34m'
@@ -8,32 +8,29 @@
 
 output_prompt() {
     cat <<END_OF_MSG
-Usage: $SCRIPT [-h | <av_file> <md5_file>]
-END_OF_MSG
-}
-
-output_version() {
-    cat <<END_OF_MSG
-$SCRIPT $VERSION $AUTHOR
+Usage: ${SCRIPT} [-h | <av_file> <md5_file>]
 END_OF_MSG
 }
 
 output_help() {
     cat <<END_OF_MSG
 Syntax:
-  $SCRIPT
+  ${SCRIPT}
     Prompts a short help message.
-  $SCRIPT -h
+  ${SCRIPT} -h
     This help.
-  $SCRIPT <av_file> <md5_file>
+  ${SCRIPT} <av_file> <md5_file>
     Pass to the script the audio-visual file and the corresponding MD5
     file to check.
 Dependency:
   ffmpeg
+About:
+  Version: ${VERSION}
+  Website: https://github.com/amiaopensource/ffmprovisr/blob/gh-pages/check_framemd5.sh
 END_OF_MSG
 }
 
-if [ ! $(which diff) ] ; then
+if [[ $OSTYPE == "cygwin" ]] || [ ! $(which diff) ] ; then
     echo -e "${RED}ERROR:${NC} diff is not installed by default. Please install diffutils from Cygwin."
     exit 1
 fi
@@ -44,9 +41,6 @@ if [ "$#" -eq 0 ]; then
 elif [ "$#" -eq 1 ]; then
     if [ "$1" == '-h' ]; then
         output_help
-        exit 0
-    elif [ "$1" == '-v' ]; then
-        output_version    
         exit 0
     else
         echo -e "${RED}ERROR:${NC} '$1' is an invalid argument."
@@ -68,6 +62,7 @@ elif [ "$#" -eq 2 ]; then
         else 
             md5_tmp="$HOME/$(basename $2).tmp"
         fi
+        echo "Please wait..."
         $(ffmpeg -y -i $1 -loglevel 0 -f framemd5 -an $md5_tmp)
         old_file=$(grep -v '^#' $2)
         tmp_file=$(grep -v '^#' $md5_tmp)
