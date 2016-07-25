@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
   SCRIPT=$(basename "${0}")
- VERSION='2016-07-24'
+ VERSION='2016-07-25'
   AUTHOR='ffmprovisr'
      RED='\033[1;31m'
    BLUE='\033[1;34m'
@@ -35,11 +35,11 @@ if [[ $OSTYPE == "cygwin" ]] || [ ! $(which diff) ] ; then
     exit 1
 fi
 
-if [ "$#" -eq 0 ]; then
+if [ "${#}" -eq 0 ]; then
     _output_prompt
     exit 0
-elif [ "$#" -eq 1 ]; then
-    if [ "$1" == '-h' ]; then
+elif [ "${#}" -eq 1 ]; then
+    if [ "${1}" == '-h' ]; then
         _output_help
         exit 0
     else
@@ -47,35 +47,35 @@ elif [ "$#" -eq 1 ]; then
         _output_prompt
         exit 1
     fi
-elif [ "$#" -eq 2 ]; then
-    if ! [ -f "$1" ]; then
-        echo -e "${RED}ERROR:${NC} There is no file '$(basename $1)'."
+elif [ "${#}" -eq 2 ]; then
+    if ! [ -f "${1}" ]; then
+        echo -e "${RED}ERROR:${NC} There is no file '$(basename ${1})'."
         _output_prompt
         exit 1
-    elif ! [ -f "$2" ]; then
-        echo -e "${RED}ERROR:${NC} There is no file '$(basename $2)'."
+    elif ! [ -f "${2}" ]; then
+        echo -e "${RED}ERROR:${NC} There is no file '$(basename ${2})'."
         _output_prompt
         exit 1
     else
         unset md5_tmp
         if [[ $OSTYPE == "cygwin" ]]; then
-            md5_tmp=""$USERPROFILE/$(basename $2).tmp""
+            md5_tmp=""${USERPROFILE}/$(basename $2).tmp""
         else 
-            md5_tmp="$HOME/$(basename $2).tmp"
+            md5_tmp="${HOME}/$(basename ${2}).tmp"
         fi
         echo "Please wait..."
-        $(ffmpeg -y -i $1 -loglevel 0 -f framemd5 -an $md5_tmp)
-        old_file=$(grep -v '^#' $2)
-        tmp_file=$(grep -v '^#' $md5_tmp)
-        if [ "$old_file" = "$tmp_file" ]; then
-            echo -e "${BLUE}OK${NC} '$(basename $1)' matches '$(basename $2)'."
+        $(ffmpeg -y -i ${1} -loglevel 0 -f framemd5 -an ${md5_tmp})
+        old_file=$(grep -v '^#' ${2})
+        tmp_file=$(grep -v '^#' ${md5_tmp})
+        if [ "${old_file}" = "${tmp_file}" ]; then
+            echo -e "${BLUE}OK${NC} '$(basename ${1})' matches '$(basename ${2})'."
             exit 0
         else
-            echo -e "${RED}ERROR:${NC} The following differences were detected between '$(basename $1)' and '$(basename $2)':"
-            diff "$2" "$md5_tmp"
+            echo -e "${RED}ERROR:${NC} The following differences were detected between '$(basename ${1})' and '$(basename ${2})':"
+            diff "${2}" "${md5_tmp}"
             exit 1
         fi
-        rm "$md5_tmp"
+        rm "${md5_tmp}"
     fi
 else
     echo -e "${RED}ERROR:${NC} Too many arguments."
