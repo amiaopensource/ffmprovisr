@@ -59,7 +59,7 @@ elif [ "${#}" -eq 2 ]; then
     else
         unset md5_tmp
         if [[ $OSTYPE == "cygwin" ]]; then
-            md5_tmp=""${USERPROFILE}/$(basename $2).tmp""
+            md5_tmp=""${USERPROFILE}/$(basename ${2}).tmp""
         else 
             md5_tmp="${HOME}/$(basename ${2}).tmp"
         fi
