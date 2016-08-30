@@ -1138,6 +1138,34 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
     </div>
   </div>
   <!-- ends set field order -->
+  <!-- View Format Info -->
+  <span data-toggle="modal" data-target="#view_format_info"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="View format information">View format information</button></span>
+  <div id="view_format_info" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>View information about a specific format</h3>
+          <p><code>ffmpeg -h <i>type=name</i></code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-h</dt><dd>Call the help option</dd>
+            <dt>type=name</dt>
+            <dd>Tells ffmpeg which kind of option you want, for example:
+                <ul>
+                    <li><code>encoder=libx264</code></li> 
+                    <li><code>decoder=mp3</code></li>
+                    <li><code>muxer=matroska</code></li> 
+                    <li><code>demuxer=mov</code></li> 
+                    <li><code>filter=crop</code></li>
+                </ul>
+            </dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends View Format info -->
   
 </div><!-- closes the well -->
 
