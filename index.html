@@ -537,6 +537,36 @@
   </div>
   <!-- ends Create ISO -->
 
+  <!-- Cover head switching noise -->
+  <span data-toggle="modal" data-target="#cover_head"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Cover head switching noise">Cover head</button></span>
+  <div id="cover_head" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Cover head switching noise</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -vf drawbox=w=iw:h=7:y=ih-h:t=max <i>output_file</i></code></p>
+          <p>This command will draw a black box over a small area of the bottom of the frame, which can be used to cover up head switching noise.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-vf drawbox=</dt>
+            <dd>This calls the drawtext filter with the following options:
+              <dl>
+                <dt>w=in_w</dt><dd>Width is set to the input width. Shorthand for this command would be w=iw</dd>
+                <dt>h=7</dt><dd>Height is set to 7 pixels.</dd>
+                <dt>y=ih-h</dt><dd>Y represents the offset, and ih-h sets it to the input height minus the height declared in the previous parameter, setting the box at the bottom of the frame.</dd>
+                <dt>t=max</dt><dd>T represents the thickness of the drawn box. Default is 3. </dd>
+              </dl>
+            </dd>
+            <dt><i>output_file</i></dt><dd>path and name of the output file.</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Cover head switching noise -->
+
   </div>
   <div class="well">
   <h4>Preservation</h4>
