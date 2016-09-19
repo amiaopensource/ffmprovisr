@@ -212,7 +212,7 @@
       <div class="modal-content">
         <div class="well">
           <h3>Transform SD into HD with pillarbox</h3>
-          <p>Transform a SD video file with 4:3 aspect ratio into an HD video file with 16:9 aspect ration by correct pillarboxing.</p>
+          <p>Transform a SD video file with 4:3 aspect ratio into an HD video file with 16:9 aspect ratio by correct pillarboxing.</p>
           <p><code>ffmpeg -i <i>input_file</i> -filter:v "colormatrix=bt601:bt709, scale=1440:1080:flags=lanczos, pad=1920:1080:240:0" -c:a copy <i>output_file</i></code></p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -224,7 +224,7 @@
                 <li>The padding filter (<code>pad=1920:1080:240:0</code>) completes the transformation from SD to HD.</li>
               </ol></dd>
             <dt>-c:a copy</dt><dd>re-encodes using the same audio codec<br/>
-            For silent videos you can replace <code>-c:a copy</code> by <code>-an</code>.</dd>
+            For silent videos you can replace <code>-c:a copy</code> with <code>-an</code>.</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
           <p class="link"></p>
