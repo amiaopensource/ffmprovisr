@@ -678,11 +678,12 @@
       <div class="modal-content">
         <div class="well">
           <h3>Check FFV1 Version 3 fixity</h3>
-          <p><code>ffmpeg -i <i>input_file</i> -f null -</code></p>
+          <p><code>ffmpeg -report -i <i>input_file</i> -f null -</code></p>
           <p>This decodes your video and displays any crc checksum mismatches. These errors will display in your terminal like this: <code>[ffv1 @ 0x1b04660] CRC mismatch 350FBD8A!at 0.272000 seconds</code></p>
           <p>Frame crcs are enabled by default in FFV1 Version 3.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-report</dt><dd>Dump full command line and console output to a file named <i>ffmpeg-YYYYMMDD-HHMMSS.log</i> in the current directory. It also implies <code>-loglevel verbose</code>.</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-f null</dt><dd>Video is decoded with the <code>null</code> muxer. This allows video decoding without creating an output file.</dd>
             <dt>-</dt><dd>FFmpeg syntax requires a specified output, and <code>-</code> is just a place holder. No file is actually created. </dd>
