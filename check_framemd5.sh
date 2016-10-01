@@ -37,17 +37,17 @@ EOF
     exit 0
 }
 
-if [ "${#}" -eq 0 ]; then
+if [[ "${#}" -eq 0 ]]; then
     _output_prompt
     exit 0
-elif [ "${#}" -eq 1 ]; then
+elif [[ "${#}" -eq 1 ]]; then
     if [[ "${1}" = '-h' ]]; then
         _output_help
     else
         echo -e "${RED}ERROR:${NC} '$1' is an invalid argument."
         _output_prompt
     fi
-elif [ "${#}" -eq 2 ]; then
+elif [[ "${#}" -eq 2 ]]; then
     if [[ ! -f "${1}" ]]; then
         echo -e "${RED}ERROR:${NC} There is no file '$(basename ${1})'."
         _output_prompt
