@@ -48,10 +48,10 @@ elif [ "${#}" -eq 1 ]; then
         _output_prompt
     fi
 elif [ "${#}" -eq 2 ]; then
-    if ! [ -f "${1}" ]; then
+    if [[ ! -f "${1}" ]]; then
         echo -e "${RED}ERROR:${NC} There is no file '$(basename ${1})'."
         _output_prompt
-    elif ! [ -f "${2}" ]; then
+    elif [[ ! -f "${2}" ]]; then
         echo -e "${RED}ERROR:${NC} There is no file '$(basename ${2})'."
         _output_prompt
     else
@@ -63,7 +63,7 @@ elif [ "${#}" -eq 2 ]; then
             md5_tmp="${HOME}/$(basename ${2}).tmp"
         fi
         $(ffmpeg -y -i ${1} -loglevel 0 -f framemd5 -an ${md5_tmp})
-        if ! [ -f ${md5_tmp} ]; then
+        if [[ ! -f ${md5_tmp} ]]; then
             echo -e "${RED}ERROR:${NC} '$(basename ${1})' is not an audio-visual file."
             output_prompt
         fi
