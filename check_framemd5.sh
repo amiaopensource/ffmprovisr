@@ -7,7 +7,7 @@
       NC='\033[0m'
 
 if [[ $OSTYPE = "cygwin" ]] || [ ! $(which diff) ]; then
-    echo -e "${RED}ERROR:${NC} diff is not installed by default. Please install diffutils from Cygwin."
+    echo -e "${RED}ERROR:${NC} 'diff' is not installed by default. Please install 'diffutils' from Cygwin."
     exit 1
 fi
 
