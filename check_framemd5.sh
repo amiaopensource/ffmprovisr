@@ -37,50 +37,39 @@ EOF
     exit 0
 }
 
-if [[ "${#}" -eq 0 ]]; then
-    _output_prompt
-    exit 0
-elif [[ "${#}" -eq 1 ]]; then
-    if [[ "${1}" = '-h' ]]; then
-        _output_help
-    else
-        echo -e "${RED}ERROR:${NC} '$1' is an invalid argument."
-        _output_prompt
-    fi
-elif [[ "${#}" -eq 2 ]]; then
-    if [[ ! -f "${1}" ]]; then
-        echo -e "${RED}ERROR:${NC} There is no file '$(basename ${1})'."
-        _output_prompt
-    elif [[ ! -f "${2}" ]]; then
-        echo -e "${RED}ERROR:${NC} There is no file '$(basename ${2})'."
-        _output_prompt
-    else
-        echo -e "${BLUE}Please wait...${NC}"
-        unset md5_tmp
-        if [[ $OSTYPE = "cygwin" ]]; then
-            md5_tmp=""${USERPROFILE}/$(basename ${2}).tmp""
-        else 
-            md5_tmp="${HOME}/$(basename ${2}).tmp"
-        fi
-        $(ffmpeg -y -i ${1} -loglevel 0 -f framemd5 -an ${md5_tmp})
-        if [[ ! -f ${md5_tmp} ]]; then
-            echo -e "${RED}ERROR:${NC} '$(basename ${1})' is not an audio-visual file."
-            output_prompt
-        fi
-        old_file=$(grep -v "^#" ${2})
-        tmp_file=$(grep -v "^#" ${md5_tmp})
-        if [[ "${old_file}" = "${tmp_file}" ]]; then
-            echo -e "${BLUE}OK${NC} '$(basename ${1})' matches '$(basename ${2})'."
-            rm "${md5_tmp}"
-            exit 0
-        else
-            echo -e "${RED}ERROR:${NC} The following differences were detected between '$(basename ${1})' and '$(basename ${2})':"
-            diff "${2}" "${md5_tmp}"
-            rm "${md5_tmp}"
-            exit 1
-        fi
-    fi
+while getopts ":hi:c:" opt; do
+  case $opt in
+    h) output_help ;;
+    i) input_file=$OPTARG ;;
+    c) input_hash=$OPTARG ;;
+    *) echo "bad option -${OPTARG}" ; output_prompt ;;
+    :) echo "Option -${OPTARG} requires an argument" ; output_prompt ;;
+  esac
+done
+
+[ -z "$@" ] && output_prompt
+
+echo -e "${BLUE}Please wait...${NC}"
+unset md5_tmp
+if [[ $OSTYPE = "cygwin" ]]; then
+  md5_tmp=""${USERPROFILE}/$(basename ${input_hash}).tmp""
+else 
+  md5_tmp="${HOME}/$(basename ${input_hash}).tmp"
+fi
+$(ffmpeg -i ${input_file} -loglevel 0 -f framemd5 -an ${md5_tmp})
+if [[ ! -f ${md5_tmp} ]]; then
+  echo -e "${RED}ERROR:${NC} '$(basename ${input_file})' is not an audio-visual file."
+  output_prompt
+fi
+old_file=$(grep -v '^#' ${input_hash})
+tmp_file=$(grep -v '^#' ${md5_tmp})
+if [[ "${old_file}" = "${tmp_file}" ]]; then
+  echo -e "${BLUE}OK${NC} '$(basename ${input_file})' matches '$(basename ${input_hash})'."
+  rm "${md5_tmp}"
+  exit 0
 else
-    echo -e "${RED}ERROR:${NC} Too many arguments."
-    _output_prompt
+  echo -e "${RED}ERROR:${NC} The following differences were detected between '$(basename ${input_file})' and '$(basename ${input_hash})':"
+  diff "${input_hash}" "${md5_tmp}"
+  rm "${md5_tmp}"
+  exit 1
 fi
