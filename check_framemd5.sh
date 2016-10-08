@@ -47,6 +47,7 @@ while getopts ":hi:m:" opt; do
   esac
 done
 
+[ -z "${@}" ] && _output_prompt
 echo -e "${BLUE}Please wait...${NC}"
 unset md5_tmp
 if [[ $OSTYPE = "cygwin" ]]; then
