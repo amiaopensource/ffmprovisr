@@ -38,16 +38,14 @@ EOF
 }
 
 while getopts ":hi:m:" opt; do
-  case $opt in
+  case "${opt}" in
     h) _output_help ;;
     i) input_file=$OPTARG ;;
     m) input_hash=$OPTARG ;;
-    *) echo "bad option -${OPTARG}" ; _output_prompt ;;
-    :) echo "Option -${OPTARG} requires an argument" ; _output_prompt ;;
+    *) echo -e "${RED}Error:${NC }bad option -${OPTARG}" ; _output_prompt ;;
+    :) echo -e "${RED}Error:${NC} option -${OPTARG} requires an argument" ; _output_prompt ;;
   esac
 done
-
-[ -z "$@" ] && _output_prompt
 
 echo -e "${BLUE}Please wait...${NC}"
 unset md5_tmp
@@ -57,9 +55,7 @@ else
   md5_tmp="${HOME}/$(basename ${input_hash}).tmp"
 fi
 $(ffmpeg -i ${input_file} -loglevel 0 -f framemd5 -an ${md5_tmp})
-if [[ ! -f ${md5_tmp} ]]; then
-  echo -e "${RED}ERROR:${NC} '$(basename ${input_file})' is not an audio-visual file."
-  _output_prompt
+[[ ! -f ${md5_tmp} ]] && _output_prompt
 fi
 old_file=$(grep -v '^#' ${input_hash})
 tmp_file=$(grep -v '^#' ${md5_tmp})
