@@ -56,7 +56,6 @@ else
 fi
 $(ffmpeg -i ${input_file} -loglevel 0 -f framemd5 -an ${md5_tmp})
 [[ ! -f ${md5_tmp} ]] && _output_prompt
-fi
 old_file=$(grep -v '^#' ${input_hash})
 tmp_file=$(grep -v '^#' ${md5_tmp})
 if [[ "${old_file}" = "${tmp_file}" ]]; then
