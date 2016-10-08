@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
   SCRIPT=$(basename "${0}")
- VERSION='2016-10-02'
+ VERSION='2016-10-08'
   AUTHOR='ffmprovisr'
      RED='\033[1;31m'
     BLUE='\033[1;34m'
@@ -13,7 +13,7 @@ fi
 
 _output_prompt(){
     cat <<EOF
-Usage: ${SCRIPT} [-h | <av_file> <md5_file>]
+Usage: ${SCRIPT} [-h | -i <av_file> -m <md5_file>]
 EOF
     exit 1
 }
@@ -25,7 +25,7 @@ Syntax:
     Prompts a short help message.
   ${SCRIPT} -h
     This help.
-  ${SCRIPT} <av_file> <md5_file>
+  ${SCRIPT} -i <av_file> -m <md5_file>
     Pass to the script the audio-visual file and the corresponding MD5
     file to check.
 Dependency:
@@ -37,29 +37,93 @@ EOF
     exit 0
 }
 
-while getopts ":hi:c:" opt; do
+while getopts ":hi:m:" opt; do
   case $opt in
-    h) output_help ;;
+    h) _output_help ;;
     i) input_file=$OPTARG ;;
-    c) input_hash=$OPTARG ;;
-    *) echo "bad option -${OPTARG}" ; output_prompt ;;
-    :) echo "Option -${OPTARG} requires an argument" ; output_prompt ;;
+    m) input_hash=$OPTARG ;;
+    *) echo "bad option -${OPTARG}" ; _output_prompt ;;
+    :) echo "Option -${OPTARG} requires an argument" ; _output_prompt ;;
   esac
 done
 
-[ -z "$@" ] && output_prompt
+[ -z "$@" ] && _output_prompt
 
 echo -e "${BLUE}Please wait...${NC}"
 unset md5_tmp
 if [[ $OSTYPE = "cygwin" ]]; then
   md5_tmp=""${USERPROFILE}/$(basename ${input_hash}).tmp""
-else 
+else
   md5_tmp="${HOME}/$(basename ${input_hash}).tmp"
 fi
 $(ffmpeg -i ${input_file} -loglevel 0 -f framemd5 -an ${md5_tmp})
 if [[ ! -f ${md5_tmp} ]]; then
   echo -e "${RED}ERROR:${NC} '$(basename ${input_file})' is not an audio-visual file."
-  output_prompt
+  _output_prompt
+fi
+old_file=$(grep -v '^#' ${input_hash})
+tmp_file=$(grep -v '^#' ${md5_tmp})
+if [[ "${old_file}" = "${tmp_file}" ]]; then
+  echo -e "${BLUE}OK${NC} '$(basename ${input_file})' matches '$(basename ${input_hash})'."
+  rm "${md5_tmp}"
+  exit 0
+else
+  echo -e "${RED}ERROR:${NC} The following differences were detected between '$(basename ${input_file})' and '$(basename ${input_hash})':"
+  diff "${input_hash}" "${md5_tmp}"
+  rm "${md5_tmp}"
+  exit 1
+fi
+
+if [[ "${old_file}" = "${tmp_file}" ]]; then
+  echo -e "${BLUE}OK${NC} '$(basename ${input_file})' matches '$(basename ${input_hash})'."
+  rm "${md5_tmp}"
+  exit 0
+else
+  echo -e "${RED}ERROR:${NC} The following differences were detected between '$(basename ${input_file})' and '$(basename ${input_hash})':"
+  diff "${input_hash}" "${md5_tmp}"
+  rm "${md5_tmp}"
+  exit 1
+fi
+
+fi
+$(ffmpeg -i ${input_file} -loglevel 0 -f framemd5 -an ${md5_tmp})
+if [[ ! -f ${md5_tmp} ]]; then
+  echo -e "${RED}ERROR:${NC} '$(basename ${input_file})' is not an audio-visual file."
+  _output_prompt
+fi
+old_file=$(grep -v '^#' ${input_hash})
+tmp_file=$(grep -v '^#' ${md5_tmp})
+if [[ "${old_file}" = "${tmp_file}" ]]; then
+  echo -e "${BLUE}OK${NC} '$(basename ${input_file})' matches '$(basename ${input_hash})'."
+  rm "${md5_tmp}"
+  exit 0
+else
+  echo -e "${RED}ERROR:${NC} The following differences were detected between '$(basename ${input_file})' and '$(basename ${input_hash})':"
+  diff "${input_hash}" "${md5_tmp}"
+  rm "${md5_tmp}"
+  exit 1
+fi
+
+    i) input_file=$OPTARG ;;
+    c) input_hash=$OPTARG ;;
+    m) echo "bad option -${OPTARG}" ; _output_prompt ;;
+    :) echo "Option -${OPTARG} requires an argument" ; _output_prompt ;;
+  esac
+done
+
+[ -z "$@" ] && _output_prompt
+
+echo -e "${BLUE}Please wait...${NC}"
+unset md5_tmp
+if [[ $OSTYPE = "cygwin" ]]; then
+  md5_tmp=""${USERPROFILE}/$(basename ${input_hash}).tmp""
+else
+  md5_tmp="${HOME}/$(basename ${input_hash}).tmp"
+fi
+$(ffmpeg -i ${input_file} -loglevel 0 -f framemd5 -an ${md5_tmp})
+if [[ ! -f ${md5_tmp} ]]; then
+  echo -e "${RED}ERROR:${NC} '$(basename ${input_file})' is not an audio-visual file."
+  _output_prompt
 fi
 old_file=$(grep -v '^#' ${input_hash})
 tmp_file=$(grep -v '^#' ${md5_tmp})
