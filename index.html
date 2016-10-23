@@ -339,6 +339,32 @@
   </div>
   <!-- ends MKV to MP4 -->
 
+ <!-- Images to GIF -->
+  <span data-toggle="modal" data-target="#img_to_gif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Converts images to GIF">Images to GIF</button></span>
+  <div id="img_to_gif" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Images to GIF</h3>
+          <p><code>ffmpeg -f image2 -framerate 9 -pattern_type glob -i <i>"input_image_*.jpg"</i> -vf scale=250x250 <i>output_file</i>.gif</code></p>
+          <p>This will convert a series of image files into a gif.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-f image2</dt><dd>forces input or output file format. <code>image2</code> specifies the image file demuxer.</dd>
+            <dt>-framerate 9</dt><dd>sets framerate to 9 frames per second</dd>
+            <dt>-pattern_type glob</dt><dd>tells ffmpeg that the following mapping should "interpret like a <a href="https://en.wikipedia.org/wiki/Glob_%28programming%29">glob</a>" (a "global command" function that relies on the * as a wildcard and finds everything that matches)</dd>
+            <dt>-i <i>"input_image_*.jpg"</i></dt><dd>maps all files in the directory that start with input_image_, for example input_image_001.jpg, input_image_002.jpg, input_image_003.jpg... etc.<br/>
+            (The quotation marks are necessary for the above "glob" pattern!)</dd>            
+            <dt>-vf scale=250x250</dt><dd>filter the video to scale it to 250x250; -vf is an alias for -filter:v</dd>
+            <dt><i>output_file.gif</i></dt><dd>path and name of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Images to GIF -->
+
   </div>
   <div class="well">
   <h4>Make derivative variations</h4>
