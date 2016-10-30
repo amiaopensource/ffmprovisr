@@ -110,7 +110,7 @@
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-c:v libx264</dt><dd>tells ffmpeg to change the video codec of the file to H.264</dd>
-            <dt>-pix_fmt yuv420p</dt><dd> libx264 will use a chroma subsampling scheme that is the closest match to that of the input. This can result in YUV 4:2:0, 4:2:2, or 4:4:4 chroma subsampling. QuickTime and most other non-FFmpeg based players can’t decode H.264 files that are not 4:2:0. In order to allow the video to play in all players, you can specify 4:2:0 chroma subsampling.</dd>            
+            <dt>-pix_fmt yuv420p</dt><dd> libx264 will use a chroma subsampling scheme that is the closest match to that of the input. This can result in YUV 4:2:0, 4:2:2, or 4:4:4 chroma subsampling. QuickTime and most other non-FFmpeg based players can’t decode H.264 files that are not 4:2:0. In order to allow the video to play in all players, you can specify 4:2:0 chroma subsampling.</dd>
             <dt>-c:a copy</dt><dd>tells ffmpeg not to change the audio codec</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
@@ -289,7 +289,7 @@
     </div>
   </div>
   <!-- ends Transcode to FFV1.mkv-->
-  
+
   <!-- Change display aspect ratio without re-encoding video-->
   <span data-toggle="modal" data-target="#change_DAR"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Change Display Aspect Ratio without re-encoding">Change Display Aspect Ratio</button></span>
   <div id="change_DAR" class="modal fade" tabindex="-1" role="dialog">
@@ -354,7 +354,7 @@
             <dt>-framerate 9</dt><dd>sets framerate to 9 frames per second</dd>
             <dt>-pattern_type glob</dt><dd>tells ffmpeg that the following mapping should "interpret like a <a href="https://en.wikipedia.org/wiki/Glob_%28programming%29">glob</a>" (a "global command" function that relies on the * as a wildcard and finds everything that matches)</dd>
             <dt>-i <i>"input_image_*.jpg"</i></dt><dd>maps all files in the directory that start with input_image_, for example input_image_001.jpg, input_image_002.jpg, input_image_003.jpg... etc.<br/>
-            (The quotation marks are necessary for the above "glob" pattern!)</dd>            
+            (The quotation marks are necessary for the above "glob" pattern!)</dd>
             <dt>-vf scale=250x250</dt><dd>filter the video to scale it to 250x250; -vf is an alias for -filter:v</dd>
             <dt><i>output_file.gif</i></dt><dd>path and name of the output file</dd>
           </dl>
@@ -364,6 +364,45 @@
     </div>
   </div>
   <!-- ends Images to GIF -->
+
+  <!-- Rip DVD -->
+  <span data-toggle="modal" data-target="#dvd_to_file"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Basic DVD to file conversion">Convert DVD to H.264</button></span>
+  <div id="dvd_to_file" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Convert DVD to H.264</h3>
+          <p> <code>ffmpeg -i concat:<i>input_file1</i>\|<i>input_file2</i>\|<i>input_file3</i> -c:v libx264 -c:a copy <i>output_file</i>.mp4</code></p>
+          <p>This command allows you to create an H.264 file from a DVD source that is not copy-protected.</p>
+          <p>Before encoding, you’ll need to establish which of the .VOB files on the DVD or .iso contain the content that you wish to encode. Inside the VIDEO_TS directory, you will see a series of files with names like VTS_01_0.VOB, VTS_01_1.VOB, etc. Some of the .VOB files will contain menus, special features, etc, so locate the ones that contain target content by playing them back in VLC.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i concat:<i>input files</i></dt><dd>lists the input VOB files and directs ffmpeg to concatenate them. Each input file should be separated by a backslash and a pipe, like so:<br/>
+              <code>-i concat:VTS_01_1.VOB\|VTS_01_2.VOB\|VTS_01_3.VOB</code><br/>
+              The backslash is simply an escape character for the pipe (<strong>|</strong>).
+            <dt>-c:v libx264</dt><dd>sets the video codec as H.264</dd>
+            <dt>-c:a copy</dt><dd>audio remains as-is (no re-encode)</dd>
+            <dt><i>output_file.mp4</i></dt><dd>path and name of the output file</dd>
+          </dl>
+          <p>It’s also possible to adjust the quality of your output by setting the <strong>-crf</strong> and <strong>-preset</strong> values:</p>
+          <p><code>ffmpeg -i concat:<i>input_file1</i>\|<i>input_file2</i>\|<i>input_file3</i> -c:v libx264 -crf 18 -preset veryslow -c:a copy <i>output_file</i>.mp4</code>
+          </p>
+          <dl>
+            <dt>-crf 18</dt><dd>sets the constant rate factor to a visually lossless value. Libx264 defaults to a <a href="https://trac.ffmpeg.org/wiki/Encode/H.264#crf">crf of 23</a>, considered medium quality; a smaller crf value produces a larger and higher quality video.</dd>
+            <dt>-preset veryslow</dt><dd>A slower preset will result in better compression and therefore a higher-quality file. The default is <strong>medium</strong>; slower presets are <strong>slow</strong>, <strong>slower</strong>, and <strong>veryslow</strong>.</dd>
+          </dl>
+          <p>Bear in mind that by default, libx264 will only encode a single video stream and a single audio stream, picking the ‘best’ of the options available. To preserve all video and audio streams, add <strong>-map</strong> parameters:</p>
+          <p><code>ffmpeg -i concat:<i>input_file1</i>\|<i>input_file2</i> -map 0:v -map 0:a -c:v libx264 -c:a copy <i>output_file</i>.mp4</code></p>
+          <dl>
+            <dt>-map 0:v</dt><dd>encodes all video streams</dd>
+            <dt>-map 0:a</dt><dd>encodes all audio streams</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends rip DVD -->
 
   </div>
   <div class="well">
@@ -508,7 +547,7 @@
             <dt>-c copy</dt><dd>use stream copy mode (no re-encoding)<br/>
             <i>Note:</i> watch out when using <code>-ss</code> with <code>-c copy</code> if the source is encoded with an interframe codec (e.g., H.264). Since ffmpeg must split on i-frames, it will seek to the nearest i-frame to begin the stream copy.</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
-          </dl>	
+          </dl>
           <p>Variation: trim video by setting duration, by using <code>-t</code> instead of <code>-to</code></p>
           <p><code>ffmpeg -i <i>input_file</i> -ss 00:05:00 -t 10 -c copy <i>output_file</i></code></p>
           <dl>
@@ -642,7 +681,7 @@
           <p>Modify the ffmpeg script as needed to perform different transcodes :)</p>
           <p class="link"></p>
         </div>
-        
+
       </div>
     </div>
   </div>
@@ -1195,7 +1234,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-filter:v <i>setfield=tff</i></dt><dd>Sets the field order to top field first. Use <code>setfield=bff</code> for bottom field first. </dd>    
+            <dt>-filter:v <i>setfield=tff</i></dt><dd>Sets the field order to top field first. Use <code>setfield=bff</code> for bottom field first. </dd>
             <dt>-c:v prores</dt><dd>Tells ffmpeg to transcode the video stream into Apple ProRes 422. Experiment with using other codecs.</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
@@ -1205,7 +1244,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
     </div>
   </div>
   <!-- ends set field order -->
-  
+
   <!-- Make stream properties explicate -->
   <span data-toggle="modal" data-target="#clarify_stream"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Clarify stream properties">Set stream properties</button></span>
   <div id="clarify_stream" class="modal fade" tabindex="-1" role="dialog">
@@ -1260,10 +1299,10 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
             <dt>type=name</dt>
             <dd>Tells ffmpeg which kind of option you want, for example:
                 <ul>
-                    <li><code>encoder=libx264</code></li> 
+                    <li><code>encoder=libx264</code></li>
                     <li><code>decoder=mp3</code></li>
-                    <li><code>muxer=matroska</code></li> 
-                    <li><code>demuxer=mov</code></li> 
+                    <li><code>muxer=matroska</code></li>
+                    <li><code>demuxer=mov</code></li>
                     <li><code>filter=crop</code></li>
                 </ul>
             </dd>
@@ -1274,20 +1313,20 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
     </div>
   </div>
   <!-- ends View Format info -->
-  
+
 </div><!-- closes the well -->
 
 
 <!-- sample example -->
 <!-- <span data-toggle="modal" data-target="#*****unique name*****"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="*****Hover-over description*****">*****Small title****</button></span>
-Change the above data-target field, the button text, and the below div class (the word after modal fade)
+Change the above data-target field, the hover-over description, the button text, and the below div ID
 <div id="*****unique name*****" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       where the text goes
       <div class="well">
         <h3>*****Longer title*****</h3>
-        <p> <code>ffmpeg -i <i>input_file</i></code>  *****code goes here***** <i>output_file</i></p>
+        <p> <code>ffmpeg -i <i>input_file</i> *****code goes here***** <i>output_file</i></code> </p>
         <p>This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info!</p>
         <dl>
           <dt>ffmpeg</dt><dd>starts the command</dd>
