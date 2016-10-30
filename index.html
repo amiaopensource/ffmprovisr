@@ -391,7 +391,7 @@
             <dt>-crf 18</dt><dd>sets the constant rate factor to a visually lossless value. Libx264 defaults to a <a href="https://trac.ffmpeg.org/wiki/Encode/H.264#crf">crf of 23</a>, considered medium quality; a smaller crf value produces a larger and higher quality video.</dd>
             <dt>-preset veryslow</dt><dd>A slower preset will result in better compression and therefore a higher-quality file. The default is <strong>medium</strong>; slower presets are <strong>slow</strong>, <strong>slower</strong>, and <strong>veryslow</strong>.</dd>
           </dl>
-          <p>Bear in mind that by default, libx264 will only encode a single video stream and a single audio stream, picking the ‘sbest’ of the options available. To preserve all video and audio streams, add <strong>-map</strong> parameters:</p>
+          <p>Bear in mind that by default, libx264 will only encode a single video stream and a single audio stream, picking the ‘best’ of the options available. To preserve all video and audio streams, add <strong>-map</strong> parameters:</p>
           <p><code>ffmpeg -i concat:<i>input_file1</i>\|<i>input_file2</i> -map 0:v -map 0:a -c:v libx264 -c:a copy <i>output_file</i>.mp4</code></p>
           <dl>
             <dt>-map 0:v</dt><dd>encodes all video streams</dd>
