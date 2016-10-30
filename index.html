@@ -373,14 +373,15 @@
         <div class="well">
           <h3>Convert DVD to H.264</h3>
           <p> <code>ffmpeg -i concat:<i>input_file1</i>\|<i>input_file2</i>\|<i>input_file3</i> -c:v libx264 -c:a copy <i>output_file</i>.mp4</code></p>
-          <p>This command allows you to create an H.264 file from a DVD source.</p>
+          <p>This command allows you to create an H.264 file from a DVD source that is not copy-protected.</p>
+          <p>Before encoding, you'll need to establish which of the .VOB files on the DVD or .iso contain the content that you wish to encode. Inside the VIDEO_TS directory, you will see a series of files with names like VTS_01_0.VOB, VTS_01_1.VOB, etc. Some of the .VOB files will contain menus, special features, etc, so locate the ones that contain target content by playing them back in VLC.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i concat:<i>input files</i></dt><dd>lists the input VOB files and directs ffmpeg to concatenate them. Each input file should be separated by a backslash and a pipe, like so:<br>
               <code>-i concat:VTS_01_1.VOB\|VTS_01_2.VOB\|VTS_01_3.VOB</code><br>
               The backslash is simply an escape character for the pipe (<strong>|</strong>).
             <dt>-c:v libx264</dt><dd>sets the codec as H.264</dd>
-            <dt>-c:a copy</dt><dd>audio remains as-is (it is not reencoded)</dd>
+            <dt>-c:a copy</dt><dd>audio remains as-is (no re-encode)</dd>
             <dt><i>output_file.mp4</i></dt><dd>path and name of the output file.</dd>
           </dl>
           <p>It's also possible to adjust the quality of your output by setting the <strong>-crf</strong> and <strong>-preset</strong> values:</p>
@@ -394,7 +395,7 @@
           <p><code>ffmpeg -i concat:<i>input_file1</i>\|<i>input_file2</i> -map 0:v -map 0:a -c:v libx264 -c:a copy <i>output_file</i>.mp4</code></p>
           <dl>
             <dt>-map 0:v</dt><dd>encodes all video streams</dd>
-            <dt>-map 0:a</dt><dd>encodes all audio streams</dd>
+            <dt>-map 0:a</dt><dd>encodes all audio streams.</dd>
           </dl>
           <p class="link"></p>
         </div>
