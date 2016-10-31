@@ -677,7 +677,7 @@
             <dt>-filter_complex</dt><dd>enables the complex filtering to manage splitting the input to two audio streams</dd>
             <dt>[0:a:0]asplit=2[a][b];</dt><dd><code>asplit</code> allows audio streams to be split up for seperate manipulation. This command splits the audio from the first input (the master file) into two streams "a" and "b"</dd>
             <dt>[b]afifo[bb];</dt><dd>this buffers the stream "b" to help prevent dropped samples and renames stream to "bb"</dd>
-            <dt>[1:a:0][bb]concat=n=2:v=0:a=1[concatout]</dt><dd><code>concat</code> is used to join files. <code>n=2</code> tells the filter there are two inputs. <code>v=0:a=1</code> Tells the filter there are 0 video inputs and 2 audio inputs. This command appends the audio from the second input to the beginning of stream "bb" and names the output "concatout"</dd>
+            <dt>[1:a:0][bb]concat=n=2:v=0:a=1[concatout]</dt><dd><code>concat</code> is used to join files. <code>n=2</code> tells the filter there are two inputs. <code>v=0:a=1</code> Tells the filter there are 0 video outputs and 1 audio output. This command appends the audio from the second input to the beginning of stream "bb" and names the output "concatout"</dd>
             <dt>-map "[a]"</dt><dd>this maps the unmodified audio stream to the first output</dd>
             <dt>-codec:a libmp3lame -dither_method modified_e_weighted -qscale:a 2</dt><dd>sets up mp3 options (using constant quality)</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file (unmodified)</dd>
