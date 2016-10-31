@@ -689,7 +689,7 @@
             Execute the .sh file with the command <code>sh Rewrap-MXF.sh</code>.</p>
           <p>Modify the ffmpeg script as needed to perform different transcodes :)</p>
           <p>The basic pattern will look similar to this:<br/>
-          <code>for item in *.ext; do ffmpeg -i $item <ffmpeg options> "${file%.ext}_suffix.ext"</code></p>
+          <code>for item in *.ext; do ffmpeg -i $item <i>(ffmpeg options here)</i> "${item%.ext}_suffix.ext"</code></p>
           <p>e.g., if an input file is bestmovie002.avi, its output will be bestmovie002_suffix.avi.</p>
           <p class="link"></p>
         </div>
