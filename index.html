@@ -660,6 +660,37 @@
     </div>
   </div>
   <!-- ends Cover head switching noise -->
+  
+  <!-- append notice to access mp3 -->
+  <span data-toggle="modal" data-target="#append_mp3"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Generate two access MP3s from input. One with added audio (such as copyright notice) and one unmodified.">Append notice to access MP3</button></span>
+  <div id="append_mp3" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Generate two access MP3s from input. One with appended audio (such as copyright notice) and one unmodified.</h3>
+          <p> <code>ffmpeg -i <i>input_file</i> -i <i>input_file_to_append</i> -filter_complex "[0:a:0]asplit=2[a][b];[b]afifo[bb];[1:a:0][bb]concat=n=2:v=0:a=1[concatout]" -map "[a]" -codec:a libmp3lame -dither_method modified_e_weighted -qscale:a 2 <i>output_file.mp3</i> -map "[concatout]" -codec:a libmp3lame -dither_method modified_e_weighted -qscale:a 2 <i>output_file_appended.mp3</i></code></p>
+          <p>This script allows you to generate two derivative audio files from a master while appending audio from a seperate file (for example a copyright or institutional notice) to one of them.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file (The master file)</dd>
+            <dt>-i <i>input_file_to_append</i></dt><dd>path, name and extension of the input file (The file to be appended to access file)</dd>
+            <dt>-filter_complex</dt><dd>enables the complex filtering to manage splitting the input to two audio streams</dd>
+            <dt>[0:a:0]asplit=2[a][b];</dt><dd><code>asplit</code> allows audio streams to be split up for seperate manipulation. This command splits the audio from the first input (the master file) into two streams "a" and "b"</dd>
+            <dt>[b]afifo[bb];</dt><dd>this buffers the stream "b" to help prevent dropped samples and renames stream to "bb"</dd>
+            <dt>[1:a:0][bb]concat=n=2:v=0:a=1[concatout]</dt><dd><code>concat</code> is used to join files. <code>n=2</code> tells the filter there are two inputs. <code>v=0:a=1</code> Tells the filter there are 0 video inputs and 2 audio inputs. This command appends the audio from the second input to the beginning of stream "bb" and names the output "concatout"</dd>
+            <dt>-map "[a]"</dt><dd>this maps the unmodified audio stream to the first output</dd>
+            <dt>-codec:a libmp3lame -dither_method modified_e_weighted -qscale:a 2</dt><dd>sets up mp3 options (using constant quality)</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file (unmodified)</dd>
+            <dt>-map "[concatout]"</dt><dd>this maps the modified stream to the second output</dd>
+            <dt>-codec:a libmp3lame -dither_method modified_e_weighted -qscale:a 2</dt><dd>sets up mp3 options (using constant quality)</dd>
+            <dt><i>output_file_appended</i></dt><dd>path, name and extension of the output file (with appended notice)</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends append notice to access mp3 -->
 
   </div>
   <div class="well">
