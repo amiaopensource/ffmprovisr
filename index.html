@@ -677,17 +677,17 @@
           <p><code>for file in *.MXF; do ffmpeg -i "$file" -map 0 -c copy "${file%.MXF}.mov"; done</code></p>
           <dl>
             <dt>for file in *.MXF</dt><dd>starts the loop, and states what the input files will be. Here, the ffmpeg command within the loop will be applied to all files with an extension of .MXF.<br/>
-            The word ‘file’ is an arbitrary variable which will represent each .MXF file in turn as it is looped over.<br/>
-            Per Bash syntax, within the command this variable is referenced with a dollar sign, e.g. as $file</dd>
-            <dt>do ffmpeg -i "$file"</dt><dd>carry out the following ffmpeg command for each input file</dd>
+            The word ‘file’ is an arbitrary variable which will represent each .MXF file in turn as it is looped over.</dd>
+            <dt>do ffmpeg -i "$file"</dt><dd>carry out the following ffmpeg command for each input file.<br/>
+            Per Bash syntax, within the command the variable is referred to by <strong>“$file”</strong>. The dollar sign is used to reference the variable ‘file’, and the enclosing quotation marks prevents reinterpretation of any special characters that may occur within the filename, ensuring that the original filename is retained.</dd>
             <dt>-map 0</dt><dd>retain all streams</dd>
             <dt>-c copy</dt><dd>enable stream copy (no re-encode)</dd>
-            <dt>"${file%.MXF}.mov";</dt><dd>retaining the original file name, set the output file wrapper as Quicktime (.mov)</dd>
+            <dt>"${file%.MXF}.mov";</dt><dd>retaining the original file name, set the output file wrapper as .mov</dd>
             <dt>done</dt><dd>complete; all items have been processed.</dd>
           </dl>
           <p><strong>Note</strong>: the shell script (.sh file) and all .MXF files to be processed must be contained within the same directory, and the script must be run from that directory.<br/>
             Execute the .sh file with the command <code>sh Rewrap-MXF.sh</code>.</p>
-          <p>Modify the ffmpeg script as needed to perform different transcodes :)</p>
+          <p>Modify the script as needed to perform different transcodes, or to use with ffprobe. :)</p>
           <p>The basic pattern will look similar to this:<br/>
           <code>for item in *.ext; do ffmpeg -i $item <i>(ffmpeg options here)</i> "${item%.ext}_suffix.ext"</code></p>
           <p>e.g., if an input file is bestmovie002.avi, its output will be bestmovie002_suffix.avi.</p>
