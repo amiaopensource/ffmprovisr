@@ -71,3 +71,8 @@ All Contributors: 18
 ## AVHack Team:
 
 [Ashley Blewer](https://github.com/ablwr), Eddy Colloton, Rebecca Dillmeier, [Jonathan Farbowitz](https://github.com/jfarbowitz), Rebecca Fraimow, Samuel Gutterman, Kelly Haydon, [Reto Kromer](https://github.com/retokromer), Nicole Martin, [Katherine Frances Nagels](https://github.com/kfrn), [Kieran O'Leary](https://github.com/kieranjol), Catriona Schlosser, Ben Turkus
+
+## Sister projects
+
+[Script Ahoy](http://dd388.github.io/crals/): Community Resource for Archivists and Librarians Scripting
+[sourcecaster](https://datapraxis.github.io/sourcecaster/): helps you use the command line to work through common challenges that come up when working with digital primary sources.
