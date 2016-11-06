@@ -74,5 +74,5 @@ All Contributors: 18
 
 ## Sister projects
 
-[Script Ahoy](http://dd388.github.io/crals/): Community Resource for Archivists and Librarians Scripting
+[Script Ahoy](http://dd388.github.io/crals/): Community Resource for Archivists and Librarians Scripting  
 [sourcecaster](https://datapraxis.github.io/sourcecaster/): helps you use the command line to work through common challenges that come up when working with digital primary sources.
