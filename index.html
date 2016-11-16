@@ -46,7 +46,7 @@
       <div class="modal-content">
         <div class="well">
           <h3>WAV to MP3</h3>
-          <p><code>ffmpeg -i <i>input_file</i>.wav -write_id3v1 1 -id3v2_version 3 -dither_method modified_e_weighted -out_sample_rate 48k -b:a 320k <i>output_file</i>.mp3</code></p>
+          <p><code>ffmpeg -i <i>input_file</i>.wav -write_id3v1 1 -id3v2_version 3 -dither_method modified_e_weighted -out_sample_rate 48k -qscale:a 1 <i>output_file</i>.mp3</code></p>
           <p>This will convert your WAV files to MP3s.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -55,7 +55,7 @@
             <dt>-id3v2_version <i>3</i></dt><dd>Write ID3v2 tag. This will add metadata to a newer MP3 format, assuming you’ve embedded metadata into the WAV file.</dd>
             <dt>-dither_method <i>modified_e_weighted</i></dt><dd>Dither makes sure you don’t unnecessarily truncate the dynamic range of your audio.</dd>
             <dt>-out_sample_rate <i>48k</i></dt><dd>Sets the audio sampling frequency to 48 kHz. This can be omitted to use the same sampling frequency as the input.</dd>
-            <dt>-b:a <i>320k</i></dt><dd>This sets the bit rate at the highest rate the MP3 format allows. Reduce this to 160k for mono files.</dd>
+            <dt>-qscale:a <i>1</i></dt><dd>This sets the encoder to use a constant quality with a variable bitrate of between 190-250kbit/s. If you would prefer to use a constant bitrate, this could be replaced with <code>-b:a 320k</code> to set to the maximum bitrate allowed by the MP3 format. For more detailed discussion on variable vs constant bitrates see <a href="https://trac.ffmpeg.org/wiki/Encode/MP3" target="_blank">here.</a></dd>
             <dt><i>output_file</i></dt><dd>path and name of the output file</dd>
           </dl>
           <p class="link"></p>
