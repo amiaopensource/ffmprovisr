@@ -90,7 +90,7 @@
             </ul></dd>
             <dt>-vf yadif</dt><dd>Runs a deinterlacing video filter (yet another deinterlacing filter) on the new file</dd>
             <dt>-c:a pcm_s16le</dt><dd>Tells ffmpeg to encode the audio stream in 16-bit linear PCM</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file<br/>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file<br>
             The extension for the QuickTime container is <code>.mov</code>.</dd>
           </dl>
           <p class="link"></p>
@@ -145,7 +145,7 @@
             <dt>-i <i>input_audio_file</i></dt><dd>path and name of the audio input file. This extension must be .mxf</dd>
             <dt>-c:v <i>libx264</i></dt><dd>transcodes video to H.264</dd>
             <dt>-pix_fmt <i>yuv420p</i></dt><dd>sets pixel format to yuv420p for greater compatibility with media players</dd>
-            <dt>-c:a aac</dt><dd>re-encodes using the AAC audio codec<br/>
+            <dt>-c:a aac</dt><dd>re-encodes using the AAC audio codec<br>
             Note that sadly MP4 cannot contain sound encoded by a PCM (Pulse-Code Modulation) audio codec</dd>
             <dt><i>output_file.mp4</i></dt><dd>path, name and <i>.mp4</i> extension of the output file</dd>
           </dl>
@@ -196,8 +196,8 @@
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-filter:v "pad=ih*16/9:ih:(ow-iw)/2:(oh-ih)/2"</dt><dd>video padding<br/>This resolution independent formula is actually padding any aspect ratio into 16:9 by pillarboxing, because the video filter uses relative values for input width (iw), input height (ih), output width (ow) and output height (oh).</dd>
-            <dt>-c:a copy</dt><dd>re-encodes using the same audio codec<br/>
+            <dt>-filter:v "pad=ih*16/9:ih:(ow-iw)/2:(oh-ih)/2"</dt><dd>video padding<br>This resolution independent formula is actually padding any aspect ratio into 16:9 by pillarboxing, because the video filter uses relative values for input width (iw), input height (ih), output width (ow) and output height (oh).</dd>
+            <dt>-c:a copy</dt><dd>re-encodes using the same audio codec<br>
             For silent videos you can replace <code>-c:a copy</code> by <code>-an</code>.</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
@@ -220,13 +220,13 @@
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-filter:v "colormatrix=bt601:bt709, scale=1440:1080:flags=lanczos, pad=1920:1080:240:0"</dt><dd>set colour matrix, video scaling and padding<br/>Three filters are applied:
+            <dt>-filter:v "colormatrix=bt601:bt709, scale=1440:1080:flags=lanczos, pad=1920:1080:240:0"</dt><dd>set colour matrix, video scaling and padding<br>Three filters are applied:
               <ol>
                 <li>The luma coefficients are modified from SD video (according to Rec. 601) to HD video (according to Rec. 709) by a colour matrix. Note that today Rec. 709 is often used also for SD and therefore you may cancel this parameter.</li>
                 <li>The scaling filter (<code>scale=1440:1080</code>) works for both upscaling and downscaling. We use the Lanczos scaling algorithm (<code>flags=lanczos</code>), which is slower but gives better results than the default bilinear algorithm.</li>
                 <li>The padding filter (<code>pad=1920:1080:240:0</code>) completes the transformation from SD to HD.</li>
               </ol></dd>
-            <dt>-c:a copy</dt><dd>re-encodes using the same audio codec<br/>
+            <dt>-c:a copy</dt><dd>re-encodes using the same audio codec<br>
             For silent videos you can replace <code>-c:a copy</code> with <code>-an</code>.</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
@@ -249,8 +249,8 @@
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-filter:v "pad=iw:iw*3/4:(ow-iw)/2:(oh-ih)/2"</dt><dd>video padding<br/>This resolution independent formula is actually padding any aspect ratio into 4:3 by letterboxing, because the video filter uses relative values for input width (iw), input height (ih), output width (ow) and output height (oh).</dd>
-            <dt>-c:a copy</dt><dd>re-encodes using the same audio codec<br/>
+            <dt>-filter:v "pad=iw:iw*3/4:(ow-iw)/2:(oh-ih)/2"</dt><dd>video padding<br>This resolution independent formula is actually padding any aspect ratio into 4:3 by letterboxing, because the video filter uses relative values for input width (iw), input height (ih), output width (ow) and output height (oh).</dd>
+            <dt>-c:a copy</dt><dd>re-encodes using the same audio codec<br>
             For silent videos you can replace <code>-c:a copy</code> by <code>-an</code>.</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
@@ -326,13 +326,13 @@
           <p>This will convert your Matroska (MKV) files to MP4 files.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path and name of the input file<br/>
+            <dt>-i <i>input_file</i></dt><dd>path and name of the input file<br>
             The extension for the Matroska container is <code>.mkv</code>.</dd>
             <dt>-c:v copy</dt><dd>re-encodes using the same video codec</dd>
-            <dt>-c:a aac</dt><dd>re-encodes using the AAC audio codec<br/>
-            Note that sadly MP4 cannot contain sound encoded by a PCM (Pulse-Code Modulation) audio codec.<br/>
+            <dt>-c:a aac</dt><dd>re-encodes using the AAC audio codec<br>
+            Note that sadly MP4 cannot contain sound encoded by a PCM (Pulse-Code Modulation) audio codec.<br>
             For silent videos you can replace <code>-c:a aac</code> by <code>-an</code>.</dd>
-            <dt><i>output_file</i></dt><dd>path and name of the output file<br/>
+            <dt><i>output_file</i></dt><dd>path and name of the output file<br>
             The extension for the MP4 container is <code>.mp4</code>.</dd>
           </dl>
           <p class="link"></p>
@@ -356,7 +356,7 @@
             <dt>-f image2</dt><dd>forces input or output file format. <code>image2</code> specifies the image file demuxer.</dd>
             <dt>-framerate 9</dt><dd>sets framerate to 9 frames per second</dd>
             <dt>-pattern_type glob</dt><dd>tells ffmpeg that the following mapping should "interpret like a <a href="https://en.wikipedia.org/wiki/Glob_%28programming%29">glob</a>" (a "global command" function that relies on the * as a wildcard and finds everything that matches)</dd>
-            <dt>-i <i>"input_image_*.jpg"</i></dt><dd>maps all files in the directory that start with input_image_, for example input_image_001.jpg, input_image_002.jpg, input_image_003.jpg... etc.<br/>
+            <dt>-i <i>"input_image_*.jpg"</i></dt><dd>maps all files in the directory that start with input_image_, for example input_image_001.jpg, input_image_002.jpg, input_image_003.jpg... etc.<br>
             (The quotation marks are necessary for the above "glob" pattern!)</dd>
             <dt>-vf scale=250x250</dt><dd>filter the video to scale it to 250x250; -vf is an alias for -filter:v</dd>
             <dt><i>output_file.gif</i></dt><dd>path and name of the output file</dd>
@@ -380,8 +380,8 @@
           <p>Before encoding, you’ll need to establish which of the .VOB files on the DVD or .iso contain the content that you wish to encode. Inside the VIDEO_TS directory, you will see a series of files with names like VTS_01_0.VOB, VTS_01_1.VOB, etc. Some of the .VOB files will contain menus, special features, etc, so locate the ones that contain target content by playing them back in VLC.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i concat:<i>input files</i></dt><dd>lists the input VOB files and directs ffmpeg to concatenate them. Each input file should be separated by a backslash and a pipe, like so:<br/>
-              <code>-i concat:VTS_01_1.VOB\|VTS_01_2.VOB\|VTS_01_3.VOB</code><br/>
+            <dt>-i concat:<i>input files</i></dt><dd>lists the input VOB files and directs ffmpeg to concatenate them. Each input file should be separated by a backslash and a pipe, like so:<br>
+              <code>-i concat:VTS_01_1.VOB\|VTS_01_2.VOB\|VTS_01_3.VOB</code><br>
               The backslash is simply an escape character for the pipe (<strong>|</strong>).
             <dt>-c:v libx264</dt><dd>sets the video codec as H.264</dd>
             <dt>-c:a copy</dt><dd>audio remains as-is (no re-encode)</dd>
@@ -547,7 +547,7 @@
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-ss 00:02:00</dt><dd>sets in point at 00:02:00</dd>
             <dt>-to 00:55:00</dt><dd>sets out point at 00:55:00</dd>
-            <dt>-c copy</dt><dd>use stream copy mode (no re-encoding)<br/>
+            <dt>-c copy</dt><dd>use stream copy mode (no re-encoding)<br>
             <i>Note:</i> watch out when using <code>-ss</code> with <code>-c copy</code> if the source is encoded with an interframe codec (e.g., H.264). Since ffmpeg must split on i-frames, it will seek to the nearest i-frame to begin the stream copy.</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
@@ -710,19 +710,19 @@
           <p>“Rewrap-MXF.sh” contains the following text:</p>
           <p><code>for file in *.MXF; do ffmpeg -i "$file" -map 0 -c copy "${file%.MXF}.mov"; done</code></p>
           <dl>
-            <dt>for file in *.MXF</dt><dd>starts the loop, and states what the input files will be. Here, the ffmpeg command within the loop will be applied to all files with an extension of .MXF.<br/>
+            <dt>for file in *.MXF</dt><dd>starts the loop, and states what the input files will be. Here, the ffmpeg command within the loop will be applied to all files with an extension of .MXF.<br>
             The word ‘file’ is an arbitrary variable which will represent each .MXF file in turn as it is looped over.</dd>
-            <dt>do ffmpeg -i "$file"</dt><dd>carry out the following ffmpeg command for each input file.<br/>
+            <dt>do ffmpeg -i "$file"</dt><dd>carry out the following ffmpeg command for each input file.<br>
             Per Bash syntax, within the command the variable is referred to by <strong>“$file”</strong>. The dollar sign is used to reference the variable ‘file’, and the enclosing quotation marks prevents reinterpretation of any special characters that may occur within the filename, ensuring that the original filename is retained.</dd>
             <dt>-map 0</dt><dd>retain all streams</dd>
             <dt>-c copy</dt><dd>enable stream copy (no re-encode)</dd>
             <dt>"${file%.MXF}.mov";</dt><dd>retaining the original file name, set the output file wrapper as .mov</dd>
             <dt>done</dt><dd>complete; all items have been processed.</dd>
           </dl>
-          <p><strong>Note</strong>: the shell script (.sh file) and all .MXF files to be processed must be contained within the same directory, and the script must be run from that directory.<br/>
+          <p><strong>Note</strong>: the shell script (.sh file) and all .MXF files to be processed must be contained within the same directory, and the script must be run from that directory.<br>
             Execute the .sh file with the command <code>sh Rewrap-MXF.sh</code>.</p>
           <p>Modify the script as needed to perform different transcodes, or to use with ffprobe. :)</p>
-          <p>The basic pattern will look similar to this:<br/>
+          <p>The basic pattern will look similar to this:<br>
           <code>for item in *.ext; do ffmpeg -i $item <i>(ffmpeg options here)</i> "${item%.ext}_suffix.ext"</code></p>
           <p>e.g., if an input file is bestmovie002.avi, its output will be bestmovie002_suffix.avi.</p>
           <p class="link"></p>
@@ -959,14 +959,14 @@
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-f concat</dt><dd>forces ffmpeg to concatenate the files and to keep the same file format</dd>
-            <dt>-i <i>mylist.txt</i></dt><dd>path, name and extension of the input file. Per the <a href="https://www.ffmpeg.org/ffmpeg-formats.html#Options">ffmpeg documentation</a>, it is preferable to specify relative rather than absolute file paths, as allowing absolute file paths may pose a security risk.<br/>
+            <dt>-i <i>mylist.txt</i></dt><dd>path, name and extension of the input file. Per the <a href="https://www.ffmpeg.org/ffmpeg-formats.html#Options">ffmpeg documentation</a>, it is preferable to specify relative rather than absolute file paths, as allowing absolute file paths may pose a security risk.<br>
             This text file contains the list of files to be concatenated and should be formatted as follows:
             <pre>file '<i>./first_file.ext</i>'
 file '<i>./second_file.ext</i>'
 . . .
 file '<i>./last_file.ext</i>'</pre>
-In the above, <strong>file</strong> is simply the word "file". Straight apostrophes ('like this') rather than curved quotation marks (‘like this’) must be used to enclose the file paths.<br/>
-<i>Note</i>: If specifying absolute file paths in the .txt file, add <code>-safe 0</code> before the input file.<br/>
+In the above, <strong>file</strong> is simply the word "file". Straight apostrophes ('like this') rather than curved quotation marks (‘like this’) must be used to enclose the file paths.<br>
+<i>Note</i>: If specifying absolute file paths in the .txt file, add <code>-safe 0</code> before the input file.<br>
 e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></code></dd>
             <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
@@ -990,10 +990,10 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
           <p><code>ffplay -framerate 5 <i>input_file_%06d.ext</i></code></p>
           <dl>
             <dt>ffplay</dt><dd>starts the command</dd>
-            <dt>-framerate 5</dt><dd>plays image sequence at rate of 5 images per second<br/>
+            <dt>-framerate 5</dt><dd>plays image sequence at rate of 5 images per second<br>
             <i>Note</i>: this low framerate will produce a slideshow effect.</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file<br/>
-            This must match the naming convention used! The regex %06d matches six-digit-long numbers, possibly with leading zeroes. This allows the full sequence to be read in ascending order, one image after the other.<br/>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file<br>
+            This must match the naming convention used! The regex %06d matches six-digit-long numbers, possibly with leading zeroes. This allows the full sequence to be read in ascending order, one image after the other.<br>
             The extension for TIFF files is .tif or maybe .tiff; the extension for DPX files is .dpx (or even .cin for old files). Screenshots are often in .png format.</dd>
           </dl>
           <p><i>Notes:</i></p>
@@ -1090,8 +1090,8 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-filter:v "hflip,vflip"</dt><dd>flips the image horizontally and vertically<br/>By using only one of the parameters hflip or vflip for filtering the image is flipped on that axis only. The quote marks are not mandatory.</dd>
-            <dt>-c:a copy</dt><dd>re-encodes using the same audio codec<br/>
+            <dt>-filter:v "hflip,vflip"</dt><dd>flips the image horizontally and vertically<br>By using only one of the parameters hflip or vflip for filtering the image is flipped on that axis only. The quote marks are not mandatory.</dd>
+            <dt>-c:a copy</dt><dd>re-encodes using the same audio codec<br>
             For silent videos you can replace <code>-c:a copy</code> by <code>-an</code>.</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
@@ -1228,7 +1228,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-f image2</dt><dd>forces the image file de-muxer for single image files</dd>
             <dt>-framerate 24</dt><dd>Sets the input framerate to 24 fps. The image2 demuxer defaults to 25 fps.</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file<br/>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file<br>
             This must match the naming convention actually used! The regex %06d matches six digits long numbers, possibly with leading zeroes. This allows to read in ascending order, one image after the other, the full sequence inside one folder. For image sequences starting with 086400 (i.e. captured with a timecode starting at 01:00:00:00 and at 24 fps), add the flag <code>-start_number 086400</code> before <code>-i input_file_%06d.ext</code>. The extension for TIFF files is .tif or maybe .tiff; the extension for DPX files is .dpx (or eventually .cin for old files).</dd>
             <dt>-c:v v210</dt><dd>encodes an uncompressed 10-bit video stream</dd>
             <dt>-an copy</dt><dd>no audio</dd>
@@ -1279,7 +1279,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-filter:v <i>setfield=tff</i></dt><dd>Sets the field order to top field first. Use <code>setfield=bff</code> for bottom field first. </dd>
+            <dt>-filter:v <i>setfield=tff</i></dt><dd>Sets the field order to top field first. Use <code>setfield=bff</code> for bottom field first.</dd>
             <dt>-c:v prores</dt><dd>Tells ffmpeg to transcode the video stream into Apple ProRes 422. Experiment with using other codecs.</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
@@ -1343,13 +1343,13 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
             <dt>-h</dt><dd>Call the help option</dd>
             <dt>type=name</dt>
             <dd>Tells ffmpeg which kind of option you want, for example:
-                <ul>
-                    <li><code>encoder=libx264</code></li>
-                    <li><code>decoder=mp3</code></li>
-                    <li><code>muxer=matroska</code></li>
-                    <li><code>demuxer=mov</code></li>
-                    <li><code>filter=crop</code></li>
-                </ul>
+              <ul>
+                <li><code>encoder=libx264</code></li>
+                <li><code>decoder=mp3</code></li>
+                <li><code>muxer=matroska</code></li>
+                <li><code>demuxer=mov</code></li>
+                <li><code>filter=crop</code></li>
+              </ul>
             </dd>
           </dl>
           <p class="link"></p>
