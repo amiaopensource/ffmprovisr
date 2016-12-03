@@ -965,7 +965,7 @@
 file '<i>./second_file.ext</i>'
 . . .
 file '<i>./last_file.ext</i>'</pre>
-In the above, <strong>file</strong> is simply the word "file".<br/>
+In the above, <strong>file</strong> is simply the word "file". Straight apostrophes ('like this') rather than curved quotation marks (‘like this’) must be used to enclose the file paths.<br/>
 <i>Note</i>: If specifying absolute file paths in the .txt file, add <code>-safe 0</code> before the input file.<br/>
 e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></code></dd>
             <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
