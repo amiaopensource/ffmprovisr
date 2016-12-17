@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
   SCRIPT=$(basename "${0}")
- VERSION='2016-10-09'
+ VERSION='2016-12-17'
   AUTHOR='ffmprovisr'
      RED='\033[1;31m'
     BLUE='\033[1;34m'
@@ -46,7 +46,7 @@ while getopts ":hi:m:" opt; do
     i) input_file=$OPTARG ;;
     m) input_hash=$OPTARG ;;
     :) echo -e "${RED}Error:${NC} option -${OPTARG} requires an argument" ; _output_prompt ;;
-    *) echo -e "${RED}Error:${NC }bad option -${OPTARG}" ; _output_prompt ;;
+    *) echo -e "${RED}Error:${NC}bad option -${OPTARG}" ; _output_prompt ;;
   esac
 done
 
