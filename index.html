@@ -93,7 +93,12 @@
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file<br>
             The extension for the QuickTime container is <code>.mov</code>.</dd>
           </dl>
-          <p class="link"></p>
+          <p>FFmpeg comes with more than one ProRes encoder:</p>
+          <ul>
+            <li><code>prores</code> is much faster, can be used for progressive video only, and seems to be better for video according to Rec. 601 (Recommendation ITU-R BT.601).</li>
+            <li><code>prores_ks</code> generates a better file, can also be used for interlaced video, allows also encoding of ProRes 4444 (<code>-c:v prores_ks -profile:v 4</code>), and seems to be better for video according to Rec. 709 (Recommendation ITU-R BT.709).</li>
+          </ul>
+         <p class="link"></p>
         </div>
       </div>
     </div>
