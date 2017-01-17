@@ -412,37 +412,94 @@
   </div>
   <!-- ends rip DVD -->
 
-</div>
-<div class="well">
-<h4>Filters</h4>
+  </div>
+  <div class="well">
+  <h4>Filters</h4>
 
-<!-- BRNG -->
-<span data-toggle="modal" data-target="#brng"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Identifies pixels out of broadcast range">BRNG</button></span>
-<div id="brng" class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="well">
-        <h3>Shows all pixels outside of broadcast range</h3>
-        <p><code>ffplay -f lavfi "movie='<i>input.mp4</i>',signalstats=out=brng:color=cyan[out]"</code></p>
-        <dl>
-          <dt>ffplay</dt><dd>starts the command (ffmpeg users may need to install --with-ffplay)</dd>
-          <dt>-f lavfi</dt><dd>tells ffmpeg to use the Libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">[more]</a></dd>
-          <dt>"</dt><dd>quotation mark to start command</dd>
-          <dt>movie='<i>input.mp4</i>'</dt><dd>declares video file source to apply filter</dd>
-          <dt>,</dt><dd>comma signifies closing of video source assertion and ready for filter assertion</dd>
-          <dt>signalstats=out=brng:color=cyan[out]</dt><dd>tells ffplay to use the signalstats command, output the data, use the brng filter, and set the color of out-of-range pixels to cyan</dd>
-          <dt>"</dt><dd>quotation mark to close command</dd>
-        </dl>
-        <div class="sample-image">
-          <h4>Example of filter output</h4>
-          <img src="img/brng.gif" alt="BRNG example">
+    <!-- astats -->
+    <span data-toggle="modal" data-target="#astats"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="********">astats</button></span>
+    <div id="astats" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="well">
+            <h3><!-- accurate title --></h3>
+            <p><code>ffplay -f lavfi "amovie='input.mp3',astats=metadata=1:reset=1,adrawgraph=lavfi.astats.Overall.Peak_level:max=0:min=-30.0:size=700x256:bg=Black[out]"</code></p>
+            <dl>
+              <dt>ffplay</dt><dd>starts the command (ffmpeg users may need to install --with-ffplay)</dd>
+              <dt>-f lavfi</dt><dd>tells ffmpeg to use the Libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">[more]</a></dd>
+              <dt>"</dt><dd>quotation mark to start command</dd>
+              <dt>movie='<i>input.mp3</i>'</dt><dd>declares audio file source to apply filter</dd>
+              <dt>,</dt><dd>comma signifies closing of video source assertion and ready for filter assertion</dd>
+              <!-- ??? -->
+              <dt>"</dt><dd>quotation mark to close command</dd>
+            </dl>
+            <div class="sample-image">
+              <!-- <h4>Example of filter output</h4> -->
+              <!-- <img src="" alt="astats example"> -->
+            </div>
+            <p class="link"></p>
+          </div>
         </div>
-        <p class="link"></p>
       </div>
     </div>
-  </div>
-</div>
-<!-- ends BRNG -->
+    <!-- ends astats -->
+
+    <!-- BRNG -->
+    <span data-toggle="modal" data-target="#brng"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Identifies pixels out of broadcast range">BRNG</button></span>
+    <div id="brng" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="well">
+            <h3>Shows all pixels outside of broadcast range</h3>
+            <p><code>ffplay -f lavfi "movie='<i>input.mp4</i>',signalstats=out=brng:color=cyan[out]"</code></p>
+            <dl>
+              <dt>ffplay</dt><dd>starts the command (ffmpeg users may need to install --with-ffplay)</dd>
+              <dt>-f lavfi</dt><dd>tells ffmpeg to use the Libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">[more]</a></dd>
+              <dt>"</dt><dd>quotation mark to start command</dd>
+              <dt>movie='<i>input.mp4</i>'</dt><dd>declares video file source to apply filter</dd>
+              <dt>,</dt><dd>comma signifies closing of video source assertion and ready for filter assertion</dd>
+              <dt>signalstats=out=brng:</dt><dd>tells ffplay to use the signalstats command, output the data, use the brng filter, and the final <code>:</code> indicates there's another parameter coming</dd>
+              <dt>color=cyan[out]</dt><dd>sets the color of out-of-range pixels to cyan</dd>
+              <dt>"</dt><dd>quotation mark to close command</dd>
+            </dl>
+            <div class="sample-image">
+              <h4>Example of filter output</h4>
+              <img src="img/brng.gif" alt="BRNG example">
+            </div>
+            <p class="link"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ends BRNG -->
+
+    <!-- ocr -->
+    <span data-toggle="modal" data-target="#ocr"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="********">ocr</button></span>
+    <div id="ocr" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="well">
+            <h3><!-- accurate title --></h3>
+            <p><code>ffplay input_file -vf "ocr,drawtext=fontfile=/Library/Fonts/Andale Mono.ttf:text=%{metadata\\\:lavfi.ocr.text}:fontcolor=white"
+</code></p>
+            <dl>
+              <dt>ffplay</dt><dd>starts the command (ffmpeg users may need to install --with-ffplay)</dd>
+              <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+              <dt>-vf</dt><dd>-vf is an alias for -filter:v, which creates a filtergraph to use for the streams.</dd>
+              <dt>"</dt><dd>quotation mark to start filter command</dd>
+              <!-- ??? -->
+              <dt>"</dt><dd>quotation mark to close filter command</dd>
+            </dl>
+            <div class="sample-image">
+              <!-- <h4>Example of filter output</h4> -->
+              <!-- <img src="" alt="ocr example"> -->
+            </div>
+            <p class="link"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ends ocr -->
 
   </div>
   <div class="well">
