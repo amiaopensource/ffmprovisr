@@ -10,6 +10,16 @@ dt {
   font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
 }
 
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sample-image {
+  margin-bottom: 18px;
+}
+
 h1 {
   letter-spacing:8px;
   font-size:86px;
