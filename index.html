@@ -425,7 +425,7 @@
             <h3><!-- accurate title --></h3>
             <p><code>ffplay -f lavfi "amovie='input.mp3',astats=metadata=1:reset=1,adrawgraph=lavfi.astats.Overall.Peak_level:max=0:min=-30.0:size=700x256:bg=Black[out]"</code></p>
             <dl>
-              <dt>ffplay</dt><dd>starts the command (ffmpeg users may need to install --with-ffplay)</dd>
+              <dt>ffplay</dt><dd>starts the command</dd>
               <dt>-f lavfi</dt><dd>tells ffmpeg to use the Libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">[more]</a></dd>
               <dt>"</dt><dd>quotation mark to start command</dd>
               <dt>movie='<i>input.mp3</i>'</dt><dd>declares audio file source to apply filter</dd>
@@ -453,7 +453,7 @@
             <h3>Shows all pixels outside of broadcast range</h3>
             <p><code>ffplay -f lavfi "movie='<i>input.mp4</i>',signalstats=out=brng:color=cyan[out]"</code></p>
             <dl>
-              <dt>ffplay</dt><dd>starts the command (ffmpeg users may need to install --with-ffplay)</dd>
+              <dt>ffplay</dt><dd>starts the command</dd>
               <dt>-f lavfi</dt><dd>tells ffmpeg to use the Libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">[more]</a></dd>
               <dt>"</dt><dd>quotation mark to start command</dd>
               <dt>movie='<i>input.mp4</i>'</dt><dd>declares video file source to apply filter</dd>
@@ -483,7 +483,7 @@
             <p><code>ffplay input_file -vf "ocr,drawtext=fontfile=/Library/Fonts/Andale Mono.ttf:text=%{metadata\\\:lavfi.ocr.text}:fontcolor=white"
 </code></p>
             <dl>
-              <dt>ffplay</dt><dd>starts the command (ffmpeg users may need to install --with-ffplay)</dd>
+              <dt>ffplay</dt><dd>starts the command</dd>
               <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
               <dt>-vf</dt><dd>-vf is an alias for -filter:v, which creates a filtergraph to use for the streams.</dd>
               <dt>"</dt><dd>quotation mark to start filter command</dd>
