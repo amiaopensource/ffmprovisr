@@ -474,19 +474,24 @@
     <!-- ends BRNG -->
 
     <!-- ocr -->
-    <span data-toggle="modal" data-target="#ocr"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="********">ocr</button></span>
-    <div id="ocr" class="modal fade" tabindex="-1" role="dialog">
+    <span data-toggle="modal" data-target="#ocr_on_top"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Plays video with OCR on top">Shows OCR</button></span>
+    <div id="ocr_on_top" class="modal fade" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="well">
-            <h3><!-- accurate title --></h3>
+            <h3>Plays video with OCR on top</h3>
             <p><code>ffplay input_file -vf "ocr,drawtext=fontfile=/Library/Fonts/Andale Mono.ttf:text=%{metadata\\\:lavfi.ocr.text}:fontcolor=white"</code></p>
             <dl>
               <dt>ffplay</dt><dd>starts the command</dd>
-              <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+              <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
               <dt>-vf</dt><dd>-vf is an alias for -filter:v, which creates a filtergraph to use for the streams.</dd>
               <dt>"</dt><dd>quotation mark to start filter command</dd>
-              <!-- ??? -->
+              <dt>ocr,</dt><dd>tells ffplay to use ocr as source and the comma signifies that the script is ready for filter assertion</dd>
+              <dt>drawtext=fontfile=/Library/Fonts/Andale Mono.ttf</dt><dd>tells ffplay to drawtext and use a specific font (Andale Mono) when doing so</dd>
+              <dt>:</dt><dd>indicates there's another parameter coming</dd>
+              <dt>text=%{metadata\\\:lavfi.ocr.text}</dt><dd>tells ffplay what text to use when playing. In this case, calls for metadata that lives in the lavfi.ocr.text library</dd>
+              <dt>:</dt><dd>indicates there's another parameter coming</dd>
+              <dt>fontcolor=white</dt><dd>specifies font color as white</dd>
               <dt>"</dt><dd>quotation mark to close filter command</dd>
             </dl>
             <div class="sample-image">
