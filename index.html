@@ -480,8 +480,7 @@
         <div class="modal-content">
           <div class="well">
             <h3><!-- accurate title --></h3>
-            <p><code>ffplay input_file -vf "ocr,drawtext=fontfile=/Library/Fonts/Andale Mono.ttf:text=%{metadata\\\:lavfi.ocr.text}:fontcolor=white"
-</code></p>
+            <p><code>ffplay input_file -vf "ocr,drawtext=fontfile=/Library/Fonts/Andale Mono.ttf:text=%{metadata\\\:lavfi.ocr.text}:fontcolor=white"</code></p>
             <dl>
               <dt>ffplay</dt><dd>starts the command</dd>
               <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
@@ -500,6 +499,32 @@
       </div>
     </div>
     <!-- ends ocr -->
+
+    <!-- show_entries -->
+    <span data-toggle="modal" data-target="#show_entries"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="********">show_entries</button></span>
+    <div id="show_entries" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="well">
+            <h3><!-- accurate title --></h3>
+            <p><code>ffprobe -show_entries frame_tags=lavfi.ocr.text -f lavfi -i "movie=input.mp4,ocr"</code></p>
+            <dl>
+              <dt>ffprobe</dt><dd>starts the command</dd>
+              <dt>-show_entries</dt><dd><!-- ??? --></dd>
+              <dt>frame_tags=lavfi.ocr.text</dt><dd><!-- ??? --></dd>
+              <dt>-f lavfi</dt><dd>tells ffmpeg to use the Libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">[more]</a></dd>
+              <dt>-i "movie=input.mp4,ocr"</dt><dd>path, name and extension of the input file</dd>
+            </dl>
+            <div class="sample-image">
+              <!-- <h4>Example of filter output</h4> -->
+              <!-- <img src="" alt="show_entries example"> -->
+            </div>
+            <p class="link"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ends show_entries -->
 
   </div>
   <div class="well">
