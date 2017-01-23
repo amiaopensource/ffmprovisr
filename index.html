@@ -445,7 +445,7 @@
     <!-- ends astats -->
 
     <!-- BRNG -->
-    <span data-toggle="modal" data-target="#brng"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Identifies pixels out of broadcast range">BRNG</button></span>
+    <span data-toggle="modal" data-target="#brng"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Identifies pixels out of broadcast range">Broadcast Range</button></span>
     <div id="brng" class="modal fade" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -458,7 +458,8 @@
               <dt>"</dt><dd>quotation mark to start command</dd>
               <dt>movie='<i>input.mp4</i>'</dt><dd>declares video file source to apply filter</dd>
               <dt>,</dt><dd>comma signifies closing of video source assertion and ready for filter assertion</dd>
-              <dt>signalstats=out=brng:</dt><dd>tells ffplay to use the signalstats command, output the data, use the brng filter, and the final <code>:</code> indicates there's another parameter coming</dd>
+              <dt>signalstats=out=brng:</dt><dd>tells ffplay to use the signalstats command, output the data, use the brng filter</dd>
+              <dt>:</dt><dd>indicates there's another parameter coming</dd>
               <dt>color=cyan[out]</dt><dd>sets the color of out-of-range pixels to cyan</dd>
               <dt>"</dt><dd>quotation mark to close command</dd>
             </dl>
