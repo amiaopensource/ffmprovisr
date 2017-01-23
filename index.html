@@ -417,20 +417,26 @@
   <h4>Filters</h4>
 
     <!-- astats -->
-    <span data-toggle="modal" data-target="#astats"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="********">astats</button></span>
+    <span data-toggle="modal" data-target="#astats"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Plays a graphical output showing decibel levels of an input file">astats</button></span>
     <div id="astats" class="modal fade" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="well">
-            <h3><!-- accurate title --></h3>
+            <h3>Plays a graphical output showing decibel levels of an input file</h3>
             <p><code>ffplay -f lavfi "amovie='input.mp3',astats=metadata=1:reset=1,adrawgraph=lavfi.astats.Overall.Peak_level:max=0:min=-30.0:size=700x256:bg=Black[out]"</code></p>
             <dl>
               <dt>ffplay</dt><dd>starts the command</dd>
               <dt>-f lavfi</dt><dd>tells ffmpeg to use the Libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">[more]</a></dd>
               <dt>"</dt><dd>quotation mark to start command</dd>
-              <dt>movie='<i>input.mp3</i>'</dt><dd>declares audio file source to apply filter</dd>
-              <dt>,</dt><dd>comma signifies closing of video source assertion and ready for filter assertion</dd>
-              <!-- ??? -->
+              <dt>movie='<i>input.mp3</i>'</dt><dd>declares audio source file on which to apply filter</dd>
+              <dt>,</dt><dd>comma signifies the end of audio source section and the beginning of the filter section</dd>
+              <dt>astats=metadata=1</dt><dd>tells the astats filter to ouput metadata that can be passed to another filter (in this case adrawgraph)</dd>
+              <dt>:</dt><dd>divides beteen options of the same filter</dd>
+              <dt>reset=1</dt><dd>tells the filter to calculate the stats on every frame (increasing this number would calculate stats for groups of frames)</dd>
+              <dt>,</dt><dd>comma divides one filter in the chain from another</dd>
+              <dt>adrawgraph=lavfi.astats.Overall.Peak_level:max=0:min=-30.0</dt><dd>draws a graph using the overall peak volume calculated by the astats filter. It sets the max for the graph to 0 (dB) and the minimum to -30 (dB). For more options on data points that can be graphed see <a href="https://ffmpeg.org/ffmpeg-filters.html#astats-1" target="_blank">[more]</a></dd>
+              <dt>size=700x256:bg=Black</dt><dd>sets the background color and size of the output</dd>
+              <dt>[out]</dt><dd>ends the filterchain and sets the output</dd>
               <dt>"</dt><dd>quotation mark to close command</dd>
             </dl>
             <div class="sample-image">
