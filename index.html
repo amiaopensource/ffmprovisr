@@ -532,6 +532,35 @@
     </div>
     <!-- ends Exports OCR -->
 
+    <!-- Vectorscope -->
+    <span data-toggle="modal" data-target="#vectorscope"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Vectorscope from video to screen">Vectorscope</button></span>
+    <div id="vectorscope" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="well">
+            <h3>Plays vectorscope of video</h3>
+            <p><code>ffplay <i>input_file</i> -vf "format=yuva444p9,split=2[m][v],[v]vectorscope=b=0.7:m=color3:g=green[v],[m][v]overlay=x=W-w:y=H-h"</code></p>
+            <dl>
+              <dt>ffplay</dt><dd>starts the command</dd>
+              <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+              <dt>-vf</dt><dd>-vf is an alias for -filter:v, which creates a filtergraph to use for the streams.</dd>
+              <dt>"</dt><dd>quotation mark to start command</dd>
+              <dt>format=yuva444p9</dt><dd>sets format as yuva444p9</dd>
+              <dt>,</dt><dd>comma signifies there is another parameter coming</dd>
+              <dt>split=2[m][v]</dt><dd>Splits the input into two identical outputs and names them [m] and [v]</dd>
+              <dt>,</dt><dd>comma signifies there is another parameter coming</dd>
+              <dt>[v]vectorscope=b=0.7:m=color3:g=green[v]</dt><dd>asserts usage of the vectorscope filter and sets a light background opacity (b), sets a background color style (m), and graticule color (g)</dd>
+              <dt>,</dt><dd>comma signifies there is another parameter coming</dd>
+              <dt>[m][v]overlay=x=W-w:y=H-h</dt><dd>declares where the vectorscope will overlay on top of the video image as it plays</dd>
+              <dt>"</dt><dd>quotation mark to end command</dd>
+            </dl>
+            <p class="link"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ends Vectorscope -->
+
   </div>
   <div class="well">
   <h4>Make derivative variations</h4>
