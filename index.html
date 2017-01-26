@@ -491,7 +491,7 @@
             <dl>
               <dt>ffplay</dt><dd>starts the command</dd>
               <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-              <dt>-vf</dt><dd>-vf is an alias for -filter:v, which creates a filtergraph to use for the streams.</dd>
+              <dt>-vf</dt><dd>creates a filtergraph to use for the streams</dd>
               <dt>"</dt><dd>quotation mark to start filter command</dd>
               <dt>ocr,</dt><dd>tells ffplay to use ocr as source and the comma signifies that the script is ready for filter assertion</dd>
               <dt>drawtext=fontfile=/Library/Fonts/Andale Mono.ttf</dt><dd>tells ffplay to drawtext and use a specific font (Andale Mono) when doing so</dd>
@@ -549,7 +549,7 @@
             <dl>
               <dt>ffplay</dt><dd>starts the command</dd>
               <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-              <dt>-vf</dt><dd>-vf is an alias for -filter:v, which creates a filtergraph to use for the streams.</dd>
+              <dt>-vf</dt><dd>creates a filtergraph to use for the streams</dd>
               <dt>"</dt><dd>quotation mark to start command</dd>
               <dt>,</dt><dd>comma signifies there is another parameter coming</dd>
               <dt>split=2[m][v]</dt><dd>Splits the input into two identical outputs and names them [m] and [v]</dd>
@@ -636,7 +636,7 @@
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-ss <i>00:00:20</i></dt><dd>seeks video file to 20 seconds into the video</dd>
-            <dt>-vf fps=1/60</dt><dd>-vf is an alias for -filter:v, which creates a filtergraph to use for the streams. The rest of the command identifies filtering by frames per second, and sets the frames per second at 1/60 (which is one per minute). Omitting this will output all frames from the video</dd>
+            <dt>-vf fps=1/60</dt><dd>Creates a filtergraph to use for the streams. The rest of the command identifies filtering by frames per second, and sets the frames per second at 1/60 (which is one per minute). Omitting this will output all frames from the video.</dd>
             <dt><i>output file</i></dt><dd>path, name and extension of the output file. In the example out%d.png where %d is a regular expression that adds a number (d is for digit) and increments with each frame (out1.png, out2.png, out3.png…). You may also chose a regular expression like out%04d.png which gives 4 digits with leading 0 (out0001.png, out0002.png, out0003.png, …).</dd>
           </dl>
           <p class="link"></p>
