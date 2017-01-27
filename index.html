@@ -884,13 +884,14 @@ foreach ($file in $inputfiles) {
   ffmpeg -i $file -map 0 -c copy $output
 }</code></pre>
           <dl>
-            <dt>$inputfiles = ls *.mp4</dt><dd>Creates the variable <code>$inputfiles</code>, which is a list of all the .mp4 files in the current folder.<br/>
+            <dt>$inputfiles = ls *.mp4</dt><dd>Creates the variable <code>$inputfiles</code>, which is a list of all the .mp4 files in the current folder.<br>
               In PowerShell, all variable names start with the dollar-sign character.</dd>
-            <dt>foreach ($file in $inputfiles)</dt><dd>Creates a loop and states the subsequent code block will be applied to each file listed in <code>$inputfiles</code>.<br/>
+            <dt>foreach ($file in $inputfiles)</dt><dd>Creates a loop and states the subsequent code block will be applied to each file listed in <code>$inputfiles</code>.<br>
             <code>$file</code> is an arbitrary variable which will represent each .mp4 file in turn as it is looped over.</dd>
             <dt>{</dt><dd>Opens the code block.</dd>
-            <dt>$output = [io.path]::ChangeExtension($file, '.mkv')</dt><dd>Sets up the output file: it will be located in the current folder and keep its filename, but will have an .mkv extension instead of .mp4.</dd>
-            <dt>ffmpeg -i $file</dt><dd>carry out the following ffmpeg command for each input file.</dd>
+            <dt>$output = [io.path]::ChangeExtension($file, '.mkv')</dt><dd>Sets up the output file: it will be located in the current folder and keep the same filename, but will have an .mkv extension instead of .mp4.</dd>
+            <dt>ffmpeg -i $file</dt><dd>Carry out the following ffmpeg command for each input file.<br>
+            <strong>Note</strong>: To call ffmpeg here as just ‘ffmpeg’ (rather than entering the full path to ffmpeg.exe), you must make sure that it's correctly configured. See <a href="http://adaptivesamples.com/how-to-install-ffmpeg-on-windows/">this article</a>, especially the section ‘Add to Path’.</dd>
             <dt>-map 0</dt><dd>retain all streams</dd>
             <dt>-c copy</dt><dd>enable stream copy (no re-encode)</dd>
             <dt>$output</dt><dd>The output file is set to the value of the <code>$output</code> variable declared above: i.e., the current file name with an .mkv extension.</dd>
