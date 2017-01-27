@@ -835,14 +835,14 @@
   <div class="well">
   <h4>Preservation</h4>
 
-  <!-- batch processing -->
-  <span data-toggle="modal" data-target="#batch_processing"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="FFMPEG batch processing within a single folder">Batch processing</button></span>
-  <div id="batch_processing" class="modal fade" tabindex="-1" role="dialog">
+  <!-- batch processing (Mac/Linux) -->
+  <span data-toggle="modal" data-target="#batch_processing_bash"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="FFMPEG batch processing on Mac/Linux">Batch processing (Mac/Linux)</button></span>
+  <div id="batch_processing_bash" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
           <h3>Create Bash script to batch process with ffmpeg</h3>
-          <p>Bash scripts are plain texts files saved with a .sh extension. This entry explains how they work with the example of a bash script named “Rewrap-MXF.sh”, which rewraps .MXF files in a given directory to .MOV files.</p>
+          <p>Bash scripts are plain text files saved with a .sh extension. This entry explains how they work with the example of a bash script named “Rewrap-MXF.sh”, which rewraps .MXF files in a given directory to .MOV files.</p>
           <p>“Rewrap-MXF.sh” contains the following text:</p>
           <p><code>for file in *.MXF; do ffmpeg -i "$file" -map 0 -c copy "${file%.MXF}.mov"; done</code></p>
           <dl>
@@ -866,7 +866,46 @@
       </div>
     </div>
   </div>
-  <!-- ends batch processing -->
+  <!-- ends batch processing (Mac/Linux) -->
+
+  <!-- batch processing (Windows) -->
+  <span data-toggle="modal" data-target="#batch_processing_win"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="FFMPEG batch processing on Windows">Batch processing (Windows)</button></span>
+  <div id="batch_processing_win" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Create PowerShell script to batch process with ffmpeg</h3>
+          <p>As of Windows 10, it is possible to run Bash via <a href="https://msdn.microsoft.com/en-us/commandline/wsl/about">Bash on Ubuntu on Windows</a>, allowing you to use <a href="http://amiaopensource.github.io/ffmprovisr/#batch_processing_bash">bash scripting</a>. To enable Bash on Windows, see <a href="https://msdn.microsoft.com/en-us/commandline/wsl/install_guide">these instructions</a>.</p>
+          <p>On Windows, the primary native command line programme is <strong>PowerShell</strong>. PowerShell scripts are plain text files saved with a .ps1 extension. This entry explains how they work with the example of a PowerShell script named “rewrap-mp4.ps1”, which rewraps .mp4 files in a given directory to .mkv files.</p>
+          <p>“rewrap-mp4.ps1” contains the following text:</p>
+          <pre class="codeblock"><code>$inputfiles = ls *.mp4
+foreach ($file in $inputfiles) {
+  $output = [io.path]::ChangeExtension($file, '.mkv')
+  ffmpeg -i $file -map 0 -c copy $output
+}</code></pre>
+          <dl>
+            <dt>$inputfiles = ls *.mp4</dt><dd>Creates the variable <code>$inputfiles</code>, which is a list of all the .mp4 files in the current folder.<br>
+              In PowerShell, all variable names start with the dollar-sign character.</dd>
+            <dt>foreach ($file in $inputfiles)</dt><dd>Creates a loop and states the subsequent code block will be applied to each file listed in <code>$inputfiles</code>.<br>
+            <code>$file</code> is an arbitrary variable which will represent each .mp4 file in turn as it is looped over.</dd>
+            <dt>{</dt><dd>Opens the code block.</dd>
+            <dt>$output = [io.path]::ChangeExtension($file, '.mkv')</dt><dd>Sets up the output file: it will be located in the current folder and keep the same filename, but will have an .mkv extension instead of .mp4.</dd>
+            <dt>ffmpeg -i $file</dt><dd>Carry out the following ffmpeg command for each input file.<br>
+            <strong>Note</strong>: To call ffmpeg here as just ‘ffmpeg’ (rather than entering the full path to ffmpeg.exe), you must make sure that it's correctly configured. See <a href="http://adaptivesamples.com/how-to-install-ffmpeg-on-windows/">this article</a>, especially the section ‘Add to Path’.</dd>
+            <dt>-map 0</dt><dd>retain all streams</dd>
+            <dt>-c copy</dt><dd>enable stream copy (no re-encode)</dd>
+            <dt>$output</dt><dd>The output file is set to the value of the <code>$output</code> variable declared above: i.e., the current file name with an .mkv extension.</dd>
+            <dt>}</dt><dd>Closes the code block.</dd>
+          </dl>
+          <p><strong>Note</strong>: the PowerShell script (.ps1 file) and all .mp4 files to be rewrapped must be contained within the same directory, and the script must be run from that directory.<p>
+          <p>Execute the .ps1 file by typing <code>.\rewrap-mp4.ps1</code> in PowerShell.</p>
+          <p>Modify the script as needed to perform different transcodes, or to use with ffprobe. :)</p>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends batch processing (Windows) -->
 
   <!-- Create frame md5s -->
   <span data-toggle="modal" data-target="#create_frame_md5s"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="This will create an MD5 checksum per video frame">Create MD5 checksums</button></span>
