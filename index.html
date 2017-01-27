@@ -875,8 +875,8 @@
       <div class="modal-content">
         <div class="well">
           <h3>Create PowerShell script to batch process with ffmpeg</h3>
-          <p>PowerShell scripts are plain text files saved with a .ps1 extension.</p>
-          <p>This entry explains how they work with the example of a PowerShell script named “rewrap-mp4.ps1”, which rewraps .mp4 files in a given directory to .mkv files.</p>
+          <p>As of Windows 10, it is possible to run Bash via <a href="https://msdn.microsoft.com/en-us/commandline/wsl/about">Bash on Ubuntu on Windows</a>, allowing you to use <a href="http://amiaopensource.github.io/ffmprovisr/#batch_processing_bash">bash scripting</a>. To enable Bash on Windows, see <a href="https://msdn.microsoft.com/en-us/commandline/wsl/install_guide">these instructions</a>.</p>
+          <p>On Windows, the primary native command line programme is <strong>PowerShell</strong>. PowerShell scripts are plain text files saved with a .ps1 extension. This entry explains how they work with the example of a PowerShell script named “rewrap-mp4.ps1”, which rewraps .mp4 files in a given directory to .mkv files.</p>
           <p>“rewrap-mp4.ps1” contains the following text:</p>
           <pre class="codeblock"><code>$inputfiles = ls *.mp4
 foreach ($file in $inputfiles) {
