@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
   SCRIPT=$(basename "${0}")
- VERSION='2016-10-09'
+ VERSION='2016-12-31'
   AUTHOR='ffmprovisr'
      RED='\033[1;31m'
     BLUE='\033[1;34m'
       NC='\033[0m'
 
-if [[ $OSTYPE = "cygwin" ]] || [ ! $(which diff) ]; then
-    echo -e "${RED}ERROR:${NC} 'diff' is not installed by default. Please install 'diffutils' from Cygwin."
+if [[ ${OSTYPE} = "cygwin" ]] || [ ! $(which diff) ]; then
+    echo -e "${RED}Error: 'diff' is not installed by default. Please install 'diffutils' from Cygwin.${NC}"
     exit 1
 fi
 
 _output_prompt(){
     cat <<EOF
-Usage: ${SCRIPT} [-h | -i <av_file> -m <md5_file>]
+Usage: ${SCRIPT} [-h] | [ -i <av_file> -m <md5_file> ]
 EOF
     exit 1
 }
@@ -41,36 +41,34 @@ unset input_file
 unset input_hash
 
 while getopts ":hi:m:" opt; do
-  case "${opt}" in
-    h) _output_help ;;
-    i) input_file=$OPTARG ;;
-    m) input_hash=$OPTARG ;;
-    :) echo -e "${RED}Error:${NC} option -${OPTARG} requires an argument" ; _output_prompt ;;
-    *) echo -e "${RED}Error:${NC }bad option -${OPTARG}" ; _output_prompt ;;
-  esac
+    case "${opt}" in
+        h) _output_help ;;
+        i) input_file=$OPTARG ;;
+        m) input_hash=$OPTARG ;;
+        :) echo -e "${RED}Error: option -${OPTARG} requires an argument${NC}" ; _output_prompt ;;
+        *) echo -e "${RED}Error: bad option -${OPTARG}${NC}" ; _output_prompt ;;
+    esac
 done
 
 [[ -z "${#}" || ! ${input_file} || ! ${input_hash} ]] && _output_prompt
 echo -e "${BLUE}Please wait...${NC}"
 unset md5_tmp
 if [[ $OSTYPE = "cygwin" ]]; then
-  md5_tmp=""${USERPROFILE}/$(basename ${input_hash}).tmp""
+    md5_tmp=""${USERPROFILE}/$(basename ${input_hash}).tmp""
 else
-  md5_tmp="${HOME}/$(basename ${input_hash}).tmp"
+    md5_tmp="${HOME}/$(basename ${input_hash}).tmp"
 fi
 $(ffmpeg -i ${input_file} -loglevel 0 -f framemd5 -an ${md5_tmp})
-[[ ! -f ${md5_tmp} ]] && { echo -e "${RED}Error:${NC} '${input_file}' is not a valid audio-visual file."; _output_prompt; }
+[[ ! -f ${md5_tmp} ]] && { echo -e "${RED}Error: '${input_file}' is not a valid audio-visual file.${NC}" ; _output_prompt ; }
 unset old_file
 unset tmp_file
 old_file=$(grep -v '^#' ${input_hash})
 tmp_file=$(grep -v '^#' ${md5_tmp})
 if [[ "${old_file}" = "${tmp_file}" ]]; then
-  echo -e "${BLUE}OK${NC} '$(basename ${input_file})' matches '$(basename ${input_hash})'."
-  rm "${md5_tmp}"
-  exit 0
+    echo -e "${BLUE}'$(basename ${input_file})' matches '$(basename ${input_hash})'${NC}"
+    rm "${md5_tmp}"
 else
-  echo -e "${RED}ERROR:${NC} The following differences were detected between '$(basename ${input_file})' and '$(basename ${input_hash})':"
-  diff "${input_hash}" "${md5_tmp}"
-  rm "${md5_tmp}"
-  exit 1
+    echo -e "${RED}The following differences were detected between '$(basename ${input_file})' and '$(basename ${input_hash})':${NC}"
+    diff "${input_hash}" "${md5_tmp}"
+    rm "${md5_tmp}"
 fi

@@ -31,38 +31,48 @@ You can read our contributor code of conduct [here](https://github.com/amiaopens
 ## Contributors
 * Gathered using [octohatrack](https://github.com/LABHR/octohatrack)
 
-GitHub Contributors:
-* ablwr (Ashley)
-* edsu (Ed Summers) 
-* jfarbowitz (Jonathan Farbowitz) 
-* kfrn (Katherine Frances Nagels) 
-* kgrons (Kathryn Gronsbell) 
-* kieranjol (Kieran O'Leary) 
-* llogan (Lou) 
-* retokromer (Reto Kromer) 
-* rfraimow 
+GitHub Contributors:  
+ablwr (Ashley)  
+dericed (Dave Rice)  
+edsu (Ed Summers)  
+jfarbowitz (Jonathan Farbowitz)  
+kfrn (Katherine Frances Nagels)  
+kgrons (Kathryn Gronsbell)  
+kieranjol (Kieran O'Leary)  
+llogan (Lou)  
+privatezero (Andrew Weaver)  
+retokromer (Reto Kromer)  
+rfraimow  
 
-All Contributors:
-* ablwr (Ashley) 
-* brainwane (Sumana Harihareswara) 
-* dericed (Dave Rice) 
-* edsu (Ed Summers) 
-* jamessam (Jim) 
-* jfarbowitz (Jonathan Farbowitz) 
-* jronallo (Jason Ronallo) 
-* kfrn (Katherine Frances Nagels) 
-* kgrons (Kathryn Gronsbell) 
-* kieranjol (Kieran O'Leary) 
-* llogan (Lou) 
-* mulvya 
-* retokromer (Reto Kromer) 
-* rfraimow 
-* todrobbins (Tod Robbins) 
+All Contributors:  
+ablwr (Ashley)  
+audiovisualopen  
+brainwane (Sumana Harihareswara)  
+dericed (Dave Rice)  
+edsu (Ed Summers)  
+Fizz24  
+jamessam (Jim)  
+jfarbowitz (Jonathan Farbowitz)  
+jronallo (Jason Ronallo)  
+kfrn (Katherine Frances Nagels)  
+kgrons (Kathryn Gronsbell)  
+kieranjol (Kieran O'Leary)  
+llogan (Lou)  
+mulvya  
+privatezero (Andrew Weaver)  
+retokromer (Reto Kromer)  
+rfraimow  
+todrobbins (Tod Robbins)  
 
-Repo: amiaopensource/ffmprovisr
-* GitHub Contributors: 9
-* All Contributors: 15
+Repo: amiaopensource/ffmprovisr  
+GitHub Contributors: 11  
+All Contributors: 18  
 
 ## AVHack Team:
 
 [Ashley Blewer](https://github.com/ablwr), Eddy Colloton, Rebecca Dillmeier, [Jonathan Farbowitz](https://github.com/jfarbowitz), Rebecca Fraimow, Samuel Gutterman, Kelly Haydon, [Reto Kromer](https://github.com/retokromer), Nicole Martin, [Katherine Frances Nagels](https://github.com/kfrn), [Kieran O'Leary](https://github.com/kieranjol), Catriona Schlosser, Ben Turkus
+
+## Sister projects
+
+[Script Ahoy](http://dd388.github.io/crals/): Community Resource for Archivists and Librarians Scripting  
+[sourcecaster](https://datapraxis.github.io/sourcecaster/): helps you use the command line to work through common challenges that come up when working with digital primary sources.
