@@ -427,7 +427,7 @@
             <p><code>ffplay -f lavfi "amovie='input.mp3',astats=metadata=1:reset=1,adrawgraph=lavfi.astats.Overall.Peak_level:max=0:min=-30.0:size=700x256:bg=Black[out]"</code></p>
             <dl>
               <dt>ffplay</dt><dd>starts the command</dd>
-              <dt>-f lavfi</dt><dd>tells ffmpeg to use the Libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">[more]</a></dd>
+              <dt>-f lavfi</dt><dd>tells ffmpeg to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter input virtual device</a></dd>
               <dt>"</dt><dd>quotation mark to start command</dd>
               <dt>movie='<i>input.mp3</i>'</dt><dd>declares audio source file on which to apply filter</dd>
               <dt>,</dt><dd>comma signifies the end of audio source section and the beginning of the filter section</dd>
@@ -435,7 +435,7 @@
               <dt>:</dt><dd>divides beteen options of the same filter</dd>
               <dt>reset=1</dt><dd>tells the filter to calculate the stats on every frame (increasing this number would calculate stats for groups of frames)</dd>
               <dt>,</dt><dd>comma divides one filter in the chain from another</dd>
-              <dt>adrawgraph=lavfi.astats.Overall.Peak_level:max=0:min=-30.0</dt><dd>draws a graph using the overall peak volume calculated by the astats filter. It sets the max for the graph to 0 (dB) and the minimum to -30 (dB). For more options on data points that can be graphed see <a href="https://ffmpeg.org/ffmpeg-filters.html#astats-1" target="_blank">[more]</a></dd>
+              <dt>adrawgraph=lavfi.astats.Overall.Peak_level:max=0:min=-30.0</dt><dd>draws a graph using the overall peak volume calculated by the astats filter. It sets the max for the graph to 0 (dB) and the minimum to -30 (dB). For more options on data points that can be graphed see the <a href="https://ffmpeg.org/ffmpeg-filters.html#astats-1" target="_blank">ffmpeg astats documentation</a></dd>
               <dt>size=700x256:bg=Black</dt><dd>sets the background color and size of the output</dd>
               <dt>[out]</dt><dd>ends the filterchain and sets the output</dd>
               <dt>"</dt><dd>quotation mark to close command</dd>
@@ -461,7 +461,7 @@
             <p><code>ffplay -f lavfi "movie='<i>input.mp4</i>',signalstats=out=brng:color=cyan[out]"</code></p>
             <dl>
               <dt>ffplay</dt><dd>starts the command</dd>
-              <dt>-f lavfi</dt><dd>tells ffmpeg to use the Libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">[more]</a></dd>
+              <dt>-f lavfi</dt><dd>tells ffmpeg to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter input virtual device</a></dd>
               <dt>"</dt><dd>quotation mark to start command</dd>
               <dt>movie='<i>input.mp4</i>'</dt><dd>declares video file source to apply filter</dd>
               <dt>,</dt><dd>comma signifies closing of video source assertion and ready for filter assertion</dd>
@@ -525,7 +525,7 @@
               <dt>ffprobe</dt><dd>starts the command</dd>
               <dt>-show_entries</dt><dd>sets a list of entries to show</dd>
               <dt>frame_tags=lavfi.ocr.text</dt><dd>shows the <i>lavfi.ocr.text</i> tag in the frame section of the video</dd>
-              <dt>-f lavfi</dt><dd>tells ffmpeg to use the Libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">[more]</a></dd>
+              <dt>-f lavfi</dt><dd>tells ffmpeg to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter input virtual device</a></dd>
               <dt>-i "movie=<i>input_file</i>,ocr"</dt><dd>declares 'movie' as <i>input_file</i> and passes in the 'ocr' command</dd>
             </dl>
             <div class="sample-image">
@@ -552,7 +552,6 @@
               <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
               <dt>-vf</dt><dd>creates a filtergraph to use for the streams</dd>
               <dt>"</dt><dd>quotation mark to start command</dd>
-              <dt>,</dt><dd>comma signifies there is another parameter coming</dd>
               <dt>split=2[m][v]</dt><dd>Splits the input into two identical outputs and names them [m] and [v]</dd>
               <dt>,</dt><dd>comma signifies there is another parameter coming</dd>
               <dt>[v]vectorscope=b=0.7:m=color3:g=green[v]</dt><dd>asserts usage of the vectorscope filter and sets a light background opacity (b, alias for bgopacity), sets a background color style (m, alias for mode), and graticule color (g, alias for graticule)</dd>
