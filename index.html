@@ -29,7 +29,7 @@
   <p>FFmpeg is a powerful tool for manipulating audiovisual files. Unfortunately, it also has a steep learning curve, especially for users unfamiliar with a command line interface. This app helps users through the command generation process so that more people can reap the benefits of FFmpeg.</p>
   <p>Each button displays helpful information about how to perform a wide variety of tasks using FFmpeg. To use this site, click on the task you would like to perform. A new window will open up with a sample command and a description of how that command works. You can copy this command and understand how the command works with a breakdown of each of the flags.</p>
   <p>For FFmpeg basics, check out the program’s <a href="https://www.ffmpeg.org/" target="_blank">official website</a>.</p>
-  <p>For instructions on how to install FFmpeg on Mac, Linux, and Windows, refer to Reto Kromer's <a href="https://avpres.net/FFmpeg/#ch1">installation instructions</a>.</p>
+  <p>For instructions on how to install FFmpeg on Mac, Linux, and Windows, refer to Reto Kromer’s <a href="https://avpres.net/FFmpeg/#ch1">installation instructions</a>.</p>
   <p>For Bash and command line basics, try the <a href="https://learnpythonthehardway.org/book/appendixa.html" target="_blank">Command Line Crash Course</a>. For a little more context presented in an ffmprovisr style, try <a href="http://explainshell.com/" target="_blank">explainshell.com</a>!</p>
   <h5>Sister projects</h5>
   <p><a href="http://dd388.github.io/crals/">Script Ahoy</a>: Community Resource for Archivists and Librarians Scripting</p>
@@ -466,7 +466,7 @@
               <dt>movie='<i>input.mp4</i>'</dt><dd>declares video file source to apply filter</dd>
               <dt>,</dt><dd>comma signifies closing of video source assertion and ready for filter assertion</dd>
               <dt>signalstats=out=brng:</dt><dd>tells ffplay to use the signalstats command, output the data, use the brng filter</dd>
-              <dt>:</dt><dd>indicates there's another parameter coming</dd>
+              <dt>:</dt><dd>indicates there’s another parameter coming</dd>
               <dt>color=cyan[out]</dt><dd>sets the color of out-of-range pixels to cyan</dd>
               <dt>"</dt><dd>quotation mark to close command</dd>
             </dl>
@@ -488,7 +488,7 @@
         <div class="modal-content">
           <div class="well">
             <h3>Plays video with OCR on top</h3>
-            <p>Note: ffmpeg must be compiled with the tesseract library for this script to work (<code>--with-tesseract</code> if using <code>brew install ffmpeg</code> method)</p>
+            <p>Note: ffmpeg must be compiled with the tesseract library for this script to work (<code>--with-tesseract</code> if using <code>brew install ffmpeg</code> method).</p>
             <p><code>ffplay input_file -vf "ocr,drawtext=fontfile=/Library/Fonts/Andale Mono.ttf:text=%{metadata\\\:lavfi.ocr.text}:fontcolor=white"</code></p>
             <dl>
               <dt>ffplay</dt><dd>starts the command</dd>
@@ -497,9 +497,9 @@
               <dt>"</dt><dd>quotation mark to start filter command</dd>
               <dt>ocr,</dt><dd>tells ffplay to use ocr as source and the comma signifies that the script is ready for filter assertion</dd>
               <dt>drawtext=fontfile=/Library/Fonts/Andale Mono.ttf</dt><dd>tells ffplay to drawtext and use a specific font (Andale Mono) when doing so</dd>
-              <dt>:</dt><dd>indicates there's another parameter coming</dd>
+              <dt>:</dt><dd>indicates there’s another parameter coming</dd>
               <dt>text=%{metadata\\\:lavfi.ocr.text}</dt><dd>tells ffplay what text to use when playing. In this case, calls for metadata that lives in the lavfi.ocr.text library</dd>
-              <dt>:</dt><dd>indicates there's another parameter coming</dd>
+              <dt>:</dt><dd>indicates there’s another parameter coming</dd>
               <dt>fontcolor=white</dt><dd>specifies font color as white</dd>
               <dt>"</dt><dd>quotation mark to close filter command</dd>
             </dl>
@@ -1382,7 +1382,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-vf drawtext=</dt><dd>This calls the drawtext filter with the following options:
             <dl>
-              <dt>fontfile=<i>font_path</i></dt><dd> Set path to font. For example in OSX: <code>fontfile=/Library/Fonts/AppleGothic.ttf</code></dd>
+              <dt>fontfile=<i>font_path</i></dt><dd> Set path to font. For example in macOS: <code>fontfile=/Library/Fonts/AppleGothic.ttf</code></dd>
               <dt>fontsize=<i>font_size</i></dt><dd> Set font size. <code>35</code> is a good starting point for SD. Ideally this value is proportional to video size, for example use ffprobe to acquire video height and divide by 14.</dd>
               <dt>text=<i>watermark_text</i> </dt><dd> Set the content of your watermark text. For example: <code>text='FFMPROVISR EXAMPLE TEXT'</code></dd>
               <dt>fontcolor=<i>font_colour</i> </dt><dd> Set colour of font. Can be a text string such as <code>fontcolor=white</code> or a hexadecimal value such as <code>fontcolor=0xFFFFFF</code></dd>
@@ -1434,7 +1434,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-vf drawtext=</dt><dd>This calls the drawtext filter with the following options:
             <dl>
-              <dt>fontfile=<i>font_path</i></dt><dd> Set path to font. For example in OSX: <code>fontfile=/Library/Fonts/AppleGothic.ttf</code></dd>
+              <dt>fontfile=<i>font_path</i></dt><dd> Set path to font. For example in macOS: <code>fontfile=/Library/Fonts/AppleGothic.ttf</code></dd>
               <dt>fontsize=<i>font_size</i></dt><dd> Set font size. <code>35</code> is a good starting point for SD. Ideally this value is proportional to video size, for example use ffprobe to acquire video height and divide by 14.</dd>
               <dt>timecode=<i>starting_timecode</i> </dt><dd> Set the timecode to be displayed for the first frame. Timecode is to be represented as <code>hh:mm:ss[:;.]ff</code>. Colon escaping is determined by O.S, for example in Ubuntu <code>timecode='09\\:50\\:01\\:23'</code>. Ideally, this value would be generated from the file itself using ffprobe.</dd>
               <dt>fontcolor=<i>font_colour</i> </dt><dd> Set colour of font. Can be a text string such as <code>fontcolor=white</code> or a hexadecimal value such as <code>fontcolor=0xFFFFFF</code></dd>
