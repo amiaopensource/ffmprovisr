@@ -488,6 +488,7 @@
         <div class="modal-content">
           <div class="well">
             <h3>Plays video with OCR on top</h3>
+            <p>Note: ffmpeg must be compiled with the tesseract library for this script to work (<code>--with-tesseract</code> if using <code>brew install ffmpeg</code> method)</p>
             <p><code>ffplay input_file -vf "ocr,drawtext=fontfile=/Library/Fonts/Andale Mono.ttf:text=%{metadata\\\:lavfi.ocr.text}:fontcolor=white"</code></p>
             <dl>
               <dt>ffplay</dt><dd>starts the command</dd>
@@ -520,6 +521,7 @@
         <div class="modal-content">
           <div class="well">
             <h3>Exports OCR data to screen</h3>
+            <p>Note: ffmpeg must be compiled with the tesseract library for this script to work (<code>--with-tesseract</code> if using <code>brew install ffmpeg</code> method)</p>
             <p><code>ffprobe -show_entries frame_tags=lavfi.ocr.text -f lavfi -i "movie=<i>input_file</i>,ocr"</code></p>
             <dl>
               <dt>ffprobe</dt><dd>starts the command</dd>
