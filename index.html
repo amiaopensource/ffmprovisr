@@ -413,6 +413,39 @@
   </div>
   <!-- ends rip DVD -->
 
+  <!-- Transcode to H.265 -->
+  <span data-toggle="modal" data-target="#transcode_h265"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode to an H.265 MP4">Transcode to H.265/HEVC</button></span>
+  <div id="transcode_h265" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Transcode to H.265/HEVC</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v libx265 -pix_fmt yuv420p -c:a copy <i>output_file</i></code></p>
+          <p>This command takes an input file and transcodes it to H.265/HEVC in an .mp4 wrapper, keeping the audio codec the same as in the original file.</p>
+          <p><strong>Note</strong>: ffmpeg must be compiled with libx265, the library of the H.265 codec, for this script to work. (Add the flag <code>--with-x265</code> if using <code>brew install ffmpeg</code> method).</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-c:v libx265</dt><dd>tells ffmpeg to encode the video as H.265</dd>
+            <dt>-pix_fmt yuv420p</dt><dd>libx265 will use a chroma subsampling scheme that is the closest match to that of the input. This can result in YUV 4:2:0, 4:2:2, or 4:4:4 chroma subsampling. For widest accessibility, it's a good idea to specify 4:2:0 chroma subsampling.</dd>
+            <dt>-c:a copy</dt><dd>tells ffmpeg not to change the audio codec</dd>
+            <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p>The libx265 encoding library defaults to a ‘medium’ preset for compression quality and a CRF of 28. CRF stands for ‘constant rate factor’ and determines the quality and file size of the resulting H.265 video. The CRF scale ranges from 0 (best quality [lossless]; largest file size) to 51 (worst quality; smallest file size).</p>
+          <p>A CRF of 28 for H.265 can be considered a medium setting, <a href="https://trac.ffmpeg.org/wiki/Encode/H.265#ConstantRateFactorCRF">corresponding</a> to a CRF of 23 in <a href="https://amiaopensource.github.io/ffmprovisr/#transcode_h264">encoding H.264</a>, but should result in about half the file size.</p>
+          <p>To create a higher quality file, you can add these presets:</p>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v libx265 -pix_fmt yuv420p -preset veryslow -crf 18 -c:a copy <i>output_file</i></code></p>
+          <dl>
+            <dt>-preset <i>veryslow</i></dt><dd>This option tells ffmpeg to use the slowest preset possible for the best compression quality.</dd>
+            <dt>-crf <i>18</i></dt><dd>Specifying a lower CRF will make a larger file with better visual quality. 18 is often considered a ‘visually lossless’ compression.</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Transcode to H.265 -->
+
   </div>
   <div class="well">
   <h4>Filters</h4>
@@ -1606,7 +1639,6 @@ Change the above data-target field, the hover-over description, the button text,
 <div id="*****unique name*****" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      where the text goes
       <div class="well">
         <h3>*****Longer title*****</h3>
         <p> <code>ffmpeg -i <i>input_file</i> *****code goes here***** <i>output_file</i></code> </p>
