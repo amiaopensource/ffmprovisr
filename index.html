@@ -422,6 +422,7 @@
           <h3>Transcode to H.265/HEVC</h3>
           <p><code>ffmpeg -i <i>input_file</i> -c:v libx265 -pix_fmt yuv420p -c:a copy <i>output_file</i></code></p>
           <p>This command takes an input file and transcodes it to H.265/HEVC in an .mp4 wrapper, keeping the audio codec the same as in the original file.</p>
+          <p><strong>Note</strong>: ffmpeg must be compiled with libx265, the library of the H.265 codec, for this script to work. (Add the flag <code>--with-x265</code> if using <code>brew install ffmpeg</code> method).</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
