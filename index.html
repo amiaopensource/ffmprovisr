@@ -600,6 +600,40 @@
       </div>
     </div>
     <!-- ends Vectorscope -->
+    <!--Side by Side Videos/Temporal Difference Filter-->
+    <span data-toggle="modal" data-target="#tempdif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Plays two videos side by side while applying the temporal difference filter to both">Side by Side Videos/Temporal Difference Filter</button></span>
+    <div id="tempdif" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="well">
+            <h3>This will play two input videos side by side while also applying the temporal difference filter to them</h3>
+            <p><code>ffmpeg -i input01 -i input02 -filter_complex "[0:v:0]tblend=all_mode=difference128[a];[1:v:0]tblend=all_mode=difference128[b];[a][b]hstack[out]" -map [out] -f nut -c:v rawvideo - | ffplay -
+</code></p>
+            <dl>
+              <dt>ffmpeg</dt><dd>starts the command</dd>
+              <dt>-i <i>input01</i> -i <i>input02</i></dt><dd>Designates the files to use for inputs one and two respectively</a></dd>
+              <dt>-filter_complex</dt><dd>Lets FFmpeg know we will be using a complex filter (this must be used for multiple inputs)</dd>
+              <dt>[0:v:0]tblend=all_mode=difference128[a]</dt><dd>Applies the tblend filter (with the settings all_mode and difference128) to the first video stream from the first input and assigns the result to the output [a]</dd>
+              <dt>[1:v:0]tblend=all_mode=difference128[a]</dt><dd>Applies the tblend filter (with the settings all_mode and difference128) to the first video stream from the second input and assigns the result to the output [b]</dd>
+              <dt>[a][b]hstack[out]</dt><dd>Takes the outputs from the previous steps ([a] and [b] and uses the hstack (horizontal stack) filter on them to create the side by side output.  This output is then named [out])</dd>
+              <dt>-map [out]</dt><dd>Maps the output of the filter chain</dd>
+              <dt>-f nut</dt><dd>Sets the format for the output video stream to <a href="https://www.ffmpeg.org/ffmpeg-formats.html#nut" target="_blank">Nut</a></dd>
+              <dt>-c:v rawvideo</dt><dd>Sets the video codec of the output video stream to raw video</dd>
+              <dt>-</dt><dd>Tells FFmpeg that the output will be piped to a new command (as opposed to a file)</dd>
+              <dt>|</dt><dd>Tells the system you will be piping the output of the previous command into a new command</dd>
+              <dt>ffplay -</dt><dd>Starts FFplay and tells it to use the pipe from the previous command as its input.</dd>
+            </dl>
+            <div class="sample-image">
+              <h4>Example of filter output</h4>
+              <img src="img/astats_levels.gif" alt="astats example">
+            </div>
+            <p class="link"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ends Side by Side Videos/Temporal Difference Filter -->
+    
 
   </div>
   <div class="well">
