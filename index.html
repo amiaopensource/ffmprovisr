@@ -381,21 +381,20 @@
       <div class="modal-content">
         <div class="well">
           <h3>Convert DVD to H.264</h3>
-          <p> <code>ffmpeg -i concat:<i>input_file1</i>\|<i>input_file2</i>\|<i>input_file3</i> -c:v libx264 -c:a copy <i>output_file</i>.mp4</code></p>
+          <p><code>ffmpeg -i concat:<i>input_file1</i>\|<i>input_file2</i>\|<i>input_file3</i> -c:v libx264 -c:a copy <i>output_file</i>.mp4</code></p>
           <p>This command allows you to create an H.264 file from a DVD source that is not copy-protected.</p>
           <p>Before encoding, you’ll need to establish which of the .VOB files on the DVD or .iso contain the content that you wish to encode. Inside the VIDEO_TS directory, you will see a series of files with names like VTS_01_0.VOB, VTS_01_1.VOB, etc. Some of the .VOB files will contain menus, special features, etc, so locate the ones that contain target content by playing them back in VLC.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i concat:<i>input files</i></dt><dd>lists the input VOB files and directs ffmpeg to concatenate them. Each input file should be separated by a backslash and a pipe, like so:<br>
               <code>-i concat:VTS_01_1.VOB\|VTS_01_2.VOB\|VTS_01_3.VOB</code><br>
-              The backslash is simply an escape character for the pipe (<strong>|</strong>).
+            The backslash is simply an escape character for the pipe (<strong>|</strong>).</dd>
             <dt>-c:v libx264</dt><dd>sets the video codec as H.264</dd>
             <dt>-c:a copy</dt><dd>audio remains as-is (no re-encode)</dd>
             <dt><i>output_file.mp4</i></dt><dd>path and name of the output file</dd>
           </dl>
           <p>It’s also possible to adjust the quality of your output by setting the <strong>-crf</strong> and <strong>-preset</strong> values:</p>
-          <p><code>ffmpeg -i concat:<i>input_file1</i>\|<i>input_file2</i>\|<i>input_file3</i> -c:v libx264 -crf 18 -preset veryslow -c:a copy <i>output_file</i>.mp4</code>
-          </p>
+          <p><code>ffmpeg -i concat:<i>input_file1</i>\|<i>input_file2</i>\|<i>input_file3</i> -c:v libx264 -crf 18 -preset veryslow -c:a copy <i>output_file</i>.mp4</code></p>
           <dl>
             <dt>-crf 18</dt><dd>sets the constant rate factor to a visually lossless value. Libx264 defaults to a <a href="https://trac.ffmpeg.org/wiki/Encode/H.264#crf">crf of 23</a>, considered medium quality; a smaller crf value produces a larger and higher quality video.</dd>
             <dt>-preset veryslow</dt><dd>A slower preset will result in better compression and therefore a higher-quality file. The default is <strong>medium</strong>; slower presets are <strong>slow</strong>, <strong>slower</strong>, and <strong>veryslow</strong>.</dd>
@@ -427,7 +426,7 @@
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-c:v libx265</dt><dd>tells ffmpeg to encode the video as H.265</dd>
-            <dt>-pix_fmt yuv420p</dt><dd>libx265 will use a chroma subsampling scheme that is the closest match to that of the input. This can result in YUV 4:2:0, 4:2:2, or 4:4:4 chroma subsampling. For widest accessibility, it's a good idea to specify 4:2:0 chroma subsampling.</dd>
+            <dt>-pix_fmt yuv420p</dt><dd>libx265 will use a chroma subsampling scheme that is the closest match to that of the input. This can result in YUV 4:2:0, 4:2:2, or 4:4:4 chroma subsampling. For widest accessibility, it’s a good idea to specify 4:2:0 chroma subsampling.</dd>
             <dt>-c:a copy</dt><dd>tells ffmpeg not to change the audio codec</dd>
             <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
@@ -600,6 +599,7 @@
       </div>
     </div>
     <!-- ends Vectorscope -->
+
     <!--Side by Side Videos/Temporal Difference Filter-->
     <span data-toggle="modal" data-target="#tempdif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Plays two videos side by side while applying the temporal difference filter to both">Side by Side Videos/Temporal Difference Filter</button></span>
     <div id="tempdif" class="modal fade" tabindex="-1" role="dialog">
@@ -610,7 +610,7 @@
             <p><code>ffmpeg -i input01 -i input02 -filter_complex "[0:v:0]tblend=all_mode=difference128[a];[1:v:0]tblend=all_mode=difference128[b];[a][b]hstack[out]" -map [out] -f nut -c:v rawvideo - | ffplay -</code></p>
             <dl>
               <dt>ffmpeg</dt><dd>starts the command</dd>
-              <dt>-i <i>input01</i> -i <i>input02</i></dt><dd>Designates the files to use for inputs one and two respectively</a></dd>
+              <dt>-i <i>input01</i> -i <i>input02</i></dt><dd>Designates the files to use for inputs one and two respectively</dd>
               <dt>-filter_complex</dt><dd>Lets ffmpeg know we will be using a complex filter (this must be used for multiple inputs)</dd>
               <dt>[0:v:0]tblend=all_mode=difference128[a]</dt><dd>Applies the tblend filter (with the settings all_mode and difference128) to the first video stream from the first input and assigns the result to the output [a]</dd>
               <dt>[1:v:0]tblend=all_mode=difference128[a]</dt><dd>Applies the tblend filter (with the settings all_mode and difference128) to the first video stream from the second input and assigns the result to the output [b]</dd>
@@ -632,7 +632,6 @@
       </div>
     </div>
     <!-- ends Side by Side Videos/Temporal Difference Filter -->
-    
 
   </div>
   <div class="well">
@@ -879,8 +878,8 @@
           <p>This script allows you to generate two derivative audio files from a master while appending audio from a seperate file (for example a copyright or institutional notice) to one of them.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file (The master file)</dd>
-            <dt>-i <i>input_file_to_append</i></dt><dd>path, name and extension of the input file (The file to be appended to access file)</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file (the master file)</dd>
+            <dt>-i <i>input_file_to_append</i></dt><dd>path, name and extension of the input file (the file to be appended to access file)</dd>
             <dt>-filter_complex</dt><dd>enables the complex filtering to manage splitting the input to two audio streams</dd>
             <dt>[0:a:0]asplit=2[a][b];</dt><dd><code>asplit</code> allows audio streams to be split up for seperate manipulation. This command splits the audio from the first input (the master file) into two streams "a" and "b"</dd>
             <dt>[b]afifo[bb];</dt><dd>this buffers the stream "b" to help prevent dropped samples and renames stream to "bb"</dd>
