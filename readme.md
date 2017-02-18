@@ -8,7 +8,7 @@ Project Objective: To facilitate better understanding of FFmpeg through collabor
 
 ## How do I see it?
 
-Code stuff in the gh-pages branch (the default primary branch). Readme is right here. The site is live and lives on github pages. You can see it [here](http://amiaopensource.github.io/ffmprovisr).
+Code stuff in the gh-pages branch (the default primary branch). Readme is right here. The site is live and lives on github pages. You can see it [here](http://amiaopensource.github.io/ffmprovisr), or you can download a [release](https://github.com/amiaopensource/ffmprovisr/releases) and use it locally.
 
 ## How do I contribute?
 
