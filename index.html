@@ -1190,8 +1190,9 @@ foreach ($file in $inputfiles) {
           <p><code>ffmpeg -f lavfi -i testsrc=size=720x576:rate=25 -c:v v210 -t 10 <i>output_file</i></code></p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-f lavfi</dt><dd>tells ffmpeg to use the libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">[more]</a></dd>
-            <dt>-i testsrc=size=720x576:rate=25</dt><dd>asks for the testsrc filter pattern as input. Adjusting the <code>size</code> and <code>rate</code> options allow you to choose a specific frame size and framerate. <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc" target="_blank">[more]</a></dd>
+            <dt>-f lavfi</dt><dd>tells ffmpeg to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">libavfilter</a> input virtual device</dd>
+            <dt>-i testsrc=size=720x576:rate=25</dt><dd>asks for the testsrc filter pattern as input. Adjusting the <code>size</code> and <code>rate</code> options allow you to choose a specific frame size and framerate. <br>
+              The different test patterns that can be generated are listed <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc_002c-testsrc2_002c-yuvtestsrc">here</a>.</dd>
             <dt>-c:v <i>v210</i></dt><dd>transcodes video from rawvideo to 10-bit Uncompressed YUV 4:2:2. Alter this setting to set your desired codec.</dd>
             <dt>-t 10</dt><dd>specifies recording time of 10 seconds</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file. Try different file extensions such as mkv, mov, mp4, or avi.</dd>
