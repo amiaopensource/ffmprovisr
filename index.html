@@ -486,6 +486,32 @@
   </div>
   <!-- ends Deinterlace video -->
 
+  <!-- Convert colourspace -->
+  <span data-toggle="modal" data-target="#convert-colourspace"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Convert colourspace of video">Convert colourspace</button></span>
+  <div id="convert-colourspace" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Transcode video to a different colourspace</h3>
+          <p>This command applies a filter to convert the video to a different colour space.</p>
+          <p> <code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf colormatrix=src:dst <i>output_file</i></code> </p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-c:v libx264</dt><dd>tells ffmpeg to encode the video stream as H.264</dd>
+            <dt>-vf colormatrix=<em>src</em>:<em>dst</em></dt><dd>the video filter <strong>colormatrix</strong> will be applied, with the given source and destination colourspaces.<br>
+            Accepted values include <code>bt601</code> (Rec.601), <code>smpte170m</code> (Rec.601, 525-line/NTSC version), <code>bt470bg</code> (Rec.601, 625-line/PAL version), <code>bt709</code> (Rec.709), and <code>bt2020</code> (Rec.2020).<br>
+            For example, to convert from Rec.601 to Rec.709, you would use <code>-vf colormatrix=bt601:bt709</code>.</dd>
+            <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p><strong>Note</strong>: Converting between colourspaces with ffmpeg can be done via either the <strong>colormatrix</strong> or <strong>colorspace</strong> filters, with colorspace allowing finer control (individual setting of colourspace, transfer characteristics, primaries, range, pixel format, etc). See <a href="https://trac.ffmpeg.org/wiki/colorspace">this</a> entry on the ffmpeg wiki, and the ffmpeg documentation for <a href="http://ffmpeg.org/ffmpeg-filters.html#colormatrix">colormatrix</a> and <a href="http://ffmpeg.org/ffmpeg-filters.html#colorspace">colorspace</a>.</p>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Convert colourspace -->
+
   </div>
   <div class="well">
   <h4>Filters</h4>
