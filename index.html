@@ -434,7 +434,7 @@
             <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
           <p>The libx265 encoding library defaults to a ‘medium’ preset for compression quality and a CRF of 28. CRF stands for ‘constant rate factor’ and determines the quality and file size of the resulting H.265 video. The CRF scale ranges from 0 (best quality [lossless]; largest file size) to 51 (worst quality; smallest file size).</p>
-          <p>A CRF of 28 for H.265 can be considered a medium setting, <a href="https://trac.ffmpeg.org/wiki/Encode/H.265#ConstantRateFactorCRF" target="_blank">corresponding</a> to a CRF of 23 in <a href="https://amiaopensource.github.io/ffmprovisr/#transcode_h264">encoding H.264</a>, but should result in about half the file size.</p>
+          <p>A CRF of 28 for H.265 can be considered a medium setting, <a href="https://trac.ffmpeg.org/wiki/Encode/H.265#ConstantRateFactorCRF" target="_blank">corresponding</a> to a CRF of 23 in <a href="./index.html#transcode_h264">encoding H.264</a>, but should result in about half the file size.</p>
           <p>To create a higher quality file, you can add these presets:</p>
           <p><code>ffmpeg -i <i>input_file</i> -c:v libx265 -pix_fmt yuv420p -preset veryslow -crf 18 -c:a copy <i>output_file</i></code></p>
           <dl>
@@ -535,7 +535,7 @@
           <p><span class="beware">⚠</span> Using this command it is possible to add Rec.709 tags to a file that is actually Rec.601 (etc), so apply with caution!</p>
           <p>These commands are relevant for H.264 and H.265 videos, encoded with <code>libx264</code> and <code>libx265</code> respectively.</p>
           <p><b>Note</b>: If you wish to embed colourspace metadata <i>without</i> changing to another colourspace, omit <code>-vf colormatrix=src:dst</code>. However, since it is <code>libx264</code>/<code>libx265</code> that writes the metadata, it's not possible to add these tags without reencoding the video stream.</p>
-          <p>For all possible values for <code>-color_primaries</code>, <code>-color_trc</code>, and <code>-colorspace</code>, see the ffmpeg documentation on <a href="https://ffmpeg.org/ffmpeg-all.html#Codec-Options" target="_blank">codec options</a>.</p>
+          <p>For all possible values for <code>-color_primaries</code>, <code>-color_trc</code>, and <code>-colorspace</code>, see the ffmpeg documentation on <a href="./index.html#Codec-Options" target="_blank">codec options</a>.</p>
           <hr>
           <p id="fn1" class="footnote">1. Out of step with the regular pattern, <code>-color-trc</code> doesn't accept <code>bt470bg</code>; it is instead here referred to directly as gamma.<br>
             In the Rec.601 standard, 525-line/NTSC and 625-line/PAL video have assumed gammas of 2.2 and 2.8 respectively. <a href="#ref1" title="Jump back.">↩</a></p>
@@ -1043,7 +1043,7 @@
       <div class="modal-content">
         <div class="well">
           <h3>Create PowerShell script to batch process with ffmpeg</h3>
-          <p>As of Windows 10, it is possible to run Bash via <a href="https://msdn.microsoft.com/en-us/commandline/wsl/about" target="_blank">Bash on Ubuntu on Windows</a>, allowing you to use <a href="https://amiaopensource.github.io/ffmprovisr/#batch_processing_bash">bash scripting</a>. To enable Bash on Windows, see <a href="https://msdn.microsoft.com/en-us/commandline/wsl/install_guide" target="_blank">these instructions</a>.</p>
+          <p>As of Windows 10, it is possible to run Bash via <a href="https://msdn.microsoft.com/en-us/commandline/wsl/about" target="_blank">Bash on Ubuntu on Windows</a>, allowing you to use <a href="index.html#batch_processing_bash">bash scripting</a>. To enable Bash on Windows, see <a href="https://msdn.microsoft.com/en-us/commandline/wsl/install_guide" target="_blank">these instructions</a>.</p>
           <p>On Windows, the primary native command line programme is <b>PowerShell</b>. PowerShell scripts are plain text files saved with a .ps1 extension. This entry explains how they work with the example of a PowerShell script named “rewrap-mp4.ps1”, which rewraps .mp4 files in a given directory to .mkv files.</p>
           <p>“rewrap-mp4.ps1” contains the following text:</p>
           <pre class="codeblock"><code>$inputfiles = ls *.mp4
