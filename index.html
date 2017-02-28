@@ -493,18 +493,50 @@
       <div class="modal-content">
         <div class="well">
           <h3>Transcode video to a different colourspace</h3>
-          <p>This command applies a filter to convert the video to a different colour space.</p>
+          <p>This command uses a filter to convert the video to a different colour space.</p>
           <p> <code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf colormatrix=src:dst <i>output_file</i></code> </p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-c:v libx264</dt><dd>tells ffmpeg to encode the video stream as H.264</dd>
             <dt>-vf colormatrix=<em>src</em>:<em>dst</em></dt><dd>the video filter <strong>colormatrix</strong> will be applied, with the given source and destination colourspaces.<br>
-            Accepted values include <code>bt601</code> (Rec.601), <code>smpte170m</code> (Rec.601, 525-line/NTSC version), <code>bt470bg</code> (Rec.601, 625-line/PAL version), <code>bt709</code> (Rec.709), and <code>bt2020</code> (Rec.2020).<br>
+            Accepted values include <code>bt601</code> (Rec.601), <code>smpte170m</code> (Rec.601, 525-line/<a href="https://en.wikipedia.org/wiki/NTSC#NTSC-M">NTSC</a> version), <code>bt470bg</code> (Rec.601, 625-line/<a href="https://en.wikipedia.org/wiki/PAL#PAL-B.2FG.2FD.2FK.2FI">PAL</a> version), <code>bt709</code> (Rec.709), and <code>bt2020</code> (Rec.2020).<br>
             For example, to convert from Rec.601 to Rec.709, you would use <code>-vf colormatrix=bt601:bt709</code>.</dd>
             <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
           <p><strong>Note</strong>: Converting between colourspaces with ffmpeg can be done via either the <strong>colormatrix</strong> or <strong>colorspace</strong> filters, with colorspace allowing finer control (individual setting of colourspace, transfer characteristics, primaries, range, pixel format, etc). See <a href="https://trac.ffmpeg.org/wiki/colorspace">this</a> entry on the ffmpeg wiki, and the ffmpeg documentation for <a href="http://ffmpeg.org/ffmpeg-filters.html#colormatrix">colormatrix</a> and <a href="http://ffmpeg.org/ffmpeg-filters.html#colorspace">colorspace</a>.</p>
+          <hr>
+          <h4>Convert colourspace and embed colourspace metadata</h4>
+          <p> <code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf colormatrix=src:dst -color_primaries <em>val</em> -color_trc <em>val</em> -colorspace <em>val</em> <i>output_file</i></code> </p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-c:v libx264</dt><dd>encode video as H.264</dd>
+            <dt>-vf colormatrix=<em>src</em>:<em>dst</em></dt><dd>the video filter <strong>colormatrix</strong> will be applied, with the given source and destination colourspaces.</dd>
+            <dt>-color_primaries <em>val</em></dt><dd>tags video with the given colour primaries.<br>
+              Accepted values include <code>smpte170m</code> (Rec.601, 525-line/NTSC version), <code>bt470bg</code> (Rec.601, 625-line/PAL version), <code>bt709</code> (Rec.709), and <code>bt2020</code> (Rec.2020).
+            <dt>-color_trc <em>val</em></dt><dd>tags video with the given transfer characteristics (gamma).<br>
+              Accepted values include <code>smpte170m</code> (Rec.601, 525-line/NTSC version), <code>gamma28</code> (Rec.601, 625-line/PAL version)<sup><a href="#fn1" id="ref1">1</a></sup>, <code>bt709</code> (Rec.709), <code>bt2020_10</code> (Rec.2020 10-bit), and <code>bt2020_12</code> (Rec.2020 12-bit).</dd>
+            <dt>-colorspace <em>val</em></dt><dd>tags video as being in the given colourspace.<br>
+              Accepted values include <code>smpte170m</code> (Rec.601, 525-line/NTSC version), <code>bt470bg</code> (Rec.601, 625-line/PAL version), <code>bt709</code> (Rec.709), <code>bt2020_cl</code> (Rec.2020 constant luminance), and <code>bt2020_ncl</code> (Rec.2020 non-constant luminance).</dd>
+            <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <h5>Examples</h5>
+          <p>To Rec.601 (525-line/NTSC):</p>
+          <p> <code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf colormatrix=bt709:smpte170m -color_primaries smpte170m -color_trc smpte170m -colorspace smpte170m <i>output_file</i></code> </p>
+          <p>To Rec.601 (625-line/PAL):</p>
+          <p> <code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf colormatrix=bt709:bt470bg -color_primaries bt470bg -color_trc gamma28 -colorspace bt470bg <i>output_file</i></code> </p>
+          <p>To Rec.709:</p>
+          <p> <code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf colormatrix=bt601:bt709 -color_primaries bt709 -color_trc bt709 -colorspace bt709 <i>output_file</i></code> </p>
+          <p>MediaInfo output examples:</p>
+          <img src="./img/colourspace_metadata_mediainfo.png" alt="MediaInfo screenshots of colourspace metadata"><br>
+          <p><span class="beware">⚠</span> Using this command it is possible to add Rec.709 tags to a file that is actually Rec.601 (etc), so apply with caution!</p>
+          <p>These commands are relevant for H.264 and H.265 videos, encoded with <code>libx264</code> and <code>libx265</code> respectively.</p>
+          <p><strong>Note</strong>: If you wish to embed colourspace metadata <em>without</em> changing to another colourspace, omit <code>-vf colormatrix=src:dst</code>. However, since it is <code>libx264</code>/<code>libx265</code> that writes the metadata, it's not possible to add these tags without reencoding the video stream.</p>
+          <p>For all possible values for <code>-color_primaries</code>, <code>-color_trc</code>, and <code>-colorspace</code>, see the ffmpeg documentation on <a href="https://ffmpeg.org/ffmpeg-all.html#Codec-Options">codec options</a>.</p>
+          <hr>
+          <p id="fn1" class="footnote">1. Out of step with the regular pattern, <code>-color-trc</code> doesn't accept <code>bt470bg</code>; it is instead here referred to directly as gamma.<br>
+            In the Rec.601 standard, 525-line/NTSC and 625-line/PAL video have assumed gammas of 2.2 and 2.8 respectively. <a href="#ref1" title="Jump back.">↩</a></p>
           <p class="link"></p>
         </div>
       </div>
