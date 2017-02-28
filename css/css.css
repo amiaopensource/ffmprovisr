@@ -80,3 +80,11 @@ div {
   background-color: #f9f2f4;
   border-radius: 4px
 }
+
+.beware {
+  font-size: 150%;
+}
+
+.footnote {
+  font-size: 90%;
+}
