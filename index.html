@@ -455,7 +455,7 @@
       <div class="modal-content">
         <div class="well">
           <h3>Deinterlace a video</h3>
-          <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf "yadif,format=pix_fmts=yuv420p" <i>output_file</i></code></p>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf "yadif,format=yuv420p" <i>output_file</i></code></p>
           <p>This command takes an interlaced input file and outputs a deinterlaced H.264 MP4.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -463,16 +463,18 @@
             <dt>-c:v libx264</dt><dd>tells ffmpeg to encode the video stream as H.264</dd>
             <dt>-vf</dt><dd>video filtering will be used<dd>
             <dt><i>"</i></dt><dd>start of filtergraph (see below)</dd>
-            <dt><i>yadif</i></dt><dd>deinterlacing filter (‘yet another deinterlacing filter’)</dd>
+            <dt><i>yadif</i></dt><dd>deinterlacing filter (‘yet another deinterlacing filter’)<br>
+              By default, <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1">yadif</a> will output one frame for each frame. Outputting one frame for each <em>field</em> (thereby doubling the frame rate) with <code>yadif=1</code> may produce visually better results.</dd>
             <dt><i>,</i></dt><dd>separates filters</dd>
-            <dt><i>format=pix_fmts=yuv420p</i></dt><dd>chroma subsampling set to 4:2:0<br>
+            <dt><i>format=yuv420p</i></dt><dd>chroma subsampling set to 4:2:0<br>
               By default, <code>libx264</code> will use a chroma subsampling scheme that is the closest match to that of the input. This can result in Y′C<sub>B</sub>C<sub>R</sub> 4:2:0, 4:2:2, or 4:4:4 chroma subsampling. QuickTime and most other non-FFmpeg based players can’t decode H.264 files that are not 4:2:0, therefore it's advisable to specify 4:2:0 chroma subsampling.</dd>
             <dt><i>"</i></dt><dd>end of filtergraph</dd>
             <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
-          <p>For more H.264 encoding options, see the latter section of the <a href="https://amiaopensource.github.io/ffmprovisr/#transcode_h264">encode H.264 command</a>.</p>
-          <p><code>"yadif,format=pix_fmts=yuv420p"</code> is an ffmpeg <a href="https://trac.ffmpeg.org/wiki/FilteringGuide#FiltergraphChainFilterrelationship">filtergraph</a>. Here the filtergraph is made up of one filter chain, which is itself made up of the two filters (separated by the comma).<br>
-          The enclosing quote marks are necessary when you use spaces within the filtergraph, e.g. <code>-vf "yadif, format=pix_fmts=yuv420p"</code>, and are included above as an example of good practice.</p>
+          <p><code>"yadif,format=yuv420p"</code> is an ffmpeg <a href="https://trac.ffmpeg.org/wiki/FilteringGuide#FiltergraphChainFilterrelationship">filtergraph</a>. Here the filtergraph is made up of one filter chain, which is itself made up of the two filters (separated by the comma).<br>
+          The enclosing quote marks are necessary when you use spaces within the filtergraph, e.g. <code>-vf "yadif, format=yuv420p"</code>, and are included above as an example of good practice.</p>
+          <p><strong>Note</strong>: ffmpeg includes several deinterlacers apart from <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1">yadif</a>: <a href="https://ffmpeg.org/ffmpeg-filters.html#bwdif">bwdif</a>, <a href="https://ffmpeg.org/ffmpeg-filters.html#w3fdif">w3fdif</a>, <a href="https://ffmpeg.org/ffmpeg-filters.html#kerndeint">kerndeint</a>, and <a href="https://ffmpeg.org/ffmpeg-filters.html#nnedi">nnedi</a>.</p>
+          <p>For more H.264 encoding options, see the latter section of the <a href="./index.html#transcode_h264">encode H.264 command</a>.</p>
           <div class="sample-image">
             <h4>Example</h4>
             <p>Before and after deinterlacing:</p>
