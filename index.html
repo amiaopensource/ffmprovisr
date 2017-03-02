@@ -72,6 +72,31 @@
   </div>
   <!-- ends WAV to MP3 -->
 
+  <!-- WAV to AAC/MP4 -->
+  <span data-toggle="modal" data-target="#wav_to_mp4"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Convert WAV to AAC/MP4">WAV to AAC/MP4</button></span>
+  <div id="wav_to_mp4" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>WAV to AAC/MP4</h3>
+          <p><code>ffmpeg -i <i>input_file</i>.wav -c:a aac -b:a 128k -dither_method modified_e_weighted -ar 44100 <i>output_file</i>.mp4</code></p>
+          <p>This will convert your WAV file to AAC/MP4.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path and name of the input file</dd>
+            <dt>-c:a aac</dt><dd>sets the audio codec to AAC</dd>
+            <dt>-b:a 128k</dt><dd>sets the bitrate of the audio to 128k</dd>
+            <dt>-dither_method modified_e_weighted</dt><dd>Dither makes sure you don’t unnecessarily truncate the dynamic range of your audio.</dd>
+            <dt>-ar 44100</dt><dd>sets the audio sampling frequency to 44100, or 44.1kHz, or "CD quality"</dd>
+            <dt><i>output_file</i></dt><dd>path and name of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends WAV to AAC/MP4 -->
+
   <!-- Transcode to ProRes -->
   <span data-toggle="modal" data-target="#to_prores"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode to deinterlaced Apple ProRes LT">Transcode to ProRes</button></span>
   <div id="to_prores" class="modal fade" tabindex="-1" role="dialog">
