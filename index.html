@@ -1258,7 +1258,7 @@ foreach ($file in $inputfiles) {
 
   </div>
   <div class="well">
-  <h4>Test videos</h4>
+  <h4>Test files</h4>
 
   <!-- Mandelbrot -->
   <span data-toggle="modal" data-target="#mandelbrot"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Make a mandelbrot test pattern video">Mandelbrot</button></span>
@@ -1371,6 +1371,29 @@ foreach ($file in $inputfiles) {
     </div>
   </div>
   <!-- ends Play VGA SMPTE bars -->
+
+  <!-- Sine wave -->
+  <span data-toggle="modal" data-target="#sine_wave"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Generate a test audio file playing a sine wave">Sine wave</button></span>
+  <div id="sine_wave" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Sine wave</h3>
+          <p>Generate a test audio file playing a sine wave.</p>
+          <p><code>ffmpeg -f lavfi -i "sine=frequency=1000:sample_rate=48000:duration=5" -c:a pcm_s16le <i>output_file</i>.wav</code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-f lavfi</dt><dd>tells ffmpeg to use the libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">[more]</a></dd>
+            <dt>-i "sine=frequency=1000:sample_rate=48000:duration=5"</dt><dd>Sets the signal to 1000 Hz, sampling at 48 kHz, and for 5 seconds</dd>
+            <dt>-c:a pcm_s16le</dt><dd>encodes the audio codec in <code>pcm_s16le</code> (the default encoding for wav files). pcm represents pulse-code modulation format (raw bytes), <code>16</code> means 16 bits per sample, and <code>le</code> means "little endian"</dd>
+            <dt><i>output_file</i>.wav</dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Sine wave -->
 
   </div>
   <div class="well">
