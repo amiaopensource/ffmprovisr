@@ -571,6 +571,37 @@
   </div>
   <!-- ends Convert colourspace -->
 
+  <!-- Inverse telecine -->
+  <span data-toggle="modal" data-target="#inverse-telecine"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Inverse telecine video">Inverse telecine</button></span>
+  <div id="inverse-telecine" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Inverse telecine a video file</h3>
+          <p> <code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf "fieldmatch,yadif,decimate" <i>output_file</i></code> </p>
+          <p>The inverse telecine procedure reverses the <a href="https://en.wikipedia.org/wiki/Three-two_pull_down">3:2 pull down</a> process, restoring 29.97fps interlaced video to the 24fps frame rate of the original film source.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-c:v libx264</dt><dd>encode video as H.264</dd>
+            <dt>-vf "fieldmatch,yadif,decimate"</dt><dd>applies these three video filters to the input video.<br>
+            <a href="https://ffmpeg.org/ffmpeg-filters.html#fieldmatch">Fieldmatch</a> is a field matching filter for inverse telecine - it reconstructs the progressive frames from a telecined stream.<br>
+            <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1">Yadif</a> (‘yet another deinterlacing filter’) deinterlaces the video. (Note that ffmpeg also includes several other deinterlacers).<br>
+            <a href="https://ffmpeg.org/ffmpeg-filters.html#decimate-1">Decimate</a> deletes duplicated frames.</dd>
+            <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p> <code>"fieldmatch,yadif,decimate"</code> is an ffmpeg <a href="https://trac.ffmpeg.org/wiki/FilteringGuide#FiltergraphChainFilterrelationship" target="_blank">filtergraph</a>. Here the filtergraph is made up of one filter chain, which is itself made up of the three filters (separated by commas).<br>
+          The enclosing quote marks are necessary when you use spaces within the filtergraph, e.g. <code>-vf "fieldmatch, yadif, decimate"</code>, and are included above as an example of good practice.</p>
+          <p>Note that if applying an inverse telecine procedure to a 29.97i file, the output framerate will actually be 23.976fps.</p>
+          <p>This command can also be used to restore other framerates.</p>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Inverse telecine -->
+
+
   </div>
   <div class="well">
   <h4>Filters</h4>
