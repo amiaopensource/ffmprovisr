@@ -3,11 +3,9 @@
   <head>
     <title>ffmprovisr</title>
     <meta charset="utf-8">
-
-    <link href='https://fonts.googleapis.com/css?family=Montserrat|Merriweather' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Merriweather" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/css.css">
-
     <script src="js/jquery.min.js"></script>
     <script src="js/js.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -32,7 +30,8 @@
   <p>For instructions on how to install FFmpeg on Mac, Linux, and Windows, refer to Reto Kromer’s <a href="https://avpres.net/FFmpeg/#ch1" target="_blank">installation instructions</a>.</p>
   <p>For Bash and command line basics, try the <a href="https://learnpythonthehardway.org/book/appendixa.html" target="_blank">Command Line Crash Course</a>. For a little more context presented in an ffmprovisr style, try <a href="http://explainshell.com/" target="_blank">explainshell.com</a>!</p>
   <h5>License</h5>
-  <p><a target="_blank" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a><br>This work is licensed under a <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a></p>
+  <p><a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a><br>
+    This work is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
   <h5>Sister projects</h5>
   <p><a target="_blank" href="http://dd388.github.io/crals/">Script Ahoy</a>: Community Resource for Archivists and Librarians Scripting</p>
   <p><a target="_blank" href="https://datapraxis.github.io/sourcecaster/">The Sourcecaster</a>: an app that helps you use the command line to work through common challenges that come up when working with digital primary sources.</p>
@@ -87,7 +86,7 @@
             <dt>-c:a aac</dt><dd>sets the audio codec to AAC</dd>
             <dt>-b:a 128k</dt><dd>sets the bitrate of the audio to 128k</dd>
             <dt>-dither_method modified_e_weighted</dt><dd>Dither makes sure you don’t unnecessarily truncate the dynamic range of your audio.</dd>
-            <dt>-ar 44100</dt><dd>sets the audio sampling frequency to 44100 Hz, or 44.1 kHz, or "CD quality"</dd>
+            <dt>-ar 44100</dt><dd>sets the audio sampling frequency to 44100 Hz, or 44.1 kHz, or “CD quality”</dd>
             <dt><i>output_file</i></dt><dd>path and name of the output file</dd>
           </dl>
           <p class="link"></p>
@@ -271,7 +270,7 @@
   </div>
   <!-- ends SD to HD -->
 
-<!-- 16:9 to 4:3 -->
+  <!-- 16:9 to 4:3 -->
   <span data-toggle="modal" data-target="#HD_SD"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transform 16:9 aspect ratio video into 4:3 with letterbox">16:9 to 4:3</button></span>
   <div id="HD_SD" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
@@ -283,7 +282,8 @@
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-filter:v "pad=iw:iw*3/4:(ow-iw)/2:(oh-ih)/2"</dt><dd>video padding<br>This resolution independent formula is actually padding any aspect ratio into 4:3 by letterboxing, because the video filter uses relative values for input width (iw), input height (ih), output width (ow) and output height (oh).</dd>
+            <dt>-filter:v "pad=iw:iw*3/4:(ow-iw)/2:(oh-ih)/2"</dt><dd>video padding<br>
+            This resolution independent formula is actually padding any aspect ratio into 4:3 by letterboxing, because the video filter uses relative values for input width (iw), input height (ih), output width (ow) and output height (oh).</dd>
             <dt>-c:a copy</dt><dd>re-encodes using the same audio codec<br>
             For silent videos you can replace <code>-c:a copy</code> by <code>-an</code>.</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
@@ -349,7 +349,7 @@
   </div>
   <!-- ends Change display aspect ratio without re-encoding video -->
 
- <!-- MKV to MP4 -->
+  <!-- MKV to MP4 -->
   <span data-toggle="modal" data-target="#mkv_to_mp4"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Convert Matroska (MKV) to MP4">MKV to MP4</button></span>
   <div id="mkv_to_mp4" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
@@ -376,7 +376,7 @@
   </div>
   <!-- ends MKV to MP4 -->
 
- <!-- Images to GIF -->
+  <!-- Images to GIF -->
   <span data-toggle="modal" data-target="#img_to_gif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Converts images to GIF">Images to GIF</button></span>
   <div id="img_to_gif" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
@@ -391,7 +391,7 @@
             <dt>-framerate 9</dt><dd>sets framerate to 9 frames per second</dd>
             <dt>-pattern_type glob</dt><dd>tells ffmpeg that the following mapping should "interpret like a <a href="https://en.wikipedia.org/wiki/Glob_%28programming%29" target="_blank">glob</a>" (a "global command" function that relies on the * as a wildcard and finds everything that matches)</dd>
             <dt>-i <i>"input_image_*.jpg"</i></dt><dd>maps all files in the directory that start with input_image_, for example input_image_001.jpg, input_image_002.jpg, input_image_003.jpg... etc.<br>
-            (The quotation marks are necessary for the above "glob" pattern!)</dd>
+            (The quotation marks are necessary for the above “glob” pattern!)</dd>
             <dt>-vf scale=250x250</dt><dd>filter the video to scale it to 250x250; -vf is an alias for -filter:v</dd>
             <dt><i>output_file.gif</i></dt><dd>path and name of the output file</dd>
           </dl>
@@ -486,13 +486,13 @@
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-c:v libx264</dt><dd>tells ffmpeg to encode the video stream as H.264</dd>
-            <dt>-vf</dt><dd>video filtering will be used<dd>
+            <dt>-vf</dt><dd>video filtering will be used (<code>-vf</code> is an alias of <code>-filter:v</code>)</dd>
             <dt><i>"</i></dt><dd>start of filtergraph (see below)</dd>
             <dt><i>yadif</i></dt><dd>deinterlacing filter (‘yet another deinterlacing filter’)<br>
               By default, <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1" target="_blank">yadif</a> will output one frame for each frame. Outputting one frame for each <i>field</i> (thereby doubling the frame rate) with <code>yadif=1</code> may produce visually better results.</dd>
             <dt><i>,</i></dt><dd>separates filters</dd>
             <dt><i>format=yuv420p</i></dt><dd>chroma subsampling set to 4:2:0<br>
-              By default, <code>libx264</code> will use a chroma subsampling scheme that is the closest match to that of the input. This can result in Y′C<sub>B</sub>C<sub>R</sub> 4:2:0, 4:2:2, or 4:4:4 chroma subsampling. QuickTime and most other non-FFmpeg based players can’t decode H.264 files that are not 4:2:0, therefore it's advisable to specify 4:2:0 chroma subsampling.</dd>
+              By default, <code>libx264</code> will use a chroma subsampling scheme that is the closest match to that of the input. This can result in Y′C<sub>B</sub>C<sub>R</sub> 4:2:0, 4:2:2, or 4:4:4 chroma subsampling. QuickTime and most other non-FFmpeg based players can’t decode H.264 files that are not 4:2:0, therefore it’s advisable to specify 4:2:0 chroma subsampling.</dd>
             <dt><i>"</i></dt><dd>end of filtergraph</dd>
             <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
@@ -559,7 +559,7 @@
           <img src="./img/colourspace_metadata_mediainfo.png" alt="MediaInfo screenshots of colourspace metadata"><br>
           <p><span class="beware">⚠</span> Using this command it is possible to add Rec.709 tags to a file that is actually Rec.601 (etc), so apply with caution!</p>
           <p>These commands are relevant for H.264 and H.265 videos, encoded with <code>libx264</code> and <code>libx265</code> respectively.</p>
-          <p><b>Note</b>: If you wish to embed colourspace metadata <i>without</i> changing to another colourspace, omit <code>-vf colormatrix=src:dst</code>. However, since it is <code>libx264</code>/<code>libx265</code> that writes the metadata, it's not possible to add these tags without reencoding the video stream.</p>
+          <p><b>Note</b>: If you wish to embed colourspace metadata <i>without</i> changing to another colourspace, omit <code>-vf colormatrix=src:dst</code>. However, since it is <code>libx264</code>/<code>libx265</code> that writes the metadata, it’s not possible to add these tags without reencoding the video stream.</p>
           <p>For all possible values for <code>-color_primaries</code>, <code>-color_trc</code>, and <code>-colorspace</code>, see the ffmpeg documentation on <a href="./index.html#Codec-Options" target="_blank">codec options</a>.</p>
           <hr>
           <p id="fn1" class="footnote">1. Out of step with the regular pattern, <code>-color_trc</code> doesn't accept <code>bt470bg</code>; it is instead here referred to directly as gamma.<br>
@@ -578,7 +578,7 @@
       <div class="modal-content">
         <div class="well">
           <h3>Inverse telecine a video file</h3>
-          <p> <code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf "fieldmatch,yadif,decimate" <i>output_file</i></code> </p>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf "fieldmatch,yadif,decimate" <i>output_file</i></code></p>
           <p>The inverse telecine procedure reverses the <a href="https://en.wikipedia.org/wiki/Three-two_pull_down">3:2 pull down</a> process, restoring 29.97fps interlaced video to the 24fps frame rate of the original film source.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -606,7 +606,6 @@
     </div>
   </div>
   <!-- ends Inverse telecine -->
-
 
   </div>
   <div class="well">
