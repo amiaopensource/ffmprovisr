@@ -1414,13 +1414,13 @@ foreach ($file in $inputfiles) {
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
-          <h3>Makes a broken video (or audio) test file</h3>
+          <h3>Makes a broken test file</h3>
           <p>Modifies an existing, functioning file and intentionally breaks it for testing purposes.</p>
           <p><code>ffmpeg -i <i>input_file</i> -bsf noise=1 -c copy <i>output_file</i></code></p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>takes in a normal file</dd>
-            <dt>-bsf noise=1</dt><dd>sets bitstream filters for all to 'noise'. Filters can be set on specific filters using syntax such as <code>-bsf:v</code> for video, <code>-bsf:a</code> for audio, etc. The <a href="https://www.ffmpeg.org/ffmpeg-bitstream-filters.html#noise">noise filter</a> intentionally damages the contents of packets without damaging the container. This sets the noise level to 1 but it could be left blank or any number above 0.</dd>
+            <dt>-bsf noise=1</dt><dd>sets bitstream filters for all to 'noise'. Filters can be set on specific filters using syntax such as <code>-bsf:v</code> for video, <code>-bsf:a</code> for audio, etc. The <a target="_blank" href="https://www.ffmpeg.org/ffmpeg-bitstream-filters.html#noise">noise filter</a> intentionally damages the contents of packets without damaging the container. This sets the noise level to 1 but it could be left blank or any number above 0.</dd>
             <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
@@ -1429,7 +1429,7 @@ foreach ($file in $inputfiles) {
       </div>
     </div>
   </div>
-  <!-- ends Broken DV -->
+  <!-- ends Broken File -->
 
   <!-- Sine wave -->
   <span data-toggle="modal" data-target="#sine_wave"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Generate a test audio file playing a sine wave">Sine wave</button></span>
