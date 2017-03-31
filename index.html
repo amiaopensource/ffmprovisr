@@ -819,7 +819,7 @@
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-filter_complex "fps=<i>frame rate</i>,scale=<i>width</i>:<i>height</i>,palettegen"</dt><dd>a complex filtergraph.<br>
               Firstly, the fps filter sets the frame rate.<br>
-              Then the scale filter resizes the image. You can specify both the width and the height, or specify a value for one and use a scale value of <i>-1</i> for the other to preserve the aspect ratio. (For example, <code>500:-1</code> would create a GIF 500 pixels wide and with a height proportional to the original video). In the first script above, <code>:flags:lanczos</code> specifies that the Lanczos rescaling algorithm will be used to resize the image.<br>
+              Then the scale filter resizes the image. You can specify both the width and the height, or specify a value for one and use a scale value of <i>-1</i> for the other to preserve the aspect ratio. (For example, <code>500:-1</code> would create a gif 500 pixels wide and with a height proportional to the original video). In the first script above, <code>:flags=lanczos</code> specifies that the Lanczos rescaling algorithm will be used to resize the image.<br>
               Lastly, the palettegen filter generates the palette.</dd>
             <dt>-t <i>3</i></dt><dd>duration in seconds (here 3; can be specified also with a full timestamp, i.e. here 00:00:03)</dd>
             <dt>-loop <i>6</i></dt><dd>number of times to loop the gif. A value of <i>-1</i> will disable looping. Omitting <i>-loop</i> will use the default which will loop infinitely</dd>
