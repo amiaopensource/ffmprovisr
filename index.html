@@ -817,10 +817,19 @@
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-ss <i>HH:MM:SS</i></dt><dd>starting point of the gif. If a plain numerical value is used it will be interpreted as seconds</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-filter_complex "fps=<i>frame rate</i>,scale=<i>width</i>:<i>height</i>,palettegen"</dt><dd>a complex filtergraph using the fps filter to set frame rate, the scale filter to resize, and the palettegen filter to generate the palette. The scale value of <i>-1</i> preserves the aspect ratio</dd>
+            <dt>-filter_complex "fps=<i>frame rate</i>,scale=<i>width</i>:<i>height</i>,palettegen"</dt><dd>a complex filtergraph.<br>
+              Firstly, the fps filter sets the frame rate.<br>
+              Then the scale filter resizes the image. You can specify both the width and the height, or specify a value for one and use a scale value of <i>-1</i> for the other to preserve the aspect ratio. (For example, <code>500:-1</code> would create a GIF 500 pixels wide and with a height proportional to the original video). In the first script above, <code>:flags:lanczos</code> specifies that the Lanczos rescaling algorithm will be used to resize the image.<br>
+              Lastly, the palettegen filter generates the palette.</dd>
             <dt>-t <i>3</i></dt><dd>duration in seconds (here 3; can be specified also with a full timestamp, i.e. here 00:00:03)</dd>
             <dt>-loop <i>6</i></dt><dd>number of times to loop the gif. A value of <i>-1</i> will disable looping. Omitting <i>-loop</i> will use the default which will loop infinitely</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p>The second command has a slightly different filtergraph, which breaks down as follows:</p>
+          <dl>
+            <dt>-filter_complex "[0:v]fps=10,scale=500:-1:flags=lanczos[v],[v][1:v]paletteuse"</dt><dd>
+              <code>[0:v]fps=10,scale=500:-1:flags=lanczos[v]</code>: applies the fps and scale filters described above to the first input file (the video).<br>
+              <code>[v][1:v]paletteuse"</code>: applies the <code>paletteuse</code> filter, setting the second input file (the palette) as the reference file.</dd>
           </dl>
           <p>Simpler GIF creation</p>
           <p><code>ffmpeg -ss HH:MM:SS -i <i>input_file</i> -vf "fps=10,scale=500:-1" -t 3 -loop 6 <i>output_file</i></code></p>
