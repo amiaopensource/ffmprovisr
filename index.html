@@ -155,7 +155,7 @@
           <dl>
             <dt>-preset <i>veryslow</i></dt><dd>This option tells ffmpeg to use the slowest preset possible for the best compression quality.<br>
             Available presets, from slowest to fastest, are: <code>veryslow</code>, <code>slower</code>, <code>slow</code>, <code>medium</code>, <code>fast</code>, <code>faster</code>, <code>veryfast</code>, <code>superfast</code>, <code>ultrafast</code>.</dd>
-            <dt>-crf <i>18</i></dt><dd>Specifying a lower CRF will make a larger file with better visual quality. The scale ranges between 0-51, with 0 being lossless and 51 the worst possible quality.<br>
+            <dt>-crf <i>18</i></dt><dd>Specifying a lower CRF will make a larger file with better visual quality. For H.264 files being encoded with a 4:2:0 chroma subsampling scheme (i.e., using <code>-pix_fmt yuv420p</code>), the scale ranges between 0-51, with 0 being lossless and 51 the worst possible quality.<br>
               If no crf is specified, <code>libx264</code> will use a default value of 23. 18 is often considered a “visually lossless” compression.</dd>
           </dl>
           <p>For more information, see the <a href="https://trac.ffmpeg.org/wiki/Encode/H.264" target="_blank">FFmpeg and H.264 Encoding Guide</a> on the ffmpeg wiki.</p>
@@ -387,7 +387,7 @@
         <div class="well">
           <h3>Images to GIF</h3>
           <p><code>ffmpeg -f image2 -framerate 9 -pattern_type glob -i <i>"input_image_*.jpg"</i> -vf scale=250x250 <i>output_file</i>.gif</code></p>
-          <p>This will convert a series of image files into a gif.</p>
+          <p>This will convert a series of image files into a GIF.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-f image2</dt><dd>forces input or output file format. <code>image2</code> specifies the image file demuxer.</dd>
@@ -815,14 +815,14 @@
           <p>The first command will use the palettegen filter to create a custom palette, then the second command will create the GIF with the paletteuse filter. The result is a high quality GIF.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-ss <i>HH:MM:SS</i></dt><dd>starting point of the gif. If a plain numerical value is used it will be interpreted as seconds</dd>
+            <dt>-ss <i>HH:MM:SS</i></dt><dd>starting point of the GIF. If a plain numerical value is used it will be interpreted as seconds</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-filter_complex "fps=<i>frame rate</i>,scale=<i>width</i>:<i>height</i>,palettegen"</dt><dd>a complex filtergraph.<br>
               Firstly, the fps filter sets the frame rate.<br>
-              Then the scale filter resizes the image. You can specify both the width and the height, or specify a value for one and use a scale value of <i>-1</i> for the other to preserve the aspect ratio. (For example, <code>500:-1</code> would create a gif 500 pixels wide and with a height proportional to the original video). In the first script above, <code>:flags=lanczos</code> specifies that the Lanczos rescaling algorithm will be used to resize the image.<br>
+              Then the scale filter resizes the image. You can specify both the width and the height, or specify a value for one and use a scale value of <i>-1</i> for the other to preserve the aspect ratio. (For example, <code>500:-1</code> would create a GIF 500 pixels wide and with a height proportional to the original video). In the first script above, <code>:flags=lanczos</code> specifies that the Lanczos rescaling algorithm will be used to resize the image.<br>
               Lastly, the palettegen filter generates the palette.</dd>
             <dt>-t <i>3</i></dt><dd>duration in seconds (here 3; can be specified also with a full timestamp, i.e. here 00:00:03)</dd>
-            <dt>-loop <i>6</i></dt><dd>number of times to loop the gif. A value of <i>-1</i> will disable looping. Omitting <i>-loop</i> will use the default which will loop infinitely</dd>
+            <dt>-loop <i>6</i></dt><dd>number of times to loop the GIF. A value of <i>-1</i> will disable looping. Omitting <i>-loop</i> will use the default which will loop infinitely</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
           <p>The second command has a slightly different filtergraph, which breaks down as follows:</p>
