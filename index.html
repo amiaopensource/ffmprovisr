@@ -153,9 +153,12 @@
           <p>In order to use the same basic command to make a higher quality file, you can add some of these presets:</p>
           <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -pix_fmt yuv420p -preset veryslow -crf 18 -c:a copy <i>output_file</i></code></p>
           <dl>
-            <dt>-preset <i>veryslow</i></dt><dd>This option tells ffmpeg to use the slowest preset possible for the best compression quality.</dd>
-            <dt>-crf <i>18</i></dt><dd>Specifying a lower CRF will make a larger file with better visual quality. 18 is often considered a “visually lossless” compression.</dd>
+            <dt>-preset <i>veryslow</i></dt><dd>This option tells ffmpeg to use the slowest preset possible for the best compression quality.<br>
+            Available presets, from slowest to fastest, are: <code>veryslow</code>, <code>slower</code>, <code>slow</code>, <code>medium</code>, <code>fast</code>, <code>faster</code>, <code>veryfast</code>, <code>superfast</code>, <code>ultrafast</code>.</dd>
+            <dt>-crf <i>18</i></dt><dd>Specifying a lower CRF will make a larger file with better visual quality. The scale ranges between 0-51, with 0 being lossless and 51 the worst possible quality.<br>
+              If no crf is specified, <code>libx264</code> will use a default value of 23. 18 is often considered a “visually lossless” compression.</dd>
           </dl>
+          <p>For more information, see the <a href="https://trac.ffmpeg.org/wiki/Encode/H.264" target="_blank">FFmpeg and H.264 Encoding Guide</a> on the ffmpeg wiki.</p>
           <p class="link"></p>
         </div>
       </div>
@@ -821,7 +824,7 @@
           </dl>
           <p>Simpler GIF creation</p>
           <p><code>ffmpeg -ss HH:MM:SS -i <i>input_file</i> -vf "fps=10,scale=500:-1" -t 3 -loop 6 <i>output_file</i></code></p>
-          <p>This is a quick and easy method. Dithering is more apparent than the above method using the palette* filters, but the file size will be smaller. Perfect for that “legacy” GIF look.</p>
+          <p>This is a quick and easy method. Dithering is more apparent than the above method using the palette filters, but the file size will be smaller. Perfect for that “legacy” GIF look.</p>
           <p class="link"></p>
         </div>
       </div>
