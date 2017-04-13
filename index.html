@@ -43,58 +43,42 @@
     <h3>What do you want to do?</h3>
     <h6>Select from the following.</h6>
   </div>
-  <div class="well"><h4>Change formats</h4>
 
-  <!-- WAV to MP3 -->
-  <span data-toggle="modal" data-target="#wav_to_mp3"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Convert WAV to MP3">WAV to MP3</button></span>
-  <div id="wav_to_mp3" class="modal fade" tabindex="-1" role="dialog">
+  <div class="well">
+  <h4>Change container (rewrap)</h4>
+
+  <!-- MKV to MP4 -->
+  <span data-toggle="modal" data-target="#mkv_to_mp4"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Convert Matroska (MKV) to MP4">MKV to MP4</button></span>
+  <div id="mkv_to_mp4" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
-          <h3>WAV to MP3</h3>
-          <p><code>ffmpeg -i <i>input_file</i>.wav -write_id3v1 1 -id3v2_version 3 -dither_method modified_e_weighted -out_sample_rate 48k -qscale:a 1 <i>output_file</i>.mp3</code></p>
-          <p>This will convert your WAV files to MP3s.</p>
+          <h3>MKV to MP4</h3>
+          <p><code>ffmpeg -i <i>input_file</i>.mkv -c:v copy -c:a aac <i>output_file</i>.mp4</code></p>
+          <p>This will convert your Matroska (MKV) files to MP4 files.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path and name of the input file</dd>
-            <dt>-write_id3v1 <i>1</i></dt><dd>Write ID3v1 tag. This will add metadata to the old MP3 format, assuming you’ve embedded metadata into the WAV file.</dd>
-            <dt>-id3v2_version <i>3</i></dt><dd>Write ID3v2 tag. This will add metadata to a newer MP3 format, assuming you’ve embedded metadata into the WAV file.</dd>
-            <dt>-dither_method <i>modified_e_weighted</i></dt><dd>Dither makes sure you don’t unnecessarily truncate the dynamic range of your audio.</dd>
-            <dt>-out_sample_rate <i>48k</i></dt><dd>Sets the audio sampling frequency to 48 kHz. This can be omitted to use the same sampling frequency as the input.</dd>
-            <dt>-qscale:a <i>1</i></dt><dd>This sets the encoder to use a constant quality with a variable bitrate of between 190-250kbit/s. If you would prefer to use a constant bitrate, this could be replaced with <code>-b:a 320k</code> to set to the maximum bitrate allowed by the MP3 format. For more detailed discussion on variable vs constant bitrates see <a href="https://trac.ffmpeg.org/wiki/Encode/MP3" target="_blank">here.</a></dd>
-            <dt><i>output_file</i></dt><dd>path and name of the output file</dd>
+            <dt>-i <i>input_file</i></dt><dd>path and name of the input file<br>
+            The extension for the Matroska container is <code>.mkv</code>.</dd>
+            <dt>-c:v copy</dt><dd>re-encodes using the same video codec</dd>
+            <dt>-c:a aac</dt><dd>re-encodes using the AAC audio codec<br>
+            Note that sadly MP4 cannot contain sound encoded by a PCM (Pulse-Code Modulation) audio codec.<br>
+            For silent videos you can replace <code>-c:a aac</code> by <code>-an</code>.</dd>
+            <dt><i>output_file</i></dt><dd>path and name of the output file<br>
+            The extension for the MP4 container is <code>.mp4</code>.</dd>
           </dl>
           <p class="link"></p>
         </div>
       </div>
     </div>
   </div>
-  <!-- ends WAV to MP3 -->
+  <!-- ends MKV to MP4 -->
 
-  <!-- WAV to AAC/MP4 -->
-  <span data-toggle="modal" data-target="#wav_to_mp4"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Convert WAV to AAC/MP4">WAV to AAC/MP4</button></span>
-  <div id="wav_to_mp4" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>WAV to AAC/MP4</h3>
-          <p><code>ffmpeg -i <i>input_file</i>.wav -c:a aac -b:a 128k -dither_method modified_e_weighted -ar 44100 <i>output_file</i>.mp4</code></p>
-          <p>This will convert your WAV file to AAC/MP4.</p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path and name of the input file</dd>
-            <dt>-c:a aac</dt><dd>sets the audio codec to AAC</dd>
-            <dt>-b:a 128k</dt><dd>sets the bitrate of the audio to 128k</dd>
-            <dt>-dither_method modified_e_weighted</dt><dd>Dither makes sure you don’t unnecessarily truncate the dynamic range of your audio.</dd>
-            <dt>-ar 44100</dt><dd>sets the audio sampling frequency to 44100 Hz, or 44.1 kHz, or “CD quality”</dd>
-            <dt><i>output_file</i></dt><dd>path and name of the output file</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
   </div>
-  <!-- ends WAV to AAC/MP4 -->
+  <!-- ends well -->
+
+  <div class="well">
+  <h4>Change codec (transcode)</h4>
 
   <!-- Transcode to ProRes -->
   <span data-toggle="modal" data-target="#to_prores"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode to deinterlaced Apple ProRes LT">Transcode to ProRes</button></span>
@@ -198,6 +182,195 @@
   </div>
   <!-- ends H.264 from DCP -->
 
+  <!-- Transcode to FFV1.mkv -->
+  <span data-toggle="modal" data-target="#create_FFV1_mkv"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode your file with the FFV1 Version 3 Codec in a Matroska container">Create FFV1.mkv</button></span>
+  <div id="create_FFV1_mkv" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Create FFV1 Version 3 video in a Matroska container with framemd5 of input</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -map 0 -dn -c:v ffv1 -level 3 -g 1 -slicecrc 1 -slices 16 -c:a copy <i>output_file</i>.mkv -f framemd5 -an <i>md5_output_file</i></code></p>
+          <p>This will losslessly trancode your video with the FFV1 Version 3 codec in a Matroska container. In order to verify losslessness, a framemd5 of the source video is also generated. For more information on FFV1 encoding, <a href="https://trac.ffmpeg.org/wiki/Encode/FFV1" target="_blank">try the ffmpeg wiki</a>.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command.</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file.</dd>
+            <dt>-map 0</dt><dd>Map all streams that are present in the input file. This is important as ffmpeg will map only one stream of each type (video, audio, subtitles) by default to the output video.</dd>
+            <dt>-dn</dt><dd>ignore data streams (data no). The Matroska container does not allow data tracks.</dd>
+            <dt>-c:v ffv1</dt><dd>specifies the FFV1 video codec.</dd>
+            <dt>-level 3</dt><dd>specifies Version 3 of the FFV1 codec.</dd>
+            <dt>-g 1</dt><dd>specifies intra-frame encoding, or GOP=1.</dd>
+            <dt>-slicecrc 1</dt><dd>Adds CRC information for each slice. This makes it possible for a decoder to detect errors in the bitstream, rather than blindly decoding a broken slice.</dd>
+            <dt>-slices 16</dt><dd>Each frame is split into 16 slices. 16 is a good trade-off between filesize and encoding time. <a href="http://ndsr.nycdigital.org/diving-in-head-first/" target="_blank">[more]</a></dd>
+            <dt>-c:a copy</dt><dd>copies all mapped audio streams.</dd>
+            <dt><i>output_file</i>.mkv</dt><dd>path and name of the output file. Use the <code>.mkv</code> extension to save your file in a Matroska container. Optionally, choose a different extension if you want a different container, such as <code>.mov</code> or <code>.avi</code>.</dd>
+            <dt>-f framemd5</dt><dd> Decodes video with the framemd5 muxer in order to generate md5 checksums for every frame of your input file. This allows you to verify losslessness when compared against the framemd5s of the output file.</dd>
+            <dt>-an</dt><dd>ignores the audio stream when creating framemd5 (audio no)</dd>
+            <dt><i>framemd5_output_file</i></dt><dd>path, name and extension of the framemd5 file.</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Transcode to FFV1.mkv-->
+
+  <!-- Images to GIF -->
+  <span data-toggle="modal" data-target="#img_to_gif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Converts images to GIF">Images to GIF</button></span>
+  <div id="img_to_gif" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Images to GIF</h3>
+          <p><code>ffmpeg -f image2 -framerate 9 -pattern_type glob -i <i>"input_image_*.jpg"</i> -vf scale=250x250 <i>output_file</i>.gif</code></p>
+          <p>This will convert a series of image files into a GIF.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-f image2</dt><dd>forces input or output file format. <code>image2</code> specifies the image file demuxer.</dd>
+            <dt>-framerate 9</dt><dd>sets framerate to 9 frames per second</dd>
+            <dt>-pattern_type glob</dt><dd>tells ffmpeg that the following mapping should "interpret like a <a href="https://en.wikipedia.org/wiki/Glob_%28programming%29" target="_blank">glob</a>" (a "global command" function that relies on the * as a wildcard and finds everything that matches)</dd>
+            <dt>-i <i>"input_image_*.jpg"</i></dt><dd>maps all files in the directory that start with input_image_, for example input_image_001.jpg, input_image_002.jpg, input_image_003.jpg... etc.<br>
+            (The quotation marks are necessary for the above “glob” pattern!)</dd>
+            <dt>-vf scale=250x250</dt><dd>filter the video to scale it to 250x250; -vf is an alias for -filter:v</dd>
+            <dt><i>output_file.gif</i></dt><dd>path and name of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Images to GIF -->
+
+  <!-- Rip DVD -->
+  <span data-toggle="modal" data-target="#dvd_to_file"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Basic DVD to file conversion">Convert DVD to H.264</button></span>
+  <div id="dvd_to_file" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Convert DVD to H.264</h3>
+          <p><code>ffmpeg -i concat:<i>input_file1</i>\|<i>input_file2</i>\|<i>input_file3</i> -c:v libx264 -c:a copy <i>output_file</i>.mp4</code></p>
+          <p>This command allows you to create an H.264 file from a DVD source that is not copy-protected.</p>
+          <p>Before encoding, you’ll need to establish which of the .VOB files on the DVD or .iso contain the content that you wish to encode. Inside the VIDEO_TS directory, you will see a series of files with names like VTS_01_0.VOB, VTS_01_1.VOB, etc. Some of the .VOB files will contain menus, special features, etc, so locate the ones that contain target content by playing them back in VLC.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i concat:<i>input files</i></dt><dd>lists the input VOB files and directs ffmpeg to concatenate them. Each input file should be separated by a backslash and a pipe, like so:<br>
+              <code>-i concat:VTS_01_1.VOB\|VTS_01_2.VOB\|VTS_01_3.VOB</code><br>
+            The backslash is simply an escape character for the pipe (<b>|</b>).</dd>
+            <dt>-c:v libx264</dt><dd>sets the video codec as H.264</dd>
+            <dt>-c:a copy</dt><dd>audio remains as-is (no re-encode)</dd>
+            <dt><i>output_file.mp4</i></dt><dd>path and name of the output file</dd>
+          </dl>
+          <p>It’s also possible to adjust the quality of your output by setting the <b>-crf</b> and <b>-preset</b> values:</p>
+          <p><code>ffmpeg -i concat:<i>input_file1</i>\|<i>input_file2</i>\|<i>input_file3</i> -c:v libx264 -crf 18 -preset veryslow -c:a copy <i>output_file</i>.mp4</code></p>
+          <dl>
+            <dt>-crf 18</dt><dd>sets the constant rate factor to a visually lossless value. Libx264 defaults to a <a href="https://trac.ffmpeg.org/wiki/Encode/H.264#crf" target="_blank">crf of 23</a>, considered medium quality; a smaller crf value produces a larger and higher quality video.</dd>
+            <dt>-preset veryslow</dt><dd>A slower preset will result in better compression and therefore a higher-quality file. The default is <b>medium</b>; slower presets are <b>slow</b>, <b>slower</b>, and <b>veryslow</b>.</dd>
+          </dl>
+          <p>Bear in mind that by default, libx264 will only encode a single video stream and a single audio stream, picking the ‘best’ of the options available. To preserve all video and audio streams, add <b>-map</b> parameters:</p>
+          <p><code>ffmpeg -i concat:<i>input_file1</i>\|<i>input_file2</i> -map 0:v -map 0:a -c:v libx264 -c:a copy <i>output_file</i>.mp4</code></p>
+          <dl>
+            <dt>-map 0:v</dt><dd>encodes all video streams</dd>
+            <dt>-map 0:a</dt><dd>encodes all audio streams</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends rip DVD -->
+
+  <!-- Transcode to H.265 -->
+  <span data-toggle="modal" data-target="#transcode_h265"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode to an H.265/HEVC MP4">Transcode to H.265/HEVC</button></span>
+  <div id="transcode_h265" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Transcode to H.265/HEVC</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v libx265 -pix_fmt yuv420p -c:a copy <i>output_file</i></code></p>
+          <p>This command takes an input file and transcodes it to H.265/HEVC in an .mp4 wrapper, keeping the audio codec the same as in the original file.</p>
+          <p><b>Note</b>: ffmpeg must be compiled with libx265, the library of the H.265 codec, for this script to work. (Add the flag <code>--with-x265</code> if using <code>brew install ffmpeg</code> method).</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-c:v libx265</dt><dd>tells ffmpeg to encode the video as H.265</dd>
+            <dt>-pix_fmt yuv420p</dt><dd>libx265 will use a chroma subsampling scheme that is the closest match to that of the input. This can result in YUV 4:2:0, 4:2:2, or 4:4:4 chroma subsampling. For widest accessibility, it’s a good idea to specify 4:2:0 chroma subsampling.</dd>
+            <dt>-c:a copy</dt><dd>tells ffmpeg not to change the audio codec</dd>
+            <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p>The libx265 encoding library defaults to a ‘medium’ preset for compression quality and a CRF of 28. CRF stands for ‘constant rate factor’ and determines the quality and file size of the resulting H.265 video. The CRF scale ranges from 0 (best quality [lossless]; largest file size) to 51 (worst quality; smallest file size).</p>
+          <p>A CRF of 28 for H.265 can be considered a medium setting, <a href="https://trac.ffmpeg.org/wiki/Encode/H.265#ConstantRateFactorCRF" target="_blank">corresponding</a> to a CRF of 23 in <a href="./index.html#transcode_h264">encoding H.264</a>, but should result in about half the file size.</p>
+          <p>To create a higher quality file, you can add these presets:</p>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v libx265 -pix_fmt yuv420p -preset veryslow -crf 18 -c:a copy <i>output_file</i></code></p>
+          <dl>
+            <dt>-preset <i>veryslow</i></dt><dd>This option tells ffmpeg to use the slowest preset possible for the best compression quality.</dd>
+            <dt>-crf <i>18</i></dt><dd>Specifying a lower CRF will make a larger file with better visual quality. 18 is often considered a ‘visually lossless’ compression.</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Transcode to H.265 -->
+
+  <p>&nbsp;</p>
+  <!-- Here comes audio-only transcoding -->
+
+  <!-- WAV to MP3 -->
+  <span data-toggle="modal" data-target="#wav_to_mp3"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Convert WAV to MP3">WAV to MP3</button></span>
+  <div id="wav_to_mp3" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>WAV to MP3</h3>
+          <p><code>ffmpeg -i <i>input_file</i>.wav -write_id3v1 1 -id3v2_version 3 -dither_method modified_e_weighted -out_sample_rate 48k -qscale:a 1 <i>output_file</i>.mp3</code></p>
+          <p>This will convert your WAV files to MP3s.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path and name of the input file</dd>
+            <dt>-write_id3v1 <i>1</i></dt><dd>Write ID3v1 tag. This will add metadata to the old MP3 format, assuming you’ve embedded metadata into the WAV file.</dd>
+            <dt>-id3v2_version <i>3</i></dt><dd>Write ID3v2 tag. This will add metadata to a newer MP3 format, assuming you’ve embedded metadata into the WAV file.</dd>
+            <dt>-dither_method <i>modified_e_weighted</i></dt><dd>Dither makes sure you don’t unnecessarily truncate the dynamic range of your audio.</dd>
+            <dt>-out_sample_rate <i>48k</i></dt><dd>Sets the audio sampling frequency to 48 kHz. This can be omitted to use the same sampling frequency as the input.</dd>
+            <dt>-qscale:a <i>1</i></dt><dd>This sets the encoder to use a constant quality with a variable bitrate of between 190-250kbit/s. If you would prefer to use a constant bitrate, this could be replaced with <code>-b:a 320k</code> to set to the maximum bitrate allowed by the MP3 format. For more detailed discussion on variable vs constant bitrates see <a href="https://trac.ffmpeg.org/wiki/Encode/MP3" target="_blank">here.</a></dd>
+            <dt><i>output_file</i></dt><dd>path and name of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends WAV to MP3 -->
+
+  <!-- WAV to AAC/MP4 -->
+  <span data-toggle="modal" data-target="#wav_to_mp4"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Convert WAV to AAC/MP4">WAV to AAC/MP4</button></span>
+  <div id="wav_to_mp4" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>WAV to AAC/MP4</h3>
+          <p><code>ffmpeg -i <i>input_file</i>.wav -c:a aac -b:a 128k -dither_method modified_e_weighted -ar 44100 <i>output_file</i>.mp4</code></p>
+          <p>This will convert your WAV file to AAC/MP4.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path and name of the input file</dd>
+            <dt>-c:a aac</dt><dd>sets the audio codec to AAC</dd>
+            <dt>-b:a 128k</dt><dd>sets the bitrate of the audio to 128k</dd>
+            <dt>-dither_method modified_e_weighted</dt><dd>Dither makes sure you don’t unnecessarily truncate the dynamic range of your audio.</dd>
+            <dt>-ar 44100</dt><dd>sets the audio sampling frequency to 44100 Hz, or 44.1 kHz, or “CD quality”</dd>
+            <dt><i>output_file</i></dt><dd>path and name of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends WAV to AAC/MP4 -->
+
+  </div>
+  <!-- ends well -->
+
+  <div class="well">
+  <h4>Change formats</h4>
+
   <!-- NTSC to H.264 -->
   <span data-toggle="modal" data-target="#ntsc_to_h264"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Upscaled, pillar-boxed HD H.264 access files from SD NTSC source">NTSC to H.264</button></span>
   <div id="ntsc_to_h264" class="modal fade" tabindex="-1" role="dialog">
@@ -298,38 +471,6 @@
   </div>
   <!-- ends 16:9 to 4:3 -->
 
-  <!-- Transcode to FFV1.mkv -->
-  <span data-toggle="modal" data-target="#create_FFV1_mkv"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode your file with the FFV1 Version 3 Codec in a Matroska container">Create FFV1.mkv</button></span>
-  <div id="create_FFV1_mkv" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Create FFV1 Version 3 video in a Matroska container with framemd5 of input</h3>
-          <p><code>ffmpeg -i <i>input_file</i> -map 0 -dn -c:v ffv1 -level 3 -g 1 -slicecrc 1 -slices 16 -c:a copy <i>output_file</i>.mkv -f framemd5 -an <i>md5_output_file</i></code></p>
-          <p>This will losslessly trancode your video with the FFV1 Version 3 codec in a Matroska container. In order to verify losslessness, a framemd5 of the source video is also generated. For more information on FFV1 encoding, <a href="https://trac.ffmpeg.org/wiki/Encode/FFV1" target="_blank">try the ffmpeg wiki</a>.</p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command.</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file.</dd>
-            <dt>-map 0</dt><dd>Map all streams that are present in the input file. This is important as ffmpeg will map only one stream of each type (video, audio, subtitles) by default to the output video.</dd>
-            <dt>-dn</dt><dd>ignore data streams (data no). The Matroska container does not allow data tracks.</dd>
-            <dt>-c:v ffv1</dt><dd>specifies the FFV1 video codec.</dd>
-            <dt>-level 3</dt><dd>specifies Version 3 of the FFV1 codec.</dd>
-            <dt>-g 1</dt><dd>specifies intra-frame encoding, or GOP=1.</dd>
-            <dt>-slicecrc 1</dt><dd>Adds CRC information for each slice. This makes it possible for a decoder to detect errors in the bitstream, rather than blindly decoding a broken slice.</dd>
-            <dt>-slices 16</dt><dd>Each frame is split into 16 slices. 16 is a good trade-off between filesize and encoding time. <a href="http://ndsr.nycdigital.org/diving-in-head-first/" target="_blank">[more]</a></dd>
-            <dt>-c:a copy</dt><dd>copies all mapped audio streams.</dd>
-            <dt><i>output_file</i>.mkv</dt><dd>path and name of the output file. Use the <code>.mkv</code> extension to save your file in a Matroska container. Optionally, choose a different extension if you want a different container, such as <code>.mov</code> or <code>.avi</code>.</dd>
-            <dt>-f framemd5</dt><dd> Decodes video with the framemd5 muxer in order to generate md5 checksums for every frame of your input file. This allows you to verify losslessness when compared against the framemd5s of the output file.</dd>
-            <dt>-an</dt><dd>ignores the audio stream when creating framemd5 (audio no)</dd>
-            <dt><i>framemd5_output_file</i></dt><dd>path, name and extension of the framemd5 file.</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Transcode to FFV1.mkv-->
-
   <!-- Change display aspect ratio without re-encoding video-->
   <span data-toggle="modal" data-target="#change_DAR"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Change display aspect ratio without re-encoding">Change Display Aspect Ratio</button></span>
   <div id="change_DAR" class="modal fade" tabindex="-1" role="dialog">
@@ -351,130 +492,6 @@
     </div>
   </div>
   <!-- ends Change display aspect ratio without re-encoding video -->
-
-  <!-- MKV to MP4 -->
-  <span data-toggle="modal" data-target="#mkv_to_mp4"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Convert Matroska (MKV) to MP4">MKV to MP4</button></span>
-  <div id="mkv_to_mp4" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>MKV to MP4</h3>
-          <p><code>ffmpeg -i <i>input_file</i>.mkv -c:v copy -c:a aac <i>output_file</i>.mp4</code></p>
-          <p>This will convert your Matroska (MKV) files to MP4 files.</p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path and name of the input file<br>
-            The extension for the Matroska container is <code>.mkv</code>.</dd>
-            <dt>-c:v copy</dt><dd>re-encodes using the same video codec</dd>
-            <dt>-c:a aac</dt><dd>re-encodes using the AAC audio codec<br>
-            Note that sadly MP4 cannot contain sound encoded by a PCM (Pulse-Code Modulation) audio codec.<br>
-            For silent videos you can replace <code>-c:a aac</code> by <code>-an</code>.</dd>
-            <dt><i>output_file</i></dt><dd>path and name of the output file<br>
-            The extension for the MP4 container is <code>.mp4</code>.</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends MKV to MP4 -->
-
-  <!-- Images to GIF -->
-  <span data-toggle="modal" data-target="#img_to_gif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Converts images to GIF">Images to GIF</button></span>
-  <div id="img_to_gif" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Images to GIF</h3>
-          <p><code>ffmpeg -f image2 -framerate 9 -pattern_type glob -i <i>"input_image_*.jpg"</i> -vf scale=250x250 <i>output_file</i>.gif</code></p>
-          <p>This will convert a series of image files into a GIF.</p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-f image2</dt><dd>forces input or output file format. <code>image2</code> specifies the image file demuxer.</dd>
-            <dt>-framerate 9</dt><dd>sets framerate to 9 frames per second</dd>
-            <dt>-pattern_type glob</dt><dd>tells ffmpeg that the following mapping should "interpret like a <a href="https://en.wikipedia.org/wiki/Glob_%28programming%29" target="_blank">glob</a>" (a "global command" function that relies on the * as a wildcard and finds everything that matches)</dd>
-            <dt>-i <i>"input_image_*.jpg"</i></dt><dd>maps all files in the directory that start with input_image_, for example input_image_001.jpg, input_image_002.jpg, input_image_003.jpg... etc.<br>
-            (The quotation marks are necessary for the above “glob” pattern!)</dd>
-            <dt>-vf scale=250x250</dt><dd>filter the video to scale it to 250x250; -vf is an alias for -filter:v</dd>
-            <dt><i>output_file.gif</i></dt><dd>path and name of the output file</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Images to GIF -->
-
-  <!-- Rip DVD -->
-  <span data-toggle="modal" data-target="#dvd_to_file"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Basic DVD to file conversion">Convert DVD to H.264</button></span>
-  <div id="dvd_to_file" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Convert DVD to H.264</h3>
-          <p><code>ffmpeg -i concat:<i>input_file1</i>\|<i>input_file2</i>\|<i>input_file3</i> -c:v libx264 -c:a copy <i>output_file</i>.mp4</code></p>
-          <p>This command allows you to create an H.264 file from a DVD source that is not copy-protected.</p>
-          <p>Before encoding, you’ll need to establish which of the .VOB files on the DVD or .iso contain the content that you wish to encode. Inside the VIDEO_TS directory, you will see a series of files with names like VTS_01_0.VOB, VTS_01_1.VOB, etc. Some of the .VOB files will contain menus, special features, etc, so locate the ones that contain target content by playing them back in VLC.</p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i concat:<i>input files</i></dt><dd>lists the input VOB files and directs ffmpeg to concatenate them. Each input file should be separated by a backslash and a pipe, like so:<br>
-              <code>-i concat:VTS_01_1.VOB\|VTS_01_2.VOB\|VTS_01_3.VOB</code><br>
-            The backslash is simply an escape character for the pipe (<b>|</b>).</dd>
-            <dt>-c:v libx264</dt><dd>sets the video codec as H.264</dd>
-            <dt>-c:a copy</dt><dd>audio remains as-is (no re-encode)</dd>
-            <dt><i>output_file.mp4</i></dt><dd>path and name of the output file</dd>
-          </dl>
-          <p>It’s also possible to adjust the quality of your output by setting the <b>-crf</b> and <b>-preset</b> values:</p>
-          <p><code>ffmpeg -i concat:<i>input_file1</i>\|<i>input_file2</i>\|<i>input_file3</i> -c:v libx264 -crf 18 -preset veryslow -c:a copy <i>output_file</i>.mp4</code></p>
-          <dl>
-            <dt>-crf 18</dt><dd>sets the constant rate factor to a visually lossless value. Libx264 defaults to a <a href="https://trac.ffmpeg.org/wiki/Encode/H.264#crf" target="_blank">crf of 23</a>, considered medium quality; a smaller crf value produces a larger and higher quality video.</dd>
-            <dt>-preset veryslow</dt><dd>A slower preset will result in better compression and therefore a higher-quality file. The default is <b>medium</b>; slower presets are <b>slow</b>, <b>slower</b>, and <b>veryslow</b>.</dd>
-          </dl>
-          <p>Bear in mind that by default, libx264 will only encode a single video stream and a single audio stream, picking the ‘best’ of the options available. To preserve all video and audio streams, add <b>-map</b> parameters:</p>
-          <p><code>ffmpeg -i concat:<i>input_file1</i>\|<i>input_file2</i> -map 0:v -map 0:a -c:v libx264 -c:a copy <i>output_file</i>.mp4</code></p>
-          <dl>
-            <dt>-map 0:v</dt><dd>encodes all video streams</dd>
-            <dt>-map 0:a</dt><dd>encodes all audio streams</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends rip DVD -->
-
-  <!-- Transcode to H.265 -->
-  <span data-toggle="modal" data-target="#transcode_h265"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode to an H.265/HEVC MP4">Transcode to H.265/HEVC</button></span>
-  <div id="transcode_h265" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Transcode to H.265/HEVC</h3>
-          <p><code>ffmpeg -i <i>input_file</i> -c:v libx265 -pix_fmt yuv420p -c:a copy <i>output_file</i></code></p>
-          <p>This command takes an input file and transcodes it to H.265/HEVC in an .mp4 wrapper, keeping the audio codec the same as in the original file.</p>
-          <p><b>Note</b>: ffmpeg must be compiled with libx265, the library of the H.265 codec, for this script to work. (Add the flag <code>--with-x265</code> if using <code>brew install ffmpeg</code> method).</p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-c:v libx265</dt><dd>tells ffmpeg to encode the video as H.265</dd>
-            <dt>-pix_fmt yuv420p</dt><dd>libx265 will use a chroma subsampling scheme that is the closest match to that of the input. This can result in YUV 4:2:0, 4:2:2, or 4:4:4 chroma subsampling. For widest accessibility, it’s a good idea to specify 4:2:0 chroma subsampling.</dd>
-            <dt>-c:a copy</dt><dd>tells ffmpeg not to change the audio codec</dd>
-            <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
-          </dl>
-          <p>The libx265 encoding library defaults to a ‘medium’ preset for compression quality and a CRF of 28. CRF stands for ‘constant rate factor’ and determines the quality and file size of the resulting H.265 video. The CRF scale ranges from 0 (best quality [lossless]; largest file size) to 51 (worst quality; smallest file size).</p>
-          <p>A CRF of 28 for H.265 can be considered a medium setting, <a href="https://trac.ffmpeg.org/wiki/Encode/H.265#ConstantRateFactorCRF" target="_blank">corresponding</a> to a CRF of 23 in <a href="./index.html#transcode_h264">encoding H.264</a>, but should result in about half the file size.</p>
-          <p>To create a higher quality file, you can add these presets:</p>
-          <p><code>ffmpeg -i <i>input_file</i> -c:v libx265 -pix_fmt yuv420p -preset veryslow -crf 18 -c:a copy <i>output_file</i></code></p>
-          <dl>
-            <dt>-preset <i>veryslow</i></dt><dd>This option tells ffmpeg to use the slowest preset possible for the best compression quality.</dd>
-            <dt>-crf <i>18</i></dt><dd>Specifying a lower CRF will make a larger file with better visual quality. 18 is often considered a ‘visually lossless’ compression.</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Transcode to H.265 -->
 
   <!-- Deinterlace video -->
   <span data-toggle="modal" data-target="#deinterlace"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Deinterlace video">Deinterlace video</button></span>
@@ -1969,7 +1986,6 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
     </div>
   </div>
   <!-- ends Fix A/V async 1 -->
-
   </div><!-- closes the well -->
 
 <!-- sample example -->
