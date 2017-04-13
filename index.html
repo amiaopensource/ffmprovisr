@@ -1149,12 +1149,12 @@ foreach ($file in $inputfiles) {
   <!-- ends batch processing (Windows) -->
 
   <!-- Create frame md5s -->
-  <span data-toggle="modal" data-target="#create_frame_md5s"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create an MD5 checksum per video frame">Create MD5 checksums</button></span>
-  <div id="create_frame_md5s" class="modal fade" tabindex="-1" role="dialog">
+  <span data-toggle="modal" data-target="#create_frame_md5s_v"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create an MD5 checksum per video frame">Create MD5 checksums (video frames)</button></span>
+  <div id="create_frame_md5s_v" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
-          <h3>Create MD5 checksums</h3>
+          <h3>Create MD5 checksums (video frames)</h3>
           <p><code>ffmpeg -i <i>input_file</i> -f framemd5 -an <i>output_file</i></code></p>
           <p>This will create an MD5 checksum per video frame.</p>
           <dl>
@@ -1171,6 +1171,37 @@ foreach ($file in $inputfiles) {
     </div>
   </div>
   <!-- ends Create frame md5s -->
+
+  <!-- Create frame md5s (audio) -->
+  <span data-toggle="modal" data-target="#create_frame_md5s_a"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create MD5 checksums for audio samples">Create MD5 checksums (audio samples)</button></span>
+  <div id="create_frame_md5s_a" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Create MD5 checksums (audio samples)</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -filter_complex "asetnsamples=<i>n=48000</i>" -f framemd5 -vn <i>output_file</i></code></p>
+          <p>This will create an MD5 checksum for each group of 48000 audio samples.<br> The number of samples per group can be set arbitrarily, but it's good practice to match the samplerate of the media file (so you will get one checksum per second).</p>
+          <p>
+          Examples for other samplerates:<br>
+          <ul>
+              <li>44.1 kHz: "asetnsamples=n=44100"</li>
+              <li>96 kHz: "asetnsamples=n=96000"</li>
+          </ul>
+          </p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-f framemd5</dt><dd>library used to calculate the MD5 checksums</dd>
+            <dt>-vn</dt><dd>ignores the video stream (video no)</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p>You may verify an MD5 checksum file created this way by using a <a href="check_framemd5.sh" target="_blank">Bash script</a>.</p>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Create frame md5s (audio) -->
 
   <!-- Pull specs -->
   <span data-toggle="modal" data-target="#pull_specs"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Pull specs from video file">Pull specs</button></span>
