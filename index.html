@@ -1149,12 +1149,12 @@ foreach ($file in $inputfiles) {
   <!-- ends batch processing (Windows) -->
 
   <!-- Create frame md5s -->
-  <span data-toggle="modal" data-target="#create_frame_md5s"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create an MD5 checksum per video frame">Create MD5 checksums</button></span>
-  <div id="create_frame_md5s" class="modal fade" tabindex="-1" role="dialog">
+  <span data-toggle="modal" data-target="#create_frame_md5s_v"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create an MD5 checksum per video frame">Create MD5 checksums (video frames)</button></span>
+  <div id="create_frame_md5s_v" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
-          <h3>Create MD5 checksums</h3>
+          <h3>Create MD5 checksums (video frames)</h3>
           <p><code>ffmpeg -i <i>input_file</i> -f framemd5 -an <i>output_file</i></code></p>
           <p>This will create an MD5 checksum per video frame.</p>
           <dl>
@@ -1171,6 +1171,37 @@ foreach ($file in $inputfiles) {
     </div>
   </div>
   <!-- ends Create frame md5s -->
+
+  <!-- Create frame md5s (audio) -->
+  <span data-toggle="modal" data-target="#create_frame_md5s_a"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create MD5 checksums for audio samples">Create MD5 checksums (audio samples)</button></span>
+  <div id="create_frame_md5s_a" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Create MD5 checksums (audio samples)</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -filter_complex "asetnsamples=<i>n=48000</i>" -f framemd5 -vn <i>output_file</i></code></p>
+          <p>This will create an MD5 checksum for each group of 48000 audio samples.<br> The number of samples per group can be set arbitrarily, but it's good practice to match the samplerate of the media file (so you will get one checksum per second).</p>
+          <p>
+          Examples for other samplerates:<br>
+          <ul>
+              <li>44.1 kHz: "asetnsamples=n=44100"</li>
+              <li>96 kHz: "asetnsamples=n=96000"</li>
+          </ul>
+          </p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-f framemd5</dt><dd>library used to calculate the MD5 checksums</dd>
+            <dt>-vn</dt><dd>ignores the video stream (video no)</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p>You may verify an MD5 checksum file created this way by using a <a href="check_framemd5.sh" target="_blank">Bash script</a>.</p>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Create frame md5s (audio) -->
 
   <!-- Pull specs -->
   <span data-toggle="modal" data-target="#pull_specs"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Pull specs from video file">Pull specs</button></span>
@@ -1465,6 +1496,33 @@ foreach ($file in $inputfiles) {
     </div>
   </div>
   <!-- ends Sine wave -->
+
+  <!-- SMPTE bars + Sine wave -->
+  <span data-toggle="modal" data-target="#smpte_bars_and_sine_wave"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Generate a SMPTE bars test video + audio playing a sine wave">SMPTE bars + Sine wave audio</button></span>
+  <div id="smpte_bars_and_sine_wave" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>SMPTE bars + Sine wave audio</h3>
+          <p>Generate a SMPTE bars test video + a 1kHz sine wave as audio testsignal.</p>
+          <p><code>ffmpeg -f lavfi -i smptebars=size=720x576:rate=25 -f lavfi -i "sine=frequency=1000:sample_rate=48000" -c:a pcm_s16le -t 10 -c:v ffv1 <i>output_file</i></code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-f lavfi</dt><dd>tells ffmpeg to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">libavfilter</a> input virtual device</dd>
+            <dt>-i smptebars=size=720x576:rate=25</dt><dd>asks for the smptebars test filter as input. Adjusting the <code>size</code> and <code>rate</code> options allow you to choose a specific frame size and framerate. <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc_002c-testsrc2_002c-yuvtestsrc" target="_blank">[more]</a></dd>
+            <dt>-f lavfi</dt><dd>use libavfilter again, but now for audio</dd>
+            <dt>-i "sine=frequency=1000:sample_rate=48000"</dt><dd>Sets the signal to 1000 Hz, sampling at 48 kHz.</dd>
+            <dt>-c:a pcm_s16le</dt><dd>encodes the audio codec in <code>pcm_s16le</code> (the default encoding for wav files). pcm represents pulse-code modulation format (raw bytes), <code>16</code> means 16 bits per sample, and <code>le</code> means "little endian"</dd>
+            <dt>-t 10</dt><dd>specifies recording time of 10 seconds</dd>
+            <dt>-c:v <i>ffv1</i></dt><dd>Encodes to <a href="https://en.wikipedia.org/wiki/FFV1">FFV1</a>. Alter this setting to set your desired codec.</dd>
+            <dt><i>output_file</i>.wav</dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends SMPTE bars + Sine wave -->
 
   </div>
   <div class="well">
