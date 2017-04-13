@@ -43,58 +43,42 @@
     <h3>What do you want to do?</h3>
     <h6>Select from the following.</h6>
   </div>
-  <div class="well"><h4>Change formats</h4>
 
-  <!-- WAV to MP3 -->
-  <span data-toggle="modal" data-target="#wav_to_mp3"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Convert WAV to MP3">WAV to MP3</button></span>
-  <div id="wav_to_mp3" class="modal fade" tabindex="-1" role="dialog">
+  <div class="well">
+  <h4>Change container (rewrap)</h4>
+
+  <!-- MKV to MP4 -->
+  <span data-toggle="modal" data-target="#mkv_to_mp4"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Convert Matroska (MKV) to MP4">MKV to MP4</button></span>
+  <div id="mkv_to_mp4" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
-          <h3>WAV to MP3</h3>
-          <p><code>ffmpeg -i <i>input_file</i>.wav -write_id3v1 1 -id3v2_version 3 -dither_method modified_e_weighted -out_sample_rate 48k -qscale:a 1 <i>output_file</i>.mp3</code></p>
-          <p>This will convert your WAV files to MP3s.</p>
+          <h3>MKV to MP4</h3>
+          <p><code>ffmpeg -i <i>input_file</i>.mkv -c:v copy -c:a aac <i>output_file</i>.mp4</code></p>
+          <p>This will convert your Matroska (MKV) files to MP4 files.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path and name of the input file</dd>
-            <dt>-write_id3v1 <i>1</i></dt><dd>Write ID3v1 tag. This will add metadata to the old MP3 format, assuming you’ve embedded metadata into the WAV file.</dd>
-            <dt>-id3v2_version <i>3</i></dt><dd>Write ID3v2 tag. This will add metadata to a newer MP3 format, assuming you’ve embedded metadata into the WAV file.</dd>
-            <dt>-dither_method <i>modified_e_weighted</i></dt><dd>Dither makes sure you don’t unnecessarily truncate the dynamic range of your audio.</dd>
-            <dt>-out_sample_rate <i>48k</i></dt><dd>Sets the audio sampling frequency to 48 kHz. This can be omitted to use the same sampling frequency as the input.</dd>
-            <dt>-qscale:a <i>1</i></dt><dd>This sets the encoder to use a constant quality with a variable bitrate of between 190-250kbit/s. If you would prefer to use a constant bitrate, this could be replaced with <code>-b:a 320k</code> to set to the maximum bitrate allowed by the MP3 format. For more detailed discussion on variable vs constant bitrates see <a href="https://trac.ffmpeg.org/wiki/Encode/MP3" target="_blank">here.</a></dd>
-            <dt><i>output_file</i></dt><dd>path and name of the output file</dd>
+            <dt>-i <i>input_file</i></dt><dd>path and name of the input file<br>
+            The extension for the Matroska container is <code>.mkv</code>.</dd>
+            <dt>-c:v copy</dt><dd>re-encodes using the same video codec</dd>
+            <dt>-c:a aac</dt><dd>re-encodes using the AAC audio codec<br>
+            Note that sadly MP4 cannot contain sound encoded by a PCM (Pulse-Code Modulation) audio codec.<br>
+            For silent videos you can replace <code>-c:a aac</code> by <code>-an</code>.</dd>
+            <dt><i>output_file</i></dt><dd>path and name of the output file<br>
+            The extension for the MP4 container is <code>.mp4</code>.</dd>
           </dl>
           <p class="link"></p>
         </div>
       </div>
     </div>
   </div>
-  <!-- ends WAV to MP3 -->
+  <!-- ends MKV to MP4 -->
 
-  <!-- WAV to AAC/MP4 -->
-  <span data-toggle="modal" data-target="#wav_to_mp4"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Convert WAV to AAC/MP4">WAV to AAC/MP4</button></span>
-  <div id="wav_to_mp4" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>WAV to AAC/MP4</h3>
-          <p><code>ffmpeg -i <i>input_file</i>.wav -c:a aac -b:a 128k -dither_method modified_e_weighted -ar 44100 <i>output_file</i>.mp4</code></p>
-          <p>This will convert your WAV file to AAC/MP4.</p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path and name of the input file</dd>
-            <dt>-c:a aac</dt><dd>sets the audio codec to AAC</dd>
-            <dt>-b:a 128k</dt><dd>sets the bitrate of the audio to 128k</dd>
-            <dt>-dither_method modified_e_weighted</dt><dd>Dither makes sure you don’t unnecessarily truncate the dynamic range of your audio.</dd>
-            <dt>-ar 44100</dt><dd>sets the audio sampling frequency to 44100 Hz, or 44.1 kHz, or “CD quality”</dd>
-            <dt><i>output_file</i></dt><dd>path and name of the output file</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
   </div>
-  <!-- ends WAV to AAC/MP4 -->
+  <!-- ends well -->
+
+  <div class="well">
+  <h4>Change codec (transcode)</h4>
 
   <!-- Transcode to ProRes -->
   <span data-toggle="modal" data-target="#to_prores"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode to deinterlaced Apple ProRes LT">Transcode to ProRes</button></span>
@@ -198,106 +182,6 @@
   </div>
   <!-- ends H.264 from DCP -->
 
-  <!-- NTSC to H.264 -->
-  <span data-toggle="modal" data-target="#ntsc_to_h264"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Upscaled, pillar-boxed HD H.264 access files from SD NTSC source">NTSC to H.264</button></span>
-  <div id="ntsc_to_h264" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Upscaled, Pillar-boxed HD H.264 Access Files from SD NTSC source</h3>
-          <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -filter:v "yadif,scale=1440:1080:flags=lanczos,pad=1920:1080:(ow-iw)/2:(oh-ih)/2,format=yuv420p" <i>output_file</i></code></p>
-          <dl>
-            <dt>ffmpeg</dt><dd>Calls the program ffmpeg</dd>
-            <dt>-i</dt><dd>for input video file and audio file</dd>
-            <dt>-c:v libx264</dt><dd>encodes video stream with libx264 (h264)</dd>
-            <dt>-filter:v</dt><dd>calls an option to apply filtering to the video stream. yadif deinterlaces. scale and pad do the math! resizes the video frame then pads the area around the 4:3 aspect to complete 16:9. flags=lanczos uses the Lanczos scaling algorithm which is slower but better than the default bilinear. Finally, format specifies a pixel format of YUV 4:2:0. The very same scaling filter also downscales a bigger image size into HD.</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends NTSC to H.264 -->
-
-  <!-- 4:3 to 16:9 -->
-  <span data-toggle="modal" data-target="#SD_HD"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transform 4:3 aspect ratio into 16:9 with pillarbox">4:3 to 16:9</button></span>
-  <div id="SD_HD" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Transform 4:3 aspect ratio into 16:9 with pillarbox</h3>
-          <p>Transform a video file with 4:3 aspect ratio into a video file with 16:9 aspect ration by correct pillarboxing.</p>
-          <p><code>ffmpeg -i <i>input_file</i> -filter:v "pad=ih*16/9:ih:(ow-iw)/2:(oh-ih)/2" -c:a copy <i>output_file</i></code></p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-filter:v "pad=ih*16/9:ih:(ow-iw)/2:(oh-ih)/2"</dt><dd>video padding<br>This resolution independent formula is actually padding any aspect ratio into 16:9 by pillarboxing, because the video filter uses relative values for input width (iw), input height (ih), output width (ow) and output height (oh).</dd>
-            <dt>-c:a copy</dt><dd>re-encodes using the same audio codec<br>
-            For silent videos you can replace <code>-c:a copy</code> by <code>-an</code>.</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends 4:3 to 16:9 -->
-
-  <!-- SD to HD -->
-  <span data-toggle="modal" data-target="#SD_HD_2"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transform SD to HD with pillarbox">SD to HD</button></span>
-  <div id="SD_HD_2" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Transform SD into HD with pillarbox</h3>
-          <p>Transform a SD video file with 4:3 aspect ratio into an HD video file with 16:9 aspect ratio by correct pillarboxing.</p>
-          <p><code>ffmpeg -i <i>input_file</i> -filter:v "colormatrix=bt601:bt709, scale=1440:1080:flags=lanczos, pad=1920:1080:240:0" -c:a copy <i>output_file</i></code></p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-filter:v "colormatrix=bt601:bt709, scale=1440:1080:flags=lanczos, pad=1920:1080:240:0"</dt><dd>set colour matrix, video scaling and padding<br>Three filters are applied:
-              <ol>
-                <li>The luma coefficients are modified from SD video (according to Rec. 601) to HD video (according to Rec. 709) by a colour matrix. Note that today Rec. 709 is often used also for SD and therefore you may cancel this parameter.</li>
-                <li>The scaling filter (<code>scale=1440:1080</code>) works for both upscaling and downscaling. We use the Lanczos scaling algorithm (<code>flags=lanczos</code>), which is slower but gives better results than the default bilinear algorithm.</li>
-                <li>The padding filter (<code>pad=1920:1080:240:0</code>) completes the transformation from SD to HD.</li>
-              </ol></dd>
-            <dt>-c:a copy</dt><dd>re-encodes using the same audio codec<br>
-            For silent videos you can replace <code>-c:a copy</code> with <code>-an</code>.</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends SD to HD -->
-
-  <!-- 16:9 to 4:3 -->
-  <span data-toggle="modal" data-target="#HD_SD"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transform 16:9 aspect ratio video into 4:3 with letterbox">16:9 to 4:3</button></span>
-  <div id="HD_SD" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Transform 16:9 aspect ratio video into 4:3 with letterbox</h3>
-          <p>Transform a video file with 16:9 aspect ratio into a video file with 4:3 aspect ration by correct letterboxing.</p>
-          <p><code>ffmpeg -i <i>input_file</i> -filter:v "pad=iw:iw*3/4:(ow-iw)/2:(oh-ih)/2" -c:a copy <i>output_file</i></code></p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-filter:v "pad=iw:iw*3/4:(ow-iw)/2:(oh-ih)/2"</dt><dd>video padding<br>
-            This resolution independent formula is actually padding any aspect ratio into 4:3 by letterboxing, because the video filter uses relative values for input width (iw), input height (ih), output width (ow) and output height (oh).</dd>
-            <dt>-c:a copy</dt><dd>re-encodes using the same audio codec<br>
-            For silent videos you can replace <code>-c:a copy</code> by <code>-an</code>.</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends 16:9 to 4:3 -->
-
   <!-- Transcode to FFV1.mkv -->
   <span data-toggle="modal" data-target="#create_FFV1_mkv"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode your file with the FFV1 Version 3 Codec in a Matroska container">Create FFV1.mkv</button></span>
   <div id="create_FFV1_mkv" class="modal fade" tabindex="-1" role="dialog">
@@ -329,55 +213,6 @@
     </div>
   </div>
   <!-- ends Transcode to FFV1.mkv-->
-
-  <!-- Change display aspect ratio without re-encoding video-->
-  <span data-toggle="modal" data-target="#change_DAR"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Change display aspect ratio without re-encoding">Change Display Aspect Ratio</button></span>
-  <div id="change_DAR" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Change Display Aspect Ratio without reencoding video</h3>
-          <p><code>ffmpeg -i <i>input_file</i> -c:v copy -aspect 4:3 <i>output_file</i></code></p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-c:v copy</dt><dd>Copy all mapped video streams.</dd>
-            <dt>-aspect 4:3</dt><dd>Change Display Aspect Ratio to <code>4:3</code>. Experiment with other aspect ratios such as <code>16:9</code>. If used together with <code>-c:v copy</code>, it will affect the aspect ratio stored at container level, but not the aspect ratio stored in encoded frames, if it exists.</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Change display aspect ratio without re-encoding video -->
-
-  <!-- MKV to MP4 -->
-  <span data-toggle="modal" data-target="#mkv_to_mp4"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Convert Matroska (MKV) to MP4">MKV to MP4</button></span>
-  <div id="mkv_to_mp4" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>MKV to MP4</h3>
-          <p><code>ffmpeg -i <i>input_file</i>.mkv -c:v copy -c:a aac <i>output_file</i>.mp4</code></p>
-          <p>This will convert your Matroska (MKV) files to MP4 files.</p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path and name of the input file<br>
-            The extension for the Matroska container is <code>.mkv</code>.</dd>
-            <dt>-c:v copy</dt><dd>re-encodes using the same video codec</dd>
-            <dt>-c:a aac</dt><dd>re-encodes using the AAC audio codec<br>
-            Note that sadly MP4 cannot contain sound encoded by a PCM (Pulse-Code Modulation) audio codec.<br>
-            For silent videos you can replace <code>-c:a aac</code> by <code>-an</code>.</dd>
-            <dt><i>output_file</i></dt><dd>path and name of the output file<br>
-            The extension for the MP4 container is <code>.mp4</code>.</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends MKV to MP4 -->
 
   <!-- Images to GIF -->
   <span data-toggle="modal" data-target="#img_to_gif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Converts images to GIF">Images to GIF</button></span>
@@ -475,6 +310,188 @@
     </div>
   </div>
   <!-- ends Transcode to H.265 -->
+
+  <p>&nbsp;</p>
+  <!-- Here comes audio-only transcoding -->
+
+  <!-- WAV to MP3 -->
+  <span data-toggle="modal" data-target="#wav_to_mp3"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Convert WAV to MP3">WAV to MP3</button></span>
+  <div id="wav_to_mp3" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>WAV to MP3</h3>
+          <p><code>ffmpeg -i <i>input_file</i>.wav -write_id3v1 1 -id3v2_version 3 -dither_method modified_e_weighted -out_sample_rate 48k -qscale:a 1 <i>output_file</i>.mp3</code></p>
+          <p>This will convert your WAV files to MP3s.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path and name of the input file</dd>
+            <dt>-write_id3v1 <i>1</i></dt><dd>Write ID3v1 tag. This will add metadata to the old MP3 format, assuming you’ve embedded metadata into the WAV file.</dd>
+            <dt>-id3v2_version <i>3</i></dt><dd>Write ID3v2 tag. This will add metadata to a newer MP3 format, assuming you’ve embedded metadata into the WAV file.</dd>
+            <dt>-dither_method <i>modified_e_weighted</i></dt><dd>Dither makes sure you don’t unnecessarily truncate the dynamic range of your audio.</dd>
+            <dt>-out_sample_rate <i>48k</i></dt><dd>Sets the audio sampling frequency to 48 kHz. This can be omitted to use the same sampling frequency as the input.</dd>
+            <dt>-qscale:a <i>1</i></dt><dd>This sets the encoder to use a constant quality with a variable bitrate of between 190-250kbit/s. If you would prefer to use a constant bitrate, this could be replaced with <code>-b:a 320k</code> to set to the maximum bitrate allowed by the MP3 format. For more detailed discussion on variable vs constant bitrates see <a href="https://trac.ffmpeg.org/wiki/Encode/MP3" target="_blank">here.</a></dd>
+            <dt><i>output_file</i></dt><dd>path and name of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends WAV to MP3 -->
+
+  <!-- WAV to AAC/MP4 -->
+  <span data-toggle="modal" data-target="#wav_to_mp4"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Convert WAV to AAC/MP4">WAV to AAC/MP4</button></span>
+  <div id="wav_to_mp4" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>WAV to AAC/MP4</h3>
+          <p><code>ffmpeg -i <i>input_file</i>.wav -c:a aac -b:a 128k -dither_method modified_e_weighted -ar 44100 <i>output_file</i>.mp4</code></p>
+          <p>This will convert your WAV file to AAC/MP4.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path and name of the input file</dd>
+            <dt>-c:a aac</dt><dd>sets the audio codec to AAC</dd>
+            <dt>-b:a 128k</dt><dd>sets the bitrate of the audio to 128k</dd>
+            <dt>-dither_method modified_e_weighted</dt><dd>Dither makes sure you don’t unnecessarily truncate the dynamic range of your audio.</dd>
+            <dt>-ar 44100</dt><dd>sets the audio sampling frequency to 44100 Hz, or 44.1 kHz, or “CD quality”</dd>
+            <dt><i>output_file</i></dt><dd>path and name of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends WAV to AAC/MP4 -->
+
+  </div>
+  <!-- ends well -->
+
+  <div class="well">
+  <h4>Change formats</h4>
+
+  <!-- NTSC to H.264 -->
+  <span data-toggle="modal" data-target="#ntsc_to_h264"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Upscaled, pillar-boxed HD H.264 access files from SD NTSC source">NTSC to H.264</button></span>
+  <div id="ntsc_to_h264" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Upscaled, Pillar-boxed HD H.264 Access Files from SD NTSC source</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -filter:v "yadif,scale=1440:1080:flags=lanczos,pad=1920:1080:(ow-iw)/2:(oh-ih)/2,format=yuv420p" <i>output_file</i></code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>Calls the program ffmpeg</dd>
+            <dt>-i</dt><dd>for input video file and audio file</dd>
+            <dt>-c:v libx264</dt><dd>encodes video stream with libx264 (h264)</dd>
+            <dt>-filter:v</dt><dd>calls an option to apply filtering to the video stream. yadif deinterlaces. scale and pad do the math! resizes the video frame then pads the area around the 4:3 aspect to complete 16:9. flags=lanczos uses the Lanczos scaling algorithm which is slower but better than the default bilinear. Finally, format specifies a pixel format of YUV 4:2:0. The very same scaling filter also downscales a bigger image size into HD.</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends NTSC to H.264 -->
+
+  <!-- 4:3 to 16:9 -->
+  <span data-toggle="modal" data-target="#SD_HD"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transform 4:3 aspect ratio into 16:9 with pillarbox">4:3 to 16:9</button></span>
+  <div id="SD_HD" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Transform 4:3 aspect ratio into 16:9 with pillarbox</h3>
+          <p>Transform a video file with 4:3 aspect ratio into a video file with 16:9 aspect ration by correct pillarboxing.</p>
+          <p><code>ffmpeg -i <i>input_file</i> -filter:v "pad=ih*16/9:ih:(ow-iw)/2:(oh-ih)/2" -c:a copy <i>output_file</i></code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-filter:v "pad=ih*16/9:ih:(ow-iw)/2:(oh-ih)/2"</dt><dd>video padding<br>This resolution independent formula is actually padding any aspect ratio into 16:9 by pillarboxing, because the video filter uses relative values for input width (iw), input height (ih), output width (ow) and output height (oh).</dd>
+            <dt>-c:a copy</dt><dd>re-encodes using the same audio codec<br>
+            For silent videos you can replace <code>-c:a copy</code> by <code>-an</code>.</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends 4:3 to 16:9 -->
+
+  <!-- 16:9 to 4:3 -->
+  <span data-toggle="modal" data-target="#HD_SD"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transform 16:9 aspect ratio video into 4:3 with letterbox">16:9 to 4:3</button></span>
+  <div id="HD_SD" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Transform 16:9 aspect ratio video into 4:3 with letterbox</h3>
+          <p>Transform a video file with 16:9 aspect ratio into a video file with 4:3 aspect ration by correct letterboxing.</p>
+          <p><code>ffmpeg -i <i>input_file</i> -filter:v "pad=iw:iw*3/4:(ow-iw)/2:(oh-ih)/2" -c:a copy <i>output_file</i></code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-filter:v "pad=iw:iw*3/4:(ow-iw)/2:(oh-ih)/2"</dt><dd>video padding<br>
+            This resolution independent formula is actually padding any aspect ratio into 4:3 by letterboxing, because the video filter uses relative values for input width (iw), input height (ih), output width (ow) and output height (oh).</dd>
+            <dt>-c:a copy</dt><dd>re-encodes using the same audio codec<br>
+            For silent videos you can replace <code>-c:a copy</code> by <code>-an</code>.</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends 16:9 to 4:3 -->
+
+  <!-- SD to HD -->
+  <span data-toggle="modal" data-target="#SD_HD_2"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transform SD to HD with pillarbox">SD to HD</button></span>
+  <div id="SD_HD_2" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Transform SD into HD with pillarbox</h3>
+          <p>Transform a SD video file with 4:3 aspect ratio into an HD video file with 16:9 aspect ratio by correct pillarboxing.</p>
+          <p><code>ffmpeg -i <i>input_file</i> -filter:v "colormatrix=bt601:bt709, scale=1440:1080:flags=lanczos, pad=1920:1080:240:0" -c:a copy <i>output_file</i></code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-filter:v "colormatrix=bt601:bt709, scale=1440:1080:flags=lanczos, pad=1920:1080:240:0"</dt><dd>set colour matrix, video scaling and padding<br>Three filters are applied:
+              <ol>
+                <li>The luma coefficients are modified from SD video (according to Rec. 601) to HD video (according to Rec. 709) by a colour matrix. Note that today Rec. 709 is often used also for SD and therefore you may cancel this parameter.</li>
+                <li>The scaling filter (<code>scale=1440:1080</code>) works for both upscaling and downscaling. We use the Lanczos scaling algorithm (<code>flags=lanczos</code>), which is slower but gives better results than the default bilinear algorithm.</li>
+                <li>The padding filter (<code>pad=1920:1080:240:0</code>) completes the transformation from SD to HD.</li>
+              </ol></dd>
+            <dt>-c:a copy</dt><dd>re-encodes using the same audio codec<br>
+            For silent videos you can replace <code>-c:a copy</code> with <code>-an</code>.</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends SD to HD -->
+
+  <!-- Change display aspect ratio without re-encoding video-->
+  <span data-toggle="modal" data-target="#change_DAR"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Change display aspect ratio without re-encoding">Change Display Aspect Ratio</button></span>
+  <div id="change_DAR" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Change Display Aspect Ratio without reencoding video</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v copy -aspect 4:3 <i>output_file</i></code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-c:v copy</dt><dd>Copy all mapped video streams.</dd>
+            <dt>-aspect 4:3</dt><dd>Change Display Aspect Ratio to <code>4:3</code>. Experiment with other aspect ratios such as <code>16:9</code>. If used together with <code>-c:v copy</code>, it will affect the aspect ratio stored at container level, but not the aspect ratio stored in encoded frames, if it exists.</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Change display aspect ratio without re-encoding video -->
 
   <!-- Deinterlace video -->
   <span data-toggle="modal" data-target="#deinterlace"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Deinterlace video">Deinterlace video</button></span>
@@ -1969,7 +1986,6 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
     </div>
   </div>
   <!-- ends Fix A/V async 1 -->
-
   </div><!-- closes the well -->
 
 <!-- sample example -->
