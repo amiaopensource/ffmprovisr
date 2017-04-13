@@ -1497,6 +1497,33 @@ foreach ($file in $inputfiles) {
   </div>
   <!-- ends Sine wave -->
 
+  <!-- SMPTE bars + Sine wave -->
+  <span data-toggle="modal" data-target="#smpte_bars_and_sine_wave"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Generate a SMPTE bars test video + audio playing a sine wave">SMPTE bars + Sine wave audio</button></span>
+  <div id="smpte_bars_and_sine_wave" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>SMPTE bars + Sine wave audio</h3>
+          <p>Generate a SMPTE bars test video + a 1kHz sine wave as audio testsignal.</p>
+          <p><code>ffmpeg -f lavfi -i smptebars=size=720x576:rate=25 -f lavfi -i "sine=frequency=1000:sample_rate=48000" -c:a pcm_s16le -t 10 -c:v ffv1 <i>output_file</i></code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-f lavfi</dt><dd>tells ffmpeg to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">libavfilter</a> input virtual device</dd>
+            <dt>-i smptebars=size=720x576:rate=25</dt><dd>asks for the smptebars test filter as input. Adjusting the <code>size</code> and <code>rate</code> options allow you to choose a specific frame size and framerate. <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc_002c-testsrc2_002c-yuvtestsrc" target="_blank">[more]</a></dd>
+            <dt>-f lavfi</dt><dd>use libavfilter again, but now for audio</dd>
+            <dt>-i "sine=frequency=1000:sample_rate=48000"</dt><dd>Sets the signal to 1000 Hz, sampling at 48 kHz.</dd>
+            <dt>-c:a pcm_s16le</dt><dd>encodes the audio codec in <code>pcm_s16le</code> (the default encoding for wav files). pcm represents pulse-code modulation format (raw bytes), <code>16</code> means 16 bits per sample, and <code>le</code> means "little endian"</dd>
+            <dt>-t 10</dt><dd>specifies recording time of 10 seconds</dd>
+            <dt>-c:v <i>ffv1</i></dt><dd>Encodes to <a href="https://en.wikipedia.org/wiki/FFV1">FFV1</a>. Alter this setting to set your desired codec.</dd>
+            <dt><i>output_file</i>.wav</dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends SMPTE bars + Sine wave -->
+
   </div>
   <div class="well">
   <h4>Other</h4>
