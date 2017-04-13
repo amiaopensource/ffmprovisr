@@ -417,6 +417,31 @@
   </div>
   <!-- ends 4:3 to 16:9 -->
 
+  <!-- 16:9 to 4:3 -->
+  <span data-toggle="modal" data-target="#HD_SD"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transform 16:9 aspect ratio video into 4:3 with letterbox">16:9 to 4:3</button></span>
+  <div id="HD_SD" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Transform 16:9 aspect ratio video into 4:3 with letterbox</h3>
+          <p>Transform a video file with 16:9 aspect ratio into a video file with 4:3 aspect ration by correct letterboxing.</p>
+          <p><code>ffmpeg -i <i>input_file</i> -filter:v "pad=iw:iw*3/4:(ow-iw)/2:(oh-ih)/2" -c:a copy <i>output_file</i></code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-filter:v "pad=iw:iw*3/4:(ow-iw)/2:(oh-ih)/2"</dt><dd>video padding<br>
+            This resolution independent formula is actually padding any aspect ratio into 4:3 by letterboxing, because the video filter uses relative values for input width (iw), input height (ih), output width (ow) and output height (oh).</dd>
+            <dt>-c:a copy</dt><dd>re-encodes using the same audio codec<br>
+            For silent videos you can replace <code>-c:a copy</code> by <code>-an</code>.</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends 16:9 to 4:3 -->
+
   <!-- SD to HD -->
   <span data-toggle="modal" data-target="#SD_HD_2"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transform SD to HD with pillarbox">SD to HD</button></span>
   <div id="SD_HD_2" class="modal fade" tabindex="-1" role="dialog">
@@ -445,31 +470,6 @@
     </div>
   </div>
   <!-- ends SD to HD -->
-
-  <!-- 16:9 to 4:3 -->
-  <span data-toggle="modal" data-target="#HD_SD"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transform 16:9 aspect ratio video into 4:3 with letterbox">16:9 to 4:3</button></span>
-  <div id="HD_SD" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Transform 16:9 aspect ratio video into 4:3 with letterbox</h3>
-          <p>Transform a video file with 16:9 aspect ratio into a video file with 4:3 aspect ration by correct letterboxing.</p>
-          <p><code>ffmpeg -i <i>input_file</i> -filter:v "pad=iw:iw*3/4:(ow-iw)/2:(oh-ih)/2" -c:a copy <i>output_file</i></code></p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-filter:v "pad=iw:iw*3/4:(ow-iw)/2:(oh-ih)/2"</dt><dd>video padding<br>
-            This resolution independent formula is actually padding any aspect ratio into 4:3 by letterboxing, because the video filter uses relative values for input width (iw), input height (ih), output width (ow) and output height (oh).</dd>
-            <dt>-c:a copy</dt><dd>re-encodes using the same audio codec<br>
-            For silent videos you can replace <code>-c:a copy</code> by <code>-an</code>.</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends 16:9 to 4:3 -->
 
   <!-- Change display aspect ratio without re-encoding video-->
   <span data-toggle="modal" data-target="#change_DAR"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Change display aspect ratio without re-encoding">Change Display Aspect Ratio</button></span>
