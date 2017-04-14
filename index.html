@@ -253,7 +253,7 @@
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i concat:<i>input files</i></dt><dd>lists the input VOB files and directs ffmpeg to concatenate them. Each input file should be separated by a backslash and a pipe, like so:<br>
-              <code>-i concat:VTS_01_1.VOB\|VTS_01_2.VOB\|VTS_01_3.VOB</code><br>
+            <code>-i concat:VTS_01_1.VOB\|VTS_01_2.VOB\|VTS_01_3.VOB</code><br>
             The backslash is simply an escape character for the pipe (<b>|</b>).</dd>
             <dt>-c:v libx264</dt><dd>sets the video codec as H.264</dd>
             <dt>-c:a copy</dt><dd>audio remains as-is (no re-encode)</dd>
@@ -500,7 +500,7 @@
       <div class="modal-content">
         <div class="well">
           <h3>Deinterlace a video</h3>
-          <p> <code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf "yadif,format=yuv420p" <i>output_file</i></code> </p>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf "yadif,format=yuv420p" <i>output_file</i></code></p>
           <p>This command takes an interlaced input file and outputs a deinterlaced H.264 MP4.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -509,10 +509,10 @@
             <dt>-vf</dt><dd>video filtering will be used (<code>-vf</code> is an alias of <code>-filter:v</code>)</dd>
             <dt><i>"</i></dt><dd>start of filtergraph (see below)</dd>
             <dt><i>yadif</i></dt><dd>deinterlacing filter (‘yet another deinterlacing filter’)<br>
-              By default, <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1" target="_blank">yadif</a> will output one frame for each frame. Outputting one frame for each <i>field</i> (thereby doubling the frame rate) with <code>yadif=1</code> may produce visually better results.</dd>
+            By default, <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1" target="_blank">yadif</a> will output one frame for each frame. Outputting one frame for each <i>field</i> (thereby doubling the frame rate) with <code>yadif=1</code> may produce visually better results.</dd>
             <dt><i>,</i></dt><dd>separates filters</dd>
             <dt><i>format=yuv420p</i></dt><dd>chroma subsampling set to 4:2:0<br>
-              By default, <code>libx264</code> will use a chroma subsampling scheme that is the closest match to that of the input. This can result in Y′C<sub>B</sub>C<sub>R</sub> 4:2:0, 4:2:2, or 4:4:4 chroma subsampling. QuickTime and most other non-FFmpeg based players can’t decode H.264 files that are not 4:2:0, therefore it’s advisable to specify 4:2:0 chroma subsampling.</dd>
+            By default, <code>libx264</code> will use a chroma subsampling scheme that is the closest match to that of the input. This can result in Y′C<sub>B</sub>C<sub>R</sub> 4:2:0, 4:2:2, or 4:4:4 chroma subsampling. QuickTime and most other non-FFmpeg based players can’t decode H.264 files that are not 4:2:0, therefore it’s advisable to specify 4:2:0 chroma subsampling.</dd>
             <dt><i>"</i></dt><dd>end of filtergraph</dd>
             <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
@@ -541,7 +541,7 @@
         <div class="well">
           <h3>Transcode video to a different colourspace</h3>
           <p>This command uses a filter to convert the video to a different colour space.</p>
-          <p> <code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf colormatrix=src:dst <i>output_file</i></code> </p>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf colormatrix=src:dst <i>output_file</i></code></p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
@@ -554,27 +554,27 @@
           <p><b>Note</b>: Converting between colourspaces with ffmpeg can be done via either the <b>colormatrix</b> or <b>colorspace</b> filters, with colorspace allowing finer control (individual setting of colourspace, transfer characteristics, primaries, range, pixel format, etc). See <a href="https://trac.ffmpeg.org/wiki/colorspace" target="_blank">this</a> entry on the ffmpeg wiki, and the ffmpeg documentation for <a href="http://ffmpeg.org/ffmpeg-filters.html#colormatrix" target="_blank">colormatrix</a> and <a href="http://ffmpeg.org/ffmpeg-filters.html#colorspace" target="_blank">colorspace</a>.</p>
           <hr>
           <h4>Convert colourspace and embed colourspace metadata</h4>
-          <p> <code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf colormatrix=src:dst -color_primaries <i>val</i> -color_trc <i>val</i> -colorspace <i>val</i> <i>output_file</i></code> </p>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf colormatrix=src:dst -color_primaries <i>val</i> -color_trc <i>val</i> -colorspace <i>val</i> <i>output_file</i></code></p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-c:v libx264</dt><dd>encode video as H.264</dd>
             <dt>-vf colormatrix=<i>src</i>:<i>dst</i></dt><dd>the video filter <b>colormatrix</b> will be applied, with the given source and destination colourspaces.</dd>
             <dt>-color_primaries <i>val</i></dt><dd>tags video with the given colour primaries.<br>
-              Accepted values include <code>smpte170m</code> (Rec.601, 525-line/NTSC version), <code>bt470bg</code> (Rec.601, 625-line/PAL version), <code>bt709</code> (Rec.709), and <code>bt2020</code> (Rec.2020).
+            Accepted values include <code>smpte170m</code> (Rec.601, 525-line/NTSC version), <code>bt470bg</code> (Rec.601, 625-line/PAL version), <code>bt709</code> (Rec.709), and <code>bt2020</code> (Rec.2020).
             <dt>-color_trc <i>val</i></dt><dd>tags video with the given transfer characteristics (gamma).<br>
-              Accepted values include <code>smpte170m</code> (Rec.601, 525-line/NTSC version), <code>gamma28</code> (Rec.601, 625-line/PAL version)<sup><a href="#fn1" id="ref1">1</a></sup>, <code>bt709</code> (Rec.709), <code>bt2020_10</code> (Rec.2020 10-bit), and <code>bt2020_12</code> (Rec.2020 12-bit).</dd>
+            Accepted values include <code>smpte170m</code> (Rec.601, 525-line/NTSC version), <code>gamma28</code> (Rec.601, 625-line/PAL version)<sup><a href="#fn1" id="ref1">1</a></sup>, <code>bt709</code> (Rec.709), <code>bt2020_10</code> (Rec.2020 10-bit), and <code>bt2020_12</code> (Rec.2020 12-bit).</dd>
             <dt>-colorspace <i>val</i></dt><dd>tags video as being in the given colourspace.<br>
-              Accepted values include <code>smpte170m</code> (Rec.601, 525-line/NTSC version), <code>bt470bg</code> (Rec.601, 625-line/PAL version), <code>bt709</code> (Rec.709), <code>bt2020_cl</code> (Rec.2020 constant luminance), and <code>bt2020_ncl</code> (Rec.2020 non-constant luminance).</dd>
+            Accepted values include <code>smpte170m</code> (Rec.601, 525-line/NTSC version), <code>bt470bg</code> (Rec.601, 625-line/PAL version), <code>bt709</code> (Rec.709), <code>bt2020_cl</code> (Rec.2020 constant luminance), and <code>bt2020_ncl</code> (Rec.2020 non-constant luminance).</dd>
             <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
           <h5>Examples</h5>
           <p>To Rec.601 (525-line/NTSC):</p>
-          <p> <code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf colormatrix=bt709:smpte170m -color_primaries smpte170m -color_trc smpte170m -colorspace smpte170m <i>output_file</i></code> </p>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf colormatrix=bt709:smpte170m -color_primaries smpte170m -color_trc smpte170m -colorspace smpte170m <i>output_file</i></code></p>
           <p>To Rec.601 (625-line/PAL):</p>
-          <p> <code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf colormatrix=bt709:bt470bg -color_primaries bt470bg -color_trc gamma28 -colorspace bt470bg <i>output_file</i></code> </p>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf colormatrix=bt709:bt470bg -color_primaries bt470bg -color_trc gamma28 -colorspace bt470bg <i>output_file</i></code></p>
           <p>To Rec.709:</p>
-          <p> <code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf colormatrix=bt601:bt709 -color_primaries bt709 -color_trc bt709 -colorspace bt709 <i>output_file</i></code> </p>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf colormatrix=bt601:bt709 -color_primaries bt709 -color_trc bt709 -colorspace bt709 <i>output_file</i></code></p>
           <p>MediaInfo output examples:</p>
           <img src="./img/colourspace_metadata_mediainfo.png" alt="MediaInfo screenshots of colourspace metadata"><br>
           <p><span class="beware">⚠</span> Using this command it is possible to add Rec.709 tags to a file that is actually Rec.601 (etc), so apply with caution!</p>
@@ -583,7 +583,7 @@
           <p>For all possible values for <code>-color_primaries</code>, <code>-color_trc</code>, and <code>-colorspace</code>, see the ffmpeg documentation on <a href="./index.html#Codec-Options" target="_blank">codec options</a>.</p>
           <hr>
           <p id="fn1" class="footnote">1. Out of step with the regular pattern, <code>-color_trc</code> doesn’t accept <code>bt470bg</code>; it is instead here referred to directly as gamma.<br>
-            In the Rec.601 standard, 525-line/NTSC and 625-line/PAL video have assumed gammas of 2.2 and 2.8 respectively. <a href="#ref1" title="Jump back.">↩</a></p>
+          In the Rec.601 standard, 525-line/NTSC and 625-line/PAL video have assumed gammas of 2.2 and 2.8 respectively. <a href="#ref1" title="Jump back.">↩</a></p>
           <p class="link"></p>
         </div>
       </div>
@@ -610,7 +610,7 @@
             <a href="https://ffmpeg.org/ffmpeg-filters.html#decimate-1">Decimate</a> deletes duplicated frames.</dd>
             <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
-          <p> <code>"fieldmatch,yadif,decimate"</code> is an ffmpeg <a href="https://trac.ffmpeg.org/wiki/FilteringGuide#FiltergraphChainFilterrelationship" target="_blank">filtergraph</a>. Here the filtergraph is made up of one filter chain, which is itself made up of the three filters (separated by commas).<br>
+          <p><code>"fieldmatch,yadif,decimate"</code> is an ffmpeg <a href="https://trac.ffmpeg.org/wiki/FilteringGuide#FiltergraphChainFilterrelationship" target="_blank">filtergraph</a>. Here the filtergraph is made up of one filter chain, which is itself made up of the three filters (separated by commas).<br>
           The enclosing quote marks are necessary when you use spaces within the filtergraph, e.g. <code>-vf "fieldmatch, yadif, decimate"</code>, and are included above as an example of good practice.</p>
           <p>Note that if applying an inverse telecine procedure to a 29.97i file, the output framerate will actually be 23.976fps.</p>
           <p>This command can also be used to restore other framerates.</p>
@@ -631,189 +631,181 @@
   <div class="well">
   <h4>Filters</h4>
 
-    <!-- astats -->
-    <span data-toggle="modal" data-target="#astats"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Play a graphical output showing decibel levels of an input file">Graphic for audio</button></span>
-    <div id="astats" class="modal fade" tabindex="-1" role="dialog">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="well">
-            <h3>Plays a graphical output showing decibel levels of an input file</h3>
-            <p><code>ffplay -f lavfi "amovie='input.mp3',astats=metadata=1:reset=1,adrawgraph=lavfi.astats.Overall.Peak_level:max=0:min=-30.0:size=700x256:bg=Black[out]"</code></p>
-            <dl>
-              <dt>ffplay</dt><dd>starts the command</dd>
-              <dt>-f lavfi</dt><dd>tells ffmpeg to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter input virtual device</a></dd>
-              <dt>"</dt><dd>quotation mark to start command</dd>
-              <dt>movie='<i>input.mp3</i>'</dt><dd>declares audio source file on which to apply filter</dd>
-              <dt>,</dt><dd>comma signifies the end of audio source section and the beginning of the filter section</dd>
-              <dt>astats=metadata=1</dt><dd>tells the astats filter to ouput metadata that can be passed to another filter (in this case adrawgraph)</dd>
-              <dt>:</dt><dd>divides beteen options of the same filter</dd>
-              <dt>reset=1</dt><dd>tells the filter to calculate the stats on every frame (increasing this number would calculate stats for groups of frames)</dd>
-              <dt>,</dt><dd>comma divides one filter in the chain from another</dd>
-              <dt>adrawgraph=lavfi.astats.Overall.Peak_level:max=0:min=-30.0</dt><dd>draws a graph using the overall peak volume calculated by the astats filter. It sets the max for the graph to 0 (dB) and the minimum to -30 (dB). For more options on data points that can be graphed see the <a href="https://ffmpeg.org/ffmpeg-filters.html#astats-1" target="_blank">ffmpeg astats documentation</a></dd>
-              <dt>size=700x256:bg=Black</dt><dd>sets the background color and size of the output</dd>
-              <dt>[out]</dt><dd>ends the filterchain and sets the output</dd>
-              <dt>"</dt><dd>quotation mark to close command</dd>
-            </dl>
-            <div class="sample-image">
-              <h4>Example of filter output</h4>
-              <img src="img/astats_levels.gif" alt="astats example">
-            </div>
-            <p class="link"></p>
+  <!-- astats -->
+  <span data-toggle="modal" data-target="#astats"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Play a graphical output showing decibel levels of an input file">Graphic for audio</button></span>
+  <div id="astats" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Plays a graphical output showing decibel levels of an input file</h3>
+          <p><code>ffplay -f lavfi "amovie='input.mp3',astats=metadata=1:reset=1,adrawgraph=lavfi.astats.Overall.Peak_level:max=0:min=-30.0:size=700x256:bg=Black[out]"</code></p>
+          <dl>
+            <dt>ffplay</dt><dd>starts the command</dd>
+            <dt>-f lavfi</dt><dd>tells ffmpeg to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter input virtual device</a></dd>
+            <dt>"</dt><dd>quotation mark to start command</dd>
+            <dt>movie='<i>input.mp3</i>'</dt><dd>declares audio source file on which to apply filter</dd>
+            <dt>,</dt><dd>comma signifies the end of audio source section and the beginning of the filter section</dd>
+            <dt>astats=metadata=1</dt><dd>tells the astats filter to ouput metadata that can be passed to another filter (in this case adrawgraph)</dd>
+            <dt>:</dt><dd>divides beteen options of the same filter</dd>
+            <dt>reset=1</dt><dd>tells the filter to calculate the stats on every frame (increasing this number would calculate stats for groups of frames)</dd>
+            <dt>,</dt><dd>comma divides one filter in the chain from another</dd>
+            <dt>adrawgraph=lavfi.astats.Overall.Peak_level:max=0:min=-30.0</dt><dd>draws a graph using the overall peak volume calculated by the astats filter. It sets the max for the graph to 0 (dB) and the minimum to -30 (dB). For more options on data points that can be graphed see the <a href="https://ffmpeg.org/ffmpeg-filters.html#astats-1" target="_blank">ffmpeg astats documentation</a></dd>
+            <dt>size=700x256:bg=Black</dt><dd>sets the background color and size of the output</dd>
+            <dt>[out]</dt><dd>ends the filterchain and sets the output</dd>
+            <dt>"</dt><dd>quotation mark to close command</dd>
+          </dl>
+          <div class="sample-image">
+            <h4>Example of filter output</h4>
+            <img src="img/astats_levels.gif" alt="astats example">
           </div>
+          <p class="link"></p>
         </div>
       </div>
     </div>
-    <!-- ends astats -->
+  </div>
+  <!-- ends astats -->
 
-    <!-- BRNG -->
-    <span data-toggle="modal" data-target="#brng"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Identify pixels out of broadcast range">Broadcast Range</button></span>
-    <div id="brng" class="modal fade" tabindex="-1" role="dialog">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="well">
-            <h3>Shows all pixels outside of broadcast range</h3>
-            <p><code>ffplay -f lavfi "movie='<i>input.mp4</i>',signalstats=out=brng:color=cyan[out]"</code></p>
-            <dl>
-              <dt>ffplay</dt><dd>starts the command</dd>
-              <dt>-f lavfi</dt><dd>tells ffmpeg to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter input virtual device</a></dd>
-              <dt>"</dt><dd>quotation mark to start command</dd>
-              <dt>movie='<i>input.mp4</i>'</dt><dd>declares video file source to apply filter</dd>
-              <dt>,</dt><dd>comma signifies closing of video source assertion and ready for filter assertion</dd>
-              <dt>signalstats=out=brng:</dt><dd>tells ffplay to use the signalstats command, output the data, use the brng filter</dd>
-              <dt>:</dt><dd>indicates there’s another parameter coming</dd>
-              <dt>color=cyan[out]</dt><dd>sets the color of out-of-range pixels to cyan</dd>
-              <dt>"</dt><dd>quotation mark to close command</dd>
-            </dl>
-            <div class="sample-image">
-              <h4>Example of filter output</h4>
-              <img src="img/brng.gif" alt="BRNG example">
-            </div>
-            <p class="link"></p>
+  <!-- BRNG -->
+  <span data-toggle="modal" data-target="#brng"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Identify pixels out of broadcast range">Broadcast Range</button></span>
+  <div id="brng" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Shows all pixels outside of broadcast range</h3>
+          <p><code>ffplay -f lavfi "movie='<i>input.mp4</i>',signalstats=out=brng:color=cyan[out]"</code></p>
+          <dl>
+            <dt>ffplay</dt><dd>starts the command</dd>
+            <dt>-f lavfi</dt><dd>tells ffmpeg to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter input virtual device</a></dd>
+            <dt>"</dt><dd>quotation mark to start command</dd>
+            <dt>movie='<i>input.mp4</i>'</dt><dd>declares video file source to apply filter</dd>
+            <dt>,</dt><dd>comma signifies closing of video source assertion and ready for filter assertion</dd>
+            <dt>signalstats=out=brng:</dt><dd>tells ffplay to use the signalstats command, output the data, use the brng filter</dd>
+            <dt>:</dt><dd>indicates there’s another parameter coming</dd>
+            <dt>color=cyan[out]</dt><dd>sets the color of out-of-range pixels to cyan</dd>
+            <dt>"</dt><dd>quotation mark to close command</dd>
+          </dl>
+          <div class="sample-image">
+            <h4>Example of filter output</h4>
+            <img src="img/brng.gif" alt="BRNG example">
           </div>
+          <p class="link"></p>
         </div>
       </div>
     </div>
-    <!-- ends BRNG -->
+  </div>
+  <!-- ends BRNG -->
 
-    <!-- ocr -->
-    <span data-toggle="modal" data-target="#ocr_on_top"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Play video with OCR on top">Shows OCR</button></span>
-    <div id="ocr_on_top" class="modal fade" tabindex="-1" role="dialog">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="well">
-            <h3>Plays video with OCR on top</h3>
-            <p>Note: ffmpeg must be compiled with the tesseract library for this script to work (<code>--with-tesseract</code> if using <code>brew install ffmpeg</code> method).</p>
-            <p><code>ffplay input_file -vf "ocr,drawtext=fontfile=/Library/Fonts/Andale Mono.ttf:text=%{metadata\\\:lavfi.ocr.text}:fontcolor=white"</code></p>
-            <dl>
-              <dt>ffplay</dt><dd>starts the command</dd>
-              <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-              <dt>-vf</dt><dd>creates a filtergraph to use for the streams</dd>
-              <dt>"</dt><dd>quotation mark to start filter command</dd>
-              <dt>ocr,</dt><dd>tells ffplay to use ocr as source and the comma signifies that the script is ready for filter assertion</dd>
-              <dt>drawtext=fontfile=/Library/Fonts/Andale Mono.ttf</dt><dd>tells ffplay to drawtext and use a specific font (Andale Mono) when doing so</dd>
-              <dt>:</dt><dd>indicates there’s another parameter coming</dd>
-              <dt>text=%{metadata\\\:lavfi.ocr.text}</dt><dd>tells ffplay what text to use when playing. In this case, calls for metadata that lives in the lavfi.ocr.text library</dd>
-              <dt>:</dt><dd>indicates there’s another parameter coming</dd>
-              <dt>fontcolor=white</dt><dd>specifies font color as white</dd>
-              <dt>"</dt><dd>quotation mark to close filter command</dd>
-            </dl>
-            <div class="sample-image">
-              <!-- <h4>Example of filter output</h4> -->
-              <!-- <img src="" alt="ocr example"> -->
-            </div>
-            <p class="link"></p>
-          </div>
+  <!-- ocr -->
+  <span data-toggle="modal" data-target="#ocr_on_top"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Play video with OCR on top">Shows OCR</button></span>
+  <div id="ocr_on_top" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Plays video with OCR on top</h3>
+          <p>Note: ffmpeg must be compiled with the tesseract library for this script to work (<code>--with-tesseract</code> if using <code>brew install ffmpeg</code> method).</p>
+          <p><code>ffplay input_file -vf "ocr,drawtext=fontfile=/Library/Fonts/Andale Mono.ttf:text=%{metadata\\\:lavfi.ocr.text}:fontcolor=white"</code></p>
+          <dl>
+            <dt>ffplay</dt><dd>starts the command</dd>
+            <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-vf</dt><dd>creates a filtergraph to use for the streams</dd>
+            <dt>"</dt><dd>quotation mark to start filter command</dd>
+            <dt>ocr,</dt><dd>tells ffplay to use ocr as source and the comma signifies that the script is ready for filter assertion</dd>
+            <dt>drawtext=fontfile=/Library/Fonts/Andale Mono.ttf</dt><dd>tells ffplay to drawtext and use a specific font (Andale Mono) when doing so</dd>
+            <dt>:</dt><dd>indicates there’s another parameter coming</dd>
+            <dt>text=%{metadata\\\:lavfi.ocr.text}</dt><dd>tells ffplay what text to use when playing. In this case, calls for metadata that lives in the lavfi.ocr.text library</dd>
+            <dt>:</dt><dd>indicates there’s another parameter coming</dd>
+            <dt>fontcolor=white</dt><dd>specifies font color as white</dd>
+            <dt>"</dt><dd>quotation mark to close filter command</dd>
+          </dl>
+          <p class="link"></p>
         </div>
       </div>
     </div>
-    <!-- ends ocr -->
+  </div>
+  <!-- ends ocr -->
 
-    <!-- Exports OCR -->
-    <span data-toggle="modal" data-target="#ffprobe_ocr"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Export OCR from video to screen">Exports OCR</button></span>
-    <div id="ffprobe_ocr" class="modal fade" tabindex="-1" role="dialog">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="well">
-            <h3>Exports OCR data to screen</h3>
-            <p>Note: ffmpeg must be compiled with the tesseract library for this script to work (<code>--with-tesseract</code> if using <code>brew install ffmpeg</code> method)</p>
-            <p><code>ffprobe -show_entries frame_tags=lavfi.ocr.text -f lavfi -i "movie=<i>input_file</i>,ocr"</code></p>
-            <dl>
-              <dt>ffprobe</dt><dd>starts the command</dd>
-              <dt>-show_entries</dt><dd>sets a list of entries to show</dd>
-              <dt>frame_tags=lavfi.ocr.text</dt><dd>shows the <i>lavfi.ocr.text</i> tag in the frame section of the video</dd>
-              <dt>-f lavfi</dt><dd>tells ffmpeg to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter input virtual device</a></dd>
-              <dt>-i "movie=<i>input_file</i>,ocr"</dt><dd>declares 'movie' as <i>input_file</i> and passes in the 'ocr' command</dd>
-            </dl>
-            <div class="sample-image">
-              <!-- <h4>Example of filter output</h4> -->
-              <!-- <img src="" alt="Exports OCR example"> -->
-            </div>
-            <p class="link"></p>
-          </div>
+  <!-- Exports OCR -->
+  <span data-toggle="modal" data-target="#ffprobe_ocr"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Export OCR from video to screen">Exports OCR</button></span>
+  <div id="ffprobe_ocr" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Exports OCR data to screen</h3>
+          <p>Note: ffmpeg must be compiled with the tesseract library for this script to work (<code>--with-tesseract</code> if using <code>brew install ffmpeg</code> method)</p>
+          <p><code>ffprobe -show_entries frame_tags=lavfi.ocr.text -f lavfi -i "movie=<i>input_file</i>,ocr"</code></p>
+          <dl>
+            <dt>ffprobe</dt><dd>starts the command</dd>
+            <dt>-show_entries</dt><dd>sets a list of entries to show</dd>
+            <dt>frame_tags=lavfi.ocr.text</dt><dd>shows the <i>lavfi.ocr.text</i> tag in the frame section of the video</dd>
+            <dt>-f lavfi</dt><dd>tells ffmpeg to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter input virtual device</a></dd>
+            <dt>-i "movie=<i>input_file</i>,ocr"</dt><dd>declares 'movie' as <i>input_file</i> and passes in the 'ocr' command</dd>
+          </dl>
+          <p class="link"></p>
         </div>
       </div>
     </div>
-    <!-- ends Exports OCR -->
+  </div>
+  <!-- ends Exports OCR -->
 
-    <!-- Vectorscope -->
-    <span data-toggle="modal" data-target="#vectorscope"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Vectorscope from video to screen">Vectorscope</button></span>
-    <div id="vectorscope" class="modal fade" tabindex="-1" role="dialog">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="well">
-            <h3>Plays vectorscope of video</h3>
-            <p><code>ffplay <i>input_file</i> -vf "split=2[m][v],[v]vectorscope=b=0.7:m=color3:g=green[v],[m][v]overlay=x=W-w:y=H-h"</code></p>
-            <dl>
-              <dt>ffplay</dt><dd>starts the command</dd>
-              <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-              <dt>-vf</dt><dd>creates a filtergraph to use for the streams</dd>
-              <dt>"</dt><dd>quotation mark to start command</dd>
-              <dt>split=2[m][v]</dt><dd>Splits the input into two identical outputs and names them [m] and [v]</dd>
-              <dt>,</dt><dd>comma signifies there is another parameter coming</dd>
-              <dt>[v]vectorscope=b=0.7:m=color3:g=green[v]</dt><dd>asserts usage of the vectorscope filter and sets a light background opacity (b, alias for bgopacity), sets a background color style (m, alias for mode), and graticule color (g, alias for graticule)</dd>
-              <dt>,</dt><dd>comma signifies there is another parameter coming</dd>
-              <dt>[m][v]overlay=x=W-w:y=H-h</dt><dd>declares where the vectorscope will overlay on top of the video image as it plays</dd>
-              <dt>"</dt><dd>quotation mark to end command</dd>
-            </dl>
-            <p class="link"></p>
-          </div>
+  <!-- Vectorscope -->
+  <span data-toggle="modal" data-target="#vectorscope"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Vectorscope from video to screen">Vectorscope</button></span>
+  <div id="vectorscope" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Plays vectorscope of video</h3>
+          <p><code>ffplay <i>input_file</i> -vf "split=2[m][v],[v]vectorscope=b=0.7:m=color3:g=green[v],[m][v]overlay=x=W-w:y=H-h"</code></p>
+          <dl>
+            <dt>ffplay</dt><dd>starts the command</dd>
+            <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-vf</dt><dd>creates a filtergraph to use for the streams</dd>
+            <dt>"</dt><dd>quotation mark to start command</dd>
+            <dt>split=2[m][v]</dt><dd>Splits the input into two identical outputs and names them [m] and [v]</dd>
+            <dt>,</dt><dd>comma signifies there is another parameter coming</dd>
+            <dt>[v]vectorscope=b=0.7:m=color3:g=green[v]</dt><dd>asserts usage of the vectorscope filter and sets a light background opacity (b, alias for bgopacity), sets a background color style (m, alias for mode), and graticule color (g, alias for graticule)</dd>
+            <dt>,</dt><dd>comma signifies there is another parameter coming</dd>
+            <dt>[m][v]overlay=x=W-w:y=H-h</dt><dd>declares where the vectorscope will overlay on top of the video image as it plays</dd>
+            <dt>"</dt><dd>quotation mark to end command</dd>
+          </dl>
+          <p class="link"></p>
         </div>
       </div>
     </div>
-    <!-- ends Vectorscope -->
+  </div>
+  <!-- ends Vectorscope -->
 
-    <!--Side by Side Videos/Temporal Difference Filter-->
-    <span data-toggle="modal" data-target="#tempdif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Play two videos side by side while applying the temporal difference filter to both">Side by Side Videos/Temporal Difference Filter</button></span>
-    <div id="tempdif" class="modal fade" tabindex="-1" role="dialog">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="well">
-            <h3>This will play two input videos side by side while also applying the temporal difference filter to them</h3>
-            <p><code>ffmpeg -i input01 -i input02 -filter_complex "[0:v:0]tblend=all_mode=difference128[a];[1:v:0]tblend=all_mode=difference128[b];[a][b]hstack[out]" -map [out] -f nut -c:v rawvideo - | ffplay -</code></p>
-            <dl>
-              <dt>ffmpeg</dt><dd>starts the command</dd>
-              <dt>-i <i>input01</i> -i <i>input02</i></dt><dd>Designates the files to use for inputs one and two respectively</dd>
-              <dt>-filter_complex</dt><dd>Lets ffmpeg know we will be using a complex filter (this must be used for multiple inputs)</dd>
-              <dt>[0:v:0]tblend=all_mode=difference128[a]</dt><dd>Applies the tblend filter (with the settings all_mode and difference128) to the first video stream from the first input and assigns the result to the output [a]</dd>
-              <dt>[1:v:0]tblend=all_mode=difference128[a]</dt><dd>Applies the tblend filter (with the settings all_mode and difference128) to the first video stream from the second input and assigns the result to the output [b]</dd>
-              <dt>[a][b]hstack[out]</dt><dd>Takes the outputs from the previous steps ([a] and [b] and uses the hstack (horizontal stack) filter on them to create the side by side output.  This output is then named [out])</dd>
-              <dt>-map [out]</dt><dd>Maps the output of the filter chain</dd>
-              <dt>-f nut</dt><dd>Sets the format for the output video stream to <a href="https://www.ffmpeg.org/ffmpeg-formats.html#nut" target="_blank">Nut</a></dd>
-              <dt>-c:v rawvideo</dt><dd>Sets the video codec of the output video stream to raw video</dd>
-              <dt>-</dt><dd>Tells ffmpeg that the output will be piped to a new command (as opposed to a file)</dd>
-              <dt>|</dt><dd>Tells the system you will be piping the output of the previous command into a new command</dd>
-              <dt>ffplay -</dt><dd>Starts ffplay and tells it to use the pipe from the previous command as its input</dd>
-            </dl>
-            <div class="sample-image">
-              <h4>Example of filter output</h4>
-              <img src="img/tempdif.gif" alt="astats example">
-            </div>
-            <p class="link"></p>
+  <!--Side by Side Videos/Temporal Difference Filter-->
+  <span data-toggle="modal" data-target="#tempdif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Play two videos side by side while applying the temporal difference filter to both">Side by Side Videos/Temporal Difference Filter</button></span>
+  <div id="tempdif" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>This will play two input videos side by side while also applying the temporal difference filter to them</h3>
+          <p><code>ffmpeg -i input01 -i input02 -filter_complex "[0:v:0]tblend=all_mode=difference128[a];[1:v:0]tblend=all_mode=difference128[b];[a][b]hstack[out]" -map [out] -f nut -c:v rawvideo - | ffplay -</code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input01</i> -i <i>input02</i></dt><dd>Designates the files to use for inputs one and two respectively</dd>
+            <dt>-filter_complex</dt><dd>Lets ffmpeg know we will be using a complex filter (this must be used for multiple inputs)</dd>
+            <dt>[0:v:0]tblend=all_mode=difference128[a]</dt><dd>Applies the tblend filter (with the settings all_mode and difference128) to the first video stream from the first input and assigns the result to the output [a]</dd>
+            <dt>[1:v:0]tblend=all_mode=difference128[a]</dt><dd>Applies the tblend filter (with the settings all_mode and difference128) to the first video stream from the second input and assigns the result to the output [b]</dd>
+            <dt>[a][b]hstack[out]</dt><dd>Takes the outputs from the previous steps ([a] and [b] and uses the hstack (horizontal stack) filter on them to create the side by side output.  This output is then named [out])</dd>
+            <dt>-map [out]</dt><dd>Maps the output of the filter chain</dd>
+            <dt>-f nut</dt><dd>Sets the format for the output video stream to <a href="https://www.ffmpeg.org/ffmpeg-formats.html#nut" target="_blank">Nut</a></dd>
+            <dt>-c:v rawvideo</dt><dd>Sets the video codec of the output video stream to raw video</dd>
+            <dt>-</dt><dd>Tells ffmpeg that the output will be piped to a new command (as opposed to a file)</dd>
+            <dt>|</dt><dd>Tells the system you will be piping the output of the previous command into a new command</dd>
+            <dt>ffplay -</dt><dd>Starts ffplay and tells it to use the pipe from the previous command as its input</dd>
+          </dl>
+          <div class="sample-image">
+            <h4>Example of filter output</h4>
+            <img src="img/tempdif.gif" alt="astats example">
           </div>
+          <p class="link"></p>
         </div>
       </div>
     </div>
-    <!-- ends Side by Side Videos/Temporal Difference Filter -->
+  </div>
+  <!-- ends Side by Side Videos/Temporal Difference Filter -->
 
   </div>
   <div class="well">
@@ -835,18 +827,17 @@
             <dt>-ss <i>HH:MM:SS</i></dt><dd>starting point of the GIF. If a plain numerical value is used it will be interpreted as seconds</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-filter_complex "fps=<i>frame rate</i>,scale=<i>width</i>:<i>height</i>,palettegen"</dt><dd>a complex filtergraph.<br>
-              Firstly, the fps filter sets the frame rate.<br>
-              Then the scale filter resizes the image. You can specify both the width and the height, or specify a value for one and use a scale value of <i>-1</i> for the other to preserve the aspect ratio. (For example, <code>500:-1</code> would create a GIF 500 pixels wide and with a height proportional to the original video). In the first script above, <code>:flags=lanczos</code> specifies that the Lanczos rescaling algorithm will be used to resize the image.<br>
-              Lastly, the palettegen filter generates the palette.</dd>
+            Firstly, the fps filter sets the frame rate.<br>
+            Then the scale filter resizes the image. You can specify both the width and the height, or specify a value for one and use a scale value of <i>-1</i> for the other to preserve the aspect ratio. (For example, <code>500:-1</code> would create a GIF 500 pixels wide and with a height proportional to the original video). In the first script above, <code>:flags=lanczos</code> specifies that the Lanczos rescaling algorithm will be used to resize the image.<br>
+            Lastly, the palettegen filter generates the palette.</dd>
             <dt>-t <i>3</i></dt><dd>duration in seconds (here 3; can be specified also with a full timestamp, i.e. here 00:00:03)</dd>
             <dt>-loop <i>6</i></dt><dd>number of times to loop the GIF. A value of <i>-1</i> will disable looping. Omitting <i>-loop</i> will use the default which will loop infinitely</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
           <p>The second command has a slightly different filtergraph, which breaks down as follows:</p>
           <dl>
-            <dt>-filter_complex "[0:v]fps=10,scale=500:-1:flags=lanczos[v],[v][1:v]paletteuse"</dt><dd>
-              <code>[0:v]fps=10,scale=500:-1:flags=lanczos[v]</code>: applies the fps and scale filters described above to the first input file (the video).<br>
-              <code>[v][1:v]paletteuse"</code>: applies the <code>paletteuse</code> filter, setting the second input file (the palette) as the reference file.</dd>
+            <dt>-filter_complex "[0:v]fps=10,scale=500:-1:flags=lanczos[v],[v][1:v]paletteuse"</dt><dd><code>[0:v]fps=10,scale=500:-1:flags=lanczos[v]</code>: applies the fps and scale filters described above to the first input file (the video).<br>
+            <code>[v][1:v]paletteuse"</code>: applies the <code>paletteuse</code> filter, setting the second input file (the palette) as the reference file.</dd>
           </dl>
           <p>Simpler GIF creation</p>
           <p><code>ffmpeg -ss HH:MM:SS -i <i>input_file</i> -vf "fps=10,scale=500:-1" -t 3 -loop 6 <i>output_file</i></code></p>
@@ -1143,7 +1134,7 @@ foreach ($file in $inputfiles) {
 }</code></pre>
           <dl>
             <dt>$inputfiles = ls *.mp4</dt><dd>Creates the variable <code>$inputfiles</code>, which is a list of all the .mp4 files in the current folder.<br>
-              In PowerShell, all variable names start with the dollar-sign character.</dd>
+            In PowerShell, all variable names start with the dollar-sign character.</dd>
             <dt>foreach ($file in $inputfiles)</dt><dd>Creates a loop and states the subsequent code block will be applied to each file listed in <code>$inputfiles</code>.<br>
             <code>$file</code> is an arbitrary variable which will represent each .mp4 file in turn as it is looped over.</dd>
             <dt>{</dt><dd>Opens the code block.</dd>
@@ -1198,13 +1189,11 @@ foreach ($file in $inputfiles) {
           <h3>Create MD5 checksums (audio samples)</h3>
           <p><code>ffmpeg -i <i>input_file</i> -filter_complex "asetnsamples=<i>n=48000</i>" -f framemd5 -vn <i>output_file</i></code></p>
           <p>This will create an MD5 checksum for each group of 48000 audio samples.<br> The number of samples per group can be set arbitrarily, but it's good practice to match the samplerate of the media file (so you will get one checksum per second).</p>
-          <p>
-          Examples for other samplerates:<br>
+          <p>Examples for other samplerates:</p>
           <ul>
-              <li>44.1 kHz: "asetnsamples=n=44100"</li>
-              <li>96 kHz: "asetnsamples=n=96000"</li>
+            <li>44.1 kHz: "asetnsamples=n=44100"</li>
+            <li>96 kHz: "asetnsamples=n=96000"</li>
           </ul>
-          </p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
@@ -1277,13 +1266,12 @@ foreach ($file in $inputfiles) {
         <div class="well">
           <h3>Check video file interlacement patterns</h3>
           <p><code>ffmpeg -i <i>input file</i> -filter:v idet -f null -</code></p>
-          <p></p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-filter:v idet</dt><dd>This calls the  <a href="https://ffmpeg.org/ffmpeg-filters.html#idet" target="_blank">idet (detect video interlacing type) filter</a>.</dd>
+            <dt>-filter:v idet</dt><dd>This calls the <a href="https://ffmpeg.org/ffmpeg-filters.html#idet" target="_blank">idet (detect video interlacing type) filter</a>.</dd>
             <dt>-f null</dt><dd>Video is decoded with the <code>null</code> muxer. This allows video decoding without creating an output file.</dd>
-            <dt>-</dt><dd>FFmpeg syntax requires a specified output, and <code>-</code> is just a place holder. No file is actually created. </dd>
+            <dt>-</dt><dd>FFmpeg syntax requires a specified output, and <code>-</code> is just a place holder. No file is actually created.</dd>
           </dl>
           <p class="link"></p>
         </div>
@@ -1960,7 +1948,6 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   </div><!-- closes the well -->
 
-
   <div class="well">
   <h4>Repair</h4>
 
@@ -1987,6 +1974,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
   </div>
   <!-- ends Fix A/V async 1 -->
   </div><!-- closes the well -->
+
 
 <!-- sample example -->
 <!-- <span data-toggle="modal" data-target="#*****unique name*****"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="*****Hover-over description*****">*****Small title****</button></span>
