@@ -1194,6 +1194,7 @@ foreach ($file in $inputfiles) {
             <li>44.1 kHz: "asetnsamples=n=44100"</li>
             <li>96 kHz: "asetnsamples=n=96000"</li>
           </ul>
+          <p>Note: This filter trandscodes audio to 16 bit PCM by default. The generated framemd5s will represent this value. Validating these framemd5s will require using the same default settings.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
