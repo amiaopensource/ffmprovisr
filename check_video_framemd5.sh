@@ -32,7 +32,7 @@ Dependency:
   ffmpeg
 About:
   Version: ${VERSION}
-  Website: https://github.com/amiaopensource/ffmprovisr/blob/gh-pages/check_framemd5.sh
+  Website: https://github.com/amiaopensource/ffmprovisr/blob/gh-pages/check_video_framemd5.sh
 EOF
     exit 0
 }
@@ -54,21 +54,21 @@ done
 echo -e "${BLUE}Please wait...${NC}"
 unset md5_tmp
 if [[ $OSTYPE = "cygwin" ]]; then
-    md5_tmp=""${USERPROFILE}/$(basename ${input_hash}).tmp""
+    md5_tmp="${USERPROFILE}/$(basename "${input_hash}").tmp"
 else
-    md5_tmp="${HOME}/$(basename ${input_hash}).tmp"
+    md5_tmp="${HOME}/$(basename "${input_hash}").tmp"
 fi
-$(ffmpeg -i ${input_file} -loglevel 0 -f framemd5 -an ${md5_tmp})
-[[ ! -f ${md5_tmp} ]] && { echo -e "${RED}Error: '${input_file}' is not a valid audio-visual file.${NC}" ; _output_prompt ; }
+ffmpeg -i "${input_file}" -loglevel 0 -f framemd5 -an "${md5_tmp}"
+[[ ! -f "${md5_tmp}" ]] && { echo -e "${RED}Error: '${input_file}' is not a valid audio-visual file.${NC}" ; _output_prompt ; }
 unset old_file
 unset tmp_file
-old_file=$(grep -v '^#' ${input_hash})
-tmp_file=$(grep -v '^#' ${md5_tmp})
+old_file=$(grep -v '^#' "${input_hash}")
+tmp_file=$(grep -v '^#' "${md5_tmp}")
 if [[ "${old_file}" = "${tmp_file}" ]]; then
-    echo -e "${BLUE}'$(basename ${input_file})' matches '$(basename ${input_hash})'${NC}"
+    echo -e "${BLUE}'$(basename "${input_file}")' matches '$(basename "${input_hash}")'${NC}"
     rm "${md5_tmp}"
 else
-    echo -e "${RED}The following differences were detected between '$(basename ${input_file})' and '$(basename ${input_hash})':${NC}"
+    echo -e "${RED}The following differences were detected between '$(basename "${input_file}")' and '$(basename "${input_hash}")':${NC}"
     diff "${input_hash}" "${md5_tmp}"
     rm "${md5_tmp}"
 fi
