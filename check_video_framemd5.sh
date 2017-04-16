@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
   SCRIPT=$(basename "${0}")
- VERSION='2016-12-31'
+ VERSION='2017-04-16'
   AUTHOR='ffmprovisr'
      RED='\033[1;31m'
     BLUE='\033[1;34m'
