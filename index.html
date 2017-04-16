@@ -30,12 +30,12 @@
   <p>For instructions on how to install FFmpeg on Mac, Linux, and Windows, refer to Reto Kromer’s <a href="https://avpres.net/FFmpeg/#ch1" target="_blank">installation instructions</a>.</p>
   <p>For Bash and command line basics, try the <a href="https://learnpythonthehardway.org/book/appendixa.html" target="_blank">Command Line Crash Course</a>. For a little more context presented in an ffmprovisr style, try <a href="http://explainshell.com/" target="_blank">explainshell.com</a>!</p>
   <h5>License</h5>
-  <p><a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a><br>
-    This work is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+  <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"></a><br>
+    This work is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
   <h5>Sister projects</h5>
-  <p><a target="_blank" href="http://dd388.github.io/crals/">Script Ahoy</a>: Community Resource for Archivists and Librarians Scripting</p>
-  <p><a target="_blank" href="https://datapraxis.github.io/sourcecaster/">The Sourcecaster</a>: an app that helps you use the command line to work through common challenges that come up when working with digital primary sources.</p>
-  <p><a target="_blank" href="https://amiaopensource.github.io/cable-bible/">Cable Bible</a>: A Guide to Cables and Connectors Used for Audiovisual Tech</p>
+  <p><a href="http://dd388.github.io/crals/" target="_blank">Script Ahoy</a>: Community Resource for Archivists and Librarians Scripting</p>
+  <p><a href="https://datapraxis.github.io/sourcecaster/" target="_blank">The Sourcecaster</a>: an app that helps you use the command line to work through common challenges that come up when working with digital primary sources.</p>
+  <p><a href="https://amiaopensource.github.io/cable-bible/" target="_blank">Cable Bible</a>: A Guide to Cables and Connectors Used for Audiovisual Tech</p>
 </div>
 
 <div class="well col-md-8 col-md-offset-0">
@@ -599,15 +599,15 @@
         <div class="well">
           <h3>Inverse telecine a video file</h3>
           <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf "fieldmatch,yadif,decimate" <i>output_file</i></code></p>
-          <p>The inverse telecine procedure reverses the <a href="https://en.wikipedia.org/wiki/Three-two_pull_down">3:2 pull down</a> process, restoring 29.97fps interlaced video to the 24fps frame rate of the original film source.</p>
+          <p>The inverse telecine procedure reverses the <a href="https://en.wikipedia.org/wiki/Three-two_pull_down" target="_blank">3:2 pull down</a> process, restoring 29.97fps interlaced video to the 24fps frame rate of the original film source.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-c:v libx264</dt><dd>encode video as H.264</dd>
             <dt>-vf "fieldmatch,yadif,decimate"</dt><dd>applies these three video filters to the input video.<br>
-            <a href="https://ffmpeg.org/ffmpeg-filters.html#fieldmatch">Fieldmatch</a> is a field matching filter for inverse telecine - it reconstructs the progressive frames from a telecined stream.<br>
-            <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1">Yadif</a> (‘yet another deinterlacing filter’) deinterlaces the video. (Note that ffmpeg also includes several other deinterlacers).<br>
-            <a href="https://ffmpeg.org/ffmpeg-filters.html#decimate-1">Decimate</a> deletes duplicated frames.</dd>
+            <a href="https://ffmpeg.org/ffmpeg-filters.html#fieldmatch" target="_blank">Fieldmatch</a> is a field matching filter for inverse telecine - it reconstructs the progressive frames from a telecined stream.<br>
+            <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1" target="_blank">Yadif</a> (‘yet another deinterlacing filter’) deinterlaces the video. (Note that ffmpeg also includes several other deinterlacers).<br>
+            <a href="https://ffmpeg.org/ffmpeg-filters.html#decimate-1" target="_blank">Decimate</a> deletes duplicated frames.</dd>
             <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
           <p><code>"fieldmatch,yadif,decimate"</code> is an ffmpeg <a href="https://trac.ffmpeg.org/wiki/FilteringGuide#FiltergraphChainFilterrelationship" target="_blank">filtergraph</a>. Here the filtergraph is made up of one filter chain, which is itself made up of the three filters (separated by commas).<br>
@@ -1468,7 +1468,7 @@ foreach ($file in $inputfiles) {
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>takes in a normal file</dd>
-            <dt>-bsf noise=1</dt><dd>sets bitstream filters for all to 'noise'. Filters can be set on specific filters using syntax such as <code>-bsf:v</code> for video, <code>-bsf:a</code> for audio, etc. The <a target="_blank" href="https://www.ffmpeg.org/ffmpeg-bitstream-filters.html#noise">noise filter</a> intentionally damages the contents of packets without damaging the container. This sets the noise level to 1 but it could be left blank or any number above 0.</dd>
+            <dt>-bsf noise=1</dt><dd>sets bitstream filters for all to 'noise'. Filters can be set on specific filters using syntax such as <code>-bsf:v</code> for video, <code>-bsf:a</code> for audio, etc. The <a href="https://www.ffmpeg.org/ffmpeg-bitstream-filters.html#noise" target="_blank">noise filter</a> intentionally damages the contents of packets without damaging the container. This sets the noise level to 1 but it could be left blank or any number above 0.</dd>
             <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
@@ -1519,7 +1519,7 @@ foreach ($file in $inputfiles) {
             <dt>-i "sine=frequency=1000:sample_rate=48000"</dt><dd>Sets the signal to 1000 Hz, sampling at 48 kHz.</dd>
             <dt>-c:a pcm_s16le</dt><dd>encodes the audio codec in <code>pcm_s16le</code> (the default encoding for wav files). pcm represents pulse-code modulation format (raw bytes), <code>16</code> means 16 bits per sample, and <code>le</code> means "little endian"</dd>
             <dt>-t 10</dt><dd>specifies recording time of 10 seconds</dd>
-            <dt>-c:v <i>ffv1</i></dt><dd>Encodes to <a href="https://en.wikipedia.org/wiki/FFV1">FFV1</a>. Alter this setting to set your desired codec.</dd>
+            <dt>-c:v <i>ffv1</i></dt><dd>Encodes to <a href="https://en.wikipedia.org/wiki/FFV1" target="_blank">FFV1</a>. Alter this setting to set your desired codec.</dd>
             <dt><i>output_file</i>.wav</dt><dd>path, name and extension of the output file</dd>
           </dl>
           <p class="link"></p>
@@ -1963,7 +1963,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-c:v copy</dt><dd>Copy all mapped video streams.</dd>
-            <dt>-c:a pcm_s16le</dt><dd>Tells ffmpeg to encode the audio stream in 16-bit linear PCM (<a href="https://en.wikipedia.org/wiki/Endianness#Little-endian">little endian</a>)</dd>
+            <dt>-c:a pcm_s16le</dt><dd>Tells ffmpeg to encode the audio stream in 16-bit linear PCM (<a href="https://en.wikipedia.org/wiki/Endianness#Little-endian" target="_blank">little endian</a>)</dd>
             <dt>-af "aresample=async=1000"</dt><dd>Stretch/squeezes samples to given timestamps, with maximum of 1000 samples per second compensation <a href="https://ffmpeg.org/ffmpeg-filters.html#aresample-1" target="_blank">[more]</a></dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file. Try different file extensions such as mkv, mov, mp4, or avi.</dd>
           </dl>
