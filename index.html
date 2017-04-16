@@ -1172,7 +1172,7 @@ foreach ($file in $inputfiles) {
             <dt>-an</dt><dd>ignores the audio stream (audio no)</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
-          <p>You may verify an MD5 checksum file created this way by using a <a href="check_framemd5.sh" target="_blank">Bash script</a>.</p>
+          <p>You may verify an MD5 checksum file created this way by using a <a href="check_video_framemd5.sh" target="_blank">Bash script</a>.</p>
           <p class="link"></p>
         </div>
       </div>
@@ -1187,7 +1187,7 @@ foreach ($file in $inputfiles) {
       <div class="modal-content">
         <div class="well">
           <h3>Create MD5 checksums (audio samples)</h3>
-          <p><code>ffmpeg -i <i>input_file</i> -filter_complex "asetnsamples=<i>n=48000</i>" -f framemd5 -vn <i>output_file</i></code></p>
+          <p><code>ffmpeg -i <i>input_file</i> -af "asetnsamples=<i>n=48000</i>" -f framemd5 -vn <i>output_file</i></code></p>
           <p>This will create an MD5 checksum for each group of 48000 audio samples.<br> The number of samples per group can be set arbitrarily, but it's good practice to match the samplerate of the media file (so you will get one checksum per second).</p>
           <p>Examples for other samplerates:</p>
           <ul>

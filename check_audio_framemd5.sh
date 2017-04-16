@@ -54,24 +54,24 @@ done
 echo -e "${BLUE}Please wait...${NC}"
 unset md5_tmp
 if [[ $OSTYPE = "cygwin" ]]; then
-    md5_tmp=""${USERPROFILE}/$(basename ${input_hash}).tmp""
+    md5_tmp="${USERPROFILE}/$(basename "${input_hash}").tmp"
 else
-    md5_tmp="${HOME}/$(basename ${input_hash}).tmp"
+    md5_tmp="${HOME}/$(basename "${input_hash}").tmp"
 fi
 # Find audio frame size for hash calculation
-sample_rate=$(grep -v '^#' ${input_hash} | head -n 1 | tr -d ' ' | cut -d',' -f4)
-$(ffmpeg -i ${input_file} -loglevel 0 -filter_complex "asetnsamples=n='$sample_rate'" -f framemd5 -vn ${md5_tmp})
+sample_rate=$(grep -v '^#' "${input_hash}" | head -n 1 | tr -d ' ' | cut -d',' -f4)
+ffmpeg -i "${input_file}" -loglevel 0 -af "asetnsamples=n='$sample_rate'" -f framemd5 -vn "${md5_tmp}"
 [[ ! -f ${md5_tmp} ]] && { echo -e "${RED}Error: '${input_file}' is not a valid audio-visual file.${NC}" ; _output_prompt ; }
 unset old_file
 unset tmp_file
 unset sample_rate
-old_file=$(grep -v '^#' ${input_hash})
-tmp_file=$(grep -v '^#' ${md5_tmp})
+old_file=$(grep -v '^#' "${input_hash}")
+tmp_file=$(grep -v '^#' "${md5_tmp}")
 if [[ "${old_file}" = "${tmp_file}" ]]; then
-    echo -e "${BLUE}'$(basename ${input_file})' matches '$(basename ${input_hash})'${NC}"
+    echo -e "${BLUE}'$(basename "${input_file}")' matches '$(basename "${input_hash}")'${NC}"
     rm "${md5_tmp}"
 else
-    echo -e "${RED}The following differences were detected between '$(basename ${input_file})' and '$(basename ${input_hash})':${NC}"
+    echo -e "${RED}The following differences were detected between '$(basename "${input_file}")' and '$(basename "${input_hash}")':${NC}"
     diff "${input_hash}" "${md5_tmp}"
     rm "${md5_tmp}"
 fi
