@@ -1947,6 +1947,27 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
   </div>
   <!-- ends View Format info -->
 
+  <!-- Compare Video Fingerprints -->
+  <span data-toggle="modal" data-target="#compare_video_fingerprints"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Compare Video Fingerprints">Compare Video Fingerprints</button></span>
+  <div id="compare_video_fingerprints" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Compare two input files for content similarity using their perceptual hashes</h3>
+          <p><code>ffmpeg -i <i>input_one</i> -i <i>input_two</i> -filter_complex signature=detectmode=full:nb_inputs=2 -f null -</code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_one</i> -i <i>input_two</i></dt><dd>Assigns the input files</dd>
+            <dt>-filter_complex</dt><dd>Enables using more than one input file to the filter</dd>
+            <dt>signature=detectmode=full:nb_inputs=2</dt><dd>Applies the signature filter to the inputs in 'full' mode. The other option is 'fast'. The <code>nb_inputs=2</code> portion tells the filter to expect two input files</dd>
+            <dt>-f null -</dt><dd>Sets the output of FFmpeg to a null stream (since we are not creating a transcoded file, just viewing metadata).</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Compare Video Fingerprints -->
   </div><!-- closes the well -->
 
   <div class="well">
