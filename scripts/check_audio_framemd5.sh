@@ -32,7 +32,7 @@ Dependency:
   ffmpeg
 About:
   Version: ${VERSION}
-  Website: https://github.com/amiaopensource/ffmprovisr/blob/gh-pages/script/check_audio_framemd5.sh
+  Website: https://github.com/amiaopensource/ffmprovisr/blob/gh-pages/scripts/check_audio_framemd5.sh
 EOF
     exit 0
 }
