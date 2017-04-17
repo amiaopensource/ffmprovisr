@@ -13,7 +13,7 @@ fi
 
 _output_prompt(){
     cat <<EOF
-Usage: ${SCRIPT} [-h] | [ -i <av_file> -m <md5_file> ]
+Usage: ${SCRIPT} -h | -i <av_file> -m <md5_file>
 EOF
     exit 1
 }
