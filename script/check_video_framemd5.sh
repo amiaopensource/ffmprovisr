@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
   SCRIPT=$(basename "${0}")
- VERSION='2017-04-16'
+ VERSION='2017-04-17'
   AUTHOR='ffmprovisr'
      RED='\033[1;31m'
     BLUE='\033[1;34m'
@@ -32,7 +32,7 @@ Dependency:
   ffmpeg
 About:
   Version: ${VERSION}
-  Website: https://github.com/amiaopensource/ffmprovisr/blob/gh-pages/check_video_framemd5.sh
+  Website: https://github.com/amiaopensource/ffmprovisr/blob/gh-pages/script/check_video_framemd5.sh
 EOF
     exit 0
 }
