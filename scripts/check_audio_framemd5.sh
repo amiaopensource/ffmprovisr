@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
   SCRIPT=$(basename "${0}")
- VERSION='2017-04-16'
+ VERSION='2017-04-17'
   AUTHOR='ffmprovisr'
      RED='\033[1;31m'
     BLUE='\033[1;34m'
@@ -13,7 +13,7 @@ fi
 
 _output_prompt(){
     cat <<EOF
-Usage: ${SCRIPT} [-h] | [ -i <av_file> -m <md5_file> ]
+Usage: ${SCRIPT} -h | -i <av_file> -m <md5_file>
 EOF
     exit 1
 }
@@ -32,7 +32,7 @@ Dependency:
   ffmpeg
 About:
   Version: ${VERSION}
-  Website: https://github.com/amiaopensource/ffmprovisr/blob/gh-pages/check_video_framemd5.sh
+  Website: https://github.com/amiaopensource/ffmprovisr/blob/gh-pages/scripts/check_audio_framemd5.sh
 EOF
     exit 0
 }
@@ -58,10 +58,13 @@ if [[ $OSTYPE = "cygwin" ]]; then
 else
     md5_tmp="${HOME}/$(basename "${input_hash}").tmp"
 fi
-ffmpeg -i "${input_file}" -loglevel 0 -f framemd5 -an "${md5_tmp}"
-[[ ! -f "${md5_tmp}" ]] && { echo -e "${RED}Error: '${input_file}' is not a valid audio-visual file.${NC}" ; _output_prompt ; }
+# Find audio frame size for hash calculation
+sample_rate=$(grep -v '^#' "${input_hash}" | head -n 1 | tr -d ' ' | cut -d',' -f4)
+ffmpeg -i "${input_file}" -loglevel 0 -af "asetnsamples=n='$sample_rate'" -f framemd5 -vn "${md5_tmp}"
+[[ ! -f ${md5_tmp} ]] && { echo -e "${RED}Error: '${input_file}' is not a valid audio-visual file.${NC}" ; _output_prompt ; }
 unset old_file
 unset tmp_file
+unset sample_rate
 old_file=$(grep -v '^#' "${input_hash}")
 tmp_file=$(grep -v '^#' "${md5_tmp}")
 if [[ "${old_file}" = "${tmp_file}" ]]; then
