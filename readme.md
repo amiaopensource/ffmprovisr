@@ -4,19 +4,27 @@ Repository of useful FFmpeg command lines for archivists!
 
 ## What is this?
 
-Project Objective: To facilitate better understanding of FFmpeg through collaborative sharing of useful scripts and detailed flag-level description of how each script works so archivists can copy-paste and produce their own scripts but also understand how and why they work.
+#### Project Objective
+
+To facilitate better understanding of FFmpeg through collaborative sharing of useful scripts and detailed flag-level description of how each script works, so archivists can copy-paste and produce their own scripts, but also understand how and why they work.
 
 ## How do I see it?
 
-Code stuff in the gh-pages branch (the default primary branch). Readme is right here. The site is live and lives on github pages. You can see it [here](http://amiaopensource.github.io/ffmprovisr), or you can download a [release](https://github.com/amiaopensource/ffmprovisr/releases) and use it locally.
+The code is found in the gh-pages branch (the default primary branch). Readme is right here. You can see the site live on [GitHub pages](http://amiaopensource.github.io/ffmprovisr), or you can download a [release](https://github.com/amiaopensource/ffmprovisr/releases) and use it locally.
 
 ## How do I contribute?
 
-You are welcome to edit the codebase yourself or just supply the information and ask it to be added to the site.
+You are welcome to edit the codebase yourself, or just supply the information and ask it to be added to the site.
 
-To contribute to this project directly (and more quickly), clone this repository and create a new branch (`git checkout -b your-branch-name`) and add or modify a new block in index.html. Then [submit a pull request](https://github.com/amiaopensource/ffmprovisr/pulls) and the maintainers will review and integrate your code. There is a commented-out sample available at the bottom of index.html that can be used to build your own block.
+#### Edit codebase
 
-If you are having trouble with the coding it yourself or with github, feel free to [submit an issue](https://github.com/amiaopensource/ffmprovisr/issues) with the kind of command you would like to see added to the site.
+To contribute to this project directly (and more quickly), clone this repository and create a new branch (`git checkout -b your-branch-name`) and add or modify a new block in `index.html`. Then [submit a pull request](https://github.com/amiaopensource/ffmprovisr/pulls) and the maintainers will review and integrate your code. There is a commented-out sample block available at the bottom of `index.html` that can be as a guideline for your command.
+
+#### Make a request
+
+If you are having trouble with coding it yourself or with github, feel free to [submit an issue](https://github.com/amiaopensource/ffmprovisr/issues) with the kind of command you would like to see added to the site.
+
+#### General help
 
 If you want to help but don't have a new script to add, you can help us by testing out the scripts available, by refining or clarifying the documentation, or [creating an issue](https://github.com/amiaopensource/ffmprovisr/issues) for anything that sounds confusing and requires clarification.
 
@@ -72,7 +80,7 @@ All Contributors: 18
 
 [Association of Moving Image Archivists & Digital Library Federation Hack Day 2015](http://wiki.curatecamp.org/index.php/Association_of_Moving_Image_Archivists_%26_Digital_Library_Federation_Hack_Day_2015)
 
-[Ashley Blewer](https://github.com/ablwr), Eddy Colloton, Rebecca Dillmeier, [Jonathan Farbowitz](https://github.com/jfarbowitz), Rebecca Fraimow, Samuel Gutterman, Kelly Haydon, [Reto Kromer](https://github.com/retokromer), Nicole Martin, [Katherine Frances Nagels](https://github.com/kfrn), [Kieran O'Leary](https://github.com/kieranjol), Catriona Schlosser, Ben Turkus
+[Ashley Blewer](https://github.com/ablwr), [Eddy Colloton](https://github.com/eddycolloton), Rebecca Dillmeier, [Jonathan Farbowitz](https://github.com/jfarbowitz), [Rebecca Fraimow](https://github.com/rfraimow), Samuel Gutterman, [Kelly Haydon](https://github.com/kellyhaydon), [Reto Kromer](https://github.com/retokromer), Nicole Martin, [Katherine Frances Nagels](https://github.com/kfrn), [Kieran O'Leary](https://github.com/kieranjol), Catriona Schlosser, [Ben Turkus](https://github.com/bturkus)
 
 ## Sister projects
 
