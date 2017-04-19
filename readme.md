@@ -4,11 +4,13 @@ Repository of useful FFmpeg command lines for archivists!
 
 ## What is this?
 
-**Project Objective**: To facilitate better understanding of FFmpeg through collaborative sharing of useful scripts and detailed flag-level description of how each script works, so archivists can copy-paste and produce their own scripts, but also understand how and why they work.
+#### Project Objective
+
+To facilitate better understanding of FFmpeg through collaborative sharing of useful scripts and detailed flag-level description of how each script works, so archivists can copy-paste and produce their own scripts, but also understand how and why they work.
 
 ## How do I see it?
 
-The code is found in the gh-pages branch (the default primary branch). Readme is right here. The site is live on github pages: you can see it [here](http://amiaopensource.github.io/ffmprovisr), or you can download a [release](https://github.com/amiaopensource/ffmprovisr/releases) and use it locally.
+The code is found in the gh-pages branch (the default primary branch). Readme is right here. You can see the site live on [GitHub pages](http://amiaopensource.github.io/ffmprovisr), or you can download a [release](https://github.com/amiaopensource/ffmprovisr/releases) and use it locally.
 
 ## How do I contribute?
 
