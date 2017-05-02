@@ -1160,7 +1160,29 @@
       </div>
     </div>
   </div>
-  <!-- ends one pass loudnorm -->
+  <!-- ends two pass loudnorm -->
+  
+  <!-- RIAA equalization -->
+  <span data-toggle="modal" data-target="#riaa_eq"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="RIAA Equalization">RIAA Equalization</button></span>
+  <div id="riaa_eq" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>RIAA Equalization</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -af aemphasis=type=riaa <i>output_file</i></code></p>
+          <p>This will apply RIAA equalization to an input file allowing correct listening of audio transferred 'flat' (without EQ) from records that used this EQ curve. For more information about RIAA equalization see the <a href=https://en.wikipedia.org/wiki/RIAA_equalization>Wikipedia page</a></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-af aemphasis=type=riaa</dt><dd>activates the aemphasis filter and sets it to use RIAA equalization</dd>
+            <dt><i><i>output_file</i></i></dt><dd>Path and name of output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends RIAA equalization -->
   </div><!-- closes the well -->
   
   <div class="well">
