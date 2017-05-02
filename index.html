@@ -1081,6 +1081,83 @@
   <!-- ends append notice to access mp3 -->
 
   </div>
+  
+  <div class="well">
+  <h4>Normalize Audio</h4>
+  <!-- loudnorm metadata -->
+  <span data-toggle="modal" data-target="#loudnorm_metadata"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Calculate Loudness Levels">Calculate Loudness Levels</button></span>
+  <div id="loudnorm_metadata" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Calculate Loudness Levels</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -af loudnorm=print_format=json -f null -</code></p>
+          <p>This filter will output calculated loudness information in json about the input file (labeled input) as well as what the levels would be if loudnorm were applied in its one pass mode (labeled output). After this 'first pass', the values generated can be used as inputs for a 'second pass' of the loudnorm filter allowing more accurate loudness normalization.</p>
+          <p>These instructions use the loudnorm defaults, which align well with PBS recommendations. More information can be found at the <a href=https://ffmpeg.org/ffmpeg-filters.html#loudnorm>loudnorm documentation</a>.</p>
+                    <p>Information about PBS loudness standards can be found in the <a href=http://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf>PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href=https://tech.ebu.ch/docs/r/r128-2014.pdf>EBU R 128</a> recommendation document.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-af loudnorm</dt><dd>activates the loudnorm filter</dd>
+            <dt>print_format=json</dt><dd>Sets the output format for loudness information to json. This format makes it easy to use in a second pass. For a more human readable output, this can be set to <code>print_format=summary</code></dd>
+            <dt><i>-f null -</i></dt><dd>This sets the file output to null (since we are only interested in the metadata generated)</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends loudnorm metadata -->
+  
+  <!-- one pass loudnorm -->
+  <span data-toggle="modal" data-target="#loudnorm_one_pass"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="One Pass Loudness Normalization">One Pass Loudness Normalization</button></span>
+  <div id="loudnorm_one_pass" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>One Pass Loudness Normalization</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -af loudnorm=dual_mono=true <i>output_file</i></code></p>
+          <p>This will normalize the loudness of an input using one pass, which is quicker but less accurate than using two passes. This command uses the loudnorm filter defaults for targets. These defaults align well with PBS recommendations, but loudnorm does allow targeting of specific loudness levels. More information can be found at the <a href=https://ffmpeg.org/ffmpeg-filters.html#loudnorm>loudnorm documentation</a>.</p>
+          <p>Information about PBS loudness standards can be found in the <a href=http://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf>PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href=https://tech.ebu.ch/docs/r/r128-2014.pdf>EBU R 128</a> recommendation document.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-af loudnorm</dt><dd>activates the loudnorm filter with default settings.</dd>
+            <dt>dual_mono=true</dt><dd>(Optional) Use this for mono files meant to be played back on stereo systems for correct loudness. Not necessary for multi-track inputs.</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension for input file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends one pass loudnorm -->
+  
+  <!-- two pass loudnorm -->
+  <span data-toggle="modal" data-target="#loudnorm_two_pass"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Two Pass Loudness Normalization">Two Pass Loudness Normalization</button></span>
+  <div id="loudnorm_two_pass" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Two Pass Loudness Normalization</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -af loudnorm=dual_mono=true:measured_I=<i>input_i</i>:measured_TP=<i>input_tp</i>:measured_LRA=<i>input_lra</i>:measured_thresh=<i>input_thresh</i>:offset=<i>target_offset</i>:linear=true <i>output_file</i></code></p>
+          <p>This command allows using the levels calculated using a first pass of the loudnorm filter to more accurately normalize loudness. This command uses the loudnorm filter defaults for targets. These defaults align well with PBS recommendations, but loudnorm does allow targeting of specific loudness levels. More information can be found at the <a href=https://ffmpeg.org/ffmpeg-filters.html#loudnorm>loudnorm documentation</a>.</p>
+          <p>Information about PBS loudness standards can be found in the <a href=http://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf>PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href=https://tech.ebu.ch/docs/r/r128-2014.pdf>EBU R 128</a> recommendation document.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-af loudnorm</dt><dd>activates the loudnorm filter with default settings.</dd>
+            <dt>dual_mono=true</dt><dd>(Optional) Use this for mono files meant to be played back on stereo systems for correct loudness. Not necessary for multi-track inputs.</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension for input file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends one pass loudnorm -->
+  </div><!-- closes the well -->
+  
   <div class="well">
   <h4>Preservation</h4>
 
