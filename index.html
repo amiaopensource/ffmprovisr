@@ -1084,6 +1084,7 @@
 
   <div class="well">
   <h4>Normalize/Equalize Audio</h4>
+
   <!-- loudnorm metadata -->
   <span data-toggle="modal" data-target="#loudnorm_metadata"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Calculate Loudness Levels">Calculate Loudness Levels</button></span>
   <div id="loudnorm_metadata" class="modal fade" tabindex="-1" role="dialog">
@@ -1094,7 +1095,7 @@
           <p><code>ffmpeg -i <i>input_file</i> -af loudnorm=print_format=json -f null -</code></p>
           <p>This filter calculates and outputs loudness information in json about an input file (labeled input) as well as what the levels would be if loudnorm were applied in its one pass mode (labeled output). The values generated can be used as inputs for a 'second pass' of the loudnorm filter allowing more accurate loudness normalization than if it is used in a single pass.</p>
           <p>These instructions use the loudnorm defaults, which align well with PBS recommendations for target loudness. More information can be found at the <a href=https://ffmpeg.org/ffmpeg-filters.html#loudnorm>loudnorm documentation</a>.</p>
-                    <p>Information about PBS loudness standards can be found in the <a href=http://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf>PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href=https://tech.ebu.ch/docs/r/r128-2014.pdf>EBU R 128</a> recommendation document.</p>
+          <p>Information about PBS loudness standards can be found in the <a href=http://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf>PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href=https://tech.ebu.ch/docs/r/r128-2014.pdf>EBU R 128</a> recommendation document.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
@@ -1124,7 +1125,7 @@
             <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-af loudnorm</dt><dd>activates the loudnorm filter with default settings</dd>
             <dt>dual_mono=true</dt><dd>(optional) Use this for mono files meant to be played back on stereo systems for correct loudness. Not necessary for multi-track inputs.</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension for input file</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension for output file</dd>
           </dl>
           <p class="link"></p>
         </div>
@@ -1154,7 +1155,7 @@
             <dt>measured_LRA=<i>input_thresh</i></dt><dd>use the 'input_thresh' value (threshold) from the first pass in place of input_thresh</dd>
             <dt>offset=<i>target_offset</i></dt><dd>use the 'target_offset' value (offset) from the first pass in place of target_offset</dd>
             <dt>linear=true</i></dt><dd>tells loudnorm to use linear normalization</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension for input file</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension for output file</dd>
           </dl>
           <p class="link"></p>
         </div>
@@ -1176,7 +1177,7 @@
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-af aemphasis=type=riaa</dt><dd>activates the aemphasis filter and sets it to use RIAA equalization</dd>
-            <dt><i><i>output_file</i></i></dt><dd>path and name of output file</dd>
+            <dt><i>output_file</i></dt><dd>path and name of output file</dd>
           </dl>
           <p class="link"></p>
         </div>
