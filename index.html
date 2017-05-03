@@ -1081,7 +1081,7 @@
   <!-- ends append notice to access mp3 -->
 
   </div>
-  
+
   <div class="well">
   <h4>Normalize/Equalize Audio</h4>
   <!-- loudnorm metadata -->
@@ -1092,15 +1092,15 @@
         <div class="well">
           <h3>Calculate Loudness Levels</h3>
           <p><code>ffmpeg -i <i>input_file</i> -af loudnorm=print_format=json -f null -</code></p>
-          <p>This filter will output calculated loudness information in json about the input file (labeled input) as well as what the levels would be if loudnorm were applied in its one pass mode (labeled output). After this 'first pass', the values generated can be used as inputs for a 'second pass' of the loudnorm filter allowing more accurate loudness normalization.</p>
+          <p>This filter calculates and outputs loudness information in json about an input file (labeled input) as well as what the levels would be if loudnorm were applied in its one pass mode (labeled output). The values generated can be used as inputs for a 'second pass' of the loudnorm filter allowing more accurate loudness normalization than if it is used in a single pass.</p>
           <p>These instructions use the loudnorm defaults, which align well with PBS recommendations for target loudness. More information can be found at the <a href=https://ffmpeg.org/ffmpeg-filters.html#loudnorm>loudnorm documentation</a>.</p>
                     <p>Information about PBS loudness standards can be found in the <a href=http://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf>PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href=https://tech.ebu.ch/docs/r/r128-2014.pdf>EBU R 128</a> recommendation document.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-af loudnorm</dt><dd>activates the loudnorm filter</dd>
-            <dt>print_format=json</dt><dd>Sets the output format for loudness information to json. This format makes it easy to use in a second pass. For a more human readable output, this can be set to <code>print_format=summary</code></dd>
-            <dt><i>-f null -</i></dt><dd>This sets the file output to null (since we are only interested in the metadata generated)</dd>
+            <dt>print_format=json</dt><dd>sets the output format for loudness information to json. This format makes it easy to use in a second pass. For a more human readable output, this can be set to <code>print_format=summary</code></dd>
+            <dt><i>-f null -</i></dt><dd>sets the file output to null (since we are only interested in the metadata generated)</dd>
           </dl>
           <p class="link"></p>
         </div>
@@ -1108,7 +1108,7 @@
     </div>
   </div>
   <!-- ends loudnorm metadata -->
-  
+
   <!-- one pass loudnorm -->
   <span data-toggle="modal" data-target="#loudnorm_one_pass"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="One Pass Loudness Normalization">One Pass Loudness Normalization</button></span>
   <div id="loudnorm_one_pass" class="modal fade" tabindex="-1" role="dialog">
@@ -1123,7 +1123,7 @@
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-af loudnorm</dt><dd>activates the loudnorm filter with default settings</dd>
-            <dt>dual_mono=true</dt><dd>(Optional) Use this for mono files meant to be played back on stereo systems for correct loudness. Not necessary for multi-track inputs.</dd>
+            <dt>dual_mono=true</dt><dd>(optional) Use this for mono files meant to be played back on stereo systems for correct loudness. Not necessary for multi-track inputs.</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension for input file</dd>
           </dl>
           <p class="link"></p>
@@ -1132,7 +1132,7 @@
     </div>
   </div>
   <!-- ends one pass loudnorm -->
-  
+
   <!-- two pass loudnorm -->
   <span data-toggle="modal" data-target="#loudnorm_two_pass"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Two Pass Loudness Normalization">Two Pass Loudness Normalization</button></span>
   <div id="loudnorm_two_pass" class="modal fade" tabindex="-1" role="dialog">
@@ -1147,12 +1147,13 @@
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-af loudnorm</dt><dd>activates the loudnorm filter with default settings</dd>
-            <dt>dual_mono=true</dt><dd>(Optional) Use this for mono files meant to be played back on stereo systems for correct loudness. Not necessary for multi-track inputs.</dd>
-            <dt>measured_I=<i>input_i</i></dt><dd>Use the 'input_i' value (integrated loudness) from the first pass in place of input_i</dd>
-            <dt>measured_TP=<i>input_tp</i></dt><dd>Use the 'input_tp' value (true peak) from the first pass in place of input_tp</dd>
-            <dt>measured_LRA=<i>input_lra</i></dt><dd>Use the 'input_lra' value (loudness range) from the first pass in place of input_lra</dd>
-            <dt>measured_LRA=<i>input_thresh</i></dt><dd>Use the 'input_thresh' value (threshold) from the first pass in place of input_thresh</dd>
-            <dt>offset=<i>target_offset</i></dt><dd>Use the 'target_offset' value (offset) from the first pass in place of target_offset</dd>
+            <dt>dual_mono=true</dt><dd>(optional) use this for mono files meant to be played back on stereo systems for correct loudness. Not necessary for multi-track inputs.</dd>
+            <dt>measured_I=<i>input_i</i></dt><dd>use the 'input_i' value (integrated loudness) from the first pass in place of input_i</dd>
+            <dt>measured_TP=<i>input_tp</i></dt><dd>use the 'input_tp' value (true peak) from the first pass in place of input_tp</dd>
+            <dt>measured_LRA=<i>input_lra</i></dt><dd>use the 'input_lra' value (loudness range) from the first pass in place of input_lra</dd>
+            <dt>measured_LRA=<i>input_thresh</i></dt><dd>use the 'input_thresh' value (threshold) from the first pass in place of input_thresh</dd>
+            <dt>offset=<i>target_offset</i></dt><dd>use the 'target_offset' value (offset) from the first pass in place of target_offset</dd>
+            <dt>linear=true</i></dt><dd>tells loudnorm to use linear normalization</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension for input file</dd>
           </dl>
           <p class="link"></p>
@@ -1161,7 +1162,7 @@
     </div>
   </div>
   <!-- ends two pass loudnorm -->
-  
+
   <!-- RIAA equalization -->
   <span data-toggle="modal" data-target="#riaa_eq"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="RIAA Equalization">RIAA Equalization</button></span>
   <div id="riaa_eq" class="modal fade" tabindex="-1" role="dialog">
@@ -1175,7 +1176,7 @@
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-af aemphasis=type=riaa</dt><dd>activates the aemphasis filter and sets it to use RIAA equalization</dd>
-            <dt><i><i>output_file</i></i></dt><dd>Path and name of output file</dd>
+            <dt><i><i>output_file</i></i></dt><dd>path and name of output file</dd>
           </dl>
           <p class="link"></p>
         </div>
@@ -1184,7 +1185,7 @@
   </div>
   <!-- ends RIAA equalization -->
   </div><!-- closes the well -->
-  
+
   <div class="well">
   <h4>Preservation</h4>
 
