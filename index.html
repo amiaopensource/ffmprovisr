@@ -631,6 +631,32 @@
   <div class="well">
   <h4>Filters</h4>
 
+  <!-- abitscope -->
+  <span data-toggle="modal" data-target="#abitscope"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Audio Bitscope">Audio Bitscope</button></span>
+  <div id="abitscope" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Creates a visualization of the bits in an audio stream</h3>
+          <p><code>ffplay -f lavfi "amovie=<i>input_file</i>,asplit=2[out1][a],[a]abitscope=colors=purple|yellow[out0]"</code></p>
+          <p>This filter allows visual analysis of the information held in various bit depths of an audio stream. This can aid with identifying when a file that is nominally of a higher bit depth actually has been 'padded' with null information. The provided GIF shows a 16 bit WAV file (left) and then the results of converting that same WAV to 32 bit (right). Note that in the 32 bit version, there is still only information in the first 16 bits.</p>
+          <dl>
+            <dt>ffplay -f lavfi</dt><dd>starts the command and tells ffplay that you will be using the lavfi virtual device to create the input</dd>
+            <dt>amovie=<i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>asplit=2[out1][a]</dt><dd>splits the audio stream in two. One of these [a] will be passed to the filter, and the other [out1] will be the audible stream.</dd>
+            <dt>[a]abitscope=colors=purple|yellow[out0]</dt><dd>sends stream [a] into the abitscope filter, sets the colors for the channels to purple and yellow, and outputs the results to [out0]. This is what will be the visualization.</dd>
+          </dl>
+          <div class="sample-image">
+            <h4>Comparison of mono 16 bit and mono 16 bit padded to 32 bit.</h4>
+            <img src="img/16_32_abitscope.gif" alt="bit_scope_comparison">
+          </div>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends abitscope -->
+  
   <!-- astats -->
   <span data-toggle="modal" data-target="#astats"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Play a graphical output showing decibel levels of an input file">Graphic for audio</button></span>
   <div id="astats" class="modal fade" tabindex="-1" role="dialog">
