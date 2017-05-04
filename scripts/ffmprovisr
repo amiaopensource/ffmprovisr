@@ -9,3 +9,13 @@ if [[ $OSTYPE = darwin* ]] ; then
     fi
     open "${ffmprovisr_path}"
 fi
+
+if [[ $OSTYPE = linux-gnu ]] ; then
+    if [ -d ~/.linuxbrew/Cellar/ffmprovisr ] ; then
+		ffmprovisr_path=$(find ~/.linuxbrew/Cellar/ffmprovisr -iname 'index.html' | sort -M | tail -n1)
+    fi
+    if [ -z "${ffmprovisr_path}" ] ; then
+       		ffmprovisr_path='https://amiaopensource.github.io/ffmprovisr/'
+    fi
+    xdg-open "${ffmprovisr_path}"
+fi
