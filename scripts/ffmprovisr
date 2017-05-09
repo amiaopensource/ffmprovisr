@@ -1,13 +1,18 @@
 #!/usr/bin/env bash
 
 if [[ $OSTYPE = darwin* ]] ; then
+    default_browser=$(plutil -convert json ~/Library/Preferences/com.apple.LaunchServices/com.apple.launchservices.secure.plist -r -o - | grep https -b1 | tail -n1 | cut -d'"' -f4)
     if [ -d /usr/local/Cellar/ffmprovisr ] ; then
         ffmprovisr_path=$(find /usr/local/Cellar/ffmprovisr -iname 'index.html' | sort -M | tail -n1)
     fi
     if [ -z "${ffmprovisr_path}" ] ; then
         ffmprovisr_path='https://amiaopensource.github.io/ffmprovisr/'
     fi
-    open "${ffmprovisr_path}"
+    if [ -n "${default_browser}" ] ; then
+        open -b "${default_browser}" "${ffmprovisr_path}"
+    else
+        open "${ffmprovisr_path}"
+    fi
 elif [[ $OSTYPE = linux-gnu ]] ; then
     if [ -d ~/.linuxbrew/Cellar/ffmprovisr ] ; then
         ffmprovisr_path=$(find ~/.linuxbrew/Cellar/ffmprovisr -iname 'index.html' | sort -M | tail -n1)
