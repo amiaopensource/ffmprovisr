@@ -60,10 +60,10 @@
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path and name of the input file<br>
             The extension for the Matroska container is <code>.mkv</code>.</dd>
-            <dt>-c:v copy</dt><dd>re-encodes using the same video codec</dd>
-            <dt>-c:a aac</dt><dd>re-encodes using the AAC audio codec<br>
+            <dt>-c:v copy</dt><dd>copies the video stream without re-encoding it</dd>
+            <dt>-c:a aac</dt><dd>re-encodes the audio stream using the AAC audio codec<br>
             Note that sadly MP4 cannot contain sound encoded by a PCM (Pulse-Code Modulation) audio codec.<br>
-            For silent videos you can replace <code>-c:a aac</code> by <code>-an</code>.</dd>
+            For silent videos you can replace <code>-c:a aac</code> by <code>-an</code>, which means that there will be no audio track in the output file.</dd>
             <dt><i>output_file</i></dt><dd>path and name of the output file<br>
             The extension for the MP4 container is <code>.mp4</code>.</dd>
           </dl>
@@ -129,9 +129,9 @@
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-c:v libx264</dt><dd>tells ffmpeg to change the video codec of the file to H.264</dd>
+            <dt>-c:v libx264</dt><dd>tells ffmpeg to encode the video stream as H.264</dd>
             <dt>-pix_fmt yuv420p</dt><dd> libx264 will use a chroma subsampling scheme that is the closest match to that of the input. This can result in Y′C<sub>B</sub>C<sub>R</sub> 4:2:0, 4:2:2, or 4:4:4 chroma subsampling. QuickTime and most other non-FFmpeg based players can’t decode H.264 files that are not 4:2:0. In order to allow the video to play in all players, you can specify 4:2:0 chroma subsampling.</dd>
-            <dt>-c:a copy</dt><dd>tells ffmpeg not to change the audio codec</dd>
+            <dt>-c:a copy</dt><dd>tells ffmpeg to copy the audio stream without re-encoding it</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
           <p>In order to use the same basic command to make a higher quality file, you can add some of these presets:</p>
@@ -656,7 +656,7 @@
     </div>
   </div>
   <!-- ends abitscope -->
-  
+
   <!-- astats -->
   <span data-toggle="modal" data-target="#astats"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Play a graphical output showing decibel levels of an input file">Graphic for audio</button></span>
   <div id="astats" class="modal fade" tabindex="-1" role="dialog">
