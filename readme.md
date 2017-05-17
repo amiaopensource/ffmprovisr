@@ -12,7 +12,7 @@ To facilitate better understanding of FFmpeg through collaborative sharing of us
 
 The code is found in the gh-pages branch (the default primary branch). Readme is right here. You can see the site live on [GitHub pages](http://amiaopensource.github.io/ffmprovisr).
 
-You can also install the last [release](https://github.com/amiaopensource/ffmprovisr/releases) on your computer with the command:
+You can also install the latest [release](https://github.com/amiaopensource/ffmprovisr/releases) on your computer with the command:
 ```
 brew install amiaopensource/amiaos/ffmprovisr
 ```
