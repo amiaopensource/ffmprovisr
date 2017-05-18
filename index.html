@@ -1570,19 +1570,29 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
           <h3>Split file into segments</h3>
           <p><code>ffmpeg -i <i>input_file</i> -c copy -map 0 -f segment -segment_time 60 -reset_timestamps 1 <i>output_file-%03d.mkv</i></code></p>
           <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>takes in a normal file</dd>
-            <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode.</dd>
+            <dt>ffmpeg</dt><dd>Starts the command.</dd>
+            <dt>-i <i>input_file</i></dt><dd>Takes in a normal file.</dd>
+            <dt>-c copy</dt><dd>Use stream copy mode to re-mux instead of re-encode.</dd>
             <dt>-map 0</dt><dd>Tells ffmpeg to map all streams of the input to the output.</dd>
-            <dt>-f segment</dt><dd>use <a href="http://www.ffmpeg.org/ffmpeg-formats.html#toc-segment_002c-stream_005fsegment_002c-ssegment">segment muxer</a> for generating the output.</dd>
+            <dt>-f segment</dt><dd>Use <a href="http://www.ffmpeg.org/ffmpeg-formats.html#toc-segment_002c-stream_005fsegment_002c-ssegment">segment muxer</a> for generating the output.</dd>
             <dt>-segment_time 60</dt><dd>Set duration of each segment (in seconds). This example creates segments with max. duration of 60s each.</dd>
             <dt>-reset_timestamps 1</dt><dd>Reset timestamps of each segment to 0. Meant to ease the playback of the generated segments.</dd>
             <dt><i>output_file-%03d.mkv</i></dt>
             <dd>
-            path, name and extension of the output file.<br />
-            In order to have an incrementing number in each segment filename, FFmpeg supports <a href="http://www.cplusplus.com/reference/cstdio/printf/">printf-style</a> syntax for a counter.
-            In this example, '%03d' means: 3-digits, zero-padded<br />
-            For example: output_file-000.mkv, output_file-001.mkv, etc.
+            <p>
+                Path, name and extension of the output file.<br>
+                In order to have an incrementing number in each segment filename, FFmpeg supports <a href="http://www.cplusplus.com/reference/cstdio/printf/">printf-style</a> syntax for a counter.
+            </p>
+
+            <p>
+                In this example, '%03d' means: 3-digits, zero-padded<br>
+                Examples:
+                <ul>
+                    <li><code>%03d</code>: 000, 001, 002, ... 999</li>
+                    <li><code>%05d</code>: 00000, 00001, 00002, ... 99999</li>
+                    <li><code>%d</code>: 0, 1, 2, 3, 4, ... 23, 24, etc. </li>
+                </ul>
+            </p>
             </dd>
           </dl>
           <p class="link"></p>
@@ -1590,7 +1600,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
       </div>
     </div>
   </div>
-  <!-- ends Join files together -->
+  <!-- ends Split file into segments -->
 
   <!-- Play image sequence -->
   <span data-toggle="modal" data-target="#play_im_seq"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Play an image sequence directly as moving images">Play an image sequence</button></span>
