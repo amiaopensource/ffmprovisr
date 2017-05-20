@@ -1315,7 +1315,8 @@ foreach ($file in $inputfiles) {
         <div class="well">
           <h3>Create MD5 checksums (audio samples)</h3>
           <p><code>ffmpeg -i <i>input_file</i> -af "asetnsamples=<i>n=48000</i>" -f framemd5 -vn <i>output_file</i></code></p>
-          <p>This will create an MD5 checksum for each group of 48000 audio samples.<br> The number of samples per group can be set arbitrarily, but it's good practice to match the samplerate of the media file (so you will get one checksum per second).</p>
+          <p>This will create an MD5 checksum for each group of 48000 audio samples.<br>
+            The number of samples per group can be set arbitrarily, but it's good practice to match the samplerate of the media file (so you will get one checksum per second).</p>
           <p>Examples for other samplerates:</p>
           <ul>
             <li>44.1 kHz: "asetnsamples=n=44100"</li>
@@ -1693,7 +1694,6 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
   </div>
   <!-- ends Join files together -->
 
-
   <!-- Split file into segments -->
   <span data-toggle="modal" data-target="#segment_file"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Split one file into several smaller segments">Split file into segments</button></span>
   <div id="segment_file" class="modal fade" tabindex="-1" role="dialog">
@@ -1712,20 +1712,15 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
             <dt>-reset_timestamps 1</dt><dd>Reset timestamps of each segment to 0. Meant to ease the playback of the generated segments.</dd>
             <dt><i>output_file-%03d.mkv</i></dt>
             <dd>
-            <p>
-                Path, name and extension of the output file.<br>
-                In order to have an incrementing number in each segment filename, FFmpeg supports <a href="http://www.cplusplus.com/reference/cstdio/printf/">printf-style</a> syntax for a counter.
-            </p>
-
-            <p>
-                In this example, '%03d' means: 3-digits, zero-padded<br>
-                Examples:
-                <ul>
-                    <li><code>%03d</code>: 000, 001, 002, ... 999</li>
-                    <li><code>%05d</code>: 00000, 00001, 00002, ... 99999</li>
-                    <li><code>%d</code>: 0, 1, 2, 3, 4, ... 23, 24, etc. </li>
-                </ul>
-            </p>
+            <p>Path, name and extension of the output file.<br>
+              In order to have an incrementing number in each segment filename, FFmpeg supports <a href="http://www.cplusplus.com/reference/cstdio/printf/">printf-style</a> syntax for a counter.</p>
+              <p>In this example, '%03d' means: 3-digits, zero-padded<br>
+                Examples:</p>
+              <ul>
+                <li><code>%03d</code>: 000, 001, 002, ... 999</li>
+                <li><code>%05d</code>: 00000, 00001, 00002, ... 99999</li>
+                <li><code>%d</code>: 0, 1, 2, 3, 4, ... 23, 24, etc. </li>
+              </ul>
             </dd>
           </dl>
           <p class="link"></p>
