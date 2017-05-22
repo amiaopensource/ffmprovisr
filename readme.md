@@ -49,42 +49,47 @@ You can read our contributor code of conduct [here](https://github.com/amiaopens
 ## Contributors
 * Gathered using [octohatrack](https://github.com/LABHR/octohatrack)
 
-GitHub Contributors:  
-ablwr (Ashley)  
-dericed (Dave Rice)  
-edsu (Ed Summers)  
-jfarbowitz (Jonathan Farbowitz)  
-kfrn (Katherine Frances Nagels)  
-kgrons (Kathryn Gronsbell)  
-kieranjol (Kieran O'Leary)  
-llogan (Lou)  
-privatezero (Andrew Weaver)  
-retokromer (Reto Kromer)  
-rfraimow  
+*GitHub Contributors*:
+ablwr (Ashley)
+dericed (Dave Rice)
+edsu (Ed Summers)
+jfarbowitz (Jonathan Farbowitz)
+kfrn (Katherine Frances Nagels)
+kgrons (Kathryn Gronsbell)
+kieranjol (Kieran O'Leary)
+llogan (Lou)
+pjotrek-b (Peter B.)
+privatezero (Andrew Weaver)
+retokromer (Reto Kromer)
+rfraimow
 
-All Contributors:  
-ablwr (Ashley)  
-audiovisualopen  
-brainwane (Sumana Harihareswara)  
-dericed (Dave Rice)  
-edsu (Ed Summers)  
-Fizz24  
-jamessam (Jim)  
-jfarbowitz (Jonathan Farbowitz)  
-jronallo (Jason Ronallo)  
-kfrn (Katherine Frances Nagels)  
-kgrons (Kathryn Gronsbell)  
-kieranjol (Kieran O'Leary)  
-llogan (Lou)  
-mulvya  
-privatezero (Andrew Weaver)  
-retokromer (Reto Kromer)  
-rfraimow  
-todrobbins (Tod Robbins)  
+*All Contributors*:
+ablwr (Ashley)
+audiovisualopen
+brainwane (Sumana Harihareswara)
+bturkus
+dericed (Dave Rice)
+edsu (Ed Summers)
+Fizz24
+jamessam (Jim Sam)
+jfarbowitz (Jonathan Farbowitz)
+jronallo (Jason Ronallo)
+kellyhaydon (metacynic)
+kfrn (Katherine Frances Nagels)
+kgrons (Kathryn Gronsbell)
+kieranjol (Kieran O'Leary)
+llogan (Lou)
+mulvya
+pjotrek-b (Peter B.)
+privatezero (Andrew Weaver)
+retokromer (Reto Kromer)
+rfraimow
+richardpl (Paul B Mahol)
+todrobbins (Tod Robbins)
 
-Repo: amiaopensource/ffmprovisr  
-GitHub Contributors: 11  
-All Contributors: 18  
+Repo: amiaopensource/ffmprovisr
+GitHub Contributors: 12
+All Contributors: 22
 
 ## AVHack Team
 
