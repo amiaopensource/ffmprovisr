@@ -1206,7 +1206,7 @@
     </div>
   </div>
   <!-- ends RIAA equalization -->
-  
+
   </div>
   <div class="well">
   <h4>Preservation</h4>
@@ -2155,6 +2155,29 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
     </div>
   </div>
   <!-- ends Generate Video Fingerprint -->
+
+  <!-- Strip metadata -->
+  <span data-toggle="modal" data-target="#strip_metadata"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Strip metadata">Strip metadata</button></span>
+  <div id="strip_metadata" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Strips metadata from video file</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -map_metadata -1 -c:v copy -c:a copy <i>output_file</i></code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-map_metadata -1</dt><dd>sets metadata copying to -1, which copies nothing</dd>
+            <dt>-vcodec copy</dt><dd>copies video track</dd>
+            <dt>-acodec copy</dt><dd>copies audio track</dd>
+            <dt><i>output_file</i></dt><dd>Makes copy of original file and names output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Strip metadata -->
 
   </div>
   <div class="well">
