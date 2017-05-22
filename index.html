@@ -1660,6 +1660,33 @@ foreach ($file in $inputfiles) {
 
   </div>
   <div class="well">
+  <h4>Repair</h4>
+
+  <!-- Fix A/V async 1 -->
+  <span data-toggle="modal" data-target="#avsync_aresample"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Fix A/V sync issues by resampling audio">Fix AV Sync: Resample audio</button></span>
+  <div id="avsync_aresample" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Fix AV Sync: Resample audio</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v copy -c:a pcm_s16le -af "aresample=async=1000" <i>output_file</i></code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-c:v copy</dt><dd>Copy all mapped video streams.</dd>
+            <dt>-c:a pcm_s16le</dt><dd>Tells ffmpeg to encode the audio stream in 16-bit linear PCM (<a href="https://en.wikipedia.org/wiki/Endianness#Little-endian" target="_blank">little endian</a>)</dd>
+            <dt>-af "aresample=async=1000"</dt><dd>Stretch/squeezes samples to given timestamps, with maximum of 1000 samples per second compensation <a href="https://ffmpeg.org/ffmpeg-filters.html#aresample-1" target="_blank">[more]</a></dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file. Try different file extensions such as mkv, mov, mp4, or avi.</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Fix A/V async 1 -->
+
+  </div>
+  <div class="well">
   <h4>Other</h4>
 
   <!-- Join files together -->
@@ -2155,33 +2182,6 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
     </div>
   </div>
   <!-- ends Generate Video Fingerprint -->
-
-  </div>
-  <div class="well">
-  <h4>Repair</h4>
-
-  <!-- Fix A/V async 1 -->
-  <span data-toggle="modal" data-target="#avsync_aresample"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Fix A/V sync issues by resampling audio">Fix AV Sync: Resample audio</button></span>
-  <div id="avsync_aresample" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Fix AV Sync: Resample audio</h3>
-          <p><code>ffmpeg -i <i>input_file</i> -c:v copy -c:a pcm_s16le -af "aresample=async=1000" <i>output_file</i></code></p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-c:v copy</dt><dd>Copy all mapped video streams.</dd>
-            <dt>-c:a pcm_s16le</dt><dd>Tells ffmpeg to encode the audio stream in 16-bit linear PCM (<a href="https://en.wikipedia.org/wiki/Endianness#Little-endian" target="_blank">little endian</a>)</dd>
-            <dt>-af "aresample=async=1000"</dt><dd>Stretch/squeezes samples to given timestamps, with maximum of 1000 samples per second compensation <a href="https://ffmpeg.org/ffmpeg-filters.html#aresample-1" target="_blank">[more]</a></dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file. Try different file extensions such as mkv, mov, mp4, or avi.</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Fix A/V async 1 -->
 
   </div>
 
