@@ -809,7 +809,7 @@
             <dt>-i <i>input01</i> -i <i>input02</i></dt><dd>Designates the files to use for inputs one and two respectively</dd>
             <dt>-filter_complex</dt><dd>Lets ffmpeg know we will be using a complex filter (this must be used for multiple inputs)</dd>
             <dt>[0:v:0]tblend=all_mode=difference128[a]</dt><dd>Applies the tblend filter (with the settings all_mode and difference128) to the first video stream from the first input and assigns the result to the output [a]</dd>
-            <dt>[1:v:0]tblend=all_mode=difference128[a]</dt><dd>Applies the tblend filter (with the settings all_mode and difference128) to the first video stream from the second input and assigns the result to the output [b]</dd>
+            <dt>[1:v:0]tblend=all_mode=difference128[b]</dt><dd>Applies the tblend filter (with the settings all_mode and difference128) to the first video stream from the second input and assigns the result to the output [b]</dd>
             <dt>[a][b]hstack[out]</dt><dd>Takes the outputs from the previous steps ([a] and [b] and uses the hstack (horizontal stack) filter on them to create the side by side output.  This output is then named [out])</dd>
             <dt>-map [out]</dt><dd>Maps the output of the filter chain</dd>
             <dt>-f nut</dt><dd>Sets the format for the output video stream to <a href="https://www.ffmpeg.org/ffmpeg-formats.html#nut" target="_blank">Nut</a></dd>
