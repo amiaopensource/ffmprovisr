@@ -1476,20 +1476,20 @@ foreach ($file in $inputfiles) {
       <div class="modal-content">
         <div class="well">
           <h3>Read/Extract EIA-608 (Line 21) closed captioning</h3>
-          <p><code>ffprobe -f lavfi -i movie=<i>input_file</i>,readeia608 -show_entries frame=pkt_pts_time:frame_tags=lavfi.readeia608.0.cc,lavfi.readeia608.1.cc -of csv > <i>input_file</i>.csv</code></p>
+          <p><code>ffprobe -f lavfi -i movie=<i>input_file</i>,readeia608 -show_entries frame=pkt_pts_time:frame_tags=lavfi.readeia608.0.line,lavfi.readeia608.0.cc,lavfi.readeia608.1.line,lavfi.readeia608.1.cc -of csv > <i>input_file</i>.csv</code></p>
           <p>This command uses FFmpeg's <a href="https://ffmpeg.org/ffmpeg-filters.html#readeia608" target="_blank">readeia608</a> filter to extract the hexidecimal values hidden within <a href="https://en.wikipedia.org/wiki/EIA-608" target="_blank">EIA-608 (Line 21)</a> Closed Captioning, outputting a csv file. For more information about EIA-608, check out Adobe's <a href="https://www.adobe.com/content/dam/Adobe/en/devnet/video/pdfs/introduction_to_closed_captions.pdf" target="_blank">Introduction to Closed Captions</a>.</p>
           <p>If hex isn't your thing, closed captioning <a href="http://www.theneitherworld.com/mcpoodle/SCC_TOOLS/DOCS/CC_CHARS.HTML" target="_blank">character</a> and <a href="http://www.theneitherworld.com/mcpoodle/SCC_TOOLS/DOCS/CC_CODES.HTML" target="_blank">code</a> sets can be found in the documentation for SCTools.</p>   
           <dl>
             <dt>ffprobe</dt><dd>starts the command</dd>
             <dt>-f lavfi</dt><dd>tells ffprobe to use the Libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">[more]</a></dd>
-            <dt>-i</dt><dd>input file and parameters</dd>
-            <dt>readeia608 -show_entries frame=pkt_pts_time:frame_tags=lavfi.readeia608.0.cc,lavfi.readeia608.1.cc -of csv</dt><dd>identifies the first two lines of EIA-608 data and outputs a csv file</dt>
-            <dt><code>></code></dt><dd>redirects the standard output (the data made by ffprobe about the video)</dt>
-            <dt><i>input_file</i>.csv</dt><dd>names the csv output file</dt>
+            <dt>-i <i>input_file</i></dt><dd>input file and parameters</dd>
+            <dt>readeia608 -show_entries frame=pkt_pts_time:frame_tags=lavfi.readeia608.0.line,lavfi.readeia608.0.cc,lavfi.readeia608.1.line,lavfi.readeia608.1.cc -of csv</dt><dd>specifies the first two lines of video in which EIA-608 data (hexidecimal byte pairs) are identifiable by ffprobe, outputting comma separated values (CSV)</dt>
+            <dt><code>></code></dt><dd>redirects the standard output (the data created by ffprobe about the video)</dt>
+            <dt><i>output_file</i>.csv</dt><dd>names the CSV output file</dt>
           </dl>
           <div class="sample-image">
             <h4>Example</h4>
-            <p>Side-by-side video with true EIA-608 captions on the left, zoom in on the right (with hex values represented). To achieve something similar with your own captioned video, try out the EIA608/VITC viewer in <a href="https://github.com/bavc/qctools" target="_blank">QCTools</a>.</p>
+            <p>Side-by-side video with true EIA-608 captions on the left, zoomed in view of the captions on the right (with hex values represented). To achieve something similar with your own captioned video, try out the EIA608/VITC viewer in <a href="https://github.com/bavc/qctools" target="_blank">QCTools</a>.</p>
             <img src="img/eia608.gif" alt="GIF of Closed Captions">
           </div>
           <p class="link"></p>
