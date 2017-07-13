@@ -1481,10 +1481,10 @@ foreach ($file in $inputfiles) {
           <p>If hex isn't your thing, closed captioning <a href="http://www.theneitherworld.com/mcpoodle/SCC_TOOLS/DOCS/CC_CHARS.HTML" target="_blank">character</a> and <a href="http://www.theneitherworld.com/mcpoodle/SCC_TOOLS/DOCS/CC_CODES.HTML" target="_blank">code</a> sets can be found in the documentation for SCTools.</p>   
           <dl>
             <dt>ffprobe</dt><dd>starts the command</dd>
-            <dt>-f lavfi</dt><dd>tells ffprobe to use the Libavfilter input virtual device <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">[more]</a></dd>
+            <dt>-f lavfi</dt><dd>tells ffprobe to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">libavfilter</a> input virtual device</a></dd>
             <dt>-i <i>input_file</i></dt><dd>input file and parameters</dd>
             <dt>readeia608 -show_entries frame=pkt_pts_time:frame_tags=lavfi.readeia608.0.line,lavfi.readeia608.0.cc,lavfi.readeia608.1.line,lavfi.readeia608.1.cc -of csv</dt><dd>specifies the first two lines of video in which EIA-608 data (hexidecimal byte pairs) are identifiable by ffprobe, outputting comma separated values (CSV)</dt>
-            <dt><code>></code></dt><dd>redirects the standard output (the data created by ffprobe about the video)</dt>
+            <dt>&gt;</dt><dd>redirects the standard output (the data created by ffprobe about the video)</dt>
             <dt><i>output_file</i>.csv</dt><dd>names the CSV output file</dt>
           </dl>
           <div class="sample-image">
