@@ -32,7 +32,7 @@ To contribute to this project directly (and more quickly), clone this repository
 
 #### Make a request
 
-If you are having trouble with coding it yourself or with github, feel free to [submit an issue](https://github.com/amiaopensource/ffmprovisr/issues) with the kind of command you would like to see added to the site.
+If you are having trouble with coding it yourself or with GitHub, feel free to [submit an issue](https://github.com/amiaopensource/ffmprovisr/issues) with the kind of command you would like to see added to the site.
 
 #### General help
 
