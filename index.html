@@ -924,13 +924,14 @@
       <div class="modal-content">
         <div class="well">
           <h3>Excerpt from beginning</h3>
-          <p><code>ffmpeg -i <i>input_file</i> -t <i>5</i> -c copy <i>output_file</i></code></p>
+          <p><code>ffmpeg -i <i>input_file</i> -t <i>5</i> -c copy -map 0 <i>output_file</i></code></p>
           <p>This command captures a certain portion of a video file, starting from the beginning and continuing for the amount of time (in seconds) specified in the script. This can be used to create a preview file, or to remove unwanted content from the end of the file. To be more specific, use timecode, such as 00:00:05.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-t <i>5</i></dt><dd>Tells ffmpeg to stop copying from the input file after a certain time, and specifies the number of seconds after which to stop copying. In this case, 5 seconds is specified.</dd>
             <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
+            <dt>-map 0</dt><dd>Tells ffmpeg to map all streams of the input to the output.</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
           <p class="link"></p>
@@ -947,7 +948,7 @@
       <div class="modal-content">
         <div class="well">
           <h3>Trim a video without re-encoding</h3>
-          <p><code>ffmpeg -i <i>input_file</i> -ss 00:02:00 -to 00:55:00 -c copy <i>output_file</i></code></p>
+          <p><code>ffmpeg -i <i>input_file</i> -ss 00:02:00 -to 00:55:00 -c copy -map 0 <i>output_file</i></code></p>
           <p>This command allows you to create an excerpt from a video file without re-encoding the image data.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -955,6 +956,7 @@
             <dt>-ss 00:02:00</dt><dd>sets in point at 00:02:00</dd>
             <dt>-to 00:55:00</dt><dd>sets out point at 00:55:00</dd>
             <dt>-c copy</dt><dd>use stream copy mode (no re-encoding)<br>
+            <dt>-map 0</dt><dd>Tells ffmpeg to map all streams of the input to the output.</dd>
             <i>Note:</i> watch out when using <code>-ss</code> with <code>-c copy</code> if the source is encoded with an interframe codec (e.g., H.264). Since ffmpeg must split on i-frames, it will seek to the nearest i-frame to begin the stream copy.</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
@@ -978,13 +980,14 @@
       <div class="modal-content">
         <div class="well">
           <h3>Excerpt to end</h3>
-          <p><code>ffmpeg -i <i>input_file</i> -ss <i>5</i> -c copy <i>output_file</i></code></p>
+          <p><code>ffmpeg -i <i>input_file</i> -ss <i>5</i> -c copy -map 0 <i>output_file</i></code></p>
           <p>This command copies a video file starting from a specified time, removing the first few seconds from the output. This can be used to create an excerpt, or remove unwanted content from the beginning of a video file.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-ss <i>5</i></dt><dd>Tells ffmpeg what timecode in the file to look for to start copying, and specifies the number of seconds into the video that ffmpeg should start copying. To be more specific, you can use timecode such as 00:00:05.</dd>
             <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
+            <dt>-map 0</dt><dd>Tells ffmpeg to map all streams of the input to the output.</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
           <p class="link"></p>
@@ -1001,13 +1004,14 @@
       <div class="modal-content">
         <div class="well">
           <h3>Excerpt from end</h3>
-          <p><code>ffmpeg -sseof <i>-5</i> -i <i>input_file</i> -c copy <i>output_file</i></code></p>
+          <p><code>ffmpeg -sseof <i>-5</i> -i <i>input_file</i> -c copy -map 0 <i>output_file</i></code></p>
           <p>This command copies a video file starting from a specified time before the end of the file, removing everything before from the output. This can be used to create an excerpt, or extract content from the end of a video file (e.g. for extracting the closing credits).</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-sseof <i>-5</i></dt><dd>This parameter must stay before the input file. It tells ffmpeg what timecode in the file to look for to start copying, and specifies the number of seconds from the end of the video that ffmpeg should start copying. The end of the file has index 0 and the minus sign is needed to reference earlier portions. To be more specific, you can use timecode such as -00:00:05. Note that in most file formats it is not possible to seek exactly, so ffmpeg will seek to the closest point before.</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
+            <dt>-map 0</dt><dd>Tells ffmpeg to map all streams of the input to the output.</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
           <p class="link"></p>
