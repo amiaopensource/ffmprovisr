@@ -1222,20 +1222,20 @@
       <div class="modal-content">
         <div class="well">
           <h3>Create Bash script to batch process with ffmpeg</h3>
-          <p>Bash scripts are plain text files saved with a .sh extension. This entry explains how they work with the example of a bash script named “Rewrap-MXF.sh”, which rewraps .MXF files in a given directory to .MOV files.</p>
+          <p>Bash scripts are plain text files saved with a .sh extension. This entry explains how they work with the example of a bash script named “Rewrap-MXF.sh”, which rewraps .mxf files in a given directory to .mov files.</p>
           <p>“Rewrap-MXF.sh” contains the following text:</p>
-          <p><code>for file in *.MXF; do ffmpeg -i "$file" -map 0 -c copy "${file%.MXF}.mov"; done</code></p>
+          <p><code>for file in *.mxf; do ffmpeg -i "$file" -map 0 -c copy "${file%.mxf}.mov"; done</code></p>
           <dl>
-            <dt>for file in *.MXF</dt><dd>starts the loop, and states what the input files will be. Here, the ffmpeg command within the loop will be applied to all files with an extension of .MXF.<br>
-            The word ‘file’ is an arbitrary variable which will represent each .MXF file in turn as it is looped over.</dd>
+            <dt>for file in *.mxf</dt><dd>starts the loop, and states what the input files will be. Here, the ffmpeg command within the loop will be applied to all files with an extension of .mxf.<br>
+            The word ‘file’ is an arbitrary variable which will represent each .mxf file in turn as it is looped over.</dd>
             <dt>do ffmpeg -i "$file"</dt><dd>carry out the following ffmpeg command for each input file.<br>
             Per Bash syntax, within the command the variable is referred to by <b>“$file”</b>. The dollar sign is used to reference the variable ‘file’, and the enclosing quotation marks prevents reinterpretation of any special characters that may occur within the filename, ensuring that the original filename is retained.</dd>
             <dt>-map 0</dt><dd>retain all streams</dd>
             <dt>-c copy</dt><dd>enable stream copy (no re-encode)</dd>
-            <dt>"${file%.MXF}.mov";</dt><dd>retaining the original file name, set the output file wrapper as .mov</dd>
+            <dt>"${file%.mxf}.mov";</dt><dd>retaining the original file name, set the output file wrapper as .mov</dd>
             <dt>done</dt><dd>complete; all items have been processed.</dd>
           </dl>
-          <p><b>Note</b>: the shell script (.sh file) and all .MXF files to be processed must be contained within the same directory, and the script must be run from that directory.<br>
+          <p><b>Note</b>: the shell script (.sh file) and all .mxf files to be processed must be contained within the same directory, and the script must be run from that directory.<br>
             Execute the .sh file with the command <code>sh Rewrap-MXF.sh</code>.</p>
           <p>Modify the script as needed to perform different transcodes, or to use with ffprobe. :)</p>
           <p>The basic pattern will look similar to this:<br>
@@ -1473,16 +1473,16 @@ foreach ($file in $inputfiles) {
   </div>
   <!-- ends QCTools Report (no audio) -->
 
-  <!-- Read/Extract EIA-608 Closed Captions -->    
+  <!-- Read/Extract EIA-608 Closed Captions -->
   <span data-toggle="modal" data-target="#readeia608"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Read or extract EIA-608 (Line 21) closed captioning">Read/Extract EIA-608 Closed Captioning</button></span>
   <div id="readeia608" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">  
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
           <h3>Read/Extract EIA-608 (Line 21) closed captioning</h3>
           <p><code>ffprobe -f lavfi -i movie=<i>input_file</i>,readeia608 -show_entries frame=pkt_pts_time:frame_tags=lavfi.readeia608.0.line,lavfi.readeia608.0.cc,lavfi.readeia608.1.line,lavfi.readeia608.1.cc -of csv > <i>input_file</i>.csv</code></p>
           <p>This command uses FFmpeg's <a href="https://ffmpeg.org/ffmpeg-filters.html#readeia608" target="_blank">readeia608</a> filter to extract the hexidecimal values hidden within <a href="https://en.wikipedia.org/wiki/EIA-608" target="_blank">EIA-608 (Line 21)</a> Closed Captioning, outputting a csv file. For more information about EIA-608, check out Adobe's <a href="https://www.adobe.com/content/dam/Adobe/en/devnet/video/pdfs/introduction_to_closed_captions.pdf" target="_blank">Introduction to Closed Captions</a>.</p>
-          <p>If hex isn't your thing, closed captioning <a href="http://www.theneitherworld.com/mcpoodle/SCC_TOOLS/DOCS/CC_CHARS.HTML" target="_blank">character</a> and <a href="http://www.theneitherworld.com/mcpoodle/SCC_TOOLS/DOCS/CC_CODES.HTML" target="_blank">code</a> sets can be found in the documentation for SCTools.</p>   
+          <p>If hex isn't your thing, closed captioning <a href="http://www.theneitherworld.com/mcpoodle/SCC_TOOLS/DOCS/CC_CHARS.HTML" target="_blank">character</a> and <a href="http://www.theneitherworld.com/mcpoodle/SCC_TOOLS/DOCS/CC_CODES.HTML" target="_blank">code</a> sets can be found in the documentation for SCTools.</p>
           <dl>
             <dt>ffprobe</dt><dd>starts the command</dd>
             <dt>-f lavfi</dt><dd>tells ffprobe to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">libavfilter</a> input virtual device</a></dd>
@@ -1501,8 +1501,8 @@ foreach ($file in $inputfiles) {
       </div>
     </div>
   </div>
-  <!-- ends Read/Extract EIA-608 Closed Captions -->   
-    
+  <!-- ends Read/Extract EIA-608 Closed Captions -->
+
   </div>
   <div class="well">
   <h4>Test files</h4>
