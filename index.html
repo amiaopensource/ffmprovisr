@@ -2087,12 +2087,12 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
       <div class="modal-content">
         <div class="well">
           <h3>Change field order of an interlaced video</h3>
-          <p><code>ffmpeg -i <i>input_file</i> -c:v prores -filter:v setfield=tff <i>output_file</i></code></p>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v <i>video_codec</i> -filter:v setfield=tff <i>output_file</i></code></p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-filter:v <i>setfield=tff</i></dt><dd>Sets the field order to top field first. Use <code>setfield=bff</code> for bottom field first.</dd>
-            <dt>-c:v prores</dt><dd>Tells ffmpeg to transcode the video stream into Apple ProRes 422. Experiment with using other codecs.</dd>
+            <dt>-c:v <i>video_codec</i></dt><dd>As a video filter is used, it is not possible to use <code>-c copy</code>. The video must be re-encoded with whatever video codec is chosen, e.g. <code>ffv1</code>, <code>v210</code> or <code>prores</code>.</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
           <p class="link"></p>
