@@ -2035,7 +2035,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
       <div class="modal-content">
         <div class="well">
           <h3>Transcode an image sequence into uncompressed 10-bit video</h3>
-          <p><code>ffmpeg -f image2 -framerate 24 -i <i>input_file_%06d.ext</i> -c:v v210 -an <i>output_file</i></code></p>
+          <p><code>ffmpeg -f image2 -framerate 24 -i <i>input_file_%06d.ext</i> -c:v v210 <i>output_file</i></code></p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-f image2</dt><dd>forces the image file de-muxer for single image files</dd>
@@ -2043,7 +2043,6 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file<br>
             This must match the naming convention actually used! The regex %06d matches six digits long numbers, possibly with leading zeroes. This allows to read in ascending order, one image after the other, the full sequence inside one folder. For image sequences starting with 086400 (i.e. captured with a timecode starting at 01:00:00:00 and at 24 fps), add the flag <code>-start_number 086400</code> before <code>-i input_file_%06d.ext</code>. The extension for TIFF files is .tif or maybe .tiff; the extension for DPX files is .dpx (or eventually .cin for old files).</dd>
             <dt>-c:v v210</dt><dd>encodes an uncompressed 10-bit video stream</dd>
-            <dt>-an copy</dt><dd>no audio</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
           <p class="link"></p>
