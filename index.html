@@ -188,7 +188,7 @@
         <div class="well">
           <h3>Create FFV1 Version 3 video in a Matroska container with framemd5 of input</h3>
           <p><code>ffmpeg -i <i>input_file</i> -map 0 -dn -c:v ffv1 -level 3 -g 1 -slicecrc 1 -slices 16 -c:a copy <i>output_file</i>.mkv -f framemd5 -an <i>md5_output_file</i></code></p>
-          <p>This will losslessly trancode your video with the FFV1 Version 3 codec in a Matroska container. In order to verify losslessness, a framemd5 of the source video is also generated. For more information on FFV1 encoding, <a href="https://trac.ffmpeg.org/wiki/Encode/FFV1" target="_blank">try the ffmpeg wiki</a>.</p>
+          <p>This will losslessly transcode your video with the FFV1 Version 3 codec in a Matroska container. In order to verify losslessness, a framemd5 of the source video is also generated. For more information on FFV1 encoding, <a href="https://trac.ffmpeg.org/wiki/Encode/FFV1" target="_blank">try the ffmpeg wiki</a>.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command.</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file.</dd>
@@ -668,7 +668,7 @@
             <dt>movie='<i>input.mp3</i>'</dt><dd>declares audio source file on which to apply filter</dd>
             <dt>,</dt><dd>comma signifies the end of audio source section and the beginning of the filter section</dd>
             <dt>astats=metadata=1</dt><dd>tells the astats filter to ouput metadata that can be passed to another filter (in this case adrawgraph)</dd>
-            <dt>:</dt><dd>divides beteen options of the same filter</dd>
+            <dt>:</dt><dd>divides between options of the same filter</dd>
             <dt>reset=1</dt><dd>tells the filter to calculate the stats on every frame (increasing this number would calculate stats for groups of frames)</dd>
             <dt>,</dt><dd>comma divides one filter in the chain from another</dd>
             <dt>adrawgraph=lavfi.astats.Overall.Peak_level:max=0:min=-30.0</dt><dd>draws a graph using the overall peak volume calculated by the astats filter. It sets the max for the graph to 0 (dB) and the minimum to -30 (dB). For more options on data points that can be graphed see the <a href="https://ffmpeg.org/ffmpeg-filters.html#astats-1" target="_blank">ffmpeg astats documentation</a></dd>
@@ -1083,13 +1083,13 @@
         <div class="well">
           <h3>Generate two access MP3s from input. One with appended audio (such as copyright notice) and one unmodified.</h3>
           <p> <code>ffmpeg -i <i>input_file</i> -i <i>input_file_to_append</i> -filter_complex "[0:a:0]asplit=2[a][b];[b]afifo[bb];[1:a:0][bb]concat=n=2:v=0:a=1[concatout]" -map "[a]" -codec:a libmp3lame -dither_method modified_e_weighted -qscale:a 2 <i>output_file.mp3</i> -map "[concatout]" -codec:a libmp3lame -dither_method modified_e_weighted -qscale:a 2 <i>output_file_appended.mp3</i></code></p>
-          <p>This script allows you to generate two derivative audio files from a master while appending audio from a seperate file (for example a copyright or institutional notice) to one of them.</p>
+          <p>This script allows you to generate two derivative audio files from a master while appending audio from a separate file (for example a copyright or institutional notice) to one of them.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file (the master file)</dd>
             <dt>-i <i>input_file_to_append</i></dt><dd>path, name and extension of the input file (the file to be appended to access file)</dd>
             <dt>-filter_complex</dt><dd>enables the complex filtering to manage splitting the input to two audio streams</dd>
-            <dt>[0:a:0]asplit=2[a][b];</dt><dd><code>asplit</code> allows audio streams to be split up for seperate manipulation. This command splits the audio from the first input (the master file) into two streams "a" and "b"</dd>
+            <dt>[0:a:0]asplit=2[a][b];</dt><dd><code>asplit</code> allows audio streams to be split up for separate manipulation. This command splits the audio from the first input (the master file) into two streams "a" and "b"</dd>
             <dt>[b]afifo[bb];</dt><dd>this buffers the stream "b" to help prevent dropped samples and renames stream to "bb"</dd>
             <dt>[1:a:0][bb]concat=n=2:v=0:a=1[concatout]</dt><dd><code>concat</code> is used to join files. <code>n=2</code> tells the filter there are two inputs. <code>v=0:a=1</code> Tells the filter there are 0 video outputs and 1 audio output. This command appends the audio from the second input to the beginning of stream "bb" and names the output "concatout"</dd>
             <dt>-map "[a]"</dt><dd>this maps the unmodified audio stream to the first output</dd>
@@ -1481,13 +1481,13 @@ foreach ($file in $inputfiles) {
         <div class="well">
           <h3>Read/Extract EIA-608 (Line 21) closed captioning</h3>
           <p><code>ffprobe -f lavfi -i movie=<i>input_file</i>,readeia608 -show_entries frame=pkt_pts_time:frame_tags=lavfi.readeia608.0.line,lavfi.readeia608.0.cc,lavfi.readeia608.1.line,lavfi.readeia608.1.cc -of csv > <i>input_file</i>.csv</code></p>
-          <p>This command uses FFmpeg's <a href="https://ffmpeg.org/ffmpeg-filters.html#readeia608" target="_blank">readeia608</a> filter to extract the hexidecimal values hidden within <a href="https://en.wikipedia.org/wiki/EIA-608" target="_blank">EIA-608 (Line 21)</a> Closed Captioning, outputting a csv file. For more information about EIA-608, check out Adobe's <a href="https://www.adobe.com/content/dam/Adobe/en/devnet/video/pdfs/introduction_to_closed_captions.pdf" target="_blank">Introduction to Closed Captions</a>.</p>
+          <p>This command uses FFmpeg's <a href="https://ffmpeg.org/ffmpeg-filters.html#readeia608" target="_blank">readeia608</a> filter to extract the hexadecimal values hidden within <a href="https://en.wikipedia.org/wiki/EIA-608" target="_blank">EIA-608 (Line 21)</a> Closed Captioning, outputting a csv file. For more information about EIA-608, check out Adobe's <a href="https://www.adobe.com/content/dam/Adobe/en/devnet/video/pdfs/introduction_to_closed_captions.pdf" target="_blank">Introduction to Closed Captions</a>.</p>
           <p>If hex isn't your thing, closed captioning <a href="http://www.theneitherworld.com/mcpoodle/SCC_TOOLS/DOCS/CC_CHARS.HTML" target="_blank">character</a> and <a href="http://www.theneitherworld.com/mcpoodle/SCC_TOOLS/DOCS/CC_CODES.HTML" target="_blank">code</a> sets can be found in the documentation for SCTools.</p>
           <dl>
             <dt>ffprobe</dt><dd>starts the command</dd>
             <dt>-f lavfi</dt><dd>tells ffprobe to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">libavfilter</a> input virtual device</a></dd>
             <dt>-i <i>input_file</i></dt><dd>input file and parameters</dd>
-            <dt>readeia608 -show_entries frame=pkt_pts_time:frame_tags=lavfi.readeia608.0.line,lavfi.readeia608.0.cc,lavfi.readeia608.1.line,lavfi.readeia608.1.cc -of csv</dt><dd>specifies the first two lines of video in which EIA-608 data (hexidecimal byte pairs) are identifiable by ffprobe, outputting comma separated values (CSV)</dt>
+            <dt>readeia608 -show_entries frame=pkt_pts_time:frame_tags=lavfi.readeia608.0.line,lavfi.readeia608.0.cc,lavfi.readeia608.1.line,lavfi.readeia608.1.cc -of csv</dt><dd>specifies the first two lines of video in which EIA-608 data (hexadecimal byte pairs) are identifiable by ffprobe, outputting comma separated values (CSV)</dt>
             <dt>&gt;</dt><dd>redirects the standard output (the data created by ffprobe about the video)</dt>
             <dt><i>output_file</i>.csv</dt><dd>names the CSV output file</dt>
           </dl>
