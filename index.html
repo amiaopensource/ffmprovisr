@@ -1166,7 +1166,7 @@
       <div class="modal-content">
         <div class="well">
           <h3>One Pass Loudness Normalization</h3>
-          <p><code>ffmpeg -i <i>input_file</i> -af loudnorm=dual_mono=true <i>output_file</i></code></p>
+          <p><code>ffmpeg -i <i>input_file</i> -af loudnorm=dual_mono=true  -ar 48k <i>output_file</i></code></p>
           <p>This will normalize the loudness of an input using one pass, which is quicker but less accurate than using two passes. This command uses the loudnorm filter defaults for target loudness. These defaults align well with PBS recommendations, but loudnorm does allow targeting of specific loudness levels. More information can be found at the <a href="https://ffmpeg.org/ffmpeg-filters.html#loudnorm" target="_blank">loudnorm documentation</a>.</p>
           <p>Information about PBS loudness standards can be found in the <a href="http://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf" target="_blank">PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href="https://tech.ebu.ch/docs/r/r128-2014.pdf" target="_blank">EBU R 128</a> recommendation document.</p>
           <dl>
@@ -1174,6 +1174,7 @@
             <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-af loudnorm</dt><dd>activates the loudnorm filter with default settings</dd>
             <dt>dual_mono=true</dt><dd>(optional) Use this for mono files meant to be played back on stereo systems for correct loudness. Not necessary for multi-track inputs.</dd>
+            <dt>-ar 48k</dt><dd>Sets the output sample rate to 48 kHz. (The loudnorm filter upsamples to 192 kHz so it is best to manually set a desired output sample rate).</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension for output file</dd>
           </dl>
           <p class="link"></p>
@@ -1190,7 +1191,7 @@
       <div class="modal-content">
         <div class="well">
           <h3>Two Pass Loudness Normalization</h3>
-          <p><code>ffmpeg -i <i>input_file</i> -af loudnorm=dual_mono=true:measured_I=<i>input_i</i>:measured_TP=<i>input_tp</i>:measured_LRA=<i>input_lra</i>:measured_thresh=<i>input_thresh</i>:offset=<i>target_offset</i>:linear=true <i>output_file</i></code></p>
+          <p><code>ffmpeg -i <i>input_file</i> -af loudnorm=dual_mono=true:measured_I=<i>input_i</i>:measured_TP=<i>input_tp</i>:measured_LRA=<i>input_lra</i>:measured_thresh=<i>input_thresh</i>:offset=<i>target_offset</i>:linear=true -ar 48k <i>output_file</i></code></p>
           <p>This command allows using the levels calculated using a <a href=#loudnorm_metadata>first pass of the loudnorm filter</a> to more accurately normalize loudness. This command uses the loudnorm filter defaults for target loudness. These defaults align well with PBS recommendations, but loudnorm does allow targeting of specific loudness levels. More information can be found at the <a href="https://ffmpeg.org/ffmpeg-filters.html#loudnorm" target="_blank">loudnorm documentation</a>.</p>
           <p>Information about PBS loudness standards can be found in the <a href="http://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf" target="_blank">PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href="https://tech.ebu.ch/docs/r/r128-2014.pdf" target="_blank">EBU R 128</a> recommendation document.</p>
           <dl>
@@ -1204,6 +1205,7 @@
             <dt>measured_LRA=<i>input_thresh</i></dt><dd>use the 'input_thresh' value (threshold) from the first pass in place of input_thresh</dd>
             <dt>offset=<i>target_offset</i></dt><dd>use the 'target_offset' value (offset) from the first pass in place of target_offset</dd>
             <dt>linear=true</dt><dd>tells loudnorm to use linear normalization</dd>
+            <dt>-ar 48k</dt><dd>Sets the output sample rate to 48 kHz. (The loudnorm filter upsamples to 192 kHz so it is best to manually set a desired output sample rate).</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension for output file</dd>
           </dl>
           <p class="link"></p>
