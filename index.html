@@ -2239,6 +2239,31 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
   </div>
   <!-- ends Strip metadata -->
 
+  <!-- Scene Detection using YDIF -->
+  <span data-toggle="modal" data-target="#csv-ydif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Exports CSV for scene detection using YDIF">CSV with timecodes and YDIF</button></span>
+  <div id="csv-ydif" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Exports CSV for scene detection using YDIF</h3>
+          <p><code>ffprobe -f lavfi -i movie=<i>input_file</i>,signalstats -show_entries frame=pkt_pts_time:frame_tags=lavfi.signalstats.YDIF -of csv</code></p>
+          <p>This ffprobe command prints a CSV correlating timestamps and their YDIF values, useful for determining cuts.</p>
+          <dl>
+            <dt>ffprobe</dt><dd>starts the command</dd>
+            <dt>-f lavfi</dt><dd>uses the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter input virtual device</a> as chosen format</dd>
+            <dt>-i movie=<i>input file</i></dt><dd>path, name and extension of the input video file</dd>
+            <dt>,</dt><dd>comma signifies closing of video source assertion and ready for filter assertion</dd>
+            <dt>signalstats</dt><dd>tells ffprobe to use the signalstats command</dd>
+            <dt>-show_entries</dt><dd>sets list of entries to show per column, determined on the next line</dd>
+            <dt>frame=pkt_pts_time:frame_tags=lavfi.signalstats.YDIF</dt><dd>specifies showing the timecode (<code>pkt_pts_time</code>) in the frame stream and the YDIF section of the frame_tags stream</dd>
+            <dt>-of csv</dt><dd>sets the output printing format to CSV. <code>-of</code> is an alias of <code>-print_format</code>.</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends sample Scene Detection using YDIF -->
   </div>
 
 
