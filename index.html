@@ -1110,6 +1110,30 @@
   <div class="well">
   <h4>Normalize/Equalize Audio</h4>
 
+  <!-- phase shift -->
+  <span data-toggle="modal" data-target="#phase_shift"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Inverses the audio phase of the second channel">Flip phase shift</button></span>
+  <div id="phase_shift" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Flip audio phase shift</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -af pan="stereo| c0=c0| c1=-1*c1" <i>output_file</i></code></p>
+          <p>This command inverses the audio phase of the second channel by shifting it 180°.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-af</dt><dd>specifies that the next section should be interpreted as an audio filter</dd>
+            <dt>pan=<dt><dd>tell the quoted text below to use the <a href="https://ffmpeg.org/ffmpeg-filters.html#pan-1" target="_blank">pan filter</a></dd>
+            <dt>"stereo| c0=c0| c1=-1*c1"</dt><dd>maps the output's first channel (c0) to the input's first channel and the output's second channel (c1) to the inverse of the input's second channel</dd>
+            <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends phase shift -->
+  
   <!-- loudnorm metadata -->
   <span data-toggle="modal" data-target="#loudnorm_metadata"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Calculate Loudness Levels">Calculate Loudness Levels</button></span>
   <div id="loudnorm_metadata" class="modal fade" tabindex="-1" role="dialog">
