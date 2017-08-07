@@ -1119,8 +1119,8 @@
           <h3>Calculate Loudness Levels</h3>
           <p><code>ffmpeg -i <i>input_file</i> -af loudnorm=print_format=json -f null -</code></p>
           <p>This filter calculates and outputs loudness information in json about an input file (labeled input) as well as what the levels would be if loudnorm were applied in its one pass mode (labeled output). The values generated can be used as inputs for a 'second pass' of the loudnorm filter allowing more accurate loudness normalization than if it is used in a single pass.</p>
-          <p>These instructions use the loudnorm defaults, which align well with PBS recommendations for target loudness. More information can be found at the <a href=https://ffmpeg.org/ffmpeg-filters.html#loudnorm>loudnorm documentation</a>.</p>
-          <p>Information about PBS loudness standards can be found in the <a href=http://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf>PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href=https://tech.ebu.ch/docs/r/r128-2014.pdf>EBU R 128</a> recommendation document.</p>
+          <p>These instructions use the loudnorm defaults, which align well with PBS recommendations for target loudness. More information can be found at the <a href="https://ffmpeg.org/ffmpeg-filters.html#loudnorm">loudnorm documentation</a>.</p>
+          <p>Information about PBS loudness standards can be found in the <a href="http://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf" target="_blank">PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href="https://tech.ebu.ch/docs/r/r128-2014.pdf" target="_blank">EBU R 128</a> recommendation document.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
@@ -1143,8 +1143,8 @@
         <div class="well">
           <h3>One Pass Loudness Normalization</h3>
           <p><code>ffmpeg -i <i>input_file</i> -af loudnorm=dual_mono=true <i>output_file</i></code></p>
-          <p>This will normalize the loudness of an input using one pass, which is quicker but less accurate than using two passes. This command uses the loudnorm filter defaults for target loudness. These defaults align well with PBS recommendations, but loudnorm does allow targeting of specific loudness levels. More information can be found at the <a href=https://ffmpeg.org/ffmpeg-filters.html#loudnorm>loudnorm documentation</a>.</p>
-          <p>Information about PBS loudness standards can be found in the <a href=http://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf>PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href=https://tech.ebu.ch/docs/r/r128-2014.pdf>EBU R 128</a> recommendation document.</p>
+          <p>This will normalize the loudness of an input using one pass, which is quicker but less accurate than using two passes. This command uses the loudnorm filter defaults for target loudness. These defaults align well with PBS recommendations, but loudnorm does allow targeting of specific loudness levels. More information can be found at the <a href="https://ffmpeg.org/ffmpeg-filters.html#loudnorm" target="_blank">loudnorm documentation</a>.</p>
+          <p>Information about PBS loudness standards can be found in the <a href="http://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf" target="_blank">PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href="https://tech.ebu.ch/docs/r/r128-2014.pdf" target="_blank">EBU R 128</a> recommendation document.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
@@ -1167,8 +1167,8 @@
         <div class="well">
           <h3>Two Pass Loudness Normalization</h3>
           <p><code>ffmpeg -i <i>input_file</i> -af loudnorm=dual_mono=true:measured_I=<i>input_i</i>:measured_TP=<i>input_tp</i>:measured_LRA=<i>input_lra</i>:measured_thresh=<i>input_thresh</i>:offset=<i>target_offset</i>:linear=true <i>output_file</i></code></p>
-          <p>This command allows using the levels calculated using a <a href=#loudnorm_metadata>first pass of the loudnorm filter</a> to more accurately normalize loudness. This command uses the loudnorm filter defaults for target loudness. These defaults align well with PBS recommendations, but loudnorm does allow targeting of specific loudness levels. More information can be found at the <a href=https://ffmpeg.org/ffmpeg-filters.html#loudnorm>loudnorm documentation</a>.</p>
-          <p>Information about PBS loudness standards can be found in the <a href=http://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf>PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href=https://tech.ebu.ch/docs/r/r128-2014.pdf>EBU R 128</a> recommendation document.</p>
+          <p>This command allows using the levels calculated using a <a href=#loudnorm_metadata>first pass of the loudnorm filter</a> to more accurately normalize loudness. This command uses the loudnorm filter defaults for target loudness. These defaults align well with PBS recommendations, but loudnorm does allow targeting of specific loudness levels. More information can be found at the <a href="https://ffmpeg.org/ffmpeg-filters.html#loudnorm" target="_blank">loudnorm documentation</a>.</p>
+          <p>Information about PBS loudness standards can be found in the <a href="http://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf" target="_blank">PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href="https://tech.ebu.ch/docs/r/r128-2014.pdf" target="_blank">EBU R 128</a> recommendation document.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
@@ -1197,7 +1197,7 @@
         <div class="well">
           <h3>RIAA Equalization</h3>
           <p><code>ffmpeg -i <i>input_file</i> -af aemphasis=type=riaa <i>output_file</i></code></p>
-          <p>This will apply RIAA equalization to an input file allowing correct listening of audio transferred 'flat' (without EQ) from records that used this EQ curve. For more information about RIAA equalization see the <a href=https://en.wikipedia.org/wiki/RIAA_equalization>Wikipedia page</a> on the subject.</p>
+          <p>This will apply RIAA equalization to an input file allowing correct listening of audio transferred 'flat' (without EQ) from records that used this EQ curve. For more information about RIAA equalization see the <a href="https://en.wikipedia.org/wiki/RIAA_equalization" target="_blank">Wikipedia page</a> on the subject.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
@@ -1485,11 +1485,11 @@ foreach ($file in $inputfiles) {
           <p>If hex isn't your thing, closed captioning <a href="http://www.theneitherworld.com/mcpoodle/SCC_TOOLS/DOCS/CC_CHARS.HTML" target="_blank">character</a> and <a href="http://www.theneitherworld.com/mcpoodle/SCC_TOOLS/DOCS/CC_CODES.HTML" target="_blank">code</a> sets can be found in the documentation for SCTools.</p>
           <dl>
             <dt>ffprobe</dt><dd>starts the command</dd>
-            <dt>-f lavfi</dt><dd>tells ffprobe to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">libavfilter</a> input virtual device</a></dd>
+            <dt>-f lavfi</dt><dd>tells ffprobe to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">libavfilter</a> input virtual device</dd>
             <dt>-i <i>input_file</i></dt><dd>input file and parameters</dd>
-            <dt>readeia608 -show_entries frame=pkt_pts_time:frame_tags=lavfi.readeia608.0.line,lavfi.readeia608.0.cc,lavfi.readeia608.1.line,lavfi.readeia608.1.cc -of csv</dt><dd>specifies the first two lines of video in which EIA-608 data (hexadecimal byte pairs) are identifiable by ffprobe, outputting comma separated values (CSV)</dt>
-            <dt>&gt;</dt><dd>redirects the standard output (the data created by ffprobe about the video)</dt>
-            <dt><i>output_file</i>.csv</dt><dd>names the CSV output file</dt>
+            <dt>readeia608 -show_entries frame=pkt_pts_time:frame_tags=lavfi.readeia608.0.line,lavfi.readeia608.0.cc,lavfi.readeia608.1.line,lavfi.readeia608.1.cc -of csv</dt><dd>specifies the first two lines of video in which EIA-608 data (hexadecimal byte pairs) are identifiable by ffprobe, outputting comma separated values (CSV)</dd>
+            <dt>&gt;</dt><dd>redirects the standard output (the data created by ffprobe about the video)</dd>
+            <dt><i>output_file</i>.csv</dt><dd>names the CSV output file</dd>
           </dl>
           <div class="sample-image">
             <h4>Example</h4>
@@ -2264,7 +2264,6 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
     </div>
   </div>
   <!-- ends sample Scene Detection using YDIF -->
-  </div>
 
 
 <!-- sample example -->
@@ -2291,6 +2290,7 @@ Change the above data-target field, the hover-over description, the button text,
 <!-- ends sample example -->
 
 
+  </div>
 </div> <!-- end "well col-md-6 col-md-offset-2" -->
 </div> <!-- row -->
 
