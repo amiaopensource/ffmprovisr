@@ -1267,7 +1267,7 @@
           <p>The basic pattern will look similar to this:<br>
           <code>for item in *.ext; do ffmpeg -i $item <i>(ffmpeg options here)</i> "${item%.ext}_suffix.ext"</code></p>
           <p>e.g., if an input file is bestmovie002.avi, its output will be bestmovie002_suffix.avi.</p>
-          <p>Variation: recursively process all mxf files in subdirectories using <code>find</code> instead of <code>for</code>:</p>
+          <p>Variation: recursively process all MXF files in subdirectories using <code>find</code> instead of <code>for</code>:</p>
           <p><code>find input_directory -iname "*.mxf" -exec ffmpeg -i {} -map 0 -c copy {}.mov \;</code></p>
           <p class="link"></p>
         </div>
