@@ -1853,7 +1853,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
       <div class="modal-content">
         <div class="well">
           <h3>Split audio and video tracks</h3>
-          <p><code>ffmpeg -i <i>input_file</i> -map <i>0:v video_output_file</i> -map <i>0:a audio_output_file</i></code></p>
+          <p><code>ffmpeg -i <i>input_file</i> -map <i>0:v:0 video_output_file</i> -map <i>0:a:0 audio_output_file</i></code></p>
           <p>This command splits the original input file into a video and audio stream. The -map command identifies which streams are mapped to which file. To ensure that you’re mapping the right streams to the right file, run ffprobe before writing the script to identify which streams are desired.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
