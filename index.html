@@ -319,7 +319,7 @@
       <div class="modal-content">
         <div class="well">
           <h3>WAV to MP3</h3>
-          <p><code>ffmpeg -i <i>input_file</i>.wav -write_id3v1 1 -id3v2_version 3 -dither_method modified_e_weighted -out_sample_rate 48k -qscale:a 1 <i>output_file</i>.mp3</code></p>
+          <p><code>ffmpeg -i <i>input_file</i>.wav -write_id3v1 1 -id3v2_version 3 -dither_method rectangular -out_sample_rate 48k -qscale:a 1 <i>output_file</i>.mp3</code></p>
           <p>This will convert your WAV files to MP3s.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -350,7 +350,7 @@
       <div class="modal-content">
         <div class="well">
           <h3>WAV to AAC/MP4</h3>
-          <p><code>ffmpeg -i <i>input_file</i>.wav -c:a aac -b:a 128k -dither_method modified_e_weighted -ar 44100 <i>output_file</i>.mp4</code></p>
+          <p><code>ffmpeg -i <i>input_file</i>.wav -c:a aac -b:a 128k -dither_method rectangular -ar 44100 <i>output_file</i>.mp4</code></p>
           <p>This will convert your WAV file to AAC/MP4.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
