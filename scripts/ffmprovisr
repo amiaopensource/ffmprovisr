@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-# This allows to open ffmprovisr locally from the terminal.
+# This allows to open the online version of the ffmprovisr, when the computer is
+# connected to the Web, and the local version otherwise.
 
 if [[ "$(uname -s)" = "Darwin" ]] ; then
     default_browser=$(plutil -convert json ~/Library/Preferences/com.apple.LaunchServices/com.apple.launchservices.secure.plist -r -o - | grep https -b1 | tail -n1 | cut -d'"' -f4)
