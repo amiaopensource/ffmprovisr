@@ -23,17 +23,17 @@
 <div class="row">
 
 <div class="well col-md-3 col-md-offset-0">
-  <h5>Making FFmpeg Easier</h5>
+  <span class="intro-lead">Making FFmpeg Easier</span>
   <p>FFmpeg is a powerful tool for manipulating audiovisual files. Unfortunately, it also has a steep learning curve, especially for users unfamiliar with a command line interface. This app helps users through the command generation process so that more people can reap the benefits of FFmpeg.</p>
   <p>Each button displays helpful information about how to perform a wide variety of tasks using FFmpeg. To use this site, click on the task you would like to perform. A new window will open up with a sample command and a description of how that command works. You can copy this command and understand how the command works with a breakdown of each of the flags.</p>
-  <h5>Tutorials</h5>
+  <span class="intro-lead">Tutorials</span>
   <p>For FFmpeg basics, check out the program’s <a href="https://www.ffmpeg.org/" target="_blank">official website</a>.</p>
   <p>For instructions on how to install FFmpeg on Mac, Linux, and Windows, refer to Reto Kromer’s <a href="https://avpres.net/FFmpeg/#ch1" target="_blank">installation instructions</a>.</p>
   <p>For Bash and command line basics, try the <a href="https://learnpythonthehardway.org/book/appendixa.html" target="_blank">Command Line Crash Course</a>. For a little more context presented in an ffmprovisr style, try <a href="http://explainshell.com/" target="_blank">explainshell.com</a>!</p>
-  <h5>License</h5>
+  <span class="intro-lead">License</span>
   <p><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png"></a><br>
     This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</p>
-  <h5>Sister projects</h5>
+  <span class="intro-lead">Sister projects</span>
   <p><a href="http://dd388.github.io/crals/" target="_blank">Script Ahoy</a>: Community Resource for Archivists and Librarians Scripting</p>
   <p><a href="https://datapraxis.github.io/sourcecaster/" target="_blank">The Sourcecaster</a>: an app that helps you use the command line to work through common challenges that come up when working with digital primary sources.</p>
   <p><a href="https://amiaopensource.github.io/cable-bible/" target="_blank">Cable Bible</a>: A Guide to Cables and Connectors Used for Audiovisual Tech</p>
@@ -42,11 +42,11 @@
 <div class="well col-md-8 col-md-offset-0">
   <div class="well">
     <h3>What do you want to do?</h3>
-    <h6>Select from the following.</h6>
+    <p class="select-from">Select from the following.</p>
   </div>
 
   <div class="well">
-  <h4>Change container (rewrap)</h4>
+  <h2>Change container (rewrap)</h2>
 
   <!-- MKV to MP4 -->
   <span data-toggle="modal" data-target="#mkv_to_mp4"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Convert Matroska (MKV) to MP4">MKV to MP4</button></span>
@@ -77,7 +77,7 @@
 
   </div>
   <div class="well">
-  <h4>Change codec (transcode)</h4>
+  <h2>Change codec (transcode)</h2>
 
   <!-- Transcode to ProRes -->
   <span data-toggle="modal" data-target="#to_prores"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode to deinterlaced Apple ProRes LT">Transcode to ProRes</button></span>
@@ -372,7 +372,7 @@
 
   </div>
   <div class="well">
-  <h4>Change formats</h4>
+  <h2>Change formats</h2>
 
   <!-- NTSC to H.264 -->
   <span data-toggle="modal" data-target="#ntsc_to_h264"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Upscaled, pillar-boxed HD H.264 access files from SD NTSC source">NTSC to H.264</button></span>
@@ -531,7 +531,7 @@
           <p><b>Note:</b> ffmpeg includes several deinterlacers apart from <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1" target="_blank">yadif</a>: <a href="https://ffmpeg.org/ffmpeg-filters.html#bwdif" target="_blank">bwdif</a>, <a href="https://ffmpeg.org/ffmpeg-filters.html#w3fdif" target="_blank">w3fdif</a>, <a href="https://ffmpeg.org/ffmpeg-filters.html#kerndeint" target="_blank">kerndeint</a>, and <a href="https://ffmpeg.org/ffmpeg-filters.html#nnedi" target="_blank">nnedi</a>.</p>
           <p>For more H.264 encoding options, see the latter section of the <a href="./index.html#transcode_h264">encode H.264 command</a>.</p>
           <div class="sample-image">
-            <h4>Example</h4>
+            <h2>Example</h2>
             <p>Before and after deinterlacing:</p>
             <img src="img/interlaced_video.png" alt="VLC screenshot of original interlaced video">
             <img src="img/deinterlaced_video.png" alt="VLC screenshot of deinterlaced video">
@@ -563,7 +563,7 @@
           </dl>
           <p><b>Note:</b> Converting between colourspaces with ffmpeg can be done via either the <b>colormatrix</b> or <b>colorspace</b> filters, with colorspace allowing finer control (individual setting of colourspace, transfer characteristics, primaries, range, pixel format, etc). See <a href="https://trac.ffmpeg.org/wiki/colorspace" target="_blank">this</a> entry on the ffmpeg wiki, and the ffmpeg documentation for <a href="http://ffmpeg.org/ffmpeg-filters.html#colormatrix" target="_blank">colormatrix</a> and <a href="http://ffmpeg.org/ffmpeg-filters.html#colorspace" target="_blank">colorspace</a>.</p>
           <hr>
-          <h4>Convert colourspace and embed colourspace metadata</h4>
+          <h2>Convert colourspace and embed colourspace metadata</h2>
           <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf colormatrix=src:dst -color_primaries <i>val</i> -color_trc <i>val</i> -colorspace <i>val</i> <i>output_file</i></code></p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -578,7 +578,7 @@
             Accepted values include <code>smpte170m</code> (Rec.601, 525-line/NTSC version), <code>bt470bg</code> (Rec.601, 625-line/PAL version), <code>bt709</code> (Rec.709), <code>bt2020_cl</code> (Rec.2020 constant luminance), and <code>bt2020_ncl</code> (Rec.2020 non-constant luminance).</dd>
             <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
-          <h5>Examples</h5>
+          <h4>Examples</h4>
           <p>To Rec.601 (525-line/NTSC):</p>
           <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf colormatrix=bt709:smpte170m -color_primaries smpte170m -color_trc smpte170m -colorspace smpte170m <i>output_file</i></code></p>
           <p>To Rec.601 (625-line/PAL):</p>
@@ -625,7 +625,7 @@
           <p>Note that if applying an inverse telecine procedure to a 29.97i file, the output framerate will actually be 23.976fps.</p>
           <p>This command can also be used to restore other framerates.</p>
           <div class="sample-image">
-            <h4>Example</h4>
+            <h2>Example</h2>
             <p>Before and after inverse telecine:</p>
             <img src="img/ivtc_originalvideo.gif" alt="GIF of original video">
             <img src="img/ivtc_result.gif" alt="GIF of video after inverse telecine">
@@ -639,7 +639,7 @@
 
   </div>
   <div class="well">
-  <h4>Filters</h4>
+  <h2>Filters</h2>
 
   <!-- abitscope -->
   <span data-toggle="modal" data-target="#abitscope"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Audio Bitscope">Audio Bitscope</button></span>
@@ -659,7 +659,7 @@
             <dt>"</dt><dd>quotation mark to end the lavfi filtergraph</dd>
           </dl>
           <div class="sample-image">
-            <h4>Comparison of mono 16 bit and mono 16 bit padded to 32 bit.</h4>
+            <h2>Comparison of mono 16 bit and mono 16 bit padded to 32 bit.</h2>
             <img src="img/16_32_abitscope.gif" alt="bit_scope_comparison">
           </div>
           <p class="link"></p>
@@ -693,7 +693,7 @@
             <dt>"</dt><dd>quotation mark to end the lavfi filtergraph</dd>
           </dl>
           <div class="sample-image">
-            <h4>Example of filter output</h4>
+            <h2>Example of filter output</h2>
             <img src="img/astats_levels.gif" alt="astats example">
           </div>
           <p class="link"></p>
@@ -723,7 +723,7 @@
             <dt>"</dt><dd>quotation mark to end the lavfi filtergraph</dd>
           </dl>
           <div class="sample-image">
-            <h4>Example of filter output</h4>
+            <h2>Example of filter output</h2>
             <img src="./img/outside_broadcast_range.gif" alt="BRNG example">
           </div>
           <p class="link"></p>
@@ -837,7 +837,7 @@
             <dt>ffplay -</dt><dd>Starts ffplay and tells it to use the pipe from the previous command as its input</dd>
           </dl>
           <div class="sample-image">
-            <h4>Example of filter output</h4>
+            <h2>Example of filter output</h2>
             <img src="img/tempdif.gif" alt="astats example">
           </div>
           <p class="link"></p>
@@ -849,7 +849,7 @@
 
   </div>
   <div class="well">
-  <h4>Make derivative variations</h4>
+  <h2>Make derivative variations</h2>
 
   <!-- Create GIF -->
   <span data-toggle="modal" data-target="#create_gif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create a GIF from a video">Create GIF</button></span>
@@ -1126,7 +1126,7 @@
 
   </div>
   <div class="well">
-  <h4>Normalize/Equalize Audio</h4>
+  <h2>Normalize/Equalize Audio</h2>
 
   <!-- phase shift -->
   <span data-toggle="modal" data-target="#phase_shift"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Inverses the audio phase of the second channel">Flip phase shift</button></span>
@@ -1257,7 +1257,7 @@
 
   </div>
   <div class="well">
-  <h4>Preservation</h4>
+  <h2>Preservation</h2>
 
   <!-- batch processing (Mac/Linux) -->
   <span data-toggle="modal" data-target="#batch_processing_bash"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="FFmpeg batch processing on Mac/Linux">Batch processing (Mac/Linux)</button></span>
@@ -1538,7 +1538,7 @@ foreach ($file in $inputfiles) {
             <dt><i>output_file</i>.csv</dt><dd>names the CSV output file</dd>
           </dl>
           <div class="sample-image">
-            <h4>Example</h4>
+            <h2>Example</h2>
             <p>Side-by-side video with true EIA-608 captions on the left, zoomed in view of the captions on the right (with hex values represented). To achieve something similar with your own captioned video, try out the EIA608/VITC viewer in <a href="https://github.com/bavc/qctools" target="_blank">QCTools</a>.</p>
             <img src="./img/eia608_captions.gif" alt="GIF of Closed Captions">
           </div>
@@ -1551,7 +1551,7 @@ foreach ($file in $inputfiles) {
 
   </div>
   <div class="well">
-  <h4>Test files</h4>
+  <h2>Test files</h2>
 
   <!-- Mandelbrot -->
   <span data-toggle="modal" data-target="#mandelbrot"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Make a mandelbrot test pattern video">Mandelbrot</button></span>
@@ -1740,7 +1740,7 @@ foreach ($file in $inputfiles) {
 
   </div>
   <div class="well">
-  <h4>Repair</h4>
+  <h2>Repair</h2>
 
   <!-- Fix A/V async 1 -->
   <span data-toggle="modal" data-target="#avsync_aresample"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Fix A/V sync issues by resampling audio">Fix AV Sync: Resample audio</button></span>
@@ -1767,7 +1767,7 @@ foreach ($file in $inputfiles) {
 
   </div>
   <div class="well">
-  <h4>Other</h4>
+  <h2>Other</h2>
 
   <!-- Join files together -->
   <span data-toggle="modal" data-target="#join_files"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Join (concatenate) two or more files into a single file">Join files together</button></span>
@@ -2157,7 +2157,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
       <div class="modal-content">
         <div class="well">
           <h3>Set stream properties</h3>
-          <h4>Find undetermined or unknown stream properties</h4>
+          <h2>Find undetermined or unknown stream properties</h2>
           <p>These examples use QuickTime inputs and outputs. The strategy will vary or may not be possible in other file formats. In the case of these examples it is the intention to make a lossless copy while clarifying an unknown characteristic of the stream.</p>
           <p><code>ffprobe <i>input_file</i> -show_streams</code></p>
           <dl>
@@ -2166,7 +2166,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
             <dt>-show_streams</dt><dd>Shows metadata of stream properties</dd>
           </dl>
           <p>Values that are set to 'unknown' and 'undetermined' may be unspecified within the stream. An unknown aspect ratio would be expressed as '0:1'. Streams with many unknown properties may have interoperability issues or not play as intended. In many cases, an unknown or undetermined value may be accurate because the information about the source is unclear, but often the value is intended to be known. In many cases the stream will played with an assumed value if undetermined (for instance a display_aspect_ratio of '0:1' may be played as 'WIDTH:HEIGHT'), but this may or may not be what is intended. Use carefully.</p>
-          <h4>Set aspect ratio</h4>
+          <h2>Set aspect ratio</h2>
           <p>If the display_aspect_ratio is set to '0:1' it may be clarified with the <i>-aspect</i> option and stream copy.</p>
           <p><code>ffmpeg -i <i>input_file</i> -c copy -map 0 -aspect DAR_NUM:DAR_DEN <i>output_file</i></code></p>
           <dl>
@@ -2177,7 +2177,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
             <dt>-aspect DAR_NUM:DAR_DEN</dt><dd>Replace DAR_NUM with the display aspect ratio numerator and DAR_DEN with the display aspect ratio denominator, such as <i>-aspect 4:3</i> or <i>-aspect 16:9</i>.</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
-          <h4>Adding other stream properties.</h4>
+          <h2>Adding other stream properties.</h2>
           <p>Other properties may be clarified in a similar way. Replace <i>-aspect</i> and its value with other properties such as shown in the options below. Note that setting color values in QuickTime requires that <i>-movflags write_colr</i> is set.</p>
           <dl>
             <dt>-color_primary <i>VALUE</i> -movflags write_colr</dt><dd>Set a new color_primary value. The vocabulary for values is at <a href="http://ffmpeg.org/ffmpeg-all.html" target="_blank">ffmpeg</a>.</dd>
