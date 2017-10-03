@@ -2,6 +2,18 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif;
 }
 
+h2 {
+  font-size: 24px;
+}
+
+.intro-lead {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+}
+
+.select-from {
+  font-size: 16px;
+}
 code {
   word-break: break-all;
   word-wrap: break-word;
