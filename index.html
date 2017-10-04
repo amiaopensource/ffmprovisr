@@ -46,7 +46,7 @@
   </div>
 
   <div class="well">
-  <h2>Change container (rewrap)</h2>
+  <h2 id="rewrap">Change container (rewrap)</h2>
 
   <!-- MKV to MP4 -->
   <span data-toggle="modal" data-target="#mkv_to_mp4"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Convert Matroska (MKV) to MP4">MKV to MP4</button></span>
@@ -77,7 +77,7 @@
 
   </div>
   <div class="well">
-  <h2>Change codec (transcode)</h2>
+  <h2 id="transcode">Change codec (transcode)</h2>
 
   <!-- Transcode to ProRes -->
   <span data-toggle="modal" data-target="#to_prores"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode to deinterlaced Apple ProRes LT">Transcode to ProRes</button></span>
@@ -372,36 +372,7 @@
 
   </div>
   <div class="well">
-  <h2>Change formats</h2>
-
-  <!-- NTSC to H.264 -->
-  <span data-toggle="modal" data-target="#ntsc_to_h264"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Upscaled, pillar-boxed HD H.264 access files from SD NTSC source">NTSC to H.264</button></span>
-  <div id="ntsc_to_h264" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Upscaled, Pillar-boxed HD H.264 Access Files from SD NTSC source</h3>
-          <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -filter:v "yadif, scale=1440:1080:flags=lanczos, pad=1920:1080:(ow-iw)/2:(oh-ih)/2, format=yuv420p" <i>output_file</i></code></p>
-          <dl>
-            <dt>ffmpeg</dt><dd>Calls the program ffmpeg</dd>
-            <dt>-i</dt><dd>for input video file and audio file</dd>
-            <dt>-c:v libx264</dt><dd>encodes video stream with libx264 (h264)</dd>
-            <dt>"</dt><dd>quotation mark to start filtergraph</dd>
-            <dt>yadif</dt><dd>deinterlacing filter (‘yet another deinterlacing filter’)<br>
-             By default, <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1" target="_blank">yadif</a> will output one frame for each frame. Outputting one frame for each <i>field</i> (thereby doubling the frame rate) with <code>yadif=1</code> may produce visually better results.</dd>
-            <dt>scale=1440:1080:flags=lanczos</dt><dd>resizes the image to 1440x1080, using the Lanczos scaling algorithm, which is slower but better than the default bilinear algorithm.</dd>
-            <dt>pad=1920:1080:(ow-iw)/2:(oh-ih)/2</dt><dd>pads the area around the 4:3 input video to create a 16:9 output video</dd>
-            <dt>format=yuv420p</dt><dd>specifies a pixel format of Y′C<sub>B</sub>C<sub>R</sub> 4:2:0</dd>
-            <dt>"</dt><dd>quotation mark to end filtergraph</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
-          </dl>
-          <p><b>Note:</b> the very same scaling filter also downscales a bigger image size into HD.</p>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends NTSC to H.264 -->
+  <h2 id="properties">Change video properties</h2>
 
   <!-- 4:3 to 16:9 -->
   <span data-toggle="modal" data-target="#SD_HD"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transform 4:3 aspect ratio into 16:9 with pillarbox">4:3 to 16:9</button></span>
@@ -503,46 +474,6 @@
   </div>
   <!-- ends Change display aspect ratio without re-encoding video -->
 
-  <!-- Deinterlace video -->
-  <span data-toggle="modal" data-target="#deinterlace"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Deinterlace video">Deinterlace video</button></span>
-  <div id="deinterlace" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Deinterlace a video</h3>
-          <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf "yadif,format=yuv420p" <i>output_file</i></code></p>
-          <p>This command takes an interlaced input file and outputs a deinterlaced H.264 MP4.</p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-c:v libx264</dt><dd>tells ffmpeg to encode the video stream as H.264</dd>
-            <dt>-vf</dt><dd>video filtering will be used (<code>-vf</code> is an alias of <code>-filter:v</code>)</dd>
-            <dt>"</dt><dd>start of filtergraph (see below)</dd>
-            <dt>yadif</dt><dd>deinterlacing filter (‘yet another deinterlacing filter’)<br>
-            By default, <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1" target="_blank">yadif</a> will output one frame for each frame. Outputting one frame for each <i>field</i> (thereby doubling the frame rate) with <code>yadif=1</code> may produce visually better results.</dd>
-            <dt>,</dt><dd>separates filters</dd>
-            <dt>format=yuv420p</dt><dd>chroma subsampling set to 4:2:0<br>
-            By default, <code>libx264</code> will use a chroma subsampling scheme that is the closest match to that of the input. This can result in Y′C<sub>B</sub>C<sub>R</sub> 4:2:0, 4:2:2, or 4:4:4 chroma subsampling. QuickTime and most other non-FFmpeg based players can’t decode H.264 files that are not 4:2:0, therefore it’s advisable to specify 4:2:0 chroma subsampling.</dd>
-            <dt>"</dt><dd>end of filtergraph</dd>
-            <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
-          </dl>
-          <p> <code>"yadif,format=yuv420p"</code> is an ffmpeg <a href="https://trac.ffmpeg.org/wiki/FilteringGuide#FiltergraphChainFilterrelationship" target="_blank">filtergraph</a>. Here the filtergraph is made up of one filter chain, which is itself made up of the two filters (separated by the comma).<br>
-          The enclosing quote marks are necessary when you use spaces within the filtergraph, e.g. <code>-vf "yadif, format=yuv420p"</code>, and are included above as an example of good practice.</p>
-          <p><b>Note:</b> ffmpeg includes several deinterlacers apart from <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1" target="_blank">yadif</a>: <a href="https://ffmpeg.org/ffmpeg-filters.html#bwdif" target="_blank">bwdif</a>, <a href="https://ffmpeg.org/ffmpeg-filters.html#w3fdif" target="_blank">w3fdif</a>, <a href="https://ffmpeg.org/ffmpeg-filters.html#kerndeint" target="_blank">kerndeint</a>, and <a href="https://ffmpeg.org/ffmpeg-filters.html#nnedi" target="_blank">nnedi</a>.</p>
-          <p>For more H.264 encoding options, see the latter section of the <a href="./index.html#transcode_h264">encode H.264 command</a>.</p>
-          <div class="sample-image">
-            <h2>Example</h2>
-            <p>Before and after deinterlacing:</p>
-            <img src="img/interlaced_video.png" alt="VLC screenshot of original interlaced video">
-            <img src="img/deinterlaced_video.png" alt="VLC screenshot of deinterlaced video">
-          </div>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Deinterlace video -->
-
   <!-- Convert colourspace -->
   <span data-toggle="modal" data-target="#convert-colourspace"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Convert colourspace of video">Convert colourspace</button></span>
   <div id="convert-colourspace" class="modal fade" tabindex="-1" role="dialog">
@@ -601,6 +532,255 @@
   </div>
   <!-- ends Convert colourspace -->
 
+  </div>
+  <div class="well">
+  <h2 id="join-trim">Join, trim, or excerpt a video</h2>
+
+  <!-- Join files together -->
+  <span data-toggle="modal" data-target="#join_files"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Join (concatenate) two or more files into a single file">Join files together</button></span>
+  <div id="join_files" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Join files together</h3>
+          <p><code>ffmpeg -f concat -i mylist.txt -c copy <i>output_file</i></code></p>
+          <p>This command takes two or more files of the same file type and joins them together to make a single file. All that the program needs is a text file with a list specifying the files that should be joined. However, it only works properly if the files to be combined have the exact same codec and technical specifications. Be careful, ffmpeg may appear to have successfully joined two video files with different codecs, but may only bring over the audio from the second file or have other weird behaviors. Don’t use this command for joining files with different codecs and technical specs and always preview your resulting video file!</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-f concat</dt><dd>forces ffmpeg to concatenate the files and to keep the same file format</dd>
+            <dt>-i <i>mylist.txt</i></dt><dd>path, name and extension of the input file. Per the <a href="https://www.ffmpeg.org/ffmpeg-formats.html#Options" target="_blank">ffmpeg documentation</a>, it is preferable to specify relative rather than absolute file paths, as allowing absolute file paths may pose a security risk.<br>
+            This text file contains the list of files to be concatenated and should be formatted as follows:
+            <pre>file '<i>./first_file.ext</i>'
+file '<i>./second_file.ext</i>'
+. . .
+file '<i>./last_file.ext</i>'</pre>
+In the above, <b>file</b> is simply the word "file". Straight apostrophes ('like this') rather than curved quotation marks (‘like this’) must be used to enclose the file paths.<br>
+<b>Note:</b> If specifying absolute file paths in the .txt file, add <code>-safe 0</code> before the input file.<br>
+e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></code></dd>
+            <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p>For more information, see the <a href="https://trac.ffmpeg.org/wiki/Concatenate" target="_blank">ffmpeg wiki page on concatenating files</a>.</p>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Join files together -->
+
+  <!-- Split file into segments -->
+  <span data-toggle="modal" data-target="#segment_file"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Split one file into several smaller segments">Split file into segments</button></span>
+  <div id="segment_file" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Split file into segments</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -c copy -map 0 -f segment -segment_time 60 -reset_timestamps 1 <i>output_file-%03d.mkv</i></code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>Starts the command.</dd>
+            <dt>-i <i>input_file</i></dt><dd>Takes in a normal file.</dd>
+            <dt>-c copy</dt><dd>Use stream copy mode to re-mux instead of re-encode.</dd>
+            <dt>-map 0</dt><dd>Tells ffmpeg to map all streams of the input to the output.</dd>
+            <dt>-f segment</dt><dd>Use <a href="http://www.ffmpeg.org/ffmpeg-formats.html#toc-segment_002c-stream_005fsegment_002c-ssegment">segment muxer</a> for generating the output.</dd>
+            <dt>-segment_time 60</dt><dd>Set duration of each segment (in seconds). This example creates segments with max. duration of 60s each.</dd>
+            <dt>-reset_timestamps 1</dt><dd>Reset timestamps of each segment to 0. Meant to ease the playback of the generated segments.</dd>
+            <dt><i>output_file-%03d.mkv</i></dt>
+            <dd>
+            <p>Path, name and extension of the output file.<br>
+              In order to have an incrementing number in each segment filename, FFmpeg supports <a href="http://www.cplusplus.com/reference/cstdio/printf/">printf-style</a> syntax for a counter.</p>
+              <p>In this example, '%03d' means: 3-digits, zero-padded<br>
+                Examples:</p>
+              <ul>
+                <li><code>%03d</code>: 000, 001, 002, ... 999</li>
+                <li><code>%05d</code>: 00000, 00001, 00002, ... 99999</li>
+                <li><code>%d</code>: 0, 1, 2, 3, 4, ... 23, 24, etc. </li>
+              </ul>
+            </dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Split file into segments -->
+
+  <!-- Trim -->
+  <span data-toggle="modal" data-target="#trim"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Trim video">Trim video</button></span>
+  <div id="trim" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Trim a video without re-encoding</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -ss 00:02:00 -to 00:55:00 -c copy -map 0 <i>output_file</i></code></p>
+          <p>This command allows you to create an excerpt from a video file without re-encoding the image data.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-ss 00:02:00</dt><dd>sets in point at 00:02:00</dd>
+            <dt>-to 00:55:00</dt><dd>sets out point at 00:55:00</dd>
+            <dt>-c copy</dt><dd>use stream copy mode (no re-encoding)<br>
+            <dt>-map 0</dt><dd>Tells ffmpeg to map all streams of the input to the output.</dd>
+            <b>Note:</b> watch out when using <code>-ss</code> with <code>-c copy</code> if the source is encoded with an interframe codec (e.g., H.264). Since ffmpeg must split on i-frames, it will seek to the nearest i-frame to begin the stream copy.</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p>Variation: trim video by setting duration, by using <code>-t</code> instead of <code>-to</code></p>
+          <p><code>ffmpeg -i <i>input_file</i> -ss 00:05:00 -t 10 -c copy <i>output_file</i></code></p>
+          <dl>
+            <dt>-ss 00:05:00 -t 10</dt><dd>Beginning five minutes into the original video, this command will create a 10-second-long excerpt.</dd>
+          </dl>
+          <p>Note: In order to keep the original timestamps, without trying to sanitise them, you may add the <code>-copyts</code> option.</p>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Trim -->
+
+  <!-- Excerpt from beginning -->
+  <span data-toggle="modal" data-target="#excerpt_from_start"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create an excerpt, starting from the beginning of the file">Excerpt from beginning</button></span>
+  <div id="excerpt_from_start" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Excerpt from beginning</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -t <i>5</i> -c copy -map 0 <i>output_file</i></code></p>
+          <p>This command captures a certain portion of a video file, starting from the beginning and continuing for the amount of time (in seconds) specified in the script. This can be used to create a preview file, or to remove unwanted content from the end of the file. To be more specific, use timecode, such as 00:00:05.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-t <i>5</i></dt><dd>Tells ffmpeg to stop copying from the input file after a certain time, and specifies the number of seconds after which to stop copying. In this case, 5 seconds is specified.</dd>
+            <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
+            <dt>-map 0</dt><dd>Tells ffmpeg to map all streams of the input to the output.</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Excerpt from beginning -->
+
+  <!-- Excerpt to end -->
+  <span data-toggle="modal" data-target="#excerpt_to_end"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create a new video file with the first five seconds trimmed off the original">Excerpt to end</button></span>
+  <div id="excerpt_to_end" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Excerpt to end</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -ss <i>5</i> -c copy -map 0 <i>output_file</i></code></p>
+          <p>This command copies a video file starting from a specified time, removing the first few seconds from the output. This can be used to create an excerpt, or remove unwanted content from the beginning of a video file.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-ss <i>5</i></dt><dd>Tells ffmpeg what timecode in the file to look for to start copying, and specifies the number of seconds into the video that ffmpeg should start copying. To be more specific, you can use timecode such as 00:00:05.</dd>
+            <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
+            <dt>-map 0</dt><dd>Tells ffmpeg to map all streams of the input to the output.</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Excerpt to end -->
+
+  <!-- Excerpt from end -->
+  <span data-toggle="modal" data-target="#excerpt_from_end"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create a new video file with the final five seconds of the original">Excerpt from end</button></span>
+  <div id="excerpt_from_end" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Excerpt from end</h3>
+          <p><code>ffmpeg -sseof <i>-5</i> -i <i>input_file</i> -c copy -map 0 <i>output_file</i></code></p>
+          <p>This command copies a video file starting from a specified time before the end of the file, removing everything before from the output. This can be used to create an excerpt, or extract content from the end of a video file (e.g. for extracting the closing credits).</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-sseof <i>-5</i></dt><dd>This parameter must stay before the input file. It tells ffmpeg what timecode in the file to look for to start copying, and specifies the number of seconds from the end of the video that ffmpeg should start copying. The end of the file has index 0 and the minus sign is needed to reference earlier portions. To be more specific, you can use timecode such as -00:00:05. Note that in most file formats it is not possible to seek exactly, so ffmpeg will seek to the closest point before.</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
+            <dt>-map 0</dt><dd>Tells ffmpeg to map all streams of the input to the output.</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Excerpt from end -->
+
+  </div>
+  <div class="well">
+  <h2 id="interlacing">Work with interlaced video</h2>
+
+  <!-- NTSC to H.264 -->
+  <span data-toggle="modal" data-target="#ntsc_to_h264"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Upscaled, pillar-boxed HD H.264 access files from SD NTSC source">NTSC to H.264</button></span>
+  <div id="ntsc_to_h264" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Upscaled, Pillar-boxed HD H.264 Access Files from SD NTSC source</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -filter:v "yadif, scale=1440:1080:flags=lanczos, pad=1920:1080:(ow-iw)/2:(oh-ih)/2, format=yuv420p" <i>output_file</i></code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>Calls the program ffmpeg</dd>
+            <dt>-i</dt><dd>for input video file and audio file</dd>
+            <dt>-c:v libx264</dt><dd>encodes video stream with libx264 (h264)</dd>
+            <dt>"</dt><dd>quotation mark to start filtergraph</dd>
+            <dt>yadif</dt><dd>deinterlacing filter (‘yet another deinterlacing filter’)<br>
+             By default, <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1" target="_blank">yadif</a> will output one frame for each frame. Outputting one frame for each <i>field</i> (thereby doubling the frame rate) with <code>yadif=1</code> may produce visually better results.</dd>
+            <dt>scale=1440:1080:flags=lanczos</dt><dd>resizes the image to 1440x1080, using the Lanczos scaling algorithm, which is slower but better than the default bilinear algorithm.</dd>
+            <dt>pad=1920:1080:(ow-iw)/2:(oh-ih)/2</dt><dd>pads the area around the 4:3 input video to create a 16:9 output video</dd>
+            <dt>format=yuv420p</dt><dd>specifies a pixel format of Y′C<sub>B</sub>C<sub>R</sub> 4:2:0</dd>
+            <dt>"</dt><dd>quotation mark to end filtergraph</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p><b>Note:</b> the very same scaling filter also downscales a bigger image size into HD.</p>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends NTSC to H.264 -->
+
+  <!-- Deinterlace video -->
+  <span data-toggle="modal" data-target="#deinterlace"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Deinterlace video">Deinterlace video</button></span>
+  <div id="deinterlace" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Deinterlace a video</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf "yadif,format=yuv420p" <i>output_file</i></code></p>
+          <p>This command takes an interlaced input file and outputs a deinterlaced H.264 MP4.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-c:v libx264</dt><dd>tells ffmpeg to encode the video stream as H.264</dd>
+            <dt>-vf</dt><dd>video filtering will be used (<code>-vf</code> is an alias of <code>-filter:v</code>)</dd>
+            <dt>"</dt><dd>start of filtergraph (see below)</dd>
+            <dt>yadif</dt><dd>deinterlacing filter (‘yet another deinterlacing filter’)<br>
+            By default, <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1" target="_blank">yadif</a> will output one frame for each frame. Outputting one frame for each <i>field</i> (thereby doubling the frame rate) with <code>yadif=1</code> may produce visually better results.</dd>
+            <dt>,</dt><dd>separates filters</dd>
+            <dt>format=yuv420p</dt><dd>chroma subsampling set to 4:2:0<br>
+            By default, <code>libx264</code> will use a chroma subsampling scheme that is the closest match to that of the input. This can result in Y′C<sub>B</sub>C<sub>R</sub> 4:2:0, 4:2:2, or 4:4:4 chroma subsampling. QuickTime and most other non-FFmpeg based players can’t decode H.264 files that are not 4:2:0, therefore it’s advisable to specify 4:2:0 chroma subsampling.</dd>
+            <dt>"</dt><dd>end of filtergraph</dd>
+            <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p> <code>"yadif,format=yuv420p"</code> is an ffmpeg <a href="https://trac.ffmpeg.org/wiki/FilteringGuide#FiltergraphChainFilterrelationship" target="_blank">filtergraph</a>. Here the filtergraph is made up of one filter chain, which is itself made up of the two filters (separated by the comma).<br>
+          The enclosing quote marks are necessary when you use spaces within the filtergraph, e.g. <code>-vf "yadif, format=yuv420p"</code>, and are included above as an example of good practice.</p>
+          <p><b>Note:</b> ffmpeg includes several deinterlacers apart from <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1" target="_blank">yadif</a>: <a href="https://ffmpeg.org/ffmpeg-filters.html#bwdif" target="_blank">bwdif</a>, <a href="https://ffmpeg.org/ffmpeg-filters.html#w3fdif" target="_blank">w3fdif</a>, <a href="https://ffmpeg.org/ffmpeg-filters.html#kerndeint" target="_blank">kerndeint</a>, and <a href="https://ffmpeg.org/ffmpeg-filters.html#nnedi" target="_blank">nnedi</a>.</p>
+          <p>For more H.264 encoding options, see the latter section of the <a href="./index.html#transcode_h264">encode H.264 command</a>.</p>
+          <div class="sample-image">
+            <h2>Example</h2>
+            <p>Before and after deinterlacing:</p>
+            <img src="img/interlaced_video.png" alt="VLC screenshot of original interlaced video">
+            <img src="img/deinterlaced_video.png" alt="VLC screenshot of deinterlaced video">
+          </div>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Deinterlace video -->
+
   <!-- Inverse telecine -->
   <span data-toggle="modal" data-target="#inverse-telecine"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Inverse telecine video">Inverse telecine</button></span>
   <div id="inverse-telecine" class="modal fade" tabindex="-1" role="dialog">
@@ -637,9 +817,53 @@
   </div>
   <!-- ends Inverse telecine -->
 
+  <!-- Set field order -->
+  <span data-toggle="modal" data-target="#set_field_order"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Set field order for interlaced video">Set field order</button></span>
+  <div id="set_field_order" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Change field order of an interlaced video</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v <i>video_codec</i> -filter:v setfield=tff <i>output_file</i></code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-filter:v setfield=tff</dt><dd>Sets the field order to top field first. Use <code>setfield=bff</code> for bottom field first.</dd>
+            <dt>-c:v <i>video_codec</i></dt><dd>As a video filter is used, it is not possible to use <code>-c copy</code>. The video must be re-encoded with whatever video codec is chosen, e.g. <code>ffv1</code>, <code>v210</code> or <code>prores</code>.</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Set field order -->
+
+  <!-- Check interlacement  -->
+  <span data-toggle="modal" data-target="#check_interlacement"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Identify interlacement patterns in a video file">Check interlacement </button></span>
+  <div id="check_interlacement" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Check video file interlacement patterns</h3>
+          <p><code>ffmpeg -i <i>input file</i> -filter:v idet -f null -</code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-filter:v idet</dt><dd>This calls the <a href="https://ffmpeg.org/ffmpeg-filters.html#idet" target="_blank">idet (detect video interlacing type) filter</a>.</dd>
+            <dt>-f null</dt><dd>Video is decoded with the <code>null</code> muxer. This allows video decoding without creating an output file.</dd>
+            <dt>-</dt><dd>FFmpeg syntax requires a specified output, and <code>-</code> is just a place holder. No file is actually created.</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Check interlacement   -->
+
   </div>
   <div class="well">
-  <h2>Filters</h2>
+  <h2 id="filters-scopes">Use filters or scopes</h2>
 
   <!-- abitscope -->
   <span data-toggle="modal" data-target="#abitscope"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Audio Bitscope">Audio Bitscope</button></span>
@@ -733,58 +957,6 @@
   </div>
   <!-- ends BRNG -->
 
-  <!-- ocr -->
-  <span data-toggle="modal" data-target="#ocr_on_top"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Play video with OCR on top">Shows OCR</button></span>
-  <div id="ocr_on_top" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Plays video with OCR on top</h3>
-          <p>Note: ffmpeg must be compiled with the tesseract library for this script to work (<code>--with-tesseract</code> if using <code>brew install ffmpeg</code> method).</p>
-          <p><code>ffplay input_file -vf "ocr,drawtext=fontfile=/Library/Fonts/Andale Mono.ttf:text=%{metadata\\\:lavfi.ocr.text}:fontcolor=white"</code></p>
-          <dl>
-            <dt>ffplay</dt><dd>starts the command</dd>
-            <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-vf</dt><dd>creates a filtergraph to use for the streams</dd>
-            <dt>"</dt><dd>quotation mark to start filtergraph</dd>
-            <dt>ocr,</dt><dd>tells ffplay to use ocr as source and the comma signifies that the script is ready for filter assertion</dd>
-            <dt>drawtext=fontfile=/Library/Fonts/Andale Mono.ttf</dt><dd>tells ffplay to drawtext and use a specific font (Andale Mono) when doing so</dd>
-            <dt>:</dt><dd>indicates there’s another parameter coming</dd>
-            <dt>text=%{metadata\\\:lavfi.ocr.text}</dt><dd>tells ffplay what text to use when playing. In this case, calls for metadata that lives in the lavfi.ocr.text library</dd>
-            <dt>:</dt><dd>indicates there’s another parameter coming</dd>
-            <dt>fontcolor=white</dt><dd>specifies font color as white</dd>
-            <dt>"</dt><dd>quotation mark to end filtergraph</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends ocr -->
-
-  <!-- Exports OCR -->
-  <span data-toggle="modal" data-target="#ffprobe_ocr"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Export OCR from video to screen">Exports OCR</button></span>
-  <div id="ffprobe_ocr" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Exports OCR data to screen</h3>
-          <p>Note: ffmpeg must be compiled with the tesseract library for this script to work (<code>--with-tesseract</code> if using <code>brew install ffmpeg</code> method)</p>
-          <p><code>ffprobe -show_entries frame_tags=lavfi.ocr.text -f lavfi -i "movie=<i>input_file</i>,ocr"</code></p>
-          <dl>
-            <dt>ffprobe</dt><dd>starts the command</dd>
-            <dt>-show_entries</dt><dd>sets a list of entries to show</dd>
-            <dt>frame_tags=lavfi.ocr.text</dt><dd>shows the <i>lavfi.ocr.text</i> tag in the frame section of the video</dd>
-            <dt>-f lavfi</dt><dd>tells ffprobe to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter input virtual device</a></dd>
-            <dt>-i "movie=<i>input_file</i>,ocr"</dt><dd>declares 'movie' as <i>input_file</i> and passes in the 'ocr' command</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Exports OCR -->
-
   <!-- Vectorscope -->
   <span data-toggle="modal" data-target="#vectorscope"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Vectorscope from video to screen">Vectorscope</button></span>
   <div id="vectorscope" class="modal fade" tabindex="-1" role="dialog">
@@ -849,7 +1021,59 @@
 
   </div>
   <div class="well">
-  <h2>Make derivative variations</h2>
+  <h2 id="metadata">View or delete metadata</h2>
+
+  <!-- Pull specs -->
+  <span data-toggle="modal" data-target="#pull_specs"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Pull specs from video file">Pull specs</button></span>
+  <div id="pull_specs" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Pull specs from video file</h3>
+          <p><code>ffprobe -i <i>input_file</i> -show_format -show_streams -show_data -print_format xml</code></p>
+          <p>This command extracts technical metadata from a video file and displays it in xml.</p>
+          <p>ffmpeg documentation on ffprobe (full list of flags, commands, <a href="https://www.ffmpeg.org/ffprobe.html" target="_blank">www.ffmpeg.org/ffprobe.html</a>)</p>
+          <dl>
+            <dt>ffprobe</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-show_format</dt><dd>outputs file container informations</dd>
+            <dt>-show_streams</dt><dd>outputs audio and video codec informations</dd>
+            <dt>-show_data</dt><dd>adds a short “hexdump” to show_streams command output</dd>
+            <dt>-print_format</dt><dd>Set the output printing format (in this example “xml”; other formats include “json” and “flat”)</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Pull specs -->
+
+    <!-- Strip metadata -->
+  <span data-toggle="modal" data-target="#strip_metadata"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Strip metadata">Strip metadata</button></span>
+  <div id="strip_metadata" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Strips metadata from video file</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -map_metadata -1 -c:v copy -c:a copy <i>output_file</i></code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-map_metadata -1</dt><dd>sets metadata copying to -1, which copies nothing</dd>
+            <dt>-vcodec copy</dt><dd>copies video track</dd>
+            <dt>-acodec copy</dt><dd>copies audio track</dd>
+            <dt><i>output_file</i></dt><dd>Makes copy of original file and names output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Strip metadata -->
+
+  </div>
+  <div class="well">
+  <h2 id="still-images">Generate image files from a video</h2>
 
   <!-- Create GIF -->
   <span data-toggle="modal" data-target="#create_gif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create a GIF from a video">Create GIF</button></span>
@@ -935,21 +1159,25 @@
   </div>
   <!-- ends Multi thumbnail -->
 
-  <!-- Excerpt from beginning -->
-  <span data-toggle="modal" data-target="#excerpt_from_start"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create an excerpt, starting from the beginning of the file">Excerpt from beginning</button></span>
-  <div id="excerpt_from_start" class="modal fade" tabindex="-1" role="dialog">
+  </div>
+  <div class="well">
+  <h2 id="create-video">Create a video</h2>
+
+  <!-- Images to video -->
+  <span data-toggle="modal" data-target="#images_2_video"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode an image sequence into uncompressed 10-bit video">Image sequence into video</button></span>
+  <div id="images_2_video" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
-          <h3>Excerpt from beginning</h3>
-          <p><code>ffmpeg -i <i>input_file</i> -t <i>5</i> -c copy -map 0 <i>output_file</i></code></p>
-          <p>This command captures a certain portion of a video file, starting from the beginning and continuing for the amount of time (in seconds) specified in the script. This can be used to create a preview file, or to remove unwanted content from the end of the file. To be more specific, use timecode, such as 00:00:05.</p>
+          <h3>Transcode an image sequence into uncompressed 10-bit video</h3>
+          <p><code>ffmpeg -f image2 -framerate 24 -i <i>input_file_%06d.ext</i> -c:v v210 <i>output_file</i></code></p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-t <i>5</i></dt><dd>Tells ffmpeg to stop copying from the input file after a certain time, and specifies the number of seconds after which to stop copying. In this case, 5 seconds is specified.</dd>
-            <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
-            <dt>-map 0</dt><dd>Tells ffmpeg to map all streams of the input to the output.</dd>
+            <dt>-f image2</dt><dd>forces the image file de-muxer for single image files</dd>
+            <dt>-framerate 24</dt><dd>Sets the input framerate to 24 fps. The image2 demuxer defaults to 25 fps.</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file<br>
+            This must match the naming convention actually used! The regex %06d matches six digits long numbers, possibly with leading zeroes. This allows to read in ascending order, one image after the other, the full sequence inside one folder. For image sequences starting with 086400 (i.e. captured with a timecode starting at 01:00:00:00 and at 24 fps), add the flag <code>-start_number 086400</code> before <code>-i input_file_%06d.ext</code>. The extension for TIFF files is .tif or maybe .tiff; the extension for DPX files is .dpx (or eventually .cin for old files).</dd>
+            <dt>-c:v v210</dt><dd>encodes an uncompressed 10-bit video stream</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
           <p class="link"></p>
@@ -957,176 +1185,127 @@
       </div>
     </div>
   </div>
-  <!-- ends Excerpt from beginning -->
+  <!-- ends Images to video -->
 
-  <!-- Trim -->
-  <span data-toggle="modal" data-target="#trim"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Trim video">Trim video</button></span>
-  <div id="trim" class="modal fade" tabindex="-1" role="dialog">
+  <!-- Create video from image and audio  -->
+  <span data-toggle="modal" data-target="#image-audio"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create video from image and audio">Create video from image and audio</button></span>
+  <div id="image-audio" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
-          <h3>Trim a video without re-encoding</h3>
-          <p><code>ffmpeg -i <i>input_file</i> -ss 00:02:00 -to 00:55:00 -c copy -map 0 <i>output_file</i></code></p>
-          <p>This command allows you to create an excerpt from a video file without re-encoding the image data.</p>
+          <h3>Create a video from an image and audio file.</h3>
+          <p><code>ffmpeg -r 1 -loop 1 -i <i>image_file</i> -i <i>audio_file</i> -acodec copy -shortest -vf scale=1280:720 <i>output_file</i></code></p>
+          <p>This command will take an image file (e.g. image.jpg) and an audio file (e.g. audio.mp3) and combine them into a video file that contains the audio track with the image used as the video. It can be useful in a situation where you might want to upload an audio file to a platform like YouTube. You may want to adjust the scaling with -vf to suit your needs.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-ss 00:02:00</dt><dd>sets in point at 00:02:00</dd>
-            <dt>-to 00:55:00</dt><dd>sets out point at 00:55:00</dd>
-            <dt>-c copy</dt><dd>use stream copy mode (no re-encoding)<br>
-            <dt>-map 0</dt><dd>Tells ffmpeg to map all streams of the input to the output.</dd>
-            <b>Note:</b> watch out when using <code>-ss</code> with <code>-c copy</code> if the source is encoded with an interframe codec (e.g., H.264). Since ffmpeg must split on i-frames, it will seek to the nearest i-frame to begin the stream copy.</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
-          </dl>
-          <p>Variation: trim video by setting duration, by using <code>-t</code> instead of <code>-to</code></p>
-          <p><code>ffmpeg -i <i>input_file</i> -ss 00:05:00 -t 10 -c copy <i>output_file</i></code></p>
-          <dl>
-            <dt>-ss 00:05:00 -t 10</dt><dd>Beginning five minutes into the original video, this command will create a 10-second-long excerpt.</dd>
-          </dl>
-          <p>Note: In order to keep the original timestamps, without trying to sanitise them, you may add the <code>-copyts</code> option.</p>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Trim -->
-
-  <!-- Excerpt to end -->
-  <span data-toggle="modal" data-target="#excerpt_to_end"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create a new video file with the first five seconds trimmed off the original">Excerpt to end</button></span>
-  <div id="excerpt_to_end" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Excerpt to end</h3>
-          <p><code>ffmpeg -i <i>input_file</i> -ss <i>5</i> -c copy -map 0 <i>output_file</i></code></p>
-          <p>This command copies a video file starting from a specified time, removing the first few seconds from the output. This can be used to create an excerpt, or remove unwanted content from the beginning of a video file.</p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-ss <i>5</i></dt><dd>Tells ffmpeg what timecode in the file to look for to start copying, and specifies the number of seconds into the video that ffmpeg should start copying. To be more specific, you can use timecode such as 00:00:05.</dd>
-            <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
-            <dt>-map 0</dt><dd>Tells ffmpeg to map all streams of the input to the output.</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+            <dt>-r <i>1</i></dt><dd>set the framerate</dd>
+            <dt>-loop <i>1</i></dt><dd>loop the first input stream</dd>
+            <dt>-i <i>image_file</i></dt><dd>path, name and extension of the image file</dd>
+            <dt>-i <i>audio_file</i></dt><dd>path, name and extension of the audio file</dd>
+            <dt>-acodec copy</dt><dd>copy the audio. -acodec is an alias for -c:a</dd>
+            <dt>-shortest</dt><dd>finish encoding when the shortest input stream ends</dd>
+            <dt>-vf scale=1280:720</dt><dd>filter the video to scale it to 1280x720 for YouTube. -vf is an alias for -filter:v</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the video output file</dd>
           </dl>
           <p class="link"></p>
         </div>
       </div>
     </div>
   </div>
-  <!-- ends Excerpt to end -->
-
-  <!-- Excerpt from end -->
-  <span data-toggle="modal" data-target="#excerpt_from_end"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create a new video file with the final five seconds of the original">Excerpt from end</button></span>
-  <div id="excerpt_from_end" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Excerpt from end</h3>
-          <p><code>ffmpeg -sseof <i>-5</i> -i <i>input_file</i> -c copy -map 0 <i>output_file</i></code></p>
-          <p>This command copies a video file starting from a specified time before the end of the file, removing everything before from the output. This can be used to create an excerpt, or extract content from the end of a video file (e.g. for extracting the closing credits).</p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-sseof <i>-5</i></dt><dd>This parameter must stay before the input file. It tells ffmpeg what timecode in the file to look for to start copying, and specifies the number of seconds from the end of the video that ffmpeg should start copying. The end of the file has index 0 and the minus sign is needed to reference earlier portions. To be more specific, you can use timecode such as -00:00:05. Note that in most file formats it is not possible to seek exactly, so ffmpeg will seek to the closest point before.</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
-            <dt>-map 0</dt><dd>Tells ffmpeg to map all streams of the input to the output.</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Excerpt from end -->
-
-  <!-- Create ISO -->
-  <span data-toggle="modal" data-target="#create_iso"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create ISO files for DVD access">Create ISO</button></span>
-  <div id="create_iso" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Create ISO files for DVD access</h3>
-          <p>Create an ISO file that can be used to burn a DVD. Please note, you will have to install dvdauthor. To install dvd author using Homebrew run: <code>brew install dvdauthor</code></p>
-          <p><code>ffmpeg -i <i>input_file</i> -aspect <i>4:3</i> -target ntsc-dvd <i>output_file</i>.mpg</code></p>
-          <p>This command will take any file and create an MPEG file that dvdauthor can use to create an ISO.</p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-aspect 4:3</dt><dd>declares the aspect ratio of the resulting video file. You can also use 16:9.</dd>
-            <dt>-target ntsc-dvd</dt><dd>specifies the region for your DVD. This could be also pal-dvd.</dd>
-            <dt><i>output_file</i>.mpg</dt><dd>path and name of the output file. The extension must be <code>.mpg</code></dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Create ISO -->
-
-  <!-- Cover head switching noise -->
-  <span data-toggle="modal" data-target="#cover_head"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Cover head switching noise">Cover head switching noise</button></span>
-  <div id="cover_head" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Cover head switching noise</h3>
-          <p><code>ffmpeg -i <i>input_file</i> -filter:v drawbox=w=iw:h=7:y=ih-h:t=max <i>output_file</i></code></p>
-          <p>This command will draw a black box over a small area of the bottom of the frame, which can be used to cover up head switching noise.</p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-filter:v drawbox=</dt>
-            <dd>This calls the drawtext filter with the following options:
-              <dl>
-                <dt>w=in_w</dt><dd>Width is set to the input width. Shorthand for this command would be w=iw</dd>
-                <dt>h=7</dt><dd>Height is set to 7 pixels.</dd>
-                <dt>y=ih-h</dt><dd>Y represents the offset, and ih-h sets it to the input height minus the height declared in the previous parameter, setting the box at the bottom of the frame.</dd>
-                <dt>t=max</dt><dd>T represents the thickness of the drawn box. Default is 3.</dd>
-              </dl>
-            </dd>
-            <dt><i>output_file</i></dt><dd>path and name of the output file</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Cover head switching noise -->
-
-  <!-- append notice to access mp3 -->
-  <span data-toggle="modal" data-target="#append_mp3"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Generate two access MP3s from input. One with added audio (such as copyright notice) and one unmodified.">Append notice to access MP3</button></span>
-  <div id="append_mp3" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Generate two access MP3s from input. One with appended audio (such as copyright notice) and one unmodified.</h3>
-          <p> <code>ffmpeg -i <i>input_file</i> -i <i>input_file_to_append</i> -filter_complex "[0:a:0]asplit=2[a][b];[b]afifo[bb];[1:a:0][bb]concat=n=2:v=0:a=1[concatout]" -map "[a]" -codec:a libmp3lame -dither_method modified_e_weighted -qscale:a 2 <i>output_file.mp3</i> -map "[concatout]" -codec:a libmp3lame -dither_method modified_e_weighted -qscale:a 2 <i>output_file_appended.mp3</i></code></p>
-          <p>This script allows you to generate two derivative audio files from a master while appending audio from a separate file (for example a copyright or institutional notice) to one of them.</p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file (the master file)</dd>
-            <dt>-i <i>input_file_to_append</i></dt><dd>path, name and extension of the input file (the file to be appended to access file)</dd>
-            <dt>-filter_complex</dt><dd>enables the complex filtering to manage splitting the input to two audio streams</dd>
-            <dt>[0:a:0]asplit=2[a][b];</dt><dd><code>asplit</code> allows audio streams to be split up for separate manipulation. This command splits the audio from the first input (the master file) into two streams "a" and "b"</dd>
-            <dt>[b]afifo[bb];</dt><dd>this buffers the stream "b" to help prevent dropped samples and renames stream to "bb"</dd>
-            <dt>[1:a:0][bb]concat=n=2:v=0:a=1[concatout]</dt><dd><code>concat</code> is used to join files. <code>n=2</code> tells the filter there are two inputs. <code>v=0:a=1</code> Tells the filter there are 0 video outputs and 1 audio output. This command appends the audio from the second input to the beginning of stream "bb" and names the output "concatout"</dd>
-            <dt>-map "[a]"</dt><dd>this maps the unmodified audio stream to the first output</dd>
-            <dt>-codec:a libmp3lame -dither_method modified_e_weighted -qscale:a 2</dt><dd>sets up MP3 options (using constant quality)</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file (unmodified)</dd>
-            <dt>-map "[concatout]"</dt><dd>this maps the modified stream to the second output</dd>
-            <dt>-codec:a libmp3lame -dither_method modified_e_weighted -qscale:a 2</dt><dd>sets up MP3 options (using constant quality)</dd>
-            <dt><i>output_file_appended</i></dt><dd>path, name and extension of the output file (with appended notice)</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends append notice to access mp3 -->
+  <!-- ends Create video from image and audio -->
 
   </div>
   <div class="well">
-  <h2>Normalize/Equalize Audio</h2>
+  <h2 id="overlay">Overlay timecode or text</h2>
+
+  <!-- Text Watermark -->
+  <span data-toggle="modal" data-target="#text_watermark"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create opaque centered text watermark ">Text Watermark</button></span>
+  <div id="text_watermark" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Create centered, transparent text watermark</h3>
+          <p>E.g For creating access copies with your institutions name</p>
+          <p><code>ffmpeg -i <i>input_file</i> -vf drawtext="fontfile=<i>font_path</i>:fontsize=<i>font_size</i>:text=<i>watermark_text</i>:fontcolor=<i>font_colour</i>:alpha=0.4:x=(w-text_w)/2:y=(h-text_h)/2" <i>output_file</i></code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-vf drawtext=</dt><dd>This calls the drawtext filter with the following options:
+            <dl>
+              <dt>fontfile=<i>font_path</i></dt><dd> Set path to font. For example in macOS: <code>fontfile=/Library/Fonts/AppleGothic.ttf</code></dd>
+              <dt>fontsize=<i>font_size</i></dt><dd> Set font size. <code>35</code> is a good starting point for SD. Ideally this value is proportional to video size, for example use ffprobe to acquire video height and divide by 14.</dd>
+              <dt>text=<i>watermark_text</i> </dt><dd> Set the content of your watermark text. For example: <code>text='FFMPROVISR EXAMPLE TEXT'</code></dd>
+              <dt>fontcolor=<i>font_colour</i> </dt><dd> Set colour of font. Can be a text string such as <code>fontcolor=white</code> or a hexadecimal value such as <code>fontcolor=0xFFFFFF</code></dd>
+              <dt>alpha=0.4</dt><dd> Set transparency value.</dd>
+              <dt>x=(w-text_w)/2:y=(h-text_h)/2</dt><dd> Sets <i>x</i> and <i>y</i> coordinates for the watermark. These relative values will centre your watermark regardless of video dimensions.</dd>
+            </dl>
+            Note: <code>-vf</code> is a shortcut for <code>-filter:v</code>.</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file.</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Text watermark -->
+
+  <!-- Transparent Image Watermark -->
+  <span data-toggle="modal" data-target="#image_watermark"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Overlay image watermark">Overlay image watermark on video</button></span>
+  <div id="image_watermark" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Overlay image watermark on video</h3>
+          <p><code>ffmpeg -i <i>input_video file</i> -i <i>input_image_file</i> -filter_complex overlay=main_w-overlay_w-5:5 <i>output_file</i></code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_video_file</i></dt><dd>path, name and extension of the input video file</dd>
+            <dt>-i <i>input_image_file</i></dt><dd>path, name and extension of the image file</dd>
+            <dt>-filter_complex overlay=main_w-overlay_w-5:5</dt><dd>This calls the overlay filter and sets x and y coordinates for the position of the watermark on the video. Instead of hardcoding specific x and y coordinates, <code>main_w-overlay_w-5:5</code> uses relative coordinates to place the watermark in the upper right hand corner, based on the width of your input files. Please see the <a href="https://www.ffmpeg.org/ffmpeg-all.html#toc-Examples-102" target="_blank">ffmpeg documentation for more examples.</a></dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Image Watermark -->
+
+  <!-- Burn in timecode-->
+  <span data-toggle="modal" data-target="#burn_in_timecode"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Burn in timecode ">Burn in timecode</button></span>
+  <div id="burn_in_timecode" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Create a burnt in timecode on your image</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -vf drawtext="fontfile=<i>font_path</i>:fontsize=<i>font_size</i>:timecode=<i>starting_timecode</i>:fontcolor=<i>font_colour</i>:box=1:boxcolor=<i>box_colour</i>:rate=<i>timecode_rate</i>:x=(w-text_w)/2:y=h/1.2" <i>output_file</i></code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-vf drawtext=</dt><dd>This calls the drawtext filter with the following options:
+            <dt>"</dt><dd>quotation mark to start drawtext filter command</dd>
+            <dt>fontfile=<i>font_path</i></dt><dd> Set path to font. For example in macOS: <code>fontfile=/Library/Fonts/AppleGothic.ttf</code></dd>
+            <dt>fontsize=<i>font_size</i></dt><dd> Set font size. <code>35</code> is a good starting point for SD. Ideally this value is proportional to video size, for example use ffprobe to acquire video height and divide by 14.</dd>
+            <dt>timecode=<i>starting_timecode</i> </dt><dd> Set the timecode to be displayed for the first frame. Timecode is to be represented as <code>hh:mm:ss[:;.]ff</code>. Colon escaping is determined by O.S, for example in Ubuntu <code>timecode='09\\:50\\:01\\:23'</code>. Ideally, this value would be generated from the file itself using ffprobe.</dd>
+            <dt>fontcolor=<i>font_colour</i> </dt><dd> Set colour of font. Can be a text string such as <code>fontcolor=white</code> or a hexadecimal value such as <code>fontcolor=0xFFFFFF</code></dd>
+            <dt>box=1</dt><dd> Enable box around timecode</dd>
+            <dt>boxcolor=<i>box_colour</i></dt><dd> Set colour of box. Can be a text string such as <code>fontcolor=black</code> or a hexadecimal value such as <code>fontcolor=0x000000</code></dd>
+            <dt>rate=<i>timecode_rate</i></dt><dd> Framerate of video. For example <code>25/1</code></dd>
+            <dt>x=(w-text_w)/2:y=h/1.2</dt><dd> Sets <i>x</i> and <i>y</i> coordinates for the timecode. These relative values will horizontally centre your timecode in the bottom third regardless of video dimensions.</dd>
+            <dt>"</dt><dd>quotation mark to end drawtext filter command</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file.</dd>
+          </dl>
+          <p>Note: <code>-vf</code> is a shortcut for <code>-filter:v</code>.</p>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Burn in timecode -->
+
+  </div>
+  <div class="well">
+  <h2 id="normalise-audio">Normalize/Equalize Audio</h2>
 
   <!-- phase shift -->
   <span data-toggle="modal" data-target="#phase_shift"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Inverses the audio phase of the second channel">Flip phase shift</button></span>
@@ -1176,6 +1355,28 @@
     </div>
   </div>
   <!-- ends loudnorm metadata -->
+
+  <!-- RIAA equalization -->
+  <span data-toggle="modal" data-target="#riaa_eq"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="RIAA Equalization">RIAA Equalization</button></span>
+  <div id="riaa_eq" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>RIAA Equalization</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -af aemphasis=type=riaa <i>output_file</i></code></p>
+          <p>This will apply RIAA equalization to an input file allowing correct listening of audio transferred 'flat' (without EQ) from records that used this EQ curve. For more information about RIAA equalization see the <a href="https://en.wikipedia.org/wiki/RIAA_equalization" target="_blank">Wikipedia page</a> on the subject.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-af aemphasis=type=riaa</dt><dd>activates the aemphasis filter and sets it to use RIAA equalization</dd>
+            <dt><i>output_file</i></dt><dd>path and name of output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends RIAA equalization -->
 
   <!-- one pass loudnorm -->
   <span data-toggle="modal" data-target="#loudnorm_one_pass"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="One Pass Loudness Normalization">One Pass Loudness Normalization</button></span>
@@ -1233,31 +1434,9 @@
   </div>
   <!-- ends two pass loudnorm -->
 
-  <!-- RIAA equalization -->
-  <span data-toggle="modal" data-target="#riaa_eq"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="RIAA Equalization">RIAA Equalization</button></span>
-  <div id="riaa_eq" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>RIAA Equalization</h3>
-          <p><code>ffmpeg -i <i>input_file</i> -af aemphasis=type=riaa <i>output_file</i></code></p>
-          <p>This will apply RIAA equalization to an input file allowing correct listening of audio transferred 'flat' (without EQ) from records that used this EQ curve. For more information about RIAA equalization see the <a href="https://en.wikipedia.org/wiki/RIAA_equalization" target="_blank">Wikipedia page</a> on the subject.</p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-af aemphasis=type=riaa</dt><dd>activates the aemphasis filter and sets it to use RIAA equalization</dd>
-            <dt><i>output_file</i></dt><dd>path and name of output file</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends RIAA equalization -->
-
   </div>
   <div class="well">
-  <h2>Preservation</h2>
+  <h2 id="preservation">Preservation tasks</h2>
 
   <!-- batch processing (Mac/Linux) -->
   <span data-toggle="modal" data-target="#batch_processing_bash"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="FFmpeg batch processing on Mac/Linux">Batch processing (Mac/Linux)</button></span>
@@ -1388,77 +1567,6 @@ foreach ($file in $inputfiles) {
   </div>
   <!-- ends Create frame md5s (audio) -->
 
-  <!-- Pull specs -->
-  <span data-toggle="modal" data-target="#pull_specs"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Pull specs from video file">Pull specs</button></span>
-  <div id="pull_specs" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Pull specs from video file</h3>
-          <p><code>ffprobe -i <i>input_file</i> -show_format -show_streams -show_data -print_format xml</code></p>
-          <p>This command extracts technical metadata from a video file and displays it in xml.</p>
-          <p>ffmpeg documentation on ffprobe (full list of flags, commands, <a href="https://www.ffmpeg.org/ffprobe.html" target="_blank">www.ffmpeg.org/ffprobe.html</a>)</p>
-          <dl>
-            <dt>ffprobe</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-show_format</dt><dd>outputs file container informations</dd>
-            <dt>-show_streams</dt><dd>outputs audio and video codec informations</dd>
-            <dt>-show_data</dt><dd>adds a short “hexdump” to show_streams command output</dd>
-            <dt>-print_format</dt><dd>Set the output printing format (in this example “xml”; other formats include “json” and “flat”)</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Pull specs -->
-
-  <!-- Check FFV1 fixity -->
-  <span data-toggle="modal" data-target="#check_FFV1_fixity"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Decode your video and verify the internal CRC checksums">Check FFV1 fixity</button></span>
-  <div id="check_FFV1_fixity" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Check FFV1 Version 3 fixity</h3>
-          <p><code>ffmpeg -report -i <i>input_file</i> -f null -</code></p>
-          <p>This decodes your video and displays any CRC checksum mismatches. These errors will display in your terminal like this: <code>[ffv1 @ 0x1b04660] CRC mismatch 350FBD8A!at 0.272000 seconds</code></p>
-          <p>Frame crcs are enabled by default in FFV1 Version 3.</p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-report</dt><dd>Dump full command line and console output to a file named <i>ffmpeg-YYYYMMDD-HHMMSS.log</i> in the current directory. It also implies <code>-loglevel verbose</code>.</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-f null</dt><dd>Video is decoded with the <code>null</code> muxer. This allows video decoding without creating an output file.</dd>
-            <dt>-</dt><dd>FFmpeg syntax requires a specified output, and <code>-</code> is just a place holder. No file is actually created. </dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Check FFV1 Fixity  -->
-
-  <!-- Check interlacement  -->
-  <span data-toggle="modal" data-target="#check_interlacement"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Identify interlacement patterns in a video file">Check interlacement </button></span>
-  <div id="check_interlacement" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Check video file interlacement patterns</h3>
-          <p><code>ffmpeg -i <i>input file</i> -filter:v idet -f null -</code></p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-filter:v idet</dt><dd>This calls the <a href="https://ffmpeg.org/ffmpeg-filters.html#idet" target="_blank">idet (detect video interlacing type) filter</a>.</dd>
-            <dt>-f null</dt><dd>Video is decoded with the <code>null</code> muxer. This allows video decoding without creating an output file.</dd>
-            <dt>-</dt><dd>FFmpeg syntax requires a specified output, and <code>-</code> is just a place holder. No file is actually created.</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Check interlacement   -->
-
   <!-- QCTools Report -->
   <span data-toggle="modal" data-target="#qctools"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create a QCTools report for a video file with audio track">QCTools report (with audio)</button></span>
   <div id="qctools" class="modal fade" tabindex="-1" role="dialog">
@@ -1519,6 +1627,30 @@ foreach ($file in $inputfiles) {
   </div>
   <!-- ends QCTools Report (no audio) -->
 
+  <!-- Check FFV1 fixity -->
+  <span data-toggle="modal" data-target="#check_FFV1_fixity"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Decode your video and verify the internal CRC checksums">Check FFV1 fixity</button></span>
+  <div id="check_FFV1_fixity" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Check FFV1 Version 3 fixity</h3>
+          <p><code>ffmpeg -report -i <i>input_file</i> -f null -</code></p>
+          <p>This decodes your video and displays any CRC checksum mismatches. These errors will display in your terminal like this: <code>[ffv1 @ 0x1b04660] CRC mismatch 350FBD8A!at 0.272000 seconds</code></p>
+          <p>Frame crcs are enabled by default in FFV1 Version 3.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-report</dt><dd>Dump full command line and console output to a file named <i>ffmpeg-YYYYMMDD-HHMMSS.log</i> in the current directory. It also implies <code>-loglevel verbose</code>.</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-f null</dt><dd>Video is decoded with the <code>null</code> muxer. This allows video decoding without creating an output file.</dd>
+            <dt>-</dt><dd>FFmpeg syntax requires a specified output, and <code>-</code> is just a place holder. No file is actually created. </dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Check FFV1 Fixity  -->
+
   <!-- Read/Extract EIA-608 Closed Captions -->
   <span data-toggle="modal" data-target="#readeia608"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Read or extract EIA-608 (Line 21) closed captioning">Read/Extract EIA-608 Closed Captioning</button></span>
   <div id="readeia608" class="modal fade" tabindex="-1" role="dialog">
@@ -1551,7 +1683,7 @@ foreach ($file in $inputfiles) {
 
   </div>
   <div class="well">
-  <h2>Test files</h2>
+  <h2 id="test-files">Generate test files</h2>
 
   <!-- Mandelbrot -->
   <span data-toggle="modal" data-target="#mandelbrot"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Make a mandelbrot test pattern video">Mandelbrot</button></span>
@@ -1665,29 +1797,6 @@ foreach ($file in $inputfiles) {
   </div>
   <!-- ends Play VGA SMPTE bars -->
 
-  <!-- Broken File -->
-  <span data-toggle="modal" data-target="#broken_file"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Make a broken file out of a perfectly good one">Broken file</button></span>
-  <div id="broken_file" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Makes a broken test file</h3>
-          <p>Modifies an existing, functioning file and intentionally breaks it for testing purposes.</p>
-          <p><code>ffmpeg -i <i>input_file</i> -bsf noise=1 -c copy <i>output_file</i></code></p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>takes in a normal file</dd>
-            <dt>-bsf noise=1</dt><dd>sets bitstream filters for all to 'noise'. Filters can be set on specific filters using syntax such as <code>-bsf:v</code> for video, <code>-bsf:a</code> for audio, etc. The <a href="https://www.ffmpeg.org/ffmpeg-bitstream-filters.html#noise" target="_blank">noise filter</a> intentionally damages the contents of packets without damaging the container. This sets the noise level to 1 but it could be left blank or any number above 0.</dd>
-            <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Broken File -->
-
   <!-- Sine wave -->
   <span data-toggle="modal" data-target="#sine_wave"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Generate a test audio file playing a sine wave">Sine wave</button></span>
   <div id="sine_wave" class="modal fade" tabindex="-1" role="dialog">
@@ -1738,9 +1847,32 @@ foreach ($file in $inputfiles) {
   </div>
   <!-- ends SMPTE bars + Sine wave -->
 
+  <!-- Broken File -->
+  <span data-toggle="modal" data-target="#broken_file"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Make a broken file out of a perfectly good one">Broken file</button></span>
+  <div id="broken_file" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Makes a broken test file</h3>
+          <p>Modifies an existing, functioning file and intentionally breaks it for testing purposes.</p>
+          <p><code>ffmpeg -i <i>input_file</i> -bsf noise=1 -c copy <i>output_file</i></code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>takes in a normal file</dd>
+            <dt>-bsf noise=1</dt><dd>sets bitstream filters for all to 'noise'. Filters can be set on specific filters using syntax such as <code>-bsf:v</code> for video, <code>-bsf:a</code> for audio, etc. The <a href="https://www.ffmpeg.org/ffmpeg-bitstream-filters.html#noise" target="_blank">noise filter</a> intentionally damages the contents of packets without damaging the container. This sets the noise level to 1 but it could be left blank or any number above 0.</dd>
+            <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Broken File -->
+
   </div>
   <div class="well">
-  <h2>Repair</h2>
+  <h2 id="repair">Repair</h2>
 
   <!-- Fix A/V async 1 -->
   <span data-toggle="modal" data-target="#avsync_aresample"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Fix A/V sync issues by resampling audio">Fix AV Sync: Resample audio</button></span>
@@ -1767,75 +1899,63 @@ foreach ($file in $inputfiles) {
 
   </div>
   <div class="well">
-  <h2>Other</h2>
+  <h2 id="ocr">Use OCR</h2>
 
-  <!-- Join files together -->
-  <span data-toggle="modal" data-target="#join_files"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Join (concatenate) two or more files into a single file">Join files together</button></span>
-  <div id="join_files" class="modal fade" tabindex="-1" role="dialog">
+  <!-- Show OCR -->
+  <span data-toggle="modal" data-target="#ocr_on_top"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Play video with OCR on top">Show OCR</button></span>
+  <div id="ocr_on_top" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
-          <h3>Join files together</h3>
-          <p><code>ffmpeg -f concat -i mylist.txt -c copy <i>output_file</i></code></p>
-          <p>This command takes two or more files of the same file type and joins them together to make a single file. All that the program needs is a text file with a list specifying the files that should be joined. However, it only works properly if the files to be combined have the exact same codec and technical specifications. Be careful, ffmpeg may appear to have successfully joined two video files with different codecs, but may only bring over the audio from the second file or have other weird behaviors. Don’t use this command for joining files with different codecs and technical specs and always preview your resulting video file!</p>
+          <h3>Plays video with OCR on top</h3>
+          <p>Note: ffmpeg must be compiled with the tesseract library for this script to work (<code>--with-tesseract</code> if using <code>brew install ffmpeg</code> method).</p>
+          <p><code>ffplay input_file -vf "ocr,drawtext=fontfile=/Library/Fonts/Andale Mono.ttf:text=%{metadata\\\:lavfi.ocr.text}:fontcolor=white"</code></p>
           <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-f concat</dt><dd>forces ffmpeg to concatenate the files and to keep the same file format</dd>
-            <dt>-i <i>mylist.txt</i></dt><dd>path, name and extension of the input file. Per the <a href="https://www.ffmpeg.org/ffmpeg-formats.html#Options" target="_blank">ffmpeg documentation</a>, it is preferable to specify relative rather than absolute file paths, as allowing absolute file paths may pose a security risk.<br>
-            This text file contains the list of files to be concatenated and should be formatted as follows:
-            <pre>file '<i>./first_file.ext</i>'
-file '<i>./second_file.ext</i>'
-. . .
-file '<i>./last_file.ext</i>'</pre>
-In the above, <b>file</b> is simply the word "file". Straight apostrophes ('like this') rather than curved quotation marks (‘like this’) must be used to enclose the file paths.<br>
-<b>Note:</b> If specifying absolute file paths in the .txt file, add <code>-safe 0</code> before the input file.<br>
-e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></code></dd>
-            <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
-          </dl>
-          <p>For more information, see the <a href="https://trac.ffmpeg.org/wiki/Concatenate" target="_blank">ffmpeg wiki page on concatenating files</a>.</p>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Join files together -->
-
-  <!-- Split file into segments -->
-  <span data-toggle="modal" data-target="#segment_file"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Split one file into several smaller segments">Split file into segments</button></span>
-  <div id="segment_file" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Split file into segments</h3>
-          <p><code>ffmpeg -i <i>input_file</i> -c copy -map 0 -f segment -segment_time 60 -reset_timestamps 1 <i>output_file-%03d.mkv</i></code></p>
-          <dl>
-            <dt>ffmpeg</dt><dd>Starts the command.</dd>
-            <dt>-i <i>input_file</i></dt><dd>Takes in a normal file.</dd>
-            <dt>-c copy</dt><dd>Use stream copy mode to re-mux instead of re-encode.</dd>
-            <dt>-map 0</dt><dd>Tells ffmpeg to map all streams of the input to the output.</dd>
-            <dt>-f segment</dt><dd>Use <a href="http://www.ffmpeg.org/ffmpeg-formats.html#toc-segment_002c-stream_005fsegment_002c-ssegment">segment muxer</a> for generating the output.</dd>
-            <dt>-segment_time 60</dt><dd>Set duration of each segment (in seconds). This example creates segments with max. duration of 60s each.</dd>
-            <dt>-reset_timestamps 1</dt><dd>Reset timestamps of each segment to 0. Meant to ease the playback of the generated segments.</dd>
-            <dt><i>output_file-%03d.mkv</i></dt>
-            <dd>
-            <p>Path, name and extension of the output file.<br>
-              In order to have an incrementing number in each segment filename, FFmpeg supports <a href="http://www.cplusplus.com/reference/cstdio/printf/">printf-style</a> syntax for a counter.</p>
-              <p>In this example, '%03d' means: 3-digits, zero-padded<br>
-                Examples:</p>
-              <ul>
-                <li><code>%03d</code>: 000, 001, 002, ... 999</li>
-                <li><code>%05d</code>: 00000, 00001, 00002, ... 99999</li>
-                <li><code>%d</code>: 0, 1, 2, 3, 4, ... 23, 24, etc. </li>
-              </ul>
-            </dd>
+            <dt>ffplay</dt><dd>starts the command</dd>
+            <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-vf</dt><dd>creates a filtergraph to use for the streams</dd>
+            <dt>"</dt><dd>quotation mark to start filtergraph</dd>
+            <dt>ocr,</dt><dd>tells ffplay to use ocr as source and the comma signifies that the script is ready for filter assertion</dd>
+            <dt>drawtext=fontfile=/Library/Fonts/Andale Mono.ttf</dt><dd>tells ffplay to drawtext and use a specific font (Andale Mono) when doing so</dd>
+            <dt>:</dt><dd>indicates there’s another parameter coming</dd>
+            <dt>text=%{metadata\\\:lavfi.ocr.text}</dt><dd>tells ffplay what text to use when playing. In this case, calls for metadata that lives in the lavfi.ocr.text library</dd>
+            <dt>:</dt><dd>indicates there’s another parameter coming</dd>
+            <dt>fontcolor=white</dt><dd>specifies font color as white</dd>
+            <dt>"</dt><dd>quotation mark to end filtergraph</dd>
           </dl>
           <p class="link"></p>
         </div>
       </div>
     </div>
   </div>
-  <!-- ends Split file into segments -->
+  <!-- ends Show OCR -->
+
+  <!-- Export OCR -->
+  <span data-toggle="modal" data-target="#ffprobe_ocr"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Export OCR from video to screen">Export OCR</button></span>
+  <div id="ffprobe_ocr" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Exports OCR data to screen</h3>
+          <p>Note: ffmpeg must be compiled with the tesseract library for this script to work (<code>--with-tesseract</code> if using <code>brew install ffmpeg</code> method)</p>
+          <p><code>ffprobe -show_entries frame_tags=lavfi.ocr.text -f lavfi -i "movie=<i>input_file</i>,ocr"</code></p>
+          <dl>
+            <dt>ffprobe</dt><dd>starts the command</dd>
+            <dt>-show_entries</dt><dd>sets a list of entries to show</dd>
+            <dt>frame_tags=lavfi.ocr.text</dt><dd>shows the <i>lavfi.ocr.text</i> tag in the frame section of the video</dd>
+            <dt>-f lavfi</dt><dd>tells ffprobe to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter input virtual device</a></dd>
+            <dt>-i "movie=<i>input_file</i>,ocr"</dt><dd>declares 'movie' as <i>input_file</i> and passes in the 'ocr' command</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Exports OCR -->
+
+  </div>
+  <div class="well">
+  <h2 id="other">Other</h2>
 
   <!-- Play image sequence -->
   <span data-toggle="modal" data-target="#play_im_seq"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Play an image sequence directly as moving images">Play an image sequence</button></span>
@@ -1888,6 +2008,29 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
   </div>
   <!-- ends Split audio and video tracks -->
 
+  <!-- Extract audio from an AV file -->
+  <span data-toggle="modal" data-target="#extract_audio"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Extract audio without loss from an AV file">Extract audio</button></span>
+  <div id="extract_audio" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Extract audio from an AV file</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -c:a copy -vn <i>output_file</i></code></p>
+          <p>This command extracts the audio stream without loss from an audiovisual file.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-c:a copy</dt><dd>re-encodes using the same audio codec</dd>
+            <dt>-vn</dt><dd>no video stream</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Extract audio from am AV file -->
+
   <!-- Combine audio tracks  -->
   <span data-toggle="modal" data-target="#combine_audio"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Combine audio tracks">Combine audio tracks</button></span>
   <div id="combine_audio" class="modal fade" tabindex="-1" role="dialog">
@@ -1917,31 +2060,39 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
   </div>
   <!-- ends Combine audio tracks  -->
 
-  <!-- Extract audio from an AV file -->
-  <span data-toggle="modal" data-target="#extract_audio"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Extract audio without loss from an AV file">Extract audio</button></span>
-  <div id="extract_audio" class="modal fade" tabindex="-1" role="dialog">
+  <!-- append notice to access mp3 -->
+  <span data-toggle="modal" data-target="#append_mp3"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Generate two access MP3s from input. One with added audio (such as copyright notice) and one unmodified.">Create access MP3 (+ access MP3 copyright notice)</button></span>
+  <div id="append_mp3" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
-          <h3>Extract audio from an AV file</h3>
-          <p><code>ffmpeg -i <i>input_file</i> -c:a copy -vn <i>output_file</i></code></p>
-          <p>This command extracts the audio stream without loss from an audiovisual file.</p>
+          <h3>Generate two access MP3s from input. One with appended audio (such as copyright notice) and one unmodified.</h3>
+          <p> <code>ffmpeg -i <i>input_file</i> -i <i>input_file_to_append</i> -filter_complex "[0:a:0]asplit=2[a][b];[b]afifo[bb];[1:a:0][bb]concat=n=2:v=0:a=1[concatout]" -map "[a]" -codec:a libmp3lame -dither_method modified_e_weighted -qscale:a 2 <i>output_file.mp3</i> -map "[concatout]" -codec:a libmp3lame -dither_method modified_e_weighted -qscale:a 2 <i>output_file_appended.mp3</i></code></p>
+          <p>This script allows you to generate two derivative audio files from a master while appending audio from a separate file (for example a copyright or institutional notice) to one of them.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-c:a copy</dt><dd>re-encodes using the same audio codec</dd>
-            <dt>-vn</dt><dd>no video stream</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file (the master file)</dd>
+            <dt>-i <i>input_file_to_append</i></dt><dd>path, name and extension of the input file (the file to be appended to access file)</dd>
+            <dt>-filter_complex</dt><dd>enables the complex filtering to manage splitting the input to two audio streams</dd>
+            <dt>[0:a:0]asplit=2[a][b];</dt><dd><code>asplit</code> allows audio streams to be split up for separate manipulation. This command splits the audio from the first input (the master file) into two streams "a" and "b"</dd>
+            <dt>[b]afifo[bb];</dt><dd>this buffers the stream "b" to help prevent dropped samples and renames stream to "bb"</dd>
+            <dt>[1:a:0][bb]concat=n=2:v=0:a=1[concatout]</dt><dd><code>concat</code> is used to join files. <code>n=2</code> tells the filter there are two inputs. <code>v=0:a=1</code> Tells the filter there are 0 video outputs and 1 audio output. This command appends the audio from the second input to the beginning of stream "bb" and names the output "concatout"</dd>
+            <dt>-map "[a]"</dt><dd>this maps the unmodified audio stream to the first output</dd>
+            <dt>-codec:a libmp3lame -dither_method modified_e_weighted -qscale:a 2</dt><dd>sets up MP3 options (using constant quality)</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file (unmodified)</dd>
+            <dt>-map "[concatout]"</dt><dd>this maps the modified stream to the second output</dd>
+            <dt>-codec:a libmp3lame -dither_method modified_e_weighted -qscale:a 2</dt><dd>sets up MP3 options (using constant quality)</dd>
+            <dt><i>output_file_appended</i></dt><dd>path, name and extension of the output file (with appended notice)</dd>
           </dl>
           <p class="link"></p>
         </div>
       </div>
     </div>
   </div>
-  <!-- ends Extract audio from am AV file -->
+  <!-- ends append notice to access mp3 -->
 
   <!-- Flip image -->
-  <span data-toggle="modal" data-target="#flip_image"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Flip the image">Flip image</button></span>
+  <span data-toggle="modal" data-target="#flip_image"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Flip the image">Flip video image</button></span>
   <div id="flip_image" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -1961,7 +2112,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
       </div>
     </div>
   </div>
-  <!-- ends Filp image -->
+  <!-- ends Flip image -->
 
   <!-- Modify speed -->
   <span data-toggle="modal" data-target="#modify_speed"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Modify image and sound speed">Modify speed</button></span>
@@ -1991,164 +2142,6 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
     </div>
   </div>
   <!-- ends Modify speed -->
-
-  <!-- Text Watermark -->
-  <span data-toggle="modal" data-target="#text_watermark"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create opaque centered text watermark ">Text Watermark</button></span>
-  <div id="text_watermark" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Create centered, transparent text watermark</h3>
-          <p>E.g For creating access copies with your institutions name</p>
-          <p><code>ffmpeg -i <i>input_file</i> -vf drawtext="fontfile=<i>font_path</i>:fontsize=<i>font_size</i>:text=<i>watermark_text</i>:fontcolor=<i>font_colour</i>:alpha=0.4:x=(w-text_w)/2:y=(h-text_h)/2" <i>output_file</i></code></p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-vf drawtext=</dt><dd>This calls the drawtext filter with the following options:
-            <dl>
-              <dt>fontfile=<i>font_path</i></dt><dd> Set path to font. For example in macOS: <code>fontfile=/Library/Fonts/AppleGothic.ttf</code></dd>
-              <dt>fontsize=<i>font_size</i></dt><dd> Set font size. <code>35</code> is a good starting point for SD. Ideally this value is proportional to video size, for example use ffprobe to acquire video height and divide by 14.</dd>
-              <dt>text=<i>watermark_text</i> </dt><dd> Set the content of your watermark text. For example: <code>text='FFMPROVISR EXAMPLE TEXT'</code></dd>
-              <dt>fontcolor=<i>font_colour</i> </dt><dd> Set colour of font. Can be a text string such as <code>fontcolor=white</code> or a hexadecimal value such as <code>fontcolor=0xFFFFFF</code></dd>
-              <dt>alpha=0.4</dt><dd> Set transparency value.</dd>
-              <dt>x=(w-text_w)/2:y=(h-text_h)/2</dt><dd> Sets <i>x</i> and <i>y</i> coordinates for the watermark. These relative values will centre your watermark regardless of video dimensions.</dd>
-            </dl>
-            Note: <code>-vf</code> is a shortcut for <code>-filter:v</code>.</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file.</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Text watermark -->
-
-  <!-- Transparent Image Watermark -->
-  <span data-toggle="modal" data-target="#image_watermark"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Overlay image watermark">Overlay image watermark on video</button></span>
-  <div id="image_watermark" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Overlay image watermark on video</h3>
-          <p><code>ffmpeg -i <i>input_video file</i> -i <i>input_image_file</i> -filter_complex overlay=main_w-overlay_w-5:5 <i>output_file</i></code></p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_video_file</i></dt><dd>path, name and extension of the input video file</dd>
-            <dt>-i <i>input_image_file</i></dt><dd>path, name and extension of the image file</dd>
-            <dt>-filter_complex overlay=main_w-overlay_w-5:5</dt><dd>This calls the overlay filter and sets x and y coordinates for the position of the watermark on the video. Instead of hardcoding specific x and y coordinates, <code>main_w-overlay_w-5:5</code> uses relative coordinates to place the watermark in the upper right hand corner, based on the width of your input files. Please see the <a href="https://www.ffmpeg.org/ffmpeg-all.html#toc-Examples-102" target="_blank">ffmpeg documentation for more examples.</a></dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Image Watermark -->
-
-  <!-- Burn in timecode-->
-  <span data-toggle="modal" data-target="#burn_in_timecode"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Burn in timecode ">Burn in timecode</button></span>
-  <div id="burn_in_timecode" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Create a burnt in timecode on your image</h3>
-          <p><code>ffmpeg -i <i>input_file</i> -vf drawtext="fontfile=<i>font_path</i>:fontsize=<i>font_size</i>:timecode=<i>starting_timecode</i>:fontcolor=<i>font_colour</i>:box=1:boxcolor=<i>box_colour</i>:rate=<i>timecode_rate</i>:x=(w-text_w)/2:y=h/1.2" <i>output_file</i></code></p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-vf drawtext=</dt><dd>This calls the drawtext filter with the following options:
-            <dt>"</dt><dd>quotation mark to start drawtext filter command</dd>
-            <dt>fontfile=<i>font_path</i></dt><dd> Set path to font. For example in macOS: <code>fontfile=/Library/Fonts/AppleGothic.ttf</code></dd>
-            <dt>fontsize=<i>font_size</i></dt><dd> Set font size. <code>35</code> is a good starting point for SD. Ideally this value is proportional to video size, for example use ffprobe to acquire video height and divide by 14.</dd>
-            <dt>timecode=<i>starting_timecode</i> </dt><dd> Set the timecode to be displayed for the first frame. Timecode is to be represented as <code>hh:mm:ss[:;.]ff</code>. Colon escaping is determined by O.S, for example in Ubuntu <code>timecode='09\\:50\\:01\\:23'</code>. Ideally, this value would be generated from the file itself using ffprobe.</dd>
-            <dt>fontcolor=<i>font_colour</i> </dt><dd> Set colour of font. Can be a text string such as <code>fontcolor=white</code> or a hexadecimal value such as <code>fontcolor=0xFFFFFF</code></dd>
-            <dt>box=1</dt><dd> Enable box around timecode</dd>
-            <dt>boxcolor=<i>box_colour</i></dt><dd> Set colour of box. Can be a text string such as <code>fontcolor=black</code> or a hexadecimal value such as <code>fontcolor=0x000000</code></dd>
-            <dt>rate=<i>timecode_rate</i></dt><dd> Framerate of video. For example <code>25/1</code></dd>
-            <dt>x=(w-text_w)/2:y=h/1.2</dt><dd> Sets <i>x</i> and <i>y</i> coordinates for the timecode. These relative values will horizontally centre your timecode in the bottom third regardless of video dimensions.</dd>
-            <dt>"</dt><dd>quotation mark to end drawtext filter command</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file.</dd>
-          </dl>
-          <p>Note: <code>-vf</code> is a shortcut for <code>-filter:v</code>.</p>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Burn in timecode -->
-
-  <!-- Images to video -->
-  <span data-toggle="modal" data-target="#images_2_video"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode an image sequence into uncompressed 10-bit video">Image sequence into video</button></span>
-  <div id="images_2_video" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Transcode an image sequence into uncompressed 10-bit video</h3>
-          <p><code>ffmpeg -f image2 -framerate 24 -i <i>input_file_%06d.ext</i> -c:v v210 <i>output_file</i></code></p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-f image2</dt><dd>forces the image file de-muxer for single image files</dd>
-            <dt>-framerate 24</dt><dd>Sets the input framerate to 24 fps. The image2 demuxer defaults to 25 fps.</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file<br>
-            This must match the naming convention actually used! The regex %06d matches six digits long numbers, possibly with leading zeroes. This allows to read in ascending order, one image after the other, the full sequence inside one folder. For image sequences starting with 086400 (i.e. captured with a timecode starting at 01:00:00:00 and at 24 fps), add the flag <code>-start_number 086400</code> before <code>-i input_file_%06d.ext</code>. The extension for TIFF files is .tif or maybe .tiff; the extension for DPX files is .dpx (or eventually .cin for old files).</dd>
-            <dt>-c:v v210</dt><dd>encodes an uncompressed 10-bit video stream</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Images to video -->
-
-  <!-- Create video from image and audio  -->
-  <span data-toggle="modal" data-target="#image-audio"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create video from image and audio">Create video from image and audio</button></span>
-  <div id="image-audio" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Create a video from an image and audio file.</h3>
-          <p><code>ffmpeg -r 1 -loop 1 -i <i>image_file</i> -i <i>audio_file</i> -acodec copy -shortest -vf scale=1280:720 <i>output_file</i></code></p>
-          <p>This command will take an image file (e.g. image.jpg) and an audio file (e.g. audio.mp3) and combine them into a video file that contains the audio track with the image used as the video. It can be useful in a situation where you might want to upload an audio file to a platform like YouTube. You may want to adjust the scaling with -vf to suit your needs.</p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-r <i>1</i></dt><dd>set the framerate</dd>
-            <dt>-loop <i>1</i></dt><dd>loop the first input stream</dd>
-            <dt>-i <i>image_file</i></dt><dd>path, name and extension of the image file</dd>
-            <dt>-i <i>audio_file</i></dt><dd>path, name and extension of the audio file</dd>
-            <dt>-acodec copy</dt><dd>copy the audio. -acodec is an alias for -c:a</dd>
-            <dt>-shortest</dt><dd>finish encoding when the shortest input stream ends</dd>
-            <dt>-vf scale=1280:720</dt><dd>filter the video to scale it to 1280x720 for YouTube. -vf is an alias for -filter:v</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the video output file</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Create video from image and audio -->
-
-  <!-- Set field order -->
-  <span data-toggle="modal" data-target="#set_field_order"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Set field order for interlaced video">Set field order</button></span>
-  <div id="set_field_order" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Change field order of an interlaced video</h3>
-          <p><code>ffmpeg -i <i>input_file</i> -c:v <i>video_codec</i> -filter:v setfield=tff <i>output_file</i></code></p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-filter:v setfield=tff</dt><dd>Sets the field order to top field first. Use <code>setfield=bff</code> for bottom field first.</dd>
-            <dt>-c:v <i>video_codec</i></dt><dd>As a video filter is used, it is not possible to use <code>-c copy</code>. The video must be re-encoded with whatever video codec is chosen, e.g. <code>ffv1</code>, <code>v210</code> or <code>prores</code>.</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Set field order -->
 
   <!-- Make stream properties explicate -->
   <span data-toggle="modal" data-target="#clarify_stream"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Clarify stream properties">Set stream properties</button></span>
@@ -2191,34 +2184,29 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
   </div>
   <!-- ends Make stream properties explicate -->
 
-  <!-- View Format Info -->
-  <span data-toggle="modal" data-target="#view_format_info"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="View format information">View format information</button></span>
-  <div id="view_format_info" class="modal fade" tabindex="-1" role="dialog">
+  <!-- Create ISO -->
+  <span data-toggle="modal" data-target="#create_iso"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create ISO files for DVD access">Create ISO</button></span>
+  <div id="create_iso" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
-          <h3>View information about a specific format</h3>
-          <p><code>ffmpeg -h <i>type=name</i></code></p>
+          <h3>Create ISO files for DVD access</h3>
+          <p>Create an ISO file that can be used to burn a DVD. Please note, you will have to install dvdauthor. To install dvd author using Homebrew run: <code>brew install dvdauthor</code></p>
+          <p><code>ffmpeg -i <i>input_file</i> -aspect <i>4:3</i> -target ntsc-dvd <i>output_file</i>.mpg</code></p>
+          <p>This command will take any file and create an MPEG file that dvdauthor can use to create an ISO.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-h</dt><dd>Call the help option</dd>
-            <dt>type=name</dt>
-            <dd>Tells ffmpeg which kind of option you want, for example:
-              <ul>
-                <li><code>encoder=libx264</code></li>
-                <li><code>decoder=mp3</code></li>
-                <li><code>muxer=matroska</code></li>
-                <li><code>demuxer=mov</code></li>
-                <li><code>filter=crop</code></li>
-              </ul>
-            </dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-aspect 4:3</dt><dd>declares the aspect ratio of the resulting video file. You can also use 16:9.</dd>
+            <dt>-target ntsc-dvd</dt><dd>specifies the region for your DVD. This could be also pal-dvd.</dd>
+            <dt><i>output_file</i>.mpg</dt><dd>path and name of the output file. The extension must be <code>.mpg</code></dd>
           </dl>
           <p class="link"></p>
         </div>
       </div>
     </div>
   </div>
-  <!-- ends View Format info -->
+  <!-- ends Create ISO -->
 
   <!-- Compare Video Fingerprints -->
   <span data-toggle="modal" data-target="#compare_video_fingerprints"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Compare Video Fingerprints">Compare Video Fingerprints</button></span>
@@ -2265,29 +2253,6 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
   </div>
   <!-- ends Generate Video Fingerprint -->
 
-  <!-- Strip metadata -->
-  <span data-toggle="modal" data-target="#strip_metadata"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Strip metadata">Strip metadata</button></span>
-  <div id="strip_metadata" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Strips metadata from video file</h3>
-          <p><code>ffmpeg -i <i>input_file</i> -map_metadata -1 -c:v copy -c:a copy <i>output_file</i></code></p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-map_metadata -1</dt><dd>sets metadata copying to -1, which copies nothing</dd>
-            <dt>-vcodec copy</dt><dd>copies video track</dd>
-            <dt>-acodec copy</dt><dd>copies audio track</dd>
-            <dt><i>output_file</i></dt><dd>Makes copy of original file and names output file</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Strip metadata -->
-
   <!-- Scene Detection using YDIF -->
   <span data-toggle="modal" data-target="#csv-ydif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Exports CSV for scene detection using YDIF">CSV with timecodes and YDIF</button></span>
   <div id="csv-ydif" class="modal fade" tabindex="-1" role="dialog">
@@ -2314,32 +2279,89 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
   </div>
   <!-- ends sample Scene Detection using YDIF -->
 
-
-<!-- sample example -->
-<!-- <span data-toggle="modal" data-target="#*****unique name*****"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="*****Hover-over description*****">*****Small title****</button></span>
-Change the above data-target field, the hover-over description, the button text, and the below div ID
-<div id="*****unique name*****" class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="well">
-        <h3>*****Longer title*****</h3>
-        <p> <code>ffmpeg -i <i>input_file</i> *****code goes here***** <i>output_file</i></code> </p>
-        <p>This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info!</p>
-        <dl>
-          <dt>ffmpeg</dt><dd>starts the command</dd>
-          <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
-          <dt>*****parameter*****</dt><dd>*****comments*****</dd>
-          <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
-        </dl>
-        <p class="link"></p>
+  <!-- Cover head switching noise -->
+  <span data-toggle="modal" data-target="#cover_head"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Cover head switching noise">Cover head switching noise</button></span>
+  <div id="cover_head" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Cover head switching noise</h3>
+          <p><code>ffmpeg -i <i>input_file</i> -filter:v drawbox=w=iw:h=7:y=ih-h:t=max <i>output_file</i></code></p>
+          <p>This command will draw a black box over a small area of the bottom of the frame, which can be used to cover up head switching noise.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-filter:v drawbox=</dt>
+            <dd>This calls the drawtext filter with the following options:
+              <dl>
+                <dt>w=in_w</dt><dd>Width is set to the input width. Shorthand for this command would be w=iw</dd>
+                <dt>h=7</dt><dd>Height is set to 7 pixels.</dd>
+                <dt>y=ih-h</dt><dd>Y represents the offset, and ih-h sets it to the input height minus the height declared in the previous parameter, setting the box at the bottom of the frame.</dd>
+                <dt>t=max</dt><dd>T represents the thickness of the drawn box. Default is 3.</dd>
+              </dl>
+            </dd>
+            <dt><i>output_file</i></dt><dd>path and name of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
       </div>
     </div>
   </div>
-</div> -->
-<!-- ends sample example -->
+  <!-- ends Cover head switching noise -->
 
-
+  <!-- View Format Info -->
+  <span data-toggle="modal" data-target="#view_format_info"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="View format information">View format information</button></span>
+  <div id="view_format_info" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>View information about a specific format</h3>
+          <p><code>ffmpeg -h <i>type=name</i></code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-h</dt><dd>Call the help option</dd>
+            <dt>type=name</dt>
+            <dd>Tells ffmpeg which kind of option you want, for example:
+              <ul>
+                <li><code>encoder=libx264</code></li>
+                <li><code>decoder=mp3</code></li>
+                <li><code>muxer=matroska</code></li>
+                <li><code>demuxer=mov</code></li>
+                <li><code>filter=crop</code></li>
+              </ul>
+            </dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
   </div>
+  <!-- ends View Format info -->
+
+
+  <!-- sample example -->
+  <!-- <span data-toggle="modal" data-target="#*****unique name*****"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="*****Hover-over description*****">*****Small title****</button></span>
+  Change the above data-target field, the hover-over description, the button text, and the below div ID
+  <div id="*****unique name*****" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>*****Longer title*****</h3>
+          <p> <code>ffmpeg -i <i>input_file</i> *****code goes here***** <i>output_file</i></code> </p>
+          <p>This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info!</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>*****parameter*****</dt><dd>*****comments*****</dd>
+            <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- ends sample example -->
+
 </div> <!-- end "well col-md-6 col-md-offset-2" -->
 </div> <!-- row -->
 
