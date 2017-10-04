@@ -548,6 +548,47 @@
   </div>
   <!-- ends Convert colourspace -->
 
+  <!-- Make stream properties explicate -->
+  <span data-toggle="modal" data-target="#clarify_stream"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Clarify stream properties">Set stream properties</button></span>
+  <div id="clarify_stream" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Set stream properties</h3>
+          <h2>Find undetermined or unknown stream properties</h2>
+          <p>These examples use QuickTime inputs and outputs. The strategy will vary or may not be possible in other file formats. In the case of these examples it is the intention to make a lossless copy while clarifying an unknown characteristic of the stream.</p>
+          <p><code>ffprobe <i>input_file</i> -show_streams</code></p>
+          <dl>
+            <dt>ffprobe</dt><dd>starts the command</dd>
+            <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-show_streams</dt><dd>Shows metadata of stream properties</dd>
+          </dl>
+          <p>Values that are set to 'unknown' and 'undetermined' may be unspecified within the stream. An unknown aspect ratio would be expressed as '0:1'. Streams with many unknown properties may have interoperability issues or not play as intended. In many cases, an unknown or undetermined value may be accurate because the information about the source is unclear, but often the value is intended to be known. In many cases the stream will played with an assumed value if undetermined (for instance a display_aspect_ratio of '0:1' may be played as 'WIDTH:HEIGHT'), but this may or may not be what is intended. Use carefully.</p>
+          <h2>Set aspect ratio</h2>
+          <p>If the display_aspect_ratio is set to '0:1' it may be clarified with the <i>-aspect</i> option and stream copy.</p>
+          <p><code>ffmpeg -i <i>input_file</i> -c copy -map 0 -aspect DAR_NUM:DAR_DEN <i>output_file</i></code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-c copy</dt><dd>Usings stream copy for all streams</dd>
+            <dt>-map 0</dt><dd>Tells ffmpeg to map all streams of the input to the output.</dd>
+            <dt>-aspect DAR_NUM:DAR_DEN</dt><dd>Replace DAR_NUM with the display aspect ratio numerator and DAR_DEN with the display aspect ratio denominator, such as <i>-aspect 4:3</i> or <i>-aspect 16:9</i>.</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <h2>Adding other stream properties.</h2>
+          <p>Other properties may be clarified in a similar way. Replace <i>-aspect</i> and its value with other properties such as shown in the options below. Note that setting color values in QuickTime requires that <i>-movflags write_colr</i> is set.</p>
+          <dl>
+            <dt>-color_primary <i>VALUE</i> -movflags write_colr</dt><dd>Set a new color_primary value. The vocabulary for values is at <a href="http://ffmpeg.org/ffmpeg-all.html" target="_blank">ffmpeg</a>.</dd>
+            <dt>-color_trc <i>VALUE</i> -movflags write_colr</dt><dd>Set a new color_transfer value. The vocabulary for values is at <a href="http://ffmpeg.org/ffmpeg-all.html" target="_blank">ffmpeg</a>.</dd>
+            <dt>-field_order <i>VALUE</i></dt><dd>Set interlacement values. The vocabulary for values is at <a href="http://ffmpeg.org/ffmpeg-all.html" target="_blank">ffmpeg</a>.</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Make stream properties explicate -->
+
   </div>
   <div class="well">
   <h2 id="join-trim">Join, trim, or excerpt a video</h2>
@@ -1177,7 +1218,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   </div>
   <div class="well">
-  <h2 id="create-video">Create a video</h2>
+  <h2 id="create-video">Create a video from images</h2>
 
   <!-- Images to video -->
   <span data-toggle="modal" data-target="#images_2_video"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode an image sequence into uncompressed 10-bit video">Image sequence into video</button></span>
@@ -1321,7 +1362,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   </div>
   <div class="well">
-  <h2 id="normalise-audio">Normalize/Equalize Audio</h2>
+  <h2 id="normalise-audio">Normalize/equalize audio</h2>
 
   <!-- phase shift -->
   <span data-toggle="modal" data-target="#phase_shift"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Inverses the audio phase of the second channel">Flip phase shift</button></span>
@@ -2159,47 +2200,6 @@ foreach ($file in $inputfiles) {
   </div>
   <!-- ends Modify speed -->
 
-  <!-- Make stream properties explicate -->
-  <span data-toggle="modal" data-target="#clarify_stream"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Clarify stream properties">Set stream properties</button></span>
-  <div id="clarify_stream" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Set stream properties</h3>
-          <h2>Find undetermined or unknown stream properties</h2>
-          <p>These examples use QuickTime inputs and outputs. The strategy will vary or may not be possible in other file formats. In the case of these examples it is the intention to make a lossless copy while clarifying an unknown characteristic of the stream.</p>
-          <p><code>ffprobe <i>input_file</i> -show_streams</code></p>
-          <dl>
-            <dt>ffprobe</dt><dd>starts the command</dd>
-            <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-show_streams</dt><dd>Shows metadata of stream properties</dd>
-          </dl>
-          <p>Values that are set to 'unknown' and 'undetermined' may be unspecified within the stream. An unknown aspect ratio would be expressed as '0:1'. Streams with many unknown properties may have interoperability issues or not play as intended. In many cases, an unknown or undetermined value may be accurate because the information about the source is unclear, but often the value is intended to be known. In many cases the stream will played with an assumed value if undetermined (for instance a display_aspect_ratio of '0:1' may be played as 'WIDTH:HEIGHT'), but this may or may not be what is intended. Use carefully.</p>
-          <h2>Set aspect ratio</h2>
-          <p>If the display_aspect_ratio is set to '0:1' it may be clarified with the <i>-aspect</i> option and stream copy.</p>
-          <p><code>ffmpeg -i <i>input_file</i> -c copy -map 0 -aspect DAR_NUM:DAR_DEN <i>output_file</i></code></p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-c copy</dt><dd>Usings stream copy for all streams</dd>
-            <dt>-map 0</dt><dd>Tells ffmpeg to map all streams of the input to the output.</dd>
-            <dt>-aspect DAR_NUM:DAR_DEN</dt><dd>Replace DAR_NUM with the display aspect ratio numerator and DAR_DEN with the display aspect ratio denominator, such as <i>-aspect 4:3</i> or <i>-aspect 16:9</i>.</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
-          </dl>
-          <h2>Adding other stream properties.</h2>
-          <p>Other properties may be clarified in a similar way. Replace <i>-aspect</i> and its value with other properties such as shown in the options below. Note that setting color values in QuickTime requires that <i>-movflags write_colr</i> is set.</p>
-          <dl>
-            <dt>-color_primary <i>VALUE</i> -movflags write_colr</dt><dd>Set a new color_primary value. The vocabulary for values is at <a href="http://ffmpeg.org/ffmpeg-all.html" target="_blank">ffmpeg</a>.</dd>
-            <dt>-color_trc <i>VALUE</i> -movflags write_colr</dt><dd>Set a new color_transfer value. The vocabulary for values is at <a href="http://ffmpeg.org/ffmpeg-all.html" target="_blank">ffmpeg</a>.</dd>
-            <dt>-field_order <i>VALUE</i></dt><dd>Set interlacement values. The vocabulary for values is at <a href="http://ffmpeg.org/ffmpeg-all.html" target="_blank">ffmpeg</a>.</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Make stream properties explicate -->
-
   <!-- Create ISO -->
   <span data-toggle="modal" data-target="#create_iso"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create ISO files for DVD access">Create ISO</button></span>
   <div id="create_iso" class="modal fade" tabindex="-1" role="dialog">
@@ -2326,7 +2326,7 @@ foreach ($file in $inputfiles) {
   <!-- ends Cover head switching noise -->
 
   <!-- View Subprogram Info -->
-  <span data-toggle="modal" data-target="#view_format_info"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="View ffmpeg subprogam information">View ffmpeg subprogam information</button></span>
+  <span data-toggle="modal" data-target="#view_subprogram_info"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="View ffmpeg subprogam information">View ffmpeg subprogam information</button></span>
   <div id="view_subprogram_info" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
