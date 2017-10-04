@@ -42,7 +42,23 @@
 <div class="well col-md-8 col-md-offset-0">
   <div class="well">
     <h3>What do you want to do?</h3>
-    <p class="select-from">Select from the following.</p>
+    <p class="select-from">Click one of the following categories to see possible commands of that type:</p>
+    <a href="#rewrap"><button type="button" class="btn contents-list">Change container (rewrap)</button></a>
+    <a href="#transcode"><button type="button" class="btn contents-list">Change codec (transcode)</button></a>
+    <a href="#properties"><button type="button" class="btn contents-list">Change video properties</button></a>
+    <a href="#join-trim"><button type="button" class="btn contents-list">Join videos, or trim/create an excerpt from a video</button></a>
+    <a href="#interlacing"><button type="button" class="btn contents-list">Work with interlaced video</button></a>
+    <a href="#filters-scopes"><button type="button" class="btn contents-list">Use filters or scopes</button></a>
+    <a href="#metadata"><button type="button" class="btn contents-list">View or strip metadata</button></a>
+    <a href="#create-images"><button type="button" class="btn contents-list">Generate image files from a video</button></a>
+    <a href="#create-video"><button type="button" class="btn contents-list">Create a video from image(s) and audio</button></a>
+    <a href="#overlay"><button type="button" class="btn contents-list">Overlay timecode or text on a video</button></a>
+    <a href="#normalise-audio"><button type="button" class="btn contents-list">Normalize/equalize audio</button></a>
+    <a href="#preservation"><button type="button" class="btn contents-list">Preservation tasks</button></a>
+    <a href="#test-files"><button type="button" class="btn contents-list">Generate test files</button></a>
+    <a href="#repair"><button type="button" class="btn contents-list">Repair a file</button></a>
+    <a href="#ocr"><button type="button" class="btn contents-list">Use OCR</button></a>
+    <a href="#other"><button type="button" class="btn contents-list">Something else</button></a>
   </div>
 
   <div class="well">
@@ -1021,7 +1037,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   </div>
   <div class="well">
-  <h2 id="metadata">View or delete metadata</h2>
+  <h2 id="metadata">View or strip metadata</h2>
 
   <!-- Pull specs -->
   <span data-toggle="modal" data-target="#pull_specs"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Pull specs from video file">Pull specs</button></span>
@@ -1073,7 +1089,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   </div>
   <div class="well">
-  <h2 id="still-images">Generate image files from a video</h2>
+  <h2 id="create-images">Generate image files from a video</h2>
 
   <!-- Create GIF -->
   <span data-toggle="modal" data-target="#create_gif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create a GIF from a video">Create GIF</button></span>
