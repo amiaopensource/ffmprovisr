@@ -64,6 +64,34 @@
   <div class="well">
   <h2 id="rewrap">Change container (rewrap)</h2>
 
+  <!-- Basic rewrap command -->
+  <span data-toggle="modal" data-target="#basic-rewrap"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Basic rewrap command">Basic rewrap command</button></span>
+  <div id="basic-rewrap" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Rewrap a file</h3>
+          <p><code>ffmpeg -i <i>input_file.ext</i> -c copy -map 0 <i>output_file.ext</i></code></p>
+          <p>This script will rewrap a video file. It will create a new video video file where the inner content (the video, audio, and subtitle data) of the original file is unchanged, but these streams are rehoused within a different container format.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file.ext</i></dt><dd>path and name of the input file<br></dd>
+            <dt>-c copy</dt><dd>copy the streams directly, without re-encoding.</dd>
+            <dt>-map 0</dt><dd>map all streams of the input to the output.<br>
+            By default, ffmpeg will only map one stream of each type (video, audio, subtitles) to the output file. However, files may have multiple streams of a given type - for example, a video may have several audio tracks for different languages. Therefore, if you want to preserve all the streams in the original, it's necessary to use this option.</dd>
+            <dt><i>output_file.ext</i></dt><dd>path and name of the output file.<br>
+            The new container you are rewrapping to is defined by the filename extension used here, e.g. .mkv, .mp4, .mov.</dd>
+          </dl>
+          <h4>Important caveat</h4>
+          <p>It may not be possible to rewrap a file's contents to a new container without re-encoding one or more of the streams. Some containers can only contain streams of a certain encoding type: for example, the .mp4 container does not support uncompressed audio tracks. (In practice .mp4 goes hand-in-hand with a H.264-encoded video stream and an AAC-encoded video stream, although other types of video and audio streams are possible). Another example is that the Matroska container does not allow data tracks; see the <a href="#mkv-to-mp4">MKV to MP4 recipe</a>.</p>
+          <p>In such cases, ffmpeg will throw an error. If you encounter errors of this kind, you may wish to consult the <a href="#transcode">list of transcoding recipes</a>.</p>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Basic rewrap command -->
+
   <!-- MKV to MP4 -->
   <span data-toggle="modal" data-target="#mkv_to_mp4"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Convert Matroska (MKV) to MP4">MKV to MP4</button></span>
   <div id="mkv_to_mp4" class="modal fade" tabindex="-1" role="dialog">
