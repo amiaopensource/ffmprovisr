@@ -43,7 +43,8 @@
   <div class="well">
     <h3>What do you want to do?</h3>
     <p class="select-from">Click one of the following categories to see commands of that type:</p>
-    <a href="#getting-started"><button type="button" class="btn contents-list">Learn about the basics of FFmpeg</button></a>
+    <a href="#basics"><button type="button" class="btn contents-list">Learn about FFmpeg basics</button></a>
+    <a href="#concepts"><button type="button" class="btn contents-list">Learn about more advanced FFmpeg concepts</button></a>
     <a href="#rewrap"><button type="button" class="btn contents-list">Change container (rewrap)</button></a>
     <a href="#transcode"><button type="button" class="btn contents-list">Change codec (transcode)</button></a>
     <a href="#properties"><button type="button" class="btn contents-list">Change video properties</button></a>
@@ -60,12 +61,11 @@
     <a href="#test-files"><button type="button" class="btn contents-list">Generate test files</button></a>
     <a href="#repair"><button type="button" class="btn contents-list">Repair a file</button></a>
     <a href="#ocr"><button type="button" class="btn contents-list">Use OCR</button></a>
-    <a href="#concepts"><button type="button" class="btn contents-list">Understand more advanced FFmpeg concepts</button></a>
     <a href="#other"><button type="button" class="btn contents-list">Something else</button></a>
   </div>
 
   <div class="well">
-  <h2 id="getting-started">Getting started with FFmpeg</h2>
+  <h2 id="basics">Learn about FFmpeg basics</h2>
 
   <!-- Basic structure of an FFmpeg command -->
   <span data-toggle="modal" data-target="#basic-structure"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Basic structure of an FFmpeg command">Basic structure of an FFmpeg command</button></span>
@@ -92,6 +92,45 @@
     </div>
   </div>
   <!-- End Basic structure of an FFmpeg command -->
+
+  </div>
+  <div class="well">
+  <h2 id="concepts">Learn about more advanced FFmpeg concepts</h2>
+
+  <!-- Filtergraph explanation -->
+  <span data-toggle="modal" data-target="#filtergraphs"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Filtergraphs">Filtergraphs</button></span>
+  <div id="filtergraphs" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Filtergraphs</h3>
+          <p>Many FFmpeg commands use filters that manipulate the video or audio stream in some way: for example, <a href="http://ffmpeg.org/ffmpeg-filters.html#hflip" target="_blank">hflip</a> to horizontally flip a video, or <a href="http://ffmpeg.org/ffmpeg-filters.html#amerge-1" target="_blank">amerge</a> to merge two or more audio tracks into a single stream.</p>
+          <p>The use of a filter is signalled by the flag <code>-vf</code> (video filter) or <code>-af</code> (audio filter), followed by the name and options of the filter itself. For example, take the <a href="#convert-colourspace">convert colourspace</a> command:</p>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf colormatrix=<i>src</i>:<i>dst</i> <i>output_file</i></code>
+          <p>Here, <a href="http://ffmpeg.org/ffmpeg-filters.html#colormatrix" target="_blank">colormatrix</a> is the filter used, with <i>src</i> and <i>dst</i> representing the source and destination colourspaces. This part following the <code>-vf</code> is a <b>filtergraph</b>.</p>
+          <p>It is also possible to apply multiple filters to an input, which are sequenced together in the filtergraph. A chained set of filters is called a filter chain, and a filtergraph may include multiple filter chains. Filters in a filterchain are separated from each other by commas (<code>,</code>), and filterchains are separated from each other by semicolons (<code>;</code>). For example, take the <a href="#inverse-telecine">inverse telecine</a> command:</p>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf "fieldmatch,yadif,decimate" <i>output_file</i></code></p>
+          <p>Here we have a filtergraph including one filter chain, which is made up of three video filters.</p>
+          <p>It is often prudent to enclose your filtergraph in quotation marks; this  means that you can use spaces within the filtergraph. Using the inverse telecine example again, the following filter commands are all valid and equivalent:
+            <ul>
+              <li><code>-vf fieldmatch,yadif,decimate</code></li>
+              <li><code>-vf "fieldmatch,yadif,decimate"</code></li>
+              <li><code>-vf "fieldmatch, yadif, decimate"</code></li>
+            </ul>
+          but <code>-vf fieldmatch, yadif, decimate</code> is not valid.</p>
+          <p>The ordering of the filters is significant. Video filters are applied in the order given, with the output of one filter being passed along as the input to the next filter in the chain. In the example above, <code>fieldmatch</code> reconstructs the original frames from the inverse telecined video, <code>yadif</code> deinterlaces (this is a failsafe in case any combed frames remain, for example if the source mixes telecined and real interlaced content), and <code>decimate</code> deletes duplicated frames. Clearly, it is not possible to delete duplicated frames before those frames are reconstructed.</p>
+          <h4>Notes</h4>
+          <ul>
+            <li>If the command involves more than one input or output, you must use the flag <code>-filter_complex</code> instead of <code>-vf</code>.</li>
+            <li>Straight quotation marks ("like this") rather than curved quotation marks (“like this”) should be used.</li>
+          </ul>
+          <p>For more information, check out the FFmpeg wiki <a href="https://trac.ffmpeg.org/wiki/FilteringGuide" target="_blank">Filtering Guide</a>.</p>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Filtergraph explanation -->
 
   </div>
   <div class="well">
@@ -2421,45 +2460,6 @@ foreach ($file in $inputfiles) {
     </div>
   </div>
   <!-- ends View Subprogram info -->
-
-  </div>
-  <div class="well">
-  <h2 id="concepts">Advanced FFmpeg concepts</h2>
-
-  <!-- Filtergraph explanation -->
-  <span data-toggle="modal" data-target="#filtergraphs"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Filtergraphs">Filtergraphs</button></span>
-  <div id="filtergraphs" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Filtergraphs</h3>
-          <p>Many FFmpeg commands use filters that manipulate the video or audio stream in some way: for example, <a href="http://ffmpeg.org/ffmpeg-filters.html#hflip" target="_blank">hflip</a> to horizontally flip a video, or <a href="http://ffmpeg.org/ffmpeg-filters.html#amerge-1" target="_blank">amerge</a> to merge two or more audio tracks into a single stream.</p>
-          <p>The use of a filter is signalled by the flag <code>-vf</code> (video filter) or <code>-af</code> (audio filter), followed by the name and options of the filter itself. For example, take the <a href="#convert-colourspace">convert colourspace</a> command:</p>
-          <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf colormatrix=<i>src</i>:<i>dst</i> <i>output_file</i></code>
-          <p>Here, <a href="http://ffmpeg.org/ffmpeg-filters.html#colormatrix" target="_blank">colormatrix</a> is the filter used, with <i>src</i> and <i>dst</i> representing the source and destination colourspaces. This part following the <code>-vf</code> is a <b>filtergraph</b>.</p>
-          <p>It is also possible to apply multiple filters to an input, which are sequenced together in the filtergraph. A chained set of filters is called a filter chain, and a filtergraph may include multiple filter chains. Filters in a filterchain are separated from each other by commas (<code>,</code>), and filterchains are separated from each other by semicolons (<code>;</code>). For example, take the <a href="#inverse-telecine">inverse telecine</a> command:</p>
-          <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf "fieldmatch,yadif,decimate" <i>output_file</i></code></p>
-          <p>Here we have a filtergraph including one filter chain, which is made up of three video filters.</p>
-          <p>It is often prudent to enclose your filtergraph in quotation marks; this  means that you can use spaces within the filtergraph. Using the inverse telecine example again, the following filter commands are all valid and equivalent:
-            <ul>
-              <li><code>-vf fieldmatch,yadif,decimate</code></li>
-              <li><code>-vf "fieldmatch,yadif,decimate"</code></li>
-              <li><code>-vf "fieldmatch, yadif, decimate"</code></li>
-            </ul>
-          but <code>-vf fieldmatch, yadif, decimate</code> is not valid.</p>
-          <p>The ordering of the filters is significant. Video filters are applied in the order given, with the output of one filter being passed along as the input to the next filter in the chain. In the example above, <code>fieldmatch</code> reconstructs the original frames from the inverse telecined video, <code>yadif</code> deinterlaces (this is a failsafe in case any combed frames remain, for example if the source mixes telecined and real interlaced content), and <code>decimate</code> deletes duplicated frames. Clearly, it is not possible to delete duplicated frames before those frames are reconstructed.</p>
-          <h4>Notes</h4>
-          <ul>
-            <li>If the command involves more than one input or output, you must use the flag <code>-filter_complex</code> instead of <code>-vf</code>.</li>
-            <li>Straight quotation marks ("like this") rather than curved quotation marks (“like this”) should be used.</li>
-          </ul>
-          <p>For more information, check out the FFmpeg wiki <a href="https://trac.ffmpeg.org/wiki/FilteringGuide" target="_blank">Filtering Guide</a>.</p>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- End Filtergraph explanation -->
 
   </div>
 
