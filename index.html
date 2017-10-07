@@ -42,7 +42,9 @@
 <div class="well col-md-8 col-md-offset-0">
   <div class="well">
     <h3>What do you want to do?</h3>
-    <p class="select-from">Click one of the following categories to see possible commands of that type:</p>
+    <p class="select-from">Click one of the following categories to see commands of that type:</p>
+    <a href="#basics"><button type="button" class="btn contents-list">Learn about FFmpeg basics</button></a>
+    <a href="#concepts"><button type="button" class="btn contents-list">Learn about more advanced FFmpeg concepts</button></a>
     <a href="#rewrap"><button type="button" class="btn contents-list">Change container (rewrap)</button></a>
     <a href="#transcode"><button type="button" class="btn contents-list">Change codec (transcode)</button></a>
     <a href="#properties"><button type="button" class="btn contents-list">Change video properties</button></a>
@@ -50,7 +52,8 @@
     <a href="#interlacing"><button type="button" class="btn contents-list">Work with interlaced video</button></a>
     <a href="#filters-scopes"><button type="button" class="btn contents-list">Use filters or scopes</button></a>
     <a href="#metadata"><button type="button" class="btn contents-list">View or strip metadata</button></a>
-    <a href="#create-images"><button type="button" class="btn contents-list">Generate image files from a video</button></a>
+    <a href="#create-thumbnails"><button type="button" class="btn contents-list">Generate image files from a video</button></a>
+    <a href="#animated-gif"><button type="button" class="btn contents-list">Generate an animated GIF</button></a>
     <a href="#create-video"><button type="button" class="btn contents-list">Create a video from image(s) and audio</button></a>
     <a href="#overlay"><button type="button" class="btn contents-list">Overlay timecode or text on a video</button></a>
     <a href="#normalise-audio"><button type="button" class="btn contents-list">Normalize/equalize audio</button></a>
@@ -61,6 +64,75 @@
     <a href="#other"><button type="button" class="btn contents-list">Something else</button></a>
   </div>
 
+  <div class="well">
+  <h2 id="basics">Learn about FFmpeg basics</h2>
+
+  <!-- Basic structure of an FFmpeg command -->
+  <span data-toggle="modal" data-target="#basic-structure"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Basic structure of an FFmpeg command">Basic structure of an FFmpeg command</button></span>
+  <div id="basic-structure" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Basic structure of an FFmpeg command</h3>
+          <p>At its basis, an FFmpeg command is relatively simple. After you have installed FFmpeg (see instructions <a href="https://avpres.net/FFmpeg/#ch1" target="_blank">here</a>), the program is invoked simply by typing <code>ffmpeg</code> at the command prompt.</p>
+          <p>Subsequently, each instruction that you supply to FFmpeg is actually a pair: a flag, which designates the <i>type</i> of action you want to carry out; and then the specifics of that action. Flags are always prepended with a hyphen.</p>
+          <p>For example, in the instruction <code>-i <i>input_file.ext</i></code>, the <code>-i</code> flag tells FFmpeg that you are supplying an input file, and <code>input_file.ext</code> states which file it is.</p>
+          <p>Likewise, in the instruction <code>-c:v prores</code>, the flag <code>-c:v</code> tells FFmpeg that you want to encode the video stream, and <code>prores</code> specifies which codec is to be used. (<code>-c:v</code> is shorthand for <code>-codec:v</code>/<code>-codec:video</code>).</p>
+          <p>A very basic FFmpeg command looks like this:</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file.ext</i></dt><dd>path and name of the input file<br></dd>
+            <dt><i>-flag some_action</i></dt><dd>tell FFmpeg to do something, by supplying a valid flag and action</dd>
+            <dt><i>output_file.ext</i></dt><dd>path and name of the output file.<br>
+              Because this is the last part of the command, the filename you type here does not have a flag designating it as the output file.</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Basic structure of an FFmpeg command -->
+
+  </div>
+  <div class="well">
+  <h2 id="concepts">Learn about more advanced FFmpeg concepts</h2>
+
+  <!-- Filtergraph explanation -->
+  <span data-toggle="modal" data-target="#filtergraphs"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Filtergraphs">Filtergraphs</button></span>
+  <div id="filtergraphs" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Filtergraphs</h3>
+          <p>Many FFmpeg commands use filters that manipulate the video or audio stream in some way: for example, <a href="http://ffmpeg.org/ffmpeg-filters.html#hflip" target="_blank">hflip</a> to horizontally flip a video, or <a href="http://ffmpeg.org/ffmpeg-filters.html#amerge-1" target="_blank">amerge</a> to merge two or more audio tracks into a single stream.</p>
+          <p>The use of a filter is signalled by the flag <code>-vf</code> (video filter) or <code>-af</code> (audio filter), followed by the name and options of the filter itself. For example, take the <a href="#convert-colourspace">convert colourspace</a> command:</p>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf colormatrix=<i>src</i>:<i>dst</i> <i>output_file</i></code>
+          <p>Here, <a href="http://ffmpeg.org/ffmpeg-filters.html#colormatrix" target="_blank">colormatrix</a> is the filter used, with <i>src</i> and <i>dst</i> representing the source and destination colourspaces. This part following the <code>-vf</code> is a <b>filtergraph</b>.</p>
+          <p>It is also possible to apply multiple filters to an input, which are sequenced together in the filtergraph. A chained set of filters is called a filter chain, and a filtergraph may include multiple filter chains. Filters in a filterchain are separated from each other by commas (<code>,</code>), and filterchains are separated from each other by semicolons (<code>;</code>). For example, take the <a href="#inverse-telecine">inverse telecine</a> command:</p>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf "fieldmatch,yadif,decimate" <i>output_file</i></code></p>
+          <p>Here we have a filtergraph including one filter chain, which is made up of three video filters.</p>
+          <p>It is often prudent to enclose your filtergraph in quotation marks; this  means that you can use spaces within the filtergraph. Using the inverse telecine example again, the following filter commands are all valid and equivalent:
+            <ul>
+              <li><code>-vf fieldmatch,yadif,decimate</code></li>
+              <li><code>-vf "fieldmatch,yadif,decimate"</code></li>
+              <li><code>-vf "fieldmatch, yadif, decimate"</code></li>
+            </ul>
+          but <code>-vf fieldmatch, yadif, decimate</code> is not valid.</p>
+          <p>The ordering of the filters is significant. Video filters are applied in the order given, with the output of one filter being passed along as the input to the next filter in the chain. In the example above, <code>fieldmatch</code> reconstructs the original frames from the inverse telecined video, <code>yadif</code> deinterlaces (this is a failsafe in case any combed frames remain, for example if the source mixes telecined and real interlaced content), and <code>decimate</code> deletes duplicated frames. Clearly, it is not possible to delete duplicated frames before those frames are reconstructed.</p>
+          <h4>Notes</h4>
+          <ul>
+            <li>If the command involves more than one input or output, you must use the flag <code>-filter_complex</code> instead of <code>-vf</code>.</li>
+            <li>Straight quotation marks ("like this") rather than curved quotation marks (“like this”) should be used.</li>
+          </ul>
+          <p>For more information, check out the FFmpeg wiki <a href="https://trac.ffmpeg.org/wiki/FilteringGuide" target="_blank">Filtering Guide</a>.</p>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Filtergraph explanation -->
+
+  </div>
   <div class="well">
   <h2 id="rewrap">Change container (rewrap)</h2>
 
@@ -79,13 +151,13 @@
             <dt>-i <i>input_file.ext</i></dt><dd>path and name of the input file<br></dd>
             <dt>-c copy</dt><dd>copy the streams directly, without re-encoding.</dd>
             <dt>-map 0</dt><dd>map all streams of the input to the output.<br>
-            By default, ffmpeg will only map one stream of each type (video, audio, subtitles) to the output file. However, files may have multiple streams of a given type - for example, a video may have several audio tracks for different languages. Therefore, if you want to preserve all the streams in the original, it's necessary to use this option.</dd>
+            By default, FFmpeg will only map one stream of each type (video, audio, subtitles) to the output file. However, files may have multiple streams of a given type - for example, a video may have several audio tracks for different languages. Therefore, if you want to preserve all the streams in the original, it's necessary to use this option.</dd>
             <dt><i>output_file.ext</i></dt><dd>path and name of the output file.<br>
             The new container you are rewrapping to is defined by the filename extension used here, e.g. .mkv, .mp4, .mov.</dd>
           </dl>
           <h4>Important caveat</h4>
           <p>It may not be possible to rewrap a file's contents to a new container without re-encoding one or more of the streams within (that is, the video, audio, and subtitle tracks). Some containers can only contain streams of a certain encoding type: for example, the .mp4 container does not support uncompressed audio tracks. (In practice .mp4 goes hand-in-hand with a H.264-encoded video stream and an AAC-encoded video stream, although other types of video and audio streams are possible). Another example is that the Matroska container does not allow data tracks; see the <a href="#mkv-to-mp4">MKV to MP4 recipe</a>.</p>
-          <p>In such cases, ffmpeg will throw an error. If you encounter errors of this kind, you may wish to consult the <a href="#transcode">list of transcoding recipes</a>.</p>
+          <p>In such cases, FFmpeg will throw an error. If you encounter errors of this kind, you may wish to consult the <a href="#transcode">list of transcoding recipes</a>.</p>
           <p class="link"></p>
         </div>
       </div>
@@ -136,7 +208,7 @@
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-c:v prores</dt><dd>Tells ffmpeg to transcode the video stream into Apple ProRes 422</dd>
+            <dt>-c:v prores</dt><dd>tells FFmpeg to transcode the video stream into Apple ProRes 422</dd>
             <dt>-profile:v <i>1</i></dt><dd>Declares profile of ProRes you want to use. The profiles are explained below:
             <ul>
               <li>0 = ProRes 422 (Proxy)</li>
@@ -145,7 +217,7 @@
               <li>3 = ProRes 422 (HQ)</li>
             </ul></dd>
             <dt>-vf yadif</dt><dd>Runs a deinterlacing video filter (yet another deinterlacing filter) on the new file. <code>-vf</code> is an alias for <code>-filter:v</code>.</dd>
-            <dt>-c:a pcm_s16le</dt><dd>Tells ffmpeg to encode the audio stream in 16-bit linear PCM</dd>
+            <dt>-c:a pcm_s16le</dt><dd>tells FFmpeg to encode the audio stream in 16-bit linear PCM</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file<br>
             The extension for the QuickTime container is <code>.mov</code>.</dd>
           </dl>
@@ -173,20 +245,20 @@
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-c:v libx264</dt><dd>tells ffmpeg to encode the video stream as H.264</dd>
+            <dt>-c:v libx264</dt><dd>tells FFmpeg to encode the video stream as H.264</dd>
             <dt>-pix_fmt yuv420p</dt><dd> libx264 will use a chroma subsampling scheme that is the closest match to that of the input. This can result in Y′C<sub>B</sub>C<sub>R</sub> 4:2:0, 4:2:2, or 4:4:4 chroma subsampling. QuickTime and most other non-FFmpeg based players can’t decode H.264 files that are not 4:2:0. In order to allow the video to play in all players, you can specify 4:2:0 chroma subsampling.</dd>
-            <dt>-c:a copy</dt><dd>tells ffmpeg to copy the audio stream without re-encoding it</dd>
+            <dt>-c:a copy</dt><dd>tells FFmpeg to copy the audio stream without re-encoding it</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
           <p>In order to use the same basic command to make a higher quality file, you can add some of these presets:</p>
           <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -pix_fmt yuv420p -preset veryslow -crf 18 -c:a copy <i>output_file</i></code></p>
           <dl>
-            <dt>-preset <i>veryslow</i></dt><dd>This option tells ffmpeg to use the slowest preset possible for the best compression quality.<br>
+            <dt>-preset <i>veryslow</i></dt><dd>This option tells FFmpeg to use the slowest preset possible for the best compression quality.<br>
             Available presets, from slowest to fastest, are: <code>veryslow</code>, <code>slower</code>, <code>slow</code>, <code>medium</code>, <code>fast</code>, <code>faster</code>, <code>veryfast</code>, <code>superfast</code>, <code>ultrafast</code>.</dd>
             <dt>-crf <i>18</i></dt><dd>Specifying a lower CRF will make a larger file with better visual quality. For H.264 files being encoded with a 4:2:0 chroma subsampling scheme (i.e., using <code>-pix_fmt yuv420p</code>), the scale ranges between 0-51, with 0 being lossless and 51 the worst possible quality.<br>
               If no crf is specified, <code>libx264</code> will use a default value of 23. 18 is often considered a “visually lossless” compression.</dd>
           </dl>
-          <p>For more information, see the <a href="https://trac.ffmpeg.org/wiki/Encode/H.264" target="_blank">FFmpeg and H.264 Encoding Guide</a> on the ffmpeg wiki.</p>
+          <p>For more information, see the <a href="https://trac.ffmpeg.org/wiki/Encode/H.264" target="_blank">FFmpeg and H.264 Encoding Guide</a> on the FFmpeg wiki.</p>
           <p class="link"></p>
         </div>
       </div>
@@ -234,11 +306,11 @@
         <div class="well">
           <h3>Create FFV1 Version 3 video in a Matroska container with framemd5 of input</h3>
           <p><code>ffmpeg -i <i>input_file</i> -map 0 -dn -c:v ffv1 -level 3 -g 1 -slicecrc 1 -slices 16 -c:a copy <i>output_file</i>.mkv -f framemd5 -an <i>framemd5_output_file</i></code></p>
-          <p>This will losslessly transcode your video with the FFV1 Version 3 codec in a Matroska container. In order to verify losslessness, a framemd5 of the source video is also generated. For more information on FFV1 encoding, <a href="https://trac.ffmpeg.org/wiki/Encode/FFV1" target="_blank">try the ffmpeg wiki</a>.</p>
+          <p>This will losslessly transcode your video with the FFV1 Version 3 codec in a Matroska container. In order to verify losslessness, a framemd5 of the source video is also generated. For more information on FFV1 encoding, <a href="https://trac.ffmpeg.org/wiki/Encode/FFV1" target="_blank">try the FFmpeg wiki</a>.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command.</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file.</dd>
-            <dt>-map 0</dt><dd>Map all streams that are present in the input file. This is important as ffmpeg will map only one stream of each type (video, audio, subtitles) by default to the output video.</dd>
+            <dt>-map 0</dt><dd>Map all streams that are present in the input file. This is important as FFmpeg will map only one stream of each type (video, audio, subtitles) by default to the output video.</dd>
             <dt>-dn</dt><dd>ignore data streams (data no). The Matroska container does not allow data tracks.</dd>
             <dt>-c:v ffv1</dt><dd>specifies the FFV1 video codec.</dd>
             <dt>-level 3</dt><dd>specifies Version 3 of the FFV1 codec.</dd>
@@ -258,32 +330,6 @@
   </div>
   <!-- ends Transcode to FFV1.mkv-->
 
-  <!-- Images to GIF -->
-  <span data-toggle="modal" data-target="#img_to_gif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Converts images to GIF">Images to GIF</button></span>
-  <div id="img_to_gif" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Images to GIF</h3>
-          <p><code>ffmpeg -f image2 -framerate 9 -pattern_type glob -i <i>"input_image_*.jpg"</i> -vf scale=250x250 <i>output_file</i>.gif</code></p>
-          <p>This will convert a series of image files into a GIF.</p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-f image2</dt><dd>forces input or output file format. <code>image2</code> specifies the image file demuxer.</dd>
-            <dt>-framerate 9</dt><dd>sets framerate to 9 frames per second</dd>
-            <dt>-pattern_type glob</dt><dd>tells ffmpeg that the following mapping should "interpret like a <a href="https://en.wikipedia.org/wiki/Glob_%28programming%29" target="_blank">glob</a>" (a "global command" function that relies on the * as a wildcard and finds everything that matches)</dd>
-            <dt>-i <i>"input_image_*.jpg"</i></dt><dd>maps all files in the directory that start with input_image_, for example input_image_001.jpg, input_image_002.jpg, input_image_003.jpg... etc.<br>
-            (The quotation marks are necessary for the above “glob” pattern!)</dd>
-            <dt>-vf scale=250x250</dt><dd>filter the video to scale it to 250x250; <code>-vf</code> is an alias for <code>-filter:v</code></dd>
-            <dt><i>output_file.gif</i></dt><dd>path and name of the output file</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Images to GIF -->
-
   <!-- Rip DVD -->
   <span data-toggle="modal" data-target="#dvd_to_file"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Basic DVD to file conversion">Convert DVD to H.264</button></span>
   <div id="dvd_to_file" class="modal fade" tabindex="-1" role="dialog">
@@ -296,7 +342,7 @@
           <p>Before encoding, you’ll need to establish which of the .VOB files on the DVD or .iso contain the content that you wish to encode. Inside the VIDEO_TS directory, you will see a series of files with names like VTS_01_0.VOB, VTS_01_1.VOB, etc. Some of the .VOB files will contain menus, special features, etc, so locate the ones that contain target content by playing them back in VLC.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i concat:<i>input files</i></dt><dd>lists the input VOB files and directs ffmpeg to concatenate them. Each input file should be separated by a backslash and a pipe, like so:<br>
+            <dt>-i concat:<i>input files</i></dt><dd>lists the input VOB files and directs FFmpeg to concatenate them. Each input file should be separated by a backslash and a pipe, like so:<br>
             <code>-i concat:VTS_01_1.VOB\|VTS_01_2.VOB\|VTS_01_3.VOB</code><br>
             The backslash is simply an escape character for the pipe (<b>|</b>).</dd>
             <dt>-c:v libx264</dt><dd>sets the video codec as H.264</dd>
@@ -331,13 +377,13 @@
           <h3>Transcode to H.265/HEVC</h3>
           <p><code>ffmpeg -i <i>input_file</i> -c:v libx265 -pix_fmt yuv420p -c:a copy <i>output_file</i></code></p>
           <p>This command takes an input file and transcodes it to H.265/HEVC in an .mp4 wrapper, keeping the audio codec the same as in the original file.</p>
-          <p><b>Note:</b> ffmpeg must be compiled with libx265, the library of the H.265 codec, for this script to work. (Add the flag <code>--with-x265</code> if using the <code>brew install ffmpeg</code> method).</p>
+          <p><b>Note:</b> FFmpeg must be compiled with libx265, the library of the H.265 codec, for this script to work. (Add the flag <code>--with-x265</code> if using the <code>brew install ffmpeg</code> method).</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-c:v libx265</dt><dd>tells ffmpeg to encode the video as H.265</dd>
+            <dt>-c:v libx265</dt><dd>tells FFmpeg to encode the video as H.265</dd>
             <dt>-pix_fmt yuv420p</dt><dd>libx265 will use a chroma subsampling scheme that is the closest match to that of the input. This can result in Y′C<sub>B</sub>C<sub>R</sub> 4:2:0, 4:2:2, or 4:4:4 chroma subsampling. For widest accessibility, it’s a good idea to specify 4:2:0 chroma subsampling.</dd>
-            <dt>-c:a copy</dt><dd>tells ffmpeg not to change the audio codec</dd>
+            <dt>-c:a copy</dt><dd>tells FFmpeg not to change the audio codec</dd>
             <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
           <p>The libx265 encoding library defaults to a ‘medium’ preset for compression quality and a CRF of 28. CRF stands for ‘constant rate factor’ and determines the quality and file size of the resulting H.265 video. The CRF scale ranges from 0 (best quality [lossless]; largest file size) to 51 (worst quality; smallest file size).</p>
@@ -345,7 +391,7 @@
           <p>To create a higher quality file, you can add these presets:</p>
           <p><code>ffmpeg -i <i>input_file</i> -c:v libx265 -pix_fmt yuv420p -preset veryslow -crf 18 -c:a copy <i>output_file</i></code></p>
           <dl>
-            <dt>-preset <i>veryslow</i></dt><dd>This option tells ffmpeg to use the slowest preset possible for the best compression quality.</dd>
+            <dt>-preset <i>veryslow</i></dt><dd>This option tells FFmpeg to use the slowest preset possible for the best compression quality.</dd>
             <dt>-crf <i>18</i></dt><dd>Specifying a lower CRF will make a larger file with better visual quality. 18 is often considered a ‘visually lossless’ compression.</dd>
           </dl>
           <p class="link"></p>
@@ -531,13 +577,13 @@
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-c:v libx264</dt><dd>tells ffmpeg to encode the video stream as H.264</dd>
+            <dt>-c:v libx264</dt><dd>tells FFmpeg to encode the video stream as H.264</dd>
             <dt>-vf colormatrix=<i>src</i>:<i>dst</i></dt><dd>the video filter <b>colormatrix</b> will be applied, with the given source and destination colourspaces.<br>
             Accepted values include <code>bt601</code> (Rec.601), <code>smpte170m</code> (Rec.601, 525-line/<a href="https://en.wikipedia.org/wiki/NTSC#NTSC-M" target="_blank">NTSC</a> version), <code>bt470bg</code> (Rec.601, 625-line/<a href="https://en.wikipedia.org/wiki/PAL#PAL-B.2FG.2FD.2FK.2FI" target="_blank">PAL</a> version), <code>bt709</code> (Rec.709), and <code>bt2020</code> (Rec.2020).<br>
             For example, to convert from Rec.601 to Rec.709, you would use <code>-vf colormatrix=bt601:bt709</code>.</dd>
             <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
-          <p><b>Note:</b> Converting between colourspaces with ffmpeg can be done via either the <b>colormatrix</b> or <b>colorspace</b> filters, with colorspace allowing finer control (individual setting of colourspace, transfer characteristics, primaries, range, pixel format, etc). See <a href="https://trac.ffmpeg.org/wiki/colorspace" target="_blank">this</a> entry on the ffmpeg wiki, and the ffmpeg documentation for <a href="http://ffmpeg.org/ffmpeg-filters.html#colormatrix" target="_blank">colormatrix</a> and <a href="http://ffmpeg.org/ffmpeg-filters.html#colorspace" target="_blank">colorspace</a>.</p>
+          <p><b>Note:</b> Converting between colourspaces with FFmpeg can be done via either the <b>colormatrix</b> or <b>colorspace</b> filters, with colorspace allowing finer control (individual setting of colourspace, transfer characteristics, primaries, range, pixel format, etc). See <a href="https://trac.ffmpeg.org/wiki/colorspace" target="_blank">this</a> entry on the FFmpeg wiki, and the FFmpeg documentation for <a href="http://ffmpeg.org/ffmpeg-filters.html#colormatrix" target="_blank">colormatrix</a> and <a href="http://ffmpeg.org/ffmpeg-filters.html#colorspace" target="_blank">colorspace</a>.</p>
           <hr>
           <h2>Convert colourspace and embed colourspace metadata</h2>
           <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf colormatrix=src:dst -color_primaries <i>val</i> -color_trc <i>val</i> -colorspace <i>val</i> <i>output_file</i></code></p>
@@ -566,7 +612,7 @@
           <p><span class="beware">⚠</span> Using this command it is possible to add Rec.709 tags to a file that is actually Rec.601 (etc), so apply with caution!</p>
           <p>These commands are relevant for H.264 and H.265 videos, encoded with <code>libx264</code> and <code>libx265</code> respectively.</p>
           <p><b>Note:</b> If you wish to embed colourspace metadata <i>without</i> changing to another colourspace, omit <code>-vf colormatrix=src:dst</code>. However, since it is <code>libx264</code>/<code>libx265</code> that writes the metadata, it’s not possible to add these tags without reencoding the video stream.</p>
-          <p>For all possible values for <code>-color_primaries</code>, <code>-color_trc</code>, and <code>-colorspace</code>, see the ffmpeg documentation on <a href="https://www.ffmpeg.org/ffmpeg-codecs.html#Codec-Options" target="_blank">codec options</a>.</p>
+          <p>For all possible values for <code>-color_primaries</code>, <code>-color_trc</code>, and <code>-colorspace</code>, see the FFmpeg documentation on <a href="https://www.ffmpeg.org/ffmpeg-codecs.html#Codec-Options" target="_blank">codec options</a>.</p>
           <hr>
           <p id="fn1" class="footnote">1. Out of step with the regular pattern, <code>-color_trc</code> doesn’t accept <code>bt470bg</code>; it is instead here referred to directly as gamma.<br>
           In the Rec.601 standard, 525-line/NTSC and 625-line/PAL video have assumed gammas of 2.2 and 2.8 respectively. <a href="#ref1" title="Jump back.">↩</a></p>
@@ -576,6 +622,36 @@
     </div>
   </div>
   <!-- ends Convert colourspace -->
+
+
+  <!-- Modify speed -->
+  <span data-toggle="modal" data-target="#modify_speed"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Modify image and sound speed">Modify speed</button></span>
+  <div id="modify_speed" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Modify image and sound speed</h3>
+          <p>E.g. for converting 24fps to 25fps with audio pitch compensation for PAL access copies. (Thanks @kieranjol!)</p>
+          <p><code>ffmpeg -i <i>input_file</i> -filter_complex "[0:v]setpts=<i>input_fps</i>/<i>output_fps</i>*PTS[v]; [0:a]atempo=<i>output_fps</i>/<i>input_fps</i>[a]" -map "[v]" -map "[a]" <i>output_file</i></code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-filter_complex "[0:v]setpts=<i>input_fps</i>/<i>output_fps</i>*PTS[v]; [0:a]atempo=<i>output_fps</i>/<i>input_fps</i>[a]"</dt><dd>A complex filter is needed here, in order to handle video stream and the audio stream separately. The <code>setpts</code> video filter modifies the PTS (presentation time stamp) of the video stream, and the <code>atempo</code> audio filter modifies the speed of the audio stream while keeping the same sound pitch. Note that the parameter order for the image and for the sound are inverted:
+            <ul>
+              <li>In the video filter <code>setpts</code> the numerator <code>input_fps</code> sets the input speed and the denominator <code>output_fps</code> sets the output speed; both values are given in frames per second.</li>
+              <li>In the sound filter <code>atempo</code> the numerator <code>output_fps</code> sets the output speed and the denominator <code>input_fps</code> sets the input speed; both values are given in frames per second.</li>
+            </ul>
+            The different filters in a complex filter can be divided either by comma or semicolon. The quotation marks allow to insert a space between the filters for readability.</dd>
+            <dt>-map "[v]"</dt><dd>maps the video stream and:</dd>
+            <dt>-map "[a]"</dt><dd>maps the audio stream together into:</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Modify speed -->
 
   <!-- Make stream properties explicate -->
   <span data-toggle="modal" data-target="#clarify_stream"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Clarify stream properties">Set stream properties</button></span>
@@ -600,17 +676,18 @@
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-c copy</dt><dd>Usings stream copy for all streams</dd>
-            <dt>-map 0</dt><dd>Tells ffmpeg to map all streams of the input to the output.</dd>
+            <dt>-map 0</dt><dd>tells FFmpeg to map all streams of the input to the output.</dd>
             <dt>-aspect DAR_NUM:DAR_DEN</dt><dd>Replace DAR_NUM with the display aspect ratio numerator and DAR_DEN with the display aspect ratio denominator, such as <i>-aspect 4:3</i> or <i>-aspect 16:9</i>.</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
           <h2>Adding other stream properties.</h2>
           <p>Other properties may be clarified in a similar way. Replace <i>-aspect</i> and its value with other properties such as shown in the options below. Note that setting color values in QuickTime requires that <i>-movflags write_colr</i> is set.</p>
           <dl>
-            <dt>-color_primary <i>VALUE</i> -movflags write_colr</dt><dd>Set a new color_primary value. The vocabulary for values is at <a href="http://ffmpeg.org/ffmpeg-all.html" target="_blank">ffmpeg</a>.</dd>
-            <dt>-color_trc <i>VALUE</i> -movflags write_colr</dt><dd>Set a new color_transfer value. The vocabulary for values is at <a href="http://ffmpeg.org/ffmpeg-all.html" target="_blank">ffmpeg</a>.</dd>
-            <dt>-field_order <i>VALUE</i></dt><dd>Set interlacement values. The vocabulary for values is at <a href="http://ffmpeg.org/ffmpeg-all.html" target="_blank">ffmpeg</a>.</dd>
+            <dt>-color_primaries <i>VALUE</i> -movflags write_colr</dt><dd>Set a new color_primaries value.</dd>
+            <dt>-color_trc <i>VALUE</i> -movflags write_colr</dt><dd>Set a new color_transfer value.</dd>
+            <dt>-field_order <i>VALUE</i></dt><dd>Set interlacement values.</dd>
           </dl>
+          <p>The possible values for <code>-color_primaries</code>, <code>-color_trc</code>, and <code>-field_order</code> are given in the <a href="http://ffmpeg.org/ffmpeg-all.html#toc-Codec-Options" target="_blank">Codec Options</a> section of the FFmpeg docs - scroll down to near the bottom of the section.</p>
           <p class="link"></p>
         </div>
       </div>
@@ -630,11 +707,11 @@
         <div class="well">
           <h3>Join files together</h3>
           <p><code>ffmpeg -f concat -i mylist.txt -c copy <i>output_file</i></code></p>
-          <p>This command takes two or more files of the same file type and joins them together to make a single file. All that the program needs is a text file with a list specifying the files that should be joined. However, it only works properly if the files to be combined have the exact same codec and technical specifications. Be careful, ffmpeg may appear to have successfully joined two video files with different codecs, but may only bring over the audio from the second file or have other weird behaviors. Don’t use this command for joining files with different codecs and technical specs and always preview your resulting video file!</p>
+          <p>This command takes two or more files of the same file type and joins them together to make a single file. All that the program needs is a text file with a list specifying the files that should be joined. However, it only works properly if the files to be combined have the exact same codec and technical specifications. Be careful, FFmpeg may appear to have successfully joined two video files with different codecs, but may only bring over the audio from the second file or have other weird behaviors. Don’t use this command for joining files with different codecs and technical specs and always preview your resulting video file!</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-f concat</dt><dd>forces ffmpeg to concatenate the files and to keep the same file format</dd>
-            <dt>-i <i>mylist.txt</i></dt><dd>path, name and extension of the input file. Per the <a href="https://www.ffmpeg.org/ffmpeg-formats.html#Options" target="_blank">ffmpeg documentation</a>, it is preferable to specify relative rather than absolute file paths, as allowing absolute file paths may pose a security risk.<br>
+            <dt>-i <i>mylist.txt</i></dt><dd>path, name and extension of the input file. Per the <a href="https://www.ffmpeg.org/ffmpeg-formats.html#Options" target="_blank">FFmpeg documentation</a>, it is preferable to specify relative rather than absolute file paths, as allowing absolute file paths may pose a security risk.<br>
             This text file contains the list of files to be concatenated and should be formatted as follows:
             <pre>file '<i>./first_file.ext</i>'
 file '<i>./second_file.ext</i>'
@@ -646,7 +723,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
             <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
-          <p>For more information, see the <a href="https://trac.ffmpeg.org/wiki/Concatenate" target="_blank">ffmpeg wiki page on concatenating files</a>.</p>
+          <p>For more information, see the <a href="https://trac.ffmpeg.org/wiki/Concatenate" target="_blank">FFmpeg wiki page on concatenating files</a>.</p>
           <p class="link"></p>
         </div>
       </div>
@@ -666,14 +743,14 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
             <dt>ffmpeg</dt><dd>Starts the command.</dd>
             <dt>-i <i>input_file</i></dt><dd>Takes in a normal file.</dd>
             <dt>-c copy</dt><dd>Use stream copy mode to re-mux instead of re-encode.</dd>
-            <dt>-map 0</dt><dd>Tells ffmpeg to map all streams of the input to the output.</dd>
-            <dt>-f segment</dt><dd>Use <a href="http://www.ffmpeg.org/ffmpeg-formats.html#toc-segment_002c-stream_005fsegment_002c-ssegment">segment muxer</a> for generating the output.</dd>
+            <dt>-map 0</dt><dd>tells FFmpeg to map all streams of the input to the output.</dd>
+            <dt>-f segment</dt><dd>Use <a href="http://www.ffmpeg.org/ffmpeg-formats.html#toc-segment_002c-stream_005fsegment_002c-ssegment" target="_blank">segment muxer</a> for generating the output.</dd>
             <dt>-segment_time 60</dt><dd>Set duration of each segment (in seconds). This example creates segments with max. duration of 60s each.</dd>
             <dt>-reset_timestamps 1</dt><dd>Reset timestamps of each segment to 0. Meant to ease the playback of the generated segments.</dd>
             <dt><i>output_file-%03d.mkv</i></dt>
             <dd>
             <p>Path, name and extension of the output file.<br>
-              In order to have an incrementing number in each segment filename, FFmpeg supports <a href="http://www.cplusplus.com/reference/cstdio/printf/">printf-style</a> syntax for a counter.</p>
+              In order to have an incrementing number in each segment filename, FFmpeg supports <a href="http://www.cplusplus.com/reference/cstdio/printf/" target="_blank">printf-style</a> syntax for a counter.</p>
               <p>In this example, '%03d' means: 3-digits, zero-padded<br>
                 Examples:</p>
               <ul>
@@ -705,8 +782,8 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
             <dt>-ss 00:02:00</dt><dd>sets in point at 00:02:00</dd>
             <dt>-to 00:55:00</dt><dd>sets out point at 00:55:00</dd>
             <dt>-c copy</dt><dd>use stream copy mode (no re-encoding)<br>
-            <dt>-map 0</dt><dd>Tells ffmpeg to map all streams of the input to the output.</dd>
-            <b>Note:</b> watch out when using <code>-ss</code> with <code>-c copy</code> if the source is encoded with an interframe codec (e.g., H.264). Since ffmpeg must split on i-frames, it will seek to the nearest i-frame to begin the stream copy.</dd>
+            <dt>-map 0</dt><dd>tells FFmpeg to map all streams of the input to the output.</dd>
+            <b>Note:</b> watch out when using <code>-ss</code> with <code>-c copy</code> if the source is encoded with an interframe codec (e.g., H.264). Since FFmpeg must split on i-frames, it will seek to the nearest i-frame to begin the stream copy.</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
           <p>Variation: trim video by setting duration, by using <code>-t</code> instead of <code>-to</code></p>
@@ -734,9 +811,9 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-t <i>5</i></dt><dd>Tells ffmpeg to stop copying from the input file after a certain time, and specifies the number of seconds after which to stop copying. In this case, 5 seconds is specified.</dd>
+            <dt>-t <i>5</i></dt><dd>tells FFmpeg to stop copying from the input file after a certain time, and specifies the number of seconds after which to stop copying. In this case, 5 seconds is specified.</dd>
             <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
-            <dt>-map 0</dt><dd>Tells ffmpeg to map all streams of the input to the output.</dd>
+            <dt>-map 0</dt><dd>tells FFmpeg to map all streams of the input to the output.</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
           <p class="link"></p>
@@ -758,9 +835,9 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-ss <i>5</i></dt><dd>Tells ffmpeg what timecode in the file to look for to start copying, and specifies the number of seconds into the video that ffmpeg should start copying. To be more specific, you can use timecode such as 00:00:05.</dd>
+            <dt>-ss <i>5</i></dt><dd>tells FFmpeg what timecode in the file to look for to start copying, and specifies the number of seconds into the video that FFmpeg should start copying. To be more specific, you can use timecode such as 00:00:05.</dd>
             <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
-            <dt>-map 0</dt><dd>Tells ffmpeg to map all streams of the input to the output.</dd>
+            <dt>-map 0</dt><dd>tells FFmpeg to map all streams of the input to the output.</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
           <p class="link"></p>
@@ -781,10 +858,10 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
           <p>This command copies a video file starting from a specified time before the end of the file, removing everything before from the output. This can be used to create an excerpt, or extract content from the end of a video file (e.g. for extracting the closing credits).</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-sseof <i>-5</i></dt><dd>This parameter must stay before the input file. It tells ffmpeg what timecode in the file to look for to start copying, and specifies the number of seconds from the end of the video that ffmpeg should start copying. The end of the file has index 0 and the minus sign is needed to reference earlier portions. To be more specific, you can use timecode such as -00:00:05. Note that in most file formats it is not possible to seek exactly, so ffmpeg will seek to the closest point before.</dd>
+            <dt>-sseof <i>-5</i></dt><dd>This parameter must stay before the input file. It tells FFmpeg what timecode in the file to look for to start copying, and specifies the number of seconds from the end of the video that FFmpeg should start copying. The end of the file has index 0 and the minus sign is needed to reference earlier portions. To be more specific, you can use timecode such as -00:00:05. Note that in most file formats it is not possible to seek exactly, so FFmpeg will seek to the closest point before.</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
-            <dt>-map 0</dt><dd>Tells ffmpeg to map all streams of the input to the output.</dd>
+            <dt>-map 0</dt><dd>tells FFmpeg to map all streams of the input to the output.</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
           <p class="link"></p>
@@ -807,8 +884,8 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
           <h3>Upscaled, Pillar-boxed HD H.264 Access Files from SD NTSC source</h3>
           <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -filter:v "yadif, scale=1440:1080:flags=lanczos, pad=1920:1080:(ow-iw)/2:(oh-ih)/2, format=yuv420p" <i>output_file</i></code></p>
           <dl>
-            <dt>ffmpeg</dt><dd>Calls the program ffmpeg</dd>
-            <dt>-i</dt><dd>for input video file and audio file</dd>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-c:v libx264</dt><dd>encodes video stream with libx264 (h264)</dd>
             <dt>"</dt><dd>quotation mark to start filtergraph</dd>
             <dt>yadif</dt><dd>deinterlacing filter (‘yet another deinterlacing filter’)<br>
@@ -839,7 +916,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-c:v libx264</dt><dd>tells ffmpeg to encode the video stream as H.264</dd>
+            <dt>-c:v libx264</dt><dd>tells FFmpeg to encode the video stream as H.264</dd>
             <dt>-vf</dt><dd>video filtering will be used (<code>-vf</code> is an alias of <code>-filter:v</code>)</dd>
             <dt>"</dt><dd>start of filtergraph (see below)</dd>
             <dt>yadif</dt><dd>deinterlacing filter (‘yet another deinterlacing filter’)<br>
@@ -850,9 +927,9 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
             <dt>"</dt><dd>end of filtergraph</dd>
             <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
-          <p> <code>"yadif,format=yuv420p"</code> is an ffmpeg <a href="https://trac.ffmpeg.org/wiki/FilteringGuide#FiltergraphChainFilterrelationship" target="_blank">filtergraph</a>. Here the filtergraph is made up of one filter chain, which is itself made up of the two filters (separated by the comma).<br>
+          <p> <code>"yadif,format=yuv420p"</code> is an FFmpeg <a href="https://trac.ffmpeg.org/wiki/FilteringGuide#FiltergraphChainFilterrelationship" target="_blank">filtergraph</a>. Here the filtergraph is made up of one filter chain, which is itself made up of the two filters (separated by the comma).<br>
           The enclosing quote marks are necessary when you use spaces within the filtergraph, e.g. <code>-vf "yadif, format=yuv420p"</code>, and are included above as an example of good practice.</p>
-          <p><b>Note:</b> ffmpeg includes several deinterlacers apart from <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1" target="_blank">yadif</a>: <a href="https://ffmpeg.org/ffmpeg-filters.html#bwdif" target="_blank">bwdif</a>, <a href="https://ffmpeg.org/ffmpeg-filters.html#w3fdif" target="_blank">w3fdif</a>, <a href="https://ffmpeg.org/ffmpeg-filters.html#kerndeint" target="_blank">kerndeint</a>, and <a href="https://ffmpeg.org/ffmpeg-filters.html#nnedi" target="_blank">nnedi</a>.</p>
+          <p><b>Note:</b> FFmpeg includes several deinterlacers apart from <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1" target="_blank">yadif</a>: <a href="https://ffmpeg.org/ffmpeg-filters.html#bwdif" target="_blank">bwdif</a>, <a href="https://ffmpeg.org/ffmpeg-filters.html#w3fdif" target="_blank">w3fdif</a>, <a href="https://ffmpeg.org/ffmpeg-filters.html#kerndeint" target="_blank">kerndeint</a>, and <a href="https://ffmpeg.org/ffmpeg-filters.html#nnedi" target="_blank">nnedi</a>.</p>
           <p>For more H.264 encoding options, see the latter section of the <a href="./index.html#transcode_h264">encode H.264 command</a>.</p>
           <div class="sample-image">
             <h2>Example</h2>
@@ -882,11 +959,11 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
             <dt>-c:v libx264</dt><dd>encode video as H.264</dd>
             <dt>-vf "fieldmatch,yadif,decimate"</dt><dd>applies these three video filters to the input video.<br>
             <a href="https://ffmpeg.org/ffmpeg-filters.html#fieldmatch" target="_blank">Fieldmatch</a> is a field matching filter for inverse telecine - it reconstructs the progressive frames from a telecined stream.<br>
-            <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1" target="_blank">Yadif</a> (‘yet another deinterlacing filter’) deinterlaces the video. (Note that ffmpeg also includes several other deinterlacers).<br>
+            <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1" target="_blank">Yadif</a> (‘yet another deinterlacing filter’) deinterlaces the video. (Note that FFmpeg also includes several other deinterlacers).<br>
             <a href="https://ffmpeg.org/ffmpeg-filters.html#decimate-1" target="_blank">Decimate</a> deletes duplicated frames.</dd>
             <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
-          <p><code>"fieldmatch,yadif,decimate"</code> is an ffmpeg <a href="https://trac.ffmpeg.org/wiki/FilteringGuide#FiltergraphChainFilterrelationship" target="_blank">filtergraph</a>. Here the filtergraph is made up of one filter chain, which is itself made up of the three filters (separated by commas).<br>
+          <p><code>"fieldmatch,yadif,decimate"</code> is an FFmpeg <a href="https://trac.ffmpeg.org/wiki/FilteringGuide#FiltergraphChainFilterrelationship" target="_blank">filtergraph</a>. Here the filtergraph is made up of one filter chain, which is itself made up of the three filters (separated by commas).<br>
           The enclosing quote marks are necessary when you use spaces within the filtergraph, e.g. <code>-vf "fieldmatch, yadif, decimate"</code>, and are included above as an example of good practice.</p>
           <p>Note that if applying an inverse telecine procedure to a 29.97i file, the output framerate will actually be 23.976fps.</p>
           <p>This command can also be used to restore other framerates.</p>
@@ -997,7 +1074,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
             <dt>:</dt><dd>divides between options of the same filter</dd>
             <dt>reset=1</dt><dd>tells the filter to calculate the stats on every frame (increasing this number would calculate stats for groups of frames)</dd>
             <dt>,</dt><dd>comma divides one filter in the chain from another</dd>
-            <dt>adrawgraph=lavfi.astats.Overall.Peak_level:max=0:min=-30.0</dt><dd>draws a graph using the overall peak volume calculated by the astats filter. It sets the max for the graph to 0 (dB) and the minimum to -30 (dB). For more options on data points that can be graphed see the <a href="https://ffmpeg.org/ffmpeg-filters.html#astats-1" target="_blank">ffmpeg astats documentation</a></dd>
+            <dt>adrawgraph=lavfi.astats.Overall.Peak_level:max=0:min=-30.0</dt><dd>draws a graph using the overall peak volume calculated by the astats filter. It sets the max for the graph to 0 (dB) and the minimum to -30 (dB). For more options on data points that can be graphed see the <a href="https://ffmpeg.org/ffmpeg-filters.html#astats-1" target="_blank">FFmpeg astats documentation</a></dd>
             <dt>size=700x256:bg=Black</dt><dd>sets the background color and size of the output</dd>
             <dt>[out]</dt><dd>ends the filterchain and sets the output</dd>
             <dt>"</dt><dd>quotation mark to end the lavfi filtergraph</dd>
@@ -1081,7 +1158,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input01</i> -i <i>input02</i></dt><dd>Designates the files to use for inputs one and two respectively</dd>
-            <dt>-filter_complex</dt><dd>Lets ffmpeg know we will be using a complex filter (this must be used for multiple inputs)</dd>
+            <dt>-filter_complex</dt><dd>Lets FFmpeg know we will be using a complex filter (this must be used for multiple inputs)</dd>
             <dt>"</dt><dd>quotation mark to start filtergraph</dd>
             <dt>[0:v:0]tblend=all_mode=difference128[a]</dt><dd>Applies the tblend filter (with the settings all_mode and difference128) to the first video stream from the first input and assigns the result to the output [a]</dd>
             <dt>[1:v:0]tblend=all_mode=difference128[b]</dt><dd>Applies the tblend filter (with the settings all_mode and difference128) to the first video stream from the second input and assigns the result to the output [b]</dd>
@@ -1090,7 +1167,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
             <dt>-map [out]</dt><dd>Maps the output of the filter chain</dd>
             <dt>-f nut</dt><dd>Sets the format for the output video stream to <a href="https://www.ffmpeg.org/ffmpeg-formats.html#nut" target="_blank">Nut</a></dd>
             <dt>-c:v rawvideo</dt><dd>Sets the video codec of the output video stream to raw video</dd>
-            <dt>-</dt><dd>Tells ffmpeg that the output will be piped to a new command (as opposed to a file)</dd>
+            <dt>-</dt><dd>tells FFmpeg that the output will be piped to a new command (as opposed to a file)</dd>
             <dt>|</dt><dd>Tells the system you will be piping the output of the previous command into a new command</dd>
             <dt>ffplay -</dt><dd>Starts ffplay and tells it to use the pipe from the previous command as its input</dd>
           </dl>
@@ -1118,7 +1195,6 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
           <h3>Pull specs from video file</h3>
           <p><code>ffprobe -i <i>input_file</i> -show_format -show_streams -show_data -print_format xml</code></p>
           <p>This command extracts technical metadata from a video file and displays it in xml.</p>
-          <p>ffmpeg documentation on ffprobe (full list of flags, commands, <a href="https://www.ffmpeg.org/ffprobe.html" target="_blank">www.ffmpeg.org/ffprobe.html</a>)</p>
           <dl>
             <dt>ffprobe</dt><dd>starts the command</dd>
             <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
@@ -1127,6 +1203,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
             <dt>-show_data</dt><dd>adds a short “hexdump” to show_streams command output</dd>
             <dt>-print_format</dt><dd>Set the output printing format (in this example “xml”; other formats include “json” and “flat”)</dd>
           </dl>
+          <p>See also the <a href="www.ffmpeg.org/ffprobe.html" target="_blank"> FFmpeg documentation on ffprobe</a> for a full list of flags, commands, and options.</p>
           <p class="link"></p>
         </div>
       </div>
@@ -1159,45 +1236,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   </div>
   <div class="well">
-  <h2 id="create-images">Generate image files from a video</h2>
-
-  <!-- Create GIF -->
-  <span data-toggle="modal" data-target="#create_gif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create a GIF from a video">Create GIF</button></span>
-  <div id="create_gif" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Create GIF</h3>
-          <p>Create high quality GIF</p>
-          <p><code>ffmpeg -ss HH:MM:SS -i <i>input_file</i> -filter_complex "fps=10,scale=500:-1:flags=lanczos,palettegen" -t 3 <i>palette.png</i></code></p>
-          <p><code>ffmpeg -ss HH:MM:SS -i <i>input_file</i> -i palette.png -filter_complex "[0:v]fps=10, scale=500:-1:flags=lanczos[v], [v][1:v]paletteuse" -t 3 -loop 6 <i>output_file</i></code></p>
-          <p>The first command will use the palettegen filter to create a custom palette, then the second command will create the GIF with the paletteuse filter. The result is a high quality GIF.</p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-ss <i>HH:MM:SS</i></dt><dd>starting point of the GIF. If a plain numerical value is used it will be interpreted as seconds</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-filter_complex "fps=<i>framerate</i>, scale=<i>width</i>:<i>height</i>, palettegen"</dt><dd>a complex filtergraph.<br>
-            Firstly, the fps filter sets the frame rate.<br>
-            Then the scale filter resizes the image. You can specify both the width and the height, or specify a value for one and use a scale value of <i>-1</i> for the other to preserve the aspect ratio. (For example, <code>500:-1</code> would create a GIF 500 pixels wide and with a height proportional to the original video). In the first script above, <code>:flags=lanczos</code> specifies that the Lanczos rescaling algorithm will be used to resize the image.<br>
-            Lastly, the palettegen filter generates the palette.</dd>
-            <dt>-t <i>3</i></dt><dd>duration in seconds (here 3; can be specified also with a full timestamp, i.e. here 00:00:03)</dd>
-            <dt>-loop <i>6</i></dt><dd>sets the number of times to loop the GIF. A value of <i>-1</i> will disable looping. Omitting <i>-loop</i> will use the default, which will loop infinitely.</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
-          </dl>
-          <p>The second command has a slightly different filtergraph, which breaks down as follows:</p>
-          <dl>
-            <dt>-filter_complex "[0:v]fps=10, scale=500:-1:flags=lanczos[v], [v][1:v]paletteuse"</dt><dd><code>[0:v]fps=10,scale=500:-1:flags=lanczos[v]</code>: applies the fps and scale filters described above to the first input file (the video).<br>
-            <code>[v][1:v]paletteuse"</code>: applies the <code>paletteuse</code> filter, setting the second input file (the palette) as the reference file.</dd>
-          </dl>
-          <p>Simpler GIF creation</p>
-          <p><code>ffmpeg -ss HH:MM:SS -i <i>input_file</i> -vf "fps=10,scale=500:-1" -t 3 -loop 6 <i>output_file</i></code></p>
-          <p>This is a quick and easy method. Dithering is more apparent than the above method using the palette filters, but the file size will be smaller. Perfect for that “legacy” GIF look.</p>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Create GIF -->
+  <h2 id="create-thumbnails">Generate image files from a video</h2>
 
   <!-- One thumbnail -->
   <span data-toggle="modal" data-target="#one_thumbnail"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Export one thumbnail per video file">One thumbnail</button></span>
@@ -1244,6 +1283,74 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
     </div>
   </div>
   <!-- ends Multi thumbnail -->
+
+  </div>
+  <div class="well">
+  <h2 id="animated-gif">Create an animated GIF</h2>
+
+  <!-- Images to GIF -->
+  <span data-toggle="modal" data-target="#img_to_gif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Converts images to GIF">Create GIF from still images</button></span>
+  <div id="img_to_gif" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Images to GIF</h3>
+          <p><code>ffmpeg -f image2 -framerate 9 -pattern_type glob -i <i>"input_image_*.jpg"</i> -vf scale=250x250 <i>output_file</i>.gif</code></p>
+          <p>This will convert a series of image files into a GIF.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-f image2</dt><dd>forces input or output file format. <code>image2</code> specifies the image file demuxer.</dd>
+            <dt>-framerate 9</dt><dd>sets framerate to 9 frames per second</dd>
+            <dt>-pattern_type glob</dt><dd>tells FFmpeg that the following mapping should "interpret like a <a href="https://en.wikipedia.org/wiki/Glob_%28programming%29" target="_blank">glob</a>" (a "global command" function that relies on the * as a wildcard and finds everything that matches)</dd>
+            <dt>-i <i>"input_image_*.jpg"</i></dt><dd>maps all files in the directory that start with input_image_, for example input_image_001.jpg, input_image_002.jpg, input_image_003.jpg... etc.<br>
+            (The quotation marks are necessary for the above “glob” pattern!)</dd>
+            <dt>-vf scale=250x250</dt><dd>filter the video to scale it to 250x250; <code>-vf</code> is an alias for <code>-filter:v</code></dd>
+            <dt><i>output_file.gif</i></dt><dd>path and name of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Images to GIF -->
+
+  <!-- Create GIF -->
+  <span data-toggle="modal" data-target="#create_gif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create a GIF from a video">Create GIF from a video</button></span>
+  <div id="create_gif" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Create GIF</h3>
+          <p>Create high quality GIF</p>
+          <p><code>ffmpeg -ss HH:MM:SS -i <i>input_file</i> -filter_complex "fps=10,scale=500:-1:flags=lanczos,palettegen" -t 3 <i>palette.png</i></code></p>
+          <p><code>ffmpeg -ss HH:MM:SS -i <i>input_file</i> -i palette.png -filter_complex "[0:v]fps=10, scale=500:-1:flags=lanczos[v], [v][1:v]paletteuse" -t 3 -loop 6 <i>output_file</i></code></p>
+          <p>The first command will use the palettegen filter to create a custom palette, then the second command will create the GIF with the paletteuse filter. The result is a high quality GIF.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-ss <i>HH:MM:SS</i></dt><dd>starting point of the GIF. If a plain numerical value is used it will be interpreted as seconds</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-filter_complex "fps=<i>framerate</i>, scale=<i>width</i>:<i>height</i>, palettegen"</dt><dd>a complex filtergraph.<br>
+            Firstly, the fps filter sets the frame rate.<br>
+            Then the scale filter resizes the image. You can specify both the width and the height, or specify a value for one and use a scale value of <i>-1</i> for the other to preserve the aspect ratio. (For example, <code>500:-1</code> would create a GIF 500 pixels wide and with a height proportional to the original video). In the first script above, <code>:flags=lanczos</code> specifies that the Lanczos rescaling algorithm will be used to resize the image.<br>
+            Lastly, the palettegen filter generates the palette.</dd>
+            <dt>-t <i>3</i></dt><dd>duration in seconds (here 3; can be specified also with a full timestamp, i.e. here 00:00:03)</dd>
+            <dt>-loop <i>6</i></dt><dd>sets the number of times to loop the GIF. A value of <i>-1</i> will disable looping. Omitting <i>-loop</i> will use the default, which will loop infinitely.</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p>The second command has a slightly different filtergraph, which breaks down as follows:</p>
+          <dl>
+            <dt>-filter_complex "[0:v]fps=10, scale=500:-1:flags=lanczos[v], [v][1:v]paletteuse"</dt><dd><code>[0:v]fps=10,scale=500:-1:flags=lanczos[v]</code>: applies the fps and scale filters described above to the first input file (the video).<br>
+            <code>[v][1:v]paletteuse"</code>: applies the <code>paletteuse</code> filter, setting the second input file (the palette) as the reference file.</dd>
+          </dl>
+          <p>Simpler GIF creation</p>
+          <p><code>ffmpeg -ss HH:MM:SS -i <i>input_file</i> -vf "fps=10,scale=500:-1" -t 3 -loop 6 <i>output_file</i></code></p>
+          <p>This is a quick and easy method. Dithering is more apparent than the above method using the palette filters, but the file size will be smaller. Perfect for that “legacy” GIF look.</p>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Create GIF -->
 
   </div>
   <div class="well">
@@ -1347,7 +1454,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-i <i>input_video_file</i></dt><dd>path, name and extension of the input video file</dd>
             <dt>-i <i>input_image_file</i></dt><dd>path, name and extension of the image file</dd>
-            <dt>-filter_complex overlay=main_w-overlay_w-5:5</dt><dd>This calls the overlay filter and sets x and y coordinates for the position of the watermark on the video. Instead of hardcoding specific x and y coordinates, <code>main_w-overlay_w-5:5</code> uses relative coordinates to place the watermark in the upper right hand corner, based on the width of your input files. Please see the <a href="https://www.ffmpeg.org/ffmpeg-all.html#toc-Examples-102" target="_blank">ffmpeg documentation for more examples.</a></dd>
+            <dt>-filter_complex overlay=main_w-overlay_w-5:5</dt><dd>This calls the overlay filter and sets x and y coordinates for the position of the watermark on the video. Instead of hardcoding specific x and y coordinates, <code>main_w-overlay_w-5:5</code> uses relative coordinates to place the watermark in the upper right hand corner, based on the width of your input files. Please see the <a href="https://www.ffmpeg.org/ffmpeg-all.html#toc-Examples-102" target="_blank">FFmpeg documentation for more examples.</a></dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
           </dl>
           <p class="link"></p>
@@ -1426,7 +1533,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
           <h3>Calculate Loudness Levels</h3>
           <p><code>ffmpeg -i <i>input_file</i> -af loudnorm=print_format=json -f null -</code></p>
           <p>This filter calculates and outputs loudness information in json about an input file (labeled input) as well as what the levels would be if loudnorm were applied in its one pass mode (labeled output). The values generated can be used as inputs for a 'second pass' of the loudnorm filter allowing more accurate loudness normalization than if it is used in a single pass.</p>
-          <p>These instructions use the loudnorm defaults, which align well with PBS recommendations for target loudness. More information can be found at the <a href="https://ffmpeg.org/ffmpeg-filters.html#loudnorm">loudnorm documentation</a>.</p>
+          <p>These instructions use the loudnorm defaults, which align well with PBS recommendations for target loudness. More information can be found at the <a href="https://ffmpeg.org/ffmpeg-filters.html#loudnorm" target="_blank">loudnorm documentation</a>.</p>
           <p>Information about PBS loudness standards can be found in the <a href="http://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf" target="_blank">PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href="https://tech.ebu.ch/docs/r/r128-2014.pdf" target="_blank">EBU R 128</a> recommendation document.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -1530,14 +1637,14 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
-          <h3>Create Bash script to batch process with ffmpeg</h3>
+          <h3>Create Bash script to batch process with FFmpeg</h3>
           <p>Bash scripts are plain text files saved with a .sh extension. This entry explains how they work with the example of a bash script named “Rewrap-MXF.sh”, which rewraps .mxf files in a given directory to .mov files.</p>
           <p>“Rewrap-MXF.sh” contains the following text:</p>
           <p><code>for file in *.mxf; do ffmpeg -i "$file" -map 0 -c copy "${file%.mxf}.mov"; done</code></p>
           <dl>
-            <dt>for file in *.mxf</dt><dd>starts the loop, and states what the input files will be. Here, the ffmpeg command within the loop will be applied to all files with an extension of .mxf.<br>
+            <dt>for file in *.mxf</dt><dd>starts the loop, and states what the input files will be. Here, the FFmpeg command within the loop will be applied to all files with an extension of .mxf.<br>
             The word ‘file’ is an arbitrary variable which will represent each .mxf file in turn as it is looped over.</dd>
-            <dt>do ffmpeg -i "$file"</dt><dd>carry out the following ffmpeg command for each input file.<br>
+            <dt>do ffmpeg -i "$file"</dt><dd>carry out the following FFmpeg command for each input file.<br>
             Per Bash syntax, within the command the variable is referred to by <b>“$file”</b>. The dollar sign is used to reference the variable ‘file’, and the enclosing quotation marks prevents reinterpretation of any special characters that may occur within the filename, ensuring that the original filename is retained.</dd>
             <dt>-map 0</dt><dd>retain all streams</dd>
             <dt>-c copy</dt><dd>enable stream copy (no re-encode)</dd>
@@ -1548,7 +1655,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
             Execute the .sh file with the command <code>sh Rewrap-MXF.sh</code>.</p>
           <p>Modify the script as needed to perform different transcodes, or to use with ffprobe. :)</p>
           <p>The basic pattern will look similar to this:<br>
-          <code>for item in *.ext; do ffmpeg -i $item <i>(ffmpeg options here)</i> "${item%.ext}_suffix.ext"</code></p>
+          <code>for item in *.ext; do ffmpeg -i $item <i>(FFmpeg options here)</i> "${item%.ext}_suffix.ext"</code></p>
           <p>e.g., if an input file is bestmovie002.avi, its output will be bestmovie002_suffix.avi.</p>
           <p>Variation: recursively process all MXF files in subdirectories using <code>find</code> instead of <code>for</code>:</p>
           <p><code>find input_directory -iname "*.mxf" -exec ffmpeg -i {} -map 0 -c copy {}.mov \;</code></p>
@@ -1565,7 +1672,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="well">
-          <h3>Create PowerShell script to batch process with ffmpeg</h3>
+          <h3>Create PowerShell script to batch process with FFmpeg</h3>
           <p>As of Windows 10, it is possible to run Bash via <a href="https://msdn.microsoft.com/en-us/commandline/wsl/about" target="_blank">Bash on Ubuntu on Windows</a>, allowing you to use <a href="index.html#batch_processing_bash">bash scripting</a>. To enable Bash on Windows, see <a href="https://msdn.microsoft.com/en-us/commandline/wsl/install_guide" target="_blank">these instructions</a>.</p>
           <p>On Windows, the primary native command line programme is <b>PowerShell</b>. PowerShell scripts are plain text files saved with a .ps1 extension. This entry explains how they work with the example of a PowerShell script named “rewrap-mp4.ps1”, which rewraps .mp4 files in a given directory to .mkv files.</p>
           <p>“rewrap-mp4.ps1” contains the following text:</p>
@@ -1581,8 +1688,8 @@ foreach ($file in $inputfiles) {
             <code>$file</code> is an arbitrary variable which will represent each .mp4 file in turn as it is looped over.</dd>
             <dt>{</dt><dd>Opens the code block.</dd>
             <dt>$output = [io.path]::ChangeExtension($file, '.mkv')</dt><dd>Sets up the output file: it will be located in the current folder and keep the same filename, but will have an .mkv extension instead of .mp4.</dd>
-            <dt>ffmpeg -i $file</dt><dd>Carry out the following ffmpeg command for each input file.<br>
-            <b>Note:</b> To call ffmpeg here as just ‘ffmpeg’ (rather than entering the full path to ffmpeg.exe), you must make sure that it’s correctly configured. See <a href="http://adaptivesamples.com/how-to-install-ffmpeg-on-windows/" target="_blank">this article</a>, especially the section ‘Add to Path’.</dd>
+            <dt>ffmpeg -i $file</dt><dd>Carry out the following FFmpeg command for each input file.<br>
+            <b>Note:</b> To call FFmpeg here as just ‘ffmpeg’ (rather than entering the full path to ffmpeg.exe), you must make sure that it’s correctly configured. See <a href="http://adaptivesamples.com/how-to-install-ffmpeg-on-windows/" target="_blank">this article</a>, especially the section ‘Add to Path’.</dd>
             <dt>-map 0</dt><dd>retain all streams</dd>
             <dt>-c copy</dt><dd>enable stream copy (no re-encode)</dd>
             <dt>$output</dt><dd>The output file is set to the value of the <code>$output</code> variable declared above: i.e., the current file name with an .mkv extension.</dd>
@@ -1781,7 +1888,7 @@ foreach ($file in $inputfiles) {
           <p><code>ffmpeg -f lavfi -i mandelbrot=size=1280x720:rate=25 -c:v libx264 -t 10 <i>output_file</i></code></p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-f lavfi</dt><dd>tells ffmpeg to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
+            <dt>-f lavfi</dt><dd>tells FFmpeg to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
             <dt>-i mandelbrot=size=1280x720:rate=25</dt><dd>asks for the <a href="https://ffmpeg.org/ffmpeg-filters.html#mandelbrot" target="_blank">mandelbrot test filter</a> as input. Adjusting the <code>size</code> and <code>rate</code> options allows you to choose a specific frame size and framerate.</dd>
             <dt>-c:v libx264</dt><dd>transcodes video from rawvideo to H.264. Set <code>-pix_fmt</code> to <code>yuv420p</code> for greater H.264 compatibility with media players.</dd>
             <dt>-t 10</dt><dd>specifies recording time of 10 seconds</dd>
@@ -1804,7 +1911,7 @@ foreach ($file in $inputfiles) {
           <p><code>ffmpeg -f lavfi -i smptebars=size=720x576:rate=25 -c:v prores -t 10 <i>output_file</i></code></p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-f lavfi</dt><dd>tells ffmpeg to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
+            <dt>-f lavfi</dt><dd>tells FFmpeg to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
             <dt>-i smptebars=size=720x576:rate=25</dt><dd>asks for the <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc_002c-testsrc2_002c-yuvtestsrc" target="_blank">smptebars test filter</a> as input. Adjusting the <code>size</code> and <code>rate</code> options allows you to choose a specific frame size and framerate.</dd>
             <dt>-c:v prores</dt><dd>transcodes video from rawvideo to Apple ProRes 4:2:2.</dd>
             <dt>-t 10</dt><dd>specifies recording time of 10 seconds</dd>
@@ -1827,7 +1934,7 @@ foreach ($file in $inputfiles) {
           <p><code>ffmpeg -f lavfi -i testsrc=size=720x576:rate=25 -c:v v210 -t 10 <i>output_file</i></code></p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-f lavfi</dt><dd>tells ffmpeg to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">libavfilter</a> input virtual device</dd>
+            <dt>-f lavfi</dt><dd>tells FFmpeg to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">libavfilter</a> input virtual device</dd>
             <dt>-i testsrc=size=720x576:rate=25</dt><dd>asks for the testsrc filter pattern as input. Adjusting the <code>size</code> and <code>rate</code> options allows you to choose a specific frame size and framerate. <br>
               The different test patterns that can be generated are listed <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc_002c-testsrc2_002c-yuvtestsrc" target="_blank">here</a>.</dd>
             <dt>-c:v v210</dt><dd>transcodes video from rawvideo to 10-bit Uncompressed Y′C<sub>B</sub>C<sub>R</sub> 4:2:2. Alter this setting to set your desired codec.</dd>
@@ -1894,7 +2001,7 @@ foreach ($file in $inputfiles) {
           <p><code>ffmpeg -f lavfi -i "sine=frequency=1000:sample_rate=48000:duration=5" -c:a pcm_s16le <i>output_file</i>.wav</code></p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-f lavfi</dt><dd>tells ffmpeg to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
+            <dt>-f lavfi</dt><dd>tells FFmpeg to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
             <dt>-i "sine=frequency=1000:sample_rate=48000:duration=5"</dt><dd>Sets the signal to 1000 Hz, sampling at 48 kHz, and for 5 seconds</dd>
             <dt>-c:a pcm_s16le</dt><dd>encodes the audio codec in <code>pcm_s16le</code> (the default encoding for wav files). pcm represents pulse-code modulation format (raw bytes), <code>16</code> means 16 bits per sample, and <code>le</code> means "little endian"</dd>
             <dt><i>output_file</i>.wav</dt><dd>path, name and extension of the output file</dd>
@@ -1917,7 +2024,7 @@ foreach ($file in $inputfiles) {
           <p><code>ffmpeg -f lavfi -i smptebars=size=720x576:rate=25 -f lavfi -i "sine=frequency=1000:sample_rate=48000" -c:a pcm_s16le -t 10 -c:v ffv1 <i>output_file</i></code></p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-f lavfi</dt><dd>tells ffmpeg to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">libavfilter</a> input virtual device</dd>
+            <dt>-f lavfi</dt><dd>tells FFmpeg to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">libavfilter</a> input virtual device</dd>
             <dt>-i smptebars=size=720x576:rate=25</dt><dd>asks for the <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc_002c-testsrc2_002c-yuvtestsrc" target="_blank">smptebars test filter</a> as input. Adjusting the <code>size</code> and <code>rate</code> options allows you to choose a specific frame size and framerate.</dd>
             <dt>-f lavfi</dt><dd>use libavfilter again, but now for audio</dd>
             <dt>-i "sine=frequency=1000:sample_rate=48000"</dt><dd>Sets the signal to 1000 Hz, sampling at 48 kHz.</dd>
@@ -1972,7 +2079,7 @@ foreach ($file in $inputfiles) {
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
             <dt>-c:v copy</dt><dd>Copy all mapped video streams.</dd>
-            <dt>-c:a pcm_s16le</dt><dd>Tells ffmpeg to encode the audio stream in 16-bit linear PCM (<a href="https://en.wikipedia.org/wiki/Endianness#Little-endian" target="_blank">little endian</a>)</dd>
+            <dt>-c:a pcm_s16le</dt><dd>tells FFmpeg to encode the audio stream in 16-bit linear PCM (<a href="https://en.wikipedia.org/wiki/Endianness#Little-endian" target="_blank">little endian</a>)</dd>
             <dt>-af "aresample=async=1000"</dt><dd>Uses the <a href="https://ffmpeg.org/ffmpeg-filters.html#aresample-1" target="_blank">aresample</a> filter to stretch/squeeze samples to given timestamps, with a maximum of 1000 samples per second compensation.</dd>
             <dt><i>output_file</i></dt><dd>path, name and extension of the output file. Try different file extensions such as mkv, mov, mp4, or avi.</dd>
           </dl>
@@ -2023,7 +2130,7 @@ foreach ($file in $inputfiles) {
       <div class="modal-content">
         <div class="well">
           <h3>Exports OCR data to screen</h3>
-          <p>Note: ffmpeg must be compiled with the tesseract library for this script to work (<code>--with-tesseract</code> if using the <code>brew install ffmpeg</code> method)</p>
+          <p>Note: FFmpeg must be compiled with the tesseract library for this script to work (<code>--with-tesseract</code> if using the <code>brew install ffmpeg</code> method)</p>
           <p><code>ffprobe -show_entries frame_tags=lavfi.ocr.text -f lavfi -i "movie=<i>input_file</i>,ocr"</code></p>
           <dl>
             <dt>ffprobe</dt><dd>starts the command</dd>
@@ -2200,35 +2307,6 @@ foreach ($file in $inputfiles) {
   </div>
   <!-- ends Flip image -->
 
-  <!-- Modify speed -->
-  <span data-toggle="modal" data-target="#modify_speed"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Modify image and sound speed">Modify speed</button></span>
-  <div id="modify_speed" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Modify image and sound speed</h3>
-          <p>E.g. for converting 24fps to 25fps with audio pitch compensation for PAL access copies. (Thanks @kieranjol!)</p>
-          <p><code>ffmpeg -i <i>input_file</i> -filter_complex "[0:v]setpts=<i>input_fps</i>/<i>output_fps</i>*PTS[v]; [0:a]atempo=<i>output_fps</i>/<i>input_fps</i>[a]" -map "[v]" -map "[a]" <i>output_file</i></code></p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-filter_complex "[0:v]setpts=<i>input_fps</i>/<i>output_fps</i>*PTS[v]; [0:a]atempo=<i>output_fps</i>/<i>input_fps</i>[a]"</dt><dd>A complex filter is needed here, in order to handle video stream and the audio stream separately. The <code>setpts</code> video filter modifies the PTS (presentation time stamp) of the video stream, and the <code>atempo</code> audio filter modifies the speed of the audio stream while keeping the same sound pitch. Note that the parameter order for the image and for the sound are inverted:
-            <ul>
-              <li>In the video filter <code>setpts</code> the numerator <code>input_fps</code> sets the input speed and the denominator <code>output_fps</code> sets the output speed; both values are given in frames per second.</li>
-              <li>In the sound filter <code>atempo</code> the numerator <code>output_fps</code> sets the output speed and the denominator <code>input_fps</code> sets the input speed; both values are given in frames per second.</li>
-            </ul>
-            The different filters in a complex filter can be divided either by comma or semicolon. The quotation marks allow to insert a space between the filters for readability.</dd>
-            <dt>-map "[v]"</dt><dd>maps the video stream and:</dd>
-            <dt>-map "[a]"</dt><dd>maps the audio stream together into:</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Modify speed -->
-
   <!-- Create ISO -->
   <span data-toggle="modal" data-target="#create_iso"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create ISO files for DVD access">Create ISO</button></span>
   <div id="create_iso" class="modal fade" tabindex="-1" role="dialog">
@@ -2267,7 +2345,7 @@ foreach ($file in $inputfiles) {
             <dt>-filter_complex</dt><dd>enables using more than one input file to the filter</dd>
             <dt>signature=detectmode=full</dt><dd>Applies the signature filter to the inputs in 'full' mode. The other option is 'fast'.</dd>
             <dt>nb_inputs=2</dt><dd>tells the filter to expect two input files</dd>
-            <dt>-f null -</dt><dd>Sets the output of ffmpeg to a null stream (since we are not creating a transcoded file, just viewing metadata).</dd>
+            <dt>-f null -</dt><dd>Sets the output of FFmpeg to a null stream (since we are not creating a transcoded file, just viewing metadata).</dd>
           </dl>
           <p class="link"></p>
         </div>
@@ -2288,8 +2366,8 @@ foreach ($file in $inputfiles) {
             <dt>ffmpeg -i <i>input</i></dt><dd>starts the command using your input file</dd>
             <dt>-vf signature=format=xml</dt><dd>applies the signature filter to the input file and sets the output format for the fingerprint to xml</dd>
             <dt>filename="output.xml"</dt><dd>sets the output for the signature filter</dd>
-            <dt>-an</dt><dd>tells ffmpeg to ignore the audio stream of the input file</dd>
-            <dt>-f null -</dt><dd>Sets the ffmpeg output to a null stream (since we are only interested in the output generated by the filter).</dd>
+            <dt>-an</dt><dd>tells FFmpeg to ignore the audio stream of the input file</dd>
+            <dt>-f null -</dt><dd>Sets the FFmpeg output to a null stream (since we are only interested in the output generated by the filter).</dd>
           </dl>
           <p class="link"></p>
         </div>
@@ -2355,7 +2433,7 @@ foreach ($file in $inputfiles) {
   <!-- ends Cover head switching noise -->
 
   <!-- View Subprogram Info -->
-  <span data-toggle="modal" data-target="#view_subprogram_info"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="View ffmpeg subprogam information">View ffmpeg subprogam information</button></span>
+  <span data-toggle="modal" data-target="#view_subprogram_info"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="View FFmpeg subprogam information">View FFmpeg subprogam information</button></span>
   <div id="view_subprogram_info" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -2366,7 +2444,7 @@ foreach ($file in $inputfiles) {
             <dt>ffmpeg</dt><dd>starts the command</dd>
             <dt>-h</dt><dd>Call the help option</dd>
             <dt>type=name</dt>
-            <dd>Tells ffmpeg which kind of option you want, for example:
+            <dd>tells FFmpeg which kind of option you want, for example:
               <ul>
                 <li><code>encoder=libx264</code></li>
                 <li><code>decoder=mp3</code></li>
