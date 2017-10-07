@@ -74,7 +74,7 @@
       <div class="modal-content">
         <div class="well">
           <h3>Basic structure of an FFmpeg command</h3>
-          <p>At its basis, an FFmpeg command is relatively simple. After you have installed FFmpeg (see instructions <a href="https://avpres.net/FFmpeg/#ch1">here</a>), the program is invoked simply by typing <code>ffmpeg</code> at the command prompt.</p>
+          <p>At its basis, an FFmpeg command is relatively simple. After you have installed FFmpeg (see instructions <a href="https://avpres.net/FFmpeg/#ch1" target="_blank">here</a>), the program is invoked simply by typing <code>ffmpeg</code> at the command prompt.</p>
           <p>Subsequently, each instruction that you supply to FFmpeg is actually a pair: a flag, which designates the <i>type</i> of action you want to carry out; and then the specifics of that action. Flags are always prepended with a hyphen.</p>
           <p>For example, in the instruction <code>-i <i>input_file.ext</i></code>, the <code>-i</code> flag tells FFmpeg that you are supplying an input file, and <code>input_file.ext</code> states which file it is.</p>
           <p>Likewise, in the instruction <code>-c:v prores</code>, the flag <code>-c:v</code> tells FFmpeg that you want to encode the video stream, and <code>prores</code> specifies which codec is to be used. (<code>-c:v</code> is shorthand for <code>-codec:v</code>/<code>-codec:video</code>).</p>
@@ -644,10 +644,11 @@
           <h2>Adding other stream properties.</h2>
           <p>Other properties may be clarified in a similar way. Replace <i>-aspect</i> and its value with other properties such as shown in the options below. Note that setting color values in QuickTime requires that <i>-movflags write_colr</i> is set.</p>
           <dl>
-            <dt>-color_primary <i>VALUE</i> -movflags write_colr</dt><dd>Set a new color_primary value. The vocabulary for values is at <a href="http://ffmpeg.org/ffmpeg-all.html" target="_blank">the FFmpeg docs</a>.</dd>
-            <dt>-color_trc <i>VALUE</i> -movflags write_colr</dt><dd>Set a new color_transfer value. The vocabulary for values is at <a href="http://ffmpeg.org/ffmpeg-all.html" target="_blank">the FFmpeg docs</a>.</dd>
-            <dt>-field_order <i>VALUE</i></dt><dd>Set interlacement values. The vocabulary for values is at <a href="http://ffmpeg.org/ffmpeg-all.html" target="_blank">the FFmpeg docs</a>.</dd>
+            <dt>-color_primaries <i>VALUE</i> -movflags write_colr</dt><dd>Set a new color_primaries value.</dd>
+            <dt>-color_trc <i>VALUE</i> -movflags write_colr</dt><dd>Set a new color_transfer value.</dd>
+            <dt>-field_order <i>VALUE</i></dt><dd>Set interlacement values.</dd>
           </dl>
+          <p>The possible values for <code>-color_primaries</code>, <code>-color_trc</code>, and <code>-field_order</code> are given in the <a href="http://ffmpeg.org/ffmpeg-all.html#toc-Codec-Options" target="_blank">Codec Options</a> section of the FFmpeg docs - scroll down to near the bottom of the section.</p>
           <p class="link"></p>
         </div>
       </div>
@@ -704,13 +705,13 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
             <dt>-i <i>input_file</i></dt><dd>Takes in a normal file.</dd>
             <dt>-c copy</dt><dd>Use stream copy mode to re-mux instead of re-encode.</dd>
             <dt>-map 0</dt><dd>tells FFmpeg to map all streams of the input to the output.</dd>
-            <dt>-f segment</dt><dd>Use <a href="http://www.ffmpeg.org/ffmpeg-formats.html#toc-segment_002c-stream_005fsegment_002c-ssegment">segment muxer</a> for generating the output.</dd>
+            <dt>-f segment</dt><dd>Use <a href="http://www.ffmpeg.org/ffmpeg-formats.html#toc-segment_002c-stream_005fsegment_002c-ssegment" target="_blank">segment muxer</a> for generating the output.</dd>
             <dt>-segment_time 60</dt><dd>Set duration of each segment (in seconds). This example creates segments with max. duration of 60s each.</dd>
             <dt>-reset_timestamps 1</dt><dd>Reset timestamps of each segment to 0. Meant to ease the playback of the generated segments.</dd>
             <dt><i>output_file-%03d.mkv</i></dt>
             <dd>
             <p>Path, name and extension of the output file.<br>
-              In order to have an incrementing number in each segment filename, FFmpeg supports <a href="http://www.cplusplus.com/reference/cstdio/printf/">printf-style</a> syntax for a counter.</p>
+              In order to have an incrementing number in each segment filename, FFmpeg supports <a href="http://www.cplusplus.com/reference/cstdio/printf/" target="_blank">printf-style</a> syntax for a counter.</p>
               <p>In this example, '%03d' means: 3-digits, zero-padded<br>
                 Examples:</p>
               <ul>
@@ -1163,7 +1164,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
             <dt>-show_data</dt><dd>adds a short “hexdump” to show_streams command output</dd>
             <dt>-print_format</dt><dd>Set the output printing format (in this example “xml”; other formats include “json” and “flat”)</dd>
           </dl>
-          <p>See also the <a href="www.ffmpeg.org/ffprobe.html"> FFmpeg documentation on ffprobe</a> for a full list of flags, commands, and options.</p>
+          <p>See also the <a href="www.ffmpeg.org/ffprobe.html" target="_blank"> FFmpeg documentation on ffprobe</a> for a full list of flags, commands, and options.</p>
           <p class="link"></p>
         </div>
       </div>
@@ -1493,7 +1494,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
           <h3>Calculate Loudness Levels</h3>
           <p><code>ffmpeg -i <i>input_file</i> -af loudnorm=print_format=json -f null -</code></p>
           <p>This filter calculates and outputs loudness information in json about an input file (labeled input) as well as what the levels would be if loudnorm were applied in its one pass mode (labeled output). The values generated can be used as inputs for a 'second pass' of the loudnorm filter allowing more accurate loudness normalization than if it is used in a single pass.</p>
-          <p>These instructions use the loudnorm defaults, which align well with PBS recommendations for target loudness. More information can be found at the <a href="https://ffmpeg.org/ffmpeg-filters.html#loudnorm">loudnorm documentation</a>.</p>
+          <p>These instructions use the loudnorm defaults, which align well with PBS recommendations for target loudness. More information can be found at the <a href="https://ffmpeg.org/ffmpeg-filters.html#loudnorm" target="_blank">loudnorm documentation</a>.</p>
           <p>Information about PBS loudness standards can be found in the <a href="http://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf" target="_blank">PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href="https://tech.ebu.ch/docs/r/r128-2014.pdf" target="_blank">EBU R 128</a> recommendation document.</p>
           <dl>
             <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -2432,10 +2433,10 @@ foreach ($file in $inputfiles) {
       <div class="modal-content">
         <div class="well">
           <h3>Filtergraphs</h3>
-          <p>Many FFmpeg commands use filters that manipulate the video or audio stream in some way: for example, <a href="http://ffmpeg.org/ffmpeg-filters.html#hflip">hflip</a> to horizontally flip a video, or <a href="http://ffmpeg.org/ffmpeg-filters.html#amerge-1">amerge</a> to merge two or more audio tracks into a single stream.</p>
+          <p>Many FFmpeg commands use filters that manipulate the video or audio stream in some way: for example, <a href="http://ffmpeg.org/ffmpeg-filters.html#hflip" target="_blank">hflip</a> to horizontally flip a video, or <a href="http://ffmpeg.org/ffmpeg-filters.html#amerge-1" target="_blank">amerge</a> to merge two or more audio tracks into a single stream.</p>
           <p>The use of a filter is signalled by the flag <code>-vf</code> (video filter) or <code>-af</code> (audio filter), followed by the name and options of the filter itself. For example, take the <a href="#convert-colourspace">convert colourspace</a> command:</p>
           <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf colormatrix=<i>src</i>:<i>dst</i> <i>output_file</i></code>
-          <p>Here, <a href="http://ffmpeg.org/ffmpeg-filters.html#colormatrix">colormatrix</a> is the filter used, with <i>src</i> and <i>dst</i> representing the source and destination colourspaces. This part following the <code>-vf</code> is a <b>filtergraph</b>.</p>
+          <p>Here, <a href="http://ffmpeg.org/ffmpeg-filters.html#colormatrix" target="_blank">colormatrix</a> is the filter used, with <i>src</i> and <i>dst</i> representing the source and destination colourspaces. This part following the <code>-vf</code> is a <b>filtergraph</b>.</p>
           <p>It is also possible to apply multiple filters to an input, which are sequenced together in the filtergraph. A chained set of filters is called a filter chain, and a filtergraph may include multiple filter chains. Filters in a filterchain are separated from each other by commas (<code>,</code>), and filterchains are separated from each other by semicolons (<code>;</code>). For example, take the <a href="#inverse-telecine">inverse telecine</a> command:</p>
           <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf "fieldmatch,yadif,decimate" <i>output_file</i></code></p>
           <p>Here we have a filtergraph including one filter chain, which is made up of three video filters.</p>
@@ -2452,7 +2453,7 @@ foreach ($file in $inputfiles) {
             <li>If the command involves more than one input or output, you must use the flag <code>-filter_complex</code> instead of <code>-vf</code>.</li>
             <li>Straight quotation marks ("like this") rather than curved quotation marks (“like this”) should be used.</li>
           </ul>
-          <p>For more information, check out the FFmpeg wiki <a href="https://trac.ffmpeg.org/wiki/FilteringGuide">Filtering Guide</a>.</p>
+          <p>For more information, check out the FFmpeg wiki <a href="https://trac.ffmpeg.org/wiki/FilteringGuide" target="_blank">Filtering Guide</a>.</p>
           <p class="link"></p>
         </div>
       </div>
