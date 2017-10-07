@@ -43,6 +43,7 @@
   <div class="well">
     <h3>What do you want to do?</h3>
     <p class="select-from">Click one of the following categories to see possible commands of that type:</p>
+    <a href="#concepts"><button type="button" class="btn contents-list">Understand ffmpeg concepts</button></a>
     <a href="#rewrap"><button type="button" class="btn contents-list">Change container (rewrap)</button></a>
     <a href="#transcode"><button type="button" class="btn contents-list">Change codec (transcode)</button></a>
     <a href="#properties"><button type="button" class="btn contents-list">Change video properties</button></a>
@@ -62,6 +63,41 @@
     <a href="#other"><button type="button" class="btn contents-list">Something else</button></a>
   </div>
 
+  <div class="well">
+  <h2 id="concepts">FFmpeg concepts</h2>
+
+  <!-- Filtergraph explanation -->
+  <span data-toggle="modal" data-target="#filtergraphs"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Filtergraphs">Filtergraphs</button></span>
+  <div id="filtergraphs" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Filtergraphs</h3>
+          <p>Many ffmpeg commands use filters that manipulate the video or audio stream in some way: for example, <a href="http://ffmpeg.org/ffmpeg-filters.html#hflip">hflip</a> to horizontally flip a video, or <a href="http://ffmpeg.org/ffmpeg-filters.html#amerge-1">amerge</a> to merge two or more audio tracks into a single stream.</p>
+          <p>The use of a filter is signalled by the flag <code>-vf</code> (video filter) or <code>-af</code> (audio filter), followed by the name and options of the filter itself. For example, take the <a href="#convert-colourspace">convert colourspace</a> command:</p>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf colormatrix=<i>src</i>:<i>dst</i> <i>output_file</i></code>
+          <p>Here, <a href="http://ffmpeg.org/ffmpeg-filters.html#colormatrix">colormatrix</a> is the filter used, with <i>src</i> and <i>dst</i> representing the source and destination colourspaces. This part following the <code>-vf</code> is a <b>filtergraph</b>.</p>
+          <p>It is also possible to apply multiple filters to an input, which are sequenced together in the filtergraph. A chained set of filters is called a filter chain, and a filtergraph may include multiple filter chains. Filters in a filterchain are separated from each other by commas (<code>,</code>), and filterchains are separated from each other by semicolons (<code>;</code>). For example, take the <a href="#inverse-telecine">inverse telecine</a> command:</p>
+          <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf "fieldmatch,yadif,decimate" <i>output_file</i></code></p>
+          <p>Here we have a filtergraph including one filter chain, which is made up of three video filters.</p>
+          <p>It is often prudent to enclose your filtergraph in quotation marks; this  means that you can use spaces within the filtergraph. Using the inverse telecine example again, the following filter commands are all valid and equivalent:
+            <ul>
+              <li><code>-vf fieldmatch,yadif,decimate</code></li>
+              <li><code>-vf "fieldmatch,yadif,decimate"</code></li>
+              <li><code>-vf "fieldmatch, yadif, decimate"</code></li>
+            </ul>
+          but <code>-vf fieldmatch, yadif, decimate</code> is not valid.</p>
+          <p>Straight quotation marks ("like this") rather than curved quotation marks (“like this”) should be used.</p>
+          <p><b>Note:</b> if the command involves more than one input or output, you must use the flag <code>-filter_complex</code> instead of <code>-vf</code>.</p>
+          <p>For more information, check out the ffmpeg wiki <a href="https://trac.ffmpeg.org/wiki/FilteringGuide">Filtering Guide</a>.</p>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Filtergraph explanation -->
+
+  </div>
   <div class="well">
   <h2 id="rewrap">Change container (rewrap)</h2>
 
