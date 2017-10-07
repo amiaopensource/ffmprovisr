@@ -50,7 +50,8 @@
     <a href="#interlacing"><button type="button" class="btn contents-list">Work with interlaced video</button></a>
     <a href="#filters-scopes"><button type="button" class="btn contents-list">Use filters or scopes</button></a>
     <a href="#metadata"><button type="button" class="btn contents-list">View or strip metadata</button></a>
-    <a href="#create-images"><button type="button" class="btn contents-list">Generate image files from a video</button></a>
+    <a href="#create-thumbnails"><button type="button" class="btn contents-list">Generate image files from a video</button></a>
+    <a href="#animated-gif"><button type="button" class="btn contents-list">Generate an animated GIF</button></a>
     <a href="#create-video"><button type="button" class="btn contents-list">Create a video from image(s) and audio</button></a>
     <a href="#overlay"><button type="button" class="btn contents-list">Overlay timecode or text on a video</button></a>
     <a href="#normalise-audio"><button type="button" class="btn contents-list">Normalize/equalize audio</button></a>
@@ -257,32 +258,6 @@
     </div>
   </div>
   <!-- ends Transcode to FFV1.mkv-->
-
-  <!-- Images to GIF -->
-  <span data-toggle="modal" data-target="#img_to_gif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Converts images to GIF">Images to GIF</button></span>
-  <div id="img_to_gif" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Images to GIF</h3>
-          <p><code>ffmpeg -f image2 -framerate 9 -pattern_type glob -i <i>"input_image_*.jpg"</i> -vf scale=250x250 <i>output_file</i>.gif</code></p>
-          <p>This will convert a series of image files into a GIF.</p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-f image2</dt><dd>forces input or output file format. <code>image2</code> specifies the image file demuxer.</dd>
-            <dt>-framerate 9</dt><dd>sets framerate to 9 frames per second</dd>
-            <dt>-pattern_type glob</dt><dd>tells ffmpeg that the following mapping should "interpret like a <a href="https://en.wikipedia.org/wiki/Glob_%28programming%29" target="_blank">glob</a>" (a "global command" function that relies on the * as a wildcard and finds everything that matches)</dd>
-            <dt>-i <i>"input_image_*.jpg"</i></dt><dd>maps all files in the directory that start with input_image_, for example input_image_001.jpg, input_image_002.jpg, input_image_003.jpg... etc.<br>
-            (The quotation marks are necessary for the above “glob” pattern!)</dd>
-            <dt>-vf scale=250x250</dt><dd>filter the video to scale it to 250x250; <code>-vf</code> is an alias for <code>-filter:v</code></dd>
-            <dt><i>output_file.gif</i></dt><dd>path and name of the output file</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Images to GIF -->
 
   <!-- Rip DVD -->
   <span data-toggle="modal" data-target="#dvd_to_file"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Basic DVD to file conversion">Convert DVD to H.264</button></span>
@@ -576,6 +551,36 @@
     </div>
   </div>
   <!-- ends Convert colourspace -->
+
+
+  <!-- Modify speed -->
+  <span data-toggle="modal" data-target="#modify_speed"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Modify image and sound speed">Modify speed</button></span>
+  <div id="modify_speed" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Modify image and sound speed</h3>
+          <p>E.g. for converting 24fps to 25fps with audio pitch compensation for PAL access copies. (Thanks @kieranjol!)</p>
+          <p><code>ffmpeg -i <i>input_file</i> -filter_complex "[0:v]setpts=<i>input_fps</i>/<i>output_fps</i>*PTS[v]; [0:a]atempo=<i>output_fps</i>/<i>input_fps</i>[a]" -map "[v]" -map "[a]" <i>output_file</i></code></p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-filter_complex "[0:v]setpts=<i>input_fps</i>/<i>output_fps</i>*PTS[v]; [0:a]atempo=<i>output_fps</i>/<i>input_fps</i>[a]"</dt><dd>A complex filter is needed here, in order to handle video stream and the audio stream separately. The <code>setpts</code> video filter modifies the PTS (presentation time stamp) of the video stream, and the <code>atempo</code> audio filter modifies the speed of the audio stream while keeping the same sound pitch. Note that the parameter order for the image and for the sound are inverted:
+            <ul>
+              <li>In the video filter <code>setpts</code> the numerator <code>input_fps</code> sets the input speed and the denominator <code>output_fps</code> sets the output speed; both values are given in frames per second.</li>
+              <li>In the sound filter <code>atempo</code> the numerator <code>output_fps</code> sets the output speed and the denominator <code>input_fps</code> sets the input speed; both values are given in frames per second.</li>
+            </ul>
+            The different filters in a complex filter can be divided either by comma or semicolon. The quotation marks allow to insert a space between the filters for readability.</dd>
+            <dt>-map "[v]"</dt><dd>maps the video stream and:</dd>
+            <dt>-map "[a]"</dt><dd>maps the audio stream together into:</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Modify speed -->
 
   <!-- Make stream properties explicate -->
   <span data-toggle="modal" data-target="#clarify_stream"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Clarify stream properties">Set stream properties</button></span>
@@ -1159,45 +1164,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   </div>
   <div class="well">
-  <h2 id="create-images">Generate image files from a video</h2>
-
-  <!-- Create GIF -->
-  <span data-toggle="modal" data-target="#create_gif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create a GIF from a video">Create GIF</button></span>
-  <div id="create_gif" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Create GIF</h3>
-          <p>Create high quality GIF</p>
-          <p><code>ffmpeg -ss HH:MM:SS -i <i>input_file</i> -filter_complex "fps=10,scale=500:-1:flags=lanczos,palettegen" -t 3 <i>palette.png</i></code></p>
-          <p><code>ffmpeg -ss HH:MM:SS -i <i>input_file</i> -i palette.png -filter_complex "[0:v]fps=10, scale=500:-1:flags=lanczos[v], [v][1:v]paletteuse" -t 3 -loop 6 <i>output_file</i></code></p>
-          <p>The first command will use the palettegen filter to create a custom palette, then the second command will create the GIF with the paletteuse filter. The result is a high quality GIF.</p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-ss <i>HH:MM:SS</i></dt><dd>starting point of the GIF. If a plain numerical value is used it will be interpreted as seconds</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-filter_complex "fps=<i>framerate</i>, scale=<i>width</i>:<i>height</i>, palettegen"</dt><dd>a complex filtergraph.<br>
-            Firstly, the fps filter sets the frame rate.<br>
-            Then the scale filter resizes the image. You can specify both the width and the height, or specify a value for one and use a scale value of <i>-1</i> for the other to preserve the aspect ratio. (For example, <code>500:-1</code> would create a GIF 500 pixels wide and with a height proportional to the original video). In the first script above, <code>:flags=lanczos</code> specifies that the Lanczos rescaling algorithm will be used to resize the image.<br>
-            Lastly, the palettegen filter generates the palette.</dd>
-            <dt>-t <i>3</i></dt><dd>duration in seconds (here 3; can be specified also with a full timestamp, i.e. here 00:00:03)</dd>
-            <dt>-loop <i>6</i></dt><dd>sets the number of times to loop the GIF. A value of <i>-1</i> will disable looping. Omitting <i>-loop</i> will use the default, which will loop infinitely.</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
-          </dl>
-          <p>The second command has a slightly different filtergraph, which breaks down as follows:</p>
-          <dl>
-            <dt>-filter_complex "[0:v]fps=10, scale=500:-1:flags=lanczos[v], [v][1:v]paletteuse"</dt><dd><code>[0:v]fps=10,scale=500:-1:flags=lanczos[v]</code>: applies the fps and scale filters described above to the first input file (the video).<br>
-            <code>[v][1:v]paletteuse"</code>: applies the <code>paletteuse</code> filter, setting the second input file (the palette) as the reference file.</dd>
-          </dl>
-          <p>Simpler GIF creation</p>
-          <p><code>ffmpeg -ss HH:MM:SS -i <i>input_file</i> -vf "fps=10,scale=500:-1" -t 3 -loop 6 <i>output_file</i></code></p>
-          <p>This is a quick and easy method. Dithering is more apparent than the above method using the palette filters, but the file size will be smaller. Perfect for that “legacy” GIF look.</p>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Create GIF -->
+  <h2 id="create-thumbnails">Generate image files from a video</h2>
 
   <!-- One thumbnail -->
   <span data-toggle="modal" data-target="#one_thumbnail"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Export one thumbnail per video file">One thumbnail</button></span>
@@ -1244,6 +1211,74 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
     </div>
   </div>
   <!-- ends Multi thumbnail -->
+
+  </div>
+  <div class="well">
+  <h2 id="animated-gif">Create an animated GIF</h2>
+
+  <!-- Images to GIF -->
+  <span data-toggle="modal" data-target="#img_to_gif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Converts images to GIF">Create GIF from still images</button></span>
+  <div id="img_to_gif" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Images to GIF</h3>
+          <p><code>ffmpeg -f image2 -framerate 9 -pattern_type glob -i <i>"input_image_*.jpg"</i> -vf scale=250x250 <i>output_file</i>.gif</code></p>
+          <p>This will convert a series of image files into a GIF.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-f image2</dt><dd>forces input or output file format. <code>image2</code> specifies the image file demuxer.</dd>
+            <dt>-framerate 9</dt><dd>sets framerate to 9 frames per second</dd>
+            <dt>-pattern_type glob</dt><dd>tells ffmpeg that the following mapping should "interpret like a <a href="https://en.wikipedia.org/wiki/Glob_%28programming%29" target="_blank">glob</a>" (a "global command" function that relies on the * as a wildcard and finds everything that matches)</dd>
+            <dt>-i <i>"input_image_*.jpg"</i></dt><dd>maps all files in the directory that start with input_image_, for example input_image_001.jpg, input_image_002.jpg, input_image_003.jpg... etc.<br>
+            (The quotation marks are necessary for the above “glob” pattern!)</dd>
+            <dt>-vf scale=250x250</dt><dd>filter the video to scale it to 250x250; <code>-vf</code> is an alias for <code>-filter:v</code></dd>
+            <dt><i>output_file.gif</i></dt><dd>path and name of the output file</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Images to GIF -->
+
+  <!-- Create GIF -->
+  <span data-toggle="modal" data-target="#create_gif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create a GIF from a video">Create GIF from a video</button></span>
+  <div id="create_gif" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="well">
+          <h3>Create GIF</h3>
+          <p>Create high quality GIF</p>
+          <p><code>ffmpeg -ss HH:MM:SS -i <i>input_file</i> -filter_complex "fps=10,scale=500:-1:flags=lanczos,palettegen" -t 3 <i>palette.png</i></code></p>
+          <p><code>ffmpeg -ss HH:MM:SS -i <i>input_file</i> -i palette.png -filter_complex "[0:v]fps=10, scale=500:-1:flags=lanczos[v], [v][1:v]paletteuse" -t 3 -loop 6 <i>output_file</i></code></p>
+          <p>The first command will use the palettegen filter to create a custom palette, then the second command will create the GIF with the paletteuse filter. The result is a high quality GIF.</p>
+          <dl>
+            <dt>ffmpeg</dt><dd>starts the command</dd>
+            <dt>-ss <i>HH:MM:SS</i></dt><dd>starting point of the GIF. If a plain numerical value is used it will be interpreted as seconds</dd>
+            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+            <dt>-filter_complex "fps=<i>framerate</i>, scale=<i>width</i>:<i>height</i>, palettegen"</dt><dd>a complex filtergraph.<br>
+            Firstly, the fps filter sets the frame rate.<br>
+            Then the scale filter resizes the image. You can specify both the width and the height, or specify a value for one and use a scale value of <i>-1</i> for the other to preserve the aspect ratio. (For example, <code>500:-1</code> would create a GIF 500 pixels wide and with a height proportional to the original video). In the first script above, <code>:flags=lanczos</code> specifies that the Lanczos rescaling algorithm will be used to resize the image.<br>
+            Lastly, the palettegen filter generates the palette.</dd>
+            <dt>-t <i>3</i></dt><dd>duration in seconds (here 3; can be specified also with a full timestamp, i.e. here 00:00:03)</dd>
+            <dt>-loop <i>6</i></dt><dd>sets the number of times to loop the GIF. A value of <i>-1</i> will disable looping. Omitting <i>-loop</i> will use the default, which will loop infinitely.</dd>
+            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+          </dl>
+          <p>The second command has a slightly different filtergraph, which breaks down as follows:</p>
+          <dl>
+            <dt>-filter_complex "[0:v]fps=10, scale=500:-1:flags=lanczos[v], [v][1:v]paletteuse"</dt><dd><code>[0:v]fps=10,scale=500:-1:flags=lanczos[v]</code>: applies the fps and scale filters described above to the first input file (the video).<br>
+            <code>[v][1:v]paletteuse"</code>: applies the <code>paletteuse</code> filter, setting the second input file (the palette) as the reference file.</dd>
+          </dl>
+          <p>Simpler GIF creation</p>
+          <p><code>ffmpeg -ss HH:MM:SS -i <i>input_file</i> -vf "fps=10,scale=500:-1" -t 3 -loop 6 <i>output_file</i></code></p>
+          <p>This is a quick and easy method. Dithering is more apparent than the above method using the palette filters, but the file size will be smaller. Perfect for that “legacy” GIF look.</p>
+          <p class="link"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ends Create GIF -->
 
   </div>
   <div class="well">
@@ -2199,35 +2234,6 @@ foreach ($file in $inputfiles) {
     </div>
   </div>
   <!-- ends Flip image -->
-
-  <!-- Modify speed -->
-  <span data-toggle="modal" data-target="#modify_speed"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Modify image and sound speed">Modify speed</button></span>
-  <div id="modify_speed" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="well">
-          <h3>Modify image and sound speed</h3>
-          <p>E.g. for converting 24fps to 25fps with audio pitch compensation for PAL access copies. (Thanks @kieranjol!)</p>
-          <p><code>ffmpeg -i <i>input_file</i> -filter_complex "[0:v]setpts=<i>input_fps</i>/<i>output_fps</i>*PTS[v]; [0:a]atempo=<i>output_fps</i>/<i>input_fps</i>[a]" -map "[v]" -map "[a]" <i>output_file</i></code></p>
-          <dl>
-            <dt>ffmpeg</dt><dd>starts the command</dd>
-            <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-            <dt>-filter_complex "[0:v]setpts=<i>input_fps</i>/<i>output_fps</i>*PTS[v]; [0:a]atempo=<i>output_fps</i>/<i>input_fps</i>[a]"</dt><dd>A complex filter is needed here, in order to handle video stream and the audio stream separately. The <code>setpts</code> video filter modifies the PTS (presentation time stamp) of the video stream, and the <code>atempo</code> audio filter modifies the speed of the audio stream while keeping the same sound pitch. Note that the parameter order for the image and for the sound are inverted:
-            <ul>
-              <li>In the video filter <code>setpts</code> the numerator <code>input_fps</code> sets the input speed and the denominator <code>output_fps</code> sets the output speed; both values are given in frames per second.</li>
-              <li>In the sound filter <code>atempo</code> the numerator <code>output_fps</code> sets the output speed and the denominator <code>input_fps</code> sets the input speed; both values are given in frames per second.</li>
-            </ul>
-            The different filters in a complex filter can be divided either by comma or semicolon. The quotation marks allow to insert a space between the filters for readability.</dd>
-            <dt>-map "[v]"</dt><dd>maps the video stream and:</dd>
-            <dt>-map "[a]"</dt><dd>maps the audio stream together into:</dd>
-            <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
-          </dl>
-          <p class="link"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ends Modify speed -->
 
   <!-- Create ISO -->
   <span data-toggle="modal" data-target="#create_iso"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create ISO files for DVD access">Create ISO</button></span>
