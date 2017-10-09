@@ -23,5 +23,5 @@ elif [[ "$(uname -s)" = "Linux" ]] ; then
     fi
     xdg-open "${ffmprovisr_path}"
 else
-    echo "Please locate the 'ffmmprovisr' folder, and open the 'index.html' file in a browser."
+    echo "Please locate the 'ffmprovisr' folder, and open the 'index.html' file in a browser."
 fi
