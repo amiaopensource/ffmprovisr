@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>ffmprovisr</title>
-    <meta charset="utf-8">
+    <meta name="viewport" content="text/html, charset=UTF-8, width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Montserrat%7CMerriweather" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/css.css">
@@ -13,36 +13,16 @@
   </head>
 
 <body>
-<div class="container">
+<div class="grid">
 
-<div class="text-center">
-  <h1>➺ ffmprovisr ❥</h1>
-</div>
+  <div class="header">
+    <h1>➺ ffmprovisr ❥</h1>
+  </div>
 
-<!-- BUTTONS! -->
-<div class="row">
-
-<div class="well col-md-3 col-md-offset-0">
-  <span class="intro-lead">Making FFmpeg Easier</span>
-  <p>FFmpeg is a powerful tool for manipulating audiovisual files. Unfortunately, it also has a steep learning curve, especially for users unfamiliar with a command line interface. This app helps users through the command generation process so that more people can reap the benefits of FFmpeg.</p>
-  <p>Each button displays helpful information about how to perform a wide variety of tasks using FFmpeg. To use this site, click on the task you would like to perform. A new window will open up with a sample command and a description of how that command works. You can copy this command and understand how the command works with a breakdown of each of the flags.</p>
-  <span class="intro-lead">Tutorials</span>
-  <p>For FFmpeg basics, check out the program’s <a href="https://www.ffmpeg.org/" target="_blank">official website</a>.</p>
-  <p>For instructions on how to install FFmpeg on Mac, Linux, and Windows, refer to Reto Kromer’s <a href="https://avpres.net/FFmpeg/#ch1" target="_blank">installation instructions</a>.</p>
-  <p>For Bash and command line basics, try the <a href="https://learnpythonthehardway.org/book/appendixa.html" target="_blank">Command Line Crash Course</a>. For a little more context presented in an ffmprovisr style, try <a href="http://explainshell.com/" target="_blank">explainshell.com</a>!</p>
-  <span class="intro-lead">License</span>
-  <p><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png"></a><br>
-    This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.</p>
-  <span class="intro-lead">Sister projects</span>
-  <p><a href="http://dd388.github.io/crals/" target="_blank">Script Ahoy</a>: Community Resource for Archivists and Librarians Scripting</p>
-  <p><a href="https://datapraxis.github.io/sourcecaster/" target="_blank">The Sourcecaster</a>: an app that helps you use the command line to work through common challenges that come up when working with digital primary sources.</p>
-  <p><a href="https://amiaopensource.github.io/cable-bible/" target="_blank">Cable Bible</a>: A Guide to Cables and Connectors Used for Audiovisual Tech</p>
-</div>
-
-<div class="well col-md-8 col-md-offset-0">
-  <div class="well">
-    <h3>What do you want to do?</h3>
+  <nav class="well sidebar">
+    <h3>Table of Contents</h3>
     <p class="select-from">Click one of the following categories to see commands of that type:</p>
+    <a href="#about"><button type="button" class="btn contents-list">About this resource</button></a>
     <a href="#basics"><button type="button" class="btn contents-list">Learn about FFmpeg basics</button></a>
     <a href="#concepts"><button type="button" class="btn contents-list">Learn about more advanced FFmpeg concepts</button></a>
     <a href="#rewrap"><button type="button" class="btn contents-list">Change container (rewrap)</button></a>
@@ -62,6 +42,27 @@
     <a href="#repair"><button type="button" class="btn contents-list">Repair a file</button></a>
     <a href="#ocr"><button type="button" class="btn contents-list">Use OCR</button></a>
     <a href="#other"><button type="button" class="btn contents-list">Something else</button></a>
+  </nav>
+
+  <div class="content">
+  <div class="well">
+    <h2 id="about">About ffmprovisr</h2>
+    <span class="intro-lead">Making FFmpeg Easier</span>
+    <p>FFmpeg is a powerful tool for manipulating audiovisual files. Unfortunately, it also has a steep learning curve, especially for users unfamiliar with a command line interface. This app helps users through the command generation process so that more people can reap the benefits of FFmpeg.</p>
+    <p>Each button displays helpful information about how to perform a wide variety of tasks using FFmpeg. To use this site, click on the task you would like to perform. A new window will open up with a sample command and a description of how that command works. You can copy this command and understand how the command works with a breakdown of each of the flags.</p>
+    <span class="intro-lead">Tutorials</span>
+    <p>For FFmpeg basics, check out the program’s <a href="https://www.ffmpeg.org/" target="_blank">official website</a>.</p>
+    <p>For instructions on how to install FFmpeg on Mac, Linux, and Windows, refer to Reto Kromer’s <a href="https://avpres.net/FFmpeg/#ch1" target="_blank">installation instructions</a>.</p>
+    <p>For Bash and command line basics, try the <a href="https://learnpythonthehardway.org/book/appendixa.html" target="_blank">Command Line Crash Course</a>. For a little more context presented in an ffmprovisr style, try <a href="http://explainshell.com/" target="_blank">explainshell.com</a>!</p>
+    <span class="intro-lead">License</span>
+    <p class="license">
+      <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/88x31.png"></a><br>
+      This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.
+    </p>
+    <span class="intro-lead">Sister projects</span>
+    <p><a href="http://dd388.github.io/crals/" target="_blank">Script Ahoy</a>: Community Resource for Archivists and Librarians Scripting</p>
+    <p><a href="https://datapraxis.github.io/sourcecaster/" target="_blank">The Sourcecaster</a>: an app that helps you use the command line to work through common challenges that come up when working with digital primary sources.</p>
+    <p><a href="https://amiaopensource.github.io/cable-bible/" target="_blank">Cable Bible</a>: A Guide to Cables and Connectors Used for Audiovisual Tech</p>
   </div>
 
   <div class="well">
@@ -2485,14 +2486,12 @@ foreach ($file in $inputfiles) {
     </div>
   </div> -->
   <!-- ends sample example -->
-
-</div> <!-- end "well col-md-6 col-md-offset-2" -->
-</div> <!-- row -->
-
-<div class="footer text-center">
-  <p>Made with ♥ at <a href="http://wiki.curatecamp.org/index.php/Association_of_Moving_Image_Archivists_%26_Digital_Library_Federation_Hack_Day_2015" target="_blank">AMIA #AVhack15</a>! Contribute to the project via <a href="https://github.com/amiaopensource/ffmprovisr">our GitHub page</a>!</p>
 </div>
+<!-- ends "content" -->
+<footer class="footer">
+  <p>Made with ♥ at <a href="http://wiki.curatecamp.org/index.php/Association_of_Moving_Image_Archivists_%26_Digital_Library_Federation_Hack_Day_2015" target="_blank">AMIA #AVhack15</a>! Contribute to the project via <a href="https://github.com/amiaopensource/ffmprovisr">our GitHub page</a>!</p>
+</footer>
 
-</div> <!-- class="container" -->
+</div> <!-- class="grid" -->
 </body>
 </html>

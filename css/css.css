@@ -1,9 +1,74 @@
+.grid {
+  display: grid;
+  align-content: center;
+  grid-template-areas:
+   "header"
+   "sidebar"
+   "content"
+   "footer"
+}
+
+.header {
+  grid-area: header;
+  text-align: center;
+
+}
+
+.content {
+  grid-area: content;
+}
+
+.sidebar {
+  grid-area: sidebar;
+}
+
+.footer {
+  grid-area: footer;
+  text-align: center;
+}
+
+@media only screen and (min-width: 1px)  {
+.grid {
+  grid-template-columns: 1fr;
+  grid-template-areas:
+  "header"
+  "sidebar"
+  "content"
+  "footer";
+}
+}
+
+@media only screen and (min-width: 1000px)   {
+  .grid {
+    grid-gap: 1rem;
+    grid-template-columns: 0.25fr auto;
+    grid-template-areas:
+    "header  header"
+    "sidebar content"
+    "footer  footer";
+  }
+}
+
+.license img {
+  max-width: 10em;
+  display: inline;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif;
 }
 
+h1 {
+  letter-spacing: 0.1em;
+  font-size: 7vw;
+}
+
 h2 {
-  font-size: 24px;
+  font-size: 3em;
+}
+
+h3 {
+  font-size: 2em;
 }
 
 .intro-lead {
@@ -39,11 +104,6 @@ img {
   margin-bottom: 18px;
 }
 
-h1 {
-  letter-spacing: 8px;
-  font-size: 86px;
-  line-height: 120px;
-}
 
 div {
   font-family: 'Merriweather', serif;
@@ -113,16 +173,4 @@ div {
 
 .footnote {
   font-size: 90%;
-}
-
-@media only screen and (min-width: 576px) {
-  img {
-    max-width: 60%;
-  }
-}
-
-@media only screen and (min-width: 992px) {
-  img {
-    width: 100%;
-  }
 }
