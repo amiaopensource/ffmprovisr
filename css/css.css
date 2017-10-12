@@ -40,7 +40,7 @@
 @media only screen and (min-width: 1000px)   {
   .grid {
     grid-gap: 1rem;
-    grid-template-columns: 0.25fr auto;
+    grid-template-columns: 30% auto;
     grid-template-areas:
     "header  header"
     "sidebar content"
