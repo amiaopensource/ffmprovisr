@@ -133,6 +133,52 @@
   </div>
   <!-- End Filtergraph explanation -->
 
+  <!-- Record and Live-Stream simultaneously -->
+    <span data-toggle="modal" data-target="#record-and-stream"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Record and Live-Stream simultaneously">Record and Live-Stream simultaneously</button></span>
+    <div id="record-and-stream" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="well">
+            <h3>Record and Live-Stream simultaneously</h3>
+            <p><code>ffmpeg -re -i <i>${INPUTFILE}</i> -map 0 -flags +global_header -vf scale="1280:-1,format=yuv420p" -pix_fmt yuv420p -level 3.1 -vsync passthrough -crf 26 -g 50 -bufsize 3500k -maxrate 1800k -c:v libx264 -c:a aac -b:a 128000 -r:a 44100 -ac 2 -t ${STREAMDURATION} -f tee <i>"[movflags=+faststart]${TARGETFILE}|[f=flv]${STREAMTARGET}"</i></code></p>
+            <p>I use this script to stream to a RTMP target and record the stream locally as .mp4 with only one ffmpeg-instance.</p>
+            <p>As input, I use <code>bmdcapture</code> which is piped to ffmpeg. But it can also be used with a static videofile as input.</p>
+            <p>The input will be scaled to 1280px width, maintaining height. Also the stream will stop after a given time (see <code>-t</code> option.)</p>
+            <h4>Notes</h4>
+            <ol>
+              <li>I recommend to use this inside a shell script. then you can define the variables <code>${INPUTFILE}</code>, <code>${STREAMDURATION}</code>, <code>${TARGETFILE}</code>, <code>${STREAMTARGET}</code>.</li>
+              <li>This is in daily use to live-stream a real-world TV show. No errors for nearly 4 years. Some parameters were found by trial-and-error or empiric testing. So suggestions / questions are welcome.</li>
+            </ol>
+            <dl>
+               <dt>ffmpeg </dt><dd>starts the command</dd>
+               <dt>-re </dt><dd>Read input at native framerate</dd>
+               <dt>-i input.mov </dt><dd>The input file. Can also be a <code>-</code> to use STDIN if you pipe in from webcam or SDI.</dd>
+               <dt>-map 0 </dt><dd>map ALL streams from input file to output</dd>
+               <dt>-flags +global_header </dt><dd>Don't place extra data in every keyframe</dd>
+               <dt>-vf scale="1280:-1" </dt><dd>Scale to 1280 width, maintain aspect ratio.</dd>
+               <dt>-pix_fmt yuv420p </dt><dd>convert to 420p chroma subsampling scheme</dd>
+               <dt>-level 3.1 </dt><dd>H264 Level (defines some thresholds for bitrate)</dd>
+               <dt>-vsync passthrough </dt><dd>Each frame is passed with its timestamp from the demuxer to the muxer.</dd>
+               <dt>-crf 26 </dt><dd>Constant rate factor - basically the quality</dd>
+               <dt>-g 50 </dt><dd>GOP size.</dd>
+               <dt>-bufsize 3500k </dt><dd>Ratecontrol buffer size (~ maxrate x2)</dd>
+               <dt>-maxrate 1800k </dt><dd>Maximum bit rate</dd>
+               <dt>-c:v libx264 </dt><dd>encode output video stream using H.264</dd>
+               <dt>-c:a aac </dt><dd>encode output audio stream using AAC</dd>
+               <dt>-b:a 128000 </dt><dd>The audio bitrate</dd>
+               <dt>-r:a 44100 </dt><dd>The audio samplerate</dd>
+               <dt>-ac 2 </dt><dd>Two audio channels</dd>
+               <dt>-t ${STREAMDURATION} </dt><dd>Time (in seconds) after which the stream should automatically end.</dd>
+               <dt>-f tee </dt><dd>Use multiple outputs. Outputs defined below.</dd>
+               <dt>"[movflags=+faststart]target-file.mp4|[f=flv]rtmp://stream-url/stream-id"</dt><dd>The output divided by pipe (|). First is local file. Second is Live Stream. Options for each target in square brackets before the target.</dd>
+            </dl>
+            <p class="link"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END Record and Live-Stream at the same time -->
+
   </div>
   <div class="well">
   <h2 id="rewrap">Change container (rewrap)</h2>
