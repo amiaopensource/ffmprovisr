@@ -73,7 +73,7 @@
     <span data-toggle="collapse" data-target="#basic-structure">
       <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Basic structure of an FFmpeg command">Basic structure of an FFmpeg command</button>
     </span>
-    <div id="basic-structure" class="collapse" tabindex="-1" role="dialog">
+    <div id="basic-structure" class="collapse">
       <h3>Basic structure of an FFmpeg command</h3>
       <p class="link"></p>
       <p>At its basis, an FFmpeg command is relatively simple. After you have installed FFmpeg (see instructions <a href="https://avpres.net/FFmpeg/#ch1" target="_blank">here</a>), the program is invoked simply by typing <code>ffmpeg</code> at the command prompt.</p>
@@ -98,7 +98,7 @@
 
   <!-- Filtergraph explanation -->
   <span data-toggle="collapse" data-target="#filtergraphs"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Filtergraphs">Filtergraphs</button></span>
-  <div id="filtergraphs" class="collapse" tabindex="-1" role="dialog">
+  <div id="filtergraphs" class="collapse">
     <h3>Filtergraphs</h3>
     <p class="link"></p>
     <p>Many FFmpeg commands use filters that manipulate the video or audio stream in some way: for example, <a href="http://ffmpeg.org/ffmpeg-filters.html#hflip" target="_blank">hflip</a> to horizontally flip a video, or <a href="http://ffmpeg.org/ffmpeg-filters.html#amerge-1" target="_blank">amerge</a> to merge two or more audio tracks into a single stream.</p>
@@ -127,7 +127,7 @@
 
   <!-- Record and Live-Stream simultaneously -->
     <span data-toggle="collapse" data-target="#record-and-stream"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Record and Live-Stream simultaneously">Record and Live-Stream simultaneously</button></span>
-    <div id="record-and-stream" class="collapse" tabindex="-1" role="dialog">
+    <div id="record-and-stream" class="collapse">
       <h3>Record and Live-Stream simultaneously</h3>
       <p class="link"></p>
       <p><code>ffmpeg -re -i <i>${INPUTFILE}</i> -map 0 -flags +global_header -vf scale="1280:-1,format=yuv420p" -pix_fmt yuv420p -level 3.1 -vsync passthrough -crf 26 -g 50 -bufsize 3500k -maxrate 1800k -c:v libx264 -c:a aac -b:a 128000 -r:a 44100 -ac 2 -t ${STREAMDURATION} -f tee <i>"[movflags=+faststart]${TARGETFILE}|[f=flv]${STREAMTARGET}"</i></code></p>
@@ -172,7 +172,7 @@
 
   <!-- Basic rewrap command -->
   <span data-toggle="collapse" data-target="#basic-rewrap"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Basic rewrap command">Basic rewrap command</button></span>
-  <div id="basic-rewrap" class="collapse" tabindex="-1" role="dialog">
+  <div id="basic-rewrap" class="collapse">
     <h3>Rewrap a file</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file.ext</i> -c copy -map 0 <i>output_file.ext</i></code></p>
@@ -195,7 +195,7 @@
 
   <!-- MKV to MP4 -->
   <span data-toggle="collapse" data-target="#mkv_to_mp4"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Convert Matroska (MKV) to MP4">MKV to MP4</button></span>
-  <div id="mkv_to_mp4" class="collapse" tabindex="-1" role="dialog">
+  <div id="mkv_to_mp4" class="collapse">
     <h3>MKV to MP4</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i>.mkv -c:v copy -c:a aac <i>output_file</i>.mp4</code></p>
@@ -220,7 +220,7 @@
 
   <!-- Transcode to ProRes -->
   <span data-toggle="collapse" data-target="#to_prores"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode to deinterlaced Apple ProRes LT">Transcode to ProRes</button></span>
-  <div id="to_prores" class="collapse" tabindex="-1" role="dialog">
+  <div id="to_prores" class="collapse">
     <h3>Transcode into a deinterlaced Apple ProRes LT</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -c:v prores -profile:v 1 -vf yadif -c:a pcm_s16le <i>output_file</i>.mov</code></p>
@@ -251,7 +251,7 @@
 
   <!-- Transcode to H.264 -->
   <span data-toggle="collapse" data-target="#transcode_h264"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode to an H.264 access file">Transcode to H.264</button></span>
-  <div id="transcode_h264" class="collapse" tabindex="-1" role="dialog">
+  <div id="transcode_h264" class="collapse">
     <h3>Transcode to H.264</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -pix_fmt yuv420p -c:a copy <i>output_file</i></code></p>
@@ -278,7 +278,7 @@
 
   <!-- H.264 from DCP -->
   <span data-toggle="collapse" data-target="#dcp_to_h264"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode from DCP to an H.264 access file">H.264 from DCP</button></span>
-  <div id="dcp_to_h264" class="collapse" tabindex="-1" role="dialog">
+  <div id="dcp_to_h264" class="collapse">
     <h3>H.264 from DCP</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_video_file</i>.mxf -i <i>input_audio_file</i>.mxf -c:v libx264 -pix_fmt yuv420p -c:a aac <i>output_file.mp4</i></code></p>
@@ -304,7 +304,7 @@
 
   <!-- Transcode to FFV1.mkv -->
   <span data-toggle="collapse" data-target="#create_FFV1_mkv"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode your file with the FFV1 Version 3 Codec in a Matroska container">Create FFV1.mkv</button></span>
-  <div id="create_FFV1_mkv" class="collapse" tabindex="-1" role="dialog">
+  <div id="create_FFV1_mkv" class="collapse">
     <h3>Create FFV1 Version 3 video in a Matroska container with framemd5 of input</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -map 0 -dn -c:v ffv1 -level 3 -g 1 -slicecrc 1 -slices 16 -c:a copy <i>output_file</i>.mkv -f framemd5 -an <i>framemd5_output_file</i></code></p>
@@ -330,7 +330,7 @@
 
   <!-- Rip DVD -->
   <span data-toggle="collapse" data-target="#dvd_to_file"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Basic DVD to file conversion">Convert DVD to H.264</button></span>
-  <div id="dvd_to_file" class="collapse" tabindex="-1" role="dialog">
+  <div id="dvd_to_file" class="collapse">
     <h3>Convert DVD to H.264</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i concat:<i>input_file1</i>\|<i>input_file2</i>\|<i>input_file3</i> -c:v libx264 -c:a copy <i>output_file</i>.mp4</code></p>
@@ -362,7 +362,7 @@
 
   <!-- Transcode to H.265 -->
   <span data-toggle="collapse" data-target="#transcode_h265"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode to an H.265/HEVC MP4">Transcode to H.265/HEVC</button></span>
-  <div id="transcode_h265" class="collapse" tabindex="-1" role="dialog">
+  <div id="transcode_h265" class="collapse">
     <h3>Transcode to H.265/HEVC</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -c:v libx265 -pix_fmt yuv420p -c:a copy <i>output_file</i></code></p>
@@ -392,7 +392,7 @@
 
   <!-- WAV to MP3 -->
   <span data-toggle="collapse" data-target="#wav_to_mp3"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Convert WAV to MP3">WAV to MP3</button></span>
-  <div id="wav_to_mp3" class="collapse" tabindex="-1" role="dialog">
+  <div id="wav_to_mp3" class="collapse">
     <h3>WAV to MP3</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i>.wav -write_id3v1 1 -id3v2_version 3 -dither_method rectangular -out_sample_rate 48k -qscale:a 1 <i>output_file</i>.mp3</code></p>
@@ -417,7 +417,7 @@
 
   <!-- WAV to AAC/MP4 -->
   <span data-toggle="collapse" data-target="#wav_to_mp4"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Convert WAV to AAC/MP4">WAV to AAC/MP4</button></span>
-  <div id="wav_to_mp4" class="collapse" tabindex="-1" role="dialog">
+  <div id="wav_to_mp4" class="collapse">
     <h3>WAV to AAC/MP4</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i>.wav -c:a aac -b:a 128k -dither_method rectangular -ar 44100 <i>output_file</i>.mp4</code></p>
@@ -441,7 +441,7 @@
 
   <!-- 4:3 to 16:9 -->
   <span data-toggle="collapse" data-target="#SD_HD"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transform 4:3 aspect ratio into 16:9 with pillarbox">4:3 to 16:9</button></span>
-  <div id="SD_HD" class="collapse" tabindex="-1" role="dialog">
+  <div id="SD_HD" class="collapse">
     <h3>Transform 4:3 aspect ratio into 16:9 with pillarbox</h3>
     <p class="link"></p>
     <p>Transform a video file with 4:3 aspect ratio into a video file with 16:9 aspect ratio by correct pillarboxing.</p>
@@ -459,7 +459,7 @@
 
   <!-- 16:9 to 4:3 -->
   <span data-toggle="collapse" data-target="#HD_SD"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transform 16:9 aspect ratio video into 4:3 with letterbox">16:9 to 4:3</button></span>
-  <div id="HD_SD" class="collapse" tabindex="-1" role="dialog">
+  <div id="HD_SD" class="collapse">
     <h3>Transform 16:9 aspect ratio video into 4:3 with letterbox</h3>
     <p class="link"></p>
     <p>Transform a video file with 16:9 aspect ratio into a video file with 4:3 aspect ratio by correct letterboxing.</p>
@@ -478,7 +478,7 @@
 
   <!-- SD to HD -->
   <span data-toggle="collapse" data-target="#SD_HD_2"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transform SD to HD with pillarbox">SD to HD</button></span>
-  <div id="SD_HD_2" class="collapse" tabindex="-1" role="dialog">
+  <div id="SD_HD_2" class="collapse">
     <h3>Transform SD into HD with pillarbox</h3>
     <p class="link"></p>
     <p>Transform a SD video file with 4:3 aspect ratio into an HD video file with 16:9 aspect ratio by correct pillarboxing.</p>
@@ -501,7 +501,7 @@
 
   <!-- Change display aspect ratio without re-encoding video-->
   <span data-toggle="collapse" data-target="#change_DAR"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Change display aspect ratio without re-encoding">Change Display Aspect Ratio</button></span>
-  <div id="change_DAR" class="collapse" tabindex="-1" role="dialog">
+  <div id="change_DAR" class="collapse">
     <h3>Change Display Aspect Ratio without reencoding video</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -c:v copy -aspect 4:3 <i>output_file</i></code></p>
@@ -517,7 +517,7 @@
 
   <!-- Convert colourspace -->
   <span data-toggle="collapse" data-target="#convert-colourspace"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Convert colourspace of video">Convert colourspace</button></span>
-  <div id="convert-colourspace" class="collapse" tabindex="-1" role="dialog">
+  <div id="convert-colourspace" class="collapse">
     <h3>Transcode video to a different colourspace</h3>
     <p class="link"></p>
     <p>This command uses a filter to convert the video to a different colour space.</p>
@@ -570,7 +570,7 @@
 
   <!-- Modify speed -->
   <span data-toggle="collapse" data-target="#modify_speed"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Modify image and sound speed">Modify speed</button></span>
-  <div id="modify_speed" class="collapse" tabindex="-1" role="dialog">
+  <div id="modify_speed" class="collapse">
     <h3>Modify image and sound speed</h3>
     <p class="link"></p>
     <p>E.g. for converting 24fps to 25fps with audio pitch compensation for PAL access copies. (Thanks @kieranjol!)</p>
@@ -593,7 +593,7 @@
 
   <!-- Make stream properties explicate -->
   <span data-toggle="collapse" data-target="#clarify_stream"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Clarify stream properties">Set stream properties</button></span>
-  <div id="clarify_stream" class="collapse" tabindex="-1" role="dialog">
+  <div id="clarify_stream" class="collapse">
     <h3>Set stream properties</h3>
     <p class="link"></p>
     <h2>Find undetermined or unknown stream properties</h2>
@@ -633,7 +633,7 @@
 
   <!-- Join files together -->
   <span data-toggle="collapse" data-target="#join_files"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Join (concatenate) two or more files into a single file">Join files together</button></span>
-  <div id="join_files" class="collapse" tabindex="-1" role="dialog">
+  <div id="join_files" class="collapse">
     <h3>Join files together</h3>
     <p class="link"></p>
     <p><code>ffmpeg -f concat -i mylist.txt -c copy <i>output_file</i></code></p>
@@ -659,7 +659,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Split file into segments -->
   <span data-toggle="collapse" data-target="#segment_file"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Split one file into several smaller segments">Split file into segments</button></span>
-  <div id="segment_file" class="collapse" tabindex="-1" role="dialog">
+  <div id="segment_file" class="collapse">
     <h3>Split file into segments</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -c copy -map 0 -f segment -segment_time 60 -reset_timestamps 1 <i>output_file-%03d.mkv</i></code></p>
@@ -689,7 +689,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Trim -->
   <span data-toggle="collapse" data-target="#trim"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Trim video">Trim video</button></span>
-  <div id="trim" class="collapse" tabindex="-1" role="dialog">
+  <div id="trim" class="collapse">
     <h3>Trim a video without re-encoding</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -ss 00:02:00 -to 00:55:00 -c copy -map 0 <i>output_file</i></code></p>
@@ -715,7 +715,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Excerpt from beginning -->
   <span data-toggle="collapse" data-target="#excerpt_from_start"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create an excerpt, starting from the beginning of the file">Excerpt from beginning</button></span>
-  <div id="excerpt_from_start" class="collapse" tabindex="-1" role="dialog">
+  <div id="excerpt_from_start" class="collapse">
     <h3>Excerpt from beginning</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -t <i>5</i> -c copy -map 0 <i>output_file</i></code></p>
@@ -733,7 +733,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Excerpt to end -->
   <span data-toggle="collapse" data-target="#excerpt_to_end"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create a new video file with the first five seconds trimmed off the original">Excerpt to end</button></span>
-  <div id="excerpt_to_end" class="collapse" tabindex="-1" role="dialog">
+  <div id="excerpt_to_end" class="collapse">
     <h3>Excerpt to end</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -ss <i>5</i> -c copy -map 0 <i>output_file</i></code></p>
@@ -751,7 +751,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Excerpt from end -->
   <span data-toggle="collapse" data-target="#excerpt_from_end"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create a new video file with the final five seconds of the original">Excerpt from end</button></span>
-  <div id="excerpt_from_end" class="collapse" tabindex="-1" role="dialog">
+  <div id="excerpt_from_end" class="collapse">
     <h3>Excerpt from end</h3>
     <p class="link"></p>
     <p><code>ffmpeg -sseof <i>-5</i> -i <i>input_file</i> -c copy -map 0 <i>output_file</i></code></p>
@@ -773,7 +773,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- NTSC to H.264 -->
   <span data-toggle="collapse" data-target="#ntsc_to_h264"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Upscaled, pillar-boxed HD H.264 access files from SD NTSC source">NTSC to H.264</button></span>
-  <div id="ntsc_to_h264" class="collapse" tabindex="-1" role="dialog">
+  <div id="ntsc_to_h264" class="collapse">
     <h3>Upscaled, Pillar-boxed HD H.264 Access Files from SD NTSC source</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -filter:v "yadif, scale=1440:1080:flags=lanczos, pad=1920:1080:(ow-iw)/2:(oh-ih)/2, format=yuv420p" <i>output_file</i></code></p>
@@ -796,7 +796,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Deinterlace video -->
   <span data-toggle="collapse" data-target="#deinterlace"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Deinterlace video">Deinterlace video</button></span>
-  <div id="deinterlace" class="collapse" tabindex="-1" role="dialog">
+  <div id="deinterlace" class="collapse">
     <h3>Deinterlace a video</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf "yadif,format=yuv420p" <i>output_file</i></code></p>
@@ -830,7 +830,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Inverse telecine -->
   <span data-toggle="collapse" data-target="#inverse-telecine"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Inverse telecine video">Inverse telecine</button></span>
-  <div id="inverse-telecine" class="collapse" tabindex="-1" role="dialog">
+  <div id="inverse-telecine" class="collapse">
     <h3>Inverse telecine a video file</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf "fieldmatch,yadif,decimate" <i>output_file</i></code></p>
@@ -860,7 +860,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Set field order -->
   <span data-toggle="collapse" data-target="#set_field_order"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Set field order for interlaced video">Set field order</button></span>
-  <div id="set_field_order" class="collapse" tabindex="-1" role="dialog">
+  <div id="set_field_order" class="collapse">
     <h3>Change field order of an interlaced video</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -c:v <i>video_codec</i> -filter:v setfield=tff <i>output_file</i></code></p>
@@ -876,7 +876,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Check interlacement  -->
   <span data-toggle="collapse" data-target="#check_interlacement"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Identify interlacement patterns in a video file">Check interlacement </button></span>
-  <div id="check_interlacement" class="collapse" tabindex="-1" role="dialog">
+  <div id="check_interlacement" class="collapse">
     <h3>Check video file interlacement patterns</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input file</i> -filter:v idet -f null -</code></p>
@@ -896,7 +896,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- abitscope -->
   <span data-toggle="collapse" data-target="#abitscope"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Audio Bitscope">Audio Bitscope</button></span>
-  <div id="abitscope" class="collapse" tabindex="-1" role="dialog">
+  <div id="abitscope" class="collapse">
     <h3>Creates a visualization of the bits in an audio stream</h3>
     <p class="link"></p>
     <p><code>ffplay -f lavfi "amovie=<i>input_file</i>, asplit=2[out1][a], [a]abitscope=colors=purple|yellow[out0]"</code></p>
@@ -918,7 +918,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- astats -->
   <span data-toggle="collapse" data-target="#astats"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Play a graphical output showing decibel levels of an input file">Graphic for audio</button></span>
-  <div id="astats" class="collapse" tabindex="-1" role="dialog">
+  <div id="astats" class="collapse">
     <h3>Plays a graphical output showing decibel levels of an input file</h3>
     <p class="link"></p>
     <p><code>ffplay -f lavfi "amovie='input.mp3', astats=metadata=1:reset=1, adrawgraph=lavfi.astats.Overall.Peak_level:max=0:min=-30.0:size=700x256:bg=Black[out]"</code></p>
@@ -946,7 +946,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- BRNG -->
   <span data-toggle="collapse" data-target="#brng"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Identify pixels out of broadcast range">Broadcast Range</button></span>
-  <div id="brng" class="collapse" tabindex="-1" role="dialog">
+  <div id="brng" class="collapse">
     <h3>Shows all pixels outside of broadcast range</h3>
     <p class="link"></p>
     <p><code>ffplay -f lavfi "movie='<i>input.mp4</i>', signalstats=out=brng:color=cyan[out]"</code></p>
@@ -970,7 +970,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Vectorscope -->
   <span data-toggle="collapse" data-target="#vectorscope"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Vectorscope from video to screen">Vectorscope</button></span>
-  <div id="vectorscope" class="collapse" tabindex="-1" role="dialog">
+  <div id="vectorscope" class="collapse">
     <h3>Plays vectorscope of video</h3>
     <p class="link"></p>
     <p><code>ffplay <i>input_file</i> -vf "split=2[m][v], [v]vectorscope=b=0.7:m=color3:g=green[v], [m][v]overlay=x=W-w:y=H-h"</code></p>
@@ -991,7 +991,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!--Side by Side Videos/Temporal Difference Filter-->
   <span data-toggle="collapse" data-target="#tempdif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Play two videos side by side while applying the temporal difference filter to both">Side by Side Videos/Temporal Difference Filter</button></span>
-  <div id="tempdif" class="collapse" tabindex="-1" role="dialog">
+  <div id="tempdif" class="collapse">
     <h3>This will play two input videos side by side while also applying the temporal difference filter to them</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i input01 -i input02 -filter_complex "[0:v:0]tblend=all_mode=difference128[a];[1:v:0]tblend=all_mode=difference128[b];[a][b]hstack[out]" -map [out] -f nut -c:v rawvideo - | ffplay -</code></p>
@@ -1024,7 +1024,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Pull specs -->
   <span data-toggle="collapse" data-target="#pull_specs"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Pull specs from video file">Pull specs</button></span>
-  <div id="pull_specs" class="collapse" tabindex="-1" role="dialog">
+  <div id="pull_specs" class="collapse">
     <h3>Pull specs from video file</h3>
     <p class="link"></p>
     <p><code>ffprobe -i <i>input_file</i> -show_format -show_streams -show_data -print_format xml</code></p>
@@ -1043,7 +1043,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
     <!-- Strip metadata -->
   <span data-toggle="collapse" data-target="#strip_metadata"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Strip metadata">Strip metadata</button></span>
-  <div id="strip_metadata" class="collapse" tabindex="-1" role="dialog">
+  <div id="strip_metadata" class="collapse">
     <h3>Strips metadata from video file</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -map_metadata -1 -c:v copy -c:a copy <i>output_file</i></code></p>
@@ -1064,7 +1064,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- One thumbnail -->
   <span data-toggle="collapse" data-target="#one_thumbnail"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Export one thumbnail per video file">One thumbnail</button></span>
-  <div id="one_thumbnail" class="collapse" tabindex="-1" role="dialog">
+  <div id="one_thumbnail" class="collapse">
     <h3>One thumbnail</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -ss 00:00:20 -vframes 1 thumb.png</code></p>
@@ -1081,7 +1081,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Multi thumbnail -->
   <span data-toggle="collapse" data-target="#multi_thumbnail"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Export many thumbnails per video file">Many thumbnails</button></span>
-  <div id="multi_thumbnail" class="collapse" tabindex="-1" role="dialog">
+  <div id="multi_thumbnail" class="collapse">
     <h3>Many thumbnails</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -vf fps=1/60 out%d.png</code></p>
@@ -1102,7 +1102,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Images to GIF -->
   <span data-toggle="collapse" data-target="#img_to_gif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Converts images to GIF">Create GIF from still images</button></span>
-  <div id="img_to_gif" class="collapse" tabindex="-1" role="dialog">
+  <div id="img_to_gif" class="collapse">
     <h3>Images to GIF</h3>
     <p class="link"></p>
     <p><code>ffmpeg -f image2 -framerate 9 -pattern_type glob -i <i>"input_image_*.jpg"</i> -vf scale=250x250 <i>output_file</i>.gif</code></p>
@@ -1122,7 +1122,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Create GIF -->
   <span data-toggle="collapse" data-target="#create_gif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create a GIF from a video">Create GIF from a video</button></span>
-  <div id="create_gif" class="collapse" tabindex="-1" role="dialog">
+  <div id="create_gif" class="collapse">
     <h3>Create GIF</h3>
     <p class="link"></p>
     <p>Create high quality GIF</p>
@@ -1158,7 +1158,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Images to video -->
   <span data-toggle="collapse" data-target="#images_2_video"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Transcode an image sequence into uncompressed 10-bit video">Image sequence into video</button></span>
-  <div id="images_2_video" class="collapse" tabindex="-1" role="dialog">
+  <div id="images_2_video" class="collapse">
     <h3>Transcode an image sequence into uncompressed 10-bit video</h3>
     <p class="link"></p>
     <p><code>ffmpeg -f image2 -framerate 24 -i <i>input_file_%06d.ext</i> -c:v v210 <i>output_file</i></code></p>
@@ -1176,7 +1176,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Create video from image and audio  -->
   <span data-toggle="collapse" data-target="#image-audio"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create video from image and audio">Create video from image and audio</button></span>
-  <div id="image-audio" class="collapse" tabindex="-1" role="dialog">
+  <div id="image-audio" class="collapse">
     <h3>Create a video from an image and audio file.</h3>
     <p class="link"></p>
     <p><code>ffmpeg -r 1 -loop 1 -i <i>image_file</i> -i <i>audio_file</i> -acodec copy -shortest -vf scale=1280:720 <i>output_file</i></code></p>
@@ -1201,7 +1201,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Text Watermark -->
   <span data-toggle="collapse" data-target="#text_watermark"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create opaque centered text watermark ">Text Watermark</button></span>
-  <div id="text_watermark" class="collapse" tabindex="-1" role="dialog">
+  <div id="text_watermark" class="collapse">
     <h3>Create centered, transparent text watermark</h3>
     <p class="link"></p>
     <p>E.g For creating access copies with your institutions name</p>
@@ -1226,7 +1226,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Transparent Image Watermark -->
   <span data-toggle="collapse" data-target="#image_watermark"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Overlay image watermark">Overlay image watermark on video</button></span>
-  <div id="image_watermark" class="collapse" tabindex="-1" role="dialog">
+  <div id="image_watermark" class="collapse">
     <h3>Overlay image watermark on video</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_video file</i> -i <i>input_image_file</i> -filter_complex overlay=main_w-overlay_w-5:5 <i>output_file</i></code></p>
@@ -1242,7 +1242,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- Burn in timecode-->
   <span data-toggle="collapse" data-target="#burn_in_timecode"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Burn in timecode ">Burn in timecode</button></span>
-  <div id="burn_in_timecode" class="collapse" tabindex="-1" role="dialog">
+  <div id="burn_in_timecode" class="collapse">
     <h3>Create a burnt in timecode on your image</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -vf drawtext="fontfile=<i>font_path</i>:fontsize=<i>font_size</i>:timecode=<i>starting_timecode</i>:fontcolor=<i>font_colour</i>:box=1:boxcolor=<i>box_colour</i>:rate=<i>timecode_rate</i>:x=(w-text_w)/2:y=h/1.2" <i>output_file</i></code></p>
@@ -1272,7 +1272,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- phase shift -->
   <span data-toggle="collapse" data-target="#phase_shift"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Inverses the audio phase of the second channel">Flip phase shift</button></span>
-  <div id="phase_shift" class="collapse" tabindex="-1" role="dialog">
+  <div id="phase_shift" class="collapse">
     <h3>Flip audio phase shift</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -af pan="stereo|c0=c0|c1=-1*c1" <i>output_file</i></code></p>
@@ -1290,7 +1290,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- loudnorm metadata -->
   <span data-toggle="collapse" data-target="#loudnorm_metadata"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Calculate Loudness Levels">Calculate Loudness Levels</button></span>
-  <div id="loudnorm_metadata" class="collapse" tabindex="-1" role="dialog">
+  <div id="loudnorm_metadata" class="collapse">
     <h3>Calculate Loudness Levels</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -af loudnorm=print_format=json -f null -</code></p>
@@ -1309,7 +1309,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- RIAA equalization -->
   <span data-toggle="collapse" data-target="#riaa_eq"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="RIAA Equalization">RIAA Equalization</button></span>
-  <div id="riaa_eq" class="collapse" tabindex="-1" role="dialog">
+  <div id="riaa_eq" class="collapse">
     <h3>RIAA Equalization</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -af aemphasis=type=riaa <i>output_file</i></code></p>
@@ -1325,7 +1325,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- one pass loudnorm -->
   <span data-toggle="collapse" data-target="#loudnorm_one_pass"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="One Pass Loudness Normalization">One Pass Loudness Normalization</button></span>
-  <div id="loudnorm_one_pass" class="collapse" tabindex="-1" role="dialog">
+  <div id="loudnorm_one_pass" class="collapse">
     <h3>One Pass Loudness Normalization</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -af loudnorm=dual_mono=true -ar 48k <i>output_file</i></code></p>
@@ -1344,7 +1344,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- two pass loudnorm -->
   <span data-toggle="collapse" data-target="#loudnorm_two_pass"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Two Pass Loudness Normalization">Two Pass Loudness Normalization</button></span>
-  <div id="loudnorm_two_pass" class="collapse" tabindex="-1" role="dialog">
+  <div id="loudnorm_two_pass" class="collapse">
     <h3>Two Pass Loudness Normalization</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -af loudnorm=dual_mono=true:measured_I=<i>input_i</i>:measured_TP=<i>input_tp</i>:measured_LRA=<i>input_lra</i>:measured_thresh=<i>input_thresh</i>:offset=<i>target_offset</i>:linear=true -ar 48k <i>output_file</i></code></p>
@@ -1373,7 +1373,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- batch processing (Mac/Linux) -->
   <span data-toggle="collapse" data-target="#batch_processing_bash"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="FFmpeg batch processing on Mac/Linux">Batch processing (Mac/Linux)</button></span>
-  <div id="batch_processing_bash" class="collapse" tabindex="-1" role="dialog">
+  <div id="batch_processing_bash" class="collapse">
     <h3>Create Bash script to batch process with FFmpeg</h3>
     <p class="link"></p>
     <p>Bash scripts are plain text files saved with a .sh extension. This entry explains how they work with the example of a bash script named “Rewrap-MXF.sh”, which rewraps .mxf files in a given directory to .mov files.</p>
@@ -1402,7 +1402,7 @@ e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <i>output_file</i></c
 
   <!-- batch processing (Windows) -->
   <span data-toggle="collapse" data-target="#batch_processing_win"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="FFmpeg batch processing on Windows">Batch processing (Windows)</button></span>
-  <div id="batch_processing_win" class="collapse" tabindex="-1" role="dialog">
+  <div id="batch_processing_win" class="collapse">
     <h3>Create PowerShell script to batch process with FFmpeg</h3>
     <p class="link"></p>
     <p>As of Windows 10, it is possible to run Bash via <a href="https://msdn.microsoft.com/en-us/commandline/wsl/about" target="_blank">Bash on Ubuntu on Windows</a>, allowing you to use <a href="index.html#batch_processing_bash">bash scripting</a>. To enable Bash on Windows, see <a href="https://msdn.microsoft.com/en-us/commandline/wsl/install_guide" target="_blank">these instructions</a>.</p>
@@ -1435,7 +1435,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- Create frame md5s -->
   <span data-toggle="collapse" data-target="#create_frame_md5s_v"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create an MD5 checksum per video frame">Create MD5 checksums (video frames)</button></span>
-  <div id="create_frame_md5s_v" class="collapse" tabindex="-1" role="dialog">
+  <div id="create_frame_md5s_v" class="collapse">
     <h3>Create MD5 checksums (video frames)</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -f framemd5 -an <i>output_file</i></code></p>
@@ -1453,7 +1453,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- Create frame md5s (audio) -->
   <span data-toggle="collapse" data-target="#create_frame_md5s_a"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create MD5 checksums for audio samples">Create MD5 checksums (audio samples)</button></span>
-  <div id="create_frame_md5s_a" class="collapse" tabindex="-1" role="dialog">
+  <div id="create_frame_md5s_a" class="collapse">
     <h3>Create MD5 checksums (audio samples)</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -af "asetnsamples=n=48000" -f framemd5 -vn <i>output_file</i></code></p>
@@ -1478,7 +1478,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- QCTools Report -->
   <span data-toggle="collapse" data-target="#qctools"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create a QCTools report for a video file with audio track">QCTools report (with audio)</button></span>
-  <div id="qctools" class="collapse" tabindex="-1" role="dialog">
+  <div id="qctools" class="collapse">
     <h3>Creates a QCTools report</h3>
     <p class="link"></p>
     <p><code>ffprobe -f lavfi -i "movie=<i>input_file</i>:s=v+a[in0][in1], [in0]signalstats=stat=tout+vrep+brng, cropdetect=reset=1:round=1, idet=half_life=1, split[a][b];[a]field=top[a1];[b]field=bottom, split[b1][b2];[a1][b1]psnr[c1];[c1][b2]ssim[out0];[in1]ebur128=metadata=1, astats=metadata=1:reset=1:length=0.4[out1]" -show_frames -show_versions -of xml=x=1:q=1 -noprivate | gzip > <i>input_file</i>.qctools.xml.gz</code></p>
@@ -1502,7 +1502,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- QCTools Report (no audio) -->
   <span data-toggle="collapse" data-target="#qctools_no_audio"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create a QCTools report for a video file with no audio track">QCTools report (no audio)</button></span>
-  <div id="qctools_no_audio" class="collapse" tabindex="-1" role="dialog">
+  <div id="qctools_no_audio" class="collapse">
     <h3>Creates a QCTools report</h3>
     <p class="link"></p>
     <p><code>ffprobe -f lavfi -i "movie=<i>input_file</i>,signalstats=stat=tout+vrep+brng, cropdetect=reset=1:round=1, idet=half_life=1, split[a][b];[a]field=top[a1];[b]field=bottom,split[b1][b2];[a1][b1]psnr[c1];[c1][b2]ssim" -show_frames -show_versions -of xml=x=1:q=1 -noprivate | gzip > <i>input_file</i>.qctools.xml.gz</code></p>
@@ -1526,7 +1526,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- Check FFV1 fixity -->
   <span data-toggle="collapse" data-target="#check_FFV1_fixity"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Decode your video and verify the internal CRC checksums">Check FFV1 fixity</button></span>
-  <div id="check_FFV1_fixity" class="collapse" tabindex="-1" role="dialog">
+  <div id="check_FFV1_fixity" class="collapse">
     <h3>Check FFV1 Version 3 fixity</h3>
     <p class="link"></p>
     <p><code>ffmpeg -report -i <i>input_file</i> -f null -</code></p>
@@ -1544,7 +1544,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- Read/Extract EIA-608 Closed Captions -->
   <span data-toggle="collapse" data-target="#readeia608"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Read or extract EIA-608 (Line 21) closed captioning">Read/Extract EIA-608 Closed Captioning</button></span>
-  <div id="readeia608" class="collapse" tabindex="-1" role="dialog">
+  <div id="readeia608" class="collapse">
     <h3>Read/Extract EIA-608 (Line 21) closed captioning</h3>
     <p class="link"></p>
     <p><code>ffprobe -f lavfi -i movie=<i>input_file</i>,readeia608 -show_entries frame=pkt_pts_time:frame_tags=lavfi.readeia608.0.line,lavfi.readeia608.0.cc,lavfi.readeia608.1.line,lavfi.readeia608.1.cc -of csv > <i>input_file</i>.csv</code></p>
@@ -1572,7 +1572,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- Mandelbrot -->
   <span data-toggle="collapse" data-target="#mandelbrot"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Make a mandelbrot test pattern video">Mandelbrot</button></span>
-  <div id="mandelbrot" class="collapse" tabindex="-1" role="dialog">
+  <div id="mandelbrot" class="collapse">
     <h3>Makes a mandelbrot test pattern video</h3>
     <p class="link"></p>
     <p><code>ffmpeg -f lavfi -i mandelbrot=size=1280x720:rate=25 -c:v libx264 -t 10 <i>output_file</i></code></p>
@@ -1589,7 +1589,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- SMPTE bars -->
   <span data-toggle="collapse" data-target="#smpte_bars"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Make a SMPTE bars test pattern video">SMPTE bars</button></span>
-  <div id="smpte_bars" class="collapse" tabindex="-1" role="dialog">
+  <div id="smpte_bars" class="collapse">
     <h3>Makes a SMPTE bars test pattern video</h3>
     <p class="link"></p>
     <p><code>ffmpeg -f lavfi -i smptebars=size=720x576:rate=25 -c:v prores -t 10 <i>output_file</i></code></p>
@@ -1606,7 +1606,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- Test pattern video -->
   <span data-toggle="collapse" data-target="#test"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Make a test pattern video">Test pattern</button></span>
-  <div id="test" class="collapse" tabindex="-1" role="dialog">
+  <div id="test" class="collapse">
     <h3>Make a test pattern video</h3>
     <p class="link"></p>
     <p><code>ffmpeg -f lavfi -i testsrc=size=720x576:rate=25 -c:v v210 -t 10 <i>output_file</i></code></p>
@@ -1624,7 +1624,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- Play HD SMPTE bars -->
   <span data-toggle="collapse" data-target="#play_hd_smpte"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Test an HD video projector by playing the SMPTE colour bars pattern">Play HD SMPTE bars</button></span>
-  <div id="play_hd_smpte" class="collapse" tabindex="-1" role="dialog">
+  <div id="play_hd_smpte" class="collapse">
     <h3>Play HD SMPTE bars</h3>
     <p class="link"></p>
     <p>Test an HD video projector by playing the SMPTE colour bars pattern.</p>
@@ -1639,7 +1639,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- Play VGA SMPTE bars -->
   <span data-toggle="collapse" data-target="#play_vga_smpte"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Test a VGA video projector by playing the SMPTE colour bars pattern">Play VGA SMPTE bars</button></span>
-  <div id="play_vga_smpte" class="collapse" tabindex="-1" role="dialog">
+  <div id="play_vga_smpte" class="collapse">
     <h3>Play VGA SMPTE bars</h3>
     <p class="link"></p>
     <p>Test a VGA (SD) video projector by playing the SMPTE colour bars pattern.</p>
@@ -1654,7 +1654,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- Sine wave -->
   <span data-toggle="collapse" data-target="#sine_wave"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Generate a test audio file playing a sine wave">Sine wave</button></span>
-  <div id="sine_wave" class="collapse" tabindex="-1" role="dialog">
+  <div id="sine_wave" class="collapse">
     <h3>Sine wave</h3>
     <p class="link"></p>
     <p>Generate a test audio file playing a sine wave.</p>
@@ -1671,7 +1671,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- SMPTE bars + Sine wave -->
   <span data-toggle="collapse" data-target="#smpte_bars_and_sine_wave"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Generate a SMPTE bars test video + audio playing a sine wave">SMPTE bars + Sine wave audio</button></span>
-  <div id="smpte_bars_and_sine_wave" class="collapse" tabindex="-1" role="dialog">
+  <div id="smpte_bars_and_sine_wave" class="collapse">
     <h3>SMPTE bars + Sine wave audio</h3>
     <p class="link"></p>
     <p>Generate a SMPTE bars test video + a 1kHz sine wave as audio testsignal.</p>
@@ -1692,7 +1692,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- Broken File -->
   <span data-toggle="collapse" data-target="#broken_file"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Make a broken file out of a perfectly good one">Broken file</button></span>
-  <div id="broken_file" class="collapse" tabindex="-1" role="dialog">
+  <div id="broken_file" class="collapse">
     <h3>Makes a broken test file</h3>
     <p class="link"></p>
     <p>Modifies an existing, functioning file and intentionally breaks it for testing purposes.</p>
@@ -1713,7 +1713,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- Fix A/V async 1 -->
   <span data-toggle="collapse" data-target="#avsync_aresample"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Fix A/V sync issues by resampling audio">Fix AV Sync: Resample audio</button></span>
-  <div id="avsync_aresample" class="collapse" tabindex="-1" role="dialog">
+  <div id="avsync_aresample" class="collapse">
     <h3>Fix AV Sync: Resample audio</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -c:v copy -c:a pcm_s16le -af "aresample=async=1000" <i>output_file</i></code></p>
@@ -1734,7 +1734,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- Show OCR -->
   <span data-toggle="collapse" data-target="#ocr_on_top"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Play video with OCR on top">Show OCR</button></span>
-  <div id="ocr_on_top" class="collapse" tabindex="-1" role="dialog">
+  <div id="ocr_on_top" class="collapse">
     <h3>Plays video with OCR on top</h3>
     <p class="link"></p>
     <p>Note: ffmpeg must be compiled with the tesseract library for this script to work (<code>--with-tesseract</code> if using the <code>brew install ffmpeg</code> method).</p>
@@ -1757,7 +1757,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- Export OCR -->
   <span data-toggle="collapse" data-target="#ffprobe_ocr"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Export OCR from video to screen">Export OCR</button></span>
-  <div id="ffprobe_ocr" class="collapse" tabindex="-1" role="dialog">
+  <div id="ffprobe_ocr" class="collapse">
     <h3>Exports OCR data to screen</h3>
     <p class="link"></p>
     <p>Note: FFmpeg must be compiled with the tesseract library for this script to work (<code>--with-tesseract</code> if using the <code>brew install ffmpeg</code> method)</p>
@@ -1778,7 +1778,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- Play image sequence -->
   <span data-toggle="collapse" data-target="#play_im_seq"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Play an image sequence directly as moving images">Play an image sequence</button></span>
-  <div id="play_im_seq" class="collapse" tabindex="-1" role="dialog">
+  <div id="play_im_seq" class="collapse">
     <h3>Play an image sequence</h3>
     <p class="link"></p>
     <p>Play an image sequence directly as moving images, without having to create a video first.</p>
@@ -1799,7 +1799,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- Split audio and video tracks -->
   <span data-toggle="collapse" data-target="#split_audio_video"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create separate audio and video tracks from an audiovisual file">Split audio and video tracks</button></span>
-  <div id="split_audio_video" class="collapse" tabindex="-1" role="dialog">
+  <div id="split_audio_video" class="collapse">
     <h3>Split audio and video tracks</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -map <i>0:v:0 video_output_file</i> -map <i>0:a:0 audio_output_file</i></code></p>
@@ -1817,7 +1817,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- Extract audio from an AV file -->
   <span data-toggle="collapse" data-target="#extract_audio"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Extract audio without loss from an AV file">Extract audio</button></span>
-  <div id="extract_audio" class="collapse" tabindex="-1" role="dialog">
+  <div id="extract_audio" class="collapse">
     <h3>Extract audio from an AV file</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -c:a copy -vn <i>output_file</i></code></p>
@@ -1834,7 +1834,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- Combine audio tracks  -->
   <span data-toggle="collapse" data-target="#combine_audio"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Combine audio tracks">Combine audio tracks</button></span>
-  <div id="combine_audio" class="collapse" tabindex="-1" role="dialog">
+  <div id="combine_audio" class="collapse">
     <h3>Combine audio tracks into one in a video file</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -filter_complex "[0:a:0][0:a:1]amerge[out]" -map 0:v -map "[out]" -c:v copy -shortest <i>output_file</i></code></p>
@@ -1857,7 +1857,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- append notice to access mp3 -->
   <span data-toggle="collapse" data-target="#append_mp3"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Generate two access MP3s from input. One with added audio (such as a copyright notice) and one unmodified.">Create access MP3 (+ access MP3 with copyright notice)</button></span>
-  <div id="append_mp3" class="collapse" tabindex="-1" role="dialog">
+  <div id="append_mp3" class="collapse">
     <h3>Generate two access MP3s from input. One with appended audio (such as a copyright notice) and one unmodified.</h3>
     <p class="link"></p>
     <p> <code>ffmpeg -i <i>input_file</i> -i <i>input_file_to_append</i> -filter_complex "[0:a:0]asplit=2[a][b];[b]afifo[bb];[1:a:0][bb]concat=n=2:v=0:a=1[concatout]" -map "[a]" -codec:a libmp3lame -dither_method modified_e_weighted -qscale:a 2 <i>output_file.mp3</i> -map "[concatout]" -codec:a libmp3lame -dither_method modified_e_weighted -qscale:a 2 <i>output_file_appended.mp3</i></code></p>
@@ -1882,7 +1882,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- Flip image -->
   <span data-toggle="collapse" data-target="#flip_image"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Flip the image">Flip video image</button></span>
-  <div id="flip_image" class="collapse" tabindex="-1" role="dialog">
+  <div id="flip_image" class="collapse">
     <h3>Flip the video image horizontally and/or vertically</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -filter:v "hflip,vflip" -c:a copy <i>output_file</i></code></p>
@@ -1899,7 +1899,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- Create ISO -->
   <span data-toggle="collapse" data-target="#create_iso"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Create ISO files for DVD access">Create ISO</button></span>
-  <div id="create_iso" class="collapse" tabindex="-1" role="dialog">
+  <div id="create_iso" class="collapse">
     <h3>Create ISO files for DVD access</h3>
     <p class="link"></p>
     <p>Create an ISO file that can be used to burn a DVD. Please note, you will have to install dvdauthor. To install dvd author using Homebrew run: <code>brew install dvdauthor</code></p>
@@ -1917,7 +1917,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- Compare Video Fingerprints -->
   <span data-toggle="collapse" data-target="#compare_video_fingerprints"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Compare Video Fingerprints">Compare Video Fingerprints</button></span>
-  <div id="compare_video_fingerprints" class="collapse" tabindex="-1" role="dialog">
+  <div id="compare_video_fingerprints" class="collapse">
     <h3>Compare two video files for content similarity using perceptual hashing</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_one</i> -i <i>input_two</i> -filter_complex signature=detectmode=full:nb_inputs=2 -f null -</code></p>
@@ -1934,7 +1934,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- Generate Video Fingerprint -->
   <span data-toggle="collapse" data-target="#generate_video_fingerprint"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Generate Video Fingerprint">Generate Video Fingerprint</button></span>
-  <div id="generate_video_fingerprint" class="collapse" tabindex="-1" role="dialog">
+  <div id="generate_video_fingerprint" class="collapse">
     <h3>Generate a perceptual hash for an input video file</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input</i> -vf signature=format=xml:filename="output.xml" -an -f null -</code></p>
@@ -1950,7 +1950,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- Scene Detection using YDIF -->
   <span data-toggle="collapse" data-target="#csv-ydif"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Exports CSV for scene detection using YDIF">CSV with timecodes and YDIF</button></span>
-  <div id="csv-ydif" class="collapse" tabindex="-1" role="dialog">
+  <div id="csv-ydif" class="collapse">
     <h3>Exports CSV for scene detection using YDIF</h3>
     <p class="link"></p>
     <p><code>ffprobe -f lavfi -i movie=<i>input_file</i>,signalstats -show_entries frame=pkt_pts_time:frame_tags=lavfi.signalstats.YDIF -of csv</code></p>
@@ -1970,7 +1970,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- Cover head switching noise -->
   <span data-toggle="collapse" data-target="#cover_head"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Cover head switching noise">Cover head switching noise</button></span>
-  <div id="cover_head" class="collapse" tabindex="-1" role="dialog">
+  <div id="cover_head" class="collapse">
     <h3>Cover head switching noise</h3>
     <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> -filter:v drawbox=w=iw:h=7:y=ih-h:t=max <i>output_file</i></code></p>
@@ -1994,7 +1994,7 @@ ffmpeg -i $file -map 0 -c copy $output
 
   <!-- View Subprogram Info -->
   <span data-toggle="collapse" data-target="#view_subprogram_info"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="View FFmpeg subprogram information">View FFmpeg subprogram information</button></span>
-  <div id="view_subprogram_info" class="collapse" tabindex="-1" role="dialog">
+  <div id="view_subprogram_info" class="collapse">
     <h3>View information about a specific decoder, encoder, demuxer, muxer, or filter</h3>
     <p class="link"></p>
     <p><code>ffmpeg -h <i>type=name</i></code></p>
@@ -2021,7 +2021,7 @@ ffmpeg -i $file -map 0 -c copy $output
   <!-- sample example -->
   <!-- <span data-toggle="collapse" data-target="#*****unique name*****"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="*****Hover-over description*****">*****Small title****</button></span>
   Change the above data-target field, the hover-over description, the button text, and the below div ID
-  <div id="*****unique name*****" class="collapse" tabindex="-1" role="dialog">
+  <div id="*****unique name*****" class="collapse">
     <h3>*****Longer title*****</h3>
     <p class="link"></p>
     <p class="link"></p>
