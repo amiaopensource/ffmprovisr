@@ -1,3 +1,7 @@
+html, body {
+  font-size: 16px;
+}
+
 .grid {
   display: grid;
   align-content: center;
@@ -40,12 +44,24 @@
 @media only screen and (min-width: 1000px)   {
   .grid {
     grid-gap: 1rem;
-    grid-template-columns: 30% auto;
+    grid-template-columns: 25% auto;
     grid-template-areas:
     "header  header"
     "sidebar content"
     "footer  footer";
   }
+}
+
+a {
+  color: #91cf91;
+}
+
+a:hover {
+  color: #5cb85c;
+}
+
+a:visited {
+  color: #449d44;
 }
 
 .license img {
@@ -63,20 +79,16 @@ h1 {
 }
 
 h2 {
-  font-size: 3em;
+  font-size: 2.5em;
 }
 
 h3 {
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 .intro-lead {
   font-family: 'Montserrat', sans-serif;
-  font-size: 20px;
-}
-
-.select-from {
-  font-size: 16px;
+  font-size: 1em;
 }
 
 code {
@@ -146,15 +158,31 @@ div {
 }
 
 .contents-list {
-  color: black;
+  color: white;
+  border: 1px solid black;
+  background-color: dimgrey;
+  padding: 14px;
+  font-family: "Montserrat";
+  font-weight: bold;
+  font-size: 1em;
+  border:1px solid rgba(255, 255, 255, 0);
+  transition:all .5s ease-in-out;
+}
+
+.sidebar a {
+  text-decoration: none;
 }
 
 .contents-list:hover {
-  color: #2a9fd6;
+  color: black;
+  font-size: 1.05em;
+  background-color: #449d44;
+  border:1px solid black;
 }
 
 .contents-list:before {
-  content: "📼"
+  content: "📼";
+  padding-right: 1em;
 }
 
 .codeblock {
