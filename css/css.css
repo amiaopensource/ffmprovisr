@@ -1,5 +1,4 @@
 html, body {
-  font-size: 16px;
   line-height: 1.5;
   color: #888888;
   background-color: #060606;
@@ -35,18 +34,18 @@ html, body {
   text-align: center;
 }
 
-@media only screen and (max-width: 999px)  {
-.grid {
-  grid-template-columns: 1fr;
-  grid-template-areas:
-  "header"
-  "sidebar"
-  "content"
-  "footer";
+@media only screen and (max-width: 999px) {
+  .grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+    "header"
+    "sidebar"
+    "content"
+    "footer";
   }
 }
 
-@media only screen and (min-width: 1000px)   {
+@media only screen and (min-width: 1000px) {
   .grid {
     grid-gap: 1rem;
     grid-template-columns: 25% auto;
@@ -54,6 +53,13 @@ html, body {
     "header  header"
     "sidebar content"
     "footer  footer";
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .grid {
+    max-width: 70%;
+    margin: 0 auto;
   }
 }
 
@@ -84,7 +90,13 @@ h1 {
 }
 
 h2 {
-  font-size: 2.5em;
+  font-size: 1.5em;
+  margin: 5px 8px 8px 8px;
+}
+
+.heading {
+  font-size: 2em;
+  margin: 6px 0px 12px 0px;
 }
 
 h3 {
@@ -179,7 +191,7 @@ button {
 .contents-list {
   color: white;
   border: 1px solid black;
-  background-color: dimgrey;
+  background-color: #383838;
   padding: 14px;
   font-family: "Montserrat";
   font-weight: bold;
