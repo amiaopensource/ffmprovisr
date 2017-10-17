@@ -38,7 +38,6 @@
     <a href="#metadata"><div class="contents-list">View or strip metadata</div></a>
     <a href="#preservation"><div class="contents-list">Preservation tasks</div></a>
     <a href="#test-files"><div class="contents-list">Generate test files</div></a>
-    <a href="#repair"><div class="contents-list">Repair a file</div></a>
     <a href="#ocr"><div class="contents-list">Use OCR</div></a>
     <a href="#perceptual-similarity"><div class="contents-list">Compare similarity of videos</div></a>
     <a href="#other"><div class="contents-list">Something else</div></a>
@@ -750,6 +749,23 @@
     </dl>
   </div>
   <!-- ends two pass loudnorm -->
+
+  <!-- Fix A/V async 1 -->
+  <span data-toggle="collapse" data-target="#avsync_aresample"><button type="button" class="btn" data-toggle="tooltip" data-placement="bottom" title="Fix A/V sync issues by resampling audio">Fix AV Sync: Resample audio</button></span>
+  <div id="avsync_aresample" class="collapse">
+    <h3>Fix AV Sync: Resample audio</h3>
+    <p class="link"></p>
+    <p><code>ffmpeg -i <i>input_file</i> -c:v copy -c:a pcm_s16le -af "aresample=async=1000" <i>output_file</i></code></p>
+    <dl>
+      <dt>ffmpeg</dt><dd>starts the command</dd>
+      <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+      <dt>-c:v copy</dt><dd>Copy all mapped video streams.</dd>
+      <dt>-c:a pcm_s16le</dt><dd>tells FFmpeg to encode the audio stream in 16-bit linear PCM (<a href="https://en.wikipedia.org/wiki/Endianness#Little-endian" target="_blank">little endian</a>)</dd>
+      <dt>-af "aresample=async=1000"</dt><dd>Uses the <a href="https://ffmpeg.org/ffmpeg-filters.html#aresample-1" target="_blank">aresample</a> filter to stretch/squeeze samples to given timestamps, with a maximum of 1000 samples per second compensation.</dd>
+      <dt><i>output_file</i></dt><dd>path, name and extension of the output file. Try different file extensions such as mkv, mov, mp4, or avi.</dd>
+    </dl>
+  </div>
+  <!-- ends Fix A/V async 1 -->
 
   </div>
   <div class="well">
@@ -1725,27 +1741,6 @@ ffmpeg -i $file -map 0 -c copy $output
     </dl>
   </div>
   <!-- ends Broken File -->
-
-  </div>
-  <div class="well">
-  <h2 id="repair">Repair</h2>
-
-  <!-- Fix A/V async 1 -->
-  <span data-toggle="collapse" data-target="#avsync_aresample"><button type="button" class="btn" data-toggle="tooltip" data-placement="bottom" title="Fix A/V sync issues by resampling audio">Fix AV Sync: Resample audio</button></span>
-  <div id="avsync_aresample" class="collapse">
-    <h3>Fix AV Sync: Resample audio</h3>
-    <p class="link"></p>
-    <p><code>ffmpeg -i <i>input_file</i> -c:v copy -c:a pcm_s16le -af "aresample=async=1000" <i>output_file</i></code></p>
-    <dl>
-      <dt>ffmpeg</dt><dd>starts the command</dd>
-      <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-      <dt>-c:v copy</dt><dd>Copy all mapped video streams.</dd>
-      <dt>-c:a pcm_s16le</dt><dd>tells FFmpeg to encode the audio stream in 16-bit linear PCM (<a href="https://en.wikipedia.org/wiki/Endianness#Little-endian" target="_blank">little endian</a>)</dd>
-      <dt>-af "aresample=async=1000"</dt><dd>Uses the <a href="https://ffmpeg.org/ffmpeg-filters.html#aresample-1" target="_blank">aresample</a> filter to stretch/squeeze samples to given timestamps, with a maximum of 1000 samples per second compensation.</dd>
-      <dt><i>output_file</i></dt><dd>path, name and extension of the output file. Try different file extensions such as mkv, mov, mp4, or avi.</dd>
-    </dl>
-  </div>
-  <!-- ends Fix A/V async 1 -->
 
   </div>
   <div class="well">
