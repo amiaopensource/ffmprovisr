@@ -5,6 +5,7 @@ html, body {
   background-color: #060606;
   margin: 0;
   word-break: break-word;
+  word-break: break-all;
 }
 
 .grid {
