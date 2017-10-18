@@ -183,6 +183,7 @@ div {
   font-size: 1em;
   border: 1px solid black;
   transition: all .5s ease-out;
+  position: relative;
 }
 
 .contents-list:hover {
