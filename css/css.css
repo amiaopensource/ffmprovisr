@@ -26,7 +26,7 @@ html, body {
   grid-area: content;
 }
 
-.content p {
+.content .hiding p {
   word-break: break-all;
 }
 
@@ -170,6 +170,7 @@ div {
 nav .heading {
   word-break: normal;
 }
+
 .recipe {
   display: block;
   width: 90%;
