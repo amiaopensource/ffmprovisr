@@ -5,7 +5,6 @@ html, body {
   background-color: #060606;
   margin: 0;
   word-break: break-word;
-  word-break: break-all;
 }
 
 .grid {
@@ -25,6 +24,10 @@ html, body {
 
 .content {
   grid-area: content;
+}
+
+.content p {
+  word-break: break-all;
 }
 
 .sidebar {
@@ -160,6 +163,13 @@ div {
   transition: all .5s ease-out;
 }
 
+.contents-list {
+  font-size: 0.9em;
+}
+
+nav .heading {
+  word-break: normal;
+}
 .recipe {
   display: block;
   width: 90%;
