@@ -152,8 +152,7 @@ div {
   background-color: #383838;
   padding: 14px;
   font-family: "Montserrat";
-  font-weight: bold;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   border: 1px solid black;
   cursor: pointer;
   position: relative;
