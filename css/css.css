@@ -137,70 +137,47 @@ div {
   color: white;
 }
 
-.recipe {
+.sidebar a {
+  text-decoration: none;
+}
+
+.recipe, .contents-list {
   color: white;
   background-color: #383838;
   padding: 14px;
-  padding-left: 2.8em;
   font-family: "Montserrat";
-  font-weight: bold;
   font-size: 1.2em;
+  font-weight: bold;
+  letter-spacing: 0.1em;
   border: 1px solid black;
-  transition: all .5s ease-out;
-  position: relative;
   width: 100%;
   cursor: pointer;
+  position: relative;
+  padding-left: 2.8em;
+  transition: all .5s ease-out;
 }
 
-.recipe:hover {
-  color: black;
+.recipe:hover, .contents-list:hover {
   background-color: #449d44;
-  border: 1px solid black;
 }
 
 .recipe:before {
   content: "💫";
+}
+
+.contents-list:before {
+  content: "📼";
+}
+
+.recipe:before, .contents-list:before {
   position: absolute;
   left: 1em;
-  padding: 0 1px;
   padding-right: 1em;
 }
 
 .recipe:hover:before, .recipe:focus:before, .recipe:active:before {
   transform: scale(1.5) translateX(0.1em);
   transition: 0.5s;
-}
-
-.sidebar a {
-  text-decoration: none;
-}
-
-.contents-list {
-  color: white;
-  background-color: #383838;
-  padding: 14px;
-  padding-left: 2.8em;
-  font-family: "Montserrat";
-  font-weight: bold;
-  font-size: 1em;
-  border: 1px solid black;
-  transition: all .5s ease-out;
-  position: relative;
-  cursor: pointer;
-}
-
-.contents-list:hover {
-  color: black;
-  background-color: #449d44;
-  border:1px solid black;
-}
-
-.contents-list:before {
-  content: "📼";
-  position: absolute;
-  left: 1em;
-  padding: 0 1px;
-  padding-right: 1em;
 }
 
 .contents-list:hover:before, .contents-list:focus:before, .contents-list:active:before {
