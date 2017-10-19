@@ -18,7 +18,6 @@
 
   <nav class="sidebar well">
     <h2 class="heading">Table of Contents</h2>
-    <p class="link"></p>
     <a href="#about"><div class="contents-list">About this resource</div></a>
     <a href="#basics"><div class="contents-list">FFmpeg basics</div></a>
     <a href="#concepts"><div class="contents-list">Advanced FFmpeg concepts</div></a>
@@ -63,13 +62,11 @@
 
     <div class="well">
     <h2 id="basics">Learn about FFmpeg basics</h2>
-
       <!-- Basic structure of an FFmpeg command -->
       <label class="recipe" for="basic-structure">Basic structure of an FFmpeg command</label>
       <input type="checkbox" id="basic-structure">
       <div class="hiding">
         <h3>Basic structure of an FFmpeg command</h3>
-        <p class="link"></p>
         <p>At its basis, an FFmpeg command is relatively simple. After you have installed FFmpeg (see instructions <a href="https://avpres.net/FFmpeg/#ch1" target="_blank">here</a>), the program is invoked simply by typing <code>ffmpeg</code> at the command prompt.</p>
         <p>Subsequently, each instruction that you supply to FFmpeg is actually a pair: a flag, which designates the <i>type</i> of action you want to carry out; and then the specifics of that action. Flags are always prepended with a hyphen.</p>
         <p>For example, in the instruction <code>-i <i>input_file.ext</i></code>, the <code>-i</code> flag tells FFmpeg that you are supplying an input file, and <code>input_file.ext</code> states which file it is.</p>
@@ -82,6 +79,7 @@
           <dt><i>output_file.ext</i></dt><dd>path and name of the output file.<br>
             Because this is the last part of the command, the filename you type here does not have a flag designating it as the output file.</dd>
         </dl>
+        <p class="link"></p>
       </div>
       <!-- End Basic structure of an FFmpeg command -->
 
@@ -94,7 +92,6 @@
     <input type="checkbox" id="filtergraphs">
     <div class="hiding">
       <h3>Filtergraphs</h3>
-      <p class="link"></p>
       <p>Many FFmpeg commands use filters that manipulate the video or audio stream in some way: for example, <a href="http://ffmpeg.org/ffmpeg-filters.html#hflip" target="_blank">hflip</a> to horizontally flip a video, or <a href="http://ffmpeg.org/ffmpeg-filters.html#amerge-1" target="_blank">amerge</a> to merge two or more audio tracks into a single stream.</p>
       <p>The use of a filter is signalled by the flag <code>-vf</code> (video filter) or <code>-af</code> (audio filter), followed by the name and options of the filter itself. For example, take the <a href="#convert-colourspace">convert colourspace</a> command:</p>
       <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf colormatrix=<i>src</i>:<i>dst</i> <i>output_file</i></code>
@@ -116,6 +113,7 @@
         <li>Straight quotation marks ("like this") rather than curved quotation marks (“like this”) should be used.</li>
       </ul>
       <p>For more information, check out the FFmpeg wiki <a href="https://trac.ffmpeg.org/wiki/FilteringGuide" target="_blank">Filtering Guide</a>.</p>
+      <p class="link"></p>
     </div>
     <!-- End Filtergraph explanation -->
 
@@ -128,7 +126,6 @@
     <input type="checkbox" id="basic-rewrap">
     <div class="hiding">
       <h3>Rewrap a file</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file.ext</i> -c copy -map 0 <i>output_file.ext</i></code></p>
       <p>This script will rewrap a video file. It will create a new video video file where the inner content (the video, audio, and subtitle data) of the original file is unchanged, but these streams are rehoused within a different container format.</p>
       <p><b>Note:</b> rewrapping is also known as remuxing, short for re-multiplexing.</p>
@@ -144,6 +141,7 @@
       <h4>Important caveat</h4>
       <p>It may not be possible to rewrap a file's contents to a new container without re-encoding one or more of the streams within (that is, the video, audio, and subtitle tracks). Some containers can only contain streams of a certain encoding type: for example, the .mp4 container does not support uncompressed audio tracks. (In practice .mp4 goes hand-in-hand with a H.264-encoded video stream and an AAC-encoded video stream, although other types of video and audio streams are possible). Another example is that the Matroska container does not allow data tracks; see the <a href="#mkv-to-mp4">MKV to MP4 recipe</a>.</p>
       <p>In such cases, FFmpeg will throw an error. If you encounter errors of this kind, you may wish to consult the <a href="#transcode">list of transcoding recipes</a>.</p>
+      <p class="link"></p>
     </div>
     <!-- End Basic rewrap command -->
 
@@ -152,7 +150,6 @@
     <input type="checkbox" id="mkv_to_mp4">
     <div class="hiding">
       <h3>MKV to MP4</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i>.mkv -c:v copy -c:a aac <i>output_file</i>.mp4</code></p>
       <p>This will convert your Matroska (MKV) files to MP4 files.</p>
       <dl>
@@ -166,6 +163,7 @@
         <dt><i>output_file</i></dt><dd>path and name of the output file<br>
         The extension for the MP4 container is <code>.mp4</code>.</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends MKV to MP4 -->
 
@@ -178,7 +176,6 @@
     <input type="checkbox" id="to_prores">
     <div class="hiding">
       <h3>Transcode into a deinterlaced Apple ProRes LT</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -c:v prores -profile:v 1 -vf yadif -c:a pcm_s16le <i>output_file</i>.mov</code></p>
       <p>This command transcodes an input file into a deinterlaced Apple ProRes 422 LT file with 16-bit linear PCM encoded audio. The file is deinterlaced using the yadif filter (Yet Another De-Interlacing Filter).</p>
       <dl>
@@ -202,6 +199,7 @@
         <li><code>prores</code> is much faster, can be used for progressive video only, and seems to be better for video according to Rec. 601 (Recommendation ITU-R BT.601).</li>
         <li><code>prores_ks</code> generates a better file, can also be used for interlaced video, allows also encoding of ProRes 4444 (<code>-c:v prores_ks -profile:v 4</code>), and seems to be better for video according to Rec. 709 (Recommendation ITU-R BT.709).</li>
       </ul>
+      <p class="link"></p>
     </div>
     <!-- ends Transcode to ProRes -->
 
@@ -210,7 +208,6 @@
     <input type="checkbox" id="transcode_h264">
     <div class="hiding">
       <h3>Transcode to H.264</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -pix_fmt yuv420p -c:a copy <i>output_file</i></code></p>
       <p>This command takes an input file and transcodes it to H.264 with an .mp4 wrapper, keeping the audio the same codec as the original. The libx264 codec defaults to a “medium” preset for compression quality and a CRF of 23. CRF stands for constant rate factor and determines the quality and file size of the resulting H.264 video. A low CRF means high quality and large file size; a high CRF means the opposite.</p>
       <dl>
@@ -230,6 +227,7 @@
           If no crf is specified, <code>libx264</code> will use a default value of 23. 18 is often considered a “visually lossless” compression.</dd>
       </dl>
       <p>For more information, see the <a href="https://trac.ffmpeg.org/wiki/Encode/H.264" target="_blank">FFmpeg and H.264 Encoding Guide</a> on the FFmpeg wiki.</p>
+      <p class="link"></p>
     </div>
     <!-- ends Transcode to H.264 -->
 
@@ -238,7 +236,6 @@
     <input type="checkbox" id="dcp_to_h264">
     <div class="hiding">
       <h3>H.264 from DCP</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_video_file</i>.mxf -i <i>input_audio_file</i>.mxf -c:v libx264 -pix_fmt yuv420p -c:a aac <i>output_file.mp4</i></code></p>
       <p>This will transcode MXF wrapped video and audio files to an H.264 encoded MP4 file. Please note this only works for unencrypted, single reel DCPs.</p>
       <dl>
@@ -257,6 +254,7 @@
         <dt>-c:a copy</dt><dd>re-encodes using the same audio codec</dd>
         <dt><i>output_file.mkv</i></dt><dd>path, name and .mkv extension of the output file</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends H.264 from DCP -->
 
@@ -265,7 +263,6 @@
     <input type="checkbox" id="create_FFV1_mkv">
     <div class="hiding">
       <h3>Create FFV1 Version 3 video in a Matroska container with framemd5 of input</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -map 0 -dn -c:v ffv1 -level 3 -g 1 -slicecrc 1 -slices 16 -c:a copy <i>output_file</i>.mkv -f framemd5 -an <i>framemd5_output_file</i></code></p>
       <p>This will losslessly transcode your video with the FFV1 Version 3 codec in a Matroska container. In order to verify losslessness, a framemd5 of the source video is also generated. For more information on FFV1 encoding, <a href="https://trac.ffmpeg.org/wiki/Encode/FFV1" target="_blank">try the FFmpeg wiki</a>.</p>
       <dl>
@@ -284,6 +281,7 @@
         <dt>-an</dt><dd>ignores the audio stream when creating framemd5 (audio no)</dd>
         <dt><i>framemd5_output_file</i></dt><dd>path, name and extension of the framemd5 file.</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Transcode to FFV1.mkv-->
 
@@ -292,7 +290,6 @@
     <input type="checkbox" id="dvd_to_file">
     <div class="hiding">
       <h3>Convert DVD to H.264</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i concat:<i>input_file1</i>\|<i>input_file2</i>\|<i>input_file3</i> -c:v libx264 -c:a copy <i>output_file</i>.mp4</code></p>
       <p>This command allows you to create an H.264 file from a DVD source that is not copy-protected.</p>
       <p>Before encoding, you’ll need to establish which of the .VOB files on the DVD or .iso contain the content that you wish to encode. Inside the VIDEO_TS directory, you will see a series of files with names like VTS_01_0.VOB, VTS_01_1.VOB, etc. Some of the .VOB files will contain menus, special features, etc, so locate the ones that contain target content by playing them back in VLC.</p>
@@ -317,6 +314,7 @@
         <dt>-map 0:v</dt><dd>encodes all video streams</dd>
         <dt>-map 0:a</dt><dd>encodes all audio streams</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends rip DVD -->
 
@@ -325,7 +323,6 @@
     <input type="checkbox" id="transcode_h265">
     <div class="hiding">
       <h3>Transcode to H.265/HEVC</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -c:v libx265 -pix_fmt yuv420p -c:a copy <i>output_file</i></code></p>
       <p>This command takes an input file and transcodes it to H.265/HEVC in an .mp4 wrapper, keeping the audio codec the same as in the original file.</p>
       <p><b>Note:</b> FFmpeg must be compiled with libx265, the library of the H.265 codec, for this script to work. (Add the flag <code>--with-x265</code> if using the <code>brew install ffmpeg</code> method).</p>
@@ -345,6 +342,7 @@
         <dt>-preset <i>veryslow</i></dt><dd>This option tells FFmpeg to use the slowest preset possible for the best compression quality.</dd>
         <dt>-crf <i>18</i></dt><dd>Specifying a lower CRF will make a larger file with better visual quality. 18 is often considered a ‘visually lossless’ compression.</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Transcode to H.265 -->
 
@@ -356,7 +354,6 @@
     <input type="checkbox" id="wav_to_mp3">
     <div class="hiding">
       <h3>WAV to MP3</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i>.wav -write_id3v1 1 -id3v2_version 3 -dither_method rectangular -out_sample_rate 48k -qscale:a 1 <i>output_file</i>.mp3</code></p>
       <p>This will convert your WAV files to MP3s.</p>
       <dl>
@@ -370,10 +367,11 @@
         <dt><i>output_file</i></dt><dd>path and name of the output file</dd>
       </dl>
       <p>A couple notes</p>
-        <ul>
-          <li>About ID3v2.3 tag: ID3v2.3 is better supported than ID3v2.4, FFmpeg's default ID3v2 setting.</li>
-          <li>About dither methods: FFmpeg comes with a variety of dither algorithms, outlined in the <a href="https://ffmpeg.org/ffmpeg-resampler.html" target="_blank">official docs</a>, though some may lead to unintended, drastic digital clipping on some systems.</li>
-        </ul>
+      <ul>
+        <li>About ID3v2.3 tag: ID3v2.3 is better supported than ID3v2.4, FFmpeg's default ID3v2 setting.</li>
+        <li>About dither methods: FFmpeg comes with a variety of dither algorithms, outlined in the <a href="https://ffmpeg.org/ffmpeg-resampler.html" target="_blank">official docs</a>, though some may lead to unintended, drastic digital clipping on some systems.</li>
+      </ul>
+      <p class="link"></p>
     </div>
     <!-- ends WAV to MP3 -->
 
@@ -382,7 +380,6 @@
     <input type="checkbox" id="append_mp3">
     <div class="hiding">
       <h3>Generate two access MP3s from input. One with appended audio (such as a copyright notice) and one unmodified.</h3>
-      <p class="link"></p>
       <p> <code>ffmpeg -i <i>input_file</i> -i <i>input_file_to_append</i> -filter_complex "[0:a:0]asplit=2[a][b];[b]afifo[bb];[1:a:0][bb]concat=n=2:v=0:a=1[concatout]" -map "[a]" -codec:a libmp3lame -dither_method modified_e_weighted -qscale:a 2 <i>output_file.mp3</i> -map "[concatout]" -codec:a libmp3lame -dither_method modified_e_weighted -qscale:a 2 <i>output_file_appended.mp3</i></code></p>
       <p>This script allows you to generate two derivative audio files from a master while appending audio from a separate file (for example a copyright or institutional notice) to one of them.</p>
       <dl>
@@ -400,6 +397,7 @@
         <dt>-codec:a libmp3lame -dither_method modified_e_weighted -qscale:a 2</dt><dd>sets up MP3 options (using constant quality)</dd>
         <dt><i>output_file_appended</i></dt><dd>path, name and extension of the output file (with appended notice)</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends append notice to access mp3 -->
 
@@ -408,7 +406,6 @@
     <input type="checkbox" id="wav_to_mp4">
     <div class="hiding">
       <h3>WAV to AAC/MP4</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i>.wav -c:a aac -b:a 128k -dither_method rectangular -ar 44100 <i>output_file</i>.mp4</code></p>
       <p>This will convert your WAV file to AAC/MP4.</p>
       <dl>
@@ -421,6 +418,7 @@
         <dt><i>output_file</i></dt><dd>path and name of the output file</dd>
       </dl>
       <p>A note about dither methods. FFmpeg comes with a variety of dither algorithms, outlined in the <a href="https://ffmpeg.org/ffmpeg-resampler.html" target="_blank">official docs</a>, though some may lead to unintended, not-subtle digital clipping on some systems.</p>
+      <p class="link"></p>
     </div>
     <!-- ends WAV to AAC/MP4 -->
 
@@ -433,7 +431,6 @@
     <input type="checkbox" id="SD_HD">
     <div class="hiding">
       <h3>Transform 4:3 aspect ratio into 16:9 with pillarbox</h3>
-      <p class="link"></p>
       <p>Transform a video file with 4:3 aspect ratio into a video file with 16:9 aspect ratio by correct pillarboxing.</p>
       <p><code>ffmpeg -i <i>input_file</i> -filter:v "pad=ih*16/9:ih:(ow-iw)/2:(oh-ih)/2" -c:a copy <i>output_file</i></code></p>
       <dl>
@@ -444,6 +441,7 @@
         For silent videos you can replace <code>-c:a copy</code> by <code>-an</code>.</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends 4:3 to 16:9 -->
 
@@ -452,7 +450,6 @@
     <input type="checkbox" id="HD_SD">
     <div class="hiding">
       <h3>Transform 16:9 aspect ratio video into 4:3 with letterbox</h3>
-      <p class="link"></p>
       <p>Transform a video file with 16:9 aspect ratio into a video file with 4:3 aspect ratio by correct letterboxing.</p>
       <p><code>ffmpeg -i <i>input_file</i> -filter:v "pad=iw:iw*3/4:(ow-iw)/2:(oh-ih)/2" -c:a copy <i>output_file</i></code></p>
       <dl>
@@ -464,15 +461,33 @@
         For silent videos you can replace <code>-c:a copy</code> by <code>-an</code>.</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends 16:9 to 4:3 -->
+
+    <!-- Flip image -->
+    <label class="recipe" for="flip_image">Flip video image</label>
+    <input type="checkbox" id="flip_image">
+    <div class="hiding">
+      <h3>Flip the video image horizontally and/or vertically</h3>
+      <p><code>ffmpeg -i <i>input_file</i> -filter:v "hflip,vflip" -c:a copy <i>output_file</i></code></p>
+      <dl>
+        <dt>ffmpeg</dt><dd>starts the command</dd>
+        <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+        <dt>-filter:v "hflip,vflip"</dt><dd>flips the image horizontally and vertically<br>By using only one of the parameters hflip or vflip for filtering the image is flipped on that axis only. The quote marks are not mandatory.</dd>
+        <dt>-c:a copy</dt><dd>re-encodes using the same audio codec<br>
+        For silent videos you can replace <code>-c:a copy</code> by <code>-an</code>.</dd>
+        <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+      </dl>
+      <p class="link"></p>
+    </div>
+    <!-- ends Flip image -->
 
     <!-- SD to HD -->
     <label class="recipe" for="SD_HD_2">Transform SD to HD with pillarbox</label>
     <input type="checkbox" id="SD_HD_2">
     <div class="hiding">
       <h3>Transform SD into HD with pillarbox</h3>
-      <p class="link"></p>
       <p>Transform a SD video file with 4:3 aspect ratio into an HD video file with 16:9 aspect ratio by correct pillarboxing.</p>
       <p><code>ffmpeg -i <i>input_file</i> -filter:v "colormatrix=bt601:bt709, scale=1440:1080:flags=lanczos, pad=1920:1080:240:0" -c:a copy <i>output_file</i></code></p>
       <dl>
@@ -488,6 +503,7 @@
         For silent videos you can replace <code>-c:a copy</code> with <code>-an</code>.</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends SD to HD -->
 
@@ -496,7 +512,6 @@
     <input type="checkbox" id="change_DAR">
     <div class="hiding">
       <h3>Change Display Aspect Ratio without reencoding video</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -c:v copy -aspect 4:3 <i>output_file</i></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -505,6 +520,7 @@
         <dt>-aspect 4:3</dt><dd>Change Display Aspect Ratio to <code>4:3</code>. Experiment with other aspect ratios such as <code>16:9</code>. If used together with <code>-c:v copy</code>, it will affect the aspect ratio stored at container level, but not the aspect ratio stored in encoded frames, if it exists.</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Change display aspect ratio without re-encoding video -->
 
@@ -513,7 +529,6 @@
     <input type="checkbox" id="convert-colourspace">
     <div class="hiding">
       <h3>Transcode video to a different colourspace</h3>
-      <p class="link"></p>
       <p>This command uses a filter to convert the video to a different colour space.</p>
       <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf colormatrix=src:dst <i>output_file</i></code></p>
       <dl>
@@ -558,6 +573,7 @@
       <hr>
       <p id="fn1" class="footnote">1. Out of step with the regular pattern, <code>-color_trc</code> doesn’t accept <code>bt470bg</code>; it is instead here referred to directly as gamma.<br>
       In the Rec.601 standard, 525-line/NTSC and 625-line/PAL video have assumed gammas of 2.2 and 2.8 respectively. <a href="#ref1" title="Jump back.">↩</a></p>
+      <p class="link"></p>
     </div>
     <!-- ends Convert colourspace -->
 
@@ -566,7 +582,6 @@
     <input type="checkbox" id="modify_speed">
     <div class="hiding">
       <h3>Modify image and sound speed</h3>
-      <p class="link"></p>
       <p>E.g. for converting 24fps to 25fps with audio pitch compensation for PAL access copies. (Thanks @kieranjol!)</p>
       <p><code>ffmpeg -i <i>input_file</i> -filter_complex "[0:v]setpts=<i>input_fps</i>/<i>output_fps</i>*PTS[v]; [0:a]atempo=<i>output_fps</i>/<i>input_fps</i>[a]" -map "[v]" -map "[a]" <i>output_file</i></code></p>
       <dl>
@@ -582,6 +597,7 @@
         <dt>-map "[a]"</dt><dd>maps the audio stream together into:</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Modify speed -->
 
@@ -590,7 +606,6 @@
     <input type="checkbox" id="clarify_stream">
     <div class="hiding">
       <h3>Set stream properties</h3>
-      <p class="link"></p>
       <h2>Find undetermined or unknown stream properties</h2>
       <p>These examples use QuickTime inputs and outputs. The strategy will vary or may not be possible in other file formats. In the case of these examples it is the intention to make a lossless copy while clarifying an unknown characteristic of the stream.</p>
       <p><code>ffprobe <i>input_file</i> -show_streams</code></p>
@@ -619,6 +634,7 @@
         <dt>-field_order <i>VALUE</i></dt><dd>Set interlacement values.</dd>
       </dl>
       <p>The possible values for <code>-color_primaries</code>, <code>-color_trc</code>, and <code>-field_order</code> are given in the <a href="http://ffmpeg.org/ffmpeg-all.html#toc-Codec-Options" target="_blank">Codec Options</a> section of the FFmpeg docs - scroll down to near the bottom of the section.</p>
+      <p class="link"></p>
     </div>
     <!-- ends Make stream properties explicate -->
 
@@ -631,7 +647,6 @@
     <input type="checkbox" id="extract_audio">
     <div class="hiding">
       <h3>Extract audio from an AV file</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -c:a copy -vn <i>output_file</i></code></p>
       <p>This command extracts the audio stream without loss from an audiovisual file.</p>
       <dl>
@@ -641,6 +656,7 @@
         <dt>-vn</dt><dd>no video stream</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Extract audio from am AV file -->
 
@@ -649,7 +665,6 @@
     <input type="checkbox" id="combine_audio">
     <div class="hiding">
       <h3>Combine audio tracks into one in a video file</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -filter_complex "[0:a:0][0:a:1]amerge[out]" -map 0:v -map "[out]" -c:v copy -shortest <i>output_file</i></code></p>
       <p>This command combines two audio tracks present in a video file into one stream. It can be useful in situations where a downstream process, like YouTube’s automatic captioning, expect one audio track. To ensure that you’re mapping the right audio tracks run ffprobe before writing the script to identify which tracks are desired. More than two audio streams can be combined by extending the pattern present in the -filter_complex option.</p>
       <dl>
@@ -665,6 +680,7 @@
         <dt>-shortest</dt><dd>limit to the shortest stream</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the video output file</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Combine audio tracks  -->
 
@@ -673,7 +689,6 @@
     <input type="checkbox" id="phase_shift">
     <div class="hiding">
       <h3>Flip audio phase shift</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -af pan="stereo|c0=c0|c1=-1*c1" <i>output_file</i></code></p>
       <p>This command inverses the audio phase of the second channel by rotating it 180°.</p>
       <dl>
@@ -684,6 +699,7 @@
         <dt>"stereo|c0=c0|c1=-1*c1"</dt><dd>maps the output's first channel (c0) to the input's first channel and the output's second channel (c1) to the inverse of the input's second channel</dd>
         <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends phase shift -->
 
@@ -692,7 +708,6 @@
     <input type="checkbox" id="loudnorm_metadata">
     <div class="hiding">
       <h3>Calculate Loudness Levels</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -af loudnorm=print_format=json -f null -</code></p>
       <p>This filter calculates and outputs loudness information in json about an input file (labeled input) as well as what the levels would be if loudnorm were applied in its one pass mode (labeled output). The values generated can be used as inputs for a 'second pass' of the loudnorm filter allowing more accurate loudness normalization than if it is used in a single pass.</p>
       <p>These instructions use the loudnorm defaults, which align well with PBS recommendations for target loudness. More information can be found at the <a href="https://ffmpeg.org/ffmpeg-filters.html#loudnorm" target="_blank">loudnorm documentation</a>.</p>
@@ -704,6 +719,7 @@
         <dt>print_format=json</dt><dd>sets the output format for loudness information to json. This format makes it easy to use in a second pass. For a more human readable output, this can be set to <code>print_format=summary</code></dd>
         <dt><i>-f null -</i></dt><dd>sets the file output to null (since we are only interested in the metadata generated)</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends loudnorm metadata -->
 
@@ -712,7 +728,6 @@
     <input type="checkbox" id="riaa_eq">
     <div class="hiding">
       <h3>RIAA Equalization</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -af aemphasis=type=riaa <i>output_file</i></code></p>
       <p>This will apply RIAA equalization to an input file allowing correct listening of audio transferred 'flat' (without EQ) from records that used this EQ curve. For more information about RIAA equalization see the <a href="https://en.wikipedia.org/wiki/RIAA_equalization" target="_blank">Wikipedia page</a> on the subject.</p>
       <dl>
@@ -721,6 +736,7 @@
         <dt>-af aemphasis=type=riaa</dt><dd>activates the aemphasis filter and sets it to use RIAA equalization</dd>
         <dt><i>output_file</i></dt><dd>path and name of output file</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends RIAA equalization -->
 
@@ -729,7 +745,6 @@
     <input type="checkbox" id="loudnorm_one_pass">
     <div class="hiding">
       <h3>One Pass Loudness Normalization</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -af loudnorm=dual_mono=true -ar 48k <i>output_file</i></code></p>
       <p>This will normalize the loudness of an input using one pass, which is quicker but less accurate than using two passes. This command uses the loudnorm filter defaults for target loudness. These defaults align well with PBS recommendations, but loudnorm does allow targeting of specific loudness levels. More information can be found at the <a href="https://ffmpeg.org/ffmpeg-filters.html#loudnorm" target="_blank">loudnorm documentation</a>.</p>
       <p>Information about PBS loudness standards can be found in the <a href="http://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf" target="_blank">PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href="https://tech.ebu.ch/docs/r/r128-2014.pdf" target="_blank">EBU R 128</a> recommendation document.</p>
@@ -741,6 +756,7 @@
         <dt>-ar 48k</dt><dd>Sets the output sample rate to 48 kHz. (The loudnorm filter upsamples to 192 kHz so it is best to manually set a desired output sample rate).</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension for output file</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends one pass loudnorm -->
 
@@ -749,7 +765,6 @@
     <input type="checkbox" id="loudnorm_two_pass">
     <div class="hiding">
       <h3>Two Pass Loudness Normalization</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -af loudnorm=dual_mono=true:measured_I=<i>input_i</i>:measured_TP=<i>input_tp</i>:measured_LRA=<i>input_lra</i>:measured_thresh=<i>input_thresh</i>:offset=<i>target_offset</i>:linear=true -ar 48k <i>output_file</i></code></p>
       <p>This command allows using the levels calculated using a <a href="#loudnorm_metadata">first pass of the loudnorm filter</a> to more accurately normalize loudness. This command uses the loudnorm filter defaults for target loudness. These defaults align well with PBS recommendations, but loudnorm does allow targeting of specific loudness levels. More information can be found at the <a href="https://ffmpeg.org/ffmpeg-filters.html#loudnorm" target="_blank">loudnorm documentation</a>.</p>
       <p>Information about PBS loudness standards can be found in the <a href="http://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf" target="_blank">PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href="https://tech.ebu.ch/docs/r/r128-2014.pdf" target="_blank">EBU R 128</a> recommendation document.</p>
@@ -767,6 +782,7 @@
         <dt>-ar 48k</dt><dd>Sets the output sample rate to 48 kHz. (The loudnorm filter upsamples to 192 kHz so it is best to manually set a desired output sample rate).</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension for output file</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends two pass loudnorm -->
 
@@ -775,7 +791,6 @@
     <input type="checkbox" id="avsync_aresample">
     <div class="hiding">
       <h3>Fix AV Sync: Resample audio</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -c:v copy -c:a pcm_s16le -af "aresample=async=1000" <i>output_file</i></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -785,6 +800,7 @@
         <dt>-af "aresample=async=1000"</dt><dd>Uses the <a href="https://ffmpeg.org/ffmpeg-filters.html#aresample-1" target="_blank">aresample</a> filter to stretch/squeeze samples to given timestamps, with a maximum of 1000 samples per second compensation.</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file. Try different file extensions such as mkv, mov, mp4, or avi.</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Fix A/V async 1 -->
 
@@ -797,7 +813,6 @@
     <input type="checkbox" id="join_files">
     <div class="hiding">
       <h3>Join files together</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -f concat -i mylist.txt -c copy <i>output_file</i></code></p>
       <p>This command takes two or more files of the same file type and joins them together to make a single file. All that the program needs is a text file with a list specifying the files that should be joined. However, it only works properly if the files to be combined have the exact same codec and technical specifications. Be careful, FFmpeg may appear to have successfully joined two video files with different codecs, but may only bring over the audio from the second file or have other weird behaviors. Don’t use this command for joining files with different codecs and technical specs and always preview your resulting video file!</p>
       <dl>
@@ -816,6 +831,7 @@
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
       </dl>
       <p>For more information, see the <a href="https://trac.ffmpeg.org/wiki/Concatenate" target="_blank">FFmpeg wiki page on concatenating files</a>.</p>
+      <p class="link"></p>
     </div>
     <!-- ends Join files together -->
 
@@ -824,7 +840,6 @@
     <input type="checkbox" id="segment_file">
     <div class="hiding">
       <h3>Split file into segments</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -c copy -map 0 -f segment -segment_time 60 -reset_timestamps 1 <i>output_file-%03d.mkv</i></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>Starts the command.</dd>
@@ -847,6 +862,7 @@
           </ul>
         </dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Split file into segments -->
 
@@ -855,7 +871,6 @@
     <input type="checkbox" id="trim">
     <div class="hiding">
       <h3>Trim a video without re-encoding</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -ss 00:02:00 -to 00:55:00 -c copy -map 0 <i>output_file</i></code></p>
       <p>This command allows you to create an excerpt from a video file without re-encoding the image data.</p>
       <dl>
@@ -874,6 +889,7 @@
         <dt>-ss 00:05:00 -t 10</dt><dd>Beginning five minutes into the original video, this command will create a 10-second-long excerpt.</dd>
       </dl>
       <p>Note: In order to keep the original timestamps, without trying to sanitise them, you may add the <code>-copyts</code> option.</p>
+      <p class="link"></p>
     </div>
     <!-- ends Trim -->
 
@@ -882,7 +898,6 @@
     <input type="checkbox" id="excerpt_from_start">
     <div class="hiding">
       <h3>Excerpt from beginning</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -t <i>5</i> -c copy -map 0 <i>output_file</i></code></p>
       <p>This command captures a certain portion of a video file, starting from the beginning and continuing for the amount of time (in seconds) specified in the script. This can be used to create a preview file, or to remove unwanted content from the end of the file. To be more specific, use timecode, such as 00:00:05.</p>
       <dl>
@@ -893,6 +908,7 @@
         <dt>-map 0</dt><dd>tells FFmpeg to map all streams of the input to the output.</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Excerpt from beginning -->
 
@@ -901,7 +917,6 @@
     <input type="checkbox" id="excerpt_to_end">
     <div class="hiding">
       <h3>Excerpt to end</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -ss <i>5</i> -c copy -map 0 <i>output_file</i></code></p>
       <p>This command copies a video file starting from a specified time, removing the first few seconds from the output. This can be used to create an excerpt, or remove unwanted content from the beginning of a video file.</p>
       <dl>
@@ -912,6 +927,7 @@
         <dt>-map 0</dt><dd>tells FFmpeg to map all streams of the input to the output.</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Excerpt to end -->
 
@@ -920,7 +936,6 @@
     <input type="checkbox" id="excerpt_from_end">
     <div class="hiding">
       <h3>Excerpt from end</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -sseof <i>-5</i> -i <i>input_file</i> -c copy -map 0 <i>output_file</i></code></p>
       <p>This command copies a video file starting from a specified time before the end of the file, removing everything before from the output. This can be used to create an excerpt, or extract content from the end of a video file (e.g. for extracting the closing credits).</p>
       <dl>
@@ -931,6 +946,7 @@
         <dt>-map 0</dt><dd>tells FFmpeg to map all streams of the input to the output.</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Excerpt from end -->
 
@@ -943,7 +959,6 @@
     <input type="checkbox" id="ntsc_to_h264">
     <div class="hiding">
       <h3>Upscaled, Pillar-boxed HD H.264 Access Files from SD NTSC source</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -filter:v "yadif, scale=1440:1080:flags=lanczos, pad=1920:1080:(ow-iw)/2:(oh-ih)/2, format=yuv420p" <i>output_file</i></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -959,6 +974,7 @@
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
       </dl>
       <p><b>Note:</b> the very same scaling filter also downscales a bigger image size into HD.</p>
+      <p class="link"></p>
     </div>
     <!-- ends NTSC to H.264 -->
 
@@ -967,7 +983,6 @@
     <input type="checkbox" id="deinterlace">
     <div class="hiding">
       <h3>Deinterlace a video</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf "yadif,format=yuv420p" <i>output_file</i></code></p>
       <p>This command takes an interlaced input file and outputs a deinterlaced H.264 MP4.</p>
       <dl>
@@ -994,6 +1009,7 @@
         <img src="img/interlaced_video.png" alt="VLC screenshot of original interlaced video">
         <img src="img/deinterlaced_video.png" alt="VLC screenshot of deinterlaced video">
       </div>
+      <p class="link"></p>
     </div>
     <!-- ends Deinterlace video -->
 
@@ -1002,7 +1018,6 @@
     <input type="checkbox" id="inverse-telecine">
     <div class="hiding">
       <h3>Inverse telecine a video file</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf "fieldmatch,yadif,decimate" <i>output_file</i></code></p>
       <p>The inverse telecine procedure reverses the <a href="https://en.wikipedia.org/wiki/Three-two_pull_down" target="_blank">3:2 pull down</a> process, restoring 29.97fps interlaced video to the 24fps frame rate of the original film source.</p>
       <dl>
@@ -1025,6 +1040,7 @@
         <img src="img/ivtc_originalvideo.gif" alt="GIF of original video">
         <img src="img/ivtc_result.gif" alt="GIF of video after inverse telecine">
       </div>
+      <p class="link"></p>
     </div>
     <!-- ends Inverse telecine -->
 
@@ -1033,7 +1049,6 @@
     <input type="checkbox" id="set_field_order">
     <div class="hiding">
       <h3>Change field order of an interlaced video</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -c:v <i>video_codec</i> -filter:v setfield=tff <i>output_file</i></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -1042,6 +1057,7 @@
         <dt>-c:v <i>video_codec</i></dt><dd>As a video filter is used, it is not possible to use <code>-c copy</code>. The video must be re-encoded with whatever video codec is chosen, e.g. <code>ffv1</code>, <code>v210</code> or <code>prores</code>.</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Set field order -->
 
@@ -1050,7 +1066,6 @@
     <input type="checkbox" id="check_interlacement">
     <div class="hiding">
       <h3>Check video file interlacement patterns</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input file</i> -filter:v idet -f null -</code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -1059,6 +1074,7 @@
         <dt>-f null</dt><dd>Video is decoded with the <code>null</code> muxer. This allows video decoding without creating an output file.</dd>
         <dt>-</dt><dd>FFmpeg syntax requires a specified output, and <code>-</code> is just a place holder. No file is actually created.</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Check interlacement -->
 
@@ -1071,7 +1087,6 @@
     <input type="checkbox" id="text_watermark">
     <div class="hiding">
       <h3>Create centered, transparent text watermark</h3>
-      <p class="link"></p>
       <p>E.g For creating access copies with your institutions name</p>
       <p><code>ffmpeg -i <i>input_file</i> -vf drawtext="fontfile=<i>font_path</i>:fontsize=<i>font_size</i>:text=<i>watermark_text</i>:fontcolor=<i>font_colour</i>:alpha=0.4:x=(w-text_w)/2:y=(h-text_h)/2" <i>output_file</i></code></p>
       <dl>
@@ -1089,6 +1104,7 @@
         Note: <code>-vf</code> is a shortcut for <code>-filter:v</code>.</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file.</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Text watermark -->
 
@@ -1097,7 +1113,6 @@
     <input type="checkbox" id="image_watermark">
     <div class="hiding">
       <h3>Overlay image watermark on video</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_video file</i> -i <i>input_image_file</i> -filter_complex overlay=main_w-overlay_w-5:5 <i>output_file</i></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -1106,6 +1121,7 @@
         <dt>-filter_complex overlay=main_w-overlay_w-5:5</dt><dd>This calls the overlay filter and sets x and y coordinates for the position of the watermark on the video. Instead of hardcoding specific x and y coordinates, <code>main_w-overlay_w-5:5</code> uses relative coordinates to place the watermark in the upper right hand corner, based on the width of your input files. Please see the <a href="https://www.ffmpeg.org/ffmpeg-all.html#toc-Examples-102" target="_blank">FFmpeg documentation for more examples.</a></dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Image Watermark -->
 
@@ -1114,7 +1130,6 @@
     <input type="checkbox" id="burn_in_timecode">
     <div class="hiding">
       <h3>Create a burnt in timecode on your image</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -vf drawtext="fontfile=<i>font_path</i>:fontsize=<i>font_size</i>:timecode=<i>starting_timecode</i>:fontcolor=<i>font_colour</i>:box=1:boxcolor=<i>box_colour</i>:rate=<i>timecode_rate</i>:x=(w-text_w)/2:y=h/1.2" <i>output_file</i></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -1133,6 +1148,7 @@
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file.</dd>
       </dl>
       <p>Note: <code>-vf</code> is a shortcut for <code>-filter:v</code>.</p>
+      <p class="link"></p>
     </div>
     <!-- ends Burn in timecode -->
 
@@ -1145,7 +1161,6 @@
     <input type="checkbox" id="one_thumbnail">
     <div class="hiding">
       <h3>One thumbnail</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -ss 00:00:20 -vframes 1 thumb.png</code></p>
       <p>This command will grab a thumbnail 20 seconds into the video.</p>
       <dl>
@@ -1155,6 +1170,7 @@
         <dt>-vframes <i>1</i></dt><dd>sets the number of frames (in this example, one frame)</dd>
         <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends One thumbnail -->
 
@@ -1163,7 +1179,6 @@
     <input type="checkbox" id="multi_thumbnail">
     <div class="hiding">
       <h3>Many thumbnails</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -vf fps=1/60 out%d.png</code></p>
       <p>This will grab a thumbnail every minute and output sequential png files.</p>
       <dl>
@@ -1173,6 +1188,7 @@
         <dt>-vf fps=1/60</dt><dd>Creates a filtergraph to use for the streams. The rest of the command identifies filtering by frames per second, and sets the frames per second at 1/60 (which is one per minute). Omitting this will output all frames from the video.</dd>
         <dt><i>output file</i></dt><dd>path, name and extension of the output file. In the example out%d.png where %d is a regular expression that adds a number (d is for digit) and increments with each frame (out1.png, out2.png, out3.png…). You may also chose a regular expression like out%04d.png which gives 4 digits with leading 0 (out0001.png, out0002.png, out0003.png, …).</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Multi thumbnail -->
 
@@ -1181,7 +1197,6 @@
     <input type="checkbox" id="img_to_gif">
     <div class="hiding">
       <h3>Images to GIF</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -f image2 -framerate 9 -pattern_type glob -i <i>"input_image_*.jpg"</i> -vf scale=250x250 <i>output_file</i>.gif</code></p>
       <p>This will convert a series of image files into a GIF.</p>
       <dl>
@@ -1194,6 +1209,7 @@
         <dt>-vf scale=250x250</dt><dd>filter the video to scale it to 250x250; <code>-vf</code> is an alias for <code>-filter:v</code></dd>
         <dt><i>output_file.gif</i></dt><dd>path and name of the output file</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Images to GIF -->
 
@@ -1202,7 +1218,6 @@
     <input type="checkbox" id="create_gif">
     <div class="hiding">
       <h3>Create GIF</h3>
-      <p class="link"></p>
       <p>Create high quality GIF</p>
       <p><code>ffmpeg -ss HH:MM:SS -i <i>input_file</i> -filter_complex "fps=10,scale=500:-1:flags=lanczos,palettegen" -t 3 <i>palette.png</i></code></p>
       <p><code>ffmpeg -ss HH:MM:SS -i <i>input_file</i> -i palette.png -filter_complex "[0:v]fps=10, scale=500:-1:flags=lanczos[v], [v][1:v]paletteuse" -t 3 -loop 6 <i>output_file</i></code></p>
@@ -1227,6 +1242,7 @@
       <p>Simpler GIF creation</p>
       <p><code>ffmpeg -ss HH:MM:SS -i <i>input_file</i> -vf "fps=10,scale=500:-1" -t 3 -loop 6 <i>output_file</i></code></p>
       <p>This is a quick and easy method. Dithering is more apparent than the above method using the palette filters, but the file size will be smaller. Perfect for that “legacy” GIF look.</p>
+      <p class="link"></p>
     </div>
     <!-- ends Create GIF -->
 
@@ -1239,7 +1255,6 @@
     <input type="checkbox" id="images_2_video">
     <div class="hiding">
       <h3>Transcode an image sequence into uncompressed 10-bit video</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -f image2 -framerate 24 -i <i>input_file_%06d.ext</i> -c:v v210 <i>output_file</i></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -1250,6 +1265,7 @@
         <dt>-c:v v210</dt><dd>encodes an uncompressed 10-bit video stream</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Images to video -->
 
@@ -1258,7 +1274,6 @@
     <input type="checkbox" id="image-audio">
     <div class="hiding">
       <h3>Create a video from an image and audio file.</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -r 1 -loop 1 -i <i>image_file</i> -i <i>audio_file</i> -acodec copy -shortest -vf scale=1280:720 <i>output_file</i></code></p>
       <p>This command will take an image file (e.g. image.jpg) and an audio file (e.g. audio.mp3) and combine them into a video file that contains the audio track with the image used as the video. It can be useful in a situation where you might want to upload an audio file to a platform like YouTube. You may want to adjust the scaling with -vf to suit your needs.</p>
       <dl>
@@ -1272,6 +1287,7 @@
         <dt>-vf scale=1280:720</dt><dd>filter the video to scale it to 1280x720 for YouTube. -vf is an alias for -filter:v</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the video output file</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Create video from image and audio -->
 
@@ -1284,7 +1300,6 @@
     <input type="checkbox" id="abitscope">
     <div class="hiding">
       <h3>Creates a visualization of the bits in an audio stream</h3>
-      <p class="link"></p>
       <p><code>ffplay -f lavfi "amovie=<i>input_file</i>, asplit=2[out1][a], [a]abitscope=colors=purple|yellow[out0]"</code></p>
       <p>This filter allows visual analysis of the information held in various bit depths of an audio stream. This can aid with identifying when a file that is nominally of a higher bit depth actually has been 'padded' with null information. The provided GIF shows a 16 bit WAV file (left) and then the results of converting that same WAV to 32 bit (right). Note that in the 32 bit version, there is still only information in the first 16 bits.</p>
       <dl>
@@ -1299,6 +1314,7 @@
         <h2>Comparison of mono 16 bit and mono 16 bit padded to 32 bit.</h2>
         <img src="img/16_32_abitscope.gif" alt="bit_scope_comparison">
       </div>
+      <p class="link"></p>
     </div>
     <!-- ends abitscope -->
 
@@ -1307,7 +1323,6 @@
     <input type="checkbox" id="astats">
     <div class="hiding">
       <h3>Plays a graphical output showing decibel levels of an input file</h3>
-      <p class="link"></p>
       <p><code>ffplay -f lavfi "amovie='input.mp3', astats=metadata=1:reset=1, adrawgraph=lavfi.astats.Overall.Peak_level:max=0:min=-30.0:size=700x256:bg=Black[out]"</code></p>
       <dl>
         <dt>ffplay</dt><dd>starts the command</dd>
@@ -1328,6 +1343,7 @@
         <h2>Example of filter output</h2>
         <img src="img/astats_levels.gif" alt="astats example">
       </div>
+      <p class="link"></p>
     </div>
     <!-- ends astats -->
 
@@ -1336,7 +1352,6 @@
     <input type="checkbox" id="brng">
     <div class="hiding">
       <h3>Shows all pixels outside of broadcast range</h3>
-      <p class="link"></p>
       <p><code>ffplay -f lavfi "movie='<i>input.mp4</i>', signalstats=out=brng:color=cyan[out]"</code></p>
       <dl>
         <dt>ffplay</dt><dd>starts the command</dd>
@@ -1353,6 +1368,7 @@
         <h2>Example of filter output</h2>
         <img src="./img/outside_broadcast_range.gif" alt="BRNG example">
       </div>
+      <p class="link"></p>
     </div>
     <!-- ends BRNG -->
 
@@ -1361,7 +1377,6 @@
     <input type="checkbox" id="vectorscope">
     <div class="hiding">
       <h3>Plays vectorscope of video</h3>
-      <p class="link"></p>
       <p><code>ffplay <i>input_file</i> -vf "split=2[m][v], [v]vectorscope=b=0.7:m=color3:g=green[v], [m][v]overlay=x=W-w:y=H-h"</code></p>
       <dl>
         <dt>ffplay</dt><dd>starts the command</dd>
@@ -1375,6 +1390,7 @@
         <dt>[m][v]overlay=x=W-w:y=H-h</dt><dd>declares where the vectorscope will overlay on top of the video image as it plays</dd>
         <dt>"</dt><dd>quotation mark to end filtergraph</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Vectorscope -->
 
@@ -1383,7 +1399,6 @@
     <input type="checkbox" id="tempdif">
     <div class="hiding">
       <h3>This will play two input videos side by side while also applying the temporal difference filter to them</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i input01 -i input02 -filter_complex "[0:v:0]tblend=all_mode=difference128[a];[1:v:0]tblend=all_mode=difference128[b];[a][b]hstack[out]" -map [out] -f nut -c:v rawvideo - | ffplay -</code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -1405,6 +1420,7 @@
         <h2>Example of filter output</h2>
         <img src="img/tempdif.gif" alt="astats example">
       </div>
+      <p class="link"></p>
     </div>
     <!-- ends Side by Side Videos/Temporal Difference Filter -->
 
@@ -1417,7 +1433,6 @@
     <input type="checkbox" id="pull_specs">
     <div class="hiding">
       <h3>Pull specs from video file</h3>
-      <p class="link"></p>
       <p><code>ffprobe -i <i>input_file</i> -show_format -show_streams -show_data -print_format xml</code></p>
       <p>This command extracts technical metadata from a video file and displays it in xml.</p>
       <dl>
@@ -1429,6 +1444,7 @@
         <dt>-print_format</dt><dd>Set the output printing format (in this example “xml”; other formats include “json” and “flat”)</dd>
       </dl>
       <p>See also the <a href="www.ffmpeg.org/ffprobe.html" target="_blank"> FFmpeg documentation on ffprobe</a> for a full list of flags, commands, and options.</p>
+      <p class="link"></p>
     </div>
     <!-- ends Pull specs -->
 
@@ -1437,7 +1453,6 @@
     <input type="checkbox" id="strip_metadata">
     <div class="hiding">
       <h3>Strips metadata from video file</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -map_metadata -1 -c:v copy -c:a copy <i>output_file</i></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -1447,6 +1462,7 @@
         <dt>-acodec copy</dt><dd>copies audio track</dd>
         <dt><i>output_file</i></dt><dd>Makes copy of original file and names output file</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Strip metadata -->
 
@@ -1459,7 +1475,6 @@
     <input type="checkbox" id="batch_processing_bash">
     <div class="hiding">
       <h3>Create Bash script to batch process with FFmpeg</h3>
-      <p class="link"></p>
       <p>Bash scripts are plain text files saved with a .sh extension. This entry explains how they work with the example of a bash script named “Rewrap-MXF.sh”, which rewraps .mxf files in a given directory to .mov files.</p>
       <p>“Rewrap-MXF.sh” contains the following text:</p>
       <p><code>for file in *.mxf; do ffmpeg -i "$file" -map 0 -c copy "${file%.mxf}.mov"; done</code></p>
@@ -1481,6 +1496,7 @@
       <p>e.g., if an input file is bestmovie002.avi, its output will be bestmovie002_suffix.avi.</p>
       <p>Variation: recursively process all MXF files in subdirectories using <code>find</code> instead of <code>for</code>:</p>
       <p><code>find input_directory -iname "*.mxf" -exec ffmpeg -i {} -map 0 -c copy {}.mov \;</code></p>
+      <p class="link"></p>
     </div>
     <!-- ends batch processing (Mac/Linux) -->
 
@@ -1489,7 +1505,6 @@
     <input type="checkbox" id="batch_processing_win">
     <div class="hiding">
       <h3>Create PowerShell script to batch process with FFmpeg</h3>
-      <p class="link"></p>
       <p>As of Windows 10, it is possible to run Bash via <a href="https://msdn.microsoft.com/en-us/commandline/wsl/about" target="_blank">Bash on Ubuntu on Windows</a>, allowing you to use <a href="index.html#batch_processing_bash">bash scripting</a>. To enable Bash on Windows, see <a href="https://msdn.microsoft.com/en-us/commandline/wsl/install_guide" target="_blank">these instructions</a>.</p>
       <p>On Windows, the primary native command line programme is <b>PowerShell</b>. PowerShell scripts are plain text files saved with a .ps1 extension. This entry explains how they work with the example of a PowerShell script named “rewrap-mp4.ps1”, which rewraps .mp4 files in a given directory to .mkv files.</p>
       <p>“rewrap-mp4.ps1” contains the following text:</p>
@@ -1515,6 +1530,7 @@
       <p><b>Note:</b> the PowerShell script (.ps1 file) and all .mp4 files to be rewrapped must be contained within the same directory, and the script must be run from that directory.<p>
       <p>Execute the .ps1 file by typing <code>.\rewrap-mp4.ps1</code> in PowerShell.</p>
       <p>Modify the script as needed to perform different transcodes, or to use with ffprobe. :)</p>
+      <p class="link"></p>
     </div>
     <!-- ends batch processing (Windows) -->
 
@@ -1523,7 +1539,6 @@
     <input type="checkbox" id="create_frame_md5s_v">
     <div class="hiding">
       <h3>Create MD5 checksums (video frames)</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -f framemd5 -an <i>output_file</i></code></p>
       <p>This will create an MD5 checksum per video frame.</p>
       <dl>
@@ -1534,6 +1549,7 @@
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
       </dl>
       <p>You may verify an MD5 checksum file created this way by using a <a href="scripts/check_video_framemd5.sh" target="_blank">Bash script</a>.</p>
+      <p class="link"></p>
     </div>
     <!-- ends Create frame md5s -->
 
@@ -1542,7 +1558,6 @@
     <input type="checkbox" id="create_frame_md5s_a">
     <div class="hiding">
       <h3>Create MD5 checksums (audio samples)</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -af "asetnsamples=n=48000" -f framemd5 -vn <i>output_file</i></code></p>
       <p>This will create an MD5 checksum for each group of 48000 audio samples.<br>
         The number of samples per group can be set arbitrarily, but it's good practice to match the samplerate of the media file (so you will get one checksum per second).</p>
@@ -1560,6 +1575,7 @@
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
       </dl>
       <p>You may verify an MD5 checksum file created this way by using a <a href="scripts/check_audio_framemd5.sh" target="_blank">Bash script</a>.</p>
+      <p class="link"></p>
     </div>
     <!-- ends Create frame md5s (audio) -->
 
@@ -1568,7 +1584,6 @@
     <input type="checkbox" id="qctools">
     <div class="hiding">
       <h3>Creates a QCTools report</h3>
-      <p class="link"></p>
       <p><code>ffprobe -f lavfi -i "movie=<i>input_file</i>:s=v+a[in0][in1], [in0]signalstats=stat=tout+vrep+brng, cropdetect=reset=1:round=1, idet=half_life=1, split[a][b];[a]field=top[a1];[b]field=bottom, split[b1][b2];[a1][b1]psnr[c1];[c1][b2]ssim[out0];[in1]ebur128=metadata=1, astats=metadata=1:reset=1:length=0.4[out1]" -show_frames -show_versions -of xml=x=1:q=1 -noprivate | gzip > <i>input_file</i>.qctools.xml.gz</code></p>
       <p>This will create an XML report for use in <a href="https://github.com/bavc/qctools" target="_blank">QCTools</a> for a video file with one video track and one audio track. See also the <a href="https://github.com/bavc/qctools/blob/master/docs/data_format.md#creating-a-qctools-document" target="_blank">QCTools documentation</a>.</p>
       <dl>
@@ -1585,6 +1600,7 @@
         <dt><code>></code></dt><dd>redirects the standard output (the data made by ffprobe about the video)</dd>
         <dt><i>input_file</i>.qctools.xml.gz</dt><dd>names the zipped data output file, which can be named anything but needs the extension qctools.xml.gz for compatibility issues</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends QCTools Report -->
 
@@ -1593,7 +1609,6 @@
     <input type="checkbox" id="qctools_no_audio">
     <div class="hiding">
       <h3>Creates a QCTools report</h3>
-      <p class="link"></p>
       <p><code>ffprobe -f lavfi -i "movie=<i>input_file</i>,signalstats=stat=tout+vrep+brng, cropdetect=reset=1:round=1, idet=half_life=1, split[a][b];[a]field=top[a1];[b]field=bottom,split[b1][b2];[a1][b1]psnr[c1];[c1][b2]ssim" -show_frames -show_versions -of xml=x=1:q=1 -noprivate | gzip > <i>input_file</i>.qctools.xml.gz</code></p>
       <p>This will create an XML report for use in <a href="https://github.com/bavc/qctools" target="_blank">QCTools</a> for a video file with one video track and NO audio track. See also the <a href="https://github.com/bavc/qctools/blob/master/docs/data_format.md#creating-a-qctools-document" target="_blank">QCTools documentation</a>.</p>
       <dl>
@@ -1610,6 +1625,7 @@
         <dt><code>></code></dt><dd>redirects the standard output (the data made by ffprobe about the video)</dd>
         <dt><i>input_file</i>.qctools.xml.gz</dt><dd>names the zipped data output file, which can be named anything but needs the extension qctools.xml.gz for compatibility issues</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends QCTools Report (no audio) -->
 
@@ -1618,7 +1634,6 @@
     <input type="checkbox" id="check_FFV1_fixity">
     <div class="hiding">
       <h3>Check FFV1 Version 3 fixity</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -report -i <i>input_file</i> -f null -</code></p>
       <p>This decodes your video and displays any CRC checksum mismatches. These errors will display in your terminal like this: <code>[ffv1 @ 0x1b04660] CRC mismatch 350FBD8A!at 0.272000 seconds</code></p>
       <p>Frame crcs are enabled by default in FFV1 Version 3.</p>
@@ -1629,6 +1644,7 @@
         <dt>-f null</dt><dd>Video is decoded with the <code>null</code> muxer. This allows video decoding without creating an output file.</dd>
         <dt>-</dt><dd>FFmpeg syntax requires a specified output, and <code>-</code> is just a place holder. No file is actually created. </dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Check FFV1 Fixity  -->
 
@@ -1637,7 +1653,6 @@
     <input type="checkbox" id="readeia608">
     <div class="hiding">
       <h3>Read/Extract EIA-608 (Line 21) closed captioning</h3>
-      <p class="link"></p>
       <p><code>ffprobe -f lavfi -i movie=<i>input_file</i>,readeia608 -show_entries frame=pkt_pts_time:frame_tags=lavfi.readeia608.0.line,lavfi.readeia608.0.cc,lavfi.readeia608.1.line,lavfi.readeia608.1.cc -of csv > <i>input_file</i>.csv</code></p>
       <p>This command uses FFmpeg's <a href="https://ffmpeg.org/ffmpeg-filters.html#readeia608" target="_blank">readeia608</a> filter to extract the hexadecimal values hidden within <a href="https://en.wikipedia.org/wiki/EIA-608" target="_blank">EIA-608 (Line 21)</a> Closed Captioning, outputting a csv file. For more information about EIA-608, check out Adobe's <a href="https://www.adobe.com/content/dam/Adobe/en/devnet/video/pdfs/introduction_to_closed_captions.pdf" target="_blank">Introduction to Closed Captions</a>.</p>
       <p>If hex isn't your thing, closed captioning <a href="http://www.theneitherworld.com/mcpoodle/SCC_TOOLS/DOCS/CC_CHARS.HTML" target="_blank">character</a> and <a href="http://www.theneitherworld.com/mcpoodle/SCC_TOOLS/DOCS/CC_CODES.HTML" target="_blank">code</a> sets can be found in the documentation for SCTools.</p>
@@ -1654,6 +1669,7 @@
         <p>Side-by-side video with true EIA-608 captions on the left, zoomed in view of the captions on the right (with hex values represented). To achieve something similar with your own captioned video, try out the EIA608/VITC viewer in <a href="https://github.com/bavc/qctools" target="_blank">QCTools</a>.</p>
         <img src="./img/eia608_captions.gif" alt="GIF of Closed Captions">
       </div>
+      <p class="link"></p>
     </div>
     <!-- ends Read/Extract EIA-608 Closed Captions -->
 
@@ -1666,7 +1682,6 @@
     <input type="checkbox" id="mandelbrot">
     <div class="hiding">
       <h3>Makes a mandelbrot test pattern video</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -f lavfi -i mandelbrot=size=1280x720:rate=25 -c:v libx264 -t 10 <i>output_file</i></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -1676,6 +1691,7 @@
         <dt>-t 10</dt><dd>specifies recording time of 10 seconds</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file. Try different file extensions such as mkv, mov, mp4, or avi.</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Mandelbrot -->
 
@@ -1684,7 +1700,6 @@
     <input type="checkbox" id="smpte_bars">
     <div class="hiding">
       <h3>Makes a SMPTE bars test pattern video</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -f lavfi -i smptebars=size=720x576:rate=25 -c:v prores -t 10 <i>output_file</i></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -1694,6 +1709,7 @@
         <dt>-t 10</dt><dd>specifies recording time of 10 seconds</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file. Try different file extensions such as mov or avi.</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends SMPTE bars -->
 
@@ -1702,7 +1718,6 @@
     <input type="checkbox" id="test">
     <div class="hiding">
       <h3>Make a test pattern video</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -f lavfi -i testsrc=size=720x576:rate=25 -c:v v210 -t 10 <i>output_file</i></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -1713,6 +1728,7 @@
         <dt>-t 10</dt><dd>specifies recording time of 10 seconds</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file. Try different file extensions such as mkv, mov, mp4, or avi.</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Test pattern video -->
 
@@ -1721,7 +1737,6 @@
     <input type="checkbox" id="play_hd_smpte">
     <div class="hiding">
       <h3>Play HD SMPTE bars</h3>
-      <p class="link"></p>
       <p>Test an HD video projector by playing the SMPTE colour bars pattern.</p>
       <p><code>ffplay -f lavfi -i smptehdbars=size=1920x1080</code></p>
       <dl>
@@ -1729,6 +1744,7 @@
         <dt>-f lavfi</dt><dd>tells ffplay to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
         <dt>-i smptehdbars=size=1920x1080</dt><dd>asks for the <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc_002c-testsrc2_002c-yuvtestsrc" target="_blank">smptehdbars filter pattern</a> as input and sets the HD resolution. This generates a colour bars pattern, based on the SMPTE RP 219–2002.</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Play HD SMPTE bars -->
 
@@ -1737,7 +1753,6 @@
     <input type="checkbox" id="play_vga_smpte">
     <div class="hiding">
       <h3>Play VGA SMPTE bars</h3>
-      <p class="link"></p>
       <p>Test a VGA (SD) video projector by playing the SMPTE colour bars pattern.</p>
       <p><code>ffplay -f lavfi -i smptebars=size=640x480</code></p>
       <dl>
@@ -1745,6 +1760,7 @@
         <dt>-f lavfi</dt><dd>tells ffplay to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
         <dt>-i smptebars=size=640x480</dt><dd>asks for the <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc_002c-testsrc2_002c-yuvtestsrc" target="_blank">smptebars filter pattern</a> as input and sets the VGA (SD) resolution. This generates a colour bars pattern, based on the SMPTE Engineering Guideline EG 1–1990.</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Play VGA SMPTE bars -->
 
@@ -1753,7 +1769,6 @@
     <input type="checkbox" id="sine_wave">
     <div class="hiding">
       <h3>Sine wave</h3>
-      <p class="link"></p>
       <p>Generate a test audio file playing a sine wave.</p>
       <p><code>ffmpeg -f lavfi -i "sine=frequency=1000:sample_rate=48000:duration=5" -c:a pcm_s16le <i>output_file</i>.wav</code></p>
       <dl>
@@ -1763,6 +1778,7 @@
         <dt>-c:a pcm_s16le</dt><dd>encodes the audio codec in <code>pcm_s16le</code> (the default encoding for wav files). pcm represents pulse-code modulation format (raw bytes), <code>16</code> means 16 bits per sample, and <code>le</code> means "little endian"</dd>
         <dt><i>output_file</i>.wav</dt><dd>path, name and extension of the output file</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Sine wave -->
 
@@ -1771,7 +1787,6 @@
     <input type="checkbox" id="smpte_bars_and_sine_wave">
     <div class="hiding">
       <h3>SMPTE bars + Sine wave audio</h3>
-      <p class="link"></p>
       <p>Generate a SMPTE bars test video + a 1kHz sine wave as audio testsignal.</p>
       <p><code>ffmpeg -f lavfi -i smptebars=size=720x576:rate=25 -f lavfi -i "sine=frequency=1000:sample_rate=48000" -c:a pcm_s16le -t 10 -c:v ffv1 <i>output_file</i></code></p>
       <dl>
@@ -1785,6 +1800,7 @@
         <dt>-c:v ffv1</dt><dd>Encodes to <a href="https://en.wikipedia.org/wiki/FFV1" target="_blank">FFV1</a>. Alter this setting to set your desired codec.</dd>
         <dt><i>output_file</i>.wav</dt><dd>path, name and extension of the output file</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends SMPTE bars + Sine wave -->
 
@@ -1793,7 +1809,6 @@
     <input type="checkbox" id="broken_file">
     <div class="hiding">
       <h3>Makes a broken test file</h3>
-      <p class="link"></p>
       <p>Modifies an existing, functioning file and intentionally breaks it for testing purposes.</p>
       <p><code>ffmpeg -i <i>input_file</i> -bsf noise=1 -c copy <i>output_file</i></code></p>
       <dl>
@@ -1803,6 +1818,7 @@
         <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Broken File -->
 
@@ -1815,7 +1831,6 @@
     <input type="checkbox" id="ocr_on_top">
     <div class="hiding">
       <h3>Plays video with OCR on top</h3>
-      <p class="link"></p>
       <p>Note: ffmpeg must be compiled with the tesseract library for this script to work (<code>--with-tesseract</code> if using the <code>brew install ffmpeg</code> method).</p>
       <p><code>ffplay input_file -vf "ocr,drawtext=fontfile=/Library/Fonts/Andale Mono.ttf:text=%{metadata\\\:lavfi.ocr.text}:fontcolor=white"</code></p>
       <dl>
@@ -1831,6 +1846,7 @@
         <dt>fontcolor=white</dt><dd>specifies font color as white</dd>
         <dt>"</dt><dd>quotation mark to end filtergraph</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Show OCR -->
 
@@ -1839,7 +1855,6 @@
     <input type="checkbox" id="ffprobe_ocr">
     <div class="hiding">
       <h3>Exports OCR data to screen</h3>
-      <p class="link"></p>
       <p>Note: FFmpeg must be compiled with the tesseract library for this script to work (<code>--with-tesseract</code> if using the <code>brew install ffmpeg</code> method)</p>
       <p><code>ffprobe -show_entries frame_tags=lavfi.ocr.text -f lavfi -i "movie=<i>input_file</i>,ocr"</code></p>
       <dl>
@@ -1849,6 +1864,7 @@
         <dt>-f lavfi</dt><dd>tells ffprobe to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter input virtual device</a></dd>
         <dt>-i "movie=<i>input_file</i>,ocr"</dt><dd>declares 'movie' as <i>input_file</i> and passes in the 'ocr' command</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Exports OCR -->
 
@@ -1861,7 +1877,6 @@
     <input type="checkbox" id="compare_video_fingerprints">
     <div class="hiding">
       <h3>Compare two video files for content similarity using perceptual hashing</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_one</i> -i <i>input_two</i> -filter_complex signature=detectmode=full:nb_inputs=2 -f null -</code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -1871,6 +1886,7 @@
         <dt>nb_inputs=2</dt><dd>tells the filter to expect two input files</dd>
         <dt>-f null -</dt><dd>Sets the output of FFmpeg to a null stream (since we are not creating a transcoded file, just viewing metadata).</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Compare Video Fingerprints -->
 
@@ -1879,7 +1895,6 @@
     <input type="checkbox" id="generate_video_fingerprint">
     <div class="hiding">
       <h3>Generate a perceptual hash for an input video file</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input</i> -vf signature=format=xml:filename="output.xml" -an -f null -</code></p>
       <dl>
         <dt>ffmpeg -i <i>input</i></dt><dd>starts the command using your input file</dd>
@@ -1888,6 +1903,7 @@
         <dt>-an</dt><dd>tells FFmpeg to ignore the audio stream of the input file</dd>
         <dt>-f null -</dt><dd>Sets the FFmpeg output to a null stream (since we are only interested in the output generated by the filter).</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Generate Video Fingerprint -->
 
@@ -1900,7 +1916,6 @@
     <input type="checkbox" id="play_im_seq">
     <div class="hiding">
       <h3>Play an image sequence</h3>
-      <p class="link"></p>
       <p>Play an image sequence directly as moving images, without having to create a video first.</p>
       <p><code>ffplay -framerate 5 <i>input_file_%06d.ext</i></code></p>
       <dl>
@@ -1914,6 +1929,7 @@
       <p><b>Notes:</b></p>
       <p>If <code>-framerate</code> is omitted, the playback speed depends on the images’ file sizes and on the computer’s processing power. It may be rather slow for large image files.</p>
       <p>You can navigate durationally by clicking within the playback window. Clicking towards the left-hand side of the playback window takes you towards the beginning of the playback sequence; clicking towards the right takes you towards the end of the sequence.</p>
+      <p class="link"></p>
     </div>
     <!-- ends Play image sequence -->
 
@@ -1922,7 +1938,6 @@
     <input type="checkbox" id="split_audio_video">
     <div class="hiding">
       <h3>Split audio and video tracks</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -map <i>0:v:0 video_output_file</i> -map <i>0:a:0 audio_output_file</i></code></p>
       <p>This command splits the original input file into a video and audio stream. The -map command identifies which streams are mapped to which file. To ensure that you’re mapping the right streams to the right file, run ffprobe before writing the script to identify which streams are desired.</p>
       <dl>
@@ -1933,33 +1948,15 @@
         <dt>-map <i>0:a:0</i></dt><dd>grabs the first audio stream and maps it into:</dd>
         <dt><i>audio_output_file</i></dt><dd>path, name and extension of the audio output file</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Split audio and video tracks -->
-
-    <!-- Flip image -->
-    <label class="recipe" for="flip_image">Flip video image</label>
-    <input type="checkbox" id="flip_image">
-    <div class="hiding">
-      <h3>Flip the video image horizontally and/or vertically</h3>
-      <p class="link"></p>
-      <p><code>ffmpeg -i <i>input_file</i> -filter:v "hflip,vflip" -c:a copy <i>output_file</i></code></p>
-      <dl>
-        <dt>ffmpeg</dt><dd>starts the command</dd>
-        <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-        <dt>-filter:v "hflip,vflip"</dt><dd>flips the image horizontally and vertically<br>By using only one of the parameters hflip or vflip for filtering the image is flipped on that axis only. The quote marks are not mandatory.</dd>
-        <dt>-c:a copy</dt><dd>re-encodes using the same audio codec<br>
-        For silent videos you can replace <code>-c:a copy</code> by <code>-an</code>.</dd>
-        <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
-      </dl>
-    </div>
-    <!-- ends Flip image -->
 
     <!-- Create ISO -->
     <label class="recipe" for="create_iso">Create ISO files for DVD access</label>
     <input type="checkbox" id="create_iso">
     <div class="hiding">
       <h3>Create ISO files for DVD access</h3>
-      <p class="link"></p>
       <p>Create an ISO file that can be used to burn a DVD. Please note, you will have to install dvdauthor. To install dvd author using Homebrew run: <code>brew install dvdauthor</code></p>
       <p><code>ffmpeg -i <i>input_file</i> -aspect <i>4:3</i> -target ntsc-dvd <i>output_file</i>.mpg</code></p>
       <p>This command will take any file and create an MPEG file that dvdauthor can use to create an ISO.</p>
@@ -1970,6 +1967,7 @@
         <dt>-target ntsc-dvd</dt><dd>specifies the region for your DVD. This could be also pal-dvd.</dd>
         <dt><i>output_file</i>.mpg</dt><dd>path and name of the output file. The extension must be <code>.mpg</code></dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Create ISO -->
 
@@ -1978,7 +1976,6 @@
     <input type="checkbox" id="csv-ydif">
     <div class="hiding">
       <h3>Exports CSV for scene detection using YDIF</h3>
-      <p class="link"></p>
       <p><code>ffprobe -f lavfi -i movie=<i>input_file</i>,signalstats -show_entries frame=pkt_pts_time:frame_tags=lavfi.signalstats.YDIF -of csv</code></p>
       <p>This ffprobe command prints a CSV correlating timestamps and their YDIF values, useful for determining cuts.</p>
       <dl>
@@ -1991,6 +1988,7 @@
         <dt>frame=pkt_pts_time:frame_tags=lavfi.signalstats.YDIF</dt><dd>specifies showing the timecode (<code>pkt_pts_time</code>) in the frame stream and the YDIF section of the frame_tags stream</dd>
         <dt>-of csv</dt><dd>sets the output printing format to CSV. <code>-of</code> is an alias of <code>-print_format</code>.</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends sample Scene Detection using YDIF -->
 
@@ -1999,7 +1997,6 @@
     <input type="checkbox" id="cover_head">
     <div class="hiding">
       <h3>Cover head switching noise</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -i <i>input_file</i> -filter:v drawbox=w=iw:h=7:y=ih-h:t=max <i>output_file</i></code></p>
       <p>This command will draw a black box over a small area of the bottom of the frame, which can be used to cover up head switching noise.</p>
       <dl>
@@ -2016,6 +2013,7 @@
         </dd>
         <dt><i>output_file</i></dt><dd>path and name of the output file</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- ends Cover head switching noise -->
 
@@ -2024,7 +2022,6 @@
     <input type="checkbox" id="record-and-stream">
     <div class="hiding">
       <h3>Record and live-stream simultaneously</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -re -i <i>${INPUTFILE}</i> -map 0 -flags +global_header -vf scale="1280:-1,format=yuv420p" -pix_fmt yuv420p -level 3.1 -vsync passthrough -crf 26 -g 50 -bufsize 3500k -maxrate 1800k -c:v libx264 -c:a aac -b:a 128000 -r:a 44100 -ac 2 -t ${STREAMDURATION} -f tee <i>"[movflags=+faststart]${TARGETFILE}|[f=flv]${STREAMTARGET}"</i></code></p>
       <p>I use this script to stream to a RTMP target and record the stream locally as .mp4 with only one ffmpeg-instance.</p>
       <p>As input, I use <code>bmdcapture</code> which is piped to ffmpeg. But it can also be used with a static videofile as input.</p>
@@ -2057,6 +2054,7 @@
          <dt>-f tee </dt><dd>Use multiple outputs. Outputs defined below.</dd>
          <dt>"[movflags=+faststart]target-file.mp4|[f=flv]rtmp://stream-url/stream-id"</dt><dd>The outputs, separated by a pipe (|). The first is the local file, the second is the live stream. Options for each target are given in square brackets before the target.</dd>
       </dl>
+      <p class="link"></p>
     </div>
     <!-- END Record and live-stream at the same time -->
 
@@ -2065,7 +2063,6 @@
     <input type="checkbox" id="view_subprogram_info">
     <div class="hiding">
       <h3>View information about a specific decoder, encoder, demuxer, muxer, or filter</h3>
-      <p class="link"></p>
       <p><code>ffmpeg -h <i>type=name</i></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -2081,7 +2078,7 @@
           </ul>
         </dd>
       </dl>
-
+      <p class="link"></p>
     </div>
     <!-- ends View Subprogram info -->
   </div>
@@ -2092,7 +2089,6 @@
     <div class="hiding">
   Change the above data-target field, the hover-over description, the button text, and the below div ID
     <h3>*****Longer title*****</h3>
-    <p class="link"></p>
     <p><code>ffmpeg -i <i>input_file</i> *****code goes here***** <i>output_file</i></code></p>
     <p>This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info!</p>
     <dl>
