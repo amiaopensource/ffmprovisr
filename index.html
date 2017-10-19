@@ -1907,203 +1907,203 @@
     </div>
     <!-- ends Generate Video Fingerprint -->
 
-  </div>
-  <div class="well">
-    <h2 id="other">Other</h2>
-
-    <!-- Play image sequence -->
-    <label class="recipe" for="play_im_seq">Play an image sequence</label>
-    <input type="checkbox" id="play_im_seq">
-    <div class="hiding">
-      <h3>Play an image sequence</h3>
-      <p>Play an image sequence directly as moving images, without having to create a video first.</p>
-      <p><code>ffplay -framerate 5 <i>input_file_%06d.ext</i></code></p>
-      <dl>
-        <dt>ffplay</dt><dd>starts the command</dd>
-        <dt>-framerate 5</dt><dd>plays image sequence at rate of 5 images per second<br>
-        <b>Note:</b> this low framerate will produce a slideshow effect.</dd>
-        <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file<br>
-        This must match the naming convention used! The regex %06d matches six-digit-long numbers, possibly with leading zeroes. This allows the full sequence to be read in ascending order, one image after the other.<br>
-        The extension for TIFF files is .tif or maybe .tiff; the extension for DPX files is .dpx (or even .cin for old files). Screenshots are often in .png format.</dd>
-      </dl>
-      <p><b>Notes:</b></p>
-      <p>If <code>-framerate</code> is omitted, the playback speed depends on the images’ file sizes and on the computer’s processing power. It may be rather slow for large image files.</p>
-      <p>You can navigate durationally by clicking within the playback window. Clicking towards the left-hand side of the playback window takes you towards the beginning of the playback sequence; clicking towards the right takes you towards the end of the sequence.</p>
-      <p class="link"></p>
     </div>
-    <!-- ends Play image sequence -->
+    <div class="well">
+      <h2 id="other">Other</h2>
 
-    <!-- Split audio and video tracks -->
-    <label class="recipe" for="split_audio_video">Split audio and video tracks</label>
-    <input type="checkbox" id="split_audio_video">
-    <div class="hiding">
-      <h3>Split audio and video tracks</h3>
-      <p><code>ffmpeg -i <i>input_file</i> -map <i>0:v:0 video_output_file</i> -map <i>0:a:0 audio_output_file</i></code></p>
-      <p>This command splits the original input file into a video and audio stream. The -map command identifies which streams are mapped to which file. To ensure that you’re mapping the right streams to the right file, run ffprobe before writing the script to identify which streams are desired.</p>
-      <dl>
-        <dt>ffmpeg</dt><dd>starts the command</dd>
-        <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-        <dt>-map <i>0:v:0</i></dt><dd>grabs the first video stream and maps it into:</dd>
-        <dt><i>video_output_file</i></dt><dd>path, name and extension of the video output file</dd>
-        <dt>-map <i>0:a:0</i></dt><dd>grabs the first audio stream and maps it into:</dd>
-        <dt><i>audio_output_file</i></dt><dd>path, name and extension of the audio output file</dd>
-      </dl>
-      <p class="link"></p>
+      <!-- Play image sequence -->
+      <label class="recipe" for="play_im_seq">Play an image sequence</label>
+      <input type="checkbox" id="play_im_seq">
+      <div class="hiding">
+        <h3>Play an image sequence</h3>
+        <p>Play an image sequence directly as moving images, without having to create a video first.</p>
+        <p><code>ffplay -framerate 5 <i>input_file_%06d.ext</i></code></p>
+        <dl>
+          <dt>ffplay</dt><dd>starts the command</dd>
+          <dt>-framerate 5</dt><dd>plays image sequence at rate of 5 images per second<br>
+          <b>Note:</b> this low framerate will produce a slideshow effect.</dd>
+          <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file<br>
+          This must match the naming convention used! The regex %06d matches six-digit-long numbers, possibly with leading zeroes. This allows the full sequence to be read in ascending order, one image after the other.<br>
+          The extension for TIFF files is .tif or maybe .tiff; the extension for DPX files is .dpx (or even .cin for old files). Screenshots are often in .png format.</dd>
+        </dl>
+        <p><b>Notes:</b></p>
+        <p>If <code>-framerate</code> is omitted, the playback speed depends on the images’ file sizes and on the computer’s processing power. It may be rather slow for large image files.</p>
+        <p>You can navigate durationally by clicking within the playback window. Clicking towards the left-hand side of the playback window takes you towards the beginning of the playback sequence; clicking towards the right takes you towards the end of the sequence.</p>
+        <p class="link"></p>
+      </div>
+      <!-- ends Play image sequence -->
+
+      <!-- Split audio and video tracks -->
+      <label class="recipe" for="split_audio_video">Split audio and video tracks</label>
+      <input type="checkbox" id="split_audio_video">
+      <div class="hiding">
+        <h3>Split audio and video tracks</h3>
+        <p><code>ffmpeg -i <i>input_file</i> -map <i>0:v:0 video_output_file</i> -map <i>0:a:0 audio_output_file</i></code></p>
+        <p>This command splits the original input file into a video and audio stream. The -map command identifies which streams are mapped to which file. To ensure that you’re mapping the right streams to the right file, run ffprobe before writing the script to identify which streams are desired.</p>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-map <i>0:v:0</i></dt><dd>grabs the first video stream and maps it into:</dd>
+          <dt><i>video_output_file</i></dt><dd>path, name and extension of the video output file</dd>
+          <dt>-map <i>0:a:0</i></dt><dd>grabs the first audio stream and maps it into:</dd>
+          <dt><i>audio_output_file</i></dt><dd>path, name and extension of the audio output file</dd>
+        </dl>
+        <p class="link"></p>
+      </div>
+      <!-- ends Split audio and video tracks -->
+
+      <!-- Create ISO -->
+      <label class="recipe" for="create_iso">Create ISO files for DVD access</label>
+      <input type="checkbox" id="create_iso">
+      <div class="hiding">
+        <h3>Create ISO files for DVD access</h3>
+        <p>Create an ISO file that can be used to burn a DVD. Please note, you will have to install dvdauthor. To install dvd author using Homebrew run: <code>brew install dvdauthor</code></p>
+        <p><code>ffmpeg -i <i>input_file</i> -aspect <i>4:3</i> -target ntsc-dvd <i>output_file</i>.mpg</code></p>
+        <p>This command will take any file and create an MPEG file that dvdauthor can use to create an ISO.</p>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-aspect 4:3</dt><dd>declares the aspect ratio of the resulting video file. You can also use 16:9.</dd>
+          <dt>-target ntsc-dvd</dt><dd>specifies the region for your DVD. This could be also pal-dvd.</dd>
+          <dt><i>output_file</i>.mpg</dt><dd>path and name of the output file. The extension must be <code>.mpg</code></dd>
+        </dl>
+        <p class="link"></p>
+      </div>
+      <!-- ends Create ISO -->
+
+      <!-- Scene Detection using YDIF -->
+      <label class="recipe" for="csv-ydif">CSV with timecodes and YDIF</label>
+      <input type="checkbox" id="csv-ydif">
+      <div class="hiding">
+        <h3>Exports CSV for scene detection using YDIF</h3>
+        <p><code>ffprobe -f lavfi -i movie=<i>input_file</i>,signalstats -show_entries frame=pkt_pts_time:frame_tags=lavfi.signalstats.YDIF -of csv</code></p>
+        <p>This ffprobe command prints a CSV correlating timestamps and their YDIF values, useful for determining cuts.</p>
+        <dl>
+          <dt>ffprobe</dt><dd>starts the command</dd>
+          <dt>-f lavfi</dt><dd>uses the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter input virtual device</a> as chosen format</dd>
+          <dt>-i movie=<i>input file</i></dt><dd>path, name and extension of the input video file</dd>
+          <dt>,</dt><dd>comma signifies closing of video source assertion and ready for filter assertion</dd>
+          <dt>signalstats</dt><dd>tells ffprobe to use the signalstats command</dd>
+          <dt>-show_entries</dt><dd>sets list of entries to show per column, determined on the next line</dd>
+          <dt>frame=pkt_pts_time:frame_tags=lavfi.signalstats.YDIF</dt><dd>specifies showing the timecode (<code>pkt_pts_time</code>) in the frame stream and the YDIF section of the frame_tags stream</dd>
+          <dt>-of csv</dt><dd>sets the output printing format to CSV. <code>-of</code> is an alias of <code>-print_format</code>.</dd>
+        </dl>
+        <p class="link"></p>
+      </div>
+      <!-- ends sample Scene Detection using YDIF -->
+
+      <!-- Cover head switching noise -->
+      <label class="recipe" for="cover_head">Cover head switching noise</label>
+      <input type="checkbox" id="cover_head">
+      <div class="hiding">
+        <h3>Cover head switching noise</h3>
+        <p><code>ffmpeg -i <i>input_file</i> -filter:v drawbox=w=iw:h=7:y=ih-h:t=max <i>output_file</i></code></p>
+        <p>This command will draw a black box over a small area of the bottom of the frame, which can be used to cover up head switching noise.</p>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+          <dt>-filter:v drawbox=</dt>
+          <dd>This calls the drawtext filter with the following options:
+            <dl>
+              <dt>w=in_w</dt><dd>Width is set to the input width. Shorthand for this command would be w=iw</dd>
+              <dt>h=7</dt><dd>Height is set to 7 pixels.</dd>
+              <dt>y=ih-h</dt><dd>Y represents the offset, and ih-h sets it to the input height minus the height declared in the previous parameter, setting the box at the bottom of the frame.</dd>
+              <dt>t=max</dt><dd>T represents the thickness of the drawn box. Default is 3.</dd>
+            </dl>
+          </dd>
+          <dt><i>output_file</i></dt><dd>path and name of the output file</dd>
+        </dl>
+        <p class="link"></p>
+      </div>
+      <!-- ends Cover head switching noise -->
+
+      <!-- Record and live-stream simultaneously -->
+      <label class="recipe" for="record-and-stream">Record and live-stream simultaneously</label>
+      <input type="checkbox" id="record-and-stream">
+      <div class="hiding">
+        <h3>Record and live-stream simultaneously</h3>
+        <p><code>ffmpeg -re -i <i>${INPUTFILE}</i> -map 0 -flags +global_header -vf scale="1280:-1,format=yuv420p" -pix_fmt yuv420p -level 3.1 -vsync passthrough -crf 26 -g 50 -bufsize 3500k -maxrate 1800k -c:v libx264 -c:a aac -b:a 128000 -r:a 44100 -ac 2 -t ${STREAMDURATION} -f tee <i>"[movflags=+faststart]${TARGETFILE}|[f=flv]${STREAMTARGET}"</i></code></p>
+        <p>I use this script to stream to a RTMP target and record the stream locally as .mp4 with only one ffmpeg-instance.</p>
+        <p>As input, I use <code>bmdcapture</code> which is piped to ffmpeg. But it can also be used with a static videofile as input.</p>
+        <p>The input will be scaled to 1280px width, maintaining height. Also the stream will stop after a given time (see <code>-t</code> option.)</p>
+        <h4>Notes</h4>
+        <ol>
+          <li>I recommend to use this inside a shell script - then you can define the variables <code>${INPUTFILE}</code>, <code>${STREAMDURATION}</code>, <code>${TARGETFILE}</code>, and <code>${STREAMTARGET}</code>.</li>
+          <li>This is in daily use to live-stream a real-world TV show. No errors for nearly 4 years. Some parameters were found by trial-and-error or empiric testing. So suggestions/questions are welcome.</li>
+        </ol>
+        <dl>
+           <dt>ffmpeg </dt><dd>starts the command</dd>
+           <dt>-re </dt><dd>Read input at native framerate</dd>
+           <dt>-i input.mov </dt><dd>The input file. Can also be a <code>-</code> to use STDIN if you pipe in from webcam or SDI.</dd>
+           <dt>-map 0 </dt><dd>map ALL streams from input file to output</dd>
+           <dt>-flags +global_header </dt><dd>Don't place extra data in every keyframe</dd>
+           <dt>-vf scale="1280:-1" </dt><dd>Scale to 1280 width, maintain aspect ratio.</dd>
+           <dt>-pix_fmt yuv420p </dt><dd>convert to 4:2:0 chroma subsampling scheme</dd>
+           <dt>-level 3.1 </dt><dd>H264 Level (defines some thresholds for bitrate)</dd>
+           <dt>-vsync passthrough </dt><dd>Each frame is passed with its timestamp from the demuxer to the muxer.</dd>
+           <dt>-crf 26 </dt><dd>Constant rate factor - basically the quality</dd>
+           <dt>-g 50 </dt><dd>GOP size.</dd>
+           <dt>-bufsize 3500k </dt><dd>Ratecontrol buffer size (~ maxrate x2)</dd>
+           <dt>-maxrate 1800k </dt><dd>Maximum bit rate</dd>
+           <dt>-c:v libx264 </dt><dd>encode output video stream as H.264</dd>
+           <dt>-c:a aac </dt><dd>encode output audio stream as AAC</dd>
+           <dt>-b:a 128000 </dt><dd>The audio bitrate</dd>
+           <dt>-r:a 44100 </dt><dd>The audio samplerate</dd>
+           <dt>-ac 2 </dt><dd>Two audio channels</dd>
+           <dt>-t ${STREAMDURATION} </dt><dd>Time (in seconds) after which the stream should automatically end.</dd>
+           <dt>-f tee </dt><dd>Use multiple outputs. Outputs defined below.</dd>
+           <dt>"[movflags=+faststart]target-file.mp4|[f=flv]rtmp://stream-url/stream-id"</dt><dd>The outputs, separated by a pipe (|). The first is the local file, the second is the live stream. Options for each target are given in square brackets before the target.</dd>
+        </dl>
+        <p class="link"></p>
+      </div>
+      <!-- END Record and live-stream at the same time -->
+
+      <!-- View Subprogram Info -->
+      <label class="recipe" for="view_subprogram_info">View FFmpeg subprogram information</label>
+      <input type="checkbox" id="view_subprogram_info">
+      <div class="hiding">
+        <h3>View information about a specific decoder, encoder, demuxer, muxer, or filter</h3>
+        <p><code>ffmpeg -h <i>type=name</i></code></p>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-h</dt><dd>Call the help option</dd>
+          <dt>type=name</dt>
+          <dd>tells FFmpeg which kind of option you want, for example:
+            <ul>
+              <li><code>encoder=libx264</code></li>
+              <li><code>decoder=mp3</code></li>
+              <li><code>muxer=matroska</code></li>
+              <li><code>demuxer=mov</code></li>
+              <li><code>filter=crop</code></li>
+            </ul>
+          </dd>
+        </dl>
+        <p class="link"></p>
+      </div>
+      <!-- ends View Subprogram info -->
     </div>
-    <!-- ends Split audio and video tracks -->
+  </div><!-- ends "content" -->
 
-    <!-- Create ISO -->
-    <label class="recipe" for="create_iso">Create ISO files for DVD access</label>
-    <input type="checkbox" id="create_iso">
-    <div class="hiding">
-      <h3>Create ISO files for DVD access</h3>
-      <p>Create an ISO file that can be used to burn a DVD. Please note, you will have to install dvdauthor. To install dvd author using Homebrew run: <code>brew install dvdauthor</code></p>
-      <p><code>ffmpeg -i <i>input_file</i> -aspect <i>4:3</i> -target ntsc-dvd <i>output_file</i>.mpg</code></p>
-      <p>This command will take any file and create an MPEG file that dvdauthor can use to create an ISO.</p>
-      <dl>
-        <dt>ffmpeg</dt><dd>starts the command</dd>
-        <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-        <dt>-aspect 4:3</dt><dd>declares the aspect ratio of the resulting video file. You can also use 16:9.</dd>
-        <dt>-target ntsc-dvd</dt><dd>specifies the region for your DVD. This could be also pal-dvd.</dd>
-        <dt><i>output_file</i>.mpg</dt><dd>path and name of the output file. The extension must be <code>.mpg</code></dd>
-      </dl>
-      <p class="link"></p>
-    </div>
-    <!-- ends Create ISO -->
+<!-- sample example -->
+<!--   <label class="recipe" for="*****unique name*****">*****Title****</label>
+  <input type="checkbox" id="*****unique name*****">
+  <div class="hiding">
+Change the above data-target field, the hover-over description, the button text, and the below div ID
+  <h3>*****Longer title*****</h3>
+  <p><code>ffmpeg -i <i>input_file</i> *****code goes here***** <i>output_file</i></code></p>
+  <p>This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info!</p>
+  <dl>
+    <dt>ffmpeg</dt><dd>starts the command</dd>
+    <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
+    <dt>*****parameter*****</dt><dd>*****comments*****</dd>
+    <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
+  </dl>
+</div> -->
+<!-- ends sample example -->
 
-    <!-- Scene Detection using YDIF -->
-    <label class="recipe" for="csv-ydif">CSV with timecodes and YDIF</label>
-    <input type="checkbox" id="csv-ydif">
-    <div class="hiding">
-      <h3>Exports CSV for scene detection using YDIF</h3>
-      <p><code>ffprobe -f lavfi -i movie=<i>input_file</i>,signalstats -show_entries frame=pkt_pts_time:frame_tags=lavfi.signalstats.YDIF -of csv</code></p>
-      <p>This ffprobe command prints a CSV correlating timestamps and their YDIF values, useful for determining cuts.</p>
-      <dl>
-        <dt>ffprobe</dt><dd>starts the command</dd>
-        <dt>-f lavfi</dt><dd>uses the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter input virtual device</a> as chosen format</dd>
-        <dt>-i movie=<i>input file</i></dt><dd>path, name and extension of the input video file</dd>
-        <dt>,</dt><dd>comma signifies closing of video source assertion and ready for filter assertion</dd>
-        <dt>signalstats</dt><dd>tells ffprobe to use the signalstats command</dd>
-        <dt>-show_entries</dt><dd>sets list of entries to show per column, determined on the next line</dd>
-        <dt>frame=pkt_pts_time:frame_tags=lavfi.signalstats.YDIF</dt><dd>specifies showing the timecode (<code>pkt_pts_time</code>) in the frame stream and the YDIF section of the frame_tags stream</dd>
-        <dt>-of csv</dt><dd>sets the output printing format to CSV. <code>-of</code> is an alias of <code>-print_format</code>.</dd>
-      </dl>
-      <p class="link"></p>
-    </div>
-    <!-- ends sample Scene Detection using YDIF -->
-
-    <!-- Cover head switching noise -->
-    <label class="recipe" for="cover_head">Cover head switching noise</label>
-    <input type="checkbox" id="cover_head">
-    <div class="hiding">
-      <h3>Cover head switching noise</h3>
-      <p><code>ffmpeg -i <i>input_file</i> -filter:v drawbox=w=iw:h=7:y=ih-h:t=max <i>output_file</i></code></p>
-      <p>This command will draw a black box over a small area of the bottom of the frame, which can be used to cover up head switching noise.</p>
-      <dl>
-        <dt>ffmpeg</dt><dd>starts the command</dd>
-        <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-        <dt>-filter:v drawbox=</dt>
-        <dd>This calls the drawtext filter with the following options:
-          <dl>
-            <dt>w=in_w</dt><dd>Width is set to the input width. Shorthand for this command would be w=iw</dd>
-            <dt>h=7</dt><dd>Height is set to 7 pixels.</dd>
-            <dt>y=ih-h</dt><dd>Y represents the offset, and ih-h sets it to the input height minus the height declared in the previous parameter, setting the box at the bottom of the frame.</dd>
-            <dt>t=max</dt><dd>T represents the thickness of the drawn box. Default is 3.</dd>
-          </dl>
-        </dd>
-        <dt><i>output_file</i></dt><dd>path and name of the output file</dd>
-      </dl>
-      <p class="link"></p>
-    </div>
-    <!-- ends Cover head switching noise -->
-
-    <!-- Record and live-stream simultaneously -->
-    <label class="recipe" for="record-and-stream">Record and live-stream simultaneously</label>
-    <input type="checkbox" id="record-and-stream">
-    <div class="hiding">
-      <h3>Record and live-stream simultaneously</h3>
-      <p><code>ffmpeg -re -i <i>${INPUTFILE}</i> -map 0 -flags +global_header -vf scale="1280:-1,format=yuv420p" -pix_fmt yuv420p -level 3.1 -vsync passthrough -crf 26 -g 50 -bufsize 3500k -maxrate 1800k -c:v libx264 -c:a aac -b:a 128000 -r:a 44100 -ac 2 -t ${STREAMDURATION} -f tee <i>"[movflags=+faststart]${TARGETFILE}|[f=flv]${STREAMTARGET}"</i></code></p>
-      <p>I use this script to stream to a RTMP target and record the stream locally as .mp4 with only one ffmpeg-instance.</p>
-      <p>As input, I use <code>bmdcapture</code> which is piped to ffmpeg. But it can also be used with a static videofile as input.</p>
-      <p>The input will be scaled to 1280px width, maintaining height. Also the stream will stop after a given time (see <code>-t</code> option.)</p>
-      <h4>Notes</h4>
-      <ol>
-        <li>I recommend to use this inside a shell script - then you can define the variables <code>${INPUTFILE}</code>, <code>${STREAMDURATION}</code>, <code>${TARGETFILE}</code>, and <code>${STREAMTARGET}</code>.</li>
-        <li>This is in daily use to live-stream a real-world TV show. No errors for nearly 4 years. Some parameters were found by trial-and-error or empiric testing. So suggestions/questions are welcome.</li>
-      </ol>
-      <dl>
-         <dt>ffmpeg </dt><dd>starts the command</dd>
-         <dt>-re </dt><dd>Read input at native framerate</dd>
-         <dt>-i input.mov </dt><dd>The input file. Can also be a <code>-</code> to use STDIN if you pipe in from webcam or SDI.</dd>
-         <dt>-map 0 </dt><dd>map ALL streams from input file to output</dd>
-         <dt>-flags +global_header </dt><dd>Don't place extra data in every keyframe</dd>
-         <dt>-vf scale="1280:-1" </dt><dd>Scale to 1280 width, maintain aspect ratio.</dd>
-         <dt>-pix_fmt yuv420p </dt><dd>convert to 4:2:0 chroma subsampling scheme</dd>
-         <dt>-level 3.1 </dt><dd>H264 Level (defines some thresholds for bitrate)</dd>
-         <dt>-vsync passthrough </dt><dd>Each frame is passed with its timestamp from the demuxer to the muxer.</dd>
-         <dt>-crf 26 </dt><dd>Constant rate factor - basically the quality</dd>
-         <dt>-g 50 </dt><dd>GOP size.</dd>
-         <dt>-bufsize 3500k </dt><dd>Ratecontrol buffer size (~ maxrate x2)</dd>
-         <dt>-maxrate 1800k </dt><dd>Maximum bit rate</dd>
-         <dt>-c:v libx264 </dt><dd>encode output video stream as H.264</dd>
-         <dt>-c:a aac </dt><dd>encode output audio stream as AAC</dd>
-         <dt>-b:a 128000 </dt><dd>The audio bitrate</dd>
-         <dt>-r:a 44100 </dt><dd>The audio samplerate</dd>
-         <dt>-ac 2 </dt><dd>Two audio channels</dd>
-         <dt>-t ${STREAMDURATION} </dt><dd>Time (in seconds) after which the stream should automatically end.</dd>
-         <dt>-f tee </dt><dd>Use multiple outputs. Outputs defined below.</dd>
-         <dt>"[movflags=+faststart]target-file.mp4|[f=flv]rtmp://stream-url/stream-id"</dt><dd>The outputs, separated by a pipe (|). The first is the local file, the second is the live stream. Options for each target are given in square brackets before the target.</dd>
-      </dl>
-      <p class="link"></p>
-    </div>
-    <!-- END Record and live-stream at the same time -->
-
-    <!-- View Subprogram Info -->
-    <label class="recipe" for="view_subprogram_info">View FFmpeg subprogram information</label>
-    <input type="checkbox" id="view_subprogram_info">
-    <div class="hiding">
-      <h3>View information about a specific decoder, encoder, demuxer, muxer, or filter</h3>
-      <p><code>ffmpeg -h <i>type=name</i></code></p>
-      <dl>
-        <dt>ffmpeg</dt><dd>starts the command</dd>
-        <dt>-h</dt><dd>Call the help option</dd>
-        <dt>type=name</dt>
-        <dd>tells FFmpeg which kind of option you want, for example:
-          <ul>
-            <li><code>encoder=libx264</code></li>
-            <li><code>decoder=mp3</code></li>
-            <li><code>muxer=matroska</code></li>
-            <li><code>demuxer=mov</code></li>
-            <li><code>filter=crop</code></li>
-          </ul>
-        </dd>
-      </dl>
-      <p class="link"></p>
-    </div>
-    <!-- ends View Subprogram info -->
-  </div>
-
-  <!-- sample example -->
-  <!--   <label class="recipe" for="*****unique name*****">*****Title****</label>
-    <input type="checkbox" id="*****unique name*****">
-    <div class="hiding">
-  Change the above data-target field, the hover-over description, the button text, and the below div ID
-    <h3>*****Longer title*****</h3>
-    <p><code>ffmpeg -i <i>input_file</i> *****code goes here***** <i>output_file</i></code></p>
-    <p>This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info!</p>
-    <dl>
-      <dt>ffmpeg</dt><dd>starts the command</dd>
-      <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
-      <dt>*****parameter*****</dt><dd>*****comments*****</dd>
-      <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
-    </dl>
-  </div> -->
-  <!-- ends sample example -->
-
-</div><!-- ends "content" -->
-<footer class="footer">
-  <p>Made with ♥ at <a href="http://wiki.curatecamp.org/index.php/Association_of_Moving_Image_Archivists_%26_Digital_Library_Federation_Hack_Day_2015" target="_blank">AMIA #AVhack15</a>! Contribute to the project via <a href="https://github.com/amiaopensource/ffmprovisr">our GitHub page</a>!</p>
-</footer>
-</div> <!-- class="grid" -->
+  <footer class="footer">
+    <p>Made with ♥ at <a href="http://wiki.curatecamp.org/index.php/Association_of_Moving_Image_Archivists_%26_Digital_Library_Federation_Hack_Day_2015" target="_blank">AMIA #AVhack15</a>! Contribute to the project via <a href="https://github.com/amiaopensource/ffmprovisr">our GitHub page</a>!</p>
+  </footer>
+</div><!-- ends "grid" -->
 </body>
 </html>
