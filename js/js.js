@@ -12,9 +12,9 @@ $(document).ready(function() {
   // add hash URL when recipe is opened
   $('label[class="recipe"]').on("click", function(){
     id = $(this).attr("for");
-    window.location.hash = id
-    $(id).closest('div').find('.link').empty();
-    $(id).closest('div').find('.link').append("<small>Link to this command: <a href="+window.location.href+">"+window.location.href+"</a></small>");
+    window.location.hash = ('#' + id)
+    $('#' + id).closest('div').find('.link').empty();
+    $('#' + id).closest('div').find('.link').append("<small>Link to this command: <a href="+window.location.href+">"+window.location.href+"</a></small>");
   });
 
 });

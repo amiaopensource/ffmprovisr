@@ -24,10 +24,7 @@ html, body {
 
 .content {
   grid-area: content;
-}
-
-.content .hiding p {
-  word-break: break-all;
+  max-width: 900px;
 }
 
 .sidebar {
