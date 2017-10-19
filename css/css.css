@@ -1,5 +1,6 @@
 html, body {
   line-height: 1.5;
+  font-size: 16px;
   color: #888888;
   background-color: #060606;
   margin: 0;
@@ -23,6 +24,7 @@ html, body {
 
 .content {
   grid-area: content;
+  max-width: 900px;
 }
 
 .sidebar {
@@ -109,6 +111,10 @@ h3 {
 }
 
 code {
+  padding: 2px 4px;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
   word-break: break-all;
   word-wrap: break-word;
 }
@@ -146,15 +152,25 @@ div {
   background-color: #383838;
   padding: 14px;
   font-family: "Montserrat";
-  font-size: 1.2em;
-  font-weight: bold;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   border: 1px solid black;
-  width: 100%;
   cursor: pointer;
   position: relative;
   padding-left: 2.8em;
   transition: all .5s ease-out;
+}
+
+.contents-list {
+  font-size: 0.9em;
+}
+
+nav .heading {
+  word-break: normal;
+}
+
+.recipe {
+  display: block;
+  width: 90%;
 }
 
 .recipe:hover, .contents-list:hover {
@@ -188,7 +204,6 @@ div {
 .codeblock {
   font-family: monospace
   padding: 2px 4px;
-  font-size: 90%;
   color: #c7254e;
   background-color: #f9f2f4;
   border-radius: 4px;
@@ -200,4 +215,31 @@ div {
 
 .footnote {
   font-size: 90%;
+}
+
+.well {
+  padding: 1em;
+  margin-bottom: 0.5em;
+  background-color: #151515;
+  border: 1px solid #030303;
+  border-radius: 8px;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+}
+
+.hiding {
+  opacity: 0;
+	height: 0;
+  overflow: hidden;
+}
+
+input {
+	position: absolute;
+	left: -999em
+}
+
+input[type=checkbox]:checked + div {
+	opacity: 1;
+  height: auto;
+  overflow: hidden;
+  transition: opacity .5s linear, height .5s linear;
 }
