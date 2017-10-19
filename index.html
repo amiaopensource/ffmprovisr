@@ -1636,7 +1636,7 @@
       <h3>Check FFV1 Version 3 fixity</h3>
       <p><code>ffmpeg -report -i <i>input_file</i> -f null -</code></p>
       <p>This decodes your video and displays any CRC checksum mismatches. These errors will display in your terminal like this: <code>[ffv1 @ 0x1b04660] CRC mismatch 350FBD8A!at 0.272000 seconds</code></p>
-      <p>Frame crcs are enabled by default in FFV1 Version 3.</p>
+      <p>Frame CRCs are enabled by default in FFV1 Version 3.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-report</dt><dd>Dump full command line and console output to a file named <i>ffmpeg-YYYYMMDD-HHMMSS.log</i> in the current directory. It also implies <code>-loglevel verbose</code>.</dd>
@@ -1775,7 +1775,7 @@
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-f lavfi</dt><dd>tells FFmpeg to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
         <dt>-i "sine=frequency=1000:sample_rate=48000:duration=5"</dt><dd>Sets the signal to 1000 Hz, sampling at 48 kHz, and for 5 seconds</dd>
-        <dt>-c:a pcm_s16le</dt><dd>encodes the audio codec in <code>pcm_s16le</code> (the default encoding for wav files). pcm represents pulse-code modulation format (raw bytes), <code>16</code> means 16 bits per sample, and <code>le</code> means "little endian"</dd>
+        <dt>-c:a pcm_s16le</dt><dd>encodes the audio codec in <code>pcm_s16le</code> (the default encoding for wav files). <code>pcm</code> represents pulse-code modulation format (raw bytes), <code>16</code> means 16 bits per sample, and <code>le</code> means "little endian"</dd>
         <dt><i>output_file</i>.wav</dt><dd>path, name and extension of the output file</dd>
       </dl>
       <p class="link"></p>
@@ -1795,7 +1795,7 @@
         <dt>-i smptebars=size=720x576:rate=25</dt><dd>asks for the <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc_002c-testsrc2_002c-yuvtestsrc" target="_blank">smptebars test filter</a> as input. Adjusting the <code>size</code> and <code>rate</code> options allows you to choose a specific frame size and framerate.</dd>
         <dt>-f lavfi</dt><dd>use libavfilter again, but now for audio</dd>
         <dt>-i "sine=frequency=1000:sample_rate=48000"</dt><dd>Sets the signal to 1000 Hz, sampling at 48 kHz.</dd>
-        <dt>-c:a pcm_s16le</dt><dd>encodes the audio codec in <code>pcm_s16le</code> (the default encoding for wav files). pcm represents pulse-code modulation format (raw bytes), <code>16</code> means 16 bits per sample, and <code>le</code> means "little endian"</dd>
+        <dt>-c:a pcm_s16le</dt><dd>encodes the audio codec in <code>pcm_s16le</code> (the default encoding for wav files). <code>pcm</code> represents pulse-code modulation format (raw bytes), <code>16</code> means 16 bits per sample, and <code>le</code> means "little endian"</dd>
         <dt>-t 10</dt><dd>specifies recording time of 10 seconds</dd>
         <dt>-c:v ffv1</dt><dd>Encodes to <a href="https://en.wikipedia.org/wiki/FFV1" target="_blank">FFV1</a>. Alter this setting to set your desired codec.</dd>
         <dt><i>output_file</i>.wav</dt><dd>path, name and extension of the output file</dd>
