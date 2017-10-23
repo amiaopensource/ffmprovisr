@@ -24,7 +24,6 @@ html, body {
 
 .content {
   grid-area: content;
-  max-width: 900px;
 }
 
 .sidebar {
