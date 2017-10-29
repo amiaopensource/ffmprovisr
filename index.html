@@ -117,6 +117,34 @@
     </div>
     <!-- End Filtergraph explanation -->
 
+    <!-- Stream mapping explanation -->
+    <label class="recipe" for="stream-mapping">Stream mapping</label>
+    <input type="checkbox" id="stream-mapping">
+    <div class="hiding">
+      <h3>Stream mapping</h3>
+      <p>Stream mapping is the practice of defining which of the streams (e.g., video or audio tracks) present in an input file will be present in the output file. FFmpeg recognises five stream types:</p>
+      <ul>
+        <li><code>a</code> - audio</li>
+        <li><code>v</code> - video</li>
+        <li><code>s</code> - subtitle</li>
+        <li><code>d</code> - data (including timecode tracks)</li>
+        <li><code>t</code> - attachment</li>
+      </ul>
+      <p>Mapping is achieved by use of the <code>-map</code> flag, followed by an action of the type <code>file_number:stream_type[:stream_number]</code>. Numbering is zero-indexed, and it's possible to map by stream type and/or overall stream order within the input file. For example:</p>
+      <ul>
+        <li><code>-map 0:v</code> means ‘take all video streams from the first input file’.</li>
+        <li><code>-map 0:3</code> means ‘take the fourth stream from the first input file’.</li>
+        <li><code>-map 0:a:2</code> means ‘take the third audio stream from the first input file’.</li>
+        <li><code>-map 0:0 -map 0:2</code> means ‘take the first and third streams from the first input file’.</li>
+        <li><code>-map 0:1 -map 1:0</code> means ‘take the second stream from the first input file and the first stream from the second input file’.</li>
+      </ul>
+      <p>To map <i>all</i> streams in the input file to the output file, use <code>-map 0</code>. However, note that not all container formats can include all stream types: for example, .mp4 cannot contain timecode.</p>
+      <p>When no mapping is specified in an ffmpeg command, the default for video files is to take just one video and one audio stream for the output: other stream types, such as timecode or subtitles, will not be copied to the output file by default. If multiple video or audio streams are present, the best quality one is automatically selected by FFmpeg.</p>
+      <p>For more information, check out the FFmpeg wiki <a href="https://trac.ffmpeg.org/wiki/Map" target="_blank">Map</a> page, and the official FFmpeg <a href="http://ffmpeg.org/ffmpeg.html#Advanced-options" target="_blank">documentation on <code>-map</code></a>.</p>
+      <p class="link"></p>
+    </div>
+    <!-- End Stream Mapping explanation -->
+
     </div>
     <div class="well">
     <h2 id="rewrap">Change container (rewrap)</h2>
