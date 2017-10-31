@@ -138,7 +138,10 @@ img {
 }
 
 .sample-image {
+  margin: 0 auto;
   margin-bottom: 18px;
+  max-width: 500px;
+  text-align: center;
 }
 
 div {
