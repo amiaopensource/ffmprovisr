@@ -61,6 +61,10 @@ html, body {
   .grid {
     max-width: 70%;
     margin: 0 auto;
+    grid-template-areas:
+    "header  header"
+    "sidebar content"
+    "footer  footer";
   }
 }
 
