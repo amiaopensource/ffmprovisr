@@ -793,7 +793,8 @@
     <input type="checkbox" id="loudnorm_two_pass">
     <div class="hiding">
       <h3>Two Pass Loudness Normalization</h3>
-      <p><code>ffmpeg -i <i>input_file</i> -af loudnorm=dual_mono=true:measured_I=<i>input_i</i>:measured_TP=<i>input_tp</i>:measured_LRA=<i>input_lra</i>:measured_thresh=<i>input_thresh</i>:offset=<i>target_offset</i>:linear=true -ar 48k <i>output_file</i></code></p>
+      <p><code>ffmpeg -i <i>input_file</i> -af loudnorm=dual_mono=true:measured_I=<i>input_i</i>:measured_TP=<i>input_tp</i>:measured_LRA=
+      <i>input_lra</i>:measured_thresh=<i>input_thresh</i>:offset=<i>target_offset</i>:linear=true -ar 48k <i>output_file</i></code></p>
       <p>This command allows using the levels calculated using a <a href="#loudnorm_metadata">first pass of the loudnorm filter</a> to more accurately normalize loudness. This command uses the loudnorm filter defaults for target loudness. These defaults align well with PBS recommendations, but loudnorm does allow targeting of specific loudness levels. More information can be found at the <a href="https://ffmpeg.org/ffmpeg-filters.html#loudnorm" target="_blank">loudnorm documentation</a>.</p>
       <p>Information about PBS loudness standards can be found in the <a href="http://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf" target="_blank">PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href="https://tech.ebu.ch/docs/r/r128-2014.pdf" target="_blank">EBU R 128</a> recommendation document.</p>
       <dl>
@@ -1116,7 +1117,9 @@
     <div class="hiding">
       <h3>Create centered, transparent text watermark</h3>
       <p>E.g For creating access copies with your institutions name</p>
-      <p><code>ffmpeg -i <i>input_file</i> -vf drawtext="fontfile=<i>font_path</i>:fontsize=<i>font_size</i>:text=<i>watermark_text</i>:fontcolor=<i>font_colour</i>:alpha=0.4:x=(w-text_w)/2:y=(h-text_h)/2" <i>output_file</i></code></p>
+      <p><code>ffmpeg -i <i>input_file</i> -vf drawtext="fontfile=<i>font_path</i>:fontsize=<i>font_size</i>:text=
+        <i>watermark_text</i>:fontcolor=<i>font_colour</i>:alpha=0.4:x=(w-text_w)/2:y=(h-text_h)/2" <i>output_file</i>
+      </code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
@@ -1158,7 +1161,10 @@
     <input type="checkbox" id="burn_in_timecode">
     <div class="hiding">
       <h3>Create a burnt in timecode on your image</h3>
-      <p><code>ffmpeg -i <i>input_file</i> -vf drawtext="fontfile=<i>font_path</i>:fontsize=<i>font_size</i>:timecode=<i>starting_timecode</i>:fontcolor=<i>font_colour</i>:box=1:boxcolor=<i>box_colour</i>:rate=<i>timecode_rate</i>:x=(w-text_w)/2:y=h/1.2" <i>output_file</i></code></p>
+      <p><code>ffmpeg -i <i>input_file</i> -vf drawtext="fontfile=<i>font_path</i>:fontsize=<i>font_size</i>
+        :timecode=<i>starting_timecode</i>:fontcolor=<i>font_colour</i>:box=1:boxcolor=<i>box_colour</i>:rate=
+        <i>timecode_rate</i>:x=(w-text_w)/2:y=h/1.2" <i>output_file</i>
+      </code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
@@ -1681,14 +1687,20 @@
     <input type="checkbox" id="readeia608">
     <div class="hiding">
       <h3>Read/Extract EIA-608 (Line 21) closed captioning</h3>
-      <p><code>ffprobe -f lavfi -i movie=<i>input_file</i>,readeia608 -show_entries frame=pkt_pts_time:frame_tags=lavfi.readeia608.0.line,lavfi.readeia608.0.cc,lavfi.readeia608.1.line,lavfi.readeia608.1.cc -of csv > <i>input_file</i>.csv</code></p>
+      <p><code>ffprobe -f lavfi -i movie=<i>input_file</i>,readeia608
+        -show_entries frame=pkt_pts_time:frame_tags=
+        lavfi.readeia608.0.line,lavfi.readeia608.0.cc,
+        lavfi.readeia608.1.line,lavfi.readeia608.1.cc
+        -of csv > <i>input_file</i>.csv</code></p>
       <p>This command uses FFmpeg's <a href="https://ffmpeg.org/ffmpeg-filters.html#readeia608" target="_blank">readeia608</a> filter to extract the hexadecimal values hidden within <a href="https://en.wikipedia.org/wiki/EIA-608" target="_blank">EIA-608 (Line 21)</a> Closed Captioning, outputting a csv file. For more information about EIA-608, check out Adobe's <a href="https://www.adobe.com/content/dam/Adobe/en/devnet/video/pdfs/introduction_to_closed_captions.pdf" target="_blank">Introduction to Closed Captions</a>.</p>
       <p>If hex isn't your thing, closed captioning <a href="http://www.theneitherworld.com/mcpoodle/SCC_TOOLS/DOCS/CC_CHARS.HTML" target="_blank">character</a> and <a href="http://www.theneitherworld.com/mcpoodle/SCC_TOOLS/DOCS/CC_CODES.HTML" target="_blank">code</a> sets can be found in the documentation for SCTools.</p>
       <dl>
         <dt>ffprobe</dt><dd>starts the command</dd>
         <dt>-f lavfi</dt><dd>tells ffprobe to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">libavfilter</a> input virtual device</dd>
         <dt>-i <i>input_file</i></dt><dd>input file and parameters</dd>
-        <dt>readeia608 -show_entries frame=pkt_pts_time:frame_tags=lavfi.readeia608.0.line,lavfi.readeia608.0.cc,lavfi.readeia608.1.line,lavfi.readeia608.1.cc -of csv</dt><dd>specifies the first two lines of video in which EIA-608 data (hexadecimal byte pairs) are identifiable by ffprobe, outputting comma separated values (CSV)</dd>
+        <dt>readeia608 -show_entries frame=pkt_pts_time:
+          frame_tags=lavfi.readeia608.0.line,lavfi.readeia608.0.cc,lavfi.readeia608.1.line,
+          lavfi.readeia608.1.cc -of csv</dt><dd>specifies the first two lines of video in which EIA-608 data (hexadecimal byte pairs) are identifiable by ffprobe, outputting comma separated values (CSV)</dd>
         <dt>&gt;</dt><dd>redirects the standard output (the data created by ffprobe about the video)</dd>
         <dt><i>output_file</i>.csv</dt><dd>names the CSV output file</dd>
       </dl>
