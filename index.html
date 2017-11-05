@@ -1980,6 +1980,30 @@
       </div>
       <!-- ends Split audio and video tracks -->
 
+      <!-- Merge audio and video tracks -->
+      <label class="recipe" for="merge_audio_video">Merge audio and video tracks</label>
+      <input type="checkbox" id="merge_audio_video">
+      <div class="hiding">
+        <h3>Merge audio and video tracks</h3>
+        <p><code>ffmpeg -i <i>video_file</i> -i <i>audio_file</i> -map 0:v -map 1:a -c copy <i>output_file</i></code></p>
+        <p>This command takes a video file and an audio file as inputs, and creates an output file that combines the video stream in the first file with the audio stream in the second file.</p>
+        <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <i>video_file</i></dt><dd>path, name and extension of the first input file (the video file)</dd>
+          <dt>-i <i>audio_file</i></dt><dd>path, name and extension of the second input file (the audio file)</dd>
+          <dt>-map <i>0:v</i></dt><dd>selects the video stream from the first input file</dd>
+          <dt>-map <i>1:a</i></dt><dd>selects the audio stream from the second input file</dd>
+          <dt>-c copy</dt><dd>copies streams without re-encoding</dd>
+          <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+        </dl>
+        <p><b>Note:</b> in the example above, the video input file is given prior to the audio input file. However, input files can be added any order, as long as they are indexed correctly when stream mapping with <code>-map</code>. See the entry on <a href="#stream-mapping">stream mapping</a>.</p>
+        <h4>Variation:</h4>
+        <p>Include the audio tracks from both input files with the following command:</p>
+        <p><code>ffmpeg -i <i>video_file</i> -i <i>audio_file</i> -map 0:v -map 0:a -map 1:a -c copy <i>output_file</i></code></p>
+        <p class="link"></p>
+      </div>
+      <!-- ends Merge audio and video tracks -->
+
       <!-- Create ISO -->
       <label class="recipe" for="create_iso">Create ISO files for DVD access</label>
       <input type="checkbox" id="create_iso">
