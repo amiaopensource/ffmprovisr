@@ -677,7 +677,7 @@
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
         <dt>-vf "<i>width</i>:<i>height</i>"</dt><dd>Crops the video to the given width and height (in pixels).<br>
-          By default, the crop area is centred: that is, the position of the top left of the cropped area is set to x = (<i>input_width</i> - <i>output_width</i>) / 2, y = <i>input_height</i> - <i>output_height</i>) / 2.<br>
+          By default, the crop area is centred: that is, the position of the top left of the cropped area is set to x = (<i>input_width</i> - <i>output_width</i>) / 2, y = <i>input_height</i> - <i>output_height</i>) / 2.
         </dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
       </dl>
@@ -1996,14 +1996,14 @@
       <input type="checkbox" id="split_audio_video">
       <div class="hiding">
         <h3>Split audio and video tracks</h3>
-        <p><code>ffmpeg -i <i>input_file</i> -map <i>0:v:0 video_output_file</i> -map <i>0:a:0 audio_output_file</i></code></p>
+        <p><code>ffmpeg -i <i>input_file</i> -map 0:v:0 <i>video_output_file</i> -map 0:a:0 <i>audio_output_file</i></code></p>
         <p>This command splits the original input file into a video and audio stream. The -map command identifies which streams are mapped to which file. To ensure that you’re mapping the right streams to the right file, run ffprobe before writing the script to identify which streams are desired.</p>
         <dl>
           <dt>ffmpeg</dt><dd>starts the command</dd>
           <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-          <dt>-map <i>0:v:0</i></dt><dd>grabs the first video stream and maps it into:</dd>
+          <dt>-map 0:v:0</dt><dd>grabs the first video stream and maps it into:</dd>
           <dt><i>video_output_file</i></dt><dd>path, name and extension of the video output file</dd>
-          <dt>-map <i>0:a:0</i></dt><dd>grabs the first audio stream and maps it into:</dd>
+          <dt>-map 0:a:0</dt><dd>grabs the first audio stream and maps it into:</dd>
           <dt><i>audio_output_file</i></dt><dd>path, name and extension of the audio output file</dd>
         </dl>
         <p class="link"></p>
@@ -2021,8 +2021,8 @@
           <dt>ffmpeg</dt><dd>starts the command</dd>
           <dt>-i <i>video_file</i></dt><dd>path, name and extension of the first input file (the video file)</dd>
           <dt>-i <i>audio_file</i></dt><dd>path, name and extension of the second input file (the audio file)</dd>
-          <dt>-map <i>0:v</i></dt><dd>selects the video stream from the first input file</dd>
-          <dt>-map <i>1:a</i></dt><dd>selects the audio stream from the second input file</dd>
+          <dt>-map <i>0:v</i></dt><dd>selects the video streams from the first input file</dd>
+          <dt>-map <i>1:a</i></dt><dd>selects the audio streams from the second input file</dd>
           <dt>-c copy</dt><dd>copies streams without re-encoding</dd>
           <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
         </dl>
