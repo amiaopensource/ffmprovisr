@@ -150,6 +150,13 @@ img {
   text-align: center;
 }
 
+.sample-image-small {
+  margin: 0 auto;
+  margin-bottom: 18px;
+  max-width: 250px;
+  text-align: center;
+}
+
 div {
   font-family: 'Merriweather', serif;
   color: white;
