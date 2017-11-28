@@ -44,7 +44,7 @@ You can read our contributor code of conduct [here](https://github.com/amiaopens
 
 ## Maintainers
 
-[Ashley Blewer](https://github.com/ablwr), [Katherine Frances Nagels](https://github.com/kfrn), [Kieran O'Leary](https://github.com/kieranjol) and [Reto Kromer](https://github.com/retokromer)
+[Ashley Blewer](https://github.com/ablwr), [Katherine Frances Nagels](https://github.com/kfrn), [Kieran O'Leary](https://github.com/kieranjol), [Reto Kromer](https://github.com/retokromer) and [Andrew Weaver](https://github.com/privatezero)
 
 ## Contributors
 * Gathered using [octohatrack](https://github.com/LABHR/octohatrack)
