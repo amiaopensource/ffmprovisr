@@ -118,7 +118,7 @@ code {
   color: #c7254e;
   background-color: #f9f2f4;
   border-radius: 4px;
-  word-break: break-all;
+  max-width: 800px;
   word-wrap: break-word;
   white-space: normal;
   display: inline-block;
