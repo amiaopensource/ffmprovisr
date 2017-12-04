@@ -83,6 +83,20 @@
       </div>
       <!-- End Basic structure of an FFmpeg command -->
 
+      <!-- Streaming vs. Saving -->
+      <label class="recipe" for="streaming-saving">Streaming vs. Saving</label>
+      <input type="checkbox" id="streaming-saving">
+      <div class="hiding">
+        <h3>Streaming vs. Saving</h3>
+        <p>FFplay allows you to stream created video and FFmpeg allows you to save video.</p>
+        <p>The following command creates and saves a 10-second video of SMPTE bars:</p>
+        <code>ffmpeg -f lavfi -i smptebars=size=640x480 -t 5 output_file</code>
+        <p>This command plays and streams SMPTE bars but does not save them on the computer:</p>
+        <code>ffplay -f lavfi smptebars=size=640x480</code>
+        <p>The main difference is small but significant: the <code>-i</code> flag is required for FFmpeg but not required for FFplay. Additionally, the FFmpeg script needs to have <code>-t 5</code> and <code>output.mkv</code> added to specify the length of time to record and the place to save the video.</p>
+        <p class="link"></p>
+      </div>
+      <!-- End Streaming vs. Saving -->
     </div>
     <div class="well">
     <h2 id="concepts">Learn about more advanced FFmpeg concepts</h2>
