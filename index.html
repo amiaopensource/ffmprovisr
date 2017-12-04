@@ -1894,6 +1894,31 @@
     </div>
     <!-- ends Broken File -->
 
+    <!-- Game of Life -->
+    <label class="recipe" for="game_of_life">Conway's Game of Life</label>
+    <input type="checkbox" id="game_of_life">
+    <div class="hiding">
+      <h3>Conway's Game of Life</h3>
+      <p>Simulates <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway's Game of Life</a></p>
+      <p><code>ffplay -f lavfi life=s=300x200:mold=10:r=60:ratio=0.1:death_color=#C83232:life_color=#00ff00,scale=1200:800</code></p>
+      <dl>
+        <dt>ffplay</dt><dd>starts the command</dd>
+        <dt>-f lavfi</dt><dd>tells ffplay to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
+        <dt>life=s=300x200</dt><dd>use the life filter and set the size of the video to 300x200</dd>
+        <dt>:</dt><dd>indicates there’s another parameter coming</dd>
+        <dt>mold=10:r=60:ratio=0.1</dt><dd>sets up the rules of the game: cell mold speed, video rate, and random fill ratio</dd>
+        <dt>:</dt><dd>indicates there’s another parameter coming</dd>
+        <dt>death_color=#C83232:life_color=#00ff00</dt><dd>specifies color for cell death and cell life; mold_color can also be set</dd>
+        <dt>,</dt><dd>comma signifies closing of video source assertion and ready for filter assertion</dd>
+        <dt>scale=1200:800</dt><dd>scale to 1280 width and 800 height</dd>
+      </dl>
+      <img src="img/life.gif" alt="GIF of above command">
+      <p>To save a portion of the stream instead of playing it back infinitely, use the following command:</p>
+      <p><code>ffmpeg -f lavfi -i life=s=300x200:mold=10:r=60:ratio=0.1:death_color=#C83232:life_color=#00ff00,scale=1200:800 -t 5 <i>output_file</i></code></p>
+      <p class="link"></p>
+    </div>
+    <!-- ends Game of Life -->
+      
     </div>
     <div class="well">
     <h2 id="ocr">Use OCR</h2>
