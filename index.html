@@ -256,7 +256,7 @@
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
         <dt>-c:v libx264</dt><dd>tells FFmpeg to encode the video stream as H.264</dd>
-        <dt>-pix_fmt yuv420p</dt><dd> libx264 will use a chroma subsampling scheme that is the closest match to that of the input. This can result in Y′C<sub>B</sub>C<sub>R</sub> 4:2:0, 4:2:2, or 4:4:4 chroma subsampling. QuickTime and most other non-FFmpeg based players can’t decode H.264 files that are not 4:2:0. In order to allow the video to play in all players, you can specify 4:2:0 chroma subsampling.</dd>
+        <dt>-pix_fmt yuv420p</dt><dd>libx264 will use a chroma subsampling scheme that is the closest match to that of the input. This can result in Y′C<sub>B</sub>C<sub>R</sub> 4:2:0, 4:2:2, or 4:4:4 chroma subsampling. QuickTime and most other non-FFmpeg based players can’t decode H.264 files that are not 4:2:0. In order to allow the video to play in all players, you can specify 4:2:0 chroma subsampling.</dd>
         <dt>-c:a copy</dt><dd>tells FFmpeg to copy the audio stream without re-encoding it</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
       </dl>
@@ -319,7 +319,7 @@
         <dt>-slices 16</dt><dd>Each frame is split into 16 slices. 16 is a good trade-off between filesize and encoding time.</dd>
         <dt>-c:a copy</dt><dd>copies all mapped audio streams.</dd>
         <dt><i>output_file</i>.mkv</dt><dd>path and name of the output file. Use the <code>.mkv</code> extension to save your file in a Matroska container. Optionally, choose a different extension if you want a different container, such as <code>.mov</code> or <code>.avi</code>.</dd>
-        <dt>-f framemd5</dt><dd> Decodes video with the framemd5 muxer in order to generate MD5 checksums for every frame of your input file. This allows you to verify losslessness when compared against the framemd5s of the output file.</dd>
+        <dt>-f framemd5</dt><dd>Decodes video with the framemd5 muxer in order to generate MD5 checksums for every frame of your input file. This allows you to verify losslessness when compared against the framemd5s of the output file.</dd>
         <dt>-an</dt><dd>ignores the audio stream when creating framemd5 (audio no)</dd>
         <dt><i>framemd5_output_file</i></dt><dd>path, name and extension of the framemd5 file.</dd>
       </dl>
@@ -742,7 +742,7 @@
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-        <dt>-filter_complex </dt><dd>tells fmpeg that we will be using a complex filter</dd>
+        <dt>-filter_complex</dt><dd>tells fmpeg that we will be using a complex filter</dd>
         <dt>"</dt><dd>quotation mark to start filtergraph</dd>
         <dt>[0:a:0][0:a:1]amerge[out]</dt><dd>combines the two audio tracks into one</dd>
         <dt>"</dt><dd>quotation mark to end filtergraph</dd>
@@ -1166,12 +1166,12 @@
         <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
         <dt>-vf drawtext=</dt><dd>This calls the drawtext filter with the following options:
         <dl>
-          <dt>fontfile=<i>font_path</i></dt><dd> Set path to font. For example in macOS: <code>fontfile=/Library/Fonts/AppleGothic.ttf</code></dd>
-          <dt>fontsize=<i>font_size</i></dt><dd> Set font size. <code>35</code> is a good starting point for SD. Ideally this value is proportional to video size, for example use ffprobe to acquire video height and divide by 14.</dd>
-          <dt>text=<i>watermark_text</i> </dt><dd> Set the content of your watermark text. For example: <code>text='FFMPROVISR EXAMPLE TEXT'</code></dd>
-          <dt>fontcolor=<i>font_colour</i> </dt><dd> Set colour of font. Can be a text string such as <code>fontcolor=white</code> or a hexadecimal value such as <code>fontcolor=0xFFFFFF</code></dd>
-          <dt>alpha=0.4</dt><dd> Set transparency value.</dd>
-          <dt>x=(w-text_w)/2:y=(h-text_h)/2</dt><dd> Sets <i>x</i> and <i>y</i> coordinates for the watermark. These relative values will centre your watermark regardless of video dimensions.</dd>
+          <dt>fontfile=<i>font_path</i></dt><dd>Set path to font. For example in macOS: <code>fontfile=/Library/Fonts/AppleGothic.ttf</code></dd>
+          <dt>fontsize=<i>font_size</i></dt><dd>Set font size. <code>35</code> is a good starting point for SD. Ideally this value is proportional to video size, for example use ffprobe to acquire video height and divide by 14.</dd>
+          <dt>text=<i>watermark_text</i></dt><dd>Set the content of your watermark text. For example: <code>text='FFMPROVISR EXAMPLE TEXT'</code></dd>
+          <dt>fontcolor=<i>font_colour</i></dt><dd>Set colour of font. Can be a text string such as <code>fontcolor=white</code> or a hexadecimal value such as <code>fontcolor=0xFFFFFF</code></dd>
+          <dt>alpha=0.4</dt><dd>Set transparency value.</dd>
+          <dt>x=(w-text_w)/2:y=(h-text_h)/2</dt><dd>Sets <i>x</i> and <i>y</i> coordinates for the watermark. These relative values will centre your watermark regardless of video dimensions.</dd>
         </dl>
         Note: <code>-vf</code> is a shortcut for <code>-filter:v</code>.</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file.</dd>
@@ -1208,14 +1208,14 @@
         <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
         <dt>-vf drawtext=</dt><dd>This calls the drawtext filter with the following options:
         <dt>"</dt><dd>quotation mark to start drawtext filter command</dd>
-        <dt>fontfile=<i>font_path</i></dt><dd> Set path to font. For example in macOS: <code>fontfile=/Library/Fonts/AppleGothic.ttf</code></dd>
-        <dt>fontsize=<i>font_size</i></dt><dd> Set font size. <code>35</code> is a good starting point for SD. Ideally this value is proportional to video size, for example use ffprobe to acquire video height and divide by 14.</dd>
-        <dt>timecode=<i>starting_timecode</i> </dt><dd> Set the timecode to be displayed for the first frame. Timecode is to be represented as <code>hh:mm:ss[:;.]ff</code>. Colon escaping is determined by O.S, for example in Ubuntu <code>timecode='09\\:50\\:01\\:23'</code>. Ideally, this value would be generated from the file itself using ffprobe.</dd>
-        <dt>fontcolor=<i>font_colour</i> </dt><dd> Set colour of font. Can be a text string such as <code>fontcolor=white</code> or a hexadecimal value such as <code>fontcolor=0xFFFFFF</code></dd>
-        <dt>box=1</dt><dd> Enable box around timecode</dd>
-        <dt>boxcolor=<i>box_colour</i></dt><dd> Set colour of box. Can be a text string such as <code>fontcolor=black</code> or a hexadecimal value such as <code>fontcolor=0x000000</code></dd>
-        <dt>rate=<i>timecode_rate</i></dt><dd> Framerate of video. For example <code>25/1</code></dd>
-        <dt>x=(w-text_w)/2:y=h/1.2</dt><dd> Sets <i>x</i> and <i>y</i> coordinates for the timecode. These relative values will horizontally centre your timecode in the bottom third regardless of video dimensions.</dd>
+        <dt>fontfile=<i>font_path</i></dt><dd>Set path to font. For example in macOS: <code>fontfile=/Library/Fonts/AppleGothic.ttf</code></dd>
+        <dt>fontsize=<i>font_size</i></dt><dd>Set font size. <code>35</code> is a good starting point for SD. Ideally this value is proportional to video size, for example use ffprobe to acquire video height and divide by 14.</dd>
+        <dt>timecode=<i>starting_timecode</i></dt><dd>Set the timecode to be displayed for the first frame. Timecode is to be represented as <code>hh:mm:ss[:;.]ff</code>. Colon escaping is determined by O.S, for example in Ubuntu <code>timecode='09\\:50\\:01\\:23'</code>. Ideally, this value would be generated from the file itself using ffprobe.</dd>
+        <dt>fontcolor=<i>font_colour</i></dt><dd>Set colour of font. Can be a text string such as <code>fontcolor=white</code> or a hexadecimal value such as <code>fontcolor=0xFFFFFF</code></dd>
+        <dt>box=1</dt><dd>Enable box around timecode</dd>
+        <dt>boxcolor=<i>box_colour</i></dt><dd>Set colour of box. Can be a text string such as <code>fontcolor=black</code> or a hexadecimal value such as <code>fontcolor=0x000000</code></dd>
+        <dt>rate=<i>timecode_rate</i></dt><dd>Framerate of video. For example <code>25/1</code></dd>
+        <dt>x=(w-text_w)/2:y=h/1.2</dt><dd>Sets <i>x</i> and <i>y</i> coordinates for the timecode. These relative values will horizontally centre your timecode in the bottom third regardless of video dimensions.</dd>
         <dt>"</dt><dd>quotation mark to end drawtext filter command</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file.</dd>
       </dl>
@@ -2153,26 +2153,26 @@
           <li>This is in daily use to live-stream a real-world TV show. No errors for nearly 4 years. Some parameters were found by trial-and-error or empiric testing. So suggestions/questions are welcome.</li>
         </ol>
         <dl>
-           <dt>ffmpeg </dt><dd>starts the command</dd>
-           <dt>-re </dt><dd>Read input at native framerate</dd>
-           <dt>-i input.mov </dt><dd>The input file. Can also be a <code>-</code> to use STDIN if you pipe in from webcam or SDI.</dd>
-           <dt>-map 0 </dt><dd>map ALL streams from input file to output</dd>
-           <dt>-flags +global_header </dt><dd>Don't place extra data in every keyframe</dd>
-           <dt>-vf scale="1280:-1" </dt><dd>Scale to 1280 width, maintain aspect ratio.</dd>
-           <dt>-pix_fmt yuv420p </dt><dd>convert to 4:2:0 chroma subsampling scheme</dd>
-           <dt>-level 3.1 </dt><dd>H264 Level (defines some thresholds for bitrate)</dd>
-           <dt>-vsync passthrough </dt><dd>Each frame is passed with its timestamp from the demuxer to the muxer.</dd>
-           <dt>-crf 26 </dt><dd>Constant rate factor - basically the quality</dd>
-           <dt>-g 50 </dt><dd>GOP size.</dd>
-           <dt>-bufsize 3500k </dt><dd>Ratecontrol buffer size (~ maxrate x2)</dd>
-           <dt>-maxrate 1800k </dt><dd>Maximum bit rate</dd>
-           <dt>-c:v libx264 </dt><dd>encode output video stream as H.264</dd>
-           <dt>-c:a aac </dt><dd>encode output audio stream as AAC</dd>
-           <dt>-b:a 128000 </dt><dd>The audio bitrate</dd>
-           <dt>-r:a 44100 </dt><dd>The audio samplerate</dd>
-           <dt>-ac 2 </dt><dd>Two audio channels</dd>
-           <dt>-t ${STREAMDURATION} </dt><dd>Time (in seconds) after which the stream should automatically end.</dd>
-           <dt>-f tee </dt><dd>Use multiple outputs. Outputs defined below.</dd>
+           <dt>ffmpeg</dt><dd>starts the command</dd>
+           <dt>-re</dt><dd>Read input at native framerate</dd>
+           <dt>-i input.mov</dt><dd>The input file. Can also be a <code>-</code> to use STDIN if you pipe in from webcam or SDI.</dd>
+           <dt>-map 0</dt><dd>map ALL streams from input file to output</dd>
+           <dt>-flags +global_header</dt><dd>Don't place extra data in every keyframe</dd>
+           <dt>-vf scale="1280:-1"</dt><dd>Scale to 1280 width, maintain aspect ratio.</dd>
+           <dt>-pix_fmt yuv420p</dt><dd>convert to 4:2:0 chroma subsampling scheme</dd>
+           <dt>-level 3.1</dt><dd>H264 Level (defines some thresholds for bitrate)</dd>
+           <dt>-vsync passthrough</dt><dd>Each frame is passed with its timestamp from the demuxer to the muxer.</dd>
+           <dt>-crf 26</dt><dd>Constant rate factor - basically the quality</dd>
+           <dt>-g 50</dt><dd>GOP size.</dd>
+           <dt>-bufsize 3500k</dt><dd>Ratecontrol buffer size (~ maxrate x2)</dd>
+           <dt>-maxrate 1800k</dt><dd>Maximum bit rate</dd>
+           <dt>-c:v libx264</dt><dd>encode output video stream as H.264</dd>
+           <dt>-c:a aac</dt><dd>encode output audio stream as AAC</dd>
+           <dt>-b:a 128000</dt><dd>The audio bitrate</dd>
+           <dt>-r:a 44100</dt><dd>The audio samplerate</dd>
+           <dt>-ac 2</dt><dd>Two audio channels</dd>
+           <dt>-t ${STREAMDURATION}</dt><dd>Time (in seconds) after which the stream should automatically end.</dd>
+           <dt>-f tee</dt><dd>Use multiple outputs. Outputs defined below.</dd>
            <dt>"[movflags=+faststart]target-file.mp4|[f=flv]rtmp://stream-url/stream-id"</dt><dd>The outputs, separated by a pipe (|). The first is the local file, the second is the live stream. Options for each target are given in square brackets before the target.</dd>
         </dl>
         <p class="link"></p>
