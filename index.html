@@ -1229,19 +1229,20 @@
     <input type="checkbox" id="embed_subtitles">
     <div class="hiding">
       <h3>Embed a subtitle file into a movie file </h3>
-      <p><code>ffmpeg -i <i>input_file</i> -i <i>subtitles_file</i>.srt -c copy -c:s mov_text <i>output_file</i></code></p>
+      <p><code>ffmpeg -i <i>input_file</i> -i <i>subtitles_file</i> -c copy -c:s mov_text <i>output_file</i></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-        <dt>-i <i>subtitles_file</i>.srt</dt><dd>path to subtitles file</dd>
+        <dt>-i <i>subtitles_file</i></dt><dd>path to subtitles file, e.g. <code>subtitles.srt</code></dd>
         <dt>-c copy</dt><dd>enable stream copy (no re-encode)</dd>
-        <dt>-c:s mov_text</dt><dd>Encode subtitles using the <code>mov_text</code> codec. Note: The <code>mov_text</code> codec works for mp4 and mov containers. For the mkv container, acceptable formats are <code>ass</code>, <code>srt</code>, and <code>ssa</code>.</dd>
+        <dt>-c:s mov_text</dt><dd>Encode subtitles using the <code>mov_text</code> codec. Note: The <code>mov_text</code> codec works for MP4 and MOV containers. For the MKV container, acceptable formats are <code>ASS</code>, <code>SRT</code>, and <code>SSA</code>.</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
       </dl>
       <p>Note: <code>-c:s</code> is a shortcut for <code>-scodec</code></p>
       <p class="link"></p>
     </div>
     <!-- ends Embed subtitles -->
+    
     </div>
     <div class="well">
     <h2 id="create-images">Create thumbnails or GIFs</h2>
