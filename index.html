@@ -1530,10 +1530,11 @@
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
         <dt>-map_metadata -1</dt><dd>sets metadata copying to -1, which copies nothing</dd>
-        <dt>-vcodec copy</dt><dd>copies video track</dd>
-        <dt>-acodec copy</dt><dd>copies audio track</dd>
+        <dt>-c:v copy</dt><dd>copies video track</dd>
+        <dt>-c:a copy</dt><dd>copies audio track</dd>
         <dt><i>output_file</i></dt><dd>Makes copy of original file and names output file</dd>
       </dl>
+      <p>Note: <code>-c:v</code> and <code>-c:a</code> are shortcuts for <code>-vcodec</code> and <code>-acodec</code>.</p>
       <p class="link"></p>
     </div>
     <!-- ends Strip metadata -->
