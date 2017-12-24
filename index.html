@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>ffmprovisr</title>
-    <meta name="viewport" charset="utf-8" content="text/html, width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat%7CMerriweather" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="css/css.css">
-    <link rel="icon" href="img/vhs.ico">
-    <script src="js/jquery.min.js"></script>
-    <script src="js/js.js"></script>
-  </head>
+<head>
+  <title>ffmprovisr</title>
+  <meta name="viewport" charset="utf-8" content="text/html, width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat%7CMerriweather" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="css/css.css">
+  <link rel="icon" href="img/vhs.ico">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/js.js"></script>
+</head>
 
 <body>
 <div class="grid">
@@ -46,16 +46,16 @@
       <p>FFmpeg is a powerful tool for manipulating audiovisual files. Unfortunately, it also has a steep learning curve, especially for users unfamiliar with a command line interface. This app helps users through the command generation process so that more people can reap the benefits of FFmpeg.</p>
       <p>Each button displays helpful information about how to perform a wide variety of tasks using FFmpeg. To use this site, click on the task you would like to perform. A new window will open up with a sample command and a description of how that command works. You can copy this command and understand how the command works with a breakdown of each of the flags.</p>
       <span class="intro-lead">Tutorials</span>
-      <p>For FFmpeg basics, check out the program’s <a href="https://www.ffmpeg.org/" target="_blank">official website</a>.</p>
+      <p>For FFmpeg basics, check out the program’s <a href="https://ffmpeg.org/" target="_blank">official website</a>.</p>
       <p>For instructions on how to install FFmpeg on Mac, Linux, and Windows, refer to Reto Kromer’s <a href="https://avpres.net/FFmpeg/#ch1" target="_blank">installation instructions</a>.</p>
-      <p>For Bash and command line basics, try the <a href="https://learnpythonthehardway.org/book/appendixa.html" target="_blank">Command Line Crash Course</a>. For a little more context presented in an ffmprovisr style, try <a href="http://explainshell.com/" target="_blank">explainshell.com</a>!</p>
+      <p>For Bash and command line basics, try the <a href="https://learnpythonthehardway.org/book/appendixa.html" target="_blank">Command Line Crash Course</a>. For a little more context presented in an ffmprovisr style, try <a href="https://explainshell.com/" target="_blank">explainshell.com</a>!</p>
       <span class="intro-lead">License</span>
       <p class="license">
         <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank"><img alt="Creative Commons License" src="img/cc.png"></a><br>
         This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Attribution 4.0 International License</a>.
       </p>
       <span class="intro-lead">Sister projects</span>
-      <p><a href="http://dd388.github.io/crals/" target="_blank">Script Ahoy</a>: Community Resource for Archivists and Librarians Scripting</p>
+      <p><a href="https://dd388.github.io/crals/" target="_blank">Script Ahoy</a>: Community Resource for Archivists and Librarians Scripting</p>
       <p><a href="https://datapraxis.github.io/sourcecaster/" target="_blank">The Sourcecaster</a>: an app that helps you use the command line to work through common challenges that come up when working with digital primary sources.</p>
       <p><a href="https://amiaopensource.github.io/cable-bible/" target="_blank">Cable Bible</a>: A Guide to Cables and Connectors Used for Audiovisual Tech</p>
     </div>
@@ -99,17 +99,17 @@
       <!-- End Streaming vs. Saving -->
     </div>
     <div class="well">
-    <h2 id="concepts">Learn about more advanced FFmpeg concepts</h2>
 
+    <h2 id="concepts">Learn about more advanced FFmpeg concepts</h2>
     <!-- Filtergraph explanation -->
     <label class="recipe" for="filtergraphs">Filtergraphs</label>
     <input type="checkbox" id="filtergraphs">
     <div class="hiding">
       <h3>Filtergraphs</h3>
-      <p>Many FFmpeg commands use filters that manipulate the video or audio stream in some way: for example, <a href="http://ffmpeg.org/ffmpeg-filters.html#hflip" target="_blank">hflip</a> to horizontally flip a video, or <a href="http://ffmpeg.org/ffmpeg-filters.html#amerge-1" target="_blank">amerge</a> to merge two or more audio tracks into a single stream.</p>
+      <p>Many FFmpeg commands use filters that manipulate the video or audio stream in some way: for example, <a href="https://ffmpeg.org/ffmpeg-filters.html#hflip" target="_blank">hflip</a> to horizontally flip a video, or <a href="https://ffmpeg.org/ffmpeg-filters.html#amerge-1" target="_blank">amerge</a> to merge two or more audio tracks into a single stream.</p>
       <p>The use of a filter is signalled by the flag <code>-vf</code> (video filter) or <code>-af</code> (audio filter), followed by the name and options of the filter itself. For example, take the <a href="#convert-colourspace">convert colourspace</a> command:</p>
       <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf colormatrix=<i>src</i>:<i>dst</i> <i>output_file</i></code>
-      <p>Here, <a href="http://ffmpeg.org/ffmpeg-filters.html#colormatrix" target="_blank">colormatrix</a> is the filter used, with <i>src</i> and <i>dst</i> representing the source and destination colourspaces. This part following the <code>-vf</code> is a <b>filtergraph</b>.</p>
+      <p>Here, <a href="https://ffmpeg.org/ffmpeg-filters.html#colormatrix" target="_blank">colormatrix</a> is the filter used, with <i>src</i> and <i>dst</i> representing the source and destination colourspaces. This part following the <code>-vf</code> is a <b>filtergraph</b>.</p>
       <p>It is also possible to apply multiple filters to an input, which are sequenced together in the filtergraph. A chained set of filters is called a filter chain, and a filtergraph may include multiple filter chains. Filters in a filterchain are separated from each other by commas (<code>,</code>), and filterchains are separated from each other by semicolons (<code>;</code>). For example, take the <a href="#inverse-telecine">inverse telecine</a> command:</p>
       <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf "fieldmatch,yadif,decimate" <i>output_file</i></code></p>
       <p>Here we have a filtergraph including one filter chain, which is made up of three video filters.</p>
@@ -154,7 +154,7 @@
       </ul>
       <p>To map <i>all</i> streams in the input file to the output file, use <code>-map 0</code>. However, note that not all container formats can include all stream types: for example, .mp4 cannot contain timecode.</p>
       <p>When no mapping is specified in an ffmpeg command, the default for video files is to take just one video and one audio stream for the output: other stream types, such as timecode or subtitles, will not be copied to the output file by default. If multiple video or audio streams are present, the best quality one is automatically selected by FFmpeg.</p>
-      <p>For more information, check out the FFmpeg wiki <a href="https://trac.ffmpeg.org/wiki/Map" target="_blank">Map</a> page, and the official FFmpeg <a href="http://ffmpeg.org/ffmpeg.html#Advanced-options" target="_blank">documentation on <code>-map</code></a>.</p>
+      <p>For more information, check out the FFmpeg wiki <a href="https://trac.ffmpeg.org/wiki/Map" target="_blank">Map</a> page, and the official FFmpeg <a href="https://ffmpeg.org/ffmpeg.html#Advanced-options" target="_blank">documentation on <code>-map</code></a>.</p>
       <p class="link"></p>
     </div>
     <!-- End Stream Mapping explanation -->
@@ -582,7 +582,7 @@
         For example, to convert from Rec.601 to Rec.709, you would use <code>-vf colormatrix=bt601:bt709</code>.</dd>
         <dt><i>output file</i></dt><dd>path, name and extension of the output file</dd>
       </dl>
-      <p><b>Note:</b> Converting between colourspaces with FFmpeg can be done via either the <b>colormatrix</b> or <b>colorspace</b> filters, with colorspace allowing finer control (individual setting of colourspace, transfer characteristics, primaries, range, pixel format, etc). See <a href="https://trac.ffmpeg.org/wiki/colorspace" target="_blank">this</a> entry on the FFmpeg wiki, and the FFmpeg documentation for <a href="http://ffmpeg.org/ffmpeg-filters.html#colormatrix" target="_blank">colormatrix</a> and <a href="http://ffmpeg.org/ffmpeg-filters.html#colorspace" target="_blank">colorspace</a>.</p>
+      <p><b>Note:</b> Converting between colourspaces with FFmpeg can be done via either the <b>colormatrix</b> or <b>colorspace</b> filters, with colorspace allowing finer control (individual setting of colourspace, transfer characteristics, primaries, range, pixel format, etc). See <a href="https://trac.ffmpeg.org/wiki/colorspace" target="_blank">this</a> entry on the FFmpeg wiki, and the FFmpeg documentation for <a href="https://ffmpeg.org/ffmpeg-filters.html#colormatrix" target="_blank">colormatrix</a> and <a href="https://ffmpeg.org/ffmpeg-filters.html#colorspace" target="_blank">colorspace</a>.</p>
       <hr>
       <h4>Convert colourspace and embed colourspace metadata</h4>
       <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -vf colormatrix=src:dst -color_primaries <i>val</i> -color_trc <i>val</i> -colorspace <i>val</i> <i>output_file</i></code></p>
@@ -611,7 +611,7 @@
       <p><span class="beware">⚠</span> Using this command it is possible to add Rec.709 tags to a file that is actually Rec.601 (etc), so apply with caution!</p>
       <p>These commands are relevant for H.264 and H.265 videos, encoded with <code>libx264</code> and <code>libx265</code> respectively.</p>
       <p><b>Note:</b> If you wish to embed colourspace metadata <i>without</i> changing to another colourspace, omit <code>-vf colormatrix=src:dst</code>. However, since it is <code>libx264</code>/<code>libx265</code> that writes the metadata, it’s not possible to add these tags without reencoding the video stream.</p>
-      <p>For all possible values for <code>-color_primaries</code>, <code>-color_trc</code>, and <code>-colorspace</code>, see the FFmpeg documentation on <a href="https://www.ffmpeg.org/ffmpeg-codecs.html#Codec-Options" target="_blank">codec options</a>.</p>
+      <p>For all possible values for <code>-color_primaries</code>, <code>-color_trc</code>, and <code>-colorspace</code>, see the FFmpeg documentation on <a href="https://ffmpeg.org/ffmpeg-codecs.html#Codec-Options" target="_blank">codec options</a>.</p>
       <hr>
       <p id="fn1" class="footnote">1. Out of step with the regular pattern, <code>-color_trc</code> doesn’t accept <code>bt470bg</code>; it is instead here referred to directly as gamma.<br>
       In the Rec.601 standard, 525-line/NTSC and 625-line/PAL video have assumed gammas of 2.2 and 2.8 respectively. <a href="#ref1" title="Jump back.">↩</a></p>
@@ -675,7 +675,7 @@
         <dt>-color_trc <i>VALUE</i> -movflags write_colr</dt><dd>Set a new color_transfer value.</dd>
         <dt>-field_order <i>VALUE</i></dt><dd>Set interlacement values.</dd>
       </dl>
-      <p>The possible values for <code>-color_primaries</code>, <code>-color_trc</code>, and <code>-field_order</code> are given in the <a href="http://ffmpeg.org/ffmpeg-all.html#toc-Codec-Options" target="_blank">Codec Options</a> section of the FFmpeg docs - scroll down to near the bottom of the section.</p>
+      <p>The possible values for <code>-color_primaries</code>, <code>-color_trc</code>, and <code>-field_order</code> are given in the <a href="https://ffmpeg.org/ffmpeg-all.html#toc-Codec-Options" target="_blank">Codec Options</a> section of the FFmpeg docs - scroll down to near the bottom of the section.</p>
       <p class="link"></p>
     </div>
     <!-- ends Make stream properties explicate -->
@@ -783,7 +783,7 @@
       <p><code>ffmpeg -i <i>input_file</i> -af loudnorm=print_format=json -f null -</code></p>
       <p>This filter calculates and outputs loudness information in json about an input file (labeled input) as well as what the levels would be if loudnorm were applied in its one pass mode (labeled output). The values generated can be used as inputs for a 'second pass' of the loudnorm filter allowing more accurate loudness normalization than if it is used in a single pass.</p>
       <p>These instructions use the loudnorm defaults, which align well with PBS recommendations for target loudness. More information can be found at the <a href="https://ffmpeg.org/ffmpeg-filters.html#loudnorm" target="_blank">loudnorm documentation</a>.</p>
-      <p>Information about PBS loudness standards can be found in the <a href="http://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf" target="_blank">PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href="https://tech.ebu.ch/docs/r/r128-2014.pdf" target="_blank">EBU R 128</a> recommendation document.</p>
+      <p>Information about PBS loudness standards can be found in the <a href="https://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf" target="_blank">PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href="https://tech.ebu.ch/docs/r/r128-2014.pdf" target="_blank">EBU R 128</a> recommendation document.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
@@ -819,7 +819,7 @@
       <h3>One Pass Loudness Normalization</h3>
       <p><code>ffmpeg -i <i>input_file</i> -af loudnorm=dual_mono=true -ar 48k <i>output_file</i></code></p>
       <p>This will normalize the loudness of an input using one pass, which is quicker but less accurate than using two passes. This command uses the loudnorm filter defaults for target loudness. These defaults align well with PBS recommendations, but loudnorm does allow targeting of specific loudness levels. More information can be found at the <a href="https://ffmpeg.org/ffmpeg-filters.html#loudnorm" target="_blank">loudnorm documentation</a>.</p>
-      <p>Information about PBS loudness standards can be found in the <a href="http://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf" target="_blank">PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href="https://tech.ebu.ch/docs/r/r128-2014.pdf" target="_blank">EBU R 128</a> recommendation document.</p>
+      <p>Information about PBS loudness standards can be found in the <a href="https://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf" target="_blank">PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href="https://tech.ebu.ch/docs/r/r128-2014.pdf" target="_blank">EBU R 128</a> recommendation document.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
@@ -839,7 +839,7 @@
       <h3>Two Pass Loudness Normalization</h3>
       <p><code>ffmpeg -i <i>input_file</i> -af loudnorm=dual_mono=true:measured_I=<i>input_i</i>:measured_TP=<i>input_tp</i>:measured_LRA=<i>input_lra</i>:measured_thresh=<i>input_thresh</i>:offset=<i>target_offset</i>:linear=true -ar 48k <i>output_file</i></code></p>
       <p>This command allows using the levels calculated using a <a href="#loudnorm_metadata">first pass of the loudnorm filter</a> to more accurately normalize loudness. This command uses the loudnorm filter defaults for target loudness. These defaults align well with PBS recommendations, but loudnorm does allow targeting of specific loudness levels. More information can be found at the <a href="https://ffmpeg.org/ffmpeg-filters.html#loudnorm" target="_blank">loudnorm documentation</a>.</p>
-      <p>Information about PBS loudness standards can be found in the <a href="http://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf" target="_blank">PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href="https://tech.ebu.ch/docs/r/r128-2014.pdf" target="_blank">EBU R 128</a> recommendation document.</p>
+      <p>Information about PBS loudness standards can be found in the <a href="https://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf" target="_blank">PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href="https://tech.ebu.ch/docs/r/r128-2014.pdf" target="_blank">EBU R 128</a> recommendation document.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt><i>input_file</i></dt><dd>path, name and extension of the input file</dd>
@@ -890,7 +890,7 @@
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-f concat</dt><dd>forces ffmpeg to concatenate the files and to keep the same file format</dd>
-        <dt>-i <i>mylist.txt</i></dt><dd>path, name and extension of the input file. Per the <a href="https://www.ffmpeg.org/ffmpeg-formats.html#Options" target="_blank">FFmpeg documentation</a>, it is preferable to specify relative rather than absolute file paths, as allowing absolute file paths may pose a security risk.<br>
+        <dt>-i <i>mylist.txt</i></dt><dd>path, name and extension of the input file. Per the <a href="https://ffmpeg.org/ffmpeg-formats.html#Options" target="_blank">FFmpeg documentation</a>, it is preferable to specify relative rather than absolute file paths, as allowing absolute file paths may pose a security risk.<br>
         This text file contains the list of files to be concatenated and should be formatted as follows:
         <pre>file '<i>./first_file.ext</i>'
   file '<i>./second_file.ext</i>'
@@ -918,7 +918,7 @@
         <dt>-i <i>input_file</i></dt><dd>Takes in a normal file.</dd>
         <dt>-c copy</dt><dd>Use stream copy mode to re-mux instead of re-encode.</dd>
         <dt>-map 0</dt><dd>tells FFmpeg to map all streams of the input to the output.</dd>
-        <dt>-f segment</dt><dd>Use <a href="http://www.ffmpeg.org/ffmpeg-formats.html#toc-segment_002c-stream_005fsegment_002c-ssegment" target="_blank">segment muxer</a> for generating the output.</dd>
+        <dt>-f segment</dt><dd>Use <a href="https://ffmpeg.org/ffmpeg-formats.html#toc-segment_002c-stream_005fsegment_002c-ssegment" target="_blank">segment muxer</a> for generating the output.</dd>
         <dt>-segment_time 60</dt><dd>Set duration of each segment (in seconds). This example creates segments with max. duration of 60s each.</dd>
         <dt>-reset_timestamps 1</dt><dd>Reset timestamps of each segment to 0. Meant to ease the playback of the generated segments.</dd>
         <dt><i>output_file-%03d.mkv</i></dt>
@@ -1190,7 +1190,7 @@
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <i>input_video_file</i></dt><dd>path, name and extension of the input video file</dd>
         <dt>-i <i>input_image_file</i></dt><dd>path, name and extension of the image file</dd>
-        <dt>-filter_complex overlay=main_w-overlay_w-5:5</dt><dd>This calls the overlay filter and sets x and y coordinates for the position of the watermark on the video. Instead of hardcoding specific x and y coordinates, <code>main_w-overlay_w-5:5</code> uses relative coordinates to place the watermark in the upper right hand corner, based on the width of your input files. Please see the <a href="https://www.ffmpeg.org/ffmpeg-all.html#toc-Examples-102" target="_blank">FFmpeg documentation for more examples.</a></dd>
+        <dt>-filter_complex overlay=main_w-overlay_w-5:5</dt><dd>This calls the overlay filter and sets x and y coordinates for the position of the watermark on the video. Instead of hardcoding specific x and y coordinates, <code>main_w-overlay_w-5:5</code> uses relative coordinates to place the watermark in the upper right hand corner, based on the width of your input files. Please see the <a href="https://ffmpeg.org/ffmpeg-all.html#toc-Examples-102" target="_blank">FFmpeg documentation for more examples.</a></dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
       </dl>
       <p class="link"></p>
@@ -1242,7 +1242,7 @@
       <p class="link"></p>
     </div>
     <!-- ends Embed subtitles -->
-    
+
     </div>
     <div class="well">
     <h2 id="create-images">Create thumbnails or GIFs</h2>
@@ -1417,7 +1417,7 @@
       <p><code>ffplay -f lavfi "amovie='input.mp3', astats=metadata=1:reset=1, adrawgraph=lavfi.astats.Overall.Peak_level:max=0:min=-30.0:size=700x256:bg=Black[out]"</code></p>
       <dl>
         <dt>ffplay</dt><dd>starts the command</dd>
-        <dt>-f lavfi</dt><dd>tells ffplay to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter input virtual device</a></dd>
+        <dt>-f lavfi</dt><dd>tells ffplay to use the <a href="https://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter input virtual device</a></dd>
         <dt>"</dt><dd>quotation mark to start the lavfi filtergraph</dd>
         <dt>movie='<i>input.mp3</i>'</dt><dd>declares audio source file on which to apply filter</dd>
         <dt>,</dt><dd>comma signifies the end of audio source section and the beginning of the filter section</dd>
@@ -1446,7 +1446,7 @@
       <p><code>ffplay -f lavfi "movie='<i>input.mp4</i>', signalstats=out=brng:color=cyan[out]"</code></p>
       <dl>
         <dt>ffplay</dt><dd>starts the command</dd>
-        <dt>-f lavfi</dt><dd>tells ffplay to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter input virtual device</a></dd>
+        <dt>-f lavfi</dt><dd>tells ffplay to use the <a href="https://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter input virtual device</a></dd>
         <dt>"</dt><dd>quotation mark to start the lavfi filtergraph</dd>
         <dt>movie='<i>input.mp4</i>'</dt><dd>declares video file source to apply filter</dd>
         <dt>,</dt><dd>comma signifies closing of video source assertion and ready for filter assertion</dd>
@@ -1501,7 +1501,7 @@
         <dt>[a][b]hstack[out]</dt><dd>Takes the outputs from the previous steps ([a] and [b] and uses the hstack (horizontal stack) filter on them to create the side by side output. This output is then named [out])</dd>
         <dt>"</dt><dd>quotation mark to end filtergraph</dd>
         <dt>-map [out]</dt><dd>Maps the output of the filter chain</dd>
-        <dt>-f nut</dt><dd>Sets the format for the output video stream to <a href="https://www.ffmpeg.org/ffmpeg-formats.html#nut" target="_blank">Nut</a></dd>
+        <dt>-f nut</dt><dd>Sets the format for the output video stream to <a href="https://ffmpeg.org/ffmpeg-formats.html#nut" target="_blank">Nut</a></dd>
         <dt>-c:v rawvideo</dt><dd>Sets the video codec of the output video stream to raw video</dd>
         <dt>-</dt><dd>tells FFmpeg that the output will be piped to a new command (as opposed to a file)</dd>
         <dt>|</dt><dd>Tells the system you will be piping the output of the previous command into a new command</dd>
@@ -1534,7 +1534,7 @@
         <dt>-show_data</dt><dd>adds a short “hexdump” to show_streams command output</dd>
         <dt>-print_format</dt><dd>Set the output printing format (in this example “xml”; other formats include “json” and “flat”)</dd>
       </dl>
-      <p>See also the <a href="http://www.ffmpeg.org/ffprobe.html" target="_blank"> FFmpeg documentation on ffprobe</a> for a full list of flags, commands, and options.</p>
+      <p>See also the <a href="https://ffmpeg.org/ffprobe.html" target="_blank"> FFmpeg documentation on ffprobe</a> for a full list of flags, commands, and options.</p>
       <p class="link"></p>
     </div>
     <!-- ends Pull specs -->
@@ -1680,7 +1680,7 @@
       <p>This will create an XML report for use in <a href="https://github.com/bavc/qctools" target="_blank">QCTools</a> for a video file with one video track and one audio track. See also the <a href="https://github.com/bavc/qctools/blob/master/docs/data_format.md#creating-a-qctools-document" target="_blank">QCTools documentation</a>.</p>
       <dl>
         <dt>ffprobe</dt><dd>starts the command</dd>
-        <dt>-f lavfi</dt><dd>tells ffprobe to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
+        <dt>-f lavfi</dt><dd>tells ffprobe to use the <a href="https://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
         <dt>-i</dt><dd>input file and parameters</dd>
         <dt>"movie=<i>input_file</i>:s=v+a[in0][in1], [in0]signalstats=stat=tout+vrep+brng, cropdetect=reset=1:round=1, idet=half_life=1, split[a][b];[a]field=top[a1];[b]field=bottom, split[b1][b2];[a1][b1]psnr[c1];[c1][b2]ssim[out0];[in1]ebur128=metadata=1, astats=metadata=1:reset=1:length=0.4[out1]"</dt>
         <dd>This very large lump of commands declares the input file and passes in a request for all potential data signal information for a file with one video and one audio track</dd>
@@ -1705,7 +1705,7 @@
       <p>This will create an XML report for use in <a href="https://github.com/bavc/qctools" target="_blank">QCTools</a> for a video file with one video track and NO audio track. See also the <a href="https://github.com/bavc/qctools/blob/master/docs/data_format.md#creating-a-qctools-document" target="_blank">QCTools documentation</a>.</p>
       <dl>
         <dt>ffprobe</dt><dd>starts the command</dd>
-        <dt>-f lavfi</dt><dd>tells ffprobe to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
+        <dt>-f lavfi</dt><dd>tells ffprobe to use the <a href="https://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
         <dt>-i</dt><dd>input file and parameters</dd>
         <dt>"movie=<i>input_file</i>,signalstats=stat=tout+vrep+brng, cropdetect=reset=1:round=1, idet=half_life=1, split[a][b];[a]field=top[a1];[b]field=bottom,split[b1][b2];[a1][b1]psnr[c1];[c1][b2]ssim"</dt>
         <dd>This very large lump of commands declares the input file and passes in a request for all potential data signal information for a file with one video and one audio track</dd>
@@ -1750,7 +1750,7 @@
       <p>If hex isn't your thing, closed captioning <a href="http://www.theneitherworld.com/mcpoodle/SCC_TOOLS/DOCS/CC_CHARS.HTML" target="_blank">character</a> and <a href="http://www.theneitherworld.com/mcpoodle/SCC_TOOLS/DOCS/CC_CODES.HTML" target="_blank">code</a> sets can be found in the documentation for SCTools.</p>
       <dl>
         <dt>ffprobe</dt><dd>starts the command</dd>
-        <dt>-f lavfi</dt><dd>tells ffprobe to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">libavfilter</a> input virtual device</dd>
+        <dt>-f lavfi</dt><dd>tells ffprobe to use the <a href="https://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">libavfilter</a> input virtual device</dd>
         <dt>-i <i>input_file</i></dt><dd>input file and parameters</dd>
         <dt>readeia608 -show_entries frame=pkt_pts_time:frame_tags=lavfi.readeia608.0.line,lavfi.readeia608.0.cc,lavfi.readeia608.1.line,lavfi.readeia608.1.cc -of csv</dt><dd>specifies the first two lines of video in which EIA-608 data (hexadecimal byte pairs) are identifiable by ffprobe, outputting comma separated values (CSV)</dd>
         <dt>&gt;</dt><dd>redirects the standard output (the data created by ffprobe about the video)</dd>
@@ -1777,7 +1777,7 @@
       <p><code>ffmpeg -f lavfi -i mandelbrot=size=1280x720:rate=25 -c:v libx264 -t 10 <i>output_file</i></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
-        <dt>-f lavfi</dt><dd>tells FFmpeg to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
+        <dt>-f lavfi</dt><dd>tells FFmpeg to use the <a href="https://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
         <dt>-i mandelbrot=size=1280x720:rate=25</dt><dd>asks for the <a href="https://ffmpeg.org/ffmpeg-filters.html#mandelbrot" target="_blank">mandelbrot test filter</a> as input. Adjusting the <code>size</code> and <code>rate</code> options allows you to choose a specific frame size and framerate.</dd>
         <dt>-c:v libx264</dt><dd>transcodes video from rawvideo to H.264. Set <code>-pix_fmt</code> to <code>yuv420p</code> for greater H.264 compatibility with media players.</dd>
         <dt>-t 10</dt><dd>specifies recording time of 10 seconds</dd>
@@ -1795,7 +1795,7 @@
       <p><code>ffmpeg -f lavfi -i smptebars=size=720x576:rate=25 -c:v prores -t 10 <i>output_file</i></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
-        <dt>-f lavfi</dt><dd>tells FFmpeg to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
+        <dt>-f lavfi</dt><dd>tells FFmpeg to use the <a href="https://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
         <dt>-i smptebars=size=720x576:rate=25</dt><dd>asks for the <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc_002c-testsrc2_002c-yuvtestsrc" target="_blank">smptebars test filter</a> as input. Adjusting the <code>size</code> and <code>rate</code> options allows you to choose a specific frame size and framerate.</dd>
         <dt>-c:v prores</dt><dd>transcodes video from rawvideo to Apple ProRes 4:2:2.</dd>
         <dt>-t 10</dt><dd>specifies recording time of 10 seconds</dd>
@@ -1813,7 +1813,7 @@
       <p><code>ffmpeg -f lavfi -i testsrc=size=720x576:rate=25 -c:v v210 -t 10 <i>output_file</i></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
-        <dt>-f lavfi</dt><dd>tells FFmpeg to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">libavfilter</a> input virtual device</dd>
+        <dt>-f lavfi</dt><dd>tells FFmpeg to use the <a href="https://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">libavfilter</a> input virtual device</dd>
         <dt>-i testsrc=size=720x576:rate=25</dt><dd>asks for the testsrc filter pattern as input. Adjusting the <code>size</code> and <code>rate</code> options allows you to choose a specific frame size and framerate. <br>
           The different test patterns that can be generated are listed <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc_002c-testsrc2_002c-yuvtestsrc" target="_blank">here</a>.</dd>
         <dt>-c:v v210</dt><dd>transcodes video from rawvideo to 10-bit Uncompressed Y′C<sub>B</sub>C<sub>R</sub> 4:2:2. Alter this setting to set your desired codec.</dd>
@@ -1833,7 +1833,7 @@
       <p><code>ffplay -f lavfi -i smptehdbars=size=1920x1080</code></p>
       <dl>
         <dt>ffplay</dt><dd>starts the command</dd>
-        <dt>-f lavfi</dt><dd>tells ffplay to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
+        <dt>-f lavfi</dt><dd>tells ffplay to use the <a href="https://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
         <dt>-i smptehdbars=size=1920x1080</dt><dd>asks for the <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc_002c-testsrc2_002c-yuvtestsrc" target="_blank">smptehdbars filter pattern</a> as input and sets the HD resolution. This generates a colour bars pattern, based on the SMPTE RP 219–2002.</dd>
       </dl>
       <p class="link"></p>
@@ -1849,7 +1849,7 @@
       <p><code>ffplay -f lavfi -i smptebars=size=640x480</code></p>
       <dl>
         <dt>ffplay</dt><dd>starts the command</dd>
-        <dt>-f lavfi</dt><dd>tells ffplay to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
+        <dt>-f lavfi</dt><dd>tells ffplay to use the <a href="https://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
         <dt>-i smptebars=size=640x480</dt><dd>asks for the <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc_002c-testsrc2_002c-yuvtestsrc" target="_blank">smptebars filter pattern</a> as input and sets the VGA (SD) resolution. This generates a colour bars pattern, based on the SMPTE Engineering Guideline EG 1–1990.</dd>
       </dl>
       <p class="link"></p>
@@ -1865,7 +1865,7 @@
       <p><code>ffmpeg -f lavfi -i "sine=frequency=1000:sample_rate=48000:duration=5" -c:a pcm_s16le <i>output_file</i>.wav</code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
-        <dt>-f lavfi</dt><dd>tells FFmpeg to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
+        <dt>-f lavfi</dt><dd>tells FFmpeg to use the <a href="https://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
         <dt>-i "sine=frequency=1000:sample_rate=48000:duration=5"</dt><dd>Sets the signal to 1000 Hz, sampling at 48 kHz, and for 5 seconds</dd>
         <dt>-c:a pcm_s16le</dt><dd>encodes the audio codec in <code>pcm_s16le</code> (the default encoding for wav files). <code>pcm</code> represents pulse-code modulation format (raw bytes), <code>16</code> means 16 bits per sample, and <code>le</code> means "little endian"</dd>
         <dt><i>output_file</i>.wav</dt><dd>path, name and extension of the output file</dd>
@@ -1883,7 +1883,7 @@
       <p><code>ffmpeg -f lavfi -i smptebars=size=720x576:rate=25 -f lavfi -i "sine=frequency=1000:sample_rate=48000" -c:a pcm_s16le -t 10 -c:v ffv1 <i>output_file</i></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
-        <dt>-f lavfi</dt><dd>tells FFmpeg to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">libavfilter</a> input virtual device</dd>
+        <dt>-f lavfi</dt><dd>tells FFmpeg to use the <a href="https://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">libavfilter</a> input virtual device</dd>
         <dt>-i smptebars=size=720x576:rate=25</dt><dd>asks for the <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc_002c-testsrc2_002c-yuvtestsrc" target="_blank">smptebars test filter</a> as input. Adjusting the <code>size</code> and <code>rate</code> options allows you to choose a specific frame size and framerate.</dd>
         <dt>-f lavfi</dt><dd>use libavfilter again, but now for audio</dd>
         <dt>-i "sine=frequency=1000:sample_rate=48000"</dt><dd>Sets the signal to 1000 Hz, sampling at 48 kHz.</dd>
@@ -1906,7 +1906,7 @@
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <i>input_file</i></dt><dd>takes in a normal file</dd>
-        <dt>-bsf noise=1</dt><dd>sets bitstream filters for all to 'noise'. Filters can be set on specific filters using syntax such as <code>-bsf:v</code> for video, <code>-bsf:a</code> for audio, etc. The <a href="https://www.ffmpeg.org/ffmpeg-bitstream-filters.html#noise" target="_blank">noise filter</a> intentionally damages the contents of packets without damaging the container. This sets the noise level to 1 but it could be left blank or any number above 0.</dd>
+        <dt>-bsf noise=1</dt><dd>sets bitstream filters for all to 'noise'. Filters can be set on specific filters using syntax such as <code>-bsf:v</code> for video, <code>-bsf:a</code> for audio, etc. The <a href="https://ffmpeg.org/ffmpeg-bitstream-filters.html#noise" target="_blank">noise filter</a> intentionally damages the contents of packets without damaging the container. This sets the noise level to 1 but it could be left blank or any number above 0.</dd>
         <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
       </dl>
@@ -1923,7 +1923,7 @@
       <p><code>ffplay -f lavfi life=s=300x200:mold=10:r=60:ratio=0.1:death_color=#C83232:life_color=#00ff00,scale=1200:800</code></p>
       <dl>
         <dt>ffplay</dt><dd>starts the command</dd>
-        <dt>-f lavfi</dt><dd>tells ffplay to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
+        <dt>-f lavfi</dt><dd>tells ffplay to use the <a href="https://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
         <dt>life=s=300x200</dt><dd>use the life filter and set the size of the video to 300x200</dd>
         <dt>:</dt><dd>indicates there’s another parameter coming</dd>
         <dt>mold=10:r=60:ratio=0.1</dt><dd>sets up the rules of the game: cell mold speed, video rate, and random fill ratio</dd>
@@ -1938,7 +1938,7 @@
       <p class="link"></p>
     </div>
     <!-- ends Game of Life -->
-      
+
     </div>
     <div class="well">
     <h2 id="ocr">Use OCR</h2>
@@ -1978,7 +1978,7 @@
         <dt>ffprobe</dt><dd>starts the command</dd>
         <dt>-show_entries</dt><dd>sets a list of entries to show</dd>
         <dt>frame_tags=lavfi.ocr.text</dt><dd>shows the <i>lavfi.ocr.text</i> tag in the frame section of the video</dd>
-        <dt>-f lavfi</dt><dd>tells ffprobe to use the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter input virtual device</a></dd>
+        <dt>-f lavfi</dt><dd>tells ffprobe to use the <a href="https://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter input virtual device</a></dd>
         <dt>-i "movie=<i>input_file</i>,ocr"</dt><dd>declares 'movie' as <i>input_file</i> and passes in the 'ocr' command</dd>
       </dl>
       <p class="link"></p>
@@ -2121,7 +2121,7 @@
         <p>This ffprobe command prints a CSV correlating timestamps and their YDIF values, useful for determining cuts.</p>
         <dl>
           <dt>ffprobe</dt><dd>starts the command</dd>
-          <dt>-f lavfi</dt><dd>uses the <a href="http://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter input virtual device</a> as chosen format</dd>
+          <dt>-f lavfi</dt><dd>uses the <a href="https://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter input virtual device</a> as chosen format</dd>
           <dt>-i movie=<i>input file</i></dt><dd>path, name and extension of the input video file</dd>
           <dt>,</dt><dd>comma signifies closing of video source assertion and ready for filter assertion</dd>
           <dt>signalstats</dt><dd>tells ffprobe to use the signalstats command</dd>
@@ -2242,9 +2242,9 @@ Change the above data-target field, the hover-over description, the button text,
 </div> -->
 <!-- ends sample example -->
 
-  <footer class="footer">
-    <p>Made with ♥ at <a href="http://wiki.curatecamp.org/index.php/Association_of_Moving_Image_Archivists_%26_Digital_Library_Federation_Hack_Day_2015" target="_blank">AMIA #AVhack15</a>! Contribute to the project via <a href="https://github.com/amiaopensource/ffmprovisr">our GitHub page</a>!</p>
-  </footer>
+<footer class="footer">
+  <p>Made with ♥ at <a href="https://wiki.curatecamp.org/index.php/Association_of_Moving_Image_Archivists_%26_Digital_Library_Federation_Hack_Day_2015" target="_blank">AMIA #AVhack15</a>! Contribute to the project via <a href="https://github.com/amiaopensource/ffmprovisr">our GitHub page</a>!</p>
+</footer>
 </div><!-- ends "grid" -->
 </body>
 </html>
