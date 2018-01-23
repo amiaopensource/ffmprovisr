@@ -913,8 +913,7 @@
     <label class="recipe" for="join_different_files">Join (concatenate) two or more files of different types</label>
      <input type="checkbox" id="join_different_files">
      <div class="hiding">
-       <h3>Join files together</h3>
-      <!-- ffmpeg -i input1.mov -i input2.avi -filter_complex "[0:v:0][0:a:0][1:v:0][1:a:0]concat=n=2:v=1:a=1[outv][outa]" -map "[outv]" -map "[outa]" output.mkv -->
+      <h3>Join files together</h3>
       <p><code>ffmpeg -i input1.avi -i input2.mp4 -filter_complex "[0:v:0][0:a:0][1:v:0][1:a:0]concat=n=2:v=1:a=1[videoOut][audioOut]" -map "[videoOut]" -map "[audioOut]" <i>output_file</i></code></p>
       <p>
         This command takes two or more files of the different file types and joins them together to make a single file.<br>
@@ -924,10 +923,10 @@
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <i>input1.ext</i></dt><dd>path, name and extension of the first input file</dd>
         <dt>-i <i>input2.ext</i></dt><dd>path, name and extension of the second input file</dd>
-        <dt>-filter_complex</dt><dd>starts the complex filtergraph</dd>
+        <dt>-filter_complex</dt><dd>states that a complex filtergraph will be used</dd>
         <dt>"</dt><dd>quotation mark to start filtergraph</dd>
         <dt>[0:v:0][0:a:0]</dt><dd>selects the first video stream and first audio stream from the first input.<br>
-          References to different streams are each enclosed in square brackets. In the first stream reference, <code>0:v:0</code>, the first zero refers to the first input file, <code>v</code> means video stream, and the second zero indicates that it is the <i>first</i> video stream in the file that should be selected. Likewise, <code>0:a:0</code> means the first audio stream in the first input file.<br>
+          Each reference to a specific stream is enclosed in square brackets. In the first stream reference, <code>0:v:0</code>, the first zero refers to the first input file, <code>v</code> means video stream, and the second zero indicates that it is the <i>first</i> video stream in the file that should be selected. Likewise, <code>0:a:0</code> means the first audio stream in the first input file.<br>
           As demonstrated above, ffmpeg uses zero-indexing: <code>0</code> means the first input/stream/etc, <code>1</code> means the second input/stream/etc, and <code>4</code> would mean the fifth input/stream/etc.</dd>
         <dt>[1:v:0][1:a:0]</dt><dd>As described above, this means select the first video and audio streams from the second input file.</dd>
         <dt>concat=</dt><dd>starts the <code>concat</code> filter</dd>
