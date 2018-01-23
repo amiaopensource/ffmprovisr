@@ -882,8 +882,8 @@
     <div class="well">
     <h2 id="join-trim">Join, trim, or excerpt a video</h2>
 
-    <!-- Join files together -->
-    <label class="recipe" for="join_files">Join (concatenate) two or more files into a single file</label>
+    <!-- Join files of the same type together -->
+    <label class="recipe" for="join_files">Join (concatenate) two or more files of the same type</label>
     <input type="checkbox" id="join_files">
     <div class="hiding">
       <h3>Join files together</h3>
@@ -907,7 +907,49 @@
       <p>For more information, see the <a href="https://trac.ffmpeg.org/wiki/Concatenate" target="_blank">FFmpeg wiki page on concatenating files</a>.</p>
       <p class="link"></p>
     </div>
-    <!-- ends Join files together -->
+    <!-- ends Join files of the same type together -->
+
+    <!-- Join files of different types together -->
+    <label class="recipe" for="join_different_files">Join (concatenate) two or more files of different types</label>
+     <input type="checkbox" id="join_different_files">
+     <div class="hiding">
+       <h3>Join files together</h3>
+      <!-- ffmpeg -i input1.mov -i input2.avi -filter_complex "[0:v:0][0:a:0][1:v:0][1:a:0]concat=n=2:v=1:a=1[outv][outa]" -map "[outv]" -map "[outa]" output.mkv -->
+      <p><code>ffmpeg -i input1.avi -i input2.mp4 -filter_complex "[0:v:0][0:a:0][1:v:0][1:a:0]concat=n=2:v=1:a=1[videoOut][audioOut]" -map "[videoOut]" -map "[audioOut]" <i>output_file</i></code></p>
+      <p>
+        This command takes two or more files of the different file types and joins them together to make a single file.<br>
+        However, it only works properly if the files to be combined have the same dimensions (e.g., 720x576). Some aspects of the input files will be normalised: for example, if an input file contains a video track and an audio track that do not have exactly the same duration, the shorter one will be padded. However, note that if the input files have different framerates, the output file will be of variable framerate.
+      </p>
+      <dl>
+        <dt>ffmpeg</dt><dd>starts the command</dd>
+        <dt>-i <i>input1.ext</i></dt><dd>path, name and extension of the first input file</dd>
+        <dt>-i <i>input2.ext</i></dt><dd>path, name and extension of the second input file</dd>
+        <dt>-filter_complex</dt><dd>starts the complex filtergraph</dd>
+        <dt>"</dt><dd>quotation mark to start filtergraph</dd>
+        <dt>[0:v:0][0:a:0]</dt><dd>selects the first video stream and first audio stream from the first input.<br>
+          References to different streams are each enclosed in square brackets. In the first stream reference, <code>0:v:0</code>, the first zero refers to the first input file, <code>v</code> means video stream, and the second zero indicates that it is the <i>first</i> video stream in the file that should be selected. Likewise, <code>0:a:0</code> means the first audio stream in the first input file.<br>
+          As demonstrated above, ffmpeg uses zero-indexing: <code>0</code> means the first input/stream/etc, <code>1</code> means the second input/stream/etc, and <code>4</code> would mean the fifth input/stream/etc.</dd>
+        <dt>[1:v:0][1:a:0]</dt><dd>As described above, this means select the first video and audio streams from the second input file.</dd>
+        <dt>concat=</dt><dd>starts the <code>concat</code> filter</dd>
+        <dt>n=2</dt><dd>states that there are two input files</dd>
+        <dt>:</dt><dd>separator</dd>
+        <dt>v=1</dt><dd>sets the number of output video streams.<br>
+          Note that this must be equal to the number of video streams selected from each segment.</dd>
+        <dt>:</dt><dd>separator</dd>
+        <dt>a=1</dt><dd>sets the number of output audio streams.<br>
+          Note that this must be equal to the number of audio streams selected from each segment.</dd>
+        <dt>[videoOut]</dt><dd>name of the concatenated output video stream. This is a variable name which you define, so you could call it something different, like “vOut”, “outv”, or “banana”.</dd>
+        <dt>[audioOut]</dt><dd>name of the concatenated output audio stream. Again, this is a variable name which you define.</dd>
+        <dt>"</dt><dd>quotation mark to end filtergraph</dd>
+        <dt>-map "[videoOut]"</dt><dd>map the concatenated video stream into the output file by referencing the variable defined above</dd>
+        <dt>-map "[audioOut]"</dt><dd>map the concatenated audio stream into the output file by referencing the variable defined above</dd>
+        <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
+      </dl>
+      <p>For more information, see the <a href="https://trac.ffmpeg.org/wiki/Concatenate#differentcodec" target="_blank">FFmpeg wiki page on concatenating files of different types</a>.</p>
+      <p class="link"></p>
+    </div>
+    <!-- ends Join files of the different types together -->
+
 
     <!-- Split file into segments -->
     <label class="recipe" for="segment_file">Split one file into several smaller segments</label>
