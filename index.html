@@ -250,18 +250,19 @@
     <input type="checkbox" id="transcode_h264">
     <div class="hiding">
       <h3>Transcode to H.264</h3>
-      <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -pix_fmt yuv420p -c:a copy <i>output_file</i></code></p>
+      <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -pix_fmt yuv420p -c:a aac <i>output_file</i></code></p>
       <p>This command takes an input file and transcodes it to H.264 with an .mp4 wrapper, keeping the audio the same codec as the original. The libx264 codec defaults to a “medium” preset for compression quality and a CRF of 23. CRF stands for constant rate factor and determines the quality and file size of the resulting H.264 video. A low CRF means high quality and large file size; a high CRF means the opposite.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
         <dt>-c:v libx264</dt><dd>tells FFmpeg to encode the video stream as H.264</dd>
         <dt>-pix_fmt yuv420p</dt><dd>libx264 will use a chroma subsampling scheme that is the closest match to that of the input. This can result in Y′C<sub>B</sub>C<sub>R</sub> 4:2:0, 4:2:2, or 4:4:4 chroma subsampling. QuickTime and most other non-FFmpeg based players can’t decode H.264 files that are not 4:2:0. In order to allow the video to play in all players, you can specify 4:2:0 chroma subsampling.</dd>
-        <dt>-c:a copy</dt><dd>tells FFmpeg to copy the audio stream without re-encoding it</dd>
+        <dt>-c:a aac</dt><dd>encode audio as AAC.<br>
+          AAC is the codec most often used for audio streams within an .mp4 container.</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
       </dl>
       <p>In order to use the same basic command to make a higher quality file, you can add some of these presets:</p>
-      <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -pix_fmt yuv420p -preset veryslow -crf 18 -c:a copy <i>output_file</i></code></p>
+      <p><code>ffmpeg -i <i>input_file</i> -c:v libx264 -pix_fmt yuv420p -preset veryslow -crf 18 -c:a aac <i>output_file</i></code></p>
       <dl>
         <dt>-preset <i>veryslow</i></dt><dd>This option tells FFmpeg to use the slowest preset possible for the best compression quality.<br>
         Available presets, from slowest to fastest, are: <code>veryslow</code>, <code>slower</code>, <code>slow</code>, <code>medium</code>, <code>fast</code>, <code>faster</code>, <code>veryfast</code>, <code>superfast</code>, <code>ultrafast</code>.</dd>
@@ -332,7 +333,7 @@
     <input type="checkbox" id="dvd_to_file">
     <div class="hiding">
       <h3>Convert DVD to H.264</h3>
-      <p><code>ffmpeg -i concat:<i>input_file1</i>\|<i>input_file2</i>\|<i>input_file3</i> -c:v libx264 -c:a copy <i>output_file</i>.mp4</code></p>
+      <p><code>ffmpeg -i concat:<i>input_file1</i>\|<i>input_file2</i>\|<i>input_file3</i> -c:v libx264 -c:a aac <i>output_file</i>.mp4</code></p>
       <p>This command allows you to create an H.264 file from a DVD source that is not copy-protected.</p>
       <p>Before encoding, you’ll need to establish which of the .VOB files on the DVD or .iso contain the content that you wish to encode. Inside the VIDEO_TS directory, you will see a series of files with names like VTS_01_0.VOB, VTS_01_1.VOB, etc. Some of the .VOB files will contain menus, special features, etc, so locate the ones that contain target content by playing them back in VLC.</p>
       <dl>
@@ -341,17 +342,18 @@
         <code>-i concat:VTS_01_1.VOB\|VTS_01_2.VOB\|VTS_01_3.VOB</code><br>
         The backslash is simply an escape character for the pipe (<b>|</b>).</dd>
         <dt>-c:v libx264</dt><dd>sets the video codec as H.264</dd>
-        <dt>-c:a copy</dt><dd>audio remains as-is (no re-encode)</dd>
+        <dt>-c:a aac</dt><dd>encode audio as AAC.<br>
+          AAC is the codec most often used for audio streams within an .mp4 container.</dd>
         <dt><i>output_file.mp4</i></dt><dd>path and name of the output file</dd>
       </dl>
       <p>It’s also possible to adjust the quality of your output by setting the <b>-crf</b> and <b>-preset</b> values:</p>
-      <p><code>ffmpeg -i concat:<i>input_file1</i>\|<i>input_file2</i>\|<i>input_file3</i> -c:v libx264 -crf 18 -preset veryslow -c:a copy <i>output_file</i>.mp4</code></p>
+      <p><code>ffmpeg -i concat:<i>input_file1</i>\|<i>input_file2</i>\|<i>input_file3</i> -c:v libx264 -crf 18 -preset veryslow -c:a aac <i>output_file</i>.mp4</code></p>
       <dl>
         <dt>-crf 18</dt><dd>sets the constant rate factor to a visually lossless value. Libx264 defaults to a <a href="https://trac.ffmpeg.org/wiki/Encode/H.264#crf" target="_blank">crf of 23</a>, considered medium quality; a smaller CRF value produces a larger and higher quality video.</dd>
         <dt>-preset veryslow</dt><dd>A slower preset will result in better compression and therefore a higher-quality file. The default is <b>medium</b>; slower presets are <b>slow</b>, <b>slower</b>, and <b>veryslow</b>.</dd>
       </dl>
       <p>Bear in mind that by default, libx264 will only encode a single video stream and a single audio stream, picking the ‘best’ of the options available. To preserve all video and audio streams, add <b>-map</b> parameters:</p>
-      <p><code>ffmpeg -i concat:<i>input_file1</i>\|<i>input_file2</i> -map 0:v -map 0:a -c:v libx264 -c:a copy <i>output_file</i>.mp4</code></p>
+      <p><code>ffmpeg -i concat:<i>input_file1</i>\|<i>input_file2</i> -map 0:v -map 0:a -c:v libx264 -c:a aac <i>output_file</i>.mp4</code></p>
       <dl>
         <dt>-map 0:v</dt><dd>encodes all video streams</dd>
         <dt>-map 0:a</dt><dd>encodes all audio streams</dd>
