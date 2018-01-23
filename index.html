@@ -945,6 +945,17 @@
         <dt>-map "[audioOut]"</dt><dd>map the concatenated audio stream into the output file by referencing the variable defined above</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
       </dl>
+      <p>
+        To specify the characteristics of the output stream(s), add flags after the <code>-map "[out]"</code> part of the command.
+      </p>
+      <p>
+        For example, to ensure that the video stream of the output file is visually lossless H.264 with a 4:2:0 chroma subsampling scheme, the command above could be amended to include the following:<br>
+        <code>-map "[videoOut]" -c:v libx264 -pix_fmt yuv420p -preset veryslow -crf 18</code>
+      </p>
+      <p>
+        Likewise, to encode the output audio stream as mp3, the command could include the following:<br>
+        <code>-map "[audioOut]" -c:a libmp3lame -dither_method modified_e_weighted -qscale:a 2</code><br>
+      </p>
       <p>For more information, see the <a href="https://trac.ffmpeg.org/wiki/Concatenate#differentcodec" target="_blank">FFmpeg wiki page on concatenating files of different types</a>.</p>
       <p class="link"></p>
     </div>
