@@ -333,7 +333,7 @@
     <input type="checkbox" id="dvd_to_file">
     <div class="hiding">
       <h3>Convert DVD to H.264</h3>
-      <p><code>ffmpeg -i concat:<i>input_file1</i>\|<i>input_file2</i>\|<i>input_file3</i> -c:v libx264 -c:a aac <i>output_file</i>.mp4</code></p>
+      <p><code>ffmpeg -i concat:<i>input_file_1</i>\|<i>input_file_2</i>\|<i>input_file_3</i> -c:v libx264 -c:a aac <i>output_file</i>.mp4</code></p>
       <p>This command allows you to create an H.264 file from a DVD source that is not copy-protected.</p>
       <p>Before encoding, you’ll need to establish which of the .VOB files on the DVD or .iso contain the content that you wish to encode. Inside the VIDEO_TS directory, you will see a series of files with names like VTS_01_0.VOB, VTS_01_1.VOB, etc. Some of the .VOB files will contain menus, special features, etc, so locate the ones that contain target content by playing them back in VLC.</p>
       <dl>
@@ -347,13 +347,13 @@
         <dt><i>output_file.mp4</i></dt><dd>path and name of the output file</dd>
       </dl>
       <p>It’s also possible to adjust the quality of your output by setting the <b>-crf</b> and <b>-preset</b> values:</p>
-      <p><code>ffmpeg -i concat:<i>input_file1</i>\|<i>input_file2</i>\|<i>input_file3</i> -c:v libx264 -crf 18 -preset veryslow -c:a aac <i>output_file</i>.mp4</code></p>
+      <p><code>ffmpeg -i concat:<i>input_file_1</i>\|<i>input_file_2</i>\|<i>input_file_3</i> -c:v libx264 -crf 18 -preset veryslow -c:a aac <i>output_file</i>.mp4</code></p>
       <dl>
         <dt>-crf 18</dt><dd>sets the constant rate factor to a visually lossless value. Libx264 defaults to a <a href="https://trac.ffmpeg.org/wiki/Encode/H.264#crf" target="_blank">crf of 23</a>, considered medium quality; a smaller CRF value produces a larger and higher quality video.</dd>
         <dt>-preset veryslow</dt><dd>A slower preset will result in better compression and therefore a higher-quality file. The default is <b>medium</b>; slower presets are <b>slow</b>, <b>slower</b>, and <b>veryslow</b>.</dd>
       </dl>
       <p>Bear in mind that by default, libx264 will only encode a single video stream and a single audio stream, picking the ‘best’ of the options available. To preserve all video and audio streams, add <b>-map</b> parameters:</p>
-      <p><code>ffmpeg -i concat:<i>input_file1</i>\|<i>input_file2</i> -map 0:v -map 0:a -c:v libx264 -c:a aac <i>output_file</i>.mp4</code></p>
+      <p><code>ffmpeg -i concat:<i>input_file_1</i>\|<i>input_file_2</i> -map 0:v -map 0:a -c:v libx264 -c:a aac <i>output_file</i>.mp4</code></p>
       <dl>
         <dt>-map 0:v</dt><dd>encodes all video streams</dd>
         <dt>-map 0:a</dt><dd>encodes all audio streams</dd>
@@ -914,7 +914,7 @@
      <input type="checkbox" id="join_different_files">
      <div class="hiding">
       <h3>Join files together</h3>
-      <p><code>ffmpeg -i input1.avi -i input2.mp4 -filter_complex "[0:v:0][0:a:0][1:v:0][1:a:0]concat=n=2:v=1:a=1[videoOut][audioOut]" -map "[videoOut]" -map "[audioOut]" <i>output_file</i></code></p>
+      <p><code>ffmpeg -i input1.avi -i input2.mp4 -filter_complex "[0:v:0][0:a:0][1:v:0][1:a:0]concat=n=2:v=1:a=1[video_out][audio_out]" -map "[video_out]" -map "[audio_out]" <i>output_file</i></code></p>
       <p>This command takes two or more files of the different file types and joins them together to make a single file.</p>
       <p>However, it only works properly if the files to be combined have the same dimensions (e.g., 720x576).</p>
       <p>Some aspects of the input files will be normalised: for example, if an input file contains a video track and an audio track that do not have exactly the same duration, the shorter one will be padded. In the case of a shorter video track, the last frame will be repeated in order to cover the missing video; in the case of a shorter audio track, the audio stream will be padded with silence.</p>
@@ -937,23 +937,22 @@
         <dt>:</dt><dd>separator</dd>
         <dt>a=1</dt><dd>sets the number of output audio streams.<br>
           Note that this must be equal to the number of audio streams selected from each segment.</dd>
-        <dt>[videoOut]</dt><dd>name of the concatenated output video stream. This is a variable name which you define, so you could call it something different, like “vOut”, “outv”, or “banana”.</dd>
-        <dt>[audioOut]</dt><dd>name of the concatenated output audio stream. Again, this is a variable name which you define.</dd>
+        <dt>[video_out]</dt><dd>name of the concatenated output video stream. This is a variable name which you define, so you could call it something different, like “vOut”, “outv”, or “banana”.</dd>
+        <dt>[audio_out]</dt><dd>name of the concatenated output audio stream. Again, this is a variable name which you define.</dd>
         <dt>"</dt><dd>quotation mark to end filtergraph</dd>
-        <dt>-map "[videoOut]"</dt><dd>map the concatenated video stream into the output file by referencing the variable defined above</dd>
-        <dt>-map "[audioOut]"</dt><dd>map the concatenated audio stream into the output file by referencing the variable defined above</dd>
+        <dt>-map "[video_out]"</dt><dd>map the concatenated video stream into the output file by referencing the variable defined above</dd>
+        <dt>-map "[audio_out]"</dt><dd>map the concatenated audio stream into the output file by referencing the variable defined above</dd>
         <dt><i>output_file</i></dt><dd>path, name and extension of the output file</dd>
       </dl>
       <p>If no characteristics of the output files are specified, ffmpeg will use the default encodings associated with the given output file type. To specify the characteristics of the output stream(s), add flags after each <code>-map "[out]"</code> part of the command.</p>
       <p>For example, to ensure that the video stream of the output file is visually lossless H.264 with a 4:2:0 chroma subsampling scheme, the command above could be amended to include the following:<br>
-        <code>-map "[videoOut]" -c:v libx264 -pix_fmt yuv420p -preset veryslow -crf 18</code></p>
+        <code>-map "[video_out]" -c:v libx264 -pix_fmt yuv420p -preset veryslow -crf 18</code></p>
       <p>Likewise, to encode the output audio stream as mp3, the command could include the following:<br>
-        <code>-map "[audioOut]" -c:a libmp3lame -dither_method modified_e_weighted -qscale:a 2</code></p>
+        <code>-map "[audio_out]" -c:a libmp3lame -dither_method modified_e_weighted -qscale:a 2</code></p>
       <p>For more information, see the <a href="https://trac.ffmpeg.org/wiki/Concatenate#differentcodec" target="_blank">FFmpeg wiki page on concatenating files of different types</a>.</p>
       <p class="link"></p>
     </div>
     <!-- ends Join files of the different types together -->
-
 
     <!-- Split file into segments -->
     <label class="recipe" for="segment_file">Split one file into several smaller segments</label>
