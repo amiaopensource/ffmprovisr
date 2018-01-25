@@ -916,9 +916,8 @@
       <h3>Join files together</h3>
       <p><code>ffmpeg -i input1.avi -i input2.mp4 -filter_complex "[0:v:0][0:a:0][1:v:0][1:a:0]concat=n=2:v=1:a=1[video_out][audio_out]" -map "[video_out]" -map "[audio_out]" <i>output_file</i></code></p>
       <p>This command takes two or more files of the different file types and joins them together to make a single file.</p>
-      <p>However, it only works properly if the files to be combined have the same dimensions (e.g., 720x576).</p>
+      <p>The input files may differ in many respects - container, codec, chroma subsampling scheme, framerate, etc. However, the above command only works properly if the files to be combined have the same dimensions (e.g., 720x576). Also note that if the input files have different framerates, then the output file will be of variable framerate.</p>
       <p>Some aspects of the input files will be normalised: for example, if an input file contains a video track and an audio track that do not have exactly the same duration, the shorter one will be padded. In the case of a shorter video track, the last frame will be repeated in order to cover the missing video; in the case of a shorter audio track, the audio stream will be padded with silence.</p>
-      <p>Note that if the input files have different framerates, the output file will be of variable framerate.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <i>input1.ext</i></dt><dd>path, name and extension of the first input file</dd>
