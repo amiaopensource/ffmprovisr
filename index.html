@@ -123,6 +123,7 @@
       <p>The ordering of the filters is significant. Video filters are applied in the order given, with the output of one filter being passed along as the input to the next filter in the chain. In the example above, <code>fieldmatch</code> reconstructs the original frames from the inverse telecined video, <code>yadif</code> deinterlaces (this is a failsafe in case any combed frames remain, for example if the source mixes telecined and real interlaced content), and <code>decimate</code> deletes duplicated frames. Clearly, it is not possible to delete duplicated frames before those frames are reconstructed.</p>
       <h4>Notes</h4>
       <ul>
+        <li><code>-vf</code> is an alias for <code>-filter:v</code></li>
         <li>If the command involves more than one input or output, you must use the flag <code>-filter_complex</code> instead of <code>-vf</code>.</li>
         <li>Straight quotation marks ("like this") rather than curved quotation marks (“like this”) should be used.</li>
       </ul>
