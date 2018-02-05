@@ -250,17 +250,17 @@ nav .heading {
 
 .hiding {
   opacity: 0;
-	height: 0;
+  height: 0;
   overflow: hidden;
 }
 
 input {
-	position: absolute;
-	left: -999em
+  position: absolute;
+  left: -999em;
 }
 
 input[type=checkbox]:checked + div {
-	opacity: 1;
+  opacity: 1;
   height: auto;
   overflow: hidden;
   transition: opacity .5s linear, height .5s linear;
