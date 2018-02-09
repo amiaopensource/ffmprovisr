@@ -10,7 +10,7 @@ if [[ "$(uname -s)" = "Darwin" ]] ; then
     else
         ffmprovisr_path=$(find /usr/local/Cellar/ffmprovisr -iname 'index.html' | sort -M | tail -n1)
     fi
-    if [ -n "${default_browser}" ] ; then
+    if [[ -n "${default_browser}" ]] ; then
         open -b "${default_browser}" "${ffmprovisr_path}"
     else
         open "${ffmprovisr_path}"
