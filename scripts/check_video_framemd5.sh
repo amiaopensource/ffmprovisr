@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
   SCRIPT=$(basename "${0}")
- VERSION='2017-07-08'
+ VERSION='2018-02-09'
   AUTHOR='ffmprovisr'
      RED='\033[1;31m'
     BLUE='\033[1;34m'
@@ -64,9 +64,8 @@ old_file=$(grep -v '^#' "${input_hash}")
 tmp_file=$(grep -v '^#' "${md5_tmp}")
 if [[ "${old_file}" = "${tmp_file}" ]]; then
     echo -e "${BLUE}'$(basename "${input_file}")' matches '$(basename "${input_hash}")'${NC}"
-    rm "${md5_tmp}"
 else
     echo -e "${RED}The following differences were detected between '$(basename "${input_file}")' and '$(basename "${input_hash}")':${NC}"
     diff "${input_hash}" "${md5_tmp}"
-    rm "${md5_tmp}"
 fi
+rm "${md5_tmp}"
