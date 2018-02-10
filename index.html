@@ -949,6 +949,15 @@
         <code>-map "[video_out]" -c:v libx264 -pix_fmt yuv420p -preset veryslow -crf 18</code></p>
       <p>Likewise, to encode the output audio stream as mp3, the command could include the following:<br>
         <code>-map "[audio_out]" -c:a libmp3lame -dither_method modified_e_weighted -qscale:a 2</code></p>
+      <h4>Variation: concatenating files of different resolutions</h4>
+      <p>To concatenate files of different resolutions, you need to add resize the videos to have matching resolutions prior to concatenation. The most basic way to do this is by using a scale filter and giving the dimensions of the file you wish to match:</p>
+      <p><code>-vf scale=1920:1080:flags=lanczos</code></p>
+      <p>(The Lanczos scaling algorithm is recommended, as it is slower but better than the default bilinear algorithm).</p>
+      <p>The rescaling should be applied just before the point where the streams to be used in the output file are listed. Select the stream you want to rescale, apply the filter, and assign that to a variable name (<code>rescaledVideo</code> in the below example). Then you use this variable name in the list of streams to be concatenated.</p>
+      <p><code>ffmpeg -i input1.avi -i input2.mp4 -filter_complex "[0:v:0] scale=1920:1080:flags=lanczos [rescaledVideo], [rescaledVideo] [0:a:0] [1:v:0] [1:a:0] concat=n=2:v=1:a=1 [video_out] [audio_out]" -map "[video_out]" -map "[audio_out]" <i>output_file</i></code></p>
+      <p>However, this will only have the desired visual output if the inputs have the same aspect ratio. If you wish to concatenate an SD and an HD file, you will also wish to pillarbox the SD file while upscaling. (See the <a href="https://amiaopensource.github.io/ffmprovisr/#SD_HD_2">Convert 4:3 to pillarboxed HD</a> command). The full command would look like this:</p>
+      <code>ffmpeg -i input1.avi -i input2.mp4 -filter_complex "[0:v:0] scale=1440:1080:flags=lanczos, pad=1920:1080:(ow-iw)/2:(oh-ih)/2 [toHDvideo], [toHDvideo] [0:a:0] [1:v:0] [1:a:0] concat=n=2:v=1:a=1 [video_out] [audio_out]" -map "[video_out]" -map "[audio_out]" <i>output_file</i></code>
+      <p>Here, the first input an SD file which needs to be upscaled to match the second input, which is 1920x1080. The scale filter enlarges the SD input to the height of the HD frame, keeping the 4:3 aspect ratio; then, the video is pillarboxed within a 1920x1080 frame.</p>
       <p>For more information, see the <a href="https://trac.ffmpeg.org/wiki/Concatenate#differentcodec" target="_blank">FFmpeg wiki page on concatenating files of different types</a>.</p>
       <p class="link"></p>
     </div>
