@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
   SCRIPT=$(basename "${0}")
- VERSION='2018-02-09'
-  AUTHOR='ffmprovisr'
-     RED='\033[1;31m'
-    BLUE='\033[1;34m'
-      NC='\033[0m'
+ VERSION="2018-02-10"
+  AUTHOR="ffmprovisr"
+     RED="\033[1;31m"
+    BLUE="\033[1;34m"
+      NC="\033[0m"
 
-if [[ "${OSTYPE}" = "cygwin" ]] || [ ! $(which diff) ]; then
+if [[ "${OSTYPE}" = "cygwin" ]] || [[ ! "$(which diff)" ]]; then
     echo -e "${RED}Error: 'diff' is not installed by default. Please install 'diffutils' from Cygwin.${NC}"
     exit 1
 fi
