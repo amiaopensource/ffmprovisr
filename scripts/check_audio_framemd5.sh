@@ -6,7 +6,7 @@
     BLUE='\033[1;34m'
       NC='\033[0m'
 
-if [[ "${OSTYPE}" = "cygwin" ]] || [ ! $(which diff) ]; then
+if [[ "${OSTYPE}" = "cygwin" ]] || [ ! "$(which diff)" ]; then
     echo -e "${RED}Error: 'diff' is not installed by default. Please install 'diffutils' from Cygwin.${NC}"
     exit 1
 fi
