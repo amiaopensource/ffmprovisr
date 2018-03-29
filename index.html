@@ -37,6 +37,8 @@
     <a href="#ocr"><div class="contents-list">Use OCR</div></a>
     <a href="#perceptual-similarity"><div class="contents-list">Compare similarity of videos</div></a>
     <a href="#other"><div class="contents-list">Something else</div></a>
+    <a href="#similar-tools"><div class="contents-list">Similar tools: tips & tricks</div></a>
+    <a href="#imagemagick"><div class="contents-list">ImageMagick</div></a>
   </nav>
 
   <div class="content">
@@ -2308,6 +2310,86 @@
         <p class="link"></p>
       </div>
       <!-- ends View Subprogram info -->
+    </div>
+    
+    <div class="well">
+      <h2 id="similar-tools">Similar tools: tips & tricks 🎩🐰</h2>
+      <div class="well">
+        <p>This section introduces and explains the usage of some additional command line tools similar to FFmpeg for use in digital preservation workflows (and beyond!).</p>  
+      </div>
+    </div>
+    
+    <div class="well">
+      <h2 id="imagemagick">ImageMagick</h2>
+
+      <!-- About ImageMagick -->
+      <label class="recipe" for="im-basics">About ImageMagick</label>
+      <input type="checkbox" id="im-basics">
+      <div class="hiding">
+        <h3>About ImageMagick</h3>
+        <p>ImageMagick is a free and open-source software suite for displaying, converting, and editing raster image and vector image files.</p>
+        <p>It's official website can be found <a href="https://www.imagemagick.org/script/index.php">here</a>.</p>
+        <p>Another great resource with lots of supplemental explanations of filters is available at <a href="http://www.fmwconcepts.com/imagemagick/index.php">Fred's ImageMagick Scripts</a>.</p>
+        <p>Unlike many other command line tools, ImageMagick isn't summoned by calling its name. Rather, ImageMagick installs links to several more specific commands: <code>convert</code>, <code>montage</code>, and <code>mogrify</code>, to name a few.</p>
+        <p class="link"></p>
+      </div>
+      <!-- End About ImageMagick -->
+
+      <!-- Resize to width -->
+      <label class="recipe" for="im_resize">Resizes image to specific pixel width</label>
+      <input type="checkbox" id="im_resize">
+      <div class="hiding">
+        <h3>Resize to width</h3>
+        <p><code>convert <i>input_file.ext</i> -resize 750 <i>output_file.ext</i></code></p>
+        <p>This script will also convert the file format, if the output has a different file extension than the input.</p>
+        <dl>
+          <dt>convert</dt><dd>starts the command</dd>
+          <dt>-i <i>input_file.ext</i></dt><dd>path and name of the input file</dd>
+          <dt>-resize 750</dt><dd>resizes the image to 750 pixels wide, retaining aspect ratio</dd>
+          <dt><i>output_file.ext</i></dt><dd>path and name of the output file</dd>
+        </dl>
+        <p class="link"></p>
+      </div>
+      <!-- ends Resize to width -->  
+
+      <!-- Create thumbnails -->
+      <label class="recipe" for="im_thumbs">Create thumbnails of images</label>
+      <input type="checkbox" id="im_thumbs">
+      <div class="hiding">
+        <h3>Create thumbnails</h3>
+        <p>Creates thumbnails for all files in a folder and saves them in that folder.</p>
+        <p><code>mogrify -resize 80x80 -format jpg -quality 75 -path thumbs *.jpg</code></p>
+        <dl>
+          <dt>montage</dt><dd>starts the command</dd>
+          <dt>-resize 80x80</dt><dd>resizes copies of original images to 80x80 pixels</dd>
+          <dt>-format jpg</dt><dd>reformats original images to jpg</dd>
+          <dt>-quality 75</dt><dd>sets quality to 75 (out of 100), adding light compression to smaller files</dd>
+          <dt>-path thumbs</dt><dd>specifies where to save the thumbnails -- this goes to a folder within the active folder called "thumbs".<br>
+          Note: You will have to make this folder if it doesn't already exist.</dd>
+          <dt><i>*.jpg</i></dt><dd>The astericks acts as a "wildcard" to be applied to every file in the directory.</dd>
+        </dl>
+        <p class="link"></p>
+      </div>
+      <!-- ends Create thumbnails --> 
+      
+      <!-- Create grid of images -->
+      <label class="recipe" for="im_grid">Creates grid of images from text file</label>
+      <input type="checkbox" id="im_grid">
+      <div class="hiding">
+        <h3>Create grid of images</h3>
+        <p><code>montage @list.txt -tile 6x12 -geometry +0+0 <i>output_grid.jpg</i></code></p>
+        <dl>
+          <dt>montage</dt><dd>starts the command</dd>
+          <dt>@list.txt</dt><dd>path and name of a text file containing a list of filenames, one per each line</dd>
+          <dt>-tile 6x12</dt><dd>specifies the dimensions of the proposed grid (6 images wide, 12 images long)</dd>
+          <dt>-geometry +0+0</dt><dd>specifies to include no spacing around any of the tiles; they will be flush against each other</dd>
+          <dt><i>output_grid.jpg</i></dt><dd>path and name of the output file</dd>
+        </dl>
+        <p class="link"></p>
+      </div>
+      <!-- ends Create grid of images --> 
+
+
     </div>
   </div><!-- ends "content" -->
 
