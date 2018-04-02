@@ -222,8 +222,8 @@
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i<i>input_file</i></dt><dd>path and name of the input file<br></dd>
-        <dt>-f rawvideo</dt><dd>this tells FFmpeg to pass the video stream as raw video data. This step is what ensures the survival of embedded metadata versus a standard rewrap.<br></dd>
-        <dt>-c:v copy</dt><dd>this tells FFmpeg to interpret the raw data video as the same as input (in this case DV)<br></dd>
+        <dt>-f rawvideo</dt><dd>this tells FFmpeg to pass the video stream as raw video data without remuxing. This step is what ensures the survival of embedded metadata versus a standard rewrap.<br></dd>
+        <dt>-c:v copy</dt><dd>copy the DV stream directly, without re-encoding.<br></dd>
         <dt><i>output_file.dv</i></dt><dd>tells FFmpeg to use the DV wrapper for the output.<br></dd>
       </dl>
       <p class="link"></p>
