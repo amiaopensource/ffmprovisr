@@ -218,12 +218,12 @@
     <div class="hiding">
       <h3>Rewrap DV video to .dv file</h3>
       <p><code>ffmpeg -i <i>input_file</i> -f rawvideo -c:v copy <i>output_file.dv</i></code></p>
-      <p>This script will take a video that is encoded in the <a href="https://en.wikipedia.org/wiki/DV">DV Codec</a> but wrapped in a different wrapper (such as MOV) and rewrap it into a raw DV file (with the .dv extension). Since DV files potentially contain a great deal of provenence metadata within the DV stream, it is necessary to rewrap files in this method to avoid unintentional stripping of this metadata.</p>
+      <p>This script will take a video that is encoded in the <a href="https://en.wikipedia.org/wiki/DV">DV Codec</a> but wrapped in a different container (such as MOV) and rewrap it into a raw DV file (with the .dv extension). Since DV files potentially contain a great deal of provenance metadata within the DV stream, it is necessary to rewrap files in this method to avoid unintentional stripping of this metadata.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
-        <dt>-i <i>input_file</i></dt><dd>path and name of the input file<br></dd>
+        <dt>-i<i>input_file</i></dt><dd>path and name of the input file<br></dd>
         <dt>-f rawvideo</dt><dd>this tells FFmpeg to pass the video stream as raw video data. This step is what ensures the survival of embedded metadata versus a standard rewrap.<br></dd>
-        <dt>-c:v copy</dt><dd>this tells FFmpeg to interperate the raw data video as the same as input (in this case DV)<br></dd>
+        <dt>-c:v copy</dt><dd>this tells FFmpeg to interpret the raw data video as the same as input (in this case DV)<br></dd>
         <dt><i>output_file.dv</i></dt><dd>tells FFmpeg to use the DV wrapper for the output.<br></dd>
       </dl>
       <p class="link"></p>
