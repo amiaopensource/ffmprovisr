@@ -212,6 +212,24 @@
     </div>
     <!-- ends MKV to MP4 -->
 
+    <!-- Rewrap DV -->
+    <label class="recipe" for="rewrap-dv">Rewrap DV video to .dv file</label>
+    <input type="checkbox" id="rewrap-dv">
+    <div class="hiding">
+      <h3>Rewrap DV video to .dv file</h3>
+      <p><code>ffmpeg -i <i>input_file</i> -f rawvideo -c:v copy <i>output_file.dv</i></code></p>
+      <p>This script will take a video that is encoded in the <a href="https://en.wikipedia.org/wiki/DV">DV Codec</a> but wrapped in a different container (such as MOV) and rewrap it into a raw DV file (with the .dv extension). Since DV files potentially contain a great deal of provenance metadata within the DV stream, it is necessary to rewrap files in this method to avoid unintentional stripping of this metadata.</p>
+      <dl>
+        <dt>ffmpeg</dt><dd>starts the command</dd>
+        <dt>-i<i>input_file</i></dt><dd>path and name of the input file</dd>
+        <dt>-f rawvideo</dt><dd>this tells FFmpeg to pass the video stream as raw video data without remuxing. This step is what ensures the survival of embedded metadata versus a standard rewrap.</dd>
+        <dt>-c:v copy</dt><dd>copy the DV stream directly, without re-encoding.</dd>
+        <dt><i>output_file.dv</i></dt><dd>tells FFmpeg to use the DV wrapper for the output.</dd>
+      </dl>
+      <p class="link"></p>
+    </div>
+    <!-- Rewrap DV -->
+
     </div>
     <div class="well">
     <h2 id="transcode">Change codec (transcode)</h2>
