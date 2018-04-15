@@ -1,6 +1,7 @@
 html, body {
   line-height: 1.5;
   font-size: 18px;
+  font-family: sans-serif;
   color: #888888;
   background-color: #060606;
   margin: 0;
@@ -88,9 +89,6 @@ a:visited {
   display: inline;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: sans-serif;
-}
 
 h1 {
   letter-spacing: 0.1em;
@@ -116,7 +114,6 @@ h4 {
 }
 
 .intro-lead {
-  font-family: sans-serif;
   font-size: 1em;
 }
 
@@ -165,7 +162,6 @@ img {
 }
 
 div {
-  font-family: sans-serif;
   color: white;
 }
 
