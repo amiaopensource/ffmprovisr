@@ -1,6 +1,6 @@
 html, body {
   line-height: 1.5;
-  font-size: 16px;
+  font-size: 18px;
   color: #888888;
   background-color: #060606;
   margin: 0;
@@ -89,7 +89,7 @@ a:visited {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: sans-serif;
 }
 
 h1 {
@@ -116,7 +116,7 @@ h4 {
 }
 
 .intro-lead {
-  font-family: 'Montserrat', sans-serif;
+  font-family: sans-serif;
   font-size: 1em;
 }
 
@@ -165,7 +165,7 @@ img {
 }
 
 div {
-  font-family: 'Merriweather', serif;
+  font-family: sans-serif;
   color: white;
 }
 
@@ -177,7 +177,6 @@ div {
   color: white;
   background-color: #383838;
   padding: 14px;
-  font-family: "Montserrat";
   letter-spacing: 0.05em;
   border: 1px solid black;
   cursor: pointer;
