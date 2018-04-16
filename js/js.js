@@ -20,7 +20,7 @@ $(document).ready(function() {
 
   $('#open-all').on("click", function(){
     $('input[type=checkbox]').each(function(){
-      $(this).prop('checked', true);
+      this.checked = !this.checked;
     })
   });
 
