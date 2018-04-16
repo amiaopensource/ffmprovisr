@@ -18,4 +18,10 @@ $(document).ready(function() {
     $('#' + id).closest('div').find('.link').append("<small>Link to this command: <a href='https://amiaopensource.github.io/ffmprovisr/index.html"+window.location.hash+"'>https://amiaopensource.github.io/ffmprovisr/index.html"+window.location.hash+"</a></small>");
   });
 
+  $('#open-all').on("click", function(){
+    $('input[type=checkbox]').each(function(){
+      this.checked = !this.checked;
+    })
+  });
+
 });
