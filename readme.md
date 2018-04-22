@@ -99,7 +99,7 @@ ross-spencer (Ross Spencer)
 todrobbins (Tod Robbins)  
 
 Repo: amiaopensource/ffmprovisr  
-GitHub Contributors: 15  
+Code Contributors: 15  
 All Contributors: 30   
 Last updated: 2018-04-22 (4:2:2 Day)  
 
