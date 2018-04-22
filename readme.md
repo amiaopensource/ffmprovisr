@@ -49,10 +49,13 @@ You can read our contributor code of conduct [here](https://github.com/amiaopens
 ## Contributors
 * Gathered using [octohatrack](https://github.com/LABHR/octohatrack)
 
-*GitHub Contributors*:  
+*Code Contributors*:
 ablwr (Ashley)  
+bastibeckr (Basti Becker)  
+bturkus  
 dericed (Dave Rice)  
 edsu (Ed Summers)  
+jamessam (Jim Sam)  
 jfarbowitz (Jonathan Farbowitz)  
 kfrn (Katherine Frances Nagels)  
 kgrons (Kathryn Gronsbell)  
@@ -62,17 +65,23 @@ pjotrek-b (Peter B.)
 privatezero (Andrew Weaver)  
 retokromer (Reto Kromer)  
 rfraimow  
-  
-*All Contributors*:  
+
+*All Contributors*:
 ablwr (Ashley)  
 audiovisualopen  
+bastibeckr (Basti Becker)  
 brainwane (Sumana Harihareswara)  
 bturkus  
 dericed (Dave Rice)  
+drodz11 (Dave Rodriguez)  
 edsu (Ed Summers)  
+EG-tech (Ethan Gates)  
+federicomenaquintero (Federico Mena Quintero)  
 Fizz24  
+GregH18  
 jamessam (Jim Sam)  
 jfarbowitz (Jonathan Farbowitz)  
+JonnyTech  
 jronallo (Jason Ronallo)  
 kellyhaydon (metacynic)  
 kfrn (Katherine Frances Nagels)  
@@ -80,16 +89,19 @@ kgrons (Kathryn Gronsbell)
 kieranjol (Kieran O'Leary)  
 llogan (Lou)  
 mulvya  
+nkrabben (Nick Krabbenhoeft)  
 pjotrek-b (Peter B.)  
 privatezero (Andrew Weaver)  
 retokromer (Reto Kromer)  
 rfraimow  
 richardpl (Paul B Mahol)  
+ross-spencer (Ross Spencer)  
 todrobbins (Tod Robbins)  
-  
+
 Repo: amiaopensource/ffmprovisr  
-GitHub Contributors: 12  
-All Contributors: 22  
+GitHub Contributors: 15  
+All Contributors: 30   
+Last updated: 2018-04-22 (4:2:2 Day)  
 
 ## AVHack Team
 
