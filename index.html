@@ -1710,6 +1710,42 @@
     </div>
     <!-- ends batch processing (Windows) -->
 
+    <!-- Check decoder errors -->
+    <label class="recipe" for="check_decoder_errors">Check decoder errors</label>
+    <input type="checkbox" id="check_decoder_errors">
+    <div class="hiding">
+      <h3>Check decoder errors</h3>
+      <p><code>ffmpeg -i <i>input_file</i> -f null -</code></p>
+      <p>This decodes your video and prints any errors or found issues to the screen.</p>
+      <dl>
+        <dt>ffmpeg</dt><dd>starts the command</dd>
+        <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+        <dt>-f null</dt><dd>Video is decoded with the <code>null</code> muxer. This allows video decoding without creating an output file.</dd>
+        <dt>-</dt><dd>FFmpeg syntax requires a specified output, and <code>-</code> is just a place holder. No file is actually created.</dd>
+      </dl>
+      <p class="link"></p>
+    </div>
+    <!-- ends Check decoder errors -->
+
+    <!-- Check FFV1 fixity -->
+    <label class="recipe" for="check_FFV1_fixity">Check FFV1 fixity</label>
+    <input type="checkbox" id="check_FFV1_fixity">
+    <div class="hiding">
+      <h3>Check FFV1 Version 3 fixity</h3>
+      <p><code>ffmpeg -report -i <i>input_file</i> -f null -</code></p>
+      <p>This decodes your video and displays any CRC checksum mismatches. These errors will display in your terminal like this: <code>[ffv1 @ 0x1b04660] CRC mismatch 350FBD8A!at 0.272000 seconds</code></p>
+      <p>Frame CRCs are enabled by default in FFV1 Version 3.</p>
+      <dl>
+        <dt>ffmpeg</dt><dd>starts the command</dd>
+        <dt>-report</dt><dd>Dump full command line and console output to a file named <i>ffmpeg-YYYYMMDD-HHMMSS.log</i> in the current directory. It also implies <code>-loglevel verbose</code>.</dd>
+        <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
+        <dt>-f null</dt><dd>Video is decoded with the <code>null</code> muxer. This allows video decoding without creating an output file.</dd>
+        <dt>-</dt><dd>FFmpeg syntax requires a specified output, and <code>-</code> is just a place holder. No file is actually created.</dd>
+      </dl>
+      <p class="link"></p>
+    </div>
+    <!-- ends Check FFV1 Fixity -->
+
     <!-- Create frame md5s -->
     <label class="recipe" for="create_frame_md5s_v">Create MD5 checksums (video frames)</label>
     <input type="checkbox" id="create_frame_md5s_v">
@@ -1827,25 +1863,6 @@
       <p class="link"></p>
     </div>
     <!-- ends QCTools Report (no audio) -->
-
-    <!-- Check FFV1 fixity -->
-    <label class="recipe" for="check_FFV1_fixity">Check FFV1 fixity</label>
-    <input type="checkbox" id="check_FFV1_fixity">
-    <div class="hiding">
-      <h3>Check FFV1 Version 3 fixity</h3>
-      <p><code>ffmpeg -report -i <i>input_file</i> -f null -</code></p>
-      <p>This decodes your video and displays any CRC checksum mismatches. These errors will display in your terminal like this: <code>[ffv1 @ 0x1b04660] CRC mismatch 350FBD8A!at 0.272000 seconds</code></p>
-      <p>Frame CRCs are enabled by default in FFV1 Version 3.</p>
-      <dl>
-        <dt>ffmpeg</dt><dd>starts the command</dd>
-        <dt>-report</dt><dd>Dump full command line and console output to a file named <i>ffmpeg-YYYYMMDD-HHMMSS.log</i> in the current directory. It also implies <code>-loglevel verbose</code>.</dd>
-        <dt>-i <i>input_file</i></dt><dd>path, name and extension of the input file</dd>
-        <dt>-f null</dt><dd>Video is decoded with the <code>null</code> muxer. This allows video decoding without creating an output file.</dd>
-        <dt>-</dt><dd>FFmpeg syntax requires a specified output, and <code>-</code> is just a place holder. No file is actually created. </dd>
-      </dl>
-      <p class="link"></p>
-    </div>
-    <!-- ends Check FFV1 Fixity -->
 
     <!-- Read/Extract EIA-608 Closed Captions -->
     <label class="recipe" for="readeia608">Read/Extract EIA-608 Closed Captioning</label>
