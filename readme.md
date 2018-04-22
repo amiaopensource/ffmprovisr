@@ -111,6 +111,7 @@ Last updated: 2018-04-22 (4:2:2 Day)
 
 ## Sister projects
 
+[The Cable Bible](https://amiaopensource.github.io/cable-bible/): A Guide to Cables and Connectors Used for Audiovisual Tech  
 [Script Ahoy](http://dd388.github.io/crals/): Community Resource for Archivists and Librarians Scripting  
 [sourcecaster](https://datapraxis.github.io/sourcecaster/): helps you use the command line to work through common challenges that come up when working with digital primary sources.
 
