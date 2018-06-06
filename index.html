@@ -2371,23 +2371,6 @@
       </div>
       <!-- End About ImageMagick -->
 
-      <!-- Resize to width -->
-      <label class="recipe" for="im_resize">Resizes image to specific pixel width</label>
-      <input type="checkbox" id="im_resize">
-      <div class="hiding">
-        <h3>Resize to width</h3>
-        <p><code>convert <i>input_file.ext</i> -resize 750 <i>output_file.ext</i></code></p>
-        <p>This script will also convert the file format, if the output has a different file extension than the input.</p>
-        <dl>
-          <dt>convert</dt><dd>starts the command</dd>
-          <dt>-i <i>input_file.ext</i></dt><dd>path and name of the input file</dd>
-          <dt>-resize 750</dt><dd>resizes the image to 750 pixels wide, retaining aspect ratio</dd>
-          <dt><i>output_file.ext</i></dt><dd>path and name of the output file</dd>
-        </dl>
-        <p class="link"></p>
-      </div>
-      <!-- ends Resize to width -->  
-
       <!-- Create thumbnails -->
       <label class="recipe" for="im_thumbs">Create thumbnails of images</label>
       <input type="checkbox" id="im_thumbs">
@@ -2425,7 +2408,23 @@
       </div>
       <!-- ends Create grid of images --> 
 
-
+      <!-- Resize to width -->
+      <label class="recipe" for="im_resize">Resizes image to specific pixel width</label>
+      <input type="checkbox" id="im_resize">
+      <div class="hiding">
+        <h3>Resize to width</h3>
+        <p><code>convert <i>input_file.ext</i> -resize 750 <i>output_file.ext</i></code></p>
+        <p>This script will also convert the file format, if the output has a different file extension than the input.</p>
+        <dl>
+          <dt>convert</dt><dd>starts the command</dd>
+          <dt>-i <i>input_file.ext</i></dt><dd>path and name of the input file</dd>
+          <dt>-resize 750</dt><dd>resizes the image to 750 pixels wide, retaining aspect ratio</dd>
+          <dt><i>output_file.ext</i></dt><dd>path and name of the output file</dd>
+        </dl>
+        <p class="link"></p>
+      </div>
+      <!-- ends Resize to width -->  
+      
     </div>
   </div><!-- ends "content" -->
 
