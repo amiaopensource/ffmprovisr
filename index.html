@@ -2408,6 +2408,23 @@
       </div>
       <!-- ends Create grid of images --> 
 
+      <!-- Remove exif data -->
+      <label class="recipe" for="im_strip">Removes exif metadata</label>
+      <input type="checkbox" id="im_strip">
+      <div class="hiding">
+        <h3>Remove exif data</h3>
+        <p><code>mogrify -path ./stripped/ -strip *.jpg</code></p>
+        <p>Removes (strips) exif data and moves clean files to a new folder.</p>
+        <dl>
+          <dt>mogrify</dt><dd>starts the command</dd>
+          <dt>-path ./stripped/</dt><dd>sets directory within current directory called "stripped"</dd>
+          <dt>-strip</dt><dd>removes exif metadata</dd>
+          <dt>*.jpg</dt><dd>applies command to all .jpgs in current folder</dd>
+        </dl>
+        <p class="link"></p>
+      </div>
+      <!-- ends Remove exif data -->  
+
       <!-- Resize to width -->
       <label class="recipe" for="im_resize">Resizes image to specific pixel width</label>
       <input type="checkbox" id="im_resize">
@@ -2424,7 +2441,7 @@
         <p class="link"></p>
       </div>
       <!-- ends Resize to width -->  
-      
+
     </div>
   </div><!-- ends "content" -->
 
