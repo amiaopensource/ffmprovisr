@@ -2371,6 +2371,23 @@
       </div>
       <!-- End About ImageMagick -->
 
+      <!-- Compare two images -->
+      <label class="recipe" for="im_strip">Compare two images</label>
+      <input type="checkbox" id="im_strip">
+      <div class="hiding">
+        <h3>Compare two images</h3>
+        <p><code>compare -metric ae <i>image1.ext image2.ext</i> null:</code></p>
+        <p>Compares two images to each other.</p>
+        <dl>
+          <dt>compare</dt><dd>starts the command</dd>
+          <dt>-metric ae</dt><dd>applies the absolute error count metric, returning the number of different pixels. <a href="https://www.imagemagick.org/script/command-line-options.php#metric">Other parameters</a> are available for image comparison.</dd>
+          <dt><i>image1.ext image2.ext</i></dt><dd>takes two images as input</dd>
+          <dt>null:</dt><dd>throws away the comparison image that would be generated</dd>
+        </dl>
+        <p class="link"></p>
+      </div>
+      <!-- ends Compare two images -->  
+
       <!-- Create thumbnails -->
       <label class="recipe" for="im_thumbs">Create thumbnails of images</label>
       <input type="checkbox" id="im_thumbs">
