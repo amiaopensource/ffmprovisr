@@ -2371,22 +2371,22 @@
       </div>
       <!-- End About ImageMagick -->
 
-      <!-- Resize to width -->
-      <label class="recipe" for="im_resize">Resizes image to specific pixel width</label>
-      <input type="checkbox" id="im_resize">
+      <!-- Compare two images -->
+      <label class="recipe" for="im_compare">Compare two images</label>
+      <input type="checkbox" id="im_compare">
       <div class="hiding">
-        <h3>Resize to width</h3>
-        <p><code>convert <i>input_file.ext</i> -resize 750 <i>output_file.ext</i></code></p>
-        <p>This script will also convert the file format, if the output has a different file extension than the input.</p>
+        <h3>Compare two images</h3>
+        <p><code>compare -metric ae <i>image1.ext image2.ext</i> null:</code></p>
+        <p>Compares two images to each other.</p>
         <dl>
-          <dt>convert</dt><dd>starts the command</dd>
-          <dt>-i <i>input_file.ext</i></dt><dd>path and name of the input file</dd>
-          <dt>-resize 750</dt><dd>resizes the image to 750 pixels wide, retaining aspect ratio</dd>
-          <dt><i>output_file.ext</i></dt><dd>path and name of the output file</dd>
+          <dt>compare</dt><dd>starts the command</dd>
+          <dt>-metric ae</dt><dd>applies the absolute error count metric, returning the number of different pixels. <a href="https://www.imagemagick.org/script/command-line-options.php#metric">Other parameters</a> are available for image comparison.</dd>
+          <dt><i>image1.ext image2.ext</i></dt><dd>takes two images as input</dd>
+          <dt>null:</dt><dd>throws away the comparison image that would be generated</dd>
         </dl>
         <p class="link"></p>
       </div>
-      <!-- ends Resize to width -->  
+      <!-- ends Compare two images -->  
 
       <!-- Create thumbnails -->
       <label class="recipe" for="im_thumbs">Create thumbnails of images</label>
@@ -2425,6 +2425,58 @@
       </div>
       <!-- ends Create grid of images --> 
 
+      <!-- Get file signature data -->
+      <label class="recipe" for="im_sig_data">Get file signature data</label>
+      <input type="checkbox" id="im_sig_data">
+      <div class="hiding">
+        <h3>Get file signature data</h3>
+        <p><code>convert -verbose <i>input_file.ext</i> | grep -i signature </code></p>
+        <p>Gets signature data from an image file, which is a hash that can be used to uniquely identify the image.</p>
+        <dl>
+          <dt>convert</dt><dd>starts the command</dd>
+          <dt>-verbose</dt><dd>sets verbose flag for collecting the most data</dd>
+          <dt><i>input_file.ext</i></dt><dd>path and name of image file</dd>
+          <dt>|</dt><dd>pipe the data into something else</dd>
+          <dt>grep</dt><dd>starts the grep command</dd>
+          <dt>-i signature</dt><dd>ignore case and search for the phrase "signature"</dd>
+        </dl>
+        <p class="link"></p>
+      </div>
+      <!-- ends Get file signature data -->  
+
+      <!-- Remove exif data -->
+      <label class="recipe" for="im_strip">Removes exif metadata</label>
+      <input type="checkbox" id="im_strip">
+      <div class="hiding">
+        <h3>Remove exif data</h3>
+        <p><code>mogrify -path ./stripped/ -strip *.jpg</code></p>
+        <p>Removes (strips) exif data and moves clean files to a new folder.</p>
+        <dl>
+          <dt>mogrify</dt><dd>starts the command</dd>
+          <dt>-path ./stripped/</dt><dd>sets directory within current directory called "stripped"</dd>
+          <dt>-strip</dt><dd>removes exif metadata</dd>
+          <dt>*.jpg</dt><dd>applies command to all .jpgs in current folder</dd>
+        </dl>
+        <p class="link"></p>
+      </div>
+      <!-- ends Remove exif data -->  
+
+      <!-- Resize to width -->
+      <label class="recipe" for="im_resize">Resizes image to specific pixel width</label>
+      <input type="checkbox" id="im_resize">
+      <div class="hiding">
+        <h3>Resize to width</h3>
+        <p><code>convert <i>input_file.ext</i> -resize 750 <i>output_file.ext</i></code></p>
+        <p>This script will also convert the file format, if the output has a different file extension than the input.</p>
+        <dl>
+          <dt>convert</dt><dd>starts the command</dd>
+          <dt>-i <i>input_file.ext</i></dt><dd>path and name of the input file</dd>
+          <dt>-resize 750</dt><dd>resizes the image to 750 pixels wide, retaining aspect ratio</dd>
+          <dt><i>output_file.ext</i></dt><dd>path and name of the output file</dd>
+        </dl>
+        <p class="link"></p>
+      </div>
+      <!-- ends Resize to width -->  
 
     </div>
   </div><!-- ends "content" -->
