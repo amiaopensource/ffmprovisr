@@ -219,7 +219,7 @@
     <div class="hiding">
       <h3>Rewrap DV video to .dv file</h3>
       <p><code>ffmpeg -i <i>input_file</i> -f rawvideo -c:v copy <i>output_file.dv</i></code></p>
-      <p>This script will take a video that is encoded in the <a href="https://en.wikipedia.org/wiki/DV">DV Codec</a> but wrapped in a different container (such as MOV) and rewrap it into a raw DV file (with the .dv extension). Since DV files potentially contain a great deal of provenance metadata within the DV stream, it is necessary to rewrap files in this method to avoid unintentional stripping of this metadata.</p>
+      <p>This script will take a video that is encoded in the <a href="https://en.wikipedia.org/wiki/DV" target="_blank">DV Codec</a> but wrapped in a different container (such as MOV) and rewrap it into a raw DV file (with the .dv extension). Since DV files potentially contain a great deal of provenance metadata within the DV stream, it is necessary to rewrap files in this method to avoid unintentional stripping of this metadata.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <i>input_file</i></dt><dd>path and name of the input file</dd>
@@ -984,7 +984,7 @@
       <p>You can speed up or slow down a file using the <code>fps</code> and <code>atempo</code> filters (see also the <a href="https://amiaopensource.github.io/ffmprovisr/#modify_speed">Modify speed</a> command).</p>
       <p>Here's an example of the full command, in which input_1 is 30fps, input_2 is 25fps, and 25fps is the desired output speed.</p>
       <p><code>ffmpeg -i input_1.avi -i input_2.mp4 -filter_complex "[0:v:0] fps=fps=25 [video_to_25fps]; [0:a:0] atempo=(25/30) [audio_to_25fps]; [video_to_25fps] [audio_to_25fps] [1:v:0] [1:a:0] concat=n=2:v=1:a=1 [video_out] [audio_out]" -map "[video_out]" -map "[audio_out]" <i>output_file</i></code></p>
-      <p>Note that the <code>fps</code> filter will drop or repeat frames as necessary in order to achieve the desired frame rate - see the FFmpeg <a href="https://ffmpeg.org/ffmpeg-filters.html#fps-1">fps docs</a> for more details.</p>
+      <p>Note that the <code>fps</code> filter will drop or repeat frames as necessary in order to achieve the desired frame rate - see the FFmpeg <a href="https://ffmpeg.org/ffmpeg-filters.html#fps-1" target="_blank">fps docs</a> for more details.</p>
       <p>For more information, see the <a href="https://trac.ffmpeg.org/wiki/Concatenate#differentcodec" target="_blank">FFmpeg wiki page on concatenating files of different types</a>.</p>
       <p class="link"></p>
     </div>
@@ -2043,7 +2043,7 @@
     <input type="checkbox" id="game_of_life">
     <div class="hiding">
       <h3>Conway's Game of Life</h3>
-      <p>Simulates <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway's Game of Life</a></p>
+      <p>Simulates <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_blank">Conway's Game of Life</a></p>
       <p><code>ffplay -f lavfi life=s=300x200:mold=10:r=60:ratio=0.1:death_color=#C83232:life_color=#00ff00,scale=1200:800</code></p>
       <dl>
         <dt>ffplay</dt><dd>starts the command</dd>
@@ -2364,8 +2364,8 @@
       <div class="hiding">
         <h3>About ImageMagick</h3>
         <p>ImageMagick is a free and open-source software suite for displaying, converting, and editing raster image and vector image files.</p>
-        <p>It's official website can be found <a href="https://www.imagemagick.org/script/index.php">here</a>.</p>
-        <p>Another great resource with lots of supplemental explanations of filters is available at <a href="http://www.fmwconcepts.com/imagemagick/index.php">Fred's ImageMagick Scripts</a>.</p>
+        <p>It's official website can be found <a href="https://www.imagemagick.org/script/index.php" target="_blank">here</a>.</p>
+        <p>Another great resource with lots of supplemental explanations of filters is available at <a href="http://www.fmwconcepts.com/imagemagick/index.php" target="_blank">Fred's ImageMagick Scripts</a>.</p>
         <p>Unlike many other command line tools, ImageMagick isn't summoned by calling its name. Rather, ImageMagick installs links to several more specific commands: <code>convert</code>, <code>montage</code>, and <code>mogrify</code>, to name a few.</p>
         <p class="link"></p>
       </div>
@@ -2380,7 +2380,7 @@
         <p>Compares two images to each other.</p>
         <dl>
           <dt>compare</dt><dd>starts the command</dd>
-          <dt>-metric ae</dt><dd>applies the absolute error count metric, returning the number of different pixels. <a href="https://www.imagemagick.org/script/command-line-options.php#metric">Other parameters</a> are available for image comparison.</dd>
+          <dt>-metric ae</dt><dd>applies the absolute error count metric, returning the number of different pixels. <a href="https://www.imagemagick.org/script/command-line-options.php#metric" target="_blank">Other parameters</a> are available for image comparison.</dd>
           <dt><i>image1.ext image2.ext</i></dt><dd>takes two images as input</dd>
           <dt>null:</dt><dd>throws away the comparison image that would be generated</dd>
         </dl>
@@ -2499,7 +2499,7 @@ Change the above data-target field, the hover-over description, the button text,
 <!-- ends sample example -->
 
 <footer class="footer">
-  <p>Made with ♥ at <a href="https://wiki.curatecamp.org/index.php/Association_of_Moving_Image_Archivists_%26_Digital_Library_Federation_Hack_Day_2015" target="_blank">AMIA #AVhack15</a>! Contribute to the project via <a href="https://github.com/amiaopensource/ffmprovisr">our GitHub page</a>!</p>
+  <p>Made with ♥ at <a href="https://wiki.curatecamp.org/index.php/Association_of_Moving_Image_Archivists_%26_Digital_Library_Federation_Hack_Day_2015" target="_blank">AMIA #AVhack15</a>! Contribute to the project via <a href="https://github.com/amiaopensource/ffmprovisr" target="_blank">our GitHub page</a>!</p>
 </footer>
 </div><!-- ends "grid" -->
 </body>
