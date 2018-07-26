@@ -412,6 +412,27 @@
     </div>
     <!-- ends Transcode to H.265 -->
 
+    <!-- Transcode to Ogg/Theora -->
+    <label class="recipe" for="transcode_ogg">Transcode to an Ogg Theora</label>
+    <input type="checkbox" id="transcode_ogg">
+    <div class="hiding">
+      <h3>Transcode to H.265/HEVC</h3>
+      <p><code>ffmpeg -i <i>input_file</i> -acodec libvorbis -b:v 690k <i>output_file</i></code></p>
+      <p>This command takes an input file and transcodes it to Ogg/Theora in an .ogv wrapper with 690k video bitrate.</p>
+      <p><b>Note:</b> FFmpeg must be installed with support for Ogg Theora. If you are using Homebrew, you can check with <code>brew info ffmpeg</code> and then update it with <code>brew upgrade ffmpeg --with-theora --with-libvorbis</code> if necessary.</p>
+      <dl>
+        <dt>ffmpeg</dt><dd>starts the command</dd>
+        <dt>-i <i>input file</i></dt><dd>path, name and extension of the input file</dd>
+        <dt>-acodec libvorbis</dt><dd>tells FFmpeg to encode the audio using libvorbis</dd>
+        <dt>-b:v 690k</dt><dd>specifies the 690k video bitrate</dd>
+        <dt><i>output file</i></dt><dd>path, name and extension of the output file (make sure to include the <code>.ogv</code> filename suffix)</dd>
+      </dl>
+      <p>This recipe is based on <a href="http://paulrouget.com/e/converttohtml5video">Paul Rouget's recipes</a>.</p>
+      <p class="link"></p>
+    </div>
+    <!-- ends Transcode to Ogg/Theora -->
+
+     
     <p>&nbsp;</p>
     <!-- Here comes audio-only transcoding -->
 
