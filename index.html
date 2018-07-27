@@ -416,7 +416,7 @@
     <label class="recipe" for="transcode_ogg">Transcode to an Ogg Theora</label>
     <input type="checkbox" id="transcode_ogg">
     <div class="hiding">
-      <h3>Transcode to H.265/HEVC</h3>
+      <h3>Transcode to Ogg/Theora</h3>
       <p><code>ffmpeg -i <i>input_file</i> -acodec libvorbis -b:v 690k <i>output_file</i></code></p>
       <p>This command takes an input file and transcodes it to Ogg/Theora in an .ogv wrapper with 690k video bitrate.</p>
       <p><b>Note:</b> FFmpeg must be installed with support for Ogg Theora. If you are using Homebrew, you can check with <code>brew info ffmpeg</code> and then update it with <code>brew upgrade ffmpeg --with-theora --with-libvorbis</code> if necessary.</p>
