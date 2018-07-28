@@ -669,7 +669,7 @@
     <div class="hiding">
       <h3>Modify image and sound speed</h3>
       <p>E.g. for converting 24fps to 25fps with audio pitch compensation for PAL access copies. (Thanks @kieranjol!)</p>
-      <p><code>ffmpeg -i <em>input_file</em> -filter_complex -r <em>output_fps</em> "[0:v]setpts=<em>input_fps</em>/<em>output_fps</em>*PTS[v]; [0:a]atempo=<em>output_fps</em>/<em>input_fps</em>[a]" -map "[v]" -map "[a]" <em>output_file</em></code></p>
+      <p><code>ffmpeg -i <em>input_file</em> -r <em>output_fps</em> -filter_complex "[0:v]setpts=<em>input_fps</em>/<em>output_fps</em>*PTS[v]; [0:a]atempo=<em>output_fps</em>/<em>input_fps</em>[a]" -map "[v]" -map "[a]" <em>output_file</em></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
