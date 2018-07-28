@@ -669,10 +669,11 @@
     <div class="hiding">
       <h3>Modify image and sound speed</h3>
       <p>E.g. for converting 24fps to 25fps with audio pitch compensation for PAL access copies. (Thanks @kieranjol!)</p>
-      <p><code>ffmpeg -i <em>input_file</em> -filter_complex "[0:v]setpts=<em>input_fps</em>/<em>output_fps</em>*PTS[v]; [0:a]atempo=<em>output_fps</em>/<em>input_fps</em>[a]" -map "[v]" -map "[a]" <em>output_file</em></code></p>
+      <p><code>ffmpeg -i <em>input_file</em> -filter_complex -r <em>output_fps</em> "[0:v]setpts=<em>input_fps</em>/<em>output_fps</em>*PTS[v]; [0:a]atempo=<em>output_fps</em>/<em>input_fps</em>[a]" -map "[v]" -map "[a]" <em>output_file</em></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
+        <dt>-r <em>output_fps</em></dt><dd>sets the frame rate of the <em>output_file</em></dd>
         <dt>-filter_complex "[0:v]setpts=<em>input_fps</em>/<em>output_fps</em>*PTS[v]; [0:a]atempo=<em>output_fps</em>/<em>input_fps</em>[a]"</dt><dd>A complex filter is needed here, in order to handle video stream and the audio stream separately. The <code>setpts</code> video filter modifies the PTS (presentation time stamp) of the video stream, and the <code>atempo</code> audio filter modifies the speed of the audio stream while keeping the same sound pitch. Note that the parameter order for the image and for the sound are inverted:
         <ul>
           <li>In the video filter <code>setpts</code> the numerator <code>input_fps</code> sets the input speed and the denominator <code>output_fps</code> sets the output speed; both values are given in frames per second.</li>
