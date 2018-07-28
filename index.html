@@ -2024,7 +2024,7 @@
     <div class="hiding">
       <h3>SMPTE bars + Sine wave audio</h3>
       <p>Generate a SMPTE bars test video + a 1kHz sine wave as audio testsignal.</p>
-      <p><code>ffmpeg -f lavfi -i smptebars=size=720x576:rate=25 -f lavfi -i "sine=frequency=1000:sample_rate=48000" -c:a pcm_s16le -t 10 -c:v ffv1 <em>output_file</em></code></p>
+      <p><code>ffmpeg -f lavfi -i "smptebars=size=720x576:rate=25" -f lavfi -i "sine=frequency=1000:sample_rate=48000" -c:a pcm_s16le -t 10 -c:v ffv1 <em>output_file</em></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-f lavfi</dt><dd>tells FFmpeg to use the <a href="https://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">libavfilter</a> input virtual device</dd>
