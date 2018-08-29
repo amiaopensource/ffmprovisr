@@ -2516,8 +2516,32 @@
         <p class="link"></p>
       </div>
       <!-- ends Resize to width -->
-
     </div>
+        <div class="well">
+      <h2 id="flac">flac</h2>
+
+      <!-- flac tool -->
+      <label class="recipe" for="flac-tool">Transcoding to/from FLAC</label>
+      <input type="checkbox" id="flac-tool">
+      <div class="hiding">
+        <h3>About flac tool</h3>
+        <p>The flac tool is the tool created by the FLAC project to transcode to/from FLAC and to manipulate metadata in FLAC files. One advantage it has over other tools used to transcode into FLAC is the capability of embedding foreign metadata (such as BWF metadata). This means that it is possible to compress a BWF file into FLAC and maintain the ability to transcode back into an identical BWF, metadata and all. For a more detailed explanation, see <a href="http://dericed.com/2013/flac-in-the-archives/" target="_blank">Dave Rice's article</a> on the topic, from which the following commands are adapted.</p> 
+        <h3>Transcode to FLAC</h3>
+        <p>Use this command to transcode from WAV to FLAC while maintaining BWF metadata</p>
+        <p><code>flac --best --keep-foreign-metadata --preserve-modtime --verify <em>input.wav</em></code></p>
+        <dl>
+          <dt>flac</dt><dd>starts the command</dd>
+          <dt>-i <em>input_file.ext</em></dt><dd>path and name of the input file</dd>
+          <dt>--best</dt><dd>sets the file for the most efficient compression (resulting in a smaller file at the expense of a slower process).</dd>
+          <dt>--keep-foreign-metadata</dt><dd>tells the flac tool to maintain original metadata within the FLAC file.</dd>
+          <dt>--preserve-modtime</dt><dd>preserves the file timestamps of the input file.</dd>
+          <dt>--verify</dt><dd>verifies the validity of the output file.</dd>
+        </dl>
+        <h3>Transcode from FLAC</h3>
+        <p>Use this command to transcode from FLAC to reconstruct original BWF file. Command is the same as the prior command with the exception of substituting <code>--decode</code> for <code>best</code> and changing the input to a <code>.flac</code> file.</p>
+        <p><code>flac --decode --keep-foreign-metadata --preserve-modtime --verify <em>input.flac</em></code></p>
+      </div>
+      <!-- End About flac -->
   </div><!-- ends "content" -->
 
 <!-- sample example -->
