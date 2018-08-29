@@ -104,6 +104,24 @@
     <div class="well">
 
     <h2 id="concepts">Learn about more advanced FFmpeg concepts</h2>
+    <!-- Codec Defaults explanation -->
+    <label class="recipe" for="codec-defaults">Codec defaults</label>
+    <input type="checkbox" id="codec-defaults">
+    <div class="hiding">
+      <h3>Codec Defaults</h3>
+      <p>Unless specified, FFmpeg will automatically set codec choices and codec parameters based off of internal defaults. These defaults are applied based on the file type used in the output (for example <code>.mov</code> or <code>.wav</code>).</p>
+      <p>When creating or transcoding files with FFmpeg, it is important to consider codec settings for both audio and video, as the default options may not be desirable in your particular context. The following is a brief list of codec defaults for some common file types:
+      <ul>
+        <li><code>.avi</code>: Audio Codec: mp3, Video Codec: mpeg4</li>
+        <li><code>.mkv</code>: Audio Codec: ac3, Video Codec: h.264</li>
+        <li><code>.mov</code>: Audio Codec: aac, Video Codec: h.264</li>
+        <li><code>.mp4</code>: Audio Codec: aac, Video Codec: h.264</li>
+        <li><code>.mpg</code>: Audio Codec: mp2, Video Codec: mpeg1video</li>
+        <li><code>.wav</code>: Audio Codec: pcm_s16le (16 bit PCM)</li>
+      </ul>
+    </div>
+    <!-- End Codec Defaults -->
+
     <!-- Filtergraph explanation -->
     <label class="recipe" for="filtergraphs">Filtergraphs</label>
     <input type="checkbox" id="filtergraphs">
