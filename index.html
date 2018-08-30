@@ -110,7 +110,7 @@
     <div class="hiding">
       <h3>Codec Defaults</h3>
       <p>Unless specified, FFmpeg will automatically set codec choices and codec parameters based off of internal defaults. These defaults are applied based on the file type used in the output (for example <code>.mov</code> or <code>.wav</code>).</p>
-      <p>When creating or transcoding files with FFmpeg, it is important to consider codec settings for both audio and video, as the default options may not be desirable in your particular context. The following is a brief list of codec defaults for some common file types:
+      <p>When creating or transcoding files with FFmpeg, it is important to consider codec settings for both audio and video, as the default options may not be desirable in your particular context. The following is a brief list of codec defaults for some common file types:</p>
       <ul>
         <li><code>.avi</code>: Audio Codec: mp3, Video Codec: mpeg4</li>
         <li><code>.mkv</code>: Audio Codec: ac3, Video Codec: h.264</li>
@@ -2517,9 +2517,8 @@
       </div>
       <!-- ends Resize to width -->
     </div>
-        <div class="well">
+    <div class="well">
       <h2 id="flac">flac</h2>
-
       <!-- flac tool -->
       <label class="recipe" for="flac-tool">Transcoding to/from FLAC</label>
       <input type="checkbox" id="flac-tool">
@@ -2540,6 +2539,7 @@
         <h3>Transcode from FLAC</h3>
         <p>Use this command to transcode from FLAC to reconstruct original BWF file. Command is the same as the prior command with the exception of substituting <code>--decode</code> for <code>best</code> and changing the input to a <code>.flac</code> file.</p>
         <p><code>flac --decode --keep-foreign-metadata --preserve-modtime --verify <em>input.flac</em></code></p>
+      <p class="link"></p>
       </div>
       <!-- End About flac -->
   </div><!-- ends "content" -->
