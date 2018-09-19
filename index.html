@@ -293,7 +293,7 @@
     <div class="hiding">
       <h3>Transcode to H.264</h3>
       <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -pix_fmt yuv420p -c:a aac <em>output_file</em></code></p>
-      <p>This command takes an input file and transcodes it to H.264 with an .mp4 wrapper, keeping the audio the same codec as the original. The libx264 codec defaults to a “medium” preset for compression quality and a CRF of 23. CRF stands for constant rate factor and determines the quality and file size of the resulting H.264 video. A low CRF means high quality and large file size; a high CRF means the opposite.</p>
+      <p>This command takes an input file and transcodes it to H.264 with an .mp4 wrapper, audio is transcoded to AAC. The libx264 codec defaults to a “medium” preset for compression quality and a CRF of 23. CRF stands for constant rate factor and determines the quality and file size of the resulting H.264 video. A low CRF means high quality and large file size; a high CRF means the opposite.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
