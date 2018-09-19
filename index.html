@@ -293,7 +293,7 @@
     <div class="hiding">
       <h3>Transcode to H.264</h3>
       <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -pix_fmt yuv420p -c:a aac <em>output_file</em></code></p>
-      <p>This command takes an input file and transcodes it to H.264 with an .mp4 wrapper, keeping the audio the same codec as the original. The libx264 codec defaults to a “medium” preset for compression quality and a CRF of 23. CRF stands for constant rate factor and determines the quality and file size of the resulting H.264 video. A low CRF means high quality and large file size; a high CRF means the opposite.</p>
+      <p>This command takes an input file and transcodes it to H.264 with an .mp4 wrapper, audio is transcoded to AAC. The libx264 codec defaults to a “medium” preset for compression quality and a CRF of 23. CRF stands for constant rate factor and determines the quality and file size of the resulting H.264 video. A low CRF means high quality and large file size; a high CRF means the opposite.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
@@ -302,6 +302,11 @@
         <dt>-c:a aac</dt><dd>encode audio as AAC.<br>
           AAC is the codec most often used for audio streams within an .mp4 container.</dd>
         <dt><em>output_file</em></dt><dd>path, name and extension of the output file</dd>
+      </dl>
+      <p>In order to optimize the file for streaming, you can add this preset:</p>
+      <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -pix_fmt yuv420p -c:a aac -movflags +faststart <em>output_file</em></code></p>
+      <dl>
+        <dt>-movflags +faststart</dt><dd>This tells FFmpeg to move some of the essential metadata to the start of the file, which permits starting viewing before the file finishes downloading (an ideal characteristic for streaming).</dd>
       </dl>
       <p>In order to use the same basic command to make a higher quality file, you can add some of these presets:</p>
       <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -pix_fmt yuv420p -preset veryslow -crf 18 -c:a aac <em>output_file</em></code></p>
