@@ -40,7 +40,6 @@
     <a href="#similar-tools"><div class="contents-list">Similar tools: tips &amp; tricks</div></a>
     <a href="#imagemagick"><div class="contents-list">ImageMagick</div></a>
     <a href="#flac-tool"><div class="contents-list">flac tool</div></a>
-
   </nav>
 
   <div class="content">
@@ -79,7 +78,7 @@
         <p>A very basic FFmpeg command looks like this:</p>
         <dl>
           <dt>ffmpeg</dt><dd>starts the command</dd>
-          <dt>-i <em>input_file.ext</em></dt><dd>path and name of the input file<br></dd>
+          <dt>-i <em>input_file.ext</em></dt><dd>path and name of the input file</dd>
           <dt><em>-flag some_action</em></dt><dd>tell FFmpeg to do something, by supplying a valid flag and action</dd>
           <dt><em>output_file.ext</em></dt><dd>path and name of the output file.<br>
             Because this is the last part of the command, the filename you type here does not have a flag designating it as the output file.</dd>
@@ -197,7 +196,7 @@
       <p><strong>Note:</strong> rewrapping is also known as remuxing, short for re-multiplexing.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
-        <dt>-i <em>input_file.ext</em></dt><dd>path and name of the input file<br></dd>
+        <dt>-i <em>input_file.ext</em></dt><dd>path and name of the input file</dd>
         <dt>-c copy</dt><dd>copy the streams directly, without re-encoding.</dd>
         <dt>-map 0</dt><dd>map all streams of the input to the output.<br>
         By default, FFmpeg will only map one stream of each type (video, audio, subtitles) to the output file. However, files may have multiple streams of a given type - for example, a video may have several audio tracks for different languages. Therefore, if you want to preserve all the streams in the original, it's necessary to use this option.</dd>
