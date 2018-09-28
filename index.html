@@ -2401,6 +2401,31 @@
     </div>
 
     <div class="well">
+      <h2 id="cdda">CDDA (Audio CD) Ripping Tools</h2>
+      <!-- Rip with CDDA2WAV -->
+      <label class="recipe" for="cdda2wav">Rip a CD with Cdda2wav</label>
+      <input type="checkbox" id="cdda2wav">
+      <div class="hiding">
+        <h3>Rip a CD with Cdda2wav</h3>
+        <p><code>cdda2wav -L0 -t all -cuefile -paranoia paraopts=retries=200,readahead=600,minoverlap=sectors-per-request-1 -verbose-level all <em>output.wav</em></code></p>
+        <p>Cdda2wav is a tool that uses the <a href="https://www.xiph.org/paranoia/">Paranoia library</a> to facilitate accurate ripping of audio CDs (CDDA). It can be installed via Homebrew with the command <code> brew install cdrtools</code>.This command will acurately rip an audio CD into a single wave file, while querying the CDDB database for track information and creating a cue sheet. This cue sheet can then be used either for playback of the WAV file or to split it into individual access files. Any <a href="https://en.wikipedia.org/wiki/CD-Text">cdtext</a> information that is discovered will be stored as a sidecar. For more information about cue sheets see <a href="https://en.wikipedia.org/wiki/Cue_sheet_(computing)">this wikipedia article.</a></p>
+        <dl>
+          <dt>cdda2wav</dt><dd>begins the Cdda2wav command</dd>
+          <dt>-L0</dt><dd>tells Cdda2wav to query the CDDB database for track name information. L0 is 'interactive mode' meaning Cdda2wav will ask you to confirm choices in the event of multiple matches. Change this to <code>-L1</code> to automatically select the first database match.</dd>
+          <dt>-t all</dt><dd>tells Cdda2wav to rip the entire CD to one file</dd>
+          <dt>-cuefile</dt><dd>tells Cdda2wav to create a cue file of CD contents</dd>
+          <dt>-paranoia</dt><dd>enables the Paranoia library for ripping</dd>
+          <dt>paraopts=retries=200,readahead=600,minoverlap=sectors-per-request-1</dt><dd>configures ripping to a generically conservative setting for retries and caching. These values were taken from the Cdda2wav man file and can be changed depending on needs, such as for more/less retry attempts. For more information see the Cdda2wav man file (also available online <a href="https://linux.die.net/man/1/cdda2wav">here)</a>.</dd>
+          <dt>-verbose-level all</dt><dd>sets terminal information to the most verbose view</dd>
+          <dt><em>output.wav</em></dt><dd>the desired name for your output file (for example the CD name).</dd>
+        </dl>
+        <p class="link"></p>
+      </div>
+      <!-- ends Rip with CDDA2WAV -->
+    </div>
+    <!-- ends CDDA Tools -->
+
+    <div class="well">
       <h2 id="imagemagick">ImageMagick</h2>
 
       <!-- About ImageMagick -->
@@ -2548,7 +2573,7 @@
         <p class="link"></p>
       </div>
     </div>
-      <!-- End About flac -->
+    <!-- End About flac -->
   </div><!-- ends "content" -->
 
 <!-- sample example -->
