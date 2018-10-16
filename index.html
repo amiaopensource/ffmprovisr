@@ -2404,6 +2404,18 @@
 
     <div class="well">
       <h2 id="cdda">CDDA (Audio CD) Ripping Tools</h2>
+      <!-- Find Drive Offset for Exact CD Ripping -->
+      <label class="recipe" for="find-offset">Find Drive Offset for Exact CD Ripping</label>
+      <input type="checkbox" id="find-offset">
+      <div class="hiding">
+        <h3>Find Drive Offset for Exact CD Ripping</h3>
+        <p>If you want to make CD rips that can be verified via checksums to other rips of the same content, you need to know the offset of your CD drive. Put simply, different models of CD drives have different offsets, meaning they start reading in slightly different locations. This must be compensated for in order for files created on different (model) drives to generate the same checksum. For a more detailed explanation of drive offsets see the explanation <a href="http://dbpoweramp.com/spoons-audio-guide-cd-ripping.htm">here.</a> In order to find your drive offset, first you will need to know exactly what model your drive is, then you can look it up in the list of drive offsets by Accurate Rip.</a></p>
+        <p>Often it can be difficult to tell what model your drive is simply by looking at it - it may be housed inside your computer or have external branding that is different from the actual drive manufacturer. For this reason, it can be useful to query your drive with CD ripping software to ID it. The following commands are an examples that's output should give you a better idea of what drive you have.</p>
+        <p><strong>CD Paranoia:</strong> <code>cdparanoia -vsQ</code></p>
+        <p><strong>Cdda2wav:</strong> <code>cdda2wav -scanbus</code></p>
+        <p>Once you have IDed your drive, you can search the <a href="http://www.accuraterip.com/driveoffsets.htm">Accurate Rip CD drive offset list</a> to find the correct offset for your drive as sourced by the community.</p>
+      </div>
+
       <!-- Rip with CDDA2WAV -->
       <label class="recipe" for="cdda2wav">Rip a CD with Cdda2wav</label>
       <input type="checkbox" id="cdda2wav">
