@@ -2414,7 +2414,28 @@
         <p><strong>Cdda2wav:</strong> <code>cdda2wav -scanbus</code> or simply <code>cdda2wav</code></p>
         <p><strong>CD Paranoia:</strong> <code>cdparanoia -vsQ</code></p>
         <p>Once you have IDed your drive, you can search the <a href="http://www.accuraterip.com/driveoffsets.htm">Accurate Rip CD drive offset list</a> to find the correct offset for your drive as sourced by the community.</p>
+        <p class="link"></p>
       </div>
+      <!-- Find Drive Offset for Exact CD Ripping -->
+
+      <!-- Rip with CD Paranoia -->
+        <label class="recipe" for="cdparanoia">Rip a CD with CD Paranoia</label>
+        <input type="checkbox" id="cdparanoia">
+        <div class="hiding">
+          <h3>Rip a CD with CD Paranoia</h3>
+          <p><code>cdparanoia -L -B -O <em>[Drive Offset]</em> <em>[Starting Track Number]</em>-<em>[Ending Track Number]</em> <em>output_file.wav</em></code></p>
+          <p>This command will use CD Paranoia to rip a CD into separate tracks while compensating for the sample offset of the CD drive. (For more information about drive offset see <a href=#find-offset>the related ffmprovisr command.</a>)</p>
+          <dl>
+            <dt>cdparanoia</dt><dd>begins the cdparanoia command.</dd>
+            <dt>-L</dt><dd>creates verbose logfile.</dd>
+            <dt>-B</dt><dd>puts CD Paranoia into 'batch' mode, which will automatically split tracks into separate files.</dd>
+            <dt>-O [Drive Offset]</dt><dd>allows you to specify the sample offset of your drive. Skip this flag to rip without offset correction.</dd>
+            <dt>[Starting Track Number]-[Ending Track Number]</dt><dd>specifies which tracks to write. For example <code>1-4</code> would rip tracks one through four.</dd>
+            <dt><em>output_file.wav</em></dt><dd>the desired name for your output file(s) (for example the CD name). CD Paranoia will prepend this with track numbers.</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      <!-- ends Rip with CD Paranoia -->
 
       <!-- Rip with CDDA2WAV -->
       <label class="recipe" for="cdda2wav">Rip a CD with Cdda2wav</label>
