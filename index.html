@@ -2404,13 +2404,49 @@
 
     <div class="well">
       <h2 id="cdda">CDDA (Audio CD) Ripping Tools</h2>
+      <!-- Find Drive Offset for Exact CD Ripping -->
+      <label class="recipe" for="find-offset">Find Drive Offset for Exact CD Ripping</label>
+      <input type="checkbox" id="find-offset">
+      <div class="hiding">
+        <h3>Find Drive Offset for Exact CD Ripping</h3>
+        <p>If you want to make CD rips that can be verified via checksums to other rips of the same content, you need to know the offset of your CD drive. Put simply, different models of CD drives have different offsets, meaning they start reading in slightly different locations. This must be compensated for in order for files created on different (model) drives to generate the same checksum. For a more detailed explanation of drive offsets see the explanation <a href="http://dbpoweramp.com/spoons-audio-guide-cd-ripping.htm">here.</a> In order to find your drive offset, first you will need to know exactly what model your drive is, then you can look it up in the list of drive offsets by Accurate Rip.</p>
+        <p>Often it can be difficult to tell what model your drive is simply by looking at it - it may be housed inside your computer or have external branding that is different from the actual drive manufacturer. For this reason, it can be useful to query your drive with CD ripping software in order to ID it. The following commands should give you a better idea of what drive you have.</p>
+        <p><strong>Cdda2wav:</strong> <code>cdda2wav -scanbus</code> or simply <code>cdda2wav</code></p>
+        <p><strong>CD Paranoia:</strong> <code>cdparanoia -vsQ</code></p>
+        <p>Once you have IDed your drive, you can search the <a href="http://www.accuraterip.com/driveoffsets.htm">Accurate Rip CD drive offset list</a> to find the correct offset for your drive as sourced by the community.</p>
+        <p><strong>Note:</strong> A very effective GUI based tool (macOS specific) for both for discovering drive offset as well as accurately ripping CDDAs is <a href="https://tmkk.undo.jp/xld/index_e.html">XLD</a>. Instructions for calibrating XLD can be found at <a href="https://wiki.hydrogenaud.io/index.php?title=XLD_Configuration">this page</a>.</p>
+        <p class="link"></p>
+      </div>
+      <!-- Find Drive Offset for Exact CD Ripping -->
+
+      <!-- Rip with CD Paranoia -->
+        <label class="recipe" for="cdparanoia">Rip a CD with CD Paranoia</label>
+        <input type="checkbox" id="cdparanoia">
+        <div class="hiding">
+          <h3>Rip a CD with CD Paranoia</h3>
+          <p><code>cdparanoia -L -B -O <em>[Drive Offset]</em> <em>[Starting Track Number]</em>-<em>[Ending Track Number]</em> <em>output_file.wav</em></code></p>
+          <p>This command will use CD Paranoia to rip a CD into separate tracks while compensating for the sample offset of the CD drive. (For more information about drive offset see <a href="#find-offset">the related ffmprovisr command.</a>)</p>
+          <dl>
+            <dt>cdparanoia</dt><dd>begins the cdparanoia command.</dd>
+            <dt>-L</dt><dd>creates verbose logfile.</dd>
+            <dt>-B</dt><dd>puts CD Paranoia into 'batch' mode, which will automatically split tracks into separate files.</dd>
+            <dt>-O [Drive Offset]</dt><dd>allows you to specify the sample offset of your drive. Skip this flag to rip without offset correction.</dd>
+            <dt>[Starting Track Number]-[Ending Track Number]</dt><dd>specifies which tracks to write. For example <code>1-4</code> would rip tracks one through four.</dd>
+            <dt><em>output_file.wav</em></dt><dd>the desired name for your output file(s) (for example the CD name). CD Paranoia will prepend this with track numbers.</dd>
+          </dl>
+          <p class="link"></p>
+        </div>
+      <!-- ends Rip with CD Paranoia -->
+
       <!-- Rip with CDDA2WAV -->
       <label class="recipe" for="cdda2wav">Rip a CD with Cdda2wav</label>
       <input type="checkbox" id="cdda2wav">
       <div class="hiding">
         <h3>Rip a CD with Cdda2wav</h3>
         <p><code>cdda2wav -L0 -t all -cuefile -paranoia paraopts=retries=200,readahead=600,minoverlap=sectors-per-request-1 -verbose-level all <em>output.wav</em></code></p>
-        <p>Cdda2wav is a tool that uses the <a href="https://www.xiph.org/paranoia/">Paranoia library</a> to facilitate accurate ripping of audio CDs (CDDA). It can be installed via Homebrew with the command <code> brew install cdrtools</code>. This command will accurately rip an audio CD into a single wave file, while querying the CDDB database for track information and creating a cue sheet. This cue sheet can then be used either for playback of the WAV file or to split it into individual access files. Any <a href="https://en.wikipedia.org/wiki/CD-Text">cdtext</a> information that is discovered will be stored as a sidecar. For more information about cue sheets see <a href="https://en.wikipedia.org/wiki/Cue_sheet_(computing)">this wikipedia article.</a></p>
+        <p>Cdda2wav is a tool that uses the <a href="https://www.xiph.org/paranoia/">Paranoia library</a> to facilitate accurate ripping of audio CDs (CDDA). It can be installed via Homebrew with the command <code> brew install cdrtools</code>. This command will accurately rip an audio CD into a single wave file, while querying the CDDB database for track information and creating a cue sheet. This cue sheet can then be used either for playback of the WAV file or to split it into individual access files. Any <a href="https://en.wikipedia.org/wiki/CD-Text">cdtext</a> information that is discovered will be stored as a sidecar. For more information about cue sheets see <a href="https://en.wikipedia.org/wiki/Cue_sheet_(computing)">this Wikipedia article.</a></p>
+        <p><strong>Notes: </strong>On macOS the CD must be unmounted before this command is run. This can be done with the command <code>sudo umount '/Volumes/Name_of_CD'</code></p>
+        <p>As of writing, when using the default Homebrew installed version of Cdda2wav some drives will falsely report errors on all rips. If this is occurring, a possible solution is to use the command <code>brew install --devel cdrtools</code> to install a more recent build that incorporates a fix.</p>
         <dl>
           <dt>cdda2wav</dt><dd>begins the Cdda2wav command</dd>
           <dt>-L0</dt><dd>tells Cdda2wav to query the CDDB database for track name information. L0 is 'interactive mode' meaning Cdda2wav will ask you to confirm choices in the event of multiple matches. Change this to <code>-L1</code> to automatically select the first database match.</dd>
