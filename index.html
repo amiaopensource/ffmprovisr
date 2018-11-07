@@ -367,7 +367,7 @@
         <dt>-slicecrc 1</dt><dd>Adds CRC information for each slice. This makes it possible for a decoder to detect errors in the bitstream, rather than blindly decoding a broken slice. (Read more <a href="http://ndsr.nycdigital.org/diving-in-head-first/" target="_blank">here</a>).</dd>
         <dt>-slices 16</dt><dd>Each frame is split into 16 slices. 16 is a good trade-off between filesize and encoding time.</dd>
         <dt>-c:a copy</dt><dd>copies all mapped audio streams.</dd>
-        <dt><em>output_file</em>.mkv</dt><dd>path and name of the output file. Use the <code>.mkv</code> extension to save your file in a Matroska container. Optionally, choose a different extension if you want a different container, such as <code>.mov</code> or <code>.avi</code>.</dd>
+        <dt><em>output_file</em>.mkv</dt><dd>path and name of the output file. Use the <code>.mkv</code> extension to save your file in a Matroska container.</dd>
         <dt>-f framemd5</dt><dd>Decodes video with the framemd5 muxer in order to generate MD5 checksums for every frame of your input file. This allows you to verify losslessness when compared against the framemd5s of the output file.</dd>
         <dt>-an</dt><dd>ignores the audio stream when creating framemd5 (audio no)</dd>
         <dt><em>framemd5_output_file</em></dt><dd>path, name and extension of the framemd5 file.</dd>
