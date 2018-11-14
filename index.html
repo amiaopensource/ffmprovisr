@@ -883,6 +883,23 @@
     </div>
     <!-- ends RIAA equalization -->
 
+    <!-- CD De-emphasis -->
+    <label class="recipe" for="cd_eq">Reverse CD Pre-Emphasis</label>
+    <input type="checkbox" id="cd_eq">
+    <div class="hiding">
+      <h3>Reverse CD Pre-Emphasis</h3>
+      <p><code>ffmpeg -i <em>input_file</em> -af aemphasis=type=cd <em>output_file</em></code></p>
+      <p>This will apply de-emphasis to reverse the effects of CD pre-emphasis in the somewhat rare case of CDs that were created with this technology. Use this command to create more accurate listening copies of files that were ripped 'flat' (without any de-emphasis) where the original source utilized emphasis. For more information about CD pre-emphasis see the <a href="https://wiki.hydrogenaud.io/index.php?title=Pre-emphasis" target="_blank">Hydrogen Audio page</a> on this subject.</p>
+      <dl>
+        <dt>ffmpeg</dt><dd>starts the command</dd>
+        <dt><em>input_file</em></dt><dd>path, name and extension of the input file</dd>
+        <dt>-af aemphasis=type=cd</dt><dd>activates the aemphasis filter and sets it to use CD equalization</dd>
+        <dt><em>output_file</em></dt><dd>path and name of output file</dd>
+      </dl>
+      <p class="link"></p>
+    </div>
+    <!-- CD De-emphasis -->
+
     <!-- one pass loudnorm -->
     <label class="recipe" for="loudnorm_one_pass">One Pass Loudness Normalization</label>
     <input type="checkbox" id="loudnorm_one_pass">
