@@ -2496,6 +2496,21 @@
         <p class="link"></p>
       </div>
       <!-- ends Rip with CDDA2WAV -->
+
+      <!-- Check for CD Emphasis -->
+        <label class="recipe" for="cd-emph-check">Check/Compensate for CD Emphasis</label>
+        <input type="checkbox" id="cd-emph-check">
+        <div class="hiding">
+          <h3>Check/Compensate for CD Emphasis</h3>
+          <p>While somewhat rare, certain CDs had 'emphasis' applied as a form of noise reduction. This seems to mostly affect early (1980s) era CDs and some CDs pressed in Japan. Emphasis is part of the <a href="https://en.wikipedia.org/wiki/Compact_Disc_Digital_Audio#Standard">Red Book standard</a> and, if present, must be compensated for to ensure accurate playback. CDs that use emphasis contain flags on tracks that tell the CD player to de-emphasize the audio on playback. When ripping a CD with emphasis, it is important to take this into account and either apply de-emphasis while ripping, or if storing a 'flat' copy, create another de-emphasized listening copy.</p>
+
+          <p>The following commands will output information about the presence of emphasis when run on a target CD:</p>
+          <p><strong>Cdda2wav:</strong> <code>cdda2wav -J</code></p>
+          <p><strong>CD Paranoia:</strong> <code>cdparanoia -Q</code></p>
+          <p>In order to compensate for emphasis during ripping while using Cdda2wav, the <code>-T</code> flag can be added to the <a href="#cdda2wav">standard ripping command</a>. For a recipe to compensate for a flat rip, see the section on <a href="#cd_eq">de-emphasizing with FFmpeg</a>.
+          <p class="link"></p>
+        </div>
+      <!-- Check for CD Emphasis -->
     </div>
     <!-- ends CDDA Tools -->
 
