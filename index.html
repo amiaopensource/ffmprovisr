@@ -131,9 +131,9 @@
     <div class="hiding">
       <h3>Filtergraphs</h3>
       <p>Many FFmpeg commands use filters that manipulate the video or audio stream in some way: for example, <a href="https://ffmpeg.org/ffmpeg-filters.html#hflip" target="_blank">hflip</a> to horizontally flip a video, or <a href="https://ffmpeg.org/ffmpeg-filters.html#amerge-1" target="_blank">amerge</a> to merge two or more audio tracks into a single stream.</p>
-      <p>The use of a filter is signalled by the flag <code>-vf</code> (video filter) or <code>-af</code> (audio filter), followed by the name and options of the filter itself. For example, take the <a href="#convert-colourspace">convert colourspace</a> command:</p>
+      <p>The use of a filter is signaled by the flag <code>-vf</code> (video filter) or <code>-af</code> (audio filter), followed by the name and options of the filter itself. For example, take the <a href="#convert-colorspace">convert colorspace</a> command:</p>
       <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -vf colormatrix=<em>src</em>:<em>dst</em> <em>output_file</em></code>
-      <p>Here, <a href="https://ffmpeg.org/ffmpeg-filters.html#colormatrix" target="_blank">colormatrix</a> is the filter used, with <em>src</em> and <em>dst</em> representing the source and destination colourspaces. This part following the <code>-vf</code> is a <strong>filtergraph</strong>.</p>
+      <p>Here, <a href="https://ffmpeg.org/ffmpeg-filters.html#colormatrix" target="_blank">colormatrix</a> is the filter used, with <em>src</em> and <em>dst</em> representing the source and destination colorspaces. This part following the <code>-vf</code> is a <strong>filtergraph</strong>.</p>
       <p>It is also possible to apply multiple filters to an input, which are sequenced together in the filtergraph. A chained set of filters is called a filter chain, and a filtergraph may include multiple filter chains. Filters in a filterchain are separated from each other by commas (<code>,</code>), and filterchains are separated from each other by semicolons (<code>;</code>). For example, take the <a href="#inverse-telecine">inverse telecine</a> command:</p>
       <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -vf "fieldmatch,yadif,decimate" <em>output_file</em></code></p>
       <p>Here we have a filtergraph including one filter chain, which is made up of three video filters.</p>
@@ -161,7 +161,7 @@
     <input type="checkbox" id="stream-mapping">
     <div class="hiding">
       <h3>Stream mapping</h3>
-      <p>Stream mapping is the practice of defining which of the streams (e.g., video or audio tracks) present in an input file will be present in the output file. FFmpeg recognises five stream types:</p>
+      <p>Stream mapping is the practice of defining which of the streams (e.g., video or audio tracks) present in an input file will be present in the output file. FFmpeg recognizes five stream types:</p>
       <ul>
         <li><code>a</code> - audio</li>
         <li><code>v</code> - video</li>
@@ -607,7 +607,7 @@
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
         <dt>-filter:v "colormatrix=bt601:bt709, scale=1440:1080:flags=lanczos, pad=1920:1080:240:0"</dt><dd>set colour matrix, video scaling and padding<br>Three filters are applied:
           <ol>
-            <li>The luma coefficients are modified from SD video (according to Rec. 601) to HD video (according to Rec. 709) by a colour matrix. Note that today Rec. 709 is often used also for SD and therefore you may cancel this parameter.</li>
+            <li>The luma coefficients are modified from SD video (according to Rec. 601) to HD video (according to Rec. 709) by a color matrix. Note that today Rec. 709 is often used also for SD and therefore you may cancel this parameter.</li>
             <li>The scaling filter (<code>scale=1440:1080</code>) works for both upscaling and downscaling. We use the Lanczos scaling algorithm (<code>flags=lanczos</code>), which is slower but gives better results than the default bilinear algorithm.</li>
             <li>The padding filter (<code>pad=1920:1080:240:0</code>) completes the transformation from SD to HD.</li>
           </ol></dd>
@@ -636,32 +636,32 @@
     </div>
     <!-- ends Change display aspect ratio without re-encoding video -->
 
-    <!-- Convert colourspace -->
-    <label class="recipe" for="convert-colourspace">Convert colourspace of video</label>
-    <input type="checkbox" id="convert-colourspace">
+    <!-- Convert colorspace -->
+    <label class="recipe" for="convert-colorspace">Convert colorspace of video</label>
+    <input type="checkbox" id="convert-colorspace">
     <div class="hiding">
-      <h3>Transcode video to a different colourspace</h3>
-      <p>This command uses a filter to convert the video to a different colour space.</p>
+      <h3>Transcode video to a different colorspace</h3>
+      <p>This command uses a filter to convert the video to a different colorspace.</p>
       <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -vf colormatrix=src:dst <em>output_file</em></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input file</em></dt><dd>path, name and extension of the input file</dd>
         <dt>-c:v libx264</dt><dd>tells FFmpeg to encode the video stream as H.264</dd>
-        <dt>-vf colormatrix=<em>src</em>:<em>dst</em></dt><dd>the video filter <strong>colormatrix</strong> will be applied, with the given source and destination colourspaces.<br>
+        <dt>-vf colormatrix=<em>src</em>:<em>dst</em></dt><dd>the video filter <strong>colormatrix</strong> will be applied, with the given source and destination colorspaces.<br>
         Accepted values include <code>bt601</code> (Rec.601), <code>smpte170m</code> (Rec.601, 525-line/<a href="https://en.wikipedia.org/wiki/NTSC#NTSC-M" target="_blank">NTSC</a> version), <code>bt470bg</code> (Rec.601, 625-line/<a href="https://en.wikipedia.org/wiki/PAL#PAL-B.2FG.2FD.2FK.2FI" target="_blank">PAL</a> version), <code>bt709</code> (Rec.709), and <code>bt2020</code> (Rec.2020).<br>
         For example, to convert from Rec.601 to Rec.709, you would use <code>-vf colormatrix=bt601:bt709</code>.</dd>
         <dt><em>output file</em></dt><dd>path, name and extension of the output file</dd>
       </dl>
-      <p><strong>Note:</strong> Converting between colourspaces with FFmpeg can be done via either the <strong>colormatrix</strong> or <strong>colorspace</strong> filters, with colorspace allowing finer control (individual setting of colourspace, transfer characteristics, primaries, range, pixel format, etc). See <a href="https://trac.ffmpeg.org/wiki/colorspace" target="_blank">this</a> entry on the FFmpeg wiki, and the FFmpeg documentation for <a href="https://ffmpeg.org/ffmpeg-filters.html#colormatrix" target="_blank">colormatrix</a> and <a href="https://ffmpeg.org/ffmpeg-filters.html#colorspace" target="_blank">colorspace</a>.</p>
+      <p><strong>Note:</strong> Converting between colorspaces with FFmpeg can be done via either the <strong>colormatrix</strong> or <strong>colorspace</strong> filters, with colorspace allowing finer control (individual setting of colorspace, transfer characteristics, primaries, range, pixel format, etc). See <a href="https://trac.ffmpeg.org/wiki/colorspace" target="_blank">this</a> entry on the FFmpeg wiki, and the FFmpeg documentation for <a href="https://ffmpeg.org/ffmpeg-filters.html#colormatrix" target="_blank">colormatrix</a> and <a href="https://ffmpeg.org/ffmpeg-filters.html#colorspace" target="_blank">colorspace</a>.</p>
       <hr>
-      <h4>Convert colourspace and embed colourspace metadata</h4>
+      <h4>Convert colorspace and embed colorspace metadata</h4>
       <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -vf colormatrix=src:dst -color_primaries <em>val</em> -color_trc <em>val</em> -colorspace <em>val</em> <em>output_file</em></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input file</em></dt><dd>path, name and extension of the input file</dd>
         <dt>-c:v libx264</dt><dd>encode video as H.264</dd>
-        <dt>-vf colormatrix=<em>src</em>:<em>dst</em></dt><dd>the video filter <strong>colormatrix</strong> will be applied, with the given source and destination colourspaces.</dd>
-        <dt>-color_primaries <em>val</em></dt><dd>tags video with the given colour primaries.<br>
+        <dt>-vf colormatrix=<em>src</em>:<em>dst</em></dt><dd>the video filter <strong>colormatrix</strong> will be applied, with the given source and destination colorspaces.</dd>
+        <dt>-color_primaries <em>val</em></dt><dd>tags video with the given color primaries.<br>
         Accepted values include <code>smpte170m</code> (Rec.601, 525-line/NTSC version), <code>bt470bg</code> (Rec.601, 625-line/PAL version), <code>bt709</code> (Rec.709), and <code>bt2020</code> (Rec.2020).
         <dt>-color_trc <em>val</em></dt><dd>tags video with the given transfer characteristics (gamma).<br>
         Accepted values include <code>smpte170m</code> (Rec.601, 525-line/NTSC version), <code>gamma28</code> (Rec.601, 625-line/PAL version)<sup><a href="#fn1" id="ref1">1</a></sup>, <code>bt709</code> (Rec.709), <code>bt2020_10</code> (Rec.2020 10-bit), and <code>bt2020_12</code> (Rec.2020 12-bit).</dd>
@@ -677,17 +677,17 @@
       <p>To Rec.709:</p>
       <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -vf colormatrix=bt601:bt709 -color_primaries bt709 -color_trc bt709 -colorspace bt709 <em>output_file</em></code></p>
       <p>MediaInfo output examples:</p>
-      <img src="./img/colourspace_metadata_mediainfo.png" alt="MediaInfo screenshots of colourspace metadata"><br>
+      <img src="./img/colourspace_metadata_mediainfo.png" alt="MediaInfo screenshots of colorspace metadata"><br>
       <p><span class="beware">⚠</span> Using this command it is possible to add Rec.709 tags to a file that is actually Rec.601 (etc), so apply with caution!</p>
       <p>These commands are relevant for H.264 and H.265 videos, encoded with <code>libx264</code> and <code>libx265</code> respectively.</p>
-      <p><strong>Note:</strong> If you wish to embed colourspace metadata <em>without</em> changing to another colourspace, omit <code>-vf colormatrix=src:dst</code>. However, since it is <code>libx264</code>/<code>libx265</code> that writes the metadata, it’s not possible to add these tags without reencoding the video stream.</p>
+      <p><strong>Note:</strong> If you wish to embed colorspace metadata <em>without</em> changing to another colorspace, omit <code>-vf colormatrix=src:dst</code>. However, since it is <code>libx264</code>/<code>libx265</code> that writes the metadata, it’s not possible to add these tags without reencoding the video stream.</p>
       <p>For all possible values for <code>-color_primaries</code>, <code>-color_trc</code>, and <code>-colorspace</code>, see the FFmpeg documentation on <a href="https://ffmpeg.org/ffmpeg-codecs.html#Codec-Options" target="_blank">codec options</a>.</p>
       <hr>
       <p id="fn1" class="footnote">1. Out of step with the regular pattern, <code>-color_trc</code> doesn’t accept <code>bt470bg</code>; it is instead here referred to directly as gamma.<br>
       In the Rec.601 standard, 525-line/NTSC and 625-line/PAL video have assumed gammas of 2.2 and 2.8 respectively. <a href="#ref1" title="Jump back.">↩</a></p>
       <p class="link"></p>
     </div>
-    <!-- ends Convert colourspace -->
+    <!-- ends Convert colorspace -->
 
     <!-- Modify speed -->
     <label class="recipe" for="modify_speed">Modify image and sound speed</label>
@@ -762,32 +762,32 @@
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
         <dt>-vf "<em>width</em>:<em>height</em>"</dt><dd>Crops the video to the given width and height (in pixels).<br>
-          By default, the crop area is centred: that is, the position of the top left of the cropped area is set to x = (<em>input_width</em> - <em>output_width</em>) / 2, y = <em>input_height</em> - <em>output_height</em>) / 2.
+          By default, the crop area is centered: that is, the position of the top left of the cropped area is set to x = (<em>input_width</em> - <em>output_width</em>) / 2, y = <em>input_height</em> - <em>output_height</em>) / 2.
         </dd>
         <dt><em>output_file</em></dt><dd>path, name and extension of the output file</dd>
       </dl>
       <p>It's also possible to specify the crop position by adding the x and y coordinates representing the top left of your cropped area to your crop filter, as such:</p>
       <p><code>ffmpeg -i <em>input_file</em> -vf "crop=<em>width</em>:<em>height</em>[:<em>x_position</em>:<em>y_position</em>]" <em>output_file</em></code></p>
       <h3>Examples</h3>
-      <p>The original frame, a screenshot of the SMPTE colourbars:</p>
+      <p>The original frame, a screenshot of the SMPTE colorbars:</p>
       <img class="sample-image" src="img/crop_example_orig.png" alt="VLC screenshot of Maggie Cheung">
-      <p>Result of the command <code>ffmpeg -i <em>smpte_coloursbars.mov</em> -vf "crop=500:500" <em>output_file</em></code>:</p>
+      <p>Result of the command <code>ffmpeg -i <em>smpte_colorsbars.mov</em> -vf "crop=500:500" <em>output_file</em></code>:</p>
       <img class="sample-image-small" src="img/crop_example_aftercrop1.png" alt="VLC screenshot of Maggie Cheung, cropped from original">
-      <p>Result of the command <code>ffmpeg -i <em>smpte_coloursbars.mov</em> -vf "crop=500:500:0:0" <em>output_file</em></code>, appending <code>:0:0</code> to crop from the top left corner:</p>
+      <p>Result of the command <code>ffmpeg -i <em>smpte_colorsbars.mov</em> -vf "crop=500:500:0:0" <em>output_file</em></code>, appending <code>:0:0</code> to crop from the top left corner:</p>
       <img class="sample-image-small" src="img/crop_example_aftercrop2.png" alt="VLC screenshot of Maggie Cheung, cropped from original">
-      <p>Result of the command <code>ffmpeg -i <em>smpte_coloursbars.mov</em> -vf "crop=500:300:500:30" <em>output_file</em></code>:</p>
+      <p>Result of the command <code>ffmpeg -i <em>smpte_colousbars.mov</em> -vf "crop=500:300:500:30" <em>output_file</em></code>:</p>
       <img class="sample-image-small" src="img/crop_example_aftercrop3.png" alt="VLC screenshot of Maggie Cheung, cropped from original">
       <p class="link"></p>
     </div>
     <!-- ends Crop video -->
 
-    <!-- Change video colour to black and white -->
-    <label class="recipe" for="col_change">Change video colour to black and white</label>
+    <!-- Change video color to black and white -->
+    <label class="recipe" for="col_change">Change video color to black and white</label>
     <input type="checkbox" id="col_change">
     <div class="hiding">
-      <h3>Change video colour to black and white</h3>
+      <h3>Change video color to black and white</h3>
       <p><code>ffmpeg -i <em>input_file</em> -filter_complex hue=s=0 -c:a copy <em>output_file</em></code></p>
-      <p>A basic command to alter colour hue to black and white using filter_complex (credit @FFMPEG via Twitter).</p>
+      <p>A basic command to alter color hue to black and white using filter_complex (credit @FFMPEG via Twitter).</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
@@ -808,7 +808,7 @@
       </dl>
       <p class="link"></p>
     </div>
-    <!-- ends Change video colour to black and white -->
+    <!-- ends Change video color to black and white -->
       
     </div>
     <div class="well">
@@ -1032,7 +1032,7 @@
       <p><code>ffmpeg -i input_1.avi -i input_2.mp4 -filter_complex "[0:v:0][0:a:0][1:v:0][1:a:0]concat=n=2:v=1:a=1[video_out][audio_out]" -map "[video_out]" -map "[audio_out]" <em>output_file</em></code></p>
       <p>This command takes two or more files of the different file types and joins them together to make a single file.</p>
       <p>The input files may differ in many respects - container, codec, chroma subsampling scheme, framerate, etc. However, the above command only works properly if the files to be combined have the same dimensions (e.g., 720x576). Also note that if the input files have different framerates, then the output file will be of variable framerate.</p>
-      <p>Some aspects of the input files will be normalised: for example, if an input file contains a video track and an audio track that do not have exactly the same duration, the shorter one will be padded. In the case of a shorter video track, the last frame will be repeated in order to cover the missing video; in the case of a shorter audio track, the audio stream will be padded with silence.</p>
+      <p>Some aspects of the input files will be normalized: for example, if an input file contains a video track and an audio track that do not have exactly the same duration, the shorter one will be padded. In the case of a shorter video track, the last frame will be repeated in order to cover the missing video; in the case of a shorter audio track, the audio stream will be padded with silence.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_1.ext</em></dt><dd>path, name and extension of the first input file</dd>
@@ -1136,7 +1136,7 @@
       <dl>
         <dt>-ss 00:05:00 -t 10</dt><dd>Beginning five minutes into the original video, this command will create a 10-second-long excerpt.</dd>
       </dl>
-      <p>Note: In order to keep the original timestamps, without trying to sanitise them, you may add the <code>-copyts</code> option.</p>
+      <p>Note: In order to keep the original timestamps, without trying to sanitize them, you may add the <code>-copyts</code> option.</p>
       <p class="link"></p>
     </div>
     <!-- ends Trim -->
@@ -1337,7 +1337,7 @@
     <div class="hiding">
       <h3>Create centered, transparent text watermark</h3>
       <p>E.g For creating access copies with your institutions name</p>
-      <p><code>ffmpeg -i <em>input_file</em> -vf drawtext="fontfile=<em>font_path</em>:fontsize=<em>font_size</em>:text=<em>watermark_text</em>:fontcolor=<em>font_colour</em>:alpha=0.4:x=(w-text_w)/2:y=(h-text_h)/2" <em>output_file</em></code></p>
+      <p><code>ffmpeg -i <em>input_file</em> -vf drawtext="fontfile=<em>font_path</em>:fontsize=<em>font_size</em>:text=<em>watermark_text</em>:fontcolor=<em>font_color</em>:alpha=0.4:x=(w-text_w)/2:y=(h-text_h)/2" <em>output_file</em></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
@@ -1346,7 +1346,7 @@
           <dt>fontfile=<em>font_path</em></dt><dd>Set path to font. For example in macOS: <code>fontfile=/Library/Fonts/AppleGothic.ttf</code></dd>
           <dt>fontsize=<em>font_size</em></dt><dd>Set font size. <code>35</code> is a good starting point for SD. Ideally this value is proportional to video size, for example use ffprobe to acquire video height and divide by 14.</dd>
           <dt>text=<em>watermark_text</em></dt><dd>Set the content of your watermark text. For example: <code>text='FFMPROVISR EXAMPLE TEXT'</code></dd>
-          <dt>fontcolor=<em>font_colour</em></dt><dd>Set colour of font. Can be a text string such as <code>fontcolor=white</code> or a hexadecimal value such as <code>fontcolor=0xFFFFFF</code></dd>
+          <dt>fontcolor=<em>font_color</em></dt><dd>Set color of font. Can be a text string such as <code>fontcolor=white</code> or a hexadecimal value such as <code>fontcolor=0xFFFFFF</code></dd>
           <dt>alpha=0.4</dt><dd>Set transparency value.</dd>
           <dt>x=(w-text_w)/2:y=(h-text_h)/2</dt><dd>Sets <em>x</em> and <em>y</em> coordinates for the watermark. These relative values will centre your watermark regardless of video dimensions.</dd>
         </dl>
@@ -1388,9 +1388,9 @@
         <dt>fontfile=<em>font_path</em></dt><dd>Set path to font. For example in macOS: <code>fontfile=/Library/Fonts/AppleGothic.ttf</code></dd>
         <dt>fontsize=<em>font_size</em></dt><dd>Set font size. <code>35</code> is a good starting point for SD. Ideally this value is proportional to video size, for example use ffprobe to acquire video height and divide by 14.</dd>
         <dt>timecode=<em>starting_timecode</em></dt><dd>Set the timecode to be displayed for the first frame. Timecode is to be represented as <code>hh:mm:ss[:;.]ff</code>. Colon escaping is determined by O.S, for example in Ubuntu <code>timecode='09\\:50\\:01\\:23'</code>. Ideally, this value would be generated from the file itself using ffprobe.</dd>
-        <dt>fontcolor=<em>font_colour</em></dt><dd>Set colour of font. Can be a text string such as <code>fontcolor=white</code> or a hexadecimal value such as <code>fontcolor=0xFFFFFF</code></dd>
+        <dt>fontcolor=<em>font_color</em></dt><dd>Set color of font. Can be a text string such as <code>fontcolor=white</code> or a hexadecimal value such as <code>fontcolor=0xFFFFFF</code></dd>
         <dt>box=1</dt><dd>Enable box around timecode</dd>
-        <dt>boxcolor=<em>box_colour</em></dt><dd>Set colour of box. Can be a text string such as <code>fontcolor=black</code> or a hexadecimal value such as <code>fontcolor=0x000000</code></dd>
+        <dt>boxcolor=<em>box_color</em></dt><dd>Set color of box. Can be a text string such as <code>fontcolor=black</code> or a hexadecimal value such as <code>fontcolor=0x000000</code></dd>
         <dt>rate=<em>timecode_rate</em></dt><dd>Framerate of video. For example <code>25/1</code></dd>
         <dt>x=(w-text_w)/2:y=h/1.2</dt><dd>Sets <em>x</em> and <em>y</em> coordinates for the timecode. These relative values will horizontally centre your timecode in the bottom third regardless of video dimensions.</dd>
         <dt>"</dt><dd>quotation mark to end drawtext filter command</dd>
@@ -1775,7 +1775,7 @@
     <div class="hiding">
       <h3>Create PowerShell script to batch process with FFmpeg</h3>
       <p>As of Windows 10, it is possible to run Bash via <a href="https://msdn.microsoft.com/en-us/commandline/wsl/about" target="_blank">Bash on Ubuntu on Windows</a>, allowing you to use <a href="index.html#batch_processing_bash">bash scripting</a>. To enable Bash on Windows, see <a href="https://msdn.microsoft.com/en-us/commandline/wsl/install_guide" target="_blank">these instructions</a>.</p>
-      <p>On Windows, the primary native command line programme is <strong>PowerShell</strong>. PowerShell scripts are plain text files saved with a .ps1 extension. This entry explains how they work with the example of a PowerShell script named “rewrap-mp4.ps1”, which rewraps .mp4 files in a given directory to .mkv files.</p>
+      <p>On Windows, the primary native command line program is <strong>PowerShell</strong>. PowerShell scripts are plain text files saved with a .ps1 extension. This entry explains how they work with the example of a PowerShell script named “rewrap-mp4.ps1”, which rewraps .mp4 files in a given directory to .mkv files.</p>
       <p>“rewrap-mp4.ps1” contains the following text:</p>
       <pre class="codeblock"><code>$inputfiles = ls *.mp4
   foreach ($file in $inputfiles) {
@@ -1871,7 +1871,7 @@
         <li>44.1 kHz: "asetnsamples=n=44100"</li>
         <li>96 kHz: "asetnsamples=n=96000"</li>
       </ul>
-      <p><strong>Note:</strong> This filter trandscodes audio to 16 bit PCM by default. The generated framemd5s will represent this value. Validating these framemd5s will require using the same default settings. Alternatively, when your file has another quantisation rates (e.g. 24 bit), then you might add the audio codec <code>-c:a pcm_s24le</code> to the command, for compatibility reasons with other tools, like <a href="https://mediaarea.net/BWFMetaEdit" target="_blank">BWF MetaEdit</a>.</p>
+      <p><strong>Note:</strong> This filter transcodes audio to 16 bit PCM by default. The generated framemd5s will represent this value. Validating these framemd5s will require using the same default settings. Alternatively, when your file has another quantization rates (e.g. 24 bit), then you might add the audio codec <code>-c:a pcm_s24le</code> to the command, for compatibility reasons with other tools, like <a href="https://mediaarea.net/BWFMetaEdit" target="_blank">BWF MetaEdit</a>.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
@@ -2065,12 +2065,12 @@
     <input type="checkbox" id="play_hd_smpte">
     <div class="hiding">
       <h3>Play HD SMPTE bars</h3>
-      <p>Test an HD video projector by playing the SMPTE colour bars pattern.</p>
+      <p>Test an HD video projector by playing the SMPTE color bars pattern.</p>
       <p><code>ffplay -f lavfi -i smptehdbars=size=1920x1080</code></p>
       <dl>
         <dt>ffplay</dt><dd>starts the command</dd>
         <dt>-f lavfi</dt><dd>tells ffplay to use the <a href="https://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
-        <dt>-i smptehdbars=size=1920x1080</dt><dd>asks for the <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc_002c-testsrc2_002c-yuvtestsrc" target="_blank">smptehdbars filter pattern</a> as input and sets the HD resolution. This generates a colour bars pattern, based on the SMPTE RP 219–2002.</dd>
+        <dt>-i smptehdbars=size=1920x1080</dt><dd>asks for the <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc_002c-testsrc2_002c-yuvtestsrc" target="_blank">smptehdbars filter pattern</a> as input and sets the HD resolution. This generates a color bars pattern, based on the SMPTE RP 219–2002.</dd>
       </dl>
       <p class="link"></p>
     </div>
@@ -2081,12 +2081,12 @@
     <input type="checkbox" id="play_vga_smpte">
     <div class="hiding">
       <h3>Play VGA SMPTE bars</h3>
-      <p>Test a VGA (SD) video projector by playing the SMPTE colour bars pattern.</p>
+      <p>Test a VGA (SD) video projector by playing the SMPTE color bars pattern.</p>
       <p><code>ffplay -f lavfi -i smptebars=size=640x480</code></p>
       <dl>
         <dt>ffplay</dt><dd>starts the command</dd>
         <dt>-f lavfi</dt><dd>tells ffplay to use the <a href="https://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
-        <dt>-i smptebars=size=640x480</dt><dd>asks for the <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc_002c-testsrc2_002c-yuvtestsrc" target="_blank">smptebars filter pattern</a> as input and sets the VGA (SD) resolution. This generates a colour bars pattern, based on the SMPTE Engineering Guideline EG 1–1990.</dd>
+        <dt>-i smptebars=size=640x480</dt><dd>asks for the <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc_002c-testsrc2_002c-yuvtestsrc" target="_blank">smptebars filter pattern</a> as input and sets the VGA (SD) resolution. This generates a color bars pattern, based on the SMPTE Engineering Guideline EG 1–1990.</dd>
       </dl>
       <p class="link"></p>
     </div>
