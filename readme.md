@@ -20,7 +20,7 @@ and then call it locally with the command:
 ```
 ffmprovisr
 ```
-This works currently under macOS, Linux and the Linux subsystem on Windows. On classic Windows you can install the last [release](https://github.com/amiaopensource/ffmprovisr/releases) manually and the open `index.html` in a browser.
+This works currently under macOS, Linux and the Linux apps on Windows (Ubuntu and Debian tested). On classic Windows you can install the last [release](https://github.com/amiaopensource/ffmprovisr/releases) manually and the open `index.html` in a browser.
 
 ## How do I contribute?
 
