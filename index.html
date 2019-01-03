@@ -1696,15 +1696,15 @@
     <label class="recipe" for="xstack">Use xstack to arrange output layout of multiple video sources</label>
     <input type="checkbox" id="xstack">
     <div class="hiding">
-      <h3>This filter allows for the vertical and horizontal stacking of multiple video sources into one output.</h3>
-      <p>This filter is useful for the creation of output windows such as the one utilized in <a href="https://github.com/amiaopensource/vrecord">vrecord.</a></p>
+      <h3>This filter enables vertical and horizontal stacking of multiple video sources into one output.</h3>
+      <p>This filter is useful for the creation of output windows such as the one utilized in <a href="https://github.com/amiaopensource/vrecord" target="_blank">vrecord.</a></p>
       <p><code>ffplay -f lavfi -i <em>testsrc</em> -vf "split=3[a][b][c],[a][b][c]xstack=inputs=3:layout=0_0|0_h0|0_h0+h1[out]"</code></p>
-      <p>The following example uses the 'testsrc' virtual input combined with the <a href="https://ffmpeg.org/ffmpeg-filters.html#split_002c-asplit">split filter</a> to generate the multiple inputs.
+      <p>The following example uses the 'testsrc' virtual input combined with the <a href="https://ffmpeg.org/ffmpeg-filters.html#split_002c-asplit" target="_blank">split filter</a> to generate the multiple inputs.</p>
       <dl>
         <dt>ffplay</dt><dd>starts the command</dd>
         <dt>-f lavfi -i testsrc</dt><dd>tells ffplay to use the <a href="https://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter's virtual device input 'testsrc'</a></dd>
         <dt>-vf</dt><dd>tells ffmpeg that you will be applying a filter chain to the input</dd>
-        <dt>split=3[a][b][c],</dt><dd>splits the input into three separate signals within the filter graph, named a, b and c respectively. (These are variables and any names could be used as long as they are kept consistent in following steps). The <code>,</code> separates this from the next part of the filter chain.
+        <dt>split=3[a][b][c],</dt><dd>splits the input into three separate signals within the filter graph, named a, b and c respectively. (These are variables and any names could be used as long as they are kept consistent in following steps). The <code>,</code> separates this from the next part of the filter chain.</dd>
         <dt>[a][b][c]xstack=inputs=3:</dt><dd>tells ffmpeg that you will be using the xstack filter on the three named inputs a,b and c. The final <code>:</code> is a necessary divider between the number of inputs, and the orientation of outputs portion of the xstack command.</dd>
         <dt>layout=0_0|0_h0|0_h0+h1</dt><dd>This is where the locations of the video sources in the output stack are designated. The locations are specified in order of input (so in this example <code>0_0</code> corresponds to input <code>[a]</code>. Inputs must be separated with a <code>|</code>. The two numbers represent columns and rows, with counting starting at zero rather than one. In this example, <code>0_0</code> means that input <code>[a]</code> is placed at the first row of the first column in the output. <code>0_h0</code> places the next input in the first column, at a row corresponding with the height of the first input. <code>0_h0+h1</code> places the final input in the first column, at a row corresponding with the height of the first input plus the height of the second input. This has the effect of creating a vertical stack of the three inputs. This could be made a horizontal stack by changing this portion of the command to <code>layout=0_0|w0_0|w0+w1_0</code>.</dd>
         <dt>[out]</dt><dd>this ends the filter chain and designates the final output.</dd>
