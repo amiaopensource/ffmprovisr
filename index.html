@@ -713,6 +713,26 @@
       <p class="link"></p>
     </div>
     <!-- ends Modify speed -->
+      
+    <!-- Synchronize video and audio streams -->
+    <label class="recipe" for="sync_streams">Synchronize video and audio streams</label>
+    <input type="checkbox" id="sync_streams">
+    <div class="hiding">
+      <h3>Synchronize video and audio streams</h3>
+      <p><code>ffmpeg -i <em>input_file</em> -itsoffset 0.125 -i <em>input_file</em> -map 1:v -map 0:a -c copy <em>output_file</em></code></p>
+      <p>A command to slip the video channel approximate 2 frames (0.125 for a 25fps timeline) to align video and audio drift, if generated during video tape capture for example.</p>
+      <dl>
+        <dt>ffmpeg</dt><dd>starts the command</dd>
+        <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
+        <dt>-itsoffset 0.125</dt><dd>uses itsoffset command to set offset to 0.125 of a second. The offset time must be a time duration specification, see <a href="https://ffmpeg.org/ffmpeg-utils.html#time-duration-syntax">FFMPEG Utils Time Duration Syntax</a>.</dd>
+        <dt>-i <em>input_file</em></dt><dd>repeat path, name and extension of the input file</dd>
+        <dt>-map 1:v -map 0:a</dt><dd>selects the video channel for itsoffset command. To slip the audio channel reverse the selection to -map 0:v -map 1:a.</dd>
+        <dt>-c copy</dt><dd>copies the encode settings of the input_file to the output_file</dd>
+        <dt><em>output_file_resync</em></dt><dd>path, name and extension of the output_file</dd>
+      </dl>
+      <p class="link"></p>
+    </div>
+    <!-- ends Synchronize video and audio streams -->
 
     <!-- Make stream properties explicate -->
     <label class="recipe" for="clarify_stream">Clarify stream properties</label>
