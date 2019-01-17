@@ -453,7 +453,7 @@
         <dt>-b:v 690k</dt><dd>specifies the 690k video bitrate</dd>
         <dt><em>output file</em></dt><dd>path, name and extension of the output file (make sure to include the <code>.ogv</code> filename suffix)</dd>
       </dl>
-      <p>This recipe is based on <a href="http://paulrouget.com/e/converttohtml5video">Paul Rouget's recipes</a>.</p>
+      <p>This recipe is based on <a href="http://paulrouget.com/e/converttohtml5video" target="_blank">Paul Rouget's recipes</a>.</p>
       <p class="link"></p>
     </div>
     <!-- ends Transcode to Ogg/Theora -->
@@ -724,7 +724,7 @@
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
-        <dt>-itsoffset 0.125</dt><dd>uses itsoffset command to set offset to 0.125 of a second. The offset time must be a time duration specification, see <a href="https://ffmpeg.org/ffmpeg-utils.html#time-duration-syntax">FFMPEG Utils Time Duration Syntax</a>.</dd>
+        <dt>-itsoffset 0.125</dt><dd>uses itsoffset command to set offset to 0.125 of a second. The offset time must be a time duration specification, see <a href="https://ffmpeg.org/ffmpeg-utils.html#time-duration-syntax" target="_blank">FFMPEG Utils Time Duration Syntax</a>.</dd>
         <dt>-i <em>input_file</em></dt><dd>repeat path, name and extension of the input file</dd>
         <dt>-map 1:v -map 0:a</dt><dd>selects the video channel for itsoffset command. To slip the audio channel reverse the selection to -map 0:v -map 1:a.</dd>
         <dt>-c copy</dt><dd>copies the encode settings of the input_file to the output_file</dd>
@@ -821,7 +821,7 @@
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
         <dt>-c:v prores_ks</dt><dd>encodes the video to ProRes (prores_ks marks the stream as interlaced, unlike prores)</dd>
-        <dt>-flags +ildct</dt><dd>ensures that the output_file has interlaced field encoding, using interlace aware discrete cosine transform</em></dd>
+        <dt>-flags +ildct</dt><dd>ensures that the output_file has interlaced field encoding, using interlace aware discrete cosine transform</dd>
         <dt>-map 0</dt><dd>ensures ffmpeg maps all streams of the input_file to the output_file</dd>
         <dt>-c:a copy</dt><dd>copies the encode settings of the input_file to the output_file</dd>
         <dt><em>output_file</em></dt><dd>path, name and extension of the output file</dd>
@@ -1089,12 +1089,12 @@
       <p>(The Lanczos scaling algorithm is recommended, as it is slower but better than the default bilinear algorithm).</p>
       <p>The rescaling should be applied just before the point where the streams to be used in the output file are listed. Select the stream you want to rescale, apply the filter, and assign that to a variable name (<code>rescaled_video</code> in the below example). Then you use this variable name in the list of streams to be concatenated.</p>
       <p><code>ffmpeg -i input_1.avi -i input_2.mp4 -filter_complex "[0:v:0] scale=1920:1080:flags=lanczos [rescaled_video], [rescaled_video] [0:a:0] [1:v:0] [1:a:0] concat=n=2:v=1:a=1 [video_out] [audio_out]" -map "[video_out]" -map "[audio_out]" <em>output_file</em></code></p>
-      <p>However, this will only have the desired visual output if the inputs have the same aspect ratio. If you wish to concatenate an SD and an HD file, you will also wish to pillarbox the SD file while upscaling. (See the <a href="https://amiaopensource.github.io/ffmprovisr/#SD_HD_2">Convert 4:3 to pillarboxed HD</a> command). The full command would look like this:</p>
+      <p>However, this will only have the desired visual output if the inputs have the same aspect ratio. If you wish to concatenate an SD and an HD file, you will also wish to pillarbox the SD file while upscaling. (See the <a href="#SD_HD_2">Convert 4:3 to pillarboxed HD</a> command). The full command would look like this:</p>
       <p><code>ffmpeg -i input_1.avi -i input_2.mp4 -filter_complex "[0:v:0] scale=1440:1080:flags=lanczos, pad=1920:1080:(ow-iw)/2:(oh-ih)/2 [to_hd_video], [to_hd_video] [0:a:0] [1:v:0] [1:a:0] concat=n=2:v=1:a=1 [video_out] [audio_out]" -map "[video_out]" -map "[audio_out]" <em>output_file</em></code></p>
       <p>Here, the first input is an SD file which needs to be upscaled to match the second input, which is 1920x1080. The scale filter enlarges the SD input to the height of the HD frame, keeping the 4:3 aspect ratio; then, the video is pillarboxed within a 1920x1080 frame.</p>
       <h4>Variation: concatenating files of different framerates</h4>
       <p>If the input files have different framerates, then the output file may be of variable framerate. To explicitly obtain an output file of constant framerate, you may wish convert an input (or multiple inputs) to a different framerate prior to concatenation.</p>
-      <p>You can speed up or slow down a file using the <code>fps</code> and <code>atempo</code> filters (see also the <a href="https://amiaopensource.github.io/ffmprovisr/#modify_speed">Modify speed</a> command).</p>
+      <p>You can speed up or slow down a file using the <code>fps</code> and <code>atempo</code> filters (see also the <a href="#modify_speed">Modify speed</a> command).</p>
       <p>Here's an example of the full command, in which input_1 is 30fps, input_2 is 25fps, and 25fps is the desired output speed.</p>
       <p><code>ffmpeg -i input_1.avi -i input_2.mp4 -filter_complex "[0:v:0] fps=fps=25 [video_to_25fps]; [0:a:0] atempo=(25/30) [audio_to_25fps]; [video_to_25fps] [audio_to_25fps] [1:v:0] [1:a:0] concat=n=2:v=1:a=1 [video_out] [audio_out]" -map "[video_out]" -map "[audio_out]" <em>output_file</em></code></p>
       <p>Note that the <code>fps</code> filter will drop or repeat frames as necessary in order to achieve the desired frame rate - see the FFmpeg <a href="https://ffmpeg.org/ffmpeg-filters.html#fps-1" target="_blank">fps docs</a> for more details.</p>
@@ -1271,7 +1271,7 @@
       <p><code>"yadif,format=yuv420p"</code> is an FFmpeg <a href="https://trac.ffmpeg.org/wiki/FilteringGuide#FiltergraphChainFilterrelationship" target="_blank">filtergraph</a>. Here the filtergraph is made up of one filter chain, which is itself made up of the two filters (separated by the comma).<br>
       The enclosing quote marks are necessary when you use spaces within the filtergraph, e.g. <code>-vf "yadif, format=yuv420p"</code>, and are included above as an example of good practice.</p>
       <p><strong>Note:</strong> FFmpeg includes several deinterlacers apart from <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1" target="_blank">yadif</a>: <a href="https://ffmpeg.org/ffmpeg-filters.html#bwdif" target="_blank">bwdif</a>, <a href="https://ffmpeg.org/ffmpeg-filters.html#w3fdif" target="_blank">w3fdif</a>, <a href="https://ffmpeg.org/ffmpeg-filters.html#kerndeint" target="_blank">kerndeint</a>, and <a href="https://ffmpeg.org/ffmpeg-filters.html#nnedi" target="_blank">nnedi</a>.</p>
-      <p>For more H.264 encoding options, see the latter section of the <a href="./index.html#transcode_h264">encode H.264 command</a>.</p>
+      <p>For more H.264 encoding options, see the latter section of the <a href="#transcode_h264">encode H.264 command</a>.</p>
       <div class="sample-image">
         <h2>Example</h2>
         <p>Before and after deinterlacing:</p>
@@ -1817,7 +1817,7 @@
     <input type="checkbox" id="batch_processing_win">
     <div class="hiding">
       <h3>Create PowerShell script to batch process with FFmpeg</h3>
-      <p>As of Windows 10, it is possible to run Bash via <a href="https://msdn.microsoft.com/en-us/commandline/wsl/about" target="_blank">Bash on Ubuntu on Windows</a>, allowing you to use <a href="index.html#batch_processing_bash">bash scripting</a>. To enable Bash on Windows, see <a href="https://msdn.microsoft.com/en-us/commandline/wsl/install_guide" target="_blank">these instructions</a>.</p>
+      <p>As of Windows 10, it is possible to run Bash via <a href="https://msdn.microsoft.com/en-us/commandline/wsl/about" target="_blank">Bash on Ubuntu on Windows</a>, allowing you to use <a href="#batch_processing_bash">bash scripting</a>. To enable Bash on Windows, see <a href="https://msdn.microsoft.com/en-us/commandline/wsl/install_guide" target="_blank">these instructions</a>.</p>
       <p>On Windows, the primary native command line program is <strong>PowerShell</strong>. PowerShell scripts are plain text files saved with a .ps1 extension. This entry explains how they work with the example of a PowerShell script named “rewrap-mp4.ps1”, which rewraps .mp4 files in a given directory to .mkv files.</p>
       <p>“rewrap-mp4.ps1” contains the following text:</p>
       <pre class="codeblock"><code>$inputfiles = ls *.mp4
@@ -1962,7 +1962,7 @@
         <dt>-loglevel error</dt><dd>sets the verbosity of logging to show all errors</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
         <dt>-map 0:v:0</dt><dd>designated the first video stream as the stream on which to perform this hash generation operation. <code>-map 0</code> can be used to run the operation on all streams.</dd>
-        <dt>-f hash -hash md5</dt><dd>produce a checksum hash, and set the hash algorithm to md5. See the official <a href="https://ffmpeg.org/ffmpeg-formats.html#hash">documentation on hash</a> for other algorithms.</dd>
+        <dt>-f hash -hash md5</dt><dd>produce a checksum hash, and set the hash algorithm to md5. See the official <a href="https://ffmpeg.org/ffmpeg-formats.html#hash" target="_blank">documentation on hash</a> for other algorithms.</dd>
         <dt>-</dt><dd>FFmpeg syntax requires a specified output, and <code>-</code> is just a place holder. No file is actually created.</dd>
       </dl>
       <p class="link"></p>
@@ -2517,7 +2517,7 @@
       <input type="checkbox" id="find-offset">
       <div class="hiding">
         <h3>Find Drive Offset for Exact CD Ripping</h3>
-        <p>If you want to make CD rips that can be verified via checksums to other rips of the same content, you need to know the offset of your CD drive. Put simply, different models of CD drives have different offsets, meaning they start reading in slightly different locations. This must be compensated for in order for files created on different (model) drives to generate the same checksum. For a more detailed explanation of drive offsets see the explanation <a href="http://dbpoweramp.com/spoons-audio-guide-cd-ripping.htm">here.</a> In order to find your drive offset, first you will need to know exactly what model your drive is, then you can look it up in the list of drive offsets by Accurate Rip.</p>
+        <p>If you want to make CD rips that can be verified via checksums to other rips of the same content, you need to know the offset of your CD drive. Put simply, different models of CD drives have different offsets, meaning they start reading in slightly different locations. This must be compensated for in order for files created on different (model) drives to generate the same checksum. For a more detailed explanation of drive offsets see the explanation <a href="https://dbpoweramp.com/spoons-audio-guide-cd-ripping.htm" target="_blank">here.</a> In order to find your drive offset, first you will need to know exactly what model your drive is, then you can look it up in the list of drive offsets by Accurate Rip.</p>
         <p>Often it can be difficult to tell what model your drive is simply by looking at it - it may be housed inside your computer or have external branding that is different from the actual drive manufacturer. For this reason, it can be useful to query your drive with CD ripping software in order to ID it. The following commands should give you a better idea of what drive you have.</p>
         <p><strong>Cdda2wav:</strong> <code>cdda2wav -scanbus</code> or simply <code>cdda2wav</code></p>
         <p><strong>CD Paranoia:</strong> <code>cdparanoia -vsQ</code></p>
