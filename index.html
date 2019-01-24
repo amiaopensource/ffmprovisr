@@ -1135,12 +1135,12 @@
     <!-- ends Split file into segments -->
 
     <!-- Trim -->
-    <label class="recipe" for="trim">Trim video</label>
+    <label class="recipe" for="trim">Trim file</label>
     <input type="checkbox" id="trim">
     <div class="hiding">
       <h3>Trim a video without re-encoding</h3>
       <p><code>ffmpeg -i <em>input_file</em> -ss 00:02:00 -to 00:55:00 -c copy -map 0 <em>output_file</em></code></p>
-      <p>This command allows you to create an excerpt from a video file without re-encoding the image data.</p>
+      <p>This command allows you to create an excerpt from a file without re-encoding the audiovisual data.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
@@ -1151,7 +1151,7 @@
         <strong>Note:</strong> watch out when using <code>-ss</code> with <code>-c copy</code> if the source is encoded with an interframe codec (e.g., H.264). Since FFmpeg must split on i-frames, it will seek to the nearest i-frame to begin the stream copy.</dd>
         <dt><em>output_file</em></dt><dd>path, name and extension of the output file</dd>
       </dl>
-      <p>Variation: trim video by setting duration, by using <code>-t</code> instead of <code>-to</code></p>
+      <p>Variation: trim file by setting duration, by using <code>-t</code> instead of <code>-to</code></p>
       <p><code>ffmpeg -i <em>input_file</em> -ss 00:05:00 -t 10 -c copy <em>output_file</em></code></p>
       <dl>
         <dt>-ss 00:05:00 -t 10</dt><dd>Beginning five minutes into the original video, this command will create a 10-second-long excerpt.</dd>
@@ -1167,7 +1167,7 @@
     <div class="hiding">
       <h3>Excerpt from beginning</h3>
       <p><code>ffmpeg -i <em>input_file</em> -t <em>5</em> -c copy -map 0 <em>output_file</em></code></p>
-      <p>This command captures a certain portion of a video file, starting from the beginning and continuing for the amount of time (in seconds) specified in the script. This can be used to create a preview file, or to remove unwanted content from the end of the file. To be more specific, use timecode, such as 00:00:05.</p>
+      <p>This command captures a certain portion of a file, starting from the beginning and continuing for the amount of time (in seconds) specified in the script. This can be used to create a preview file, or to remove unwanted content from the end of the file. To be more specific, use timecode, such as 00:00:05.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
@@ -1181,12 +1181,12 @@
     <!-- ends Excerpt from beginning -->
 
     <!-- Excerpt to end -->
-    <label class="recipe" for="excerpt_to_end">Create a new video file with the first five seconds trimmed off the original</label>
+    <label class="recipe" for="excerpt_to_end">Create a new file with the first five seconds trimmed off the original</label>
     <input type="checkbox" id="excerpt_to_end">
     <div class="hiding">
       <h3>Excerpt to end</h3>
       <p><code>ffmpeg -i <em>input_file</em> -ss <em>5</em> -c copy -map 0 <em>output_file</em></code></p>
-      <p>This command copies a video file starting from a specified time, removing the first few seconds from the output. This can be used to create an excerpt, or remove unwanted content from the beginning of a video file.</p>
+      <p>This command copies a file starting from a specified time, removing the first few seconds from the output. This can be used to create an excerpt, or remove unwanted content from the beginning of a file.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
@@ -1200,12 +1200,12 @@
     <!-- ends Excerpt to end -->
 
     <!-- Excerpt from end -->
-    <label class="recipe" for="excerpt_from_end">Create a new video file with the final five seconds of the original</label>
+    <label class="recipe" for="excerpt_from_end">Create a new file with the final five seconds of the original</label>
     <input type="checkbox" id="excerpt_from_end">
     <div class="hiding">
       <h3>Excerpt from end</h3>
       <p><code>ffmpeg -sseof <em>-5</em> -i <em>input_file</em> -c copy -map 0 <em>output_file</em></code></p>
-      <p>This command copies a video file starting from a specified time before the end of the file, removing everything before from the output. This can be used to create an excerpt, or extract content from the end of a video file (e.g. for extracting the closing credits).</p>
+      <p>This command copies a file starting from a specified time before the end of the file, removing everything before from the output. This can be used to create an excerpt, or extract content from the end of a file (e.g. for extracting the closing credits).</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-sseof <em>-5</em></dt><dd>This parameter must stay before the input file. It tells FFmpeg what timecode in the file to look for to start copying, and specifies the number of seconds from the end of the video that FFmpeg should start copying. The end of the file has index 0 and the minus sign is needed to reference earlier portions. To be more specific, you can use timecode such as -00:00:05. Note that in most file formats it is not possible to seek exactly, so FFmpeg will seek to the closest point before.</dd>
