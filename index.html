@@ -1219,12 +1219,13 @@
     <!-- ends Excerpt from end -->
 
     <!-- Trim start silence -->
-      <label class="recipe" for="trim_start_silence">Trim silence from beginning of an audio file</label>
-      <input type="checkbox" id="trim_start_silence">
-      <div class="hiding">
-      <h3>Remove silent portions at the beginning of an audio file</h3>
-      <p><code>ffmpeg -i <em>input_file</em>-af silenceremove=start_threshold=-57dB:start_duration=1:start_periods=1<em>output_file</em></code></p>
-      <p>This command will automatically remove silence at the beginning of an audio file. The threshold for what qualifies as silence can be changed - this example uses anything under -57dB, which is a decent level for accounting for analogue hiss.</p>
+    <label class="recipe" for="trim_start_silence">Trim silence from beginning of an audio file</label>
+    <input type="checkbox" id="trim_start_silence">
+    <div class="hiding">
+      <h3>Remove silent portion at the beginning of an audio file</h3>
+      <p><code>ffmpeg -i <em>input_file</em> -af silenceremove=start_threshold=-57dB:start_duration=1:start_periods=1  -c:a <em>your_codec_choice</em> -ar <em>your_sample_rate_choice</em> <em>output_file</em></code></p>
+      <p>This command will automatically remove silence at the beginning of an audio file. The threshold for what qualifies as silence can be changed - this example uses anything under -57 dB, which is a decent level for accounting for analogue hiss.</p>
+      <p>Note: Since this is applying a filter, you can not use codec copy for your output. If you do not specify an output sample rate and codec this command will use <a href='#codec-defaults'>the defaults for your output format</a>. Take care that you are getting your intended results!</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file (e.g. input_file.wav)</dd>
@@ -1232,10 +1233,36 @@
         <dt>start_threshold=-57dB</dt><dd>tells the filter the threshold for what to call 'silence' for the purpose of removal. This can be increased or decreased as necessary.</dd>
         <dt>start_duration=1</dt><dd>This tells the filter how much non-silent audio must be detected before it stops trimming. With a value of <code>0</code> the filter would stop after detecting any non-silent audio. A setting of <code>1</code> allows it to continue trimming through short 'pops' such as those caused by engaging the playback device, or the recorded sound of a microphone being plugged in.</dd>
         <dt>start_periods=1</dt><dd>This tells the filter to trim the first example of silence it discovers from the beginning of the file. This value could be increased to remove subsequent silent portions from the file if desired.</dd>
+        <dt>-c:a <em>your_codec_choice</em></dt><dd>This tells the filter what codec to use, and must be specified to avoid defaults. If you want 24 bit PCM, your value would be <code>-c:a pcm_s24le</code>.</dd>
+        <dt>-ar <em>your_sample_rate_choice</em></dt><dd>This tells the filter what sample rate to use, and must be specified to avoid defaults. If you want 96 kHz, your value would be <code>-ar 96000</code>.</dd>
         <dt><em>output_file</em></dt><dd>path, name and extension of the output file (e.g. output_file.wav).</dd>
       </dl>
     </div>
     <!-- ends Trim start silence -->
+
+    <!-- Trim end silence -->
+    <label class="recipe" for="trim_end_silence">Trim silence from the end of an audio file</label>
+    <input type="checkbox" id="trim_end_silence">
+    <div class="hiding">
+      <h3>Remove silent portion from the end of an audio file</h3>
+      <p><code>ffmpeg -i <em>input_file</em> -af areverse,silenceremove=start_threshold=-57dB:start_duration=1:start_periods=1,areverse -c:a <em>your_codec_choice</em> -ar <em>your_sample_rate_choice</em> <em>output_file</em></code></p>
+      <p>This command will automatically remove silence at the end of an audio file. Since the <code>silenceremove</code> filter is best at removing silence from the beginning of files, this command used the <code>areverse</code> filter twice to reverse the input, remove silence and then restore correct orientation.</p>
+      <p>Note: Since this is applying a filter, you can not use codec copy for your output. If you do not specify an output sample rate and codec this command will use <a href='#codec-defaults'>the defaults for your output format</a>. Take care that you are getting your intended results!</p>
+      <dl>
+        <dt>ffmpeg</dt><dd>starts the command</dd>
+        <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file (e.g. input_file.wav)</dd>
+        <dt>-af areverse,</dt><dd>starts the filter chain with reversing the input</dd>
+        <dt>silenceremove</dt><dd>applies the silence remove filter</dd>
+        <dt>start_threshold=-57dB</dt><dd>tells the filter the threshold for what to call 'silence' for the purpose of removal. This can be increased or decreased as necessary.</dd>
+        <dt>start_duration=1</dt><dd>This tells the filter how much non-silent audio must be detected before it stops trimming. With a value of <code>0</code> the filter would stop after detecting any non-silent audio. A setting of <code>1</code> allows it to continue trimming through short 'pops' such as those caused by engaging the playback device, or the recorded sound of a microphone being plugged in.</dd>
+        <dt>start_periods=1</dt><dd>This tells the filter to trim the first example of silence it discovers.</dd>
+        <dt>areverse</dt><dd>applies the audio reverse filter again to restore input to correct orientation.</dd>
+        <dt>-c:a <em>your_codec_choice</em></dt><dd>This tells the filter what codec to use, and must be specified to avoid defaults. If you want 24 bit PCM, your value would be <code>-c:a pcm_s24le</code>.</dd>
+        <dt>-ar <em>your_sample_rate_choice</em></dt><dd>This tells the filter what sample rate to use, and must be specified to avoid defaults. If you want 96 kHz, your value would be <code>-ar 96000</code>.</dd>
+        <dt><em>output_file</em></dt><dd>path, name and extension of the output file (e.g. output_file.wav).</dd>
+      </dl>
+    </div>
+    <!-- ends Trim end silence -->
 
     </div>
     <div class="well">
