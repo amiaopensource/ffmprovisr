@@ -1225,7 +1225,7 @@
       <h3>Remove silent portion at the beginning of an audio file</h3>
       <p><code>ffmpeg -i <em>input_file</em> -af silenceremove=start_threshold=-57dB:start_duration=1:start_periods=1  -c:a <em>your_codec_choice</em> -ar <em>your_sample_rate_choice</em> <em>output_file</em></code></p>
       <p>This command will automatically remove silence at the beginning of an audio file. The threshold for what qualifies as silence can be changed - this example uses anything under -57 dB, which is a decent level for accounting for analogue hiss.</p>
-      <p>Note: Since this is applying a filter, you can not use codec copy for your output. If you do not specify an output sample rate and codec this command will use <a href='#codec-defaults'>the defaults for your output format</a>. Take care that you are getting your intended results!</p>
+      <p><strong>Note:</strong> Since this command uses a filter, the audio stream will be re-encoded for the output. If you do not specify an output sample rate and codec this command will use <a href='#codec-defaults'>the defaults for your output format</a>. Take care that you are getting your intended results!</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file (e.g. input_file.wav)</dd>
@@ -1247,7 +1247,7 @@
       <h3>Remove silent portion from the end of an audio file</h3>
       <p><code>ffmpeg -i <em>input_file</em> -af areverse,silenceremove=start_threshold=-57dB:start_duration=1:start_periods=1,areverse -c:a <em>your_codec_choice</em> -ar <em>your_sample_rate_choice</em> <em>output_file</em></code></p>
       <p>This command will automatically remove silence at the end of an audio file. Since the <code>silenceremove</code> filter is best at removing silence from the beginning of files, this command used the <code>areverse</code> filter twice to reverse the input, remove silence and then restore correct orientation.</p>
-      <p>Note: Since this is applying a filter, you can not use codec copy for your output. If you do not specify an output sample rate and codec this command will use <a href='#codec-defaults'>the defaults for your output format</a>. Take care that you are getting your intended results!</p>
+      <p><strong>Note:</strong> Since this command uses a filter, the audio stream will be re-encoded for the output. If you do not specify an output sample rate and codec this command will use <a href='#codec-defaults'>the defaults for your output format</a>. Take care that you are getting your intended results!</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file (e.g. input_file.wav)</dd>
