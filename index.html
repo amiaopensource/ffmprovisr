@@ -1015,7 +1015,7 @@
 
     </div>
     <div class="well">
-    <h2 id="join-trim">Join, trim, or excerpt a video</h2>
+    <h2 id="join-trim">Join, trim, or create an excerpt</h2>
 
     <!-- Join files of the same type together -->
     <label class="recipe" for="join_files">Join (concatenate) two or more files of the same type</label>
@@ -1135,12 +1135,12 @@
     <!-- ends Split file into segments -->
 
     <!-- Trim -->
-    <label class="recipe" for="trim">Trim video</label>
+    <label class="recipe" for="trim">Trim file</label>
     <input type="checkbox" id="trim">
     <div class="hiding">
       <h3>Trim a video without re-encoding</h3>
       <p><code>ffmpeg -i <em>input_file</em> -ss 00:02:00 -to 00:55:00 -c copy -map 0 <em>output_file</em></code></p>
-      <p>This command allows you to create an excerpt from a video file without re-encoding the image data.</p>
+      <p>This command allows you to create an excerpt from a file without re-encoding the audiovisual data.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
@@ -1151,7 +1151,7 @@
         <strong>Note:</strong> watch out when using <code>-ss</code> with <code>-c copy</code> if the source is encoded with an interframe codec (e.g., H.264). Since FFmpeg must split on i-frames, it will seek to the nearest i-frame to begin the stream copy.</dd>
         <dt><em>output_file</em></dt><dd>path, name and extension of the output file</dd>
       </dl>
-      <p>Variation: trim video by setting duration, by using <code>-t</code> instead of <code>-to</code></p>
+      <p>Variation: trim file by setting duration, by using <code>-t</code> instead of <code>-to</code></p>
       <p><code>ffmpeg -i <em>input_file</em> -ss 00:05:00 -t 10 -c copy <em>output_file</em></code></p>
       <dl>
         <dt>-ss 00:05:00 -t 10</dt><dd>Beginning five minutes into the original video, this command will create a 10-second-long excerpt.</dd>
@@ -1167,7 +1167,7 @@
     <div class="hiding">
       <h3>Excerpt from beginning</h3>
       <p><code>ffmpeg -i <em>input_file</em> -t <em>5</em> -c copy -map 0 <em>output_file</em></code></p>
-      <p>This command captures a certain portion of a video file, starting from the beginning and continuing for the amount of time (in seconds) specified in the script. This can be used to create a preview file, or to remove unwanted content from the end of the file. To be more specific, use timecode, such as 00:00:05.</p>
+      <p>This command captures a certain portion of a file, starting from the beginning and continuing for the amount of time (in seconds) specified in the script. This can be used to create a preview file, or to remove unwanted content from the end of the file. To be more specific, use timecode, such as 00:00:05.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
@@ -1181,12 +1181,12 @@
     <!-- ends Excerpt from beginning -->
 
     <!-- Excerpt to end -->
-    <label class="recipe" for="excerpt_to_end">Create a new video file with the first five seconds trimmed off the original</label>
+    <label class="recipe" for="excerpt_to_end">Create a new file with the first five seconds trimmed off the original</label>
     <input type="checkbox" id="excerpt_to_end">
     <div class="hiding">
       <h3>Excerpt to end</h3>
       <p><code>ffmpeg -i <em>input_file</em> -ss <em>5</em> -c copy -map 0 <em>output_file</em></code></p>
-      <p>This command copies a video file starting from a specified time, removing the first few seconds from the output. This can be used to create an excerpt, or remove unwanted content from the beginning of a video file.</p>
+      <p>This command copies a file starting from a specified time, removing the first few seconds from the output. This can be used to create an excerpt, or remove unwanted content from the beginning of a file.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
@@ -1200,12 +1200,12 @@
     <!-- ends Excerpt to end -->
 
     <!-- Excerpt from end -->
-    <label class="recipe" for="excerpt_from_end">Create a new video file with the final five seconds of the original</label>
+    <label class="recipe" for="excerpt_from_end">Create a new file with the final five seconds of the original</label>
     <input type="checkbox" id="excerpt_from_end">
     <div class="hiding">
       <h3>Excerpt from end</h3>
       <p><code>ffmpeg -sseof <em>-5</em> -i <em>input_file</em> -c copy -map 0 <em>output_file</em></code></p>
-      <p>This command copies a video file starting from a specified time before the end of the file, removing everything before from the output. This can be used to create an excerpt, or extract content from the end of a video file (e.g. for extracting the closing credits).</p>
+      <p>This command copies a file starting from a specified time before the end of the file, removing everything before from the output. This can be used to create an excerpt, or extract content from the end of a file (e.g. for extracting the closing credits).</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-sseof <em>-5</em></dt><dd>This parameter must stay before the input file. It tells FFmpeg what timecode in the file to look for to start copying, and specifies the number of seconds from the end of the video that FFmpeg should start copying. The end of the file has index 0 and the minus sign is needed to reference earlier portions. To be more specific, you can use timecode such as -00:00:05. Note that in most file formats it is not possible to seek exactly, so FFmpeg will seek to the closest point before.</dd>
@@ -1217,6 +1217,50 @@
       <p class="link"></p>
     </div>
     <!-- ends Excerpt from end -->
+
+    <!-- Trim start silence -->
+    <label class="recipe" for="trim_start_silence">Trim silence from beginning of an audio file</label>
+    <input type="checkbox" id="trim_start_silence">
+    <div class="hiding">
+      <h3>Remove silent portion at the beginning of an audio file</h3>
+      <p><code>ffmpeg -i <em>input_file</em> -af silenceremove=start_threshold=-57dB:start_duration=1:start_periods=1  -c:a <em>your_codec_choice</em> -ar <em>your_sample_rate_choice</em> <em>output_file</em></code></p>
+      <p>This command will automatically remove silence at the beginning of an audio file. The threshold for what qualifies as silence can be changed - this example uses anything under -57 dB, which is a decent level for accounting for analogue hiss.</p>
+      <p><strong>Note:</strong> Since this command uses a filter, the audio stream will be re-encoded for the output. If you do not specify a sample rate or codec, this command will use the sample rate from your input and <a href='#codec-defaults'>the codec defaults for your output format</a>. Take care that you are getting your intended results!</p>
+      <dl>
+        <dt>ffmpeg</dt><dd>starts the command</dd>
+        <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file (e.g. input_file.wav)</dd>
+        <dt>-af silenceremove</dt><dd>applies the silence remove filter</dd>
+        <dt>start_threshold=-57dB</dt><dd>tells the filter the threshold for what to call 'silence' for the purpose of removal. This can be increased or decreased as necessary.</dd>
+        <dt>start_duration=1</dt><dd>This tells the filter how much non-silent audio must be detected before it stops trimming. With a value of <code>0</code> the filter would stop after detecting any non-silent audio. A setting of <code>1</code> allows it to continue trimming through short 'pops' such as those caused by engaging the playback device, or the recorded sound of a microphone being plugged in.</dd>
+        <dt>start_periods=1</dt><dd>This tells the filter to trim the first example of silence it discovers from the beginning of the file. This value could be increased to remove subsequent silent portions from the file if desired.</dd>
+        <dt>-c:a <em>your_codec_choice</em></dt><dd>This tells the filter what codec to use, and must be specified to avoid defaults. If you want 24 bit PCM, your value would be <code>-c:a pcm_s24le</code>.</dd>
+        <dt><em>output_file</em></dt><dd>path, name and extension of the output file (e.g. output_file.wav).</dd>
+      </dl>
+    </div>
+    <!-- ends Trim start silence -->
+
+    <!-- Trim end silence -->
+    <label class="recipe" for="trim_end_silence">Trim silence from the end of an audio file</label>
+    <input type="checkbox" id="trim_end_silence">
+    <div class="hiding">
+      <h3>Remove silent portion from the end of an audio file</h3>
+      <p><code>ffmpeg -i <em>input_file</em> -af areverse,silenceremove=start_threshold=-57dB:start_duration=1:start_periods=1,areverse -c:a <em>your_codec_choice</em> -ar <em>your_sample_rate_choice</em> <em>output_file</em></code></p>
+      <p>This command will automatically remove silence at the end of an audio file. Since the <code>silenceremove</code> filter is best at removing silence from the beginning of files, this command used the <code>areverse</code> filter twice to reverse the input, remove silence and then restore correct orientation.</p>
+      <p><strong>Note:</strong> Since this command uses a filter, the audio stream will be re-encoded for the output. If you do not specify a sample rate or codec, this command will use the sample rate from your input and <a href='#codec-defaults'>the codec defaults for your output format</a>. Take care that you are getting your intended results!</p>
+      <dl>
+        <dt>ffmpeg</dt><dd>starts the command</dd>
+        <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file (e.g. input_file.wav)</dd>
+        <dt>-af areverse,</dt><dd>starts the filter chain with reversing the input</dd>
+        <dt>silenceremove</dt><dd>applies the silence remove filter</dd>
+        <dt>start_threshold=-57dB</dt><dd>tells the filter the threshold for what to call 'silence' for the purpose of removal. This can be increased or decreased as necessary.</dd>
+        <dt>start_duration=1</dt><dd>This tells the filter how much non-silent audio must be detected before it stops trimming. With a value of <code>0</code> the filter would stop after detecting any non-silent audio. A setting of <code>1</code> allows it to continue trimming through short 'pops' such as those caused by engaging the playback device, or the recorded sound of a microphone being plugged in.</dd>
+        <dt>start_periods=1</dt><dd>This tells the filter to trim the first example of silence it discovers.</dd>
+        <dt>areverse</dt><dd>applies the audio reverse filter again to restore input to correct orientation.</dd>
+        <dt>-c:a <em>your_codec_choice</em></dt><dd>This tells the filter what codec to use, and must be specified to avoid defaults. If you want 24 bit PCM, your value would be <code>-c:a pcm_s24le</code>.</dd>
+        <dt><em>output_file</em></dt><dd>path, name and extension of the output file (e.g. output_file.wav).</dd>
+      </dl>
+    </div>
+    <!-- ends Trim end silence -->
 
     </div>
     <div class="well">
