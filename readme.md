@@ -104,9 +104,9 @@ ross-spencer (Ross Spencer)
 todrobbins (Tod Robbins)  
 
 Repo: amiaopensource/ffmprovisr  
-Code Contributors: 15  
-All Contributors: 30   
-Last updated: 2018-04-22 (4:2:2 Day)  
+Code Contributors: 17  
+All Contributors: 32   
+Last updated: 2019-02-11  
 
 ## AVHack Team
 
