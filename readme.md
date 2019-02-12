@@ -53,6 +53,7 @@ You can read our contributor code of conduct [here](https://github.com/amiaopens
 *Code Contributors*:
 ablwr (Ashley)  
 bastibeckr (Basti Becker)  
+b00giehead (Joanna White)  
 bturkus  
 dericed (Dave Rice)  
 edsu (Ed Summers)  
@@ -62,6 +63,7 @@ kfrn (Katherine Frances Nagels)
 kgrons (Kathryn Gronsbell)  
 kieranjol (Kieran O'Leary)  
 llogan (Lou)  
+mgiraldo (Mauricio Giraldo)  
 pjotrek-b (Peter B.)  
 privatezero (Andrew Weaver)  
 retokromer (Reto Kromer)  
@@ -71,6 +73,7 @@ rfraimow
 ablwr (Ashley)  
 audiovisualopen  
 bastibeckr (Basti Becker)  
+b00giehead (Joanna White)  
 brainwane (Sumana Harihareswara)  
 bturkus  
 dericed (Dave Rice)  
@@ -89,6 +92,7 @@ kfrn (Katherine Frances Nagels)
 kgrons (Kathryn Gronsbell)  
 kieranjol (Kieran O'Leary)  
 llogan (Lou)  
+mgiraldo (Mauricio Giraldo)  
 mulvya  
 nkrabben (Nick Krabbenhoeft)  
 pjotrek-b (Peter B.)  
@@ -100,9 +104,9 @@ ross-spencer (Ross Spencer)
 todrobbins (Tod Robbins)  
 
 Repo: amiaopensource/ffmprovisr  
-Code Contributors: 15  
-All Contributors: 30   
-Last updated: 2018-04-22 (4:2:2 Day)  
+Code Contributors: 17  
+All Contributors: 32   
+Last updated: 2019-02-11  
 
 ## AVHack Team
 
