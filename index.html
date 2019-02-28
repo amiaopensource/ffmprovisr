@@ -623,7 +623,7 @@
     <label class="recipe" for="change_DAR">Change display aspect ratio without re-encoding</label>
     <input type="checkbox" id="change_DAR">
     <div class="hiding">
-      <h3>Change Display Aspect Ratio without reencoding video</h3>
+      <h3>Change Display Aspect Ratio without re-encoding video</h3>
       <p><code>ffmpeg -i <em>input_file</em> -c:v copy -aspect 4:3 <em>output_file</em></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -680,7 +680,7 @@
       <img src="./img/colourspace_metadata_mediainfo.png" alt="MediaInfo screenshots of colorspace metadata"><br>
       <p><span class="beware">⚠</span> Using this command it is possible to add Rec.709 tags to a file that is actually Rec.601 (etc), so apply with caution!</p>
       <p>These commands are relevant for H.264 and H.265 videos, encoded with <code>libx264</code> and <code>libx265</code> respectively.</p>
-      <p><strong>Note:</strong> If you wish to embed colorspace metadata <em>without</em> changing to another colorspace, omit <code>-vf colormatrix=src:dst</code>. However, since it is <code>libx264</code>/<code>libx265</code> that writes the metadata, it’s not possible to add these tags without reencoding the video stream.</p>
+      <p><strong>Note:</strong> If you wish to embed colorspace metadata <em>without</em> changing to another colorspace, omit <code>-vf colormatrix=src:dst</code>. However, since it is <code>libx264</code>/<code>libx265</code> that writes the metadata, it’s not possible to add these tags without re-encoding the video stream.</p>
       <p>For all possible values for <code>-color_primaries</code>, <code>-color_trc</code>, and <code>-colorspace</code>, see the FFmpeg documentation on <a href="https://ffmpeg.org/ffmpeg-codecs.html#Codec-Options" target="_blank">codec options</a>.</p>
       <hr>
       <p id="fn1" class="footnote">1. Out of step with the regular pattern, <code>-color_trc</code> doesn’t accept <code>bt470bg</code>; it is instead here referred to directly as gamma.<br>
@@ -2137,7 +2137,7 @@
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-f lavfi</dt><dd>tells FFmpeg to use the <a href="https://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">libavfilter</a> input virtual device</dd>
-        <dt>-i testsrc=size=720x576:rate=25</dt><dd>asks for the testsrc filter pattern as input. Adjusting the <code>size</code> and <code>rate</code> options allows you to choose a specific frame size and framerate. <br>
+        <dt>-i testsrc=size=720x576:rate=25</dt><dd>asks for the testsrc filter pattern as input. Adjusting the <code>size</code> and <code>rate</code> options allows you to choose a specific frame size and framerate.<br>
           The different test patterns that can be generated are listed <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc_002c-testsrc2_002c-yuvtestsrc" target="_blank">here</a>.</dd>
         <dt>-c:v v210</dt><dd>transcodes video from rawvideo to 10-bit Uncompressed Y′C<sub>B</sub>C<sub>R</sub> 4:2:2. Alter this setting to set your desired codec.</dd>
         <dt>-t 10</dt><dd>specifies recording time of 10 seconds</dd>
