@@ -23,6 +23,26 @@ ffmprovisr
 ```
 This works currently under macOS, Linux and the Linux apps on Windows (Ubuntu and Debian tested). On classic Windows you can install the last [release](https://github.com/amiaopensource/ffmprovisr/releases) manually and the open `index.html` in a browser.
 
+#### Parseable list of the commands
+
+A list of all recipes in an easily parseable [ASCII text](recipes.txt) format is provided as well. It contains for each recipe its title and command in the following format:
+
+```
+# title of recipe 1
+ffmpeg command 1
+# title of recipe 2
+ffmpeg command 2
+
+...
+
+# title of recipe n-1
+ffmpeg command n-1
+# title of recipe n
+ffmpeg command n
+```
+
+The used [one-liner](scripts/get_recipe_list) is in the `scripts` folder.
+
 ## How do I contribute?
 
 You are welcome to edit the codebase yourself, or just supply the information and ask it to be added to the site.
