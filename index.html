@@ -427,7 +427,7 @@
         <dt><em>output file</em></dt><dd>path, name and extension of the output file</dd>
       </dl>
       <p>The libx265 encoding library defaults to a ‘medium’ preset for compression quality and a CRF of 28. CRF stands for ‘constant rate factor’ and determines the quality and file size of the resulting H.265 video. The CRF scale ranges from 0 (best quality [lossless]; largest file size) to 51 (worst quality; smallest file size).</p>
-      <p>A CRF of 28 for H.265 can be considered a medium setting, <a href="https://trac.ffmpeg.org/wiki/Encode/H.265#ConstantRateFactorCRF" target="_blank">corresponding</a> to a CRF of 23 in <a href="./index.html#transcode_h264">encoding H.264</a>, but should result in about half the file size.</p>
+      <p>A CRF of 28 for H.265 can be considered a medium setting, <a href="https://trac.ffmpeg.org/wiki/Encode/H.265#ConstantRateFactorCRF" target="_blank">corresponding</a> to a CRF of 23 in <a href="#transcode_h264">encoding H.264</a>, but should result in about half the file size.</p>
       <p>To create a higher quality file, you can add these presets:</p>
       <p><code>ffmpeg -i <em>input_file</em> -c:v libx265 -pix_fmt yuv420p -preset veryslow -crf 18 -c:a copy <em>output_file</em></code></p>
       <dl>
@@ -2243,7 +2243,7 @@
     <div class="hiding">
       <h3>Conway's Game of Life</h3>
       <p>Simulates <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_blank">Conway's Game of Life</a></p>
-      <p><code>ffplay -f lavfi life=s=300x200:mold=10:r=60:ratio=0.1:death_color=#C83232:life_color=#00ff00,scale=1200:800</code></p>
+      <p><code>ffplay -f lavfi life=s=300x200:mold=10:r=60:ratio=0.1:death_color=#c83232:life_color=#00ff00,scale=1200:800</code></p>
       <dl>
         <dt>ffplay</dt><dd>starts the command</dd>
         <dt>-f lavfi</dt><dd>tells ffplay to use the <a href="https://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
@@ -2251,13 +2251,13 @@
         <dt>:</dt><dd>indicates there’s another parameter coming</dd>
         <dt>mold=10:r=60:ratio=0.1</dt><dd>sets up the rules of the game: cell mold speed, video rate, and random fill ratio</dd>
         <dt>:</dt><dd>indicates there’s another parameter coming</dd>
-        <dt>death_color=#C83232:life_color=#00ff00</dt><dd>specifies color for cell death and cell life; mold_color can also be set</dd>
+        <dt>death_color=#c83232:life_color=#00ff00</dt><dd>specifies color for cell death and cell life; mold_color can also be set</dd>
         <dt>,</dt><dd>comma signifies closing of video source assertion and ready for filter assertion</dd>
         <dt>scale=1200:800</dt><dd>scale to 1280 width and 800 height</dd>
       </dl>
       <img src="img/life.gif" alt="GIF of above command">
       <p>To save a portion of the stream instead of playing it back infinitely, use the following command:</p>
-      <p><code>ffmpeg -f lavfi -i life=s=300x200:mold=10:r=60:ratio=0.1:death_color=#C83232:life_color=#00ff00,scale=1200:800 -t 5 <em>output_file</em></code></p>
+      <p><code>ffmpeg -f lavfi -i life=s=300x200:mold=10:r=60:ratio=0.1:death_color=#c83232:life_color=#00ff00,scale=1200:800 -t 5 <em>output_file</em></code></p>
       <p class="link"></p>
     </div>
     <!-- ends Game of Life -->
