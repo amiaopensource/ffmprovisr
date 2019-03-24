@@ -1,1 +1,1 @@
-curl https://amiaopensource.github.io/ffmprovisr/index.html -s | grep -E '<h3>.*</h3>|<p><code>.*</code></p>' | sed 's/.*<code>\(.*\)<\/code>/\1/' | sed 's/.*<h3>\(.*\)<\/h3>/# \1/' | grep -v '\*\*\*' | sed -e 's/<[^>]*>//g'
+curl https://amiaopensource.github.io/ffmprovisr/ -s | grep -E '<h3>.*</h3>|<p><code>.*</code></p>' | sed 's/.*<code>\(.*\)<\/code>/\1/' | sed 's/.*<h3>\(.*\)<\/h3>/# \1/' | grep -v '\*\*\*' | sed -e 's/<[^>]*>//g'
