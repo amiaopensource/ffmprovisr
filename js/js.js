@@ -1,11 +1,8 @@
 $(document).ready(function() {
 
   function appendLink(id) {
-    console.log(id)
-    $(id).closest('div').find('.link').empty();
-    $(id).closest('div').find('.link')
-      .append("<small>Link to this command: <a href='https://amiaopensource.github.io/ffmprovisr/index.html" + id + "'>https://amiaopensource.github.io/ffmprovisr/index.html" + id + "</a></small>");
-
+    $(id).next('div').find('.link').empty();
+    $(id).next('div').find('.link').append("<small>Link to this command: <a href='https://amiaopensource.github.io/ffmprovisr/index.html" + id + "'>https://amiaopensource.github.io/ffmprovisr/index.html" + id + "</a></small>");
   }
 
   function moveToRecipe(id) {
