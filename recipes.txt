@@ -7,7 +7,7 @@ ffmpeg -i input_file -f rawvideo -c:v copy output_file.dv
 # Transcode to deinterlaced Apple ProRes LT
 ffmpeg -i input_file -c:v prores -profile:v 1 -vf yadif -c:a pcm_s16le output_file.mov
 # Transcode to an H.264 access file
-ffmpeg -i input_file -c:v libx264 -pix_fmt yuv420p -c:a aac -map 0:a output_file
+ffmpeg -i input_file -c:v libx264 -pix_fmt yuv420p -c:a aac output_file
 # Transcode from DCP to an H.264 access file
 ffmpeg -i input_video_file.mxf -i input_audio_file.mxf -c:v libx264 -pix_fmt yuv420p -c:a aac output_file.mp4
 # Transcode your file with the FFV1 Version 3 Codec in a Matroska container
