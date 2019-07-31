@@ -1,7 +1,5 @@
 # Basic rewrap command
 ffmpeg -i input_file.ext -c copy -map 0 output_file.ext
-# Convert Matroska (MKV) to MP4
-ffmpeg -i input_file.mkv -c:v copy -c:a aac output_file.mp4
 # Rewrap DV video to .dv file
 ffmpeg -i input_file -f rawvideo -c:v copy output_file.dv
 # Transcode to deinterlaced Apple ProRes LT
