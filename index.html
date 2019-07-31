@@ -213,28 +213,6 @@
     </div>
     <!-- End Basic rewrap command -->
 
-    <!-- MKV to MP4 -->
-    <label class="recipe" for="mkv_to_mp4">Convert Matroska (MKV) to MP4</label>
-    <input type="checkbox" id="mkv_to_mp4">
-    <div class="hiding">
-      <h3>MKV to MP4</h3>
-      <p><code>ffmpeg -i <em>input_file</em>.mkv -c:v copy -c:a aac <em>output_file</em>.mp4</code></p>
-      <p>This will convert your Matroska (MKV) files to MP4 files.</p>
-      <dl>
-        <dt>ffmpeg</dt><dd>starts the command</dd>
-        <dt>-i <em>input_file</em></dt><dd>path and name of the input file<br>
-        The extension for the Matroska container is <code>.mkv</code>.</dd>
-        <dt>-c:v copy</dt><dd>copies the video stream without re-encoding it</dd>
-        <dt>-c:a aac</dt><dd>re-encodes the audio stream using the AAC audio codec<br>
-        Note that sadly MP4 cannot contain sound encoded by a PCM (Pulse-Code Modulation) audio codec.<br>
-        For silent videos you can replace <code>-c:a aac</code> by <code>-an</code>, which means that there will be no audio track in the output file.</dd>
-        <dt><em>output_file</em></dt><dd>path and name of the output file<br>
-        The extension for the MP4 container is <code>.mp4</code>.</dd>
-      </dl>
-      <p class="link"></p>
-    </div>
-    <!-- ends MKV to MP4 -->
-
     <!-- Rewrap DV -->
     <label class="recipe" for="rewrap-dv">Rewrap DV video to .dv file</label>
     <input type="checkbox" id="rewrap-dv">
