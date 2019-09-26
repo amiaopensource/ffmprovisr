@@ -72,7 +72,7 @@
       <label class="recipe" for="basic-structure">Basic structure of an FFmpeg command</label>
       <input type="checkbox" id="basic-structure">
       <div class="hiding">
-        <h3>Basic structure of an FFmpeg command</h3>
+        <h5>Basic structure of an FFmpeg command</h5>
         <p>At its basis, an FFmpeg command is relatively simple. After you have installed FFmpeg (see instructions <a href="https://avpres.net/FFmpeg/#ch1" target="_blank">here</a>), the program is invoked simply by typing <code>ffmpeg</code> at the command prompt.</p>
         <p>Subsequently, each instruction that you supply to FFmpeg is actually a pair: a flag, which designates the <em>type</em> of action you want to carry out; and then the specifics of that action. Flags are always prepended with a hyphen.</p>
         <p>For example, in the instruction <code>-i <em>input_file.ext</em></code>, the <code>-i</code> flag tells FFmpeg that you are supplying an input file, and <code>input_file.ext</code> states which file it is.</p>
@@ -111,7 +111,7 @@
     <label class="recipe" for="codec-defaults">Codec defaults</label>
     <input type="checkbox" id="codec-defaults">
     <div class="hiding">
-      <h3>Codec Defaults</h3>
+      <h5>Codec Defaults</h5>
       <p>Unless specified, FFmpeg will automatically set codec choices and codec parameters based off of internal defaults. These defaults are applied based on the file type used in the output (for example <code>.mov</code> or <code>.wav</code>).</p>
       <p>When creating or transcoding files with FFmpeg, it is important to consider codec settings for both audio and video, as the default options may not be desirable in your particular context. The following is a brief list of codec defaults for some common file types:</p>
       <ul>
@@ -161,7 +161,7 @@
     <label class="recipe" for="stream-mapping">Stream mapping</label>
     <input type="checkbox" id="stream-mapping">
     <div class="hiding">
-      <h3>Stream mapping</h3>
+      <h5>Stream mapping</h5>
       <p>Stream mapping is the practice of defining which of the streams (e.g., video or audio tracks) present in an input file will be present in the output file. FFmpeg recognizes five stream types:</p>
       <ul>
         <li><code>a</code> - audio</li>
@@ -771,7 +771,7 @@
       </dl>
       <p>It's also possible to specify the crop position by adding the x and y coordinates representing the top left of your cropped area to your crop filter, as such:</p>
       <p><code>ffmpeg -i <em>input_file</em> -vf "crop=<em>width</em>:<em>height</em>[:<em>x_position</em>:<em>y_position</em>]" <em>output_file</em></code></p>
-      <h3>Examples</h3>
+      <h5>Examples</h5>
       <p>The original frame, a screenshot of the SMPTE colorbars:</p>
       <img class="sample-image" src="img/crop_example_orig.png" alt="VLC screenshot of Maggie Cheung">
       <p>Result of the command <code>ffmpeg -i <em>smpte_colorsbars.mov</em> -vf "crop=500:500" <em>output_file</em></code>:</p>
