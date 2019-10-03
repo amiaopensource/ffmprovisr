@@ -93,7 +93,7 @@
       <label class="recipe" for="streaming-saving">Streaming vs. Saving</label>
       <input type="checkbox" id="streaming-saving">
       <div class="hiding">
-        <h3>Streaming vs. Saving</h3>
+        <h5>Streaming vs. Saving</h5>
         <p>FFplay allows you to stream created video and FFmpeg allows you to save video.</p>
         <p>The following command creates and saves a 10-second video of SMPTE bars:</p>
         <p><code>ffmpeg -f lavfi -i smptebars=size=640x480 -t 5 output_file</code></p>
@@ -130,7 +130,7 @@
     <label class="recipe" for="filtergraphs">Filtergraphs</label>
     <input type="checkbox" id="filtergraphs">
     <div class="hiding">
-      <h3>Filtergraphs</h3>
+      <h5>Filtergraphs</h5>
       <p>Many FFmpeg commands use filters that manipulate the video or audio stream in some way: for example, <a href="https://ffmpeg.org/ffmpeg-filters.html#hflip" target="_blank">hflip</a> to horizontally flip a video, or <a href="https://ffmpeg.org/ffmpeg-filters.html#amerge-1" target="_blank">amerge</a> to merge two or more audio tracks into a single stream.</p>
       <p>The use of a filter is signaled by the flag <code>-vf</code> (video filter) or <code>-af</code> (audio filter), followed by the name and options of the filter itself. For example, take the <a href="#convert-colorspace">convert colorspace</a> command:</p>
       <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -vf colormatrix=<em>src</em>:<em>dst</em> <em>output_file</em></code>
@@ -197,7 +197,7 @@
     <label class="recipe" for="basic-rewrap">Basic rewrap command</label>
     <input type="checkbox" id="basic-rewrap">
     <div class="hiding">
-      <h3>Rewrap a file</h3>
+      <h5>Rewrap a file</h5>
       <p><code>ffmpeg -i <em>input_file.ext</em> -c copy -map 0 <em>output_file.ext</em></code></p>
       <p>This script will rewrap a video file. It will create a new video video file where the inner content (the video, audio, and subtitle data) of the original file is unchanged, but these streams are rehoused within a different container format.</p>
       <p><strong>Note:</strong> rewrapping is also known as remuxing, short for re-multiplexing.</p>
@@ -221,7 +221,7 @@
     <label class="recipe" for="rewrap-dv">Rewrap DV video to .dv file</label>
     <input type="checkbox" id="rewrap-dv">
     <div class="hiding">
-      <h3>Rewrap DV video to .dv file</h3>
+      <h5>Rewrap DV video to .dv file</h5>
       <p><code>ffmpeg -i <em>input_file</em> -f rawvideo -c:v copy <em>output_file.dv</em></code></p>
       <p>This script will take a video that is encoded in the <a href="https://en.wikipedia.org/wiki/DV" target="_blank">DV Codec</a> but wrapped in a different container (such as MOV) and rewrap it into a raw DV file (with the .dv extension). Since DV files potentially contain a great deal of provenance metadata within the DV stream, it is necessary to rewrap files in this method to avoid unintentional stripping of this metadata.</p>
       <dl>
