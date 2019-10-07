@@ -2,6 +2,17 @@
 
 Repository of useful FFmpeg command lines for archivists!
 
+* [What is this?](#what-is-this)
+* [How do I see it?](#how-do-i-see-it)
+* [How do I contribute?](#how-do-i-contribute)
+* [Code of conduct](#code-of-conduct)
+* [Maintainers](#maintainers)
+* [Contributors](#contributors)
+* [AVHack Team](#avhack-team)
+* [Sister projects](#sister-projects)
+* [Awards and mentions](#articles-and-mentions)
+* [License](#license)
+
 ## What is this?
 
 #### Project Objective
