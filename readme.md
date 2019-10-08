@@ -154,7 +154,7 @@ Last updated: 2019-02-11
 ## Articles and mentions
 
 * 2019-09: **Andrew Weaver & Ashley Blewer**, [Sustainability through community: fmprovisr and the Case for Collaborative Knowledge Transfer](https://ipres2019.org/static/pdf/iPres2019_paper_97.pdf) (PDF), iPRES 2019
- - Andrew Weaver [won](https://twitter.com/iPRES2019/status/1177136202144768000) iPres' Best First Time Contribution Award for his work on this paper :)
+  - Andrew Weaver [won](https://twitter.com/iPRES2019/status/1177136202144768000) iPres' Best First Time Contribution Award for his work on this paper :)
 * 2018-11: ffmprovisr is mentioned in [a job advert](http://web.library.emory.edu/documents/pa_staff_Audiovisual%20Conservator_Nov2018.pdf)!
 * 2017-10: **Ashley Blewer & Katherine Nagels**, [ffmprovisr gets a redesign](https://bits.ashleyblewer.com/blog/2017/10/31/ffmprovisr-redesign/)
 * 2015-11: **AMIA & DLF Hack Day 2015**, [ffmprovsr](https://wiki.curatecamp.org/index.php/Association_of_Moving_Image_Archivists_&_Digital_Library_Federation_Hack_Day_2015#ffmprovsr) - the genesis of ffmprovisr (then spelled without the 'i')
