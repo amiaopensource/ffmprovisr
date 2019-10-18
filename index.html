@@ -450,14 +450,14 @@
     <input type="checkbox" id="wav_to_mp3">
     <div class="hiding">
       <h5>WAV to MP3</h5>
-      <p><code>ffmpeg -i <em>input_file</em>.wav -write_id3v1 1 -id3v2_version 3 -dither_method rectangular -out_sample_rate 48k -qscale:a 1 <em>output_file</em>.mp3</code></p>
+      <p><code>ffmpeg -i <em>input_file</em>.wav -write_id3v1 1 -id3v2_version 3 -dither_method triangular -out_sample_rate 48k -qscale:a 1 <em>output_file</em>.mp3</code></p>
       <p>This will convert your WAV files to MP3s.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path and name of the input file</dd>
         <dt>-write_id3v1 1</dt><dd>This will write metadata to an ID3v1 tag at the head of the file, assuming you’ve embedded metadata into the WAV file.</dd>
         <dt>-id3v2_version 3</dt><dd>This will write metadata to an ID3v2.3 tag at the tail of the file, assuming you’ve embedded metadata into the WAV file.</dd>
-        <dt>-dither_method rectangular</dt><dd>Dither makes sure you don’t unnecessarily truncate the dynamic range of your audio.</dd>
+        <dt>-dither_method triangular</dt><dd>Dither makes sure you don’t unnecessarily truncate the dynamic range of your audio.</dd>
         <dt>-out_sample_rate 48k</dt><dd>Sets the audio sampling frequency to 48 kHz. This can be omitted to use the same sampling frequency as the input.</dd>
         <dt>-qscale:a 1</dt><dd>This sets the encoder to use a constant quality with a variable bitrate of between 190-250kbit/s. If you would prefer to use a constant bitrate, this could be replaced with <code>-b:a 320k</code> to set to the maximum bitrate allowed by the MP3 format. For more detailed discussion on variable vs constant bitrates see <a href="https://trac.ffmpeg.org/wiki/Encode/MP3" target="_blank">here.</a></dd>
         <dt><em>output_file</em></dt><dd>path and name of the output file</dd>
@@ -476,7 +476,7 @@
     <input type="checkbox" id="append_mp3">
     <div class="hiding">
       <h5>Generate two access MP3s from input. One with appended audio (such as a copyright notice) and one unmodified.</h5>
-      <p><code>ffmpeg -i <em>input_file</em> -i <em>input_file_to_append</em> -filter_complex "[0:a:0]asplit=2[a][b];[b]afifo[bb];[1:a:0][bb]concat=n=2:v=0:a=1[concatout]" -map "[a]" -codec:a libmp3lame -dither_method modified_e_weighted -qscale:a 2 <em>output_file.mp3</em> -map "[concatout]" -codec:a libmp3lame -dither_method modified_e_weighted -qscale:a 2 <em>output_file_appended.mp3</em></code></p>
+      <p><code>ffmpeg -i <em>input_file</em> -i <em>input_file_to_append</em> -filter_complex "[0:a:0]asplit=2[a][b];[b]afifo[bb];[1:a:0][bb]concat=n=2:v=0:a=1[concatout]" -map "[a]" -codec:a libmp3lame -dither_method triangular -qscale:a 2 <em>output_file.mp3</em> -map "[concatout]" -codec:a libmp3lame -dither_method triangular -qscale:a 2 <em>output_file_appended.mp3</em></code></p>
       <p>This script allows you to generate two derivative audio files from a master while appending audio from a separate file (for example a copyright or institutional notice) to one of them.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -487,10 +487,10 @@
         <dt>[b]afifo[bb];</dt><dd>this buffers the stream "b" to help prevent dropped samples and renames stream to "bb"</dd>
         <dt>[1:a:0][bb]concat=n=2:v=0:a=1[concatout]</dt><dd><code>concat</code> is used to join files. <code>n=2</code> tells the filter there are two inputs. <code>v=0:a=1</code> Tells the filter there are 0 video outputs and 1 audio output. This command appends the audio from the second input to the beginning of stream "bb" and names the output "concatout"</dd>
         <dt>-map "[a]"</dt><dd>this maps the unmodified audio stream to the first output</dd>
-        <dt>-codec:a libmp3lame -dither_method modified_e_weighted -qscale:a 2</dt><dd>sets up MP3 options (using constant quality)</dd>
+        <dt>-codec:a libmp3lame -dither_method triangular -qscale:a 2</dt><dd>sets up MP3 options (using constant quality)</dd>
         <dt><em>output_file</em></dt><dd>path, name and extension of the output file (unmodified)</dd>
         <dt>-map "[concatout]"</dt><dd>this maps the modified stream to the second output</dd>
-        <dt>-codec:a libmp3lame -dither_method modified_e_weighted -qscale:a 2</dt><dd>sets up MP3 options (using constant quality)</dd>
+        <dt>-codec:a libmp3lame -dither_method triangular -qscale:a 2</dt><dd>sets up MP3 options (using constant quality)</dd>
         <dt><em>output_file_appended</em></dt><dd>path, name and extension of the output file (with appended notice)</dd>
       </dl>
       <p class="link"></p>
@@ -502,14 +502,14 @@
     <input type="checkbox" id="wav_to_mp4">
     <div class="hiding">
       <h5>WAV to AAC/MP4</h5>
-      <p><code>ffmpeg -i <em>input_file</em>.wav -c:a aac -b:a 128k -dither_method rectangular -ar 44100 <em>output_file</em>.mp4</code></p>
+      <p><code>ffmpeg -i <em>input_file</em>.wav -c:a aac -b:a 128k -dither_method triangular -ar 44100 <em>output_file</em>.mp4</code></p>
       <p>This will convert your WAV file to AAC/MP4.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path and name of the input file</dd>
         <dt>-c:a aac</dt><dd>sets the audio codec to AAC</dd>
         <dt>-b:a 128k</dt><dd>sets the bitrate of the audio to 128k</dd>
-        <dt>-dither_method rectangular</dt><dd>Dither makes sure you don’t unnecessarily truncate the dynamic range of your audio.</dd>
+        <dt>-dither_method triangular</dt><dd>Dither makes sure you don’t unnecessarily truncate the dynamic range of your audio.</dd>
         <dt>-ar 44100</dt><dd>sets the audio sampling frequency to 44100 Hz, or 44.1 kHz, or “CD quality”</dd>
         <dt><em>output_file</em></dt><dd>path and name of the output file</dd>
       </dl>
@@ -1066,7 +1066,7 @@
       <p>For example, to ensure that the video stream of the output file is visually lossless H.264 with a 4:2:0 chroma subsampling scheme, the command above could be amended to include the following:<br>
         <code>-map "[video_out]" -c:v libx264 -pix_fmt yuv420p -preset veryslow -crf 18</code></p>
       <p>Likewise, to encode the output audio stream as mp3, the command could include the following:<br>
-        <code>-map "[audio_out]" -c:a libmp3lame -dither_method modified_e_weighted -qscale:a 2</code></p>
+        <code>-map "[audio_out]" -c:a libmp3lame -dither_method triangular -qscale:a 2</code></p>
       <h4>Variation: concatenating files of different resolutions</h4>
       <p>To concatenate files of different resolutions, you need to resize the videos to have matching resolutions prior to concatenation. The most basic way to do this is by using a scale filter and giving the dimensions of the file you wish to match:</p>
       <p><code>-vf scale=1920:1080:flags=lanczos</code></p>
