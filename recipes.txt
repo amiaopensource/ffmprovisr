@@ -17,11 +17,11 @@ ffmpeg -i input_file -c:v libx265 -pix_fmt yuv420p -c:a copy output_file
 # Transcode to an Ogg Theora
 ffmpeg -i input_file -acodec libvorbis -b:v 690k output_file
 # Convert WAV to MP3
-ffmpeg -i input_file.wav -write_id3v1 1 -id3v2_version 3 -dither_method rectangular -out_sample_rate 48k -qscale:a 1 output_file.mp3
+ffmpeg -i input_file.wav -write_id3v1 1 -id3v2_version 3 -dither_method triangular -out_sample_rate 48k -qscale:a 1 output_file.mp3
 # Generate two access MP3s (with and without copyright).
-ffmpeg -i input_file -i input_file_to_append -filter_complex "[0:a:0]asplit=2[a][b];[b]afifo[bb];[1:a:0][bb]concat=n=2:v=0:a=1[concatout]" -map "[a]" -codec:a libmp3lame -dither_method modified_e_weighted -qscale:a 2 output_file.mp3 -map "[concatout]" -codec:a libmp3lame -dither_method modified_e_weighted -qscale:a 2 output_file_appended.mp3
+ffmpeg -i input_file -i input_file_to_append -filter_complex "[0:a:0]asplit=2[a][b];[b]afifo[bb];[1:a:0][bb]concat=n=2:v=0:a=1[concatout]" -map "[a]" -codec:a libmp3lame -dither_method triangular -qscale:a 2 output_file.mp3 -map "[concatout]" -codec:a libmp3lame -dither_method triangular -qscale:a 2 output_file_appended.mp3
 # Convert WAV to AAC/MP4
-ffmpeg -i input_file.wav -c:a aac -b:a 128k -dither_method rectangular -ar 44100 output_file.mp4
+ffmpeg -i input_file.wav -c:a aac -b:a 128k -dither_method triangular -ar 44100 output_file.mp4
 # Transform 4:3 aspect ratio into 16:9 with pillarbox
 ffmpeg -i input_file -filter:v "pad=ih*16/9:ih:(ow-iw)/2:(oh-ih)/2" -c:a copy output_file
 # Transform 16:9 aspect ratio video into 4:3 with letterbox
