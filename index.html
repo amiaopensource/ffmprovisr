@@ -2003,22 +2003,16 @@
     <div class="hiding">
       <h5>Get individual checksums for all video/audio streams ("Streamhash")</h5>
       <p><code>ffmpeg -i <em>input_file</em> -map 0 -f streamhash -hash md5 - -v quiet</code></p>
-      <p>
-      The outcome is very similar to that of "-f hash", except you get one hash
+      <p>The outcome is very similar to that of "-f hash", except you get one hash
       per-stream, instead of one (summary) hash.  Another benefit is that you
       don't have to know which streams, or how many to expect in the source
-      file. This is very handy for hashing mixed born-digital material.
-      </p>
-      <p>
-      This script will perform a fixity check on all audio and video streams in
+      file. This is very handy for hashing mixed born-digital material.</p>
+      <p>This script will perform a fixity check on all audio and video streams in
       the file and return one hashcode for each one.  This is useful for e.g.
       be able to change to container/codec format later on and validate it
-      matches the original source.
-      </p>
-      <p>
-      The output is formatted for easily processing it further in any kind of
-      programming/scripting language.
-      </p>
+      matches the original source.</p>
+      <p>The output is formatted for easily processing it further in any kind of
+      programming/scripting language.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
@@ -2027,13 +2021,12 @@
         <dt>-</dt><dd>FFmpeg syntax requires a specified output, and <code>-</code> is just a place holder. No file is actually created. Choose an output filename to write the hashcode lines into a textfile.</dd>
         <dt>-v quiet</dt><dd>(Optional) Disables FFmpeg's processing output. With this option it's easier to see the text output of the hashes.</dd>
       </dl>
-      <p>
-      The output looks like this, for example (1 video, 2 audio streams):
+      <p>The output looks like this, for example (1 video, 2 audio streams):
       <code>
       0,v,MD5=89bed8031048d985b48550b6b4cb171c
       0,a,MD5=36daadb543b63610f63f9dcff11680fb
       1,a,MD5=f21269116a847f887710cfc67ecc3e6e
-      </code>
+      </code></p>
       <p class="link"></p>
     </div>
     <!-- ends Get checksum for all video/audio streams -->
