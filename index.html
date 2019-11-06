@@ -1867,7 +1867,7 @@
         <dt>$output</dt><dd>The output file is set to the value of the <code>$output</code> variable declared above: i.e., the current file name with an .mkv extension.</dd>
         <dt>}</dt><dd>Closes the code block.</dd>
       </dl>
-      <p><strong>Note:</strong> the PowerShell script (.ps1 file) and all .mp4 files to be rewrapped must be contained within the same directory, and the script must be run from that directory.<p>
+      <p><strong>Note:</strong> the PowerShell script (.ps1 file) and all .mp4 files to be rewrapped must be contained within the same directory, and the script must be run from that directory.</p>
       <p>Execute the .ps1 file by typing <code>.\rewrap-mp4.ps1</code> in PowerShell.</p>
       <p>Modify the script as needed to perform different transcodes, or to use with ffprobe. :)</p>
       <p class="link"></p>
@@ -2003,16 +2003,9 @@
     <div class="hiding">
       <h5>Get individual checksums for all video/audio streams ("Streamhash")</h5>
       <p><code>ffmpeg -i <em>input_file</em> -map 0 -f streamhash -hash md5 - -v quiet</code></p>
-      <p>The outcome is very similar to that of "-f hash", except you get one hash
-      per-stream, instead of one (summary) hash.  Another benefit is that you
-      don't have to know which streams, or how many to expect in the source
-      file. This is very handy for hashing mixed born-digital material.</p>
-      <p>This script will perform a fixity check on all audio and video streams in
-      the file and return one hashcode for each one.  This is useful for e.g.
-      be able to change to container/codec format later on and validate it
-      matches the original source.</p>
-      <p>The output is formatted for easily processing it further in any kind of
-      programming/scripting language.</p>
+      <p>The outcome is very similar to that of "-f hash", except you get one hash per-stream, instead of one (summary) hash. Another benefit is that you don't have to know which streams, or how many to expect in the source file. This is very handy for hashing mixed born-digital material.</p>
+      <p>This script will perform a fixity check on all audio and video streams in the file and return one hashcode for each one.  This is useful for e.g. being able to change to container/codec format later on and validate it matches the original source.</p>
+      <p>The output is formatted for easily processing it further in any kind of programming/scripting language.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
@@ -2023,8 +2016,8 @@
       </dl>
       <p>The output looks like this, for example (1 video, 2 audio streams):
       <code>
-      0,v,MD5=89bed8031048d985b48550b6b4cb171c
-      0,a,MD5=36daadb543b63610f63f9dcff11680fb
+      0,v,MD5=89bed8031048d985b48550b6b4cb171c<br>
+      0,a,MD5=36daadb543b63610f63f9dcff11680fb<br>
       1,a,MD5=f21269116a847f887710cfc67ecc3e6e
       </code></p>
       <p class="link"></p>
