@@ -141,6 +141,8 @@ ffmpeg -i input_file -af "asetnsamples=n=48000" -f framemd5 -vn output_file
 ffmpeg -i input_file -map 0:v:0 -c:v copy -f md5 output_file_1 -map 0:a:0 -c:a copy -f md5 output_file_2
 # Get checksum for video/audio stream
 ffmpeg -loglevel error -i input_file -map 0:v:0 -f hash -hash md5 -
+# Get individual checksums for all video/audio streams ("Streamhash")
+ffmpeg -i input_file -map 0 -f streamhash -hash md5 - -v quiet
 # QCTools report (with audio)
 ffprobe -f lavfi -i "movie=input_file:s=v+a[in0][in1], [in0]signalstats=stat=tout+vrep+brng, cropdetect=reset=1:round=1, idet=half_life=1, split[a][b];[a]field=top[a1];[b]field=bottom, split[b1][b2];[a1][b1]psnr[c1];[c1][b2]ssim[out0];[in1]ebur128=metadata=1, astats=metadata=1:reset=1:length=0.4[out1]" -show_frames -show_versions -of xml=x=1:q=1 -noprivate | gzip > input_file.qctools.xml.gz
 # QCTools report (no audio)
