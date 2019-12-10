@@ -80,34 +80,39 @@ You can read our contributor code of conduct [here](https://github.com/amiaopens
 
 ## Contributors
 * Gathered using [octohatrack](https://github.com/LABHR/octohatrack)
-
-*Code Contributors*:
+  
+*Code Contributors*:  
 ablwr (Ashley)  
+alavigne12 (A. Lavigne)  
+Anushka-codergirl (Anushka Raj)  
 bastibeckr (Basti Becker)  
-b00giehead (Joanna White)  
 bturkus  
 dericed (Dave Rice)  
+digitensions (Joanna White)  
 edsu (Ed Summers)  
 jamessam (Jim Sam)  
 jfarbowitz (Jonathan Farbowitz)  
 kfrn (Katherine Frances Nagels)  
 kgrons (Kathryn Gronsbell)  
 kieranjol (Kieran O'Leary)  
-llogan (Lou)  
+llogan (Lou Logan)  
+macasaurusrex (Maura)  
 mgiraldo (Mauricio Giraldo)  
 pjotrek-b (Peter B.)  
 privatezero (Andrew Weaver)  
 retokromer (Reto Kromer)  
 rfraimow  
-
-*All Contributors*:
+  
+All Contributors:  
 ablwr (Ashley)  
+alavigne12 (A. Lavigne)  
+Anushka-codergirl (Anushka Raj)  
 audiovisualopen  
 bastibeckr (Basti Becker)  
-b00giehead (Joanna White)  
 brainwane (Sumana Harihareswara)  
 bturkus  
 dericed (Dave Rice)  
+digitensions (Joanna White)  
 drodz11 (Dave Rodriguez)  
 edsu (Ed Summers)  
 EG-tech (Ethan Gates)  
@@ -122,7 +127,9 @@ kellyhaydon (metacynic)
 kfrn (Katherine Frances Nagels)  
 kgrons (Kathryn Gronsbell)  
 kieranjol (Kieran O'Leary)  
-llogan (Lou)  
+llogan (Lou Logan)  
+macasaurusrex (Maura)  
+mercuryswitch  
 mgiraldo (Mauricio Giraldo)  
 mulvya  
 nkrabben (Nick Krabbenhoeft)  
@@ -132,12 +139,13 @@ retokromer (Reto Kromer)
 rfraimow  
 richardpl (Paul B Mahol)  
 ross-spencer (Ross Spencer)  
+taschenbach (Tommy Aschenbach)  
 todrobbins (Tod Robbins)  
-
+  
 Repo: amiaopensource/ffmprovisr  
-Code Contributors: 17  
-All Contributors: 32   
-Last updated: 2019-02-11  
+GitHub Contributors: 20  
+All Contributors: 37  
+
 
 ## AVHack Team
 
