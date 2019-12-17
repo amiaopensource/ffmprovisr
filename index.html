@@ -19,7 +19,7 @@
   <nav class="sidebar well">
     <h2 class="heading">Table of Contents</h2>
     <a href="#about"><div class="contents-list">About this resource</div></a>
-    <div id="open-all" class="contents-list">Show/hide all recipes</div>
+    <div id="toggle-expand-collapse-all" class="contents-list">Expand/collapse all recipes</div>
     <a href="#basics"><div class="contents-list">FFmpeg basics</div></a>
     <a href="#concepts"><div class="contents-list">Advanced FFmpeg concepts</div></a>
     <a href="#rewrap"><div class="contents-list">Change container (rewrap)</div></a>
@@ -728,7 +728,7 @@
       <p class="link"></p>
     </div>
     <!-- ends Modify speed -->
-      
+
     <!-- Synchronize video and audio streams -->
     <label class="recipe" for="sync_streams">Synchronize video and audio streams</label>
     <input type="checkbox" id="sync_streams">
@@ -804,13 +804,13 @@
       <p>It's also possible to specify the crop position by adding the x and y coordinates representing the top left of your cropped area to your crop filter, as such:</p>
       <p><code>ffmpeg -i <em>input_file</em> -vf "crop=<em>width</em>:<em>height</em>[:<em>x_position</em>:<em>y_position</em>]" <em>output_file</em></code></p>
       <h5>Examples</h5>
-      <p>The original frame, a screenshot of the SMPTE colorbars:</p>
+      <p>The original frame, a screenshot of Maggie Cheung in the film <i>Hero</i>:</p>
       <img class="sample-image" src="img/crop_example_orig.png" alt="VLC screenshot of Maggie Cheung">
-      <p>Result of the command <code>ffmpeg -i <em>smpte_colorsbars.mov</em> -vf "crop=500:500" <em>output_file</em></code>:</p>
+      <p>Result of the command <code>ffmpeg -i <em>maggie.mov</em> -vf "crop=500:500" <em>output_file</em></code>:</p>
       <img class="sample-image-small" src="img/crop_example_aftercrop1.png" alt="VLC screenshot of Maggie Cheung, cropped from original">
-      <p>Result of the command <code>ffmpeg -i <em>smpte_colorsbars.mov</em> -vf "crop=500:500:0:0" <em>output_file</em></code>, appending <code>:0:0</code> to crop from the top left corner:</p>
+      <p>Result of the command <code>ffmpeg -i <em>maggie.mov</em> -vf "crop=500:500:0:0" <em>output_file</em></code>, appending <code>:0:0</code> to crop from the top left corner:</p>
       <img class="sample-image-small" src="img/crop_example_aftercrop2.png" alt="VLC screenshot of Maggie Cheung, cropped from original">
-      <p>Result of the command <code>ffmpeg -i <em>smpte_colousbars.mov</em> -vf "crop=500:300:500:30" <em>output_file</em></code>:</p>
+      <p>Result of the command <code>ffmpeg -i <em>maggie.mov</em> -vf "crop=500:300:500:30" <em>output_file</em></code>:</p>
       <img class="sample-image-small" src="img/crop_example_aftercrop3.png" alt="VLC screenshot of Maggie Cheung, cropped from original">
       <p class="link"></p>
     </div>
@@ -844,7 +844,7 @@
       <p class="link"></p>
     </div>
     <!-- ends Change video color to black and white -->
-      
+
     </div>
     <div class="well">
     <h2 id="audio-files">Change or view audio properties</h2>
@@ -2801,7 +2801,7 @@
       <input type="checkbox" id="flac-tool">
       <div class="hiding">
         <h5>About flac tool</h5>
-        <p>The flac tool is the tool created by the FLAC project to transcode to/from FLAC and to manipulate metadata in FLAC files. One advantage it has over other tools used to transcode into FLAC is the capability of embedding foreign metadata (such as BWF metadata). This means that it is possible to compress a BWF file into FLAC and maintain the ability to transcode back into an identical BWF, metadata and all. For a more detailed explanation, see <a href="http://dericed.com/2013/flac-in-the-archives/" target="_blank">Dave Rice's article</a> on the topic, from which the following commands are adapted.</p> 
+        <p>The flac tool is the tool created by the FLAC project to transcode to/from FLAC and to manipulate metadata in FLAC files. One advantage it has over other tools used to transcode into FLAC is the capability of embedding foreign metadata (such as BWF metadata). This means that it is possible to compress a BWF file into FLAC and maintain the ability to transcode back into an identical BWF, metadata and all. For a more detailed explanation, see <a href="http://dericed.com/2013/flac-in-the-archives/" target="_blank">Dave Rice's article</a> on the topic, from which the following commands are adapted.</p>
         <h3>Transcode to FLAC</h3>
         <p>Use this command to transcode from WAV to FLAC while maintaining BWF metadata</p>
         <p><code>flac --best --keep-foreign-metadata --preserve-modtime --verify <em>input.wav</em></code></p>

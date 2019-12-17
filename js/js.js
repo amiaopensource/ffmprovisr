@@ -32,11 +32,21 @@ $(document).ready(function() {
     }
   })
 
-  // open all windows if button is clicked
-  $('#open-all').on("click", function(){
-    $('input[type=checkbox]').each(function(){
-      this.checked = !this.checked;
-    })
-  });
+  // Collapse all recipes when button is clicked
+  $('#toggle-expand-collapse-all').on("click", function(){
+    var checkboxes = $('input[type=checkbox]');
+    var anyRecipesOpen = $(checkboxes).is(':checked');
 
+    if (anyRecipesOpen) {
+      // Collapse all
+      $('input[type=checkbox]').each(function() {
+        this.checked = false;
+      });
+    } else new Promise(function(resolve, reject) {
+      // Expand all
+      $('input[type=checkbox]').each(function() {
+        this.checked = true;
+      });
+    });
+  });
 });
