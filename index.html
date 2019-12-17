@@ -804,13 +804,13 @@
       <p>It's also possible to specify the crop position by adding the x and y coordinates representing the top left of your cropped area to your crop filter, as such:</p>
       <p><code>ffmpeg -i <em>input_file</em> -vf "crop=<em>width</em>:<em>height</em>[:<em>x_position</em>:<em>y_position</em>]" <em>output_file</em></code></p>
       <h5>Examples</h5>
-      <p>The original frame, a screenshot of the SMPTE colorbars:</p>
+      <p>The original frame, a screenshot of Maggie Cheung in the film <i>Hero</i>:</p>
       <img class="sample-image" src="img/crop_example_orig.png" alt="VLC screenshot of Maggie Cheung">
-      <p>Result of the command <code>ffmpeg -i <em>smpte_colorsbars.mov</em> -vf "crop=500:500" <em>output_file</em></code>:</p>
+      <p>Result of the command <code>ffmpeg -i <em>maggie.mov</em> -vf "crop=500:500" <em>output_file</em></code>:</p>
       <img class="sample-image-small" src="img/crop_example_aftercrop1.png" alt="VLC screenshot of Maggie Cheung, cropped from original">
-      <p>Result of the command <code>ffmpeg -i <em>smpte_colorsbars.mov</em> -vf "crop=500:500:0:0" <em>output_file</em></code>, appending <code>:0:0</code> to crop from the top left corner:</p>
+      <p>Result of the command <code>ffmpeg -i <em>maggie.mov</em> -vf "crop=500:500:0:0" <em>output_file</em></code>, appending <code>:0:0</code> to crop from the top left corner:</p>
       <img class="sample-image-small" src="img/crop_example_aftercrop2.png" alt="VLC screenshot of Maggie Cheung, cropped from original">
-      <p>Result of the command <code>ffmpeg -i <em>smpte_colousbars.mov</em> -vf "crop=500:300:500:30" <em>output_file</em></code>:</p>
+      <p>Result of the command <code>ffmpeg -i <em>maggie.mov</em> -vf "crop=500:300:500:30" <em>output_file</em></code>:</p>
       <img class="sample-image-small" src="img/crop_example_aftercrop3.png" alt="VLC screenshot of Maggie Cheung, cropped from original">
       <p class="link"></p>
     </div>
