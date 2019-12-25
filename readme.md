@@ -10,7 +10,7 @@ Repository of useful FFmpeg command lines for archivists!
 * [Contributors](#contributors)
 * [AVHack Team](#avhack-team)
 * [Sister projects](#sister-projects)
-* [Awards and mentions](#articles-and-mentions)
+* [Articles and mentions](#articles-and-mentions)
 * [License](#license)
 
 ## What is this?
