@@ -1,5 +1,7 @@
 # Basic rewrap command
 ffmpeg -i input_file.ext -c copy -map 0 output_file.ext
+# Generate Broadcast WAV
+ffmpeg -i input_file.wav -c copy -write_bext 1 -metadata field_name='Content' output_file.wav
 # Rewrap DV video to .dv file
 ffmpeg -i input_file -f rawvideo -c:v copy output_file.dv
 # Transcode to deinterlaced Apple ProRes LT
