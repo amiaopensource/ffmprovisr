@@ -754,7 +754,6 @@
     <input type="checkbox" id="sync_streams">
     <div class="hiding">
       <h5>Synchronize video and audio streams</h5>
-
       <p><code>ffmpeg -i <em>input_file</em> -itsoffset 0.125 -i <em>input_file</em> -map 1:v -map 0:a -c copy <em>output_file</em></code></p>
       <p>A command to slip the video channel approximate 2 frames (0.125 for a 25fps timeline) to align video and audio drift, if generated during video tape capture for example.</p>
       <dl>
