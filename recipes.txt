@@ -38,6 +38,8 @@ ffmpeg -i input_file -c:v copy -aspect 4:3 output_file
 ffmpeg -i input_file -c:v libx264 -vf colormatrix=src:dst output_file
 # Modify image and sound speed
 ffmpeg -i input_file -r output_fps -filter_complex "[0:v]setpts=input_fps/output_fps*PTS[v]; [0:a]atempo=output_fps/input_fps[a]" -map "[v]" -map "[a]" output_file
+# Fade both video and audio streams
+ffmpeg -i input_file -filter:v "fade=in:st=0:d=1, fade=out:st=59:d=1" -filter:a "afade=in:st=0:d=1, afade=out:st=59:d=1" -c:v libx264 -c:a aac output_file
 # Synchronize video and audio streams
 ffmpeg -i input_file -itsoffset 0.125 -i input_file -map 1:v -map 0:a -c copy output_file
 # Clarify stream properties
