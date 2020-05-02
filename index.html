@@ -729,6 +729,26 @@
     </div>
     <!-- ends Modify speed -->
 
+    <!-- Fade both video and audio streams -->
+    <label class="recipe" for="fade_streams">Fade both video and audio streams</label>
+    <input type="checkbox" id="fade_streams">
+    <div class="hiding">
+      <h5>Fade both video and audio streams</h5>
+      <p><code>ffmpeg -i <em>input_file</em> -filter:v "fade=in:st=0:d=1, fade=out:st=59:d=1" -filter:a "afade=in:st=0:d=1, afade=out:st=59:d=1" -c:v libx264 -c:a aac <em>output_file</em></code></p>
+      <p>This command fades in and out the first and last 30 video frames and 44100 audio samples on a video</p>
+      <dl>
+          <dt>ffmpeg</dt><dd>starts the command</dd>
+          <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
+          <dt>-filter:v "fade=in:st=0:d=1, fade=out:st=59:d=1"</dt><dd>applies a video filter that fades in the first and last 30 video frames</dd>
+          <dt>-filter:a "afade=in:st=0:d=1, afade=out:st=59:d=1"</dt><dd>applies an audio filter that fades in the first and last 30 video frames. <code>st</code> sets the start and <code>d</code> sets the duration.</dd>
+          <dt>-c:v <em>video_codec</em></dt><dd>as a video filter is used, it is not possible to use <code>-c copy</code>. The video must be re-encoded with whatever video codec is chosen, e.g. <code>ffv1</code>, <code>v210</code> or <code>prores</code>.</dd>
+          <dt>-c:a <em>audio_codec</em></dt><dd>as an audio filter is used, it is not possible to use <code>-c copy</code>. The audio must be re-encoded with whatever audio codec is chosen, e.g. <code>aac</code>.</dd>
+          <dt><em>output_file</em></dt><dd>path, name and extension of the output_file</dd>
+      </dl>
+      <p class="link"></p>
+    </div>
+    <!-- ends Fade both video and audio streams -->
+
     <!-- Synchronize video and audio streams -->
     <label class="recipe" for="sync_streams">Synchronize video and audio streams</label>
     <input type="checkbox" id="sync_streams">
