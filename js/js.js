@@ -24,7 +24,7 @@ Math.easeInOutQuad = function (t, b, c, d) {
 }
 
 function appendLink(id) {
-  let link = document.getElementById(id).nextElementSibling.querySelector('.link')
+  const link = document.getElementById(id).nextElementSibling.querySelector('.link')
   if (link) {
     link.innerHTML = ("<small>Link to this command: <a href='https://amiaopensource.github.io/ffmprovisr/index.html#" + id + "'>https://amiaopensource.github.io/ffmprovisr/index.html#" + id + "</a></small>")
   }
@@ -43,7 +43,7 @@ if (window.location.hash) {
 }
 
 // add hash URL when recipe is opened
-let recipes = document.querySelectorAll('label[class="recipe"]')
+const recipes = document.querySelectorAll('label[class="recipe"]')
 recipes.forEach(function(item, i){
   item.addEventListener("click", function(){
     id = this.getAttribute("for");
@@ -54,7 +54,7 @@ recipes.forEach(function(item, i){
 
 
 // open recipe when clicked
-let links = document.querySelectorAll('a')
+const links = document.querySelectorAll('a')
 links.forEach(function(item, i){
 
   item.addEventListener("click", function(){
@@ -78,7 +78,7 @@ function getCheckedBoxes(checkboxes) {
 
 // Collapse all recipes when button is clicked
 document.getElementById('toggle-expand-collapse-all').addEventListener("click", function(){
-  let checkboxes = document.querySelectorAll('input[type=checkbox]')
+  const checkboxes = document.querySelectorAll('input[type=checkbox]')
   var checked = getCheckedBoxes(checkboxes);
 
   if (checked) {
