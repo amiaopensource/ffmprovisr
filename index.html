@@ -734,7 +734,7 @@
     <div class="hiding">
       <h5>Fade both video and audio streams</h5>
       <p><code>ffmpeg -i <em>input_file</em> -filter:v "fade=in:st=IN_POINT:d=DURATION, fade=out:st=OUT_POINT:d=DURATION" -filter:a "afade=in:st=OUT_POINT:d=DURATION, afade=out:st=IN_POINT:d=DURATION" -c:v libx264 -c:a aac <em>output_file</em></code></p>
-      <p>This command fades in and out the first and last second on a video. Change IN_POINT, OUT_POINT, DURATION to the time in seconds (expressed as integers) you want.</p>
+      <p>This command fades your video in and out. Change IN_POINT, OUT_POINT, and DURATION to the time in seconds (expressed as integers).</p>
       <dl>
           <dt>ffmpeg</dt><dd>starts the command</dd>
           <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
