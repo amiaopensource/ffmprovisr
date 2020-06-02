@@ -5,6 +5,7 @@ Repository of useful FFmpeg command lines for archivists!
 * [What is this?](#what-is-this)
 * [How do I see it?](#how-do-i-see-it)
 * [How do I contribute?](#how-do-i-contribute)
+  * [Guidelines for contributing](#guidelines-for-contributing)
 * [Code of conduct](#code-of-conduct)
 * [Maintainers](#maintainers)
 * [Contributors](#contributors)
@@ -60,7 +61,23 @@ You are welcome to edit the codebase yourself, or just supply the information an
 
 ### Edit codebase
 
-To contribute to this project directly (and more quickly), clone this repository and create a new branch (`git checkout -b your-branch-name`) and add or modify a new block in `index.html`. Then [submit a pull request](https://github.com/amiaopensource/ffmprovisr/pulls) and the maintainers will review and integrate your code. There is a commented-out sample block available at the bottom of `index.html` that can be as a guideline for your command.
+To contribute to this project directly (and more quickly), clone this repository and create a new branch (`git checkout -b your-branch-name`) and add or modify a new block in `index.html`. Then [submit a pull request](https://github.com/amiaopensource/ffmprovisr/pulls) and the maintainers will review and integrate your code. There is a commented-out sample block available at the bottom of `index.html` that can be a guideline for your command.
+
+#### Guidelines for contributing
+
+* Recipes should ideally do just one thing or solve one problem, to keep things as user-friendly as possible and to avoid unintended side-effects
+* Add the recipe to the [`.txt` file](./recipes.txt)
+* Explanations and examples for recipes should be as generic as possible, to allow users to alter the command for their own use-case.
+  * This may involve the use of `VARIABLE_NAMES`
+  * Example: [Fade video and audio streams](https://amiaopensource.github.io/ffmprovisr/#fade_streams)
+* Some recipes may benefit from including a GIF that shows the output
+  * Example: [Plays a graphical output showing decibel levels of an input file](https://amiaopensource.github.io/ffmprovisr/#astats)
+* Some recipes require an explanatory section which may not fit gracefully into the recipe itself
+  * Example: [Rewrap a file](https://amiaopensource.github.io/ffmprovisr/#basic-rewrap)
+* Recipes involving `-filter_complex` can be some of the most verbose and difficult to understand, so breaking these down as much as possible into their relevant sections is ideal
+  * Example: [Generate two access MP3s from input](https://amiaopensource.github.io/ffmprovisr/#append_mp3)
+* Some recipes may refer to a specifc standard or vocabulary, and it's useful to link to these so that the user can scale the recipe to their use case
+  * Example: [Generate Broadcast WAV](https://amiaopensource.github.io/ffmprovisr/#bwf)
 
 ### Make a request
 
