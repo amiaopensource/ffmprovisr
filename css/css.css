@@ -85,7 +85,7 @@ a:visited {
 }
 
 .license img {
-  max-width: 10em;
+  max-width: 6em;
   display: inline;
 }
 
@@ -114,7 +114,8 @@ h4 {
 }
 
 .intro-lead {
-  font-size: 1em;
+  font-size: 1.2em;
+  font-weight: bold;
 }
 
 code {
