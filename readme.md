@@ -66,7 +66,6 @@ To contribute to this project directly (and more quickly), clone this repository
 #### Guidelines for contributing
 
 * Recipes should ideally do just one thing or solve one problem, to keep things as user-friendly as possible and to avoid unintended side-effects
-* Add the recipe to the [`.txt` file](./recipes.txt)
 * Explanations and examples for recipes should be as generic as possible, to allow users to alter the command for their own use-case.
   * This may involve the use of `VARIABLE_NAMES`
   * Example: [Fade video and audio streams](https://amiaopensource.github.io/ffmprovisr/#fade_streams)
