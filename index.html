@@ -183,7 +183,7 @@
       <p>To map <em>all</em> streams in the input file to the output file, use <code>-map 0</code>. However, note that not all container formats can include all stream types: for example, .mp4 cannot contain timecode.</p>
       <h4>Mapping with a failsafe</h4>
       <p>To safely process files that may or may not contain given a type of stream, you can add a trailing <code>?</code> to your map commands: for example, <code>-map 0:a?</code> instead of <code>-map 0:a</code>.</p>
-      <p>This makes the map optional: audio streams will be mapped over if they are present in the file—but if the file contains no audio streams, the transcode will precede as usual, minus the audio stream mapping. Without adding the trailing <code>?</code>, FFmpeg will exit with an error on that file.</p>
+      <p>This makes the map optional: audio streams will be mapped over if they are present in the file—but if the file contains no audio streams, the transcode will proceed as usual, minus the audio stream mapping. Without adding the trailing <code>?</code>, FFmpeg will exit with an error on that file.</p>
       <p>This is especially recommended when batch processing video files: it ensures that all files in your batch will be transcoded, whether or not they contain audio streams.</p>
       <p>For more information, check out the FFmpeg wiki <a href="https://trac.ffmpeg.org/wiki/Map" target="_blank">Map</a> page, and the official FFmpeg <a href="https://ffmpeg.org/ffmpeg.html#Advanced-options" target="_blank">documentation on <code>-map</code></a>.</p>
       <p class="link"></p>

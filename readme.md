@@ -5,6 +5,7 @@ Repository of useful FFmpeg command lines for archivists!
 * [What is this?](#what-is-this)
 * [How do I see it?](#how-do-i-see-it)
 * [How do I contribute?](#how-do-i-contribute)
+  * [Guidelines for contributing](#guidelines-for-contributing)
 * [Code of conduct](#code-of-conduct)
 * [Maintainers](#maintainers)
 * [Contributors](#contributors)
@@ -15,7 +16,7 @@ Repository of useful FFmpeg command lines for archivists!
 
 ## What is this?
 
-#### Project Objective
+### Project Objective
 
 To facilitate better understanding of FFmpeg through collaborative sharing of useful scripts and detailed flag-level description of how each script works, so archivists can copy-paste and produce their own scripts, but also understand how and why they work.
 
@@ -34,7 +35,7 @@ ffmprovisr
 ```
 This works currently under macOS, Linux and the Linux apps on Windows (Ubuntu and Debian tested). On classic Windows you can install the last [release](https://github.com/amiaopensource/ffmprovisr/releases) manually and the open `index.html` in a browser.
 
-#### Parseable list of the commands
+### Parseable list of the commands
 
 A list of all recipes in an easily parseable [ASCII text](recipes.txt) format is provided as well. It contains for each recipe its title and command in the following format:
 
@@ -58,15 +59,30 @@ The used [one-liner](scripts/get_recipe_list) is in the `scripts` folder.
 
 You are welcome to edit the codebase yourself, or just supply the information and ask it to be added to the site.
 
-#### Edit codebase
+### Edit codebase
 
-To contribute to this project directly (and more quickly), clone this repository and create a new branch (`git checkout -b your-branch-name`) and add or modify a new block in `index.html`. Then [submit a pull request](https://github.com/amiaopensource/ffmprovisr/pulls) and the maintainers will review and integrate your code. There is a commented-out sample block available at the bottom of `index.html` that can be as a guideline for your command.
+To contribute to this project directly (and more quickly), clone this repository and create a new branch (`git checkout -b your-branch-name`) and add or modify a new block in `index.html`. Then [submit a pull request](https://github.com/amiaopensource/ffmprovisr/pulls) and the maintainers will review and integrate your code. There is a commented-out sample block available at the bottom of `index.html` that can be a guideline for your command.
 
-#### Make a request
+#### Guidelines for contributing
+
+* Recipes should ideally do just one thing or solve one problem, to keep things as user-friendly as possible and to avoid unintended side-effects
+* Explanations and examples for recipes should be as generic as possible, to allow users to alter the command for their own use-case.
+  * This may involve the use of `VARIABLE_NAMES`
+  * Example: [Fade video and audio streams](https://amiaopensource.github.io/ffmprovisr/#fade_streams)
+* Some recipes may benefit from including a GIF that shows the output
+  * Example: [Plays a graphical output showing decibel levels of an input file](https://amiaopensource.github.io/ffmprovisr/#astats)
+* Some recipes require an explanatory section which may not fit gracefully into the recipe itself
+  * Example: [Rewrap a file](https://amiaopensource.github.io/ffmprovisr/#basic-rewrap)
+* Recipes involving `-filter_complex` can be some of the most verbose and difficult to understand, so breaking these down as much as possible into their relevant sections is ideal
+  * Example: [Generate two access MP3s from input](https://amiaopensource.github.io/ffmprovisr/#append_mp3)
+* Some recipes may refer to a specifc standard or vocabulary, and it's useful to link to these so that the user can scale the recipe to their use case
+  * Example: [Generate Broadcast WAV](https://amiaopensource.github.io/ffmprovisr/#bwf)
+
+### Make a request
 
 If you are having trouble with coding it yourself or with GitHub, feel free to [submit an issue](https://github.com/amiaopensource/ffmprovisr/issues) with the kind of command you would like to see added to the site.
 
-#### General help
+### General help
 
 If you want to help but don't have a new script to add, you can help us by testing out the scripts available, by refining or clarifying the documentation, or [creating an issue](https://github.com/amiaopensource/ffmprovisr/issues) for anything that sounds confusing and requires clarification.
 
@@ -80,7 +96,7 @@ You can read our contributor code of conduct [here](https://github.com/amiaopens
 
 ## Contributors
 * Gathered using [octohatrack](https://github.com/LABHR/octohatrack)
-  
+
 *Code Contributors*:  
 ablwr (Ashley)  
 alavigne12 (A. Lavigne)  
@@ -102,7 +118,7 @@ pjotrek-b (Peter B.)
 privatezero (Andrew Weaver)  
 retokromer (Reto Kromer)  
 rfraimow  
-  
+
 All Contributors:  
 ablwr (Ashley)  
 alavigne12 (A. Lavigne)  
@@ -141,11 +157,11 @@ richardpl (Paul B Mahol)
 ross-spencer (Ross Spencer)  
 taschenbach (Tommy Aschenbach)  
 todrobbins (Tod Robbins)  
-  
+
 Repo: amiaopensource/ffmprovisr  
 GitHub Contributors: 20  
 All Contributors: 37  
-Last updated: 2019-12-11 
+Last updated: 2019-12-11
 
 ## AVHack Team
 
