@@ -628,6 +628,9 @@
         <dt>-c:a copy</dt><dd>re-encodes using the same audio codec<br>
         For silent videos you can replace <code>-c:a copy</code> with <code>-an</code>.</dd>
         <dt><em>output_file</em></dt><dd>path, name and extension of the output file</dd>
+        <p>If your source is interlaced, you will want to deinterlace prior to scaling. In that case, your command would look like this:</p>
+        <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -filter:v "yadif, colormatrix=bt601:bt709, scale=1440:1080:flags=lanczos, pad=1920:1080:240:0" -c:a copy <em>output_file</em></code></p>
+        <p>See the <a href="#ntsc_to_h264">Interlaced NTSC to MP4 recipe</a> for a fuller explanation of the deinterlacing step.</p>
       </dl>
       <p class="link"></p>
     </div>
