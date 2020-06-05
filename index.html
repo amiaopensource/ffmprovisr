@@ -116,9 +116,9 @@
       <p>When creating or transcoding files with FFmpeg, it is important to consider codec settings for both audio and video, as the default options may not be desirable in your particular context. The following is a brief list of codec defaults for some common file types:</p>
       <ul>
         <li><code>.avi</code>: Audio Codec: mp3, Video Codec: mpeg4</li>
-        <li><code>.mkv</code>: Audio Codec: ac3, Video Codec: h.264</li>
-        <li><code>.mov</code>: Audio Codec: aac, Video Codec: h.264</li>
-        <li><code>.mp4</code>: Audio Codec: aac, Video Codec: h.264</li>
+        <li><code>.mkv</code>: Audio Codec: ac3, Video Codec: H.264</li>
+        <li><code>.mov</code>: Audio Codec: AAC, Video Codec: H.264</li>
+        <li><code>.mp4</code>: Audio Codec: AAC, Video Codec: H.264</li>
         <li><code>.mpg</code>: Audio Codec: mp2, Video Codec: mpeg1video</li>
         <li><code>.mxf</code>: Audio Codec: pcm_s16le, Video Codec: mpeg2video</li>
         <li><code>.wav</code>: Audio Codec: pcm_s16le (16 bit PCM)</li>
@@ -331,6 +331,7 @@
         <dt>-crf <em>18</em></dt><dd>Specifying a lower CRF will make a larger file with better visual quality. For H.264 files being encoded with a 4:2:0 chroma subsampling scheme (i.e., using <code>-pix_fmt yuv420p</code>), the scale ranges between 0-51 for 8-bit content, with 0 being lossless and 51 the worst possible quality.<br>
           If no crf is specified, <code>libx264</code> will use a default value of 23. 18 is often considered a “visually lossless” compression.</dd>
       </dl>
+      <p>By default, this recipe will include one track of each type (e.g. audio, video) in the output file. If you wish to include more tracks, consult the <a href="#stream-mapping">entry on stream mapping</a>.</p>
       <p>For more information, see the <a href="https://trac.ffmpeg.org/wiki/Encode/H.264" target="_blank">FFmpeg and H.264 Encoding Guide</a> on the FFmpeg wiki.</p>
       <p class="link"></p>
     </div>
@@ -628,6 +629,9 @@
         <dt>-c:a copy</dt><dd>re-encodes using the same audio codec<br>
         For silent videos you can replace <code>-c:a copy</code> with <code>-an</code>.</dd>
         <dt><em>output_file</em></dt><dd>path, name and extension of the output file</dd>
+        <p>If your source is interlaced, you will want to deinterlace prior to scaling. In that case, your command would look like this:</p>
+        <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -filter:v "yadif, colormatrix=bt601:bt709, scale=1440:1080:flags=lanczos, pad=1920:1080:240:0" -c:a copy <em>output_file</em></code></p>
+        <p>See the <a href="#ntsc_to_h264">Interlaced NTSC to MP4 recipe</a> for a fuller explanation of the deinterlacing step.</p>
       </dl>
       <p class="link"></p>
     </div>
@@ -2564,7 +2568,7 @@
            <dt>-flags +global_header</dt><dd>Don't place extra data in every keyframe</dd>
            <dt>-vf scale="1280:-1"</dt><dd>Scale to 1280 width, maintain aspect ratio.</dd>
            <dt>-pix_fmt yuv420p</dt><dd>convert to 4:2:0 chroma subsampling scheme</dd>
-           <dt>-level 3.1</dt><dd>H264 Level (defines some thresholds for bitrate)</dd>
+           <dt>-level 3.1</dt><dd>H.264 Level (defines some thresholds for bitrate)</dd>
            <dt>-vsync passthrough</dt><dd>Each frame is passed with its timestamp from the demuxer to the muxer.</dd>
            <dt>-crf 26</dt><dd>Constant rate factor - basically the quality</dd>
            <dt>-g 50</dt><dd>GOP size.</dd>

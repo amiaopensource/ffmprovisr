@@ -75,7 +75,7 @@ To contribute to this project directly (and more quickly), clone this repository
   * Example: [Rewrap a file](https://amiaopensource.github.io/ffmprovisr/#basic-rewrap)
 * Recipes involving `-filter_complex` can be some of the most verbose and difficult to understand, so breaking these down as much as possible into their relevant sections is ideal
   * Example: [Generate two access MP3s from input](https://amiaopensource.github.io/ffmprovisr/#append_mp3)
-* Some recipes may refer to a specifc standard or vocabulary, and it's useful to link to these so that the user can scale the recipe to their use case
+* Some recipes may refer to a specific standard or vocabulary, and it's useful to link to these so that the user can scale the recipe to their use case
   * Example: [Generate Broadcast WAV](https://amiaopensource.github.io/ffmprovisr/#bwf)
 
 ### Make a request
