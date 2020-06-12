@@ -63,7 +63,7 @@ reported to the community leaders responsible for enforcement, who are the
 ffmprovisr maintainers:
 * Ashley Blewer (ashley.blewer@gmail.com)
 * Katherine Frances Nagels (kfnagels@gmail.com)
-* Kieran O'Leary (kieran.oleary@irishfilm.ie)
+* Kieran O'Leary (kieran.o.leary@gmail.com)
 * Andrew Weaver (theandrewjw@gmail.com)
 
 All complaints will be reviewed and investigated promptly and fairly.
