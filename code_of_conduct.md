@@ -59,8 +59,13 @@ representative at an online or offline event.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the community leaders responsible for enforcement at
-https://www.research.net/r/S9SF5NP.
+reported to the community leaders responsible for enforcement, who are the
+ffmprovisr maintainers:
+* Ashley Blewer (ashley.blewer@gmail.com)
+* Katherine Frances Nagels (kfnagels@gmail.com)
+* Kieran O'Leary (kieran.oleary@irishfilm.ie)
+* Andrew Weaver (theandrewjw@gmail.com)
+
 All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the
