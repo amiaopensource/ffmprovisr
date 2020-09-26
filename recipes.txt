@@ -108,7 +108,7 @@ ffmpeg -i input_file -ss 00:00:20 -vframes 1 thumb.png
 ffmpeg -i input_file -vf fps=1/60 out%d.png
 # Create GIF from still images
 ffmpeg -f image2 -framerate 9 -pattern_type glob -i "input_image_*.jpg" -vf scale=250x250 output_file.gif
-# Create GIF from a video
+# Create GIF from a video
 ffmpeg -ss HH:MM:SS -i input_file -filter_complex "fps=10,scale=500:-1:flags=lanczos,palettegen" -t 3 palette.png
 ffmpeg -ss HH:MM:SS -i input_file -i palette.png -filter_complex "[0:v]fps=10, scale=500:-1:flags=lanczos[v], [v][1:v]paletteuse" -t 3 -loop 6 output_file
 # Transcode an image sequence into uncompressed 10-bit video
@@ -161,7 +161,7 @@ ffmpeg -f lavfi -i smptebars=size=720x576:rate=25 -c:v prores -t 10 output_file
 ffmpeg -f lavfi -i testsrc=size=720x576:rate=25 -c:v v210 -t 10 output_file
 # Play HD SMPTE bars
 ffplay -f lavfi -i smptehdbars=size=1920x1080
-# Play VGA SMPTE bars
+# Play VGA SMPTE bars
 ffplay -f lavfi -i smptebars=size=640x480
 # Generate a sine wave test audio file
 ffmpeg -f lavfi -i "sine=frequency=1000:sample_rate=48000:duration=5" -c:a pcm_s16le output_file.wav
@@ -181,7 +181,7 @@ ffmpeg -i input_one -i input_two -filter_complex signature=detectmode=full:nb_in
 ffmpeg -i input -vf signature=format=xml:filename="output.xml" -an -f null -
 # Play an image sequence
 ffplay -framerate 5 input_file_%06d.ext
-# Split audio and video tracks
+# Split audio and video tracks
 ffmpeg -i input_file -map 0:v:0 video_output_file -map 0:a:0 audio_output_file
 # Merge audio and video tracks
 ffmpeg -i video_file -i audio_file -map 0:v -map 1:a -c copy output_file
@@ -195,22 +195,3 @@ ffmpeg -i input_file -filter:v drawbox=w=iw:h=7:y=ih-h:t=max output_file
 ffmpeg -re -i ${INPUTFILE} -map 0 -flags +global_header -vf scale="1280:-1,format=yuv420p" -pix_fmt yuv420p -level 3.1 -vsync passthrough -crf 26 -g 50 -bufsize 3500k -maxrate 1800k -c:v libx264 -c:a aac -b:a 128000 -r:a 44100 -ac 2 -t ${STREAMDURATION} -f tee "[movflags=+faststart]${TARGETFILE}|[f=flv]${STREAMTARGET}"
 # View FFmpeg subprogram information
 ffmpeg -h type=name
-# Rip a CD with CD Paranoia
-cdparanoia -L -B -O [Drive Offset] [Starting Track Number]-[Ending Track Number] output_file.wav
-# Rip a CD with Cdda2wav
-cdda2wav -L0 -t all -cuefile -paranoia paraopts=retries=200,readahead=600,minoverlap=sectors-per-request-1 -verbose-level all output.wav
-# Compare two images
-compare -metric ae image1.ext image2.ext null:
-# Create thumbnails of images
-mogrify -resize 80x80 -format jpg -quality 75 -path thumbs *.jpg
-# Creates grid of images from text file
-montage @list.txt -tile 6x12 -geometry +0+0 output_grid.jpg
-# Get file signature data
-convert -verbose input_file.ext | grep -i signature
-# Removes exif metadata
-mogrify -path ./stripped/ -strip *.jpg
-# Resizes image to specific pixel width
-convert input_file.ext -resize 750 output_file.ext
-# Transcoding to/from FLAC
-flac --best --keep-foreign-metadata --preserve-modtime --verify input.wav
-flac --decode --keep-foreign-metadata --preserve-modtime --verify input.flac
