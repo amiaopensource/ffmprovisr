@@ -940,7 +940,7 @@
       <p><code>ffmpeg -i <em>input_file</em> -af loudnorm=print_format=json -f null -</code></p>
       <p>This filter calculates and outputs loudness information in json about an input file (labeled input) as well as what the levels would be if loudnorm were applied in its one pass mode (labeled output). The values generated can be used as inputs for a 'second pass' of the loudnorm filter allowing more accurate loudness normalization than if it is used in a single pass.</p>
       <p>These instructions use the loudnorm defaults, which align well with PBS recommendations for target loudness. More information can be found at the <a href="https://ffmpeg.org/ffmpeg-filters.html#loudnorm" target="_blank">loudnorm documentation</a>.</p>
-      <p>Information about PBS loudness standards can be found in the <a href="https://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf" target="_blank">PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href="https://tech.ebu.ch/docs/r/r128-2014.pdf" target="_blank">EBU R 128</a> recommendation document.</p>
+      <p>Information about PBS loudness standards can be found in the <a href="http://bento.cdn.pbs.org/hostedbento-prod/filer_public/PBS_About/Producing/Red%20Book/TOS%20Pt%201%20Submission%202016.pdf" target="_blank">PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href="https://tech.ebu.ch/docs/r/r128-2014.pdf" target="_blank">EBU R 128</a> recommendation document.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt><em>input_file</em></dt><dd>path, name and extension of the input file</dd>
