@@ -337,6 +337,38 @@
     </div>
     <!-- ends Transcode to H.264 -->
 
+    <!-- Transcode to H.264 or H.265 using the GPU -->
+    <label class="recipe" for="transcode_gpu">Transcode to H.264/H.265 using the GPU</label>
+    <input type="checkbox" id="transcode_gpu">
+    <div class="hiding">
+      <h5>Transcode to H.264/H.265 using the GPU</h5>
+      <p><code>ffmpeg -i <em>input_file</em> -c:v h264_nvenc -preset llhq -rc:v vbr_hq -cq:v 19 -b:v 8000k -maxrate:v 12000k -profile:v high -c:a copy <em>output_file</em></code></p>
+      <p>This command takes an input file and transcodes it to H.264 using the encoding functionality of an Nvidia GPU (without transcoding the audio). If you're using H.264 with AAC or AC3 audio, you can output to an .mp4 file; if you're using HEVC and/or more exotic audio, you should output to .mkv. While Nvidia's fixed-function hardware can be 10x as performant as encoding on the CPU, it requires a few more parameters in order to optimize quality at lower bitrates.</p>
+      <dl>
+        <dt>ffmpeg</dt><dd>starts the command</dd>
+        <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
+        <dt>-c:v <em>h264_nvenc</em></dt><dd>tells FFmpeg to encode the video stream as H.264 using Nvidia's encoder.</dd>
+        <dt>-preset <em>llhq</em></dt><dd>uses the "low latency, high quality" encoding preset, a good default when working with nvenc.</dd>
+        <dt>-rc:v <em>vbr_hq</em></dt><dd>means "variable bitrate, high quality," allowing you to set a minimum and maximum bitrate for the encode.</dd>
+        <dt>-cq:v <em>19</em></dt><dd>is the same as the CRF quality level specified using x264 or other CPU-based encoders, where 0 is lossless, 51 is the worst possible quality, and values from 18-23 are typical.</dd>
+        <dt>-b:v <em>8000k -maxrate:v 12000k</em></dt><dd>corresponds to a minimum bitrate of 8 megabits (8000k) per second, and a maximum of 12 megabits per second. nvenc is not as good at estimating bitrates as CPU-based encoders, and without this data, will occasionally choose a visibly lower bitrate. The 8-12 mbit range is generally a good one for high-quality 1080p h264.</dd>
+        <dt>-profile:v <em>high</em></dt><dd>uses the "high quality" profile of h264, something that's been baked in to the spec for a long time so that older players can declare compatibility; almost all h264 video now uses high.</dd>
+        <dt>-c:a <em>copy</em></dt><dd>will skip reencoding the audio stream, and copy the audio from the source file.</dd>
+        <dt><em>output_file</em></dt><dd>path, name and extension of the output file</dd>
+      </dl>
+      <p>In order to encode to HEVC instead, and optionally transcode the audio, you can try changing the command like this:</p>
+      <p><code>ffmpeg -i <em>input_file</em> -c:v hevc_nvenc -preset llhq -rc:v vbr_hq -cq:v 19 -b:v 5000k -maxrate:v 8000k -profile:v main10 -c:a aac <em>output_file</em></code></p>
+      <dl>
+        <dt>-c:v <em>hevc_nvenc</em></dt><dd>encodes to HEVC (also called H.265), a more efficient codec supported on GPUs from approximately 2015 and newer.</dd>
+        <dt>-b:v <em>5000k -maxrate:v 8000k</em></dt><dd>specifies a slightly lower bitrate than when using h264, per HEVC's greater efficiency.</dd>
+        <dt>-profile:v <em>main10</em></dt><dd>declares the "main10" profile for working with HEVC; one of the primary advantages of this codec is better support for 10-bit video, enabling consumer HDR.</dd>
+        <dt>-c:a <em>aac</em></dt><dd>reencodes the audio to AAC with default parameters, a very common and widely supported format for access copies.</dd>
+      </dl>
+      <p>Much of the information in this entry was taken from <a href="https://superuser.com/a/1236387" target="_blank">this superuser.com post</a> provided by an Nvidia developer, one of the best sources of information on the ffmpeg Nvidia encoders.</p>
+      <p class="link"></p>
+    </div>
+    <!-- ends Transcode to H.264 or H.265 using the GPU -->
+
     <!-- H.264 from DCP -->
     <label class="recipe" for="dcp_to_h264">Transcode from DCP to an H.264 access file</label>
     <input type="checkbox" id="dcp_to_h264">
