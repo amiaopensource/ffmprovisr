@@ -348,7 +348,7 @@
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
         <dt>-c:v <em>h264_nvenc</em></dt><dd>tells FFmpeg to encode the video stream as H.264 using Nvidia's encoder.</dd>
-        <dt>--preset <em>llhq</em></dt><dd>uses the "low latency, high quality" encoding preset, a good default when working with nvenc.</dd>
+        <dt>-preset <em>llhq</em></dt><dd>uses the "low latency, high quality" encoding preset, a good default when working with nvenc.</dd>
         <dt>-rc:v <em>vbr_hq</em></dt><dd>means "variable bitrate, high quality," allowing you to set a minimum and maximum bitrate for the encode.</dd>
         <dt>-cq:v <em>19</em></dt><dd>is the same as the CRF quality level specified using x264 or other CPU-based encoders, where 0 is lossless, 51 is the worst possible quality, and values from 18-23 are typical.</dd>
         <dt>-b:v <em>8000k -maxrate:v 12000k</em></dt><dd>corresponds to a minimum bitrate of 8 megabits (8000k) per second, and a maximum of 12 megabits per second. nvenc is not as good at estimating bitrates as CPU-based encoders, and without this data, will occasionally choose a visibly lower bitrate. The 8-12 mbit range is generally a good one for high-quality 1080p h264.</dd>
