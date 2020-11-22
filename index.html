@@ -357,10 +357,11 @@
         <dt><em>output_file</em></dt><dd>path, name and extension of the output file</dd>
       </dl>
       <p>In order to encode to HEVC instead, and optionally transcode the audio, you can try changing the command like this:</p>
-      <p><code>ffmpeg -i <em>input_file</em> -c:v hevc_nvenc -preset llhq -rc:v vbr_hq -cq:v 19 -b:v 5000k -maxrate:v 8000k -profile:v high -c:a aac <em>output_file</em></code></p>
+      <p><code>ffmpeg -i <em>input_file</em> -c:v hevc_nvenc -preset llhq -rc:v vbr_hq -cq:v 19 -b:v 5000k -maxrate:v 8000k -profile:v main10 -c:a aac <em>output_file</em></code></p>
       <dl>
         <dt>-c:v <em>hevc_nvenc</em></dt><dd>encodes to HEVC (also called H.265), a more efficient codec supported on GPUs from approximately 2015 and newer.</dd>
         <dt>-b:v <em>5000k -maxrate:v 8000k</em></dt><dd>specifies a slightly lower bitrate than when using h264, per HEVC's greater efficiency.</dd>
+        <dt>-profile:v <em>main10</em></dt><dd>declares the "main10" profile for working with HEVC; one of the primary advantages of this codec is better support for 10-bit video, enabling consumer HDR.</dd>
         <dt>-c:a <em>aac</em></dt><dd>reencodes the audio to AAC with default parameters, a very common and widely supported format for access copies.</dd>
       </dl>
       <p>Much of the information in this entry was taken from <a href="https://superuser.com/a/1236387" target="_blank">this superuser.com post</a> provided by an Nvidia developer, one of the best sources of information on the ffmpeg Nvidia encoders.</p>

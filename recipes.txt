@@ -19,7 +19,7 @@ ffmpeg -i input_file -c:v libx265 -pix_fmt yuv420p -c:a copy output_file
 # Transcode to H.264 using the GPU
 ffmpeg -i input_file -c:v h264_nvenc -preset llhq -rc:v vbr_hq -cq:v 19 -b:v 8000k -maxrate:v 12000k -profile:v high -c:a copy output_file
 # Transcode to H.265 using the GPU
-ffmpeg -i input_file -c:v hevc_nvenc -preset llhq -rc:v vbr_hq -cq:v 19 -b:v 5000k -maxrate:v 8000k -profile:v high -c:a copy output_file
+ffmpeg -i input_file -c:v hevc_nvenc -preset llhq -rc:v vbr_hq -cq:v 19 -b:v 5000k -maxrate:v 8000k -profile:v main10 -c:a copy output_file
 # Transcode to an Ogg Theora
 ffmpeg -i input_file -acodec libvorbis -b:v 690k output_file
 # Convert WAV to MP3
