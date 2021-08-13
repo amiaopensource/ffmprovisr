@@ -4,17 +4,12 @@
 # connected to the Web, and the local version otherwise.
 
 if [[ "$(uname -s)" = "Darwin" ]] ; then
-    default_browser=$(plutil -convert json ~/Library/Preferences/com.apple.LaunchServices/com.apple.launchservices.secure.plist -r -o - | grep https -b1 | tail -n1 | cut -d'"' -f4)
     if ping -c 1 amiaopensource.github.io >/dev/null 2>&1 ; then
         ffmprovisr_path='https://amiaopensource.github.io/ffmprovisr/'
     else
         ffmprovisr_path=$(find /usr/local/Cellar/ffmprovisr -iname 'index.html' | sort -M | tail -n1)
     fi
-    if [[ -n "${default_browser}" ]] ; then
-        open -b "${default_browser}" "${ffmprovisr_path}"
-    else
-        open "${ffmprovisr_path}"
-    fi
+    open "${ffmprovisr_path}"
 elif [[ "$(uname -s)" = "Linux" ]] ; then
     if ping -c 1 amiaopensource.github.io >/dev/null 2>&1 ; then
         ffmprovisr_path='https://amiaopensource.github.io/ffmprovisr/'
