@@ -492,7 +492,6 @@
       <h5>Transcode to Ogg/Theora</h5>
       <p><code>ffmpeg -i <em>input_file</em> -acodec libvorbis -b:v 690k <em>output_file</em></code></p>
       <p>This command takes an input file and transcodes it to Ogg/Theora in an .ogv wrapper with 690k video bitrate.</p>
-      <p><strong>Note:</strong> FFmpeg must be installed with support for Ogg Theora. If you are using Homebrew, you can check with <code>brew info ffmpeg</code> and then update it with <code>brew upgrade ffmpeg --with-theora --with-libvorbis</code> if necessary.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input file</em></dt><dd>path, name and extension of the input file</dd>
@@ -2368,7 +2367,6 @@
     <input type="checkbox" id="ocr_on_top">
     <div class="hiding">
       <h5>Plays video with OCR on top</h5>
-      <p>Note: ffmpeg must be compiled with the tesseract library for this script to work (<code>--with-tesseract</code> if using the <code>brew install ffmpeg</code> method).</p>
       <p><code>ffplay input_file -vf "ocr,drawtext=fontfile=/Library/Fonts/Andale Mono.ttf:text=%{metadata\\\:lavfi.ocr.text}:fontcolor=white"</code></p>
       <dl>
         <dt>ffplay</dt><dd>starts the command</dd>
@@ -2392,7 +2390,6 @@
     <input type="checkbox" id="ffprobe_ocr">
     <div class="hiding">
       <h5>Exports OCR data to screen</h5>
-      <p>Note: FFmpeg must be compiled with the tesseract library for this script to work (<code>--with-tesseract</code> if using the <code>brew install ffmpeg</code> method)</p>
       <p><code>ffprobe -show_entries frame_tags=lavfi.ocr.text -f lavfi -i "movie=<em>input_file</em>,ocr"</code></p>
       <dl>
         <dt>ffprobe</dt><dd>starts the command</dd>
