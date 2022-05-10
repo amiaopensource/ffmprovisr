@@ -1097,12 +1097,12 @@
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-f concat</dt><dd>forces ffmpeg to concatenate the files and to keep the same file format</dd>
         <dt>-i <em>mylist.txt</em></dt><dd>path, name and extension of the input file. Per the <a href="https://ffmpeg.org/ffmpeg-formats.html#Options" target="_blank">FFmpeg documentation</a>, it is preferable to specify relative rather than absolute file paths, as allowing absolute file paths may pose a security risk.<br>
-        This text file contains the list of files to be concatenated and should be formatted as follows:
+        This text file contains the list of files (without their absolute path) to be concatenated and should be formatted as follows:
 <pre>
-  file '<em>./first_file.ext</em>'
-  file '<em>./second_file.ext</em>'
+  file '<em>first_file.ext</em>'
+  file '<em>second_file.ext</em>'
   . . .
-  file '<em>./last_file.ext</em>'
+  file '<em>last_file.ext</em>'
 </pre>
   In the above, <strong>file</strong> is simply the word "file". Straight apostrophes ('like this') rather than curved quotation marks (‘like this’) must be used to enclose the file paths.<br>
   <strong>Note:</strong> If specifying absolute file paths in the .txt file, add <code>-safe 0</code> before the input file.<br>
