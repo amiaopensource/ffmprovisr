@@ -108,6 +108,18 @@
     <div class="well">
 
     <h2 id="concepts">Learn about more advanced FFmpeg concepts</h2>
+    <!-- Loop usage explanation -->
+    <label class="recipe" for="batch-loop">Batch and Loop script usage</label>
+    <input type="checkbox" id="batch-loop">
+    <div class="hiding">
+      <h5>Batch and Loop script usage</h5>
+      <p><code>ffmpeg -nostdin -i <em>input_file</em> ...</code></p>
+      <p>One of the frequent uses of FFmpeg is to run batch commands within loops to, for example, generate access files for an entire collection at once.</p>
+      <p>When running an FFmpeg command within a loop it is often necessary to use the <code>-nostdin</code> flag prior to the input in order to ensure successful execution of the commands. This is needed to override FFmpeg's default behavior of enabling interaction on standard input which can result in errors as loop inputs are fed to the ongoing command.</p>
+      <p class="link"></p>
+    </div>
+    <!-- End loop usage explanation -->
+
     <!-- Codec Defaults explanation -->
     <label class="recipe" for="codec-defaults">Codec defaults</label>
     <input type="checkbox" id="codec-defaults">
