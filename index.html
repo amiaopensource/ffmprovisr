@@ -225,7 +225,7 @@
         The new container you are rewrapping to is defined by the filename extension used here, e.g. .mkv, .mp4, .mov.</dd>
       </dl>
       <h4>Important caveat</h4>
-      <p>It may not be possible to rewrap a file's contents to a new container without re-encoding one or more of the streams within (that is, the video, audio, and subtitle tracks). Some containers can only contain streams of a certain encoding type: for example, the .mp4 container does not support uncompressed audio tracks. (In practice .mp4 goes hand-in-hand with a H.264-encoded video stream and an AAC-encoded video stream, although other types of video and audio streams are possible). Another example is that the Matroska container does not allow data tracks; see the <a href="#mkv-to-mp4">MKV to MP4 recipe</a>.</p>
+      <p>It may not be possible to rewrap a file's contents to a new container without re-encoding one or more of the streams within (that is, the video, audio, and subtitle tracks). Some containers can only contain streams of a certain encoding type: for example, the .mp4 container does not support uncompressed audio tracks. (In practice .mp4 goes hand-in-hand with a H.264-encoded video stream and an AAC-encoded video stream, although other types of video and audio streams are possible). Another example is that the Matroska container does not allow data tracks.</p>
       <p>In such cases, FFmpeg will throw an error. If you encounter errors of this kind, you may wish to consult the <a href="#transcode">list of transcoding recipes</a>.</p>
       <p class="link"></p>
     </div>
