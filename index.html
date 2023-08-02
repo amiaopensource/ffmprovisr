@@ -1354,17 +1354,15 @@
     <input type="checkbox" id="ntsc_to_h264">
     <div class="hiding">
       <h5>Upscaled, Pillar-boxed HD H.264 Access Files from SD NTSC source</h5>
-      <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -filter:v "idet, bwdif, scale=1440:1080:flags=lanczos, pad=1920:1080:(ow-iw)/2:(oh-ih)/2, format=yuv420p" <em>output_file</em></code></p>
+      <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -filter:v "yadif, scale=1440:1080:flags=lanczos, pad=1920:1080:(ow-iw)/2:(oh-ih)/2, format=yuv420p" <em>output_file</em></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
         <dt>-c:v libx264</dt><dd>encodes video stream with libx264 (h264)</dd>
         <dt>-filter:v</dt><dd>a video filter will be used</dd>
         <dt>"</dt><dd>quotation mark to start filtergraph</dd>
-        <dt>idet</dt><dd>detect interlaced video field order<br>
-         <a href="https://ffmpeg.org/ffmpeg-filters.html#idet" target="_blank">idet</a> will try to detect if the video is interlaced, and if so, what the order of the fields are (top-field-first, or bottom-field-first).  This is done to ensure the output of the deinterlacing filter is correct.</dd>
-        <dt>bwdif</dt><dd>deinterlacing filter (‘Bob Weaver Deinterlacing Filter’)<br>
-         By default, <a href="https://ffmpeg.org/ffmpeg-filters.html#bwdif-1" target="_blank">bwdif</a> will output one frame for each field, matching the visual cadence of interlaced video. Outputting one frame for each <em>frame</em> (thereby halving the number of output frames per second) with <code>bwdif=mode=send_frame</code> can be used when the presentation device is not capable of reproducing 50 (PAL) or 60 (NTSC) frames per second.</dd>
+        <dt>yadif</dt><dd>deinterlacing filter (‘yet another deinterlacing filter’)<br>
+         By default, <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1" target="_blank">yadif</a> will output one frame for each frame. Outputting one frame for each <em>field</em> (thereby doubling the frame rate) with <code>yadif=1</code> may produce visually better results.</dd>
         <dt>scale=1440:1080:flags=lanczos</dt><dd>resizes the image to 1440x1080, using the Lanczos scaling algorithm, which is slower but better than the default bilinear algorithm.</dd>
         <dt>pad=1920:1080:(ow-iw)/2:(oh-ih)/2</dt><dd>pads the area around the 4:3 input video to create a 16:9 output video</dd>
         <dt>format=yuv420p</dt><dd>specifies a pixel format of Y′C<sub>B</sub>C<sub>R</sub> 4:2:0</dd>
@@ -1381,7 +1379,7 @@
     <input type="checkbox" id="deinterlace">
     <div class="hiding">
       <h5>Deinterlace a video</h5>
-      <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -vf "idet,bwdif,format=yuv420p" <em>output_file</em></code></p>
+      <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -vf "yadif,format=yuv420p" <em>output_file</em></code></p>
       <p>This command takes an interlaced input file and outputs a deinterlaced H.264 MP4.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -1389,18 +1387,16 @@
         <dt>-c:v libx264</dt><dd>tells FFmpeg to encode the video stream as H.264</dd>
         <dt>-vf</dt><dd>video filtering will be used (<code>-vf</code> is an alias of <code>-filter:v</code>)</dd>
         <dt>"</dt><dd>start of filtergraph (see below)</dd>
-        <dt>idet</dt><dd>detect interlaced video field order<br>
-         <a href="https://ffmpeg.org/ffmpeg-filters.html#idet" target="_blank">idet</a> will try to detect if the video is interlaced, and if so, what the order of the fields are (top-field-first, or bottom-field-first).  This is done to ensure the output of the deinterlacing filter is correct.</dd>
-        <dt>bwdif</dt><dd>deinterlacing filter (‘Bob Weaver Deinterlacing Filter’)<br>
-         By default, <a href="https://ffmpeg.org/ffmpeg-filters.html#bwdif-1" target="_blank">bwdif</a> will output one frame for each field, matching the visual cadence of interlaced video. Outputting one frame for each <em>frame</em> (thereby halving the number of output frames per second) with <code>bwdif=mode=send_frame</code> can be used when the presentation device is not capable of reproducing 50 (PAL) or 60 (NTSC) frames per second.</dd>
+        <dt>yadif</dt><dd>deinterlacing filter (‘yet another deinterlacing filter’)<br>
+        By default, <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1" target="_blank">yadif</a> will output one frame for each frame. Outputting one frame for each <em>field</em> (thereby doubling the frame rate) with <code>yadif=1</code> may produce visually better results.</dd>
         <dt>,</dt><dd>separates filters</dd>
         <dt>format=yuv420p</dt><dd>chroma subsampling set to 4:2:0<br>
         By default, <code>libx264</code> will use a chroma subsampling scheme that is the closest match to that of the input. This can result in Y′C<sub>B</sub>C<sub>R</sub> 4:2:0, 4:2:2, or 4:4:4 chroma subsampling. QuickTime and most other non-FFmpeg based players can’t decode H.264 files that are not 4:2:0, therefore it’s advisable to specify 4:2:0 chroma subsampling.</dd>
         <dt>"</dt><dd>end of filtergraph</dd>
         <dt><em>output file</em></dt><dd>path, name and extension of the output file</dd>
       </dl>
-      <p><code>"idet,bwdif,format=yuv420p"</code> is an FFmpeg <a href="https://trac.ffmpeg.org/wiki/FilteringGuide#FiltergraphChainFilterrelationship" target="_blank">filtergraph</a>. Here the filtergraph is made up of one filter chain, which is itself made up of the three filters (separated by the comma).<br>
-      The enclosing quote marks are necessary when you use spaces within the filtergraph, e.g. <code>-vf "idet, bwdif, format=yuv420p"</code>, and are included above as an example of good practice.</p>
+      <p><code>"yadif,format=yuv420p"</code> is an FFmpeg <a href="https://trac.ffmpeg.org/wiki/FilteringGuide#FiltergraphChainFilterrelationship" target="_blank">filtergraph</a>. Here the filtergraph is made up of one filter chain, which is itself made up of the two filters (separated by the comma).<br>
+      The enclosing quote marks are necessary when you use spaces within the filtergraph, e.g. <code>-vf "yadif, format=yuv420p"</code>, and are included above as an example of good practice.</p>
       <p><strong>Note:</strong> FFmpeg includes several deinterlacers apart from <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1" target="_blank">yadif</a>: <a href="https://ffmpeg.org/ffmpeg-filters.html#bwdif" target="_blank">bwdif</a>, <a href="https://ffmpeg.org/ffmpeg-filters.html#w3fdif" target="_blank">w3fdif</a>, <a href="https://ffmpeg.org/ffmpeg-filters.html#kerndeint" target="_blank">kerndeint</a>, and <a href="https://ffmpeg.org/ffmpeg-filters.html#nnedi" target="_blank">nnedi</a>.</p>
       <p>For more H.264 encoding options, see the latter section of the <a href="#transcode_h264">encode H.264 command</a>.</p>
       <div class="sample-image">
@@ -1412,6 +1408,43 @@
       <p class="link"></p>
     </div>
     <!-- ends Deinterlace video -->
+
+    <!-- Deinterlace video fields -->
+    <label class="recipe" for="deinterlace_fields">Deinterlace video fields to frames</label>
+    <input type="checkbox" id="deinterlace_fields">
+    <div class="hiding">
+      <h5>Deinterlace video fields to frames</h5>
+      <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -vf "idet,bwdif,format=yuv420p" <em>output_file</em></code></p>
+      <p>This command takes an interlaced input file and outputs a deinterlaced H.264 MP4, with each field separated into its own frame.  This is preferred for interlaced video that contains a lot of motion, as the double-rate output preserves the visual cadence of the source material.</p>
+      <dl>
+        <dt>ffmpeg</dt><dd>starts the command</dd>
+        <dt>-i <em>input file</em></dt><dd>path, name and extension of the input file</dd>
+        <dt>-c:v libx264</dt><dd>tells FFmpeg to encode the video stream as H.264</dd>
+        <dt>-vf</dt><dd>video filtering will be used (<code>-vf</code> is an alias of <code>-filter:v</code>)</dd>
+        <dt>"</dt><dd>start of filtergraph (see below)</dd>
+        <dt>idet</dt><dd>detect interlaced video field order<br>
+         <a href="https://ffmpeg.org/ffmpeg-filters.html#idet" target="_blank">idet</a> will try to detect if the video is interlaced, and if so, what the order of the fields are (top-field-first, or bottom-field-first).  This is done to ensure the output of the deinterlacing filter is correct.</dd>
+        <dt>bwdif</dt><dd>deinterlacing filter (‘Bob Weaver Deinterlacing Filter’)<br>
+         By default, <a href="https://ffmpeg.org/ffmpeg-filters.html#bwdif-1" target="_blank">bwdif</a> will output one frame for each field, matching the visual cadence of interlaced video. </dd>
+        <dt>,</dt><dd>separates filters</dd>
+        <dt>format=yuv420p</dt><dd>chroma subsampling set to 4:2:0<br>
+        By default, <code>libx264</code> will use a chroma subsampling scheme that is the closest match to that of the input. This can result in Y′C<sub>B</sub>C<sub>R</sub> 4:2:0, 4:2:2, or 4:4:4 chroma subsampling. QuickTime and most other non-FFmpeg based players can’t decode H.264 files that are not 4:2:0, therefore it’s advisable to specify 4:2:0 chroma subsampling.</dd>
+        <dt>"</dt><dd>end of filtergraph</dd>
+        <dt><em>output file</em></dt><dd>path, name and extension of the output file</dd>
+      </dl>
+      <p><code>"idet,bwdif,format=yuv420p"</code> is an FFmpeg <a href="https://trac.ffmpeg.org/wiki/FilteringGuide#FiltergraphChainFilterrelationship" target="_blank">filtergraph</a>. Here the filtergraph is made up of one filter chain, which is itself made up of the three filters (separated by the comma).<br>
+      The enclosing quote marks are necessary when you use spaces within the filtergraph, e.g. <code>-vf "idet, bwdif, format=yuv420p"</code>, and are included above as an example of good practice.</p>
+      <p><strong>Note:</strong> bwdif also supports the older method of outputting one frame for each frame (thereby halving the number of output frames per second) with the syntax <code>bwdif=mode=send_frame</code>.  This can be used when the presentation device is not capable of reproducing 50 (PAL) or 60 (NTSC) frames per second.</p>
+      <p>For more H.264 encoding options, see the latter section of the <a href="#transcode_h264">encode H.264 command</a>.</p>
+      <div class="sample-image">
+        <h2>Example</h2>
+        <p>Before and after deinterlacing with bwdif:</p>
+        <img src="img/interlaced_video_fields.png" alt="VLC screenshot of original interlaced video">
+        <img src="img/deinterlaced_video_frames.png" alt="VLC screenshot of deinterlaced video">
+      </div>
+      <p class="link"></p>
+    </div>
+    <!-- ends Deinterlace video fields -->
 
     <!-- Inverse telecine -->
     <label class="recipe" for="inverse-telecine">Inverse telecine</label>
