@@ -92,6 +92,8 @@ ffmpeg -i input_file -af areverse,silenceremove=start_threshold=-57dB:start_dura
 ffmpeg -i input_file -c:v libx264 -filter:v "yadif, scale=1440:1080:flags=lanczos, pad=1920:1080:(ow-iw)/2:(oh-ih)/2, format=yuv420p" output_file
 # Deinterlace video
 ffmpeg -i input_file -c:v libx264 -vf "yadif,format=yuv420p" output_file
+# Deinterlace video fields to frames
+ffmpeg -i input_file -c:v libx264 -vf "idet,bwdif,format=yuv420p" output_file
 # Inverse telecine
 ffmpeg -i input_file -c:v libx264 -vf "fieldmatch,yadif,decimate" output_file
 # Set field order for interlaced video
