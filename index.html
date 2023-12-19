@@ -125,11 +125,11 @@ If the error message includes other parts of the command, such as a flag, that i
           <h5>Could not find tag for codec.</h5>
         <p><img src="img/codec_rewrap_error.png" alt="codec rewrap error message"img></p>
         <p>This error message comes when attempting to rewrap a file that has audio or video codecs that are incompatible with the output files extension. This is discussed briefly at the bottom of the rewrap recipe, where it is suggested that you look through possible transcoding recipes. Being able to transcode the file into the correct codec for rewrapping before you run the rewrap command is ideal, but if you are not fully familiar with transcoding and are sure that the extension you are using for your output file will automatically encode the streams with the correct codecs, removing the <code>-c copy</code> flag will solve this error.</p>
-          <h1>Killed</h1>
+          <h5>Killed</h5>
           <p>"Killed" does not appear as a normal error message, but will show up during the output of the command, and the point at which it appears can vary. Sometimes, after you run a command it will be "killed" immediately, only making it through one frame before terminating, as in this example:</p>
         <p><img src="img/first_frame_killed.png" alt="command killed at first frame example" img></p>
         <p>Killed may appear when the file you are working with exceeds the memory capacity of your server. If you are working on a remote server, this can be solved by increasing your memory capacity. If you are working on a local server that should have enough storage and it is still occurring, check that your version of ffmpeg is up to date, and try to avoid running commands with other programs that also require a large amount of memory space at the same time.</p> 
-        <h1>Filters</h1>
+        <h5>Filters</h5>
           <p>When using filters, there are a handful of errors that may pop up. While this section certainly does not cover them all, below you will find a couple of possible errors and what could be causing them.</p>
              <p><b>Error splitting argument list: option not found:</b></p>
         <h2>Streams</h2>
