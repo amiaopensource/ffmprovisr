@@ -117,31 +117,31 @@ First, always check that the output file actually opens, plays, looks, and/or so
 Second, always be certain that the file extension you are using for your output files is the intended extension. Within FFmpeg, certain extensions default to certain codecs, such as <code>.mp4</code> encoding to H.264. You always want to make sure that your extension coincides with your intended codec. A list of extensions and codec defaults can be found <a href="https://amiaopensource.github.io/ffmprovisr/#codec-defaults">here</a>.</p>
 <h5>General Error Messages</h5>
 <h5>"Error: No such file or directory"</h5> 
-          <p><img src="img/directory_error_example.png" alt="no such file or directory error message"img></p> 
+          <p><img src="img/directory_error_example.png" alt="no such file or directory error message"></p> 
           <p>There are a few reasons why this error may be appearing. First, check to make sure that you are in the correct directory. It can be easy to lose track of where your files are actually stored, especially on a personal computer. If you are working on a personal computer, the easiest way to do this is to check where your files are. When working with macOS, for example, files are often stored in the downloads or documents folders. To change your directory from home to this specific directory, use the command <code>cd</code> followed by your desired folder. For a folder named downloads, it would look like this:  <code>cd downloads</code></p> 
           <p>After you have ensured that you are in the correct directory, and the error is still occurring, check that your argument is formatted correctly. If you are copying and pasting from a separate document or ffmprovisr directly, there may be typos or missing spaces. 
 If the error message includes other parts of the command, such as a flag, that indicates where your typo or missing space may be, as in this example, where the <code>-c</code> flag has not been separated from the file name:</p>
-          <p><img src="img/typo_space_error.png" alt="missing space typo error message"img></p>
+          <p><img src="img/typo_space_error.png" alt="missing space typo error message"></p>
           <p>Sometimes, when copying and pasting, even if the command is free of typos and correctly formatted, the error may occur. When this happens, it is best to attempt to rewrite the command from scratch in the command line.</p>
           <h5>"Could not find tag for codec"</h5>
-        <p><img src="img/codec_rewrap_error.png" alt="codec rewrap error message"img></p>
+        <p><img src="img/codec_rewrap_error.png" alt="codec rewrap error message"></p>
         <p>This error message comes when attempting to rewrap a file that has audio or video codecs that are incompatible with the output files extension. This is discussed briefly at the bottom of the rewrap recipe, where it is suggested that you look through possible transcoding recipes. Being able to transcode the file into the correct codec for rewrapping before you run the rewrap command is ideal, but if you are not fully familiar with transcoding and are sure that the extension you are using for your output file will automatically encode the streams with the correct codecs, removing the <code>-c copy</code> flag will solve this error.</p>
 <h5>"Killed"</h5>
           <p>"Killed" does not appear as a normal error message, but will show up during the output of the command, and the point at which it appears can vary. Sometimes, after you run a command it will be "killed" immediately, only making it through one frame before terminating, as in this example:</p>
-        <p><img src="img/first_frame_killed.png" alt="command killed at first frame example" img></p>
+        <p><img src="img/first_frame_killed.png" alt="command killed at first frame example"></p>
         <p>Killed may appear when the file you are working with exceeds the memory capacity of your server. If you are working on a remote server, this can be solved by increasing your memory capacity. If you are working on a local server that should have enough storage and it is still occurring, check that your version of FFmpeg is up to date, and try to avoid running commands with other programs that also require a large amount of memory space at the same time.</p> 
 <h5>Filters</h5>
           <p>When using filters, there are a handful of errors that may pop up. While this section certainly does not cover them all, below you will find a couple of possible errors and what could be causing them.</p>
         <h5>"Error splitting argument list: option not found"</h5>
-        <p><img src="img/error_splitting_argument.png" alt="error splitting argument error message example" img></p>
+        <p><img src="img/error_splitting_argument.png" alt="error splitting argument error message example"></p>
         <p>This error often comes from a mistake in the formatting of the command. If you are trying to use certain filters, such as <b>“hflip,vflip,”</b> make sure that you remove the quotation marks, as they are not part of the filter argument. This is not always the case, as quotation marks are used with filtergraphs to indicate the beginning and end of a filtergraph. Forgetting to remove the quotation marks on certain filters may prompt FFmpeg to run the command as a filtergraph, resulting in an error message like this one:</p>
-        <p><img src="img/filtergraph_error.png" alt="filtergraph error message" img></p>
+        <p><img src="img/filtergraph_error.png" alt="filtergraph error message"></p>
         <p>To avoid this error, check whether the filter you are using requires quotation marks or not. Similar to other errors, oftentimes writing out the entire command, rather than copying and pasting, is beneficial to check for these formatting errors.</p>
         <p>Also between the two example errors above, there is one difference that can be helpful to pinpoint when trying to troubleshoot. For the first error, “option not found” refers to the use of quotation marks in a filter that did not require them, thus making the command an unidentifiable option to FFmpeg and making it impossible to differentiate between certain flags in the argument. For the second error, “filter not found” also refers to the use of quotation marks in a command that did not require them, but this time FFmpeg read the argument as a filtergraph due to the quotation marks. For more information regarding filtergraphs, check out the <a href="https://amiaopensource.github.io/ffmprovisr/#filtergraphs">filtergraph section</a>.</p>
         <h5>Streams</h5>
         <p>In addition to the possible errors encountered due to typos and improper formatting, some error messages can occur due to inconsistencies with the file streams. Inside each file, there can be numerous streams for audio, video, subtitles, and other file information.</p>
         <p>It is possible, when creating output files, to accidentally attempt to use a filter while also asking FFmpeg to copy the file streams directly. Be mindful of where you are trying to put a file’s streams, as filtering and streaming cannot be done together due to the re-encoding of streams that filters must do.</p>
-        <p><img src="img/filter_and_stream_error.png" alt="filter and stream error message" img></p>
+        <p><img src="img/filter_and_stream_error.png" alt="filter and stream error message"></p>
         <p>To help you further understand issues regarding streams, check out the <a href="https://amiaopensource.github.io/ffmprovisr/#stream-mapping">stream mapping section.</a></p>
       <!-- End Troubleshooting Common Issues --> 
     </div>
