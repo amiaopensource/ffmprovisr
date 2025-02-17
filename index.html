@@ -720,22 +720,23 @@ If the error message includes other parts of the command, such as a flag, that i
     </div>
     <!-- ends SD to HD -->
 
-    <!-- Change display aspect ratio without re-encoding video-->
+    <!-- Change display aspect ratio without re-encoding -->
     <label class="recipe" for="change_DAR">Change display aspect ratio without re-encoding</label>
     <input type="checkbox" id="change_DAR">
     <div class="hiding">
-      <h5>Change Display Aspect Ratio without re-encoding video</h5>
-      <p><code>ffmpeg -i <em>input_file</em> -c:v copy -aspect 4:3 <em>output_file</em></code></p>
+      <h5>Change Display Aspect Ratio without re-encoding</h5>
+      <p><code>ffmpeg -i <em>input_file</em> -c:a copy -c:v copy -aspect 4:3 <em>output_file</em></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
+        <dt>-c:a copy</dt><dd>Copy all mapped audio streams.</dd>
         <dt>-c:v copy</dt><dd>Copy all mapped video streams.</dd>
         <dt>-aspect 4:3</dt><dd>Change Display Aspect Ratio to <code>4:3</code>. Experiment with other aspect ratios such as <code>16:9</code>. If used together with <code>-c:v copy</code>, it will affect the aspect ratio stored at container level, but not the aspect ratio stored in encoded frames, if it exists.</dd>
         <dt><em>output_file</em></dt><dd>path, name and extension of the output file</dd>
       </dl>
       <p class="link"></p>
     </div>
-    <!-- ends Change display aspect ratio without re-encoding video -->
+    <!-- ends Change display aspect ratio without re-encoding -->
 
     <!-- Convert colorspace -->
     <label class="recipe" for="convert-colorspace">Convert colorspace of video</label>

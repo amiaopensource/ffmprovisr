@@ -37,7 +37,7 @@ ffmpeg -i input_file -filter:v "hflip,vflip" -c:a copy output_file
 # Transform SD to HD with pillarbox
 ffmpeg -i input_file -filter:v "colormatrix=bt601:bt709, scale=1440:1080:flags=lanczos, pad=1920:1080:240:0" -c:a copy output_file
 # Change display aspect ratio without re-encoding
-ffmpeg -i input_file -c:v copy -aspect 4:3 output_file
+ffmpeg -i input_file -c:a copy -c:v copy -aspect 4:3 output_file
 # Convert colorspace of video
 ffmpeg -i input_file -c:v libx264 -vf colormatrix=src:dst output_file
 # Modify image and sound speed
