@@ -53,8 +53,6 @@ ffmpeg command n-1
 ffmpeg command n
 ```
 
-The used [one-liner](scripts/get_recipe_list) is in the `scripts` folder.
-
 ## How do I contribute?
 
 You are welcome to edit the codebase yourself, or just supply the information and ask it to be added to the site.
