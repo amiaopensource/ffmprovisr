@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# This allows to open the online version of the ffmprovisr, when the computer is
+# connected to the Web, and the local version otherwise.
+
+if [[ "$(uname -s)" = "Darwin" ]] ; then
+    if ping -c 1 amiaopensource.github.io >/dev/null 2>&1 ; then
+        ffmprovisr_path='https://amiaopensource.github.io/ffmprovisr/'
+    else
+        ffmprovisr_path=$(find /usr/local/Cellar/ffmprovisr -iname 'index.html' | sort -M | tail -n1)
+    fi
+    open "${ffmprovisr_path}"
+elif [[ "$(uname -s)" = "Linux" ]] ; then
+    if ping -c 1 amiaopensource.github.io >/dev/null 2>&1 ; then
+        ffmprovisr_path='https://amiaopensource.github.io/ffmprovisr/'
+    else
+        ffmprovisr_path=$(find ~/.linuxbrew/Cellar/ffmprovisr -iname 'index.html' | sort -M | tail -n1)
+    fi
+    xdg-open "${ffmprovisr_path}"
+else
+    echo "Please locate the 'ffmprovisr' folder, and open the 'index.html' file in a browser."
+fi
