@@ -1939,23 +1939,23 @@
     <h2 id="metadata">View or strip metadata</h2> -->
 
     <!-- Pull specs -->
-    <!-- <label class="recipe" for="pull_specs">Pull specs from video file</label>
+    <label class="recipe" for="pull_specs">Pull specs from video file</label>
     <input type="checkbox" id="pull_specs">
     <div class="hiding">
-      <h5>Pull specs from video file</h5>
-      <p><code>ffprobe -i <em>documento_ingreso</em> -show_format -show_streams -show_data -print_format xml</code></p>
-      <p>This command extracts technical metadata from a video file and displays it in xml.</p>
+      <h5>Extraer especificaciones de un archivo de video</h5>
+      <p><code>ffprobe -i <em>input_file</em> -show_format -show_streams -show_data -print_format xml</code></p>
+      <p>Este comando extrae metadatos técnicos de un archivo de video y los muestra en formato xml.</p>
       <dl>
-        <dt>ffprobe</dt><dd>inicia el commando</dd>
-        <dt>-i <em>documento_ingreso</em></dt><dd>ruta y nombre del documento de ingreso file</dd>
-        <dt>-show_format</dt><dd>outputs file container informations</dd>
-        <dt>-show_streams</dt><dd>outputs audio and video codec informations</dd>
-        <dt>-show_data</dt><dd>adds a short “hexdump” to show_streams command output</dd>
-        <dt>-print_format</dt><dd>Set the output printing format (in this example “xml”; other formats include “json” and “flat”)</dd>
+        <dt>ffprobe</dt><dd>inicia el comando</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre, y extensión del archivo de entrada</dd>
+        <dt>-show_format</dt><dd>muestra información del contenedor de archivos</dd>
+        <dt>-show_streams</dt><dd>muestra información de códecs de audio and video</dd>
+        <dt>-show_data</dt><dd>agrega un breve “hexdump” a la salida del comando show_streams</dd>
+        <dt>-print_format</dt><dd>establece el formato de impresión de salida (en este ejemplo “xml”; other otros formatos incluyen “json” and “flat”)</dd>
       </dl>
-      <p>See also the <a href="https://ffmpeg.org/ffprobe.html" target="_blank"> FFmpeg documentation on ffprobe</a> for a full list of flags, commands, and options.</p>
+      <p>Consulte también la documentación de FFmpeg en ffprobe <a href="https://ffmpeg.org/ffprobe.html" target="_blank"> la documentación de FFmpeg sobre ffprobe</a> para obtener una lista completa de indicadores,comandos, y opciones.</p>
       <p class="link"></p>
-    </div> -->
+    </div> 
     <!-- ends Pull specs -->
 
     <!-- Strip metadata -->
