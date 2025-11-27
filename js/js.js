@@ -94,3 +94,22 @@ document.getElementById('toggle-expand-collapse-all').addEventListener("click", 
   }
 })
 
+document.addEventListener("DOMContentLoaded", () => {
+  // When clicking any hash link
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', () => {
+      const target = document.querySelector(link.getAttribute("href"));
+      if (!target) return;
+
+      // Find if the target is inside .hiding
+      const hidden = target.closest(".hiding");
+      if (hidden) {
+        // Open the checkbox toggle
+        const checkbox = document.querySelector("#Glossary");
+        if (checkbox) checkbox.checked = true;
+      }
+    });
+  });
+});
+
+
