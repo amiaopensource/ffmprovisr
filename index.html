@@ -147,25 +147,25 @@ If the error message includes other parts of the command, such as a flag, that i
     </div>
     <div class="well">
 
-      <!-- Glossary -->
-      <label class="recipe" for="Glossary">A Glossary for Basic Technical Terms</label>
-      <input type="checkbox" id="Glossary">
-      <div class="hiding">
-          <h5>Glossary for Basic Technical Terms</h5>
-        <h2 id="codec">Codec</h2>
-        <p>A codec is the program in the digital file that encodes/decodes the digital information. It denotes the many different algorithms used to compress video. The term codec is derived from the terms encoding/decoding and compression/decompression. Codecs are used to store files on disk, as well as to transmit media. There are different codecs for both audio and video. </p>
-        <p>Audio Codec</p>
-        <ul>
-          <li>AAC (Advanced Audio Coding):</li>
-            <p>AAC is an audio coding standard for lossy digital audio compression. It is designed to provide high-quality sound at lower bit rates compared to its predecessor, MP3, making it ideal for streaming services and portable devices.
-</p>
-        </ul>
-      <!-- End Glossary Section --> 
-    </div>
-    <div class="well">
+     <!-- Glossary -->
+<details>
+  <summary>A Glossary for Basic Technical Terms</summary>
+
+  <h2 id="codec">Codec</h2>
+  <p>A codec is the program in the digital file that encodes/decodes the digital information...</p>
+
+  <p>Audio Codec</p>
+  <ul>
+    <li>
+      AAC (Advanced Audio Coding):
+      <p>AAC is an audio coding standard for lossy digital audio compression...</p>
+    </li>
+  </ul>
+</details>
+<!-- End Glossary Section -->
+
 
         
-
     <h2 id="concepts">Learn about more advanced FFmpeg concepts</h2>
     <!-- Loop usage explanation -->
     <label class="recipe" for="batch-loop">Batch and Loop script usage</label>
@@ -183,7 +183,7 @@ If the error message includes other parts of the command, such as a flag, that i
     <label class="recipe" for="codec-defaults">Codec defaults</label>
     <input type="checkbox" id="codec-defaults">
     <div class="hiding">
-      <h5><a ref="#codec">Codec Defaults </a></h5>
+      <h5><a href="#codec">Codec Defaults </a></h5>
       <p>Unless specified, FFmpeg will automatically set codec choices and codec parameters based off of internal defaults. These defaults are applied based on the file type used in the output (for example <code>.mov</code> or <code>.wav</code>).</p>
       <p>When creating or transcoding files with FFmpeg, it is important to consider codec settings for both audio and video, as the default options may not be desirable in your particular context. The following is a brief list of codec defaults for some common file types:</p>
       <ul>
