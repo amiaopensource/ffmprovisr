@@ -366,7 +366,7 @@ If the error message includes other parts of the command, such as a flag, that i
     <div class="hiding">
       <h5>Rewrap DV video to .dv file</h5>
       <p><code>ffmpeg -i <em>input_file</em> -f rawvideo -c:v copy <em>output_file.dv</em></code></p>
-      <p>This script will take a video that is encoded in the <a href="#DVCodecs>DV Codec</a> but wrapped in a different container (such as MOV) and rewrap it into a raw DV file (with the .dv extension). Since DV files potentially contain a great deal of provenance metadata within the DV stream, it is necessary to rewrap files in this method to avoid unintentional stripping of this metadata.</p>
+      <p>This script will take a video that is encoded in the <a href="#DVCodecs">DV Codec</a> but wrapped in a different container (such as MOV) and rewrap it into a raw DV file (with the .dv extension). Since DV files potentially contain a great deal of provenance metadata within the DV stream, it is necessary to rewrap files in this method to avoid unintentional stripping of this metadata.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path and name of the input file</dd>
