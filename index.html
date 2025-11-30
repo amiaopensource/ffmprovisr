@@ -181,7 +181,7 @@ If the error message includes other parts of the command, such as a flag, that i
             <p class="indent">Bibliography:</p>
             <ul>
               <p><a href="https://x265.readthedocs.io/en/master/">Documentation</a></p>
-              <p><a href="https://www.loc.gov/preservation/digital/formats/fdd/fdd000530.shtml">Format Description from Library of Congress</p>
+              <p><a href="https://www.loc.gov/preservation/digital/formats/fdd/fdd000530.shtml">Format Description from Library of Congress</a></p>
             </ul>
             </li>
             <li><p id="ProRes422">Apple ProRes 422:</p>
@@ -196,7 +196,7 @@ If the error message includes other parts of the command, such as a flag, that i
             <p class="indent">Bibliography:</p>
             <ul>
               <p><a href="https://trac.ffmpeg.org/wiki/Encode/FFV1">FFmpeg Documentation</a></p>
-              <p><a href="https://www.ffmpeg.org/~michael/ffv1.html">FFV1 Video Codec Specification by Michael Niedermayer</p>
+              <p><a href="https://www.ffmpeg.org/~michael/ffv1.html">FFV1 Video Codec Specification by Michael Niedermayer</a></p>
             </ul>
             </li>
           </ul>
@@ -392,10 +392,10 @@ If the error message includes other parts of the command, such as a flag, that i
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
-        <dt>-c:v prores</dt><dd>tells FFmpeg to transcode the video stream into <a href="#ProRes422">Apple ProRes 422</a></dd>
+        <dt>-c:v prores</dt><dd>tells FFmpeg to transcode the video stream into Apple ProRes 422</dd>
         <dt>-profile:v <em>1</em></dt><dd>Declares profile of ProRes you want to use. The profiles are explained below:
         <ul>
-          <li>0 = ProRes 422 (Proxy)</li>
+          <li>0 = <a href="#ProRes 422">ProRes 422 (Proxy)</a></li>
           <li>1 = ProRes 422 (LT)</li>
           <li>2 = ProRes 422 (Standard)</li>
           <li>3 = ProRes 422 (HQ)</li>
@@ -509,10 +509,10 @@ If the error message includes other parts of the command, such as a flag, that i
     <!-- ends H.264 from DCP -->
 
     <!-- Transcode to FFV1.mkv -->
-    <label class="recipe" for="create_FFV1_mkv">Transcode your file with the <a href="#FFV1">FFV1 Version 3 Codec</a> in a Matroska container</label>
+    <label class="recipe" for="create_FFV1_mkv">Transcode your file with the FFV1 Version 3 Codec in a Matroska container</label>
     <input type="checkbox" id="create_FFV1_mkv">
     <div class="hiding">
-      <h5>Create FFV1 Version 3 video in a Matroska container with framemd5 of input</h5>
+      <h5>Create <a href="#FFV1">FFV1 Version 3 video </a> in a Matroska container with framemd5 of input</h5>
       <p><code>ffmpeg -i <em>input_file</em> -map 0 -dn -c:v ffv1 -level 3 -g 1 -slicecrc 1 -slices 16 -c:a copy <em>output_file</em>.mkv -f framemd5 -an <em>framemd5_output_file</em></code></p>
       <p>This will losslessly transcode your video with the FFV1 Version 3 codec in a Matroska container. In order to verify losslessness, a framemd5 of the source video is also generated. For more information on FFV1 encoding, <a href="https://trac.ffmpeg.org/wiki/Encode/FFV1" target="_blank">try the FFmpeg wiki</a>.</p>
       <dl>
