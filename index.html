@@ -388,14 +388,14 @@ If the error message includes other parts of the command, such as a flag, that i
     <div class="hiding">
       <h5>Transcode into a deinterlaced Apple ProRes LT</h5>
       <p><code>ffmpeg -i <em>input_file</em> -c:v prores -profile:v 1 -vf yadif -c:a pcm_s16le <em>output_file</em></code></p>
-      <p>This command transcodes an input file into a deinterlaced Apple ProRes 422 LT file with 16-bit linear PCM encoded audio. The file is deinterlaced using the yadif filter (Yet Another De-Interlacing Filter).</p>
+      <p>This command transcodes an input file into a deinterlaced <a href ="#ProRes422"> Apple ProRes 422 </a> LT file with 16-bit linear PCM encoded audio. The file is deinterlaced using the yadif filter (Yet Another De-Interlacing Filter).</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
         <dt>-c:v prores</dt><dd>tells FFmpeg to transcode the video stream into Apple ProRes 422</dd>
         <dt>-profile:v <em>1</em></dt><dd>Declares profile of ProRes you want to use. The profiles are explained below:
         <ul>
-          <li>0 = <a href="#ProRes 422">ProRes 422 (Proxy)</a></li>
+          <li>0 = ProRes 422 (Proxy)</li>
           <li>1 = ProRes 422 (LT)</li>
           <li>2 = ProRes 422 (Standard)</li>
           <li>3 = ProRes 422 (HQ)</li>
