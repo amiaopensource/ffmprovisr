@@ -147,7 +147,7 @@ If the error message includes other parts of the command, such as a flag, that i
     </div>
     <div class="well">
 
-      <!-- Glossary-->
+    <!-- Glossary-->
       <label class="recipe" for="Glossary">A Glossary for Basic Technical terms</label>
        <input type="checkbox" id="Glossary">
       <div class="hiding"> 
@@ -166,9 +166,40 @@ If the error message includes other parts of the command, such as a flag, that i
               <p><a href="https://dericed.com/2013/flac-in-the-archives/">Dave Rice's article on FLAC in the Archives</a></p>
               <p><a href="https://github.com/xiph/flac">GitHub Repository</a></p>
             </ul>
-          <p>Video Codec</p>
             </li>
-         </ul>
+          </ul>
+          <p>Video Codec</p>
+          <ul>
+            <li><p id="DVCodecs">DV Codecs:</p>
+            <p>DV is a family of codecs used for storing digital video. DV uses lossy compression of video while audio is stored uncompressed. It utilizes intraframe and interframe compression techniques to achieve efficient storage and playback of video content. DV files also include metadata such as timestamps, camera information, and other technical details. </p>
+            </li>
+            <li><p id="H264">H.264:</p>
+            <p>Also referred to as Advanced Video Coding, it is created to provide high efficiency in compression at substantially lower bit rates than previous standards. It can be used for both lossless and lossy compression. It was first launched in 2003 as the successor of MPEG-2. H.264 codec is powerful in greatly reducing file size while preserving image clarity, optimizing network bandwidth, and allowing playback on different devices.</p>
+            </li>
+            <li><p id="H265">H.265:</p>
+            <p>Also referred to as High Efficiency Video Coding, it is designed as the successor of the H.264 codec. It can support solutions up to 8192x4320. HEVC uses both integer discrete cosine transform and discrete sine transform with varied block sizes between 4x4 and 32x32. Compared to the H.264, HEVC achieves about 35-50% better compression, allowing for the same video quality at lower bitrates.</p> 
+            <p class="indent">Bibliography:</p>
+            <ul>
+              <p><a href="https://x265.readthedocs.io/en/master/">Documentation</a></p>
+              <p><a href="https://www.loc.gov/preservation/digital/formats/fdd/fdd000530.shtml">Format Description from Library of Congress</p>
+            </ul>
+            </li>
+            <li><p id="ProRes422">Apple ProRes 422:</p>
+            <p>Apple ProRes 422 is a proprietary video codec developed by Apple for editing and post-production purposes. It supports resolutions up to 8K and uses compression algorithms based on the discrete cosine transform. All ProRes variants use chroma sampling of 4:2:2 at 10-bit color depth. </p>
+            <p class="indent">Bibliography:</p>
+            <ul>
+              <p><a href="https://www.apple.com/final-cut-pro/docs/Apple_ProRes.pdf">Apple White Paper, April 2022</a></p>
+            </ul>
+            </li>
+            <li><p id="FFV1">FFV1:</p>
+            <p>Also referred to as FFmpeg Video Codec 1, FFV1 is a lossless intra-frame video codec. It supports Y′CBCR color space model. From version 3 onwards, it can also encode interlaced video. It also supports YUV and RGB content including alpha channel of color depths ranging from 8 to 16 bits. </p>
+            <p class="indent">Bibliography:</p>
+            <ul>
+              <p><a href="https://trac.ffmpeg.org/wiki/Encode/FFV1">FFmpeg Documentation</a></p>
+              <p><a href="https://www.ffmpeg.org/~michael/ffv1.html">FFV1 Video Codec Specification by Michael Niedermayer</p>
+            </ul>
+            </li>
+          </ul>
     <!-- End Glossary --> 
     </div>
     <div class="well">
@@ -335,7 +366,7 @@ If the error message includes other parts of the command, such as a flag, that i
     <div class="hiding">
       <h5>Rewrap DV video to .dv file</h5>
       <p><code>ffmpeg -i <em>input_file</em> -f rawvideo -c:v copy <em>output_file.dv</em></code></p>
-      <p>This script will take a video that is encoded in the <a href="https://en.wikipedia.org/wiki/DV" target="_blank">DV Codec</a> but wrapped in a different container (such as MOV) and rewrap it into a raw DV file (with the .dv extension). Since DV files potentially contain a great deal of provenance metadata within the DV stream, it is necessary to rewrap files in this method to avoid unintentional stripping of this metadata.</p>
+      <p>This script will take a video that is encoded in the <a href="#DVCodecs>DV Codec</a> but wrapped in a different container (such as MOV) and rewrap it into a raw DV file (with the .dv extension). Since DV files potentially contain a great deal of provenance metadata within the DV stream, it is necessary to rewrap files in this method to avoid unintentional stripping of this metadata.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path and name of the input file</dd>
@@ -361,7 +392,7 @@ If the error message includes other parts of the command, such as a flag, that i
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
-        <dt>-c:v prores</dt><dd>tells FFmpeg to transcode the video stream into Apple ProRes 422</dd>
+        <dt>-c:v prores</dt><dd>tells FFmpeg to transcode the video stream into <a href="#ProRes422">Apple ProRes 422</a></dd>
         <dt>-profile:v <em>1</em></dt><dd>Declares profile of ProRes you want to use. The profiles are explained below:
         <ul>
           <li>0 = ProRes 422 (Proxy)</li>
@@ -387,7 +418,7 @@ If the error message includes other parts of the command, such as a flag, that i
     <label class="recipe" for="transcode_h264">Transcode to an H.264 access file</label>
     <input type="checkbox" id="transcode_h264">
     <div class="hiding">
-      <h5>Transcode to H.264</h5>
+      <h5>Transcode to <a href="#H264">H.264</a></h5>
       <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -pix_fmt yuv420p -c:a aac <em>output_file</em></code></p>
       <p>This command takes an input file and transcodes it to H.264 with an .mp4 wrapper, audio is transcoded to AAC. The libx264 codec defaults to a “medium” preset for compression quality and a CRF of 23. CRF stands for constant rate factor and determines the quality and file size of the resulting H.264 video. A low CRF means high quality and large file size; a high CRF means the opposite.</p>
       <dl>
@@ -478,7 +509,7 @@ If the error message includes other parts of the command, such as a flag, that i
     <!-- ends H.264 from DCP -->
 
     <!-- Transcode to FFV1.mkv -->
-    <label class="recipe" for="create_FFV1_mkv">Transcode your file with the FFV1 Version 3 Codec in a Matroska container</label>
+    <label class="recipe" for="create_FFV1_mkv">Transcode your file with the <a href="#FFV1">FFV1 Version 3 Codec</a> in a Matroska container</label>
     <input type="checkbox" id="create_FFV1_mkv">
     <div class="hiding">
       <h5>Create FFV1 Version 3 video in a Matroska container with framemd5 of input</h5>
@@ -542,7 +573,7 @@ If the error message includes other parts of the command, such as a flag, that i
     <label class="recipe" for="transcode_h265">Transcode to an H.265/HEVC MP4</label>
     <input type="checkbox" id="transcode_h265">
     <div class="hiding">
-      <h5>Transcode to H.265/HEVC</h5>
+      <h5>Transcode to <a href="#H265>H.265</a>/HEVC</h5>
       <p><code>ffmpeg -i <em>input_file</em> -c:v libx265 -pix_fmt yuv420p -c:a copy <em>output_file</em></code></p>
       <p>This command takes an input file and transcodes it to H.265/HEVC in an .mp4 wrapper, keeping the audio codec the same as in the original file.</p>
       <dl>
