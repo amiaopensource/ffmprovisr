@@ -20,6 +20,7 @@
     <div id="toggle-expand-collapse-all" class="contents-list">Expand/collapse all recipes</div>
     <a href="#basics"><div class="contents-list">FFmpeg basics</div></a>
     <a href="#troubleshooting"><div class="contents-list">Troubleshooting common issues</div></a>
+    <a href="#glossary"><div class="contents-list">Glossary of Basic Technical Terms</div></a>
     <a href="#concepts"><div class="contents-list">Advanced FFmpeg concepts</div></a>
     <a href="#rewrap"><div class="contents-list">Change container (rewrap)</div></a>
     <a href="#transcode"><div class="contents-list">Change codec (transcode)</div></a>
@@ -149,7 +150,7 @@ If the error message includes other parts of the command, such as a flag, that i
 
     <!-- Glossary-->
       <label class="recipe" for="Glossary">A Glossary for Basic Technical terms</label>
-       <input type="checkbox" id="Glossary">
+      <input type="checkbox" id="Glossary">
       <div class="hiding"> 
           <h2 id="codec">Codec</h2>
           <p>A codec is the program in the digital file that encodes/decodes the digital information. It denotes the many different algorithms used to compress video. The term codec is derived from the terms encoding/decoding and compression/decompression. Codecs are used to store files on disk, as well as to transmit media. There are different codecs for both audio and video. </p>
@@ -202,13 +203,38 @@ If the error message includes other parts of the command, such as a flag, that i
           </ul>
           <h2 id="transcodedef">Transcode</h2>
           <p>Video transcoding means converting already-encoded content by decoding/decompressing it, implementing alterations, and recompressing it for delivery. The transcoding function makes duplicates of the material in different codecs and containers for multiple purposes.</p>
-          <h2 id="rewrapdef">Rewrap></h2>
+          <h2 id="rewrapdef">Rewrap</h2>
           <p>Rewrapping refers to the process of moving media between containers without altering its actual data. It only changes the “wrapper” or the container of the file, but does not alter the encoding of the file. </p>
           <h2 id="pcm">PCM (Pulse-code Modulation)</h2>
           <p>Pulse-code modulation is a method to digitally represent an analog signal. A signal is pulse code modulated to convert its analog information into a binary sequence. PCM produces a series of digits, and each of the binary digits represents the approximate amplitude of the signal sample at that instant.</p>
           <h2 id="timecode">Timecode</h2>
           <p>Timecode is a labeling system that is used to identify each frame of recorded video. It is a sequence of numeric codes generated at regular intervals by a timing synchronization system. The timecode commonly employed in film and video production is the SMPTE family of timecodes, which includes linear timecode (LTC), vertical interval timecode (VITC), burnt-in timecode, and so on.
           In digital recording formats, the timecode is carried as a part of the Metadata contained within the digital stream or file structure. </p>
+          <h2 id="container">Container</h2>
+          <p>A container, also called a wrapper, is a file format that encapsulates one or more media streams along with metadata, in order for them to be stored and played back together. One of the most important things a media container does is arrange and interleave the data so that the audio and video play out synchronously.</p>
+          <p>Audio Container</p>
+          <ul>
+            <li><p id="wav">WAV:</p>
+            <p>Waveform Audio File Format, or WAVE, is the main format used on Microsoft Windows systems for uncompressed audio. WAV is an application of the Resource Interchange File Format (RIFF) bitstream format for storing data in chunks. WAV files can contain compressed audio, but the most common WAV audio format is uncompressed audio in the linear pulse-code modulation format.</p>
+            </li>
+            <li><p id="bwf">BWF:</p>
+            <p>Broadcast Wave Format is a subset of the WAV file format. It is the recording format of most file-based non-linear digital recorders used for motion picture, radio, and television production. It is recommended for archival use. The purpose of this format is the addition of metadata to facilitate the exchange of sound data between different computer platforms and applications.</p>
+            </li>
+          </ul>
+          <p>Video Container</p>
+          <ul>
+            <li><p id="matroska">Matroska:</p>
+            <p>The Matroska container is a format for audio, video data, and other multimedia elements. It is a project to create a container format that can hold an unlimited number of video, audio, picture, or subtitle tracks in one file. Its specifications are fully open, and its implementation consists mostly of open source software.</p>
+            </li>
+            <li><p id="mp4">MP4:</p>
+            <p>The MPEG-4 video file container is a compressed file format that can contain video, audio, subtitles, and still images. MP4 is based on the MPEG-4 standard and supports a more limited set of video and audio codecs compared to MKV. </p>
+            </li>
+            <li><p id="mxf">MXF:</p>
+            <p>Media Exchange Format, or MXF, was developed from the beginning to be an SMPTE format that equipment manufacturers could use to exchange content among their products. An MXF file format can store video, audio data, timecodes, and codec instructions. MXF files are codec-agonistic, thus allowing for various video and audio codecs depending on the quality and storage need. </p>
+            </li>
+          </ul>
+          <h2 id="provenancemetadata">Provenance Metadata:</h2>
+          <p>Provenance metadata refers to the information that is recorded about the history and the origin of data, including its creation and the history of modification. </p>
         <!-- End Glossary --> 
     </div>
     <div class="well">
@@ -300,8 +326,8 @@ If the error message includes other parts of the command, such as a flag, that i
         <li><code>-map 0:0 -map 0:2</code> means ‘take the first and third streams from the first input file’.</li>
         <li><code>-map 0:1 -map 1:0</code> means ‘take the second stream from the first input file and the first stream from the second input file’.</li>
       </ul>
-      <p>When no mapping is specified in an ffmpeg command, the default for video files is to take just one video and one audio stream for the output: other stream types, such as <a href="#timecode"> timecode </a> or subtitles, will not be copied to the output file by default. If multiple video or audio streams are present, the best quality one is automatically selected by FFmpeg.</p>
-      <p>To map <em>all</em> streams in the input file to the output file, use <code>-map 0</code>. However, note that not all container formats can include all stream types: for example, .mp4 cannot contain timecode.</p>
+      <p>When no mapping is specified in an ffmpeg command, the default for video files is to take just one video and one audio stream for the output: other stream types, such as <a href="#timecode">timecode</a> or subtitles, will not be copied to the output file by default. If multiple video or audio streams are present, the best quality one is automatically selected by FFmpeg.</p>
+      <p>To map <em>all</em> streams in the input file to the output file, use <code>-map 0</code>. However, note that not all <a href="#container">container</a> formats can include all stream types: for example, .mp4 cannot contain timecode.</p>
       <h4>Mapping with a failsafe</h4>
       <p>To safely process files that may or may not contain given a type of stream, you can add a trailing <code>?</code> to your map commands: for example, <code>-map 0:a?</code> instead of <code>-map 0:a</code>.</p>
       <p>This makes the map optional: audio streams will be mapped over if they are present in the file—but if the file contains no audio streams, the transcode will proceed as usual, minus the audio stream mapping. Without adding the trailing <code>?</code>, FFmpeg will exit with an error on that file.</p>
@@ -333,7 +359,7 @@ If the error message includes other parts of the command, such as a flag, that i
         The new container you are rewrapping to is defined by the filename extension used here, e.g. .mkv, .mp4, .mov.</dd>
       </dl>
       <h4>Important caveat</h4>
-      <p>It may not be possible to rewrap a file's contents to a new container without re-encoding one or more of the streams within (that is, the video, audio, and subtitle tracks). Some containers can only contain streams of a certain encoding type: for example, the .mp4 container does not support uncompressed audio tracks. (In practice .mp4 goes hand-in-hand with a H.264-encoded video stream and an AAC-encoded video stream, although other types of video and audio streams are possible). Another example is that the Matroska container does not allow data tracks.</p>
+      <p>It may not be possible to rewrap a file's contents to a new container without re-encoding one or more of the streams within (that is, the video, audio, and subtitle tracks). Some containers can only contain streams of a certain encoding type: for example, the .mp4 container does not support uncompressed audio tracks. (In practice .mp4 goes hand-in-hand with a H.264-encoded video stream and an AAC-encoded video stream, although other types of video and audio streams are possible). Another example is that the <a hre="#matroska">Matroska</a> container does not allow data tracks.</p>
       <p>In such cases, FFmpeg will throw an error. If you encounter errors of this kind, you may wish to consult the <a href="#transcode">list of transcoding recipes</a>.</p>
       <p class="link"></p>
     </div>
@@ -345,7 +371,7 @@ If the error message includes other parts of the command, such as a flag, that i
     <div class="hiding">
       <h5>Generate Broadcast WAV</h5>
       <p><code>ffmpeg -i <em>input_file.wav</em> -c copy -write_bext 1 -metadata field_name='Content' <em>output_file.wav</em></code></p>
-      <p>This command will write a file in the Broadcast Wave Format (BWF) containing a BEXT chunk with related metadata.</p>
+      <p>This command will write a file in the <a href="#bwf">Broadcast Wave Format (BWF)</a> containing a BEXT chunk with related metadata.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file.wav</em></dt><dd>path and name of the input file</dd>
@@ -375,7 +401,7 @@ If the error message includes other parts of the command, such as a flag, that i
     <div class="hiding">
       <h5>Rewrap DV video to .dv file</h5>
       <p><code>ffmpeg -i <em>input_file</em> -f rawvideo -c:v copy <em>output_file.dv</em></code></p>
-      <p>This script will take a video that is encoded in the <a href="#DVCodecs">DV Codec</a> but wrapped in a different container (such as MOV) and rewrap it into a raw DV file (with the .dv extension). Since DV files potentially contain a great deal of provenance metadata within the DV stream, it is necessary to rewrap files in this method to avoid unintentional stripping of this metadata.</p>
+      <p>This script will take a video that is encoded in the <a href="#DVCodecs">DV Codec</a> but wrapped in a different container (such as MOV) and rewrap it into a raw DV file (with the .dv extension). Since DV files potentially contain a great deal of <a href="#provenancemetadata">provenance metadata</a> within the DV stream, it is necessary to rewrap files in this method to avoid unintentional stripping of this metadata.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path and name of the input file</dd>
@@ -397,11 +423,11 @@ If the error message includes other parts of the command, such as a flag, that i
     <div class="hiding">
       <h5>Transcode into a deinterlaced Apple ProRes LT</h5>
       <p><code>ffmpeg -i <em>input_file</em> -c:v prores -profile:v 1 -vf yadif -c:a pcm_s16le <em>output_file</em></code></p>
-      <p>This command transcodes an input file into a deinterlaced <a href ="#ProRes422"> Apple ProRes 422 </a> LT file with 16-bit linear <a href="#pcm"> PCM </a> encoded audio. The file is deinterlaced using the yadif filter (Yet Another De-Interlacing Filter).</p>
+      <p>This command transcodes an input file into a deinterlaced <a href ="#ProRes422"> Apple ProRes 422 </a> LT file with 16-bit linear <a href="#pcm">PCM</a> encoded audio. The file is deinterlaced using the yadif filter (Yet Another De-Interlacing Filter).</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
-        <dt>-c:v prores</dt><dd>tells FFmpeg to <a href="#transcodedef">transcode </a>the video stream into Apple ProRes 422</dd>
+        <dt>-c:v prores</dt><dd>tells FFmpeg to <a href="#transcodedef">transcode</a>the video stream into Apple ProRes 422</dd>
         <dt>-profile:v <em>1</em></dt><dd>Declares profile of ProRes you want to use. The profiles are explained below:
         <ul>
           <li>0 = ProRes 422 (Proxy)</li>
@@ -429,7 +455,7 @@ If the error message includes other parts of the command, such as a flag, that i
     <div class="hiding">
       <h5>Transcode to <a href="#H264">H.264</a></h5>
       <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -pix_fmt yuv420p -c:a aac <em>output_file</em></code></p>
-      <p>This command takes an input file and transcodes it to H.264 with an .mp4 wrapper, audio is transcoded to AAC. The libx264 codec defaults to a “medium” preset for compression quality and a CRF of 23. CRF stands for constant rate factor and determines the quality and file size of the resulting H.264 video. A low CRF means high quality and large file size; a high CRF means the opposite.</p>
+      <p>This command takes an input file and transcodes it to H.264 with an <a href="#mp4">.mp4</a> wrapper, audio is transcoded to AAC. The libx264 codec defaults to a “medium” preset for compression quality and a CRF of 23. CRF stands for constant rate factor and determines the quality and file size of the resulting H.264 video. A low CRF means high quality and large file size; a high CRF means the opposite.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
@@ -496,7 +522,7 @@ If the error message includes other parts of the command, such as a flag, that i
     <div class="hiding">
       <h5>H.264 from DCP</h5>
       <p><code>ffmpeg -i <em>input_video_file</em>.mxf -i <em>input_audio_file</em>.mxf -c:v libx264 -pix_fmt yuv420p -c:a aac <em>output_file.mp4</em></code></p>
-      <p>This will transcode MXF wrapped video and audio files to an H.264 encoded MP4 file. Please note this only works for unencrypted, single reel DCPs.</p>
+      <p>This will transcode <a href="#mxf">MXF</a> wrapped video and audio files to an H.264 encoded MP4 file. Please note this only works for unencrypted, single reel DCPs.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_video_file</em></dt><dd>path and name of the video input file. This extension must be <code>.mxf</code></dd>
@@ -633,7 +659,7 @@ If the error message includes other parts of the command, such as a flag, that i
     <div class="hiding">
       <h5>WAV to MP3</h5>
       <p><code>ffmpeg -i <em>input_file</em>.wav -write_id3v1 1 -id3v2_version 3 -dither_method triangular -out_sample_rate 48k -qscale:a 1 <em>output_file</em>.mp3</code></p>
-      <p>This will convert your WAV files to MP3s.</p>
+      <p>This will convert your <a href="wav">WAV</a> files to MP3s.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path and name of the input file</dd>
