@@ -51,7 +51,7 @@
     <div class="well">
       <h2 class="heading" id="about">Acerca de ffmprovisr</h2>
       <h3>FFmpeg en simple</h3>
-      <p>FFmpeg es una poderosa herramienta para trabajar con documentos audiovisuales. Desafortunadamente, FFmpeg tiene una gran curva de aprendizaje, especialmente para usuarios que no están tan familiarizados con la interfaz de línea de comandos. Ffmprovisr busca ayudar a los usuarios en el proceso de creación de comandos para que más personas puedan acceder a los beneficios de FFmpeg.</p>
+      <p>FFmpeg es una poderosa herramienta para trabajar con archivos audiovisuales. Desafortunadamente, FFmpeg tiene una gran curva de aprendizaje, especialmente para usuarios que no están tan familiarizados con la interfaz de línea de comandos. Ffmprovisr busca ayudar a los usuarios en el proceso de creación de comandos para que más personas puedan acceder a los beneficios de FFmpeg.</p>
       <p>Cada sección muestra información importante sobre cómo se pueden realizar una amplia variedad de tareas usando FFmpeg. Para hacer un uso efectivo de este sitio web, haz click en la tarea que quieres realizar. Esta te llevará a un comando o a una serie de ellos. Da click en la descripción del comando y se te mostrará un ejemplo del comando junto con una explicación de cómo este comando funciona. Además, estará el desglose de cada uno de sus indicadores (u opciones).</p>
       <p>Esta página no tiene función de búsqueda, pero se puede acceder a todas las recetas a través de la segunda opción en la barra lateral y usar el buscador de tu navegador (usualmente "ctrl+f" o "cmd+f") para realizar búsquedas por palabras claves en todas las recetas disponibles.</p>
       <h3>Tutoriales</h3>
@@ -66,7 +66,7 @@
       </p>
       <h3>Proyectos hermanos</h3>
       <p><a href="https://dd388.github.io/crals/" target="_blank">Script Ahoy</a>: recurso comunitario de programación en línea de comando para archivistas y bibliotecarios</p>
-      <p><a href="https://datapraxis.github.io/sourcecaster/" target="_blank">The Sourcecaster</a>: aplicación que ayuda a usar la línea de comandos para resolver problemas comunes que surgen al trabajar con documentos digitales.</p>
+      <p><a href="https://datapraxis.github.io/sourcecaster/" target="_blank">The Sourcecaster</a>: aplicación que ayuda a usar la línea de comandos para resolver problemas comunes que surgen al trabajar con archivos digitales.</p>
       <p><a href="https://pugetsoundandvision.github.io/micropops/" target="_blank">Micropops</a>: libería de las línea de comandos más usadas para la manipulación de archivos digitales.</p>
       <p><a href="https://amiaopensource.github.io/cable-bible/" target="_blank">Cable Bible</a>: guía de cables y conectores usados en soportes tecnológicos audiovisuales.</p>
       <p><a href="https://eaasi.gitlab.io/program_docs/qemu-qed/" target="_blank">QEMU QED</a>: página web de instrucciones para usar QEMU (Quick EMUlator), la cual es una aplicación que usa línea de comandos para emulación y virtualización de computadoras.</p>
@@ -77,7 +77,7 @@
       <h2 class="heading" id="glossary">Glosario de términos</h2>
       <h3>Glosario de términos en inglés usados en ffmprovisr y FFmpeg</h3>
       <h3>¿Por qué no traducimos todo?</h3>
-      <p>El proyecto de traducción de ffmprovisr al español tiene el objetivo de brindar acceso linguístico a una herramienta que facilita el trabajo del archivista audiovisual con documentos digitales; no obstante, es importante tener en cuenta el contexto bajo el cual el campo de la programación se genera.</p> 
+      <p>El proyecto de traducción de ffmprovisr al español tiene el objetivo de brindar acceso linguístico a una herramienta que facilita el trabajo del archivista audiovisual con archivos digitales; no obstante, es importante tener en cuenta el contexto bajo el cual el campo de la programación se genera.</p> 
       <p>El lenguaje de programación está creado y usado, en su mayoría, en inglés y gran parte de esa terminología tiene una traducción compleja. Si bien la mayoría de la terminología ha sido cuidadosamente traducida con soporte de bibliografía relacionado, hay determinados términos que no se traducirán para facilitar la estandarización en la comunicación y la comprensión de la misma.</p>
       <p>Por eso, el propósito de este glosario es listar terminología básica y repetitiva para familiarizarnos con ella y tener mejor comprensión en la página de ffmprovisr.</p>
       <!-- No olvidar traducir estos términos
@@ -148,7 +148,7 @@
     <div class="hiding">
       <h5>Uso de línea de comando en grupo y en bucle</h5>
       <p><code>ffmpeg -nostdin -i <em>input_file</em> ...</code></p>
-      <p>Uno de los usos más frecuentes de FFmpeg es ejecutar grupos de comandos en bucle para, por ejemplo, generar, en un solo paso, documentos de acceso para una colección entera.</p>
+      <p>Uno de los usos más frecuentes de FFmpeg es ejecutar grupos de comandos en bucle para, por ejemplo, generar, en un solo paso, archivos de acceso para una colección entera.</p>
       <p>Al ejecutar un comando de FFmpeg en bucle, es necesario usar el indicador <code>-nostdin</code> previo a ingresar la acción para asegurar la ejecución correcta de los comandos. Esto es necesario para obviar el comportamiento normal de FFmpeg de permitir la interacción estándar de las acciones, lo cual puede resultar en errores, ya que las acciones en bucle se alimentan del comando que se está ejecutando.</p>
       <p class="link"></p>
     </div>
@@ -160,7 +160,7 @@
     <div class="hiding">
       <h5>Códec por default</h5>
       <p>A menos que sea especificado, FFmpeg ejecutará un códec y parámetros determinados de manera automática basado en propiedades internas establecidas por default. Estas propiedades son aplicadas en base al tipo de documento escrito en el output file. Por ejemplo, <code>.mov</code> o <code>.wav</code>).</p>
-      <p>Cuando se crean o transcodifican documentos en FFmpeg, es importante considerar la configuración del códec para audio y video, ya que las opciones por default pueden no ser las adecuadas para tu contexto o propósitos específicos. Lo siguiente es una lista de los códec por default para algunos tipos de documentos más comunes.</p>
+      <p>Cuando se crean o transcodifican archivos en FFmpeg, es importante considerar la configuración del códec para audio y video, ya que las opciones por default pueden no ser las adecuadas para tu contexto o propósitos específicos. Lo siguiente es una lista de los códec por default para algunos tipos de archivos más comunes.</p>
       <ul>
         <li><code>.avi</code>: Códec de audio: mp3, Códec de video: mpeg4</li>
         <li><code>.mkv</code>: Códec de audio: ac3, Códec de video: H.264</li>
