@@ -265,11 +265,11 @@ input[type=checkbox]:checked + div {
   background-color: #04AA6D; /* Green */
   border: none;
   color: white;
-  padding: 20px 38px;
+  padding: 25px 43px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 20px;
+  font-size: 25px;
   margin: 4px 2px;
   cursor: pointer;
 }
