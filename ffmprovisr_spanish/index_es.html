@@ -989,7 +989,7 @@
         <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de video de salida</dd>
       </dl>
       <p class="link"></p>
-    </div> -->
+    </div>
     <!-- ends Combine audio tracks -->
 
     <!-- phase shift -->
@@ -1129,37 +1129,37 @@
     </div> -->
     <!-- ends Fix A/V async 1 -->
 
-    <!-- </div>
+    </div>
     <div class="well">
-    <h2 id="join-trim">Join, trim, or create an excerpt</h2> -->
+    <h2 id="join-trim">Unir, recortar o crear un fragmento</h2> -->
 
     <!-- Join files of the same type together -->
-    <!-- <label class="recipe" for="join_files">Join (concatenate) two or more files of the same type</label>
+    <label class="recipe" for="join_files">Une (concatena) dos o más archivos del mismo tipo</label>
     <input type="checkbox" id="join_files">
     <div class="hiding">
-      <h5>Join files together</h5>
-      <p><code>ffmpeg -f concat -i mylist.txt -c copy <em>archivo_salida</em></code></p>
-      <p>This command takes two or more files of the same file type and joins them together to make a single file. All that the program needs is a text file with a list specifying the files that should be joined. If possible, run the command from the same directory where the files and the text file reside. Otherwise you'll have to use <code>-safe 0</code>, see below for more information. However, it only works properly if the files to be combined have the exact same codec and technical specifications. Be careful, FFmpeg may appear to have successfully joined two video files with different codecs, but may only bring over the audio from the second file or have other weird behaviors. Don’t use this command for joining files with different codecs and technical specs and always preview your resulting video file!</p>
+      <h5>Unir archivos</h5>
+      <p><code>ffmpeg -f concat -i mylist.txt -c copy <em>output_file</em></code></p>
+      <p>Este comando toma dos o más archivos del mismo tipo y los une para crear un solo archivo. El programa solo necesita un archivo de texto con una lista que especifique los archivos que se deben unir. Si es posible, ejecute el comando desde el mismo directorio donde se encuentran los archivos y el archivo de texto. De lo contrario, deberá usar -safe 0; consulte la información a continuación para obtener más detalles. Sin embargo, solo funciona correctamente si los archivos que se van a combinar tienen exactamente el mismo códec y especificaciones técnicas. Tenga cuidado, FFmpeg puede parecer que ha unido correctamente dos archivos de video con diferentes códecs, pero es posible que solo copie el audio del segundo archivo o que presente otros comportamientos extraños. No utilice este comando para unir archivos con diferentes códecs y especificaciones técnicas, y siempre previsualice el archivo de video resultante.</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-f concat</dt><dd>forces ffmpeg to concatenate the files and to keep the same file format</dd>
-        <dt>-i <em>mylist.txt</em></dt><dd>ruta y nombre del archivo de ingreso file. Per the <a href="https://ffmpeg.org/ffmpeg-formats.html#Options" target="_blank">FFmpeg documentation</a>, it is preferable to specify relative rather than absolute file paths, as allowing absolute file paths may pose a security risk.<br>
-        This text file contains the list of files (without their absolute path) to be concatenated and should be formatted as follows:
+        <dt>-f concat</dt><dd>obliga a ffmpeg a concatenar los archivos y a mantener el mismo formato de archivo</dd>
+        <dt>-i <em>mylist.txt</em></dt><dd>ruta, nombre y extensión del archivo de entrada. Segun la <a href="https://ffmpeg.org/ffmpeg-formats.html#Options" target="_blank">documentación de FFmpeg</a>, es preferible especificar rutas de archivo relativas en lugar de absolutas, ya que permitir rutas de archivo absolutas puede representar un riesgo de seguridad.<br>
+        Este archivo de texto contiene la lista de archivos (sin su ruta absoluta) que se van a concatenar y debe tener el siguiente formato:
 <pre>
-  file '<em>first_file.ext</em>'
-  file '<em>second_file.ext</em>'
+  file '<em>primer_archivo.ext</em>'
+  file '<em>segundo_archivo.ext</em>'
   . . .
-  file '<em>last_file.ext</em>'
+  file '<em>último_archivo.ext</em>'
 </pre>
-  In the above, <strong>file</strong> is simply the word "file". Straight apostrophes ('like this') rather than curved quotation marks (‘like this’) must be used to enclose the file paths.<br>
-  <strong>Note:</strong> If specifying absolute file paths in the .txt file, add <code>-safe 0</code> before the input file.<br>
-  e.g.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <em>archivo_salida</em></code></dd>
-        <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
-        <dt><em>archivo_salida</em></dt><dd>ruta y nombre del archivo de salida</dd>
+  En el ejemplo anterior, <strong>file</strong> es simplemente la palabra "file". Se deben usar comillas simples ('como estas') en lugar de comillas curvas (‘como estas’) para encerrar las rutas de los archivos.<br>
+  <strong>Nota:</strong> Si especifica rutas de archivo absolutas en el archivo .txt, agregue <code>-safe 0</code> antes del archivo de entrada.<br>
+  Ej.: <code>ffmpeg -f concat -safe 0 -i mylist.txt -c copy <em>output_file</em></code></dd>
+        <dt>-c copy</dt><dd>utiliza el modo de copia de flujo para remultiplexar en lugar de recodificar</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
-      <p>For more information, see the <a href="https://trac.ffmpeg.org/wiki/Concatenate" target="_blank">FFmpeg wiki page on concatenating files</a>.</p>
+      <p>Para obtener más información, consulte la página,<a href="https://trac.ffmpeg.org/wiki/Concatenate" target="_blank">wiki de FFmpeg sobre la concatenación de archivos</a>.</p>
       <p class="link"></p>
-    </div> -->
+    </div>
     <!-- ends Join files of the same type together -->
 
     <!-- Join files of different types together -->
