@@ -969,24 +969,24 @@
     <!-- ends Extract audio from am AV file -->
 
     <!-- Combine audio tracks  -->
-    <!-- <label class="recipe" for="combine_audio">Combine audio tracks</label>
+    <!-- <label class="recipe" for="combine_audio">Combinar pistas de audio</label>
     <input type="checkbox" id="combine_audio">
     <div class="hiding">
-      <h5>Combine audio tracks into one in a video file</h5>
-      <p><code>ffmpeg -i <em>archivo_ingreso</em> -filter_complex "[0:a:0][0:a:1]amerge[out]" -map 0:v -map "[out]" -c:v copy -shortest <em>archivo_salida</em></code></p>
-      <p>This command combines two audio tracks present in a video file into one stream. It can be useful in situations where a downstream process, like YouTube’s automatic captioning, expect one audio track. To ensure that you’re mapping the right audio tracks run ffprobe before writing the script to identify which tracks are desired. More than two audio streams can be combined by extending the pattern present in the -filter_complex option.</p>
+      <h5>Combinar las pistas de audio en una sola, en un archivo de video</h5>
+      <p><code>ffmpeg -i <em>input_file</em> -filter_complex "[0:a:0][0:a:1]amerge[out]" -map 0:v -map "[out]" -c:v copy -shortest <em>output_file</em></code></p>
+      <p>Este comando combina dos pistas de audio presentes en un archivo de video en un solo flujo. Esto puede ser útil en situaciones en las que un proceso posterior, como la generación automática de subtítulos de YouTube, requiere una sola pista de audio. Para asegurarse de que está asignando las pistas de audio correctas, ejecute ffprobe antes de escribir los comandos para identificar las pistas deseadas. Se pueden combinar más de dos flujos de audio extendiendo el patrón presente en la opción -filter_complex.</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>archivo_ingreso</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
-        <dt>-filter_complex</dt><dd>tells ffmpeg that we will be using a complex filter</dd>
-        <dt>"</dt><dd>quotation mark to start filtergraph</dd>
-        <dt>[0:a:0][0:a:1]amerge[out]</dt><dd>combines the two audio tracks into one</dd>
-        <dt>"</dt><dd>quotation mark to end filtergraph</dd>
-        <dt>-map 0:v</dt><dd>map the video</dd>
-        <dt>-map "[out]"</dt><dd>map the combined audio defined by the filter</dd>
-        <dt>-c:v copy</dt><dd>copy the video</dd>
-        <dt>-shortest</dt><dd>limit to the shortest stream</dd>
-        <dt><em>archivo_salida</em></dt><dd>path, name and extension of the video output file</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entradada</dd>
+        <dt>-filter_complex</dt><dd>indica a ffmpeg que se utilizará un filtro complejo</dd>
+        <dt>"</dt><dd>comillas para iniciar el gráfico de filtros</dd>
+        <dt>[0:a:0][0:a:1]amerge[out]</dt><dd>combina las dos pistas de audio en una sola</dd>
+        <dt>"</dt><dd>comillas para finalizar el gráfico de filtros</dd>
+        <dt>-map 0:v</dt><dd>mapea el video</dd>
+        <dt>-map "[out]"</dt><dd>mapea el audio combinado definido por el filtro</dd>
+        <dt>-c:v copy</dt><dd>copia el video</dd>
+        <dt>-shortest</dt><dd>limita al flujo más corto</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de video de salida</dd>
       </dl>
       <p class="link"></p>
     </div> -->
