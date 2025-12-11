@@ -2444,31 +2444,31 @@
     </div> -->
     <!-- ends Game of Life -->
 
-    <!-- </div>
+    </div>
     <div class="well">
-    <h2 id="ocr">Use OCR</h2> -->
+    <h2 id="ocr">Usar OCR</h2> 
 
     <!-- Show OCR -->
-    <!-- <label class="recipe" for="ocr_on_top">Play video with OCR</label>
+    <label class="recipe" for="ocr_on_top">Reproducir video con OCR</label>
     <input type="checkbox" id="ocr_on_top">
     <div class="hiding">
-      <h5>Plays video with OCR on top</h5>
-      <p><code>ffplay archivo_ingreso -vf "ocr,drawtext=fontfile=/Library/Fonts/Andale Mono.ttf:text=%{metadata\\\:lavfi.ocr.text}:fontcolor=white"</code></p>
+      <h5>Reproduce el video con OCR superpuesto</h5>
+      <p><code>ffplay input_file -vf "ocr,drawtext=fontfile=/Library/Fonts/Andale Mono.ttf:text=%{metadata\\\:lavfi.ocr.text}:fontcolor=white"</code></p>
       <dl>
         <dt>ffplay</dt><dd>inicia el commando</dd>
-        <dt><em>archivo_ingreso</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
-        <dt>-vf</dt><dd>creates a filtergraph to use for the streams</dd>
-        <dt>"</dt><dd>quotation mark to start filtergraph</dd>
-        <dt>ocr,</dt><dd>tells ffplay to use ocr as source and the comma signifies that the script is ready for filter assertion</dd>
-        <dt>drawtext=fontfile=/Library/Fonts/Andale Mono.ttf</dt><dd>tells ffplay to drawtext and use a specific font (Andale Mono) when doing so</dd>
-        <dt>:</dt><dd>indicates there’s another parameter coming</dd>
-        <dt>text=%{metadata\\\:lavfi.ocr.text}</dt><dd>tells ffplay what text to use when playing. In this case, calls for metadata that lives in the lavfi.ocr.text library</dd>
-        <dt>:</dt><dd>indicates there’s another parameter coming</dd>
-        <dt>fontcolor=white</dt><dd>specifies font color as white</dd>
-        <dt>"</dt><dd>quotation mark to end filtergraph</dd>
+        <dt><em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
+        <dt>-vf</dt><dd>crea un gráfico de filtros para usar con los flujos</dd>
+        <dt>"</dt><dd>comilla para iniciar el gráfico de filtros</dd>
+        <dt>ocr,</dt><dd>indica a ffplay que use OCR como fuente y la coma indica que los comandos están listos para la aserción del filtro</dd>
+        <dt>drawtext=fontfile=/Library/Fonts/Andale Mono.ttf</dt><dd>indica a ffplay que extraiga el texto y use una fuente específica al hacerlo (Andale Mono)</dd>
+        <dt>:</dt><dd>indica que hay otro parámetro</dd>
+        <dt>text=%{metadata\\\:lavfi.ocr.text}</dt><dd>indica a ffplay qué texto usar durante la reproducción. En este caso, solicita metadatos que se encuentran en la biblioteca lavfi.ocr.text</dd>
+        <dt>:</dt><dd>indica que hay otro parámetro</dd>
+        <dt>fontcolor=white</dt><dd>especifica el color de la fuente como blanco</dd>
+        <dt>"</dt><dd>comilla para finalizar el gráfico de filtros</dd>
       </dl>
       <p class="link"></p>
-    </div> -->
+    </div>
     <!-- ends Show OCR -->
 
     <!-- Export OCR -->
