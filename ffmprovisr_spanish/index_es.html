@@ -30,7 +30,7 @@
     <a href="#video-properties"><div class="contents-list">Cambio de propiedades de vídeo</div></a>
     <a href="#audio-files"><div class="contents-list">Cambio o visualización de las propiedades de audio</div></a>
     <a href="#join-"><div class="contents-list">Unir/Cortar/Crear un fragmento</div></a>
-    <a href="#interlacing"><div class="contents-list">Work with interlaced video</div></a>
+    <a href="#interlacing"><div class="contents-list">Trabajar con video entrelazado</div></a>
     <!-- <a href="#overlay"><div class="contents-list">Overlay timecode or text on a video</div></a> -->
     <!-- <a href="#create-images"><div class="contents-list">Create thumbnails or GIFs</div></a> -->
     <!-- <a href="#create-video"><div class="contents-list">Create a video from image(s) and audio</div></a> -->
@@ -1384,27 +1384,27 @@
     <div class="well">
     <h2 id="interlacing">Work with interlaced video</h2> -->
 
-    <!-- NTSC to H.264 -->
-    <!-- <label class="recipe" for="ntsc_to_h264">Upscaled, pillar-boxed HD H.264 access files from SD NTSC source</label>
+    <!-- <NTSC to H.264 -->
+    <label class="recipe" for="ntsc_to_h264">Escalar archivos de acceso pillar-boxed HD H.264 a partir de una fuente SD NTSC</label>
     <input type="checkbox" id="ntsc_to_h264">
     <div class="hiding">
-      <h5>Upscaled, Pillar-boxed HD H.264 Access Files from SD NTSC source</h5>
-      <p><code>ffmpeg -i <em>archivo_ingreso</em> -c:v libx264 -filter:v "yadif, scale=1440:1080:flags=lanczos, pad=1920:1080:(ow-iw)/2:(oh-ih)/2, format=yuv420p" <em>archivo_salida</em></code></p>
+      <h5>Escalar archivos de acceso pillar-boxed HD H.264 a partir de una fuente SD NTSC</h5>
+      <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -filter:v "yadif, scale=1440:1080:flags=lanczos, pad=1920:1080:(ow-iw)/2:(oh-ih)/2, format=yuv420p" <em>output_file</em></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>archivo_ingreso</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
-        <dt>-c:v libx264</dt><dd>encodes video stream with libx264 (h264)</dd>
-        <dt>-filter:v</dt><dd>a video filter will be used</dd>
-        <dt>"</dt><dd>quotation mark to start filtergraph</dd>
-        <dt>yadif</dt><dd>deinterlacing filter (‘yet another deinterlacing filter’)<br>
-         By default, <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1" target="_blank">yadif</a> will output one frame for each frame. Outputting one frame for each <em>field</em> (thereby doubling the frame rate) with <code>yadif=1</code> may produce visually better results.</dd>
-        <dt>scale=1440:1080:flags=lanczos</dt><dd>resizes the image to 1440x1080, using the Lanczos scaling algorithm, which is slower but better than the default bilinear algorithm.</dd>
-        <dt>pad=1920:1080:(ow-iw)/2:(oh-ih)/2</dt><dd>pads the area around the 4:3 input video to create a 16:9 output video</dd>
-        <dt>format=yuv420p</dt><dd>specifies a pixel format of Y′C<sub>B</sub>C<sub>R</sub> 4:2:0</dd>
-        <dt>"</dt><dd>quotation mark to end filtergraph</dd>
-        <dt><em>archivo_salida</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
+        <dt>-c:v libx264</dt><dd>codifica el flujo de video con libx264 (h264)</dd>
+        <dt>-filter:v</dt><dd>se utilizará un filtro de video</dd>
+        <dt>"</dt><dd>qcomilla para iniciar el gráfico de filtros</dd>
+        <dt>yadif</dt><dd>filtro de desentrelazado ('otro filtro de desentrelazado más')<br>
+         Por defecto, <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1" target="_blank">yadif</a>  yadif genera un fotograma por cada fotograma de entrada. Generar un fotograma por cada campo <em>campo</em> (duplicando así la velocidad de fotogramas) con <code>yadif=1</code> puede producir mejores resultados visualmente.</dd>
+        <dt>scale=1440:1080:flags=lanczos</dt><dd>redimensiona la imagen a 1440x1080, utilizando el algoritmo de escalado Lanczos, que es más lento pero mejor que el algoritmo bilineal predeterminado.</dd>
+        <dt>pad=1920:1080:(ow-iw)/2:(oh-ih)/2</dt><dd>rellena el área alrededor del video de entrada 4:3 para crear un video de salida 16:9</dd>
+        <dt>format=yuv420p</dt><dd>especifica un formato de píxeles Y′C<sub>B</sub>C<sub>R</sub> 4:2:0</dd>
+        <dt>"</dt><dd>comilla para finalizar el gráfico de filtros</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
-      <p><strong>Note:</strong> the very same scaling filter also downscales a bigger image size into HD.</p>
+      <p><strong>Nota:</strong> este mismo filtro de escalado también reduce el tamaño de una imagen más grande a HD.</p>
       <p class="link"></p>
     </div> -->
     <!-- ends NTSC to H.264 -->
