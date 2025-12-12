@@ -233,23 +233,23 @@ If the error message includes other parts of the command, such as a flag, that i
             <p>Media Exchange Format, or MXF, was developed from the beginning to be an SMPTE format that equipment manufacturers could use to exchange content among their products. An MXF file format can store video, audio data, timecodes, and codec instructions. MXF files are codec-agonistic, thus allowing for various video and audio codecs depending on the quality and storage need. </p>
             </li>
           </ul>
-          <h2 id="provenancemetadata">Provenance Metadata:</h2>
+          <h2 id="provenancemetadata">Provenance Metadata</h2>
           <p>Provenance metadata refers to the information that is recorded about the history and the origin of data, including its creation and the history of modification. </p>
          <p class="link"></p>
          <ul>
-            <li><p id="interlaced">Interlaced Video:</p>
+            <h2 id="interlaced">Interlaced Video</h2>
             <p>Interlaced video is a method of encoding motion by splitting each frame into two fields: one containing the odd-numbered horizontal lines and the other containing the even-numbered lines. The perceived motion smoothness is increased without increasing bandwidth since the fields are recorded at various times. Many analog media, such as broadcast television, VHS, Betamax, Digital8, and LaserDisc, used interlacing as standard,and it still appears in some digital sources.</p>
             </li>
-           <li><p id="deinterlacing">Deinterlacing:</p>
+            <h2 id="deinterlacing">Deinterlacing</h2>
            <p>Deinterlacing converts interlaced video fields into progressive frames. A deinterlacer buffers the fields and reconstructs missing lines using techniques like blending or motion-adaptive interpolation. Effective deinterlacing reduces artifacts like combing and flicker.</p>
            </li>
-           <li><p id="crf">CRF Quality Level:</p>
+            <h2 id="CRF">CRF Quality Level</h2>
             <p>Constant Rate Factor (CRF) is the default quality mode for x264 and x265 encoders. It keeps quality constant while allowing bitrate to vary as needed. Values range from 0 to 51: lower = higher quality and bigger files, while higher = more compression and lower quality.</p>
             </li>
-           <li><p id="dither">Dither:</p>
+          <h2 id="dither">Dithering</h2>
            <p>Dithering adds low-level noise to a signal to make quantization artifacts less noticeable when reducing bit depth. It helps prevent visible or audible patterns, such as color banding in images or distortion in audio. Dithering is used in both digital audio and video workflows and is commonly applied when exporting to lower bit depths.</p>
           </li>
-          <li><p id="padding">Padding:</p>
+          <h2 id="padding">Padding</h2>
           <p>Padding refers to adding extra pixels to the borders of an image or video frame. Padding is often used to change the frame size, adjust or preserve aspect ratios, create borders, or prepare material for further processing. The added pixels can be set to a constant value or sampled from the existing border.</p>
           <p class="indent">Bibliography:</p>
           <ul>
@@ -258,6 +258,12 @@ If the error message includes other parts of the command, such as a flag, that i
             </ul>
             </li>
           </ul>
+          <h2 id="colormatrix">Color Matrix</h2>
+        <p>A color matrix is a set of coefficients used to convert pixel values between color spaces, such as RGB and YUV, or between different YUV standards like BT.601, BT.709, and BT.2020. Using the correct matrix ensures accurate color reproduction when encoding, decoding, or transforming video.</p>
+        <h2 id="colorspace">Color Space</h2>
+        <p>A color space defines how colors are represented as numeric values, including their gamut and luminance values. It provides a standardized way to interpret and reproduce how colors are captured, processed, and displayed across different devices and workflows.</p>
+        <h2 id="ntscpal">NTSC and PAL</h2>
+        
            
     </div>
     <div class="well">
