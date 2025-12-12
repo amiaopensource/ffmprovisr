@@ -267,7 +267,20 @@ If the error message includes other parts of the command, such as a flag, that i
         <h2 id="imagenormalization">Image Normalization</h2>
         <p>Image normalization adjusts the range of pixel intensity values in an image. This process improves contrast, standardizes brightness, and prepares images for consistent processing, display, or analysis.</p>
         <h2 id="framerate">Frame Rate</h2>
-        <p></p>
+        <p>Frame rate refers to the frequency at which consecutive frames are captured or displayed, measured in frames per second (FPS). Typical frame rates include 24, 25, 30, and 60 FPS, depending on the source material and delivery standard.</p>
+        <h2 id="chromasubsampling">Chroma Subsampling</h2>
+        <p>Chroma subsampling is a compression technique that reduces the resolution of color (chroma) information relative to brightness (luma) in a video signal. This lowers bandwidth or file size without noticeably affecting perceived image quality.</p>
+        <p>Types of Chroma Subsampling</p>
+        <ul>
+        <li><p id="4:2:0">4:2:0:</p>
+        <p>A chroma subsampling format that stores color at half the horizontal and half the vertical resolution of luma. Each 2×2 block of luma samples shares a single pair of chroma samples, reducing color data to one-quarter of the luma data while maintaining most of the perceived image detail.</p>
+        </li>
+        <li><p id="4:2:2">4:2:2:</p>
+        <p>A chroma subsampling format where luma is sampled at full resolution, but chroma is sampled at half the horizontal resolution and full vertical resolution. 4:2:2 reduces chroma data compared with 4:4:4 while preserving vertical color detail.</p>
+        </li> 
+        <li><p id="4:4:4">4:4:4:</p>
+        <p>A chroma subsampling format in which luma and chroma are stored at full resolution. Unlike 4:2:2 or 4:2:0, 4:4:4 preserves all color information for each pixel.</p>
+        </li> 
            
     </div>
     <div class="well">
