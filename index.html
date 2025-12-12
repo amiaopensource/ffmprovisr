@@ -238,17 +238,13 @@ If the error message includes other parts of the command, such as a flag, that i
          <p class="link"></p>
          <ul>
             <h2 id="interlaced">Interlaced Video</h2>
-            <p>Interlaced video is a method of encoding motion by splitting each frame into two fields: one containing the odd-numbered horizontal lines and the other containing the even-numbered lines. The perceived motion smoothness is increased without increasing bandwidth since the fields are recorded at various times. Many analog media, such as broadcast television, VHS, Betamax, Digital8, and LaserDisc, used interlacing as standard,and it still appears in some digital sources.</p>
-            </li>
+            <p>Interlaced video is a method of encoding motion by splitting each frame into two fields: one containing the odd-numbered horizontal lines and the other containing the even-numbered lines. Because the fields are captured at different times, motion appears smoother even though the signal uses the same bandwidth. Many analog media, such as broadcast television, VHS, Betamax, Digital8, and LaserDisc, used interlacing as standard, and it still appears in some digital sources.</p>
             <h2 id="deinterlacing">Deinterlacing</h2>
            <p>Deinterlacing converts interlaced video fields into progressive frames. A deinterlacer buffers the fields and reconstructs missing lines using techniques like blending or motion-adaptive interpolation. Effective deinterlacing reduces artifacts like combing and flicker.</p>
-           </li>
             <h2 id="CRF">CRF Quality Level</h2>
             <p>Constant Rate Factor (CRF) is the default quality mode for x264 and x265 encoders. It keeps quality constant while allowing bitrate to vary as needed. Values range from 0 to 51: lower = higher quality and bigger files, while higher = more compression and lower quality.</p>
-            </li>
           <h2 id="dither">Dithering</h2>
            <p>Dithering adds low-level noise to a signal to make quantization artifacts less noticeable when reducing bit depth. It helps prevent visible or audible patterns, such as color banding in images or distortion in audio. Dithering is used in both digital audio and video workflows and is commonly applied when exporting to lower bit depths.</p>
-          </li>
           <h2 id="padding">Padding</h2>
           <p>Padding refers to adding extra pixels to the borders of an image or video frame. Padding is often used to change the frame size, adjust or preserve aspect ratios, create borders, or prepare material for further processing. The added pixels can be set to a constant value or sampled from the existing border.</p>
           <p class="indent">Bibliography:</p>
