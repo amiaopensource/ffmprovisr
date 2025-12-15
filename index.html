@@ -550,6 +550,14 @@ If the error message includes other parts of the command, such as a flag, that i
       </dl>
       <p>By default, this recipe will include one track of each type (e.g. audio, video) in the output file. If you wish to include more tracks, consult the <a href="#stream-mapping">entry on stream mapping</a>.</p>
       <p>For more information, see the <a href="https://trac.ffmpeg.org/wiki/Encode/H.264" target="_blank">FFmpeg and H.264 Encoding Guide</a> on the FFmpeg wiki.</p>
+      <h5>&#128203; Real-World Example</h5>
+      <div class="real-world-content">
+      <h6>Institution:University of North Carolina at Chapel Hill</h6>
+      <p><strong>Context:</strong> The University Archives and Records Management Services department acquired a non-professional, unedited footage of a graduation ceremony. The file was 112 gigabytes and encoded using the Apple ProRes codec. They tried to transcode the file into FFVI to decrease the size, but it doubled in size.</p>
+      <p><strong>Solution:</strong> The curator agreed to compression since it was not the only footage of the ceremony, and they decided on the h. 264 codec.Used the FFmpeg command <code>-i -c:v libx264 -pix_fmt yuv420p -crf 12 -c:a copy [destination]</code></p>
+      <p><strong>Outcome:</strong>After transcoding, the resulting file was 53 gigabytes, reducing almost half of the size of the original.</p>
+      <p>Check out the <a href="https://journal.code4lib.org/articles/14244">blog</a> to read more about the case study.</p>
+      </div>
       <p class="link"></p>
     </div>
     <!-- ends Transcode to H.264 -->
