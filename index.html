@@ -508,6 +508,12 @@ If the error message includes other parts of the command, such as a flag, that i
         <li><code>prores</code> is much faster, can be used for progressive video only, and seems to be better for video according to Rec. 601 (Recommendation ITU-R BT.601).</li>
         <li><code>prores_ks</code> generates a better file, can also be used for interlaced video, allows also encoding of ProRes 4444 (<code>-c:v prores_ks -profile:v 4</code>) and ProRes 4444 XQ (<code>-c:v prores_ks -profile:v 5</code>), and seems to be better for video according to Rec. 709 (Recommendation ITU-R BT.709).</li>
       </ul>
+      <h5>&#128203; Real-World Example</h5>
+      <div class="real-world-content">
+      <h6>Institution:University Libraries</h6>
+      <p><strong>Context:</strong> The standard for the intermediary file at the library is Apple ProRes 422 codec 10-bit wrapped in a MOV container. The input file is wrapped in an MKV container.</p>
+      <p><strong>Solution:</strong> Used FFmpeg command, ffmpeg -i input.mkv -c:v prores_ks -profile:v hq output.mov to create intermediary file. The flag prores_ks specifies that the video would only encode to 10-bit. </p>
+      </div>
       <p class="link"></p>
     </div>
     <!-- ends Transcode to ProRes -->
