@@ -43,6 +43,7 @@
     <a href="#imagemagick"><div class="contents-list">ImageMagick</div></a>
     <a href="#flac-tool"><div class="contents-list">flac tool</div></a>
     <a href="#shutterencoder"><div class="contents-list">Shutter Encoder</div></a>
+    <a href="#XLD"><div class="contents-list">XLD</div></a>
   </nav>
 
   <div class="content">
@@ -3169,7 +3170,35 @@ If the error message includes other parts of the command, such as a flag, that i
     </div>
     <!-- ends "Shutter Encoder"-->
 
-    </div>
+    <div class="well">
+      <h2>X Loseless Decoder</h2>
+       <!-- XLD Tool -->
+      
+    <!-- Find Drive Offset for Exact CD Ripping -->
+      <label class="recipe" for="XLD">Find Drive Offset for Exact CD Ripping</label>
+      <input type="checkbox" id="XLD">
+      <div class="hiding">
+        <h5>About XLD</h5>
+        <p>X Lossless Decoder(XLD) is a tool for Mac OS X that is able to decode/convert/play various 'lossless' audio files. The supported audio files can be split into some tracks with cue sheet when decoding. It works on Mac OS X 10.4 and later.</p>
+        <h3>Find Drive Offset for Exact CD Ripping</h3>
+        <p>Open Preferences on XLD and go to the tab CD Rip. In the column “Read samples offset correction value,” there is a number value that tells the correction offset, and when you hover over the value, you will see the CD drive specification. </p>
+      </div>
+    <!-- End Find Drive Offset for Exact CD Ripping -->
+
+    <!-- Ripping CDDA -->
+      <label class="recipe" for="XLD_rip">Ripping CDDA</label>
+      <input type="checkbox" id="XLD_rip">
+      <div class="hiding">
+        <h3>Ripping CDDA</h3>
+        <p><strong>Important Setup:</strong>to configure XLD properly before ripping your first CD, you should set Character encoding of cuesheet to Unicode (UTF-8), check the Automatically check for updates box, and set Maximum #Threads according to your processor cores if not automatically detected.For the output format, select FLAC, and click the option button to set compression level to none for lossless compression. Uncheck “Allow to embed cue sheet”.In the CD Rip Tab: Set Ripper Mode to “XLD Secure Ripper” and check “Use C2 Error Pointers” if your drive supports them. </p>
+        <p><strong>The Ripping Process: Once you load the CD, if not automatically loaded, open to file and open Audio CD to find your CD. XLD will begin to detect the pre-gaps. At the top of the window of Pre-gap settings, choose “Include pre-gap except for HTOA” and choose your output directory. You can also click “Get Metadata” and save cue sheet to store CD tags and other related metadata. To start the ripping process, click the extract and wait for the process to complete. </strong></p>
+        <p>After the ripping process is completed, Check any error messages to verify the rip.</p>
+      </div>
+      <p class="link"></p>
+    <!-- End Ripping CDDA -->
+
+    
+      </div>
    <!-- ends "content" -->
 
 <!-- sample example -->
