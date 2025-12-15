@@ -1471,7 +1471,14 @@ If the error message includes other parts of the command, such as a flag, that i
         <dt>-ss 00:05:00 -t 10</dt><dd>Beginning five minutes into the original video, this command will create a 10-second-long excerpt.</dd>
       </dl>
       <p>Note: In order to keep the original timestamps, without trying to sanitize them, you may add the <code>-copyts</code> option.</p>
-      <p class="link"></p>
+      <h5>&#128203; Real-World Example</h5>
+      <div class="real-world-content">
+      <h6>Institution:Art Museum</h6>
+      <p><strong>Context:</strong> An art museum wants to make a 10 or 15-second excerpt of an interview with an artist to display on social media or in the exhibition hall as a compliment to the artwork.</p>
+      <p><strong>Solution:</strong> Run an ffmpeg command with the exact timestamp where the museum wants the excerpt.</p>
+      <p><strong>Possible Complication:</strong> Sometimes, in addition to trimming the original file, the institution might also want to transcode to other codecs and upscale the video from SD to HD with pillarbox for widescreen display. Check NYPL’s <a href="https://github.com/NYPL/ami-preservation/blob/main/ami_scripts/trim_and_transcode.py">documentation</a> for further details. </p>
+	  </div>
+	  <p class="link"></p>
     </div>
     <!-- ends Trim -->
 
