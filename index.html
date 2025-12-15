@@ -512,7 +512,7 @@ If the error message includes other parts of the command, such as a flag, that i
       <div class="real-world-content">
       <h6>Institution:University Libraries</h6>
       <p><strong>Context:</strong> The standard for the intermediary file at the library is Apple ProRes 422 codec 10-bit wrapped in a MOV container. The input file is wrapped in an MKV container.</p>
-      <p><strong>Solution:</strong> Used FFmpeg command, ffmpeg -i input.mkv -c:v prores_ks -profile:v hq output.mov to create intermediary file. The flag prores_ks specifies that the video would only encode to 10-bit. </p>
+      <p><strong>Solution:</strong> Used FFmpeg command, <code>-i input.mkv -c:v prores_ks -profile:v hq output.mov</code> to create intermediary file. The flag prores_ks specifies that the video would only encode to 10-bit. </p>
       </div>
       <p class="link"></p>
     </div>
