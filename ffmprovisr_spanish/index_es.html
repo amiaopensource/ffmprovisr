@@ -62,12 +62,12 @@
       <h3>Licencia</h3>
       <p class="license">
         <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank"><img alt="Creative Commons License" src="../img/cc.png"></a><br>
-        Este trabajo está protegido por la licencia de <a href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank">Creative Commons Attribución 4.0 Internacional</a>.
+        Este trabajo está protegido por la licencia de <a href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank">Creative Commons Atribución 4.0 Internacional</a>.
       </p>
       <h3>Proyectos hermanos</h3>
       <p><a href="https://dd388.github.io/crals/" target="_blank">Script Ahoy</a>: recurso comunitario de programación en línea de comando para archivistas y bibliotecarios</p>
       <p><a href="https://datapraxis.github.io/sourcecaster/" target="_blank">The Sourcecaster</a>: aplicación que ayuda a usar la línea de comandos para resolver problemas comunes que surgen al trabajar con archivos digitales.</p>
-      <p><a href="https://pugetsoundandvision.github.io/micropops/" target="_blank">Micropops</a>: libería de las línea de comandos más usadas para la manipulación de archivos digitales.</p>
+      <p><a href="https://pugetsoundandvision.github.io/micropops/" target="_blank">Micropops</a>: librería de las línea de comandos más usadas para la manipulación de archivos digitales.</p>
       <p><a href="https://amiaopensource.github.io/cable-bible/" target="_blank">Cable Bible</a>: guía de cables y conectores usados en soportes tecnológicos audiovisuales.</p>
       <p><a href="https://eaasi.gitlab.io/program_docs/qemu-qed/" target="_blank">QEMU QED</a>: página web de instrucciones para usar QEMU (Quick EMUlator), la cual es una aplicación que usa línea de comandos para emulación y virtualización de computadoras.</p>
       <p><a href="https://amiaopensource.github.io/ffmpeg-artschool/" target="_blank">ffmpeg-artschool</a>: taller de AMIA que proporciona línea de comandos, ejercicios y actividades para crear arte usando FFmpeg.</p>
@@ -184,7 +184,7 @@
       <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -vf colormatrix=<em>src</em>:<em>dst</em> <em>output_file</em></code>
       <p>En el comando previo, <a href="https://ffmpeg.org/ffmpeg-filters.html#colormatrix" target="_blank">colormatrix</a> es el filtro usado.<em>src</em> y <em>dst</em> representan la fuente y el destino del espacio de color a aplicarse. Entonces, la parte después de <code>-vf</code> es conocido como un <strong>filtergraph</strong>.</p>
       <p>Aviso!</p><p><em>src</em> y <em>dst</em> tienen valores específicos que son los que reemplazarán <em>src</em> y <em>dst</em>. 
-      <p>También es posible aplicar múltiples filtros manera secuencial en un filtergraph. A esta secuencia de filtros se le llama cadena de filtros. Asimismo, un filtergraph puede incluir múltiples cadenas de filtros. Los filtros en una cadena de filtros se separan mediante una coma (<code>,</code>) y las cadenas de filtros se separan mediante punto y coma (<code>;</code>). Por ejemplo, analizemos el comando de inverse telecine<!-- Link to it once the translation is finished <a href="#inverse-telecine">inverse telecine</a>-->.</p>
+      <p>También es posible aplicar múltiples filtros manera secuencial en un filtergraph. A esta secuencia de filtros se le llama cadena de filtros. Asimismo, un filtergraph puede incluir múltiples cadenas de filtros. Los filtros en una cadena de filtros se separan mediante una coma (<code>,</code>) y las cadenas de filtros se separan mediante punto y coma (<code>;</code>). Por ejemplo, analicemos el comando de inverse telecine<!-- Link to it once the translation is finished <a href="#inverse-telecine">inverse telecine</a>-->.</p>
       <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -vf "fieldmatch,yadif,decimate" <em>output_file</em></code></p>
       <p>Aquí tenemos un filtergraph que incluye una cadena de filtros, la cual está compuesta de tres filtros de video.</p>
       <p>Siempre es mejor ingresas tu filtergraph entre comillas, porque esto te permitirá usar espacios en tu filtergraph. Entonces, usando de nuevo el mismo ejemplo de inverse telecine, los siguientes comandos de filtros son válidos y equivalentes.</p>
@@ -194,7 +194,7 @@
         <li><code>-vf "fieldmatch, yadif, decimate"</code></li>
       </ul>
       <p>pero <code>-vf fieldmatch, yadif, decimate</code> no es válido.</p>
-      <p>Ahora, el orden de los filtros sí es importante. Los filtros de video son aplicados al input file en el mismo orden en el que son escritos en el comando. Al input file se le aplica el primer filtro; luego con el resultado de ese filtro, se aplica el segundo de la cadena y así sucesivamente. En el ejemplo de arriba, <code>fieldmatch</code> recontruye los fotogramas originales del telecineado inverso. <code>yadif</code> hace algo llamado deinterlace, que es (this is a failsafe in case any combed frames remain. Por ejemplo, si la fuente mezcla telecineado y contenido interlaceado lineal), y, por último, <code>decimate</code> elimina fotogramas duplicados. Es claro que no es posible eliminar fotogramas duplicados si estos primero no han sido reconstruidos.</p>
+      <p>Ahora, el orden de los filtros sí es importante. Los filtros de video son aplicados al input file en el mismo orden en el que son escritos en el comando. Al input file se le aplica el primer filtro; luego con el resultado de ese filtro, se aplica el segundo de la cadena y así sucesivamente. En el ejemplo de arriba, <code>fieldmatch</code> reconstruye los fotogramas originales del telecineado inverso. <code>yadif</code> hace algo llamado deinterlace, que es (this is a failsafe in case any combed frames remain. Por ejemplo, si la fuente mezcla telecineado y contenido interlaceado lineal), y, por último, <code>decimate</code> elimina fotogramas duplicados. Es claro que no es posible eliminar fotogramas duplicados si estos primero no han sido reconstruidos.</p>
       <h4>Notas</h4>
       <ul>
         <li><code>-vf</code> es el abreviado de <code>-filter:v</code></li>
@@ -374,7 +374,7 @@
       <p>Se puede usar el mismo comando básico para generar un archivo de mayor calidad mediante alguna de las preconfiguraciones.</p>
       <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -pix_fmt yuv420p -preset veryslow -crf 18 -c:a aac <em>output_file</em></code></p>
       <dl>
-        <dt>-preset <em>veryslow</em></dt><dd>Esta indicación le pide a FFmpeg que use la prconfiguración más lenta posible para lograr una compresión de alta calidad.<br>
+        <dt>-preset <em>veryslow</em></dt><dd>Esta indicación le pide a FFmpeg que use la preconfiguración más lenta posible para lograr una compresión de alta calidad.<br>
         Las preconfiguraciones disponibles desde la más lento hasta la más rápida son, <code>veryslow</code>, <code>slower</code>, <code>slow</code>, <code>medium</code>, <code>fast</code>, <code>faster</code>, <code>veryfast</code>, <code>superfast</code>, <code>ultrafast</code>.</dd>
         <dt>-crf <em>18</em></dt><dd>Si especificar un CRF bajo vas a obtener un archivo pesado con una mejor calidad visual. Para archivos H.264 codificados con submuestreo de chroma en 4:2:0 (por ejemplo, usando <code>-pix_fmt yuv420p</code>), la escala se sitúa entre 0-51 para contenido de 8-bit, siendo 0 compresión sin pérdida y 51 la peor calidad posible.<br>
           Si el CRF no está especificado, <code>libx264</code> usará el valor predeterminado de 23. 18 es considerado como compresión "visualmente sin pérdida".</dd>
