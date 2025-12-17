@@ -1299,22 +1299,22 @@
     <!-- ends Excerpt from beginning -->
 
     <!-- Excerpt to end -->
-    <!-- <label class="recipe" for="excerpt_to_end">Create a new file with the first five seconds trimmed off the original</label>
+    <label class="recipe" for="excerpt_to_end">Crea un nuevo archivo eliminando los primeros cinco segundos del original</label>
     <input type="checkbox" id="excerpt_to_end">
     <div class="hiding">
-      <h5>Excerpt to end</h5>
+      <h5>Extraer hacia el final</h5>
       <p><code>ffmpeg -i <em>input_file</em> -ss <em>5</em> -c copy -map 0 <em>output_file</em></code></p>
-      <p>This command copies a file starting from a specified time, removing the first few seconds from the output. This can be used to create an excerpt, or remove unwanted content from the beginning of a file.</p>
+      <p>Este comando copia un archivo a partir de un momento específico, eliminando los primeros segundos del archivo de salida. Esto se puede usar para crear un fragmento o eliminar contenido no deseado del principio de un archivo.</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
-        <dt>-ss <em>5</em></dt><dd>tells FFmpeg what timecode in the file to look for to start copying, and specifies the number of seconds into the video that FFmpeg should start copying. To be more specific, you can use timecode such as 00:00:05.</dd>
-        <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
-        <dt>-map 0</dt><dd>tells FFmpeg to map all streams of the input to the output.</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
+        <dt>-ss <em>5</em></dt><dd>indica a FFmpeg el código de tiempo en el archivo a partir del cual debe comenzar la copia, especificando el número de segundos desde el inicio del video. Para mayor precisión, se puede usar un código de tiempo como 00:00:05.</dd>
+        <dt>-c copy</dt><dd>utiliza el modo de copia de flujo para remultiplexar en lugar de recodificar</dd>
+        <dt>-map 0</dt><dd>indica a FFmpeg que asigne todos los flujos de entrada a la salida.</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p class="link"></p>
-    </div> -->
+    </div>
     <!-- ends Excerpt to end -->
 
     <!-- Excerpt from end -->
