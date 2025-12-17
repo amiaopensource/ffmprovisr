@@ -1337,47 +1337,47 @@
     <!-- ends Excerpt from end -->
 
     <!-- Trim start silence -->
-    <!-- <label class="recipe" for="trim_start_silence">Trim silence from beginning of an audio file</label>
+    <label class="recipe" for="trim_start_silence">Recortar el silencio al principio de un archivo de audio</label>
     <input type="checkbox" id="trim_start_silence">
     <div class="hiding">
-      <h5>Remove silent portion at the beginning of an audio file</h5>
+      <h5>Eliminar la parte silente al principio de un archivo de audio</h5>
       <p><code>ffmpeg -i <em>input_file</em> -af silenceremove=start_threshold=-57dB:start_duration=1:start_periods=1  -c:a <em>your_codec_choice</em> -ar <em>your_sample_rate_choice</em> <em>output_file</em></code></p>
-      <p>This command will automatically remove silence at the beginning of an audio file. The threshold for what qualifies as silence can be changed - this example uses anything under -57 dB, which is a decent level for accounting for analogue hiss.</p>
-      <p><strong>Note:</strong> Since this command uses a filter, the audio stream will be re-encoded for the output. If you do not specify a sample rate or codec, this command will use the sample rate from your input and <a href='#codec-defaults'>the codec defaults for your output format</a>. Take care that you are getting your intended results!</p>
+      <p>Este comando eliminará automáticamente el silencio al principio de un archivo de audio. El umbral que define el silencio se puede modificar - este ejemplo utiliza cualquier sonido por debajo de -57 dB, un nivel adecuado para tener en cuenta el ruido de fondo analógico.</p>
+      <p><strong>Nota:</strong> Dado que este comando utiliza un filtro, el flujo de audio se recodificará para la salida. Si no se especifica una frecuencia de muestreo o un códec, este comando utilizará la frecuencia de muestreo de la entrada y <a href='#codec-defaults'>los códecs predeterminados para el formato de salida</a>. ¡Asegúrese de obtener los resultados deseados!</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file (e.g. input_file.wav)</dd>
-        <dt>-af silenceremove</dt><dd>applies the silence remove filter</dd>
-        <dt>start_threshold=-57dB</dt><dd>tells the filter the threshold for what to call 'silence' for the purpose of removal. This can be increased or decreased as necessary.</dd>
-        <dt>start_duration=1</dt><dd>This tells the filter how much non-silent audio must be detected before it stops trimming. With a value of <code>0</code> the filter would stop after detecting any non-silent audio. A setting of <code>1</code> allows it to continue trimming through short 'pops' such as those caused by engaging the playback device, or the recorded sound of a microphone being plugged in.</dd>
-        <dt>start_periods=1</dt><dd>This tells the filter to trim the first example of silence it discovers from the beginning of the file. This value could be increased to remove subsequent silent portions from the file if desired.</dd>
-        <dt>-c:a <em>your_codec_choice</em></dt><dd>This tells the filter what codec to use, and must be specified to avoid defaults. If you want 24 bit PCM, your value would be <code>-c:a pcm_s24le</code>.</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida (e.g. output_file.wav).</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada (por ejemplo, input_file.wav)</dd>
+        <dt>-af silenceremove</dt><dd>aplica el filtro de eliminación de silencio</dd>
+        <dt>start_threshold=-57dB</dt><dd>indica al filtro el umbral para considerar qué es 'silencio' para su eliminación. Esto se puede aumentar o disminuir según sea necesario.</dd>
+        <dt>start_duration=1</dt><dd>indica al filtro cuánto audio no silencioso debe detectar antes de dejar de recortar. Con un valor de <code>0</code> el filtro se detendría después de detectar cualquier audio no silencioso. Un valor de <code>1</code> permite que continúe recortando a través de pequeños ‘ruidos’, como los causados ​​al activar el dispositivo de reproducción o el sonido grabado al conectar un micrófono.</dd>
+        <dt>start_periods=1</dt><dd>indica al filtro que recorte la primera porción de silencio que encuentre al principio del archivo. Este valor se puede aumentar para eliminar porciones silenciosas posteriores del archivo si se desea.</dd>
+        <dt>-c:a <em>your_codec_choice</em></dt><dd>indica al filtro qué códec usar y debe especificarse para evitar valores predeterminados. Si desea PCM de 24 bits, el valor sería <code>-c:a pcm_s24le</code>.</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida (por ejemplo, output_file.wav).</dd>
       </dl>
-    </div> -->
+    </div> 
     <!-- ends Trim start silence -->
 
     <!-- Trim end silence -->
-    <!-- <label class="recipe" for="trim_end_silence">Trim silence from the end of an audio file</label>
+    <label class="recipe" for="trim_end_silence">Recortar el silencio al final de un archivo de audio</label>
     <input type="checkbox" id="trim_end_silence">
     <div class="hiding">
-      <h5>Remove silent portion from the end of an audio file</h5>
+      <h5>Eliminar la parte silenciosa del final de un archivo de audio</h5>
       <p><code>ffmpeg -i <em>input_file</em> -af areverse,silenceremove=start_threshold=-57dB:start_duration=1:start_periods=1,areverse -c:a <em>your_codec_choice</em> -ar <em>your_sample_rate_choice</em> <em>output_file</em></code></p>
-      <p>This command will automatically remove silence at the end of an audio file. Since the <code>silenceremove</code> filter is best at removing silence from the beginning of files, this command used the <code>areverse</code> filter twice to reverse the input, remove silence and then restore correct orientation.</p>
-      <p><strong>Note:</strong> Since this command uses a filter, the audio stream will be re-encoded for the output. If you do not specify a sample rate or codec, this command will use the sample rate from your input and <a href='#codec-defaults'>the codec defaults for your output format</a>. Take care that you are getting your intended results!</p>
+      <p>Este comando eliminará automáticamente el silencio al final de un archivo de audio. Dado que el filtro <code>silenceremove</code> funciona mejor eliminando el silencio al principio de los archivos, este comando utiliza el filtro <code>areverse</code> dos veces para invertir la entrada, eliminar el silencio y luego restaurar la orientación correcta.</p>
+      <p><strong>Nota:</strong> Dado que este comando utiliza un filtro, la transmisión de audio se recodificará para la salida. Si no especifica una frecuencia de muestreo o un códec, este comando utilizará la frecuencia de muestreo de la entrada y <a href='#codec-defaults'>los valores predeterminados del códec para el formato de salida</a>. ¡Asegúrese de obtener los resultados deseados!</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file (e.g. input_file.wav)</dd>
-        <dt>-af areverse,</dt><dd>starts the filter chain with reversing the input</dd>
-        <dt>silenceremove</dt><dd>applies the silence remove filter</dd>
-        <dt>start_threshold=-57dB</dt><dd>tells the filter the threshold for what to call 'silence' for the purpose of removal. This can be increased or decreased as necessary.</dd>
-        <dt>start_duration=1</dt><dd>This tells the filter how much non-silent audio must be detected before it stops trimming. With a value of <code>0</code> the filter would stop after detecting any non-silent audio. A setting of <code>1</code> allows it to continue trimming through short 'pops' such as those caused by engaging the playback device, or the recorded sound of a microphone being plugged in.</dd>
-        <dt>start_periods=1</dt><dd>This tells the filter to trim the first example of silence it discovers.</dd>
-        <dt>areverse</dt><dd>applies the audio reverse filter again to restore input to correct orientation.</dd>
-        <dt>-c:a <em>your_codec_choice</em></dt><dd>This tells the filter what codec to use, and must be specified to avoid defaults. If you want 24 bit PCM, your value would be <code>-c:a pcm_s24le</code>.</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida (e.g. output_file.wav).</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada (por ejemplo, input_file.wav)</dd>
+        <dt>-af areverse,</dt><dd>inicia la cadena de filtros invirtiendo la entrada</dd>
+        <dt>silenceremove</dt><dd>aplica el filtro de eliminación de silencio</dd>
+        <dt>start_threshold=-57dB</dt><dd>indica al filtro el umbral para considerar qué es "silencio" para su eliminación. Esto se puede aumentar o disminuir según sea necesario.</dd>
+        <dt>start_duration=1</dt><dd>indica al filtro cuánto audio no silencioso debe detectarse antes de que deje de recortar. Con un valor de <code>0</code> el filtro se detendría después de detectar cualquier audio no silencioso. Una configuración de <code>1</code> le permite continuar recortando a través de pequeños ‘ruidos’ como los causados ​​por la activación del dispositivo de reproducción o el sonido grabado de un micrófono al conectarse.</dd>
+        <dt>start_periods=1</dt><dd>indica al filtro que recorte el primer ejemplo de silencio que encuentre.</dd>
+        <dt>areverse</dt><dd>aplica el filtro de inversión de audio nuevamente para restaurar la entrada a la orientación correcta.</dd>
+        <dt>-c:a <em>your_codec_choice</em></dt><dd>indica al filtro qué códec usar y debe especificarse para evitar valores predeterminados. Si desea PCM de 24 bits, el valor sería <code>-c:a pcm_s24le</code>.</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida (por ejemplo, output_file.wav).</dd>
       </dl>
-    </div> -->
+    </div>
     <!-- ends Trim end silence -->
 
     </div>
