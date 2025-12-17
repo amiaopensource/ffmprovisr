@@ -1276,26 +1276,26 @@
       </dl>
       <p>Nota: Para mantener las marcas de tiempo originales, sin intentar sanearlas, puedes añadir la opción <code>-copyts</code></p>
       <p class="link"></p>
-    </div> -->
+    </div>
     <!-- ends Trim -->
 
     <!-- Excerpt from beginning -->
-    <!-- <label class="recipe" for="excerpt_from_start">Create an excerpt, starting from the beginning of the file</label>
+    <label class="recipe" for="excerpt_from_start">Crear un fragmento, comenzando desde el principio del archivo</label>
     <input type="checkbox" id="excerpt_from_start">
     <div class="hiding">
-      <h5>Excerpt from beginning</h5>
+      <h5>Fragmento desde principio</h5>
       <p><code>ffmpeg -i <em>input_file</em> -t <em>5</em> -c copy -map 0 <em>output_file</em></code></p>
-      <p>This command captures a certain portion of a file, starting from the beginning and continuing for the amount of time (in seconds) specified in the script. This can be used to create a preview file, or to remove unwanted content from the end of the file. To be more specific, use timecode, such as 00:00:05.</p>
+      <p>Este comando captura una porción específica de un archivo, comenzando desde el principio y continuando durante el monto de tiempo (en segundos) especificado en la serie comandos. Esto se puede usar para crear un archivo de vista previa o para eliminar contenido no deseado del final del archivo. Para mayor precisión, use código de tiempo, como 00:00:05.</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
-        <dt>-t <em>5</em></dt><dd>tells FFmpeg to stop copying from the input file after a certain time, and specifies the number of seconds after which to stop copying. In this case, 5 seconds is specified.</dd>
-        <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
-        <dt>-map 0</dt><dd>tells FFmpeg to map all streams of the input to the output.</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
+        <dt>-t <em>5</em></dt><dd>indica a FFmpeg que deje de copiar desde el archivo de entrada después de un tiempo determinado y especifica la cantidad de segundos después de los cuales debe detenerse la copia. En este caso, se especifican 5 segundos.</dd>
+        <dt>-c copy</dt><dd>utiliza el modo de copia de flujo para remultiplexar en lugar de recodificar</dd>
+        <dt>-map 0</dt><dd>indica a FFmpeg que asigne todos los flujos de entrada a la salida.</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p class="link"></p>
-    </div> -->
+    </div>
     <!-- ends Excerpt from beginning -->
 
     <!-- Excerpt to end -->
