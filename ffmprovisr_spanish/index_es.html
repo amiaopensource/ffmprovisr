@@ -1163,60 +1163,60 @@
     <!-- ends Join files of the same type together -->
 
     <!-- Join files of different types together -->
-    <!-- <label class="recipe" for="join_different_files">Join (concatenate) two or more files of different types</label>
+     <label class="recipe" for="join_different_files">Unir (concatenar) dos o más archivos de diferentes tipos</label>
      <input type="checkbox" id="join_different_files">
      <div class="hiding">
-      <h5>Join files together</h5>
+      <h5>Unir archivos</h5>
       <p><code>ffmpeg -i input_1.avi -i input_2.mp4 -filter_complex "[0:v:0][0:a:0][1:v:0][1:a:0]concat=n=2:v=1:a=1[video_out][audio_out]" -map "[video_out]" -map "[audio_out]" <em>output_file</em></code></p>
-      <p>This command takes two or more files of the different file types and joins them together to make a single file.</p>
-      <p>The input files may differ in many respects - container, codec, chroma subsampling scheme, framerate, etc. However, the above command only works properly if the files to be combined have the same dimensions (e.g., 720x576). Also note that if the input files have different framerates, then the output file will be of variable framerate.</p>
-      <p>Some aspects of the input files will be normalized: for example, if an input file contains a video track and an audio track that do not have exactly the same duration, the shorter one will be padded. In the case of a shorter video track, the last frame will be repeated in order to cover the missing video; in the case of a shorter audio track, the audio stream will be padded with silence.</p>
+      <p>Este comando toma dos o más archivos de diferentes tipos y los une para crear un solo archivo.</p>
+      <p>Los archivos de entrada pueden diferir en muchos aspectos: contenedor, códec, esquema de submuestreo de croma, fotogramas por segundo, etc. Sin embargo, el comando anterior solo funciona correctamente si los archivos que se van a combinar tienen las mismas dimensiones (por ejemplo, 720x576). Tenga en cuenta también que si los archivos de entrada tienen diferentes velocidades de fotogramas, el archivo de salida tendrá una velocidad de fotogramas variable.</p>
+      <p>Algunos aspectos de los archivos de entrada se normalizarán: por ejemplo, si un archivo de entrada contiene una pista de video y una pista de audio que no tienen exactamente la misma duración, la más corta se rellenará. En el caso de una pista de video más corta, el último fotograma se repetirá para cubrir el video faltante; en el caso de una pista de audio más corta, el flujo de audio se rellenará con silencio.</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_1.ext</em></dt><dd>path, name and extension of the first input file</dd>
-        <dt>-i <em>input_2.ext</em></dt><dd>path, name and extension of the second input file</dd>
-        <dt>-filter_complex</dt><dd>states that a complex filtergraph will be used</dd>
-        <dt>"</dt><dd>quotation mark to start filtergraph</dd>
-        <dt>[0:v:0][0:a:0]</dt><dd>selects the first video stream and first audio stream from the first input.<br>
-          Each reference to a specific stream is enclosed in square brackets. In the first stream reference, <code>0:v:0</code>, the first zero refers to the first input file, <code>v</code> means video stream, and the second zero indicates that it is the <em>first</em> video stream in the file that should be selected. Likewise, <code>0:a:0</code> means the first audio stream in the first input file.<br>
-          As demonstrated above, ffmpeg uses zero-indexing: <code>0</code> means the first input/stream/etc, <code>1</code> means the second input/stream/etc, and <code>4</code> would mean the fifth input/stream/etc.</dd>
-        <dt>[1:v:0][1:a:0]</dt><dd>As described above, this means select the first video and audio streams from the second input file.</dd>
-        <dt>concat=</dt><dd>starts the <code>concat</code> filter</dd>
-        <dt>n=2</dt><dd>states that there are two input files</dd>
-        <dt>:</dt><dd>separator</dd>
-        <dt>v=1</dt><dd>sets the number of output video streams.<br>
-          Note that this must be equal to the number of video streams selected from each segment.</dd>
-        <dt>:</dt><dd>separator</dd>
-        <dt>a=1</dt><dd>sets the number of output audio streams.<br>
-          Note that this must be equal to the number of audio streams selected from each segment.</dd>
-        <dt>[video_out]</dt><dd>name of the concatenated output video stream. This is a variable name which you define, so you could call it something different, like “vOut”, “outv”, or “banana”.</dd>
-        <dt>[audio_out]</dt><dd>name of the concatenated output audio stream. Again, this is a variable name which you define.</dd>
-        <dt>"</dt><dd>quotation mark to end filtergraph</dd>
-        <dt>-map "[video_out]"</dt><dd>map the concatenated video stream into the output file by referencing the variable defined above</dd>
-        <dt>-map "[audio_out]"</dt><dd>map the concatenated audio stream into the output file by referencing the variable defined above</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt>-i <em>input_1.ext</em></dt><dd>ruta, nombre y extensión del primer archivo de entrada</dd>
+        <dt>-i <em>input_2.ext</em></dt><dd>ruta, nombre y extensión del segundo archivo de entrada</dd>
+        <dt>-filter_complex</dt><dd>indica que se utilizará un gráfico de filtros complejo</dd>
+        <dt>"</dt><dd>comilla para iniciar el gráfico de filtros</dd>
+        <dt>[0:v:0][0:a:0]</dt><dd>selecciona la primera secuencia de video y la primera secuencia de audio de la primera entrada.<br>
+          Cada referencia a una secuencia o flujo específico está entre corchetes. En la primera referencia, <code>0:v:0</code>, el primer cero se refiere al primer archivo de entrada, <code>v</code> significa secuencia de video, y el segundo cero indica que se debe seleccionar <em>la primera</em> secuencia de video en el archivo. De manera similar, <code>0:a:0</code> significa la primera secuencia de audio del primer archivo de entrada.<br>
+          Como se muestra anteriormente, ffmpeg utiliza indexación base cero: <code>0</code> significa la primera entrada/secuencia/etc., <code>1</code> significa la segunda entrada/secuencia/etc., y <code>4</code> significaría la quinta entrada/secuencia/etc.</dd>
+        <dt>[1:v:0][1:a:0]</dt><dd>Como se describió anteriormente, esto significa seleccionar las primeras secuencias de video y audio del segundo archivo de entrada.</dd>
+        <dt>concat=</dt><dd>inicia el filtro <code>concat</code></dd>
+        <dt>n=2</dt><dd>indica que hay dos archivos de entrada</dd>
+        <dt>:</dt><dd>separador</dd>
+        <dt>v=1</dt><dd>establece el número de secuencias de video de salida.<br>
+          Tenga en cuenta que esto debe ser igual al número de secuencias de video seleccionadas de cada segmento.</dd>
+        <dt>:</dt><dd>separador</dd>
+        <dt>a=1</dt><dd>establece el número de secuencias de audio de salida.<br>
+          Tenga en cuenta que esto debe ser igual al número de secuencias de audio seleccionadas de cada segmento.</dd>
+        <dt>[video_out]</dt><dd>nombre de la secuencia de video de salida concatenada. Este es un nombre de variable que usted define, por lo que podría llamarlo de otra manera, como "vOut", "outv" o "banana".</dd>
+        <dt>[audio_out]</dt><dd>nombre de la secuencia de audio de salida concatenada. Nuevamente, este es un nombre de variable que usted define.</dd>
+        <dt>"</dt><dd>comilla para finalizar el gráfico de filtros</dd>
+        <dt>-map "[video_out]"</dt><dd>asigna la secuencia de video concatenada al archivo de salida haciendo referencia a la variable definida anteriormente</dd>
+        <dt>-map "[audio_out]"</dt><dd>asigna la secuencia de audio concatenada al archivo de salida haciendo referencia a la variable definida anteriormente</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida el archivo de salida</dd>
       </dl>
-      <p>If no characteristics of the output files are specified, ffmpeg will use the default encodings associated with the given output file type. To specify the characteristics of the output stream(s), add flags after each <code>-map "[out]"</code> part of the command.</p>
-      <p>For example, to ensure that the video stream of the output file is visually lossless H.264 with a 4:2:0 chroma subsampling scheme, the command above could be amended to include the following:<br>
+      <p>Si no se especifican las características de los archivos de salida, ffmpeg utilizará las codificaciones predeterminadas asociadas al tipo de archivo de salida especificado. Para especificar las características de los flujos de salida, añada indicadores después de cada parte <code>-map "[out]"</code> del comando command.</p>
+      <p>Por ejemplo, para garantizar que el flujo de video del archivo de salida sea H.264 sin pérdidas visuales con un esquema de submuestreo de croma 4:2:0, el comando anterior podría modificarse para incluir lo siguiente:<br>
         <code>-map "[video_out]" -c:v libx264 -pix_fmt yuv420p -preset veryslow -crf 18</code></p>
-      <p>Likewise, to encode the output audio stream as mp3, the command could include the following:<br>
+      <p>Del mismo modo, para codificar el flujo de audio de salida como mp3, el comando podría incluir lo siguiente:<br>
         <code>-map "[audio_out]" -c:a libmp3lame -dither_method triangular -qscale:a 2</code></p>
-      <h4>Variation: concatenating files of different resolutions</h4>
-      <p>To concatenate files of different resolutions, you need to resize the videos to have matching resolutions prior to concatenation. The most basic way to do this is by using a scale filter and giving the dimensions of the file you wish to match:</p>
+      <h4>Variación: concatenación de archivos de diferentes resoluciones</h4>
+      <p>Para concatenar archivos de diferentes resoluciones, es necesario redimensionar los videos para que sus resoluciones coincidan antes de la concatenación. La forma más básica de hacerlo es utilizando un filtro de escala e indicando las dimensiones del archivo con el que se desea que coincidan:</p>
       <p><code>-vf scale=1920:1080:flags=lanczos</code></p>
-      <p>(The Lanczos scaling algorithm is recommended, as it is slower but better than the default bilinear algorithm).</p>
-      <p>The rescaling should be applied just before the point where the streams to be used in the output file are listed. Select the stream you want to rescale, apply the filter, and assign that to a variable name (<code>rescaled_video</code> in the below example). Then you use this variable name in the list of streams to be concatenated.</p>
+      <p>(Se recomienda el algoritmo de escalado Lanczos, que es más lento pero mejor que el algoritmo bilineal predeterminado).</p>
+      <p>El reescalado debe aplicarse justo antes del punto donde se enumeran las secuencias que se utilizarán en el archivo de salida. Seleccione la secuencia que desea reescalar, aplique el filtro y asigne un nombre de variable (<code>rescaled_video</code> en el ejemplo siguiente). Luego, utilice este nombre de variable en la lista de flujos que se van a concatenar.</p>
       <p><code>ffmpeg -i input_1.avi -i input_2.mp4 -filter_complex "[0:v:0] scale=1920:1080:flags=lanczos [rescaled_video], [rescaled_video] [0:a:0] [1:v:0] [1:a:0] concat=n=2:v=1:a=1 [video_out] [audio_out]" -map "[video_out]" -map "[audio_out]" <em>output_file</em></code></p>
-      <p>However, this will only have the desired visual output if the inputs have the same aspect ratio. If you wish to concatenate an SD and an HD file, you will also wish to pillarbox the SD file while upscaling. (See the <a href="#SD_HD_2">Convert 4:3 to pillarboxed HD</a> command). The full command would look like this:</p>
+      <p>Sin embargo, esto solo tendrá el resultado visual deseado si las entradas tienen la misma relación de aspecto. Si desea concatenar un archivo SD y un archivo HD, también deberá aplicar el efecto pillarbox al archivo SD al mismo tiempo que lo escala. (Consulte el comando <a href="#SD_HD_2">Convertir 4:3 a HD en pillarboxed</a>). El comando completo se vería así:</p>
       <p><code>ffmpeg -i input_1.avi -i input_2.mp4 -filter_complex "[0:v:0] scale=1440:1080:flags=lanczos, pad=1920:1080:(ow-iw)/2:(oh-ih)/2 [to_hd_video], [to_hd_video] [0:a:0] [1:v:0] [1:a:0] concat=n=2:v=1:a=1 [video_out] [audio_out]" -map "[video_out]" -map "[audio_out]" <em>output_file</em></code></p>
-      <p>Here, the first input is an SD file which needs to be upscaled to match the second input, which is 1920x1080. The scale filter enlarges the SD input to the height of the HD frame, keeping the 4:3 aspect ratio; then, the video is pillarboxed within a 1920x1080 frame.</p>
-      <h4>Variation: concatenating files of different framerates</h4>
-      <p>If the input files have different framerates, then the output file may be of variable framerate. To explicitly obtain an output file of constant framerate, you may wish convert an input (or multiple inputs) to a different framerate prior to concatenation.</p>
-      <p>You can speed up or slow down a file using the <code>fps</code> and <code>atempo</code> filters (see also the <a href="#modify_speed">Modify speed</a> command).</p>
-      <p>Here's an example of the full command, in which input_1 is 30fps, input_2 is 25fps, and 25fps is the desired output speed.</p>
+      <p>Aquí, el primer archivo de entrada es un archivo SD que necesita escalarse para que coincida con el segundo archivo de entrada, que es de 1920x1080. El filtro de escala amplía la entrada SD a la altura del fotograma HD, manteniendo la relación de aspecto 4:3; luego, el video se rellena con barras laterales dentro de un fotograma de 1920x1080.</p>
+      <h4>Variación: concatenación de archivos con diferentes velocidades de fotogramas</h4>
+      <p>Si los archivos de entrada tienen diferentes velocidades de fotogramas, el archivo de salida puede tener una velocidad de fotogramas variable. Para obtener explícitamente un archivo de salida con una velocidad de fotogramas constante, puede convertir una entrada (o varias entradas) a una velocidad de fotogramas diferente antes de la concatenación.</p>
+      <p>Puede acelerar o ralentizar un archivo utilizando los filtros <code>fps</code> y <code>atempo</code> (consulte también el comando <a href="#modify_speed">Modificar velocidad</a>).</p>
+      <p>Aquí hay un ejemplo del comando completo, en el que input_1 tiene 30fps, input_2 tiene 25fps, y 25fps es la velocidad de fotogramas de salida deseada.</p>
       <p><code>ffmpeg -i input_1.avi -i input_2.mp4 -filter_complex "[0:v:0] fps=fps=25 [video_to_25fps]; [0:a:0] atempo=(25/30) [audio_to_25fps]; [video_to_25fps] [audio_to_25fps] [1:v:0] [1:a:0] concat=n=2:v=1:a=1 [video_out] [audio_out]" -map "[video_out]" -map "[audio_out]" <em>output_file</em></code></p>
-      <p>Note that the <code>fps</code> filter will drop or repeat frames as necessary in order to achieve the desired frame rate - see the FFmpeg <a href="https://ffmpeg.org/ffmpeg-filters.html#fps-1" target="_blank">fps docs</a> for more details.</p>
-      <p>For more information, see the <a href="https://trac.ffmpeg.org/wiki/Concatenate#differentcodec" target="_blank">FFmpeg wiki page on concatenating files of different types</a>.</p>
+      <p>Tenga en cuenta que el filtro <code>fps</code> eliminará o repetirá fotogramas según sea necesario para lograr la velocidad de fotogramas deseada -  consulte la documentación de FFmpeg sobre <a href="https://ffmpeg.org/ffmpeg-filters.html#fps-1" target="_blank">fps docs</a> para obtener más detalles.</p>
+      <p>Para obtener más información, consulte la <a href="https://trac.ffmpeg.org/wiki/Concatenate#differentcodec" target="_blank">página wiki de FFmpeg sobre la concatenación de archivos de diferentes tipos</a>.</p>
       <p class="link"></p>
     </div> -->
     <!-- ends Join files of the different types together -->
