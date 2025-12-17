@@ -1299,7 +1299,7 @@
     <!-- ends Excerpt from beginning -->
 
     <!-- Excerpt to end -->
-    <label class="recipe" for="excerpt_to_end">Crea un nuevo archivo eliminando los primeros cinco segundos del original</label>
+    <label class="recipe" for="excerpt_to_end">Crear un nuevo archivo eliminando los primeros cinco segundos del original</label>
     <input type="checkbox" id="excerpt_to_end">
     <div class="hiding">
       <h5>Extraer hacia el final</h5>
@@ -1318,22 +1318,22 @@
     <!-- ends Excerpt to end -->
 
     <!-- Excerpt from end -->
-    <!-- <label class="recipe" for="excerpt_from_end">Create a new file with the final five seconds of the original</label>
+    <label class="recipe" for="excerpt_from_end">Crear un nuevo archivo con los últimos cinco segundos del original</label>
     <input type="checkbox" id="excerpt_from_end">
     <div class="hiding">
-      <h5>Excerpt from end</h5>
+      <h5>Extraer desde del final</h5>
       <p><code>ffmpeg -sseof <em>-5</em> -i <em>input_file</em> -c copy -map 0 <em>output_file</em></code></p>
-      <p>This command copies a file starting from a specified time before the end of the file, removing everything before from the output. This can be used to create an excerpt, or extract content from the end of a file (e.g. for extracting the closing credits).</p>
+      <p>Este comando copia un archivo a partir de un tiempo específico antes del final del archivo, eliminando todo lo anterior en el archivo de salida. Esto se puede usar para crear un fragmento o extraer contenido del final de un archivo (por ejemplo, para extraer los créditos finales).</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-sseof <em>-5</em></dt><dd>This parameter must stay before the input file. It tells FFmpeg what timecode in the file to look for to start copying, and specifies the number of seconds from the end of the video that FFmpeg should start copying. The end of the file has index 0 and the minus sign is needed to reference earlier portions. To be more specific, you can use timecode such as -00:00:05. Note that in most file formats it is not possible to seek exactly, so FFmpeg will seek to the closest point before.</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
-        <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
-        <dt>-map 0</dt><dd>tells FFmpeg to map all streams of the input to the output.</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt>-sseof <em>-5</em></dt><dd>Este parámetro debe ir antes del archivo de entrada. Le indica a FFmpeg qué código de tiempo buscar en el archivo para comenzar la copia y especifica la cantidad de segundos desde el final del video a partir de la cual FFmpeg debe comenzar a copiar. El final del archivo tiene el índice 0 y se necesita el signo menos para hacer referencia a partes anteriores. Para ser más específico, puede usar un código de tiempo como -00:00:05. Tenga en cuenta que en la mayoría de los formatos de archivo no es posible buscar con precisión, por lo que FFmpeg buscará lo más cercano al punto anterior.</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
+        <dt>-c copy</dt><dd>utiliza el modo de copia de flujo para remultiplexar en lugar de recodificar</dd>
+        <dt>-map 0</dt><dd>indica a FFmpeg que asigne todos los flujos de entrada a la salida</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p class="link"></p>
-    </div> -->
+    </div>
     <!-- ends Excerpt from end -->
 
     <!-- Trim start silence -->
