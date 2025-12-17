@@ -1218,29 +1218,29 @@
       <p>Tenga en cuenta que el filtro <code>fps</code> eliminará o repetirá fotogramas según sea necesario para lograr la velocidad de fotogramas deseada -  consulte la documentación de FFmpeg sobre <a href="https://ffmpeg.org/ffmpeg-filters.html#fps-1" target="_blank">fps docs</a> para obtener más detalles.</p>
       <p>Para obtener más información, consulte la <a href="https://trac.ffmpeg.org/wiki/Concatenate#differentcodec" target="_blank">página wiki de FFmpeg sobre la concatenación de archivos de diferentes tipos</a>.</p>
       <p class="link"></p>
-    </div> -->
+    </div>
     <!-- ends Join files of the different types together -->
 
     <!-- Split file into segments -->
-    <!-- <label class="recipe" for="segment_file">Split one file into several smaller segments</label>
+    <label class="recipe" for="segment_file">Dividir un archivo en varios segmentos más pequeños</label>
     <input type="checkbox" id="segment_file">
     <div class="hiding">
-      <h5>Split file into segments</h5>
+      <h5>Dividir archivo en segmentos</h5>
       <p><code>ffmpeg -i <em>input_file</em> -c copy -map 0 -f segment -segment_time 60 -reset_timestamps 1 <em>output_file-%03d.mkv</em></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando.</dd>
-        <dt>-i <em>input_file</em></dt><dd>Takes in a normal file.</dd>
-        <dt>-c copy</dt><dd>Use stream copy mode to re-mux instead of re-encode.</dd>
-        <dt>-map 0</dt><dd>tells FFmpeg to map all streams of the input to the output.</dd>
-        <dt>-f segment</dt><dd>Use <a href="https://ffmpeg.org/ffmpeg-formats.html#toc-segment_002c-stream_005fsegment_002c-ssegment" target="_blank">segment muxer</a> for generating the output.</dd>
-        <dt>-segment_time 60</dt><dd>Set duration of each segment (in seconds). This example creates segments with max. duration of 60s each.</dd>
-        <dt>-reset_timestamps 1</dt><dd>Reset timestamps of each segment to 0. Meant to ease the playback of the generated segments.</dd>
+        <dt>-i <em>input_file</em></dt><dd>especifica el archivo de entrada.</dd>
+        <dt>-c copy</dt><dd>utiliza el modo de copia de flujo para remultiplexar en lugar de recodificar.</dd>
+        <dt>-map 0</dt><dd>indica a FFmpeg que asigne todos los flujos de entrada a la salida.</dd>
+        <dt>-f segment</dt><dd>utiliza el <a href="https://ffmpeg.org/ffmpeg-formats.html#toc-segment_002c-stream_005fsegment_002c-ssegment" target="_blank">multiplexor de segmentos</a> para generar la salida.</dd>
+        <dt>-segment_time 60</dt><dd>establece la duración de cada segmento (en segundos). Este ejemplo crea segmentos con una duración máxima de 60 segundos cada uno.</dd>
+        <dt>-reset_timestamps 1</dt><dd>restablece las marcas de tiempo de cada segmento a 0. Esto facilita la reproducción de los segmentos generados.</dd>
         <dt><em>output_file-%03d.mkv</em></dt>
         <dd>
-        <p>ruta y nombre del archivo de salida.<br>
-          In order to have an incrementing number in each segment filename, FFmpeg supports <a href="http://www.cplusplus.com/reference/cstdio/printf/" target="_blank">printf-style</a> syntax for a counter.</p>
-          <p>In this example, '%03d' means: 3-digits, zero-padded<br>
-            Examples:</p>
+        <p>ruta, nombre y extensión del archivo de salida.<br>
+          Para que el nombre de cada segmento incluya un número que vaya incrementando,FFmpeg admite la sintaxis de <a href="http://www.cplusplus.com/reference/cstdio/printf/" target="_blank">estilo printf</a> para un contador.</p>
+          <p>En este ejemplo,'%03d' significa: 3-digitos, con ceros a la izquierda.<br>
+            Ejemplos:</p>
           <ul>
             <li><code>%03d</code>: 000, 001, 002, ... 999</li>
             <li><code>%05d</code>: 00000, 00001, 00002, ... 99999</li>
@@ -1249,7 +1249,7 @@
         </dd>
       </dl>
       <p class="link"></p>
-    </div> -->
+    </div>
     <!-- ends Split file into segments -->
 
     <!-- Trim -->
