@@ -2837,7 +2837,7 @@ If the error message includes other parts of the command, such as a flag, that i
       <div class="hiding">
         <h5>Differences Between ImageMagick Version 6 and Version 7</h5>
         <p>ImageMagick currently maintains two versions of its software: version 6 and version 7. ImageMagick released version 7 in 2016, and the platform encourages its user base to upgrade to the latest version. However, version 6, sometimes referred to as Legacy ImageMagick, is still maintained. A patch for Legacy ImageMagick version 6 was released as recently as October 2025. A link to Legacy ImageMagick’s repository can be found <a href="https://github.com/ImageMagick/ImageMagick6">here</a>.</p><p>The structure of ImageMagick commands in the examples on ffmprovisr have primarily been formatted for compatibility with Legacy ImageMagick. While many commands that use <code>convert</code> and <code>mogrify</code> can still be executed in version 7, not all are guaranteed to work. Many version 7 commands follow a similar structure to those of version 6, but with <code>magick</code> being used to start commands rather than <code>convert</code> and <code>mogrify</code> in most cases. Version 7 commands can be found at the bottom of each ImageMagick example on ffmprovisr.</p>
-        <p>New ImageMagick users and current Legacy users considering upgrading should assess the differences between each version before choosing which one to install. Below are a just a few of the differences users should be aware of.</p>
+        <p>New ImageMagick users and current Legacy users considering upgrading should assess the differences between each version before choosing which one to install. Below are just a few of the differences users should be aware of.</p>
         <p>Unlike Legacy ImageMagick, as a default, version 7 stores image pixels with High Dynamic Range Imaging (HDRI). This is typically with a bit depth up to Q16. To disable HDRI, the following command should be executed:</p>
         <p><code>./configure --disable-hdri</code><p>
         <p>Some Legacy ImageMagick command options are no longer supported by version 7, including but not limited to:
@@ -2867,7 +2867,7 @@ If the error message includes other parts of the command, such as a flag, that i
           <dt><em>image1.ext image2.ext</em></dt><dd>takes two images as input</dd>
           <dt>null:</dt><dd>throws away the comparison image that would be generated</dd>
         </dl>
-        <p>★ImageMagick V7 command:<code>magick compare -metric ae <em>image1.ext image2.ext</em> null:</code></p><p>★ImageMagick V7 command:<code>magick compare -metric ae <em>image1.ext image2.ext</em> null:</code></p>
+        <p>★ImageMagick V7 command:<code>magick compare -metric ae <em>image1.ext image2.ext</em> null:</code></p>
         <p class="link"></p>
       </div>
       <!-- ends Compare two images -->
@@ -2877,8 +2877,8 @@ If the error message includes other parts of the command, such as a flag, that i
       <input type="checkbox" id="im_thumbs">
       <div class="hiding">
         <h5>Create thumbnails</h5>
-        <p>Creates thumbnails for all files in a folder and saves them in that folder.</p>
         <p><code>mogrify -resize 80x80 -format jpg -quality 75 -path thumbs *.jpg</code></p>
+        <p>Creates thumbnails for all files in a folder and saves them in that folder.</p>
         <dl>
           <dt>mogrify</dt><dd>starts the command</dd>
           <dt>-resize 80x80</dt><dd>resizes copies of original images to 80x80 pixels</dd>
@@ -2973,7 +2973,7 @@ If the error message includes other parts of the command, such as a flag, that i
 <div class="hiding">
 <h5>Supported format list</h5>
 <p><code> identify -list format</code></p>
-<p>Converts a file from one format to another.</p>
+<p>Displays a list of the formats supported by Image Magick.</p>
 <dl>
 <dt> identify </dt><dd>starts the command</dd>
 <dt>-list format </dt><dd>displays a list of the formats supported by Image Magick.</dd>
@@ -3008,7 +3008,7 @@ If the error message includes other parts of the command, such as a flag, that i
 <dl>
 <dt>convert</dt><dd>starts the command</dd>
 <dt><em>input_image</em></dt><dd>the image file that is going to be duplicated.</dd>
-<dt>-duplicate count <em>input_image</em> </dt><dd>duplicates the image. The amount of copies based on the count number. The count starts with zero, so for one copy use zero.</dd>
+<dt>-duplicate count <em>input_image</em> </dt><dd>duplicates the image. The amount of copies is based on the count number. The count starts with zero, so for one copy use zero.</dd>
 </dl>
   <p> ★ImageMagick V7 command: <code>magick <em>input_image</em>-duplicate count <em>output_image</em></code></p>
 <p class="link"></p>
@@ -3102,7 +3102,7 @@ If the error message includes other parts of the command, such as a flag, that i
 <input type="checkbox" id="im_adjoin">
 <div class="hiding">
 <h5>Adjoin image files.</h5>
-<p><code>convert -adjoin<em>input_image1.ext input_image2.ext output_images.ext </em></code></p>
+<p><code>convert -adjoin <em>input_image1.ext input_image2.ext output_images.ext </em></code></p>
 <p>Join images into a single multi-image file.</p>
 <dl> 
 <dt>convert</dt><dd>starts the command</dd>
@@ -3110,7 +3110,7 @@ If the error message includes other parts of the command, such as a flag, that i
 <dt><em>image1.ext image2.ext</em> </dt><dd>The input images. Note that file formats such as jpeg and png do not support multi-image files.</dd>
 <dt><em>output_images.ext</em> </dt><dd>The output, a multi-image file.</dd>
 </dl>
-  <p>★ImageMagick V7 command:<code>magick -adjoin<em>input_image1.ext input_image2.ext output_images.ext </em></code></p>
+  <p>★ImageMagick V7 command:<code>magick -adjoin <em>input_image1.ext input_image2.ext output_images.ext </em></code></p>
 <p class="link"></p>
 </div> 
 <!-- Adjoin images -->
@@ -3136,8 +3136,8 @@ If the error message includes other parts of the command, such as a flag, that i
         <h5>Further Resources</h5>
         <p>Links to more resources on ImageMagick and version 6.</p>
         <p>The official website for version 6 can be found <a href="http://legacy.imagemagick.org" target="_blank">here</a>.</p>
-        <p>Another great resource that goes in-depth on the basic commands of ImageMagick 6 can be found <a href=”https://legacy.imagemagick.org/Usage/basics/" target="_blank">here</a>.</p>
-        <p>There is also the <a href="https://www.reddit.com/r/imagemagick/'' target="_blank" >Imagemagick subreddit</a> for community support.</p>
+        <p>Another great resource that goes in-depth on the basic commands of ImageMagick 6 can be found <a href="https://legacy.imagemagick.org/Usage/basics/" target="_blank">here</a>.</p>
+        <p>There is also the <a href="https://www.reddit.com/r/imagemagick/" target="_blank" >Imagemagick subreddit</a> for community support.</p>
         <p class="link"></p>
       </div>
       <!-- Further Resources-->
