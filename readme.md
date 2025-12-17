@@ -172,7 +172,7 @@ Last updated: 2019-12-11
 [The Cable Bible](https://amiaopensource.github.io/cable-bible/): A Guide to Cables and Connectors Used for Audiovisual Tech  
 [FFCommand_Engine](https://github.com/ColorlabMD/FFCommand_Engine): a tool for easier use of FFmpeg binaries  
 [QEMU QED](https://eaasi.gitlab.io/program_docs/qemu-qed/): instructions for using QEMU (Quick EMUlator), a command line application for computer emulation and virtualization                 
-[MIAP-ZIM-Project](https://github.com/hmr9162-droid/MIAP-ZIM-Project/): motion image archiving tools made available as offline accesible .zim files (including ffmprovisr.zim and cable-bible.zim)
+[MIAP-ZIM-Project](https://github.com/hmr9162-droid/MIAP-ZIM-Project/): motion image archiving tools made available as offline accesible .zim files (including ffmprovisr.zim and cable-bible.zim)                                                                                                                                                                                     
 [Script Ahoy](http://dd388.github.io/crals/): Community Resource for Archivists and Librarians Scripting  
 [sourcecaster](https://datapraxis.github.io/sourcecaster/): helps you use the command line to work through common challenges that come up when working with digital primary sources. 
                                        
