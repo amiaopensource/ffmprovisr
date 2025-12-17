@@ -1012,23 +1012,23 @@
     <!-- ends phase shift -->
 
     <!-- loudnorm metadata -->
-    <!-- <label class="recipe" for="loudnorm_metadata">Calculate Loudness Levels</label>
+    <label class="recipe" for="loudnorm_metadata">Calcula los niveles de sonoridad</label>
     <input type="checkbox" id="loudnorm_metadata">
     <div class="hiding">
-      <h5>Calculate Loudness Levels</h5>
+      <h5>Calcula los niveles de sonoridad</h5>
       <p><code>ffmpeg -i <em>input_file</em> -af loudnorm=print_format=json -f null -</code></p>
-      <p>This filter calculates and outputs loudness information in json about an input file (labeled input) as well as what the levels would be if loudnorm were applied in its one pass mode (labeled output). The values generated can be used as inputs for a 'second pass' of the loudnorm filter allowing more accurate loudness normalization than if it is used in a single pass.</p>
-      <p>These instructions use the loudnorm defaults, which align well with PBS recommendations for target loudness. More information can be found at the <a href="https://ffmpeg.org/ffmpeg-filters.html#loudnorm" target="_blank">loudnorm documentation</a>.</p>
-      <p>Information about PBS loudness standards can be found in the <a href="http://bento.cdn.pbs.org/hostedbento-prod/filer_public/PBS_About/Producing/Red%20Book/TOS%20Pt%201%20Submission%202016.pdf" target="_blank">PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href="https://tech.ebu.ch/docs/r/r128-2014.pdf" target="_blank">EBU R 128</a> recommendation document.</p>
+      <p>Este filtro calcula y genera información de sonoridad sobre un archivo de entrada (etiquetado como input) en formato JSON, así como los niveles que se obtendrían si se aplicara el filtro loudnorm en su modo de una sola pasada (etiquetado como output). Los valores generados se pueden utilizar como entradas para una 'segunda pasada' del filtro loudnorm, lo que permite una normalización de sonoridad más precisa que si se utilizaría en una sola pasada.</p>
+      <p>Estas instrucciones utilizan la configuración predeterminada de loudnorm, que se ajusta bien a las recomendaciones de PBS en cuanto al nivel de sonoridad objetivo. Puede encontrar más información en la <a href="https://ffmpeg.org/ffmpeg-filters.html#loudnorm" target="_blank">documentación de loudnorm</a>.</p>
+      <p>Información sobre los estándares de sonoridad de PBS se puede encontrar en el documento de <a href="http://bento.cdn.pbs.org/hostedbento-prod/filer_public/PBS_About/Producing/Red%20Book/TOS%20Pt%201%20Submission%202016.pdf" target="_blank">Especificaciones Técnicas de Operación de PBS</a>. Información sobre los estándares de sonoridad de la EBU se puede encontrar en el documento de recomendación <a href="https://tech.ebu.ch/docs/r/r128-2014.pdf" target="_blank">EBU R 128</a>.</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt><em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
-        <dt>-af loudnorm</dt><dd>activates the loudnorm filter</dd>
-        <dt>print_format=json</dt><dd>sets the output format for loudness information to json. This format makes it easy to use in a second pass. For a more human readable output, this can be set to <code>print_format=summary</code></dd>
-        <dt><em>-f null -</em></dt><dd>sets the file output to null (since we are only interested in the metadata generated)</dd>
+        <dt><em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
+        <dt>-af loudnorm</dt><dd>activa el filtro loudnorm</dd>
+        <dt>print_format=json</dt><dd>establece el formato de resultados sobre información de sonoridad a JSON. Este formato facilita su uso en una segunda pasada. Para un resultado más legible, se puede configurar con <code>print_format=summary</code></dd>
+        <dt><em>-f null -</em></dt><dd>establece la salida del archivo a nulo (ya que solo nos interesan los metadatos generados)</dd>
       </dl>
       <p class="link"></p>
-    </div> -->
+    </div>
     <!-- ends loudnorm metadata -->
 
     <!-- RIAA equalization -->
