@@ -1253,28 +1253,28 @@
     <!-- ends Split file into segments -->
 
     <!-- Trim -->
-    <!-- <label class="recipe" for="trim">Trim file</label>
+    <label class="recipe" for="trim">Recortar archivo</label>
     <input type="checkbox" id="trim">
     <div class="hiding">
-      <h5>Trim a video without re-encoding</h5>
+      <h5>Recorta un video sin recodificarlo</h5>
       <p><code>ffmpeg -i <em>input_file</em> -ss 00:02:00 -to 00:55:00 -c copy -map 0 <em>output_file</em></code></p>
-      <p>This command allows you to create an excerpt from a file without re-encoding the audiovisual data.</p>
+      <p>Este comando permite crear un fragmento de un archivo sin recodificar los datos audiovisuales.</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
-        <dt>-ss 00:02:00</dt><dd>sets in point at 00:02:00</dd>
-        <dt>-to 00:55:00</dt><dd>sets out point at 00:55:00</dd>
-        <dt>-c copy</dt><dd>use stream copy mode (no re-encoding)<br>
-        <dt>-map 0</dt><dd>tells FFmpeg to map all streams of the input to the output.<br>
-        <strong>Note:</strong> watch out when using <code>-ss</code> with <code>-c copy</code> if the source is encoded with an interframe codec (e.g., H.264). Since FFmpeg must split on i-frames, it will seek to the nearest i-frame to begin the stream copy.</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre, y extensión del archivo de entrada</dd>
+        <dt>-ss 00:02:00</dt><dd>establece el punto de inicio en 00:02:00</dd>
+        <dt>-to 00:55:00</dt><dd>establece el punto final en 00:55:00</dd>
+        <dt>-c copy</dt><dd>utiliza el modo de copia de flujo (sin recodificación)<br>
+        <dt>-map 0</dt><dd>indica a FFmpeg que asigne todos los flujos de entrada a la salida.<br>
+        <strong>Nota:</strong> ten cuidado al usar <code>-ss</code> con <code>-c copy</code> si la fuente está codificada con un códec interframe (por ejemplo, H.264). Dado que FFmpeg debe dividir el video en i-frames, más cercano para comenzar la copia del flujo.</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
-      <p>Variation: trim file by setting duration, by using <code>-t</code> instead of <code>-to</code></p>
+      <p>Variación: recortar archivo estableciendo la duración, usando <code>-t</code> en lugar de <code>-to</code></p>
       <p><code>ffmpeg -i <em>input_file</em> -ss 00:05:00 -t 10 -c copy <em>output_file</em></code></p>
       <dl>
-        <dt>-ss 00:05:00 -t 10</dt><dd>Beginning five minutes into the original video, this command will create a 10-second-long excerpt.</dd>
+        <dt>-ss 00:05:00 -t 10</dt><dd>comenzando cinco minutos después del inicio del video original, este comando creará un fragmento de 10 segundos de duración.</dd>
       </dl>
-      <p>Note: In order to keep the original timestamps, without trying to sanitize them, you may add the <code>-copyts</code> option.</p>
+      <p>Nota: Para mantener las marcas de tiempo originales, sin intentar sanearlas, puedes añadir la opción <code>-copyts</code></p>
       <p class="link"></p>
     </div> -->
     <!-- ends Trim -->
