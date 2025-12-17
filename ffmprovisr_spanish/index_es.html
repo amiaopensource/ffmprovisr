@@ -993,22 +993,22 @@
     <!-- ends Combine audio tracks -->
 
     <!-- phase shift -->
-    <!-- <label class="recipe" for="phase_shift">Inverses the audio phase of the second channel</label>
+    <label class="recipe" for="phase_shift">Invierte la fase de audio del segundo canal</label>
     <input type="checkbox" id="phase_shift">
     <div class="hiding">
-      <h5>Flip audio phase shift</h5>
+      <h5>Invierte el desplazamiento de fase de audio</h5>
       <p><code>ffmpeg -i <em>input_file</em> -af pan="stereo|c0=c0|c1=-1*c1" <em>output_file</em></code></p>
-      <p>This command inverses the audio phase of the second channel by rotating it 180°.</p>
+      <p>Este comando invierte la fase de audio del segundo canal girándolo 180°.</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
-        <dt>-af</dt><dd>specifies that the next section should be interpreted as an audio filter</dd>
-        <dt>pan=</dt><dd>tell the quoted text below to use the <a href="https://ffmpeg.org/ffmpeg-filters.html#pan-1" target="_blank">pan filter</a></dd>
-        <dt>"stereo|c0=c0|c1=-1*c1"</dt><dd>maps the output's first channel (c0) to the input's first channel and the output's second channel (c1) to the inverse of the input's second channel</dd>
-        <dt><em>output file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt>-i <em>input file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
+        <dt>-af</dt><dd>especifica que la siguiente sección debe interpretarse como un filtro de audio</dd>
+        <dt>pan=</dt><dd>indica al texto que aparece en comillas a continuación que debe utilizar el <a href="https://ffmpeg.org/ffmpeg-filters.html#pan-1" target="_blank">filtro pan</a></dd>
+        <dt>"stereo|c0=c0|c1=-1*c1"</dt><dd>asigna el primer canal de salida (cO) al primer canal de entrada y el segundo canal de salida (c1) al inverso del segundo canal de entrada</dd>
+        <dt><em>output file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p class="link"></p>
-    </div> -->
+    </div>
     <!-- ends phase shift -->
 
     <!-- loudnorm metadata -->
