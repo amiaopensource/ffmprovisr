@@ -3206,10 +3206,17 @@ If the error message includes other parts of the command, such as a flag, that i
 		<h3>Create an H.264 access file from the preservation file</h3>
 		 <p>Begin by opening HandBrake and selecting <strong>Open Source</strong> to load your preservation file (e.g., an uncompressed QuickTime or FFV1 file). Under the <strong>Summary</strong> tab, choose <strong>MP4</strong> as the container format. In the <strong>Video</strong> tab, set the <strong>Video Encoder</strong> to <strong>H.264 (x264)</strong>. Select an appropriate quality setting for access files, such as using the <strong>Constant Quality</strong> slider to balance file size and visual quality. Review the <strong>Dimensions</strong>, <strong>Audio</strong>, and <strong>Subtitles</strong> tabs and adjust settings as needed for access and playback. Next, choose a destination folder and filename for the output file. Click <strong>Start</strong> at the top of the window to begin encoding.</p> 
 		 <p>For future reference, these settings can be saved as a preset, allowing them to be reused or applied to multiple files during batch processing.</p>
-		 
+	 
 	</div>
       <!-- End Make Access File -->
-  
+		
+ <!-- Create Thumbnail -->
+      <label class="recipe" for="handbrake_thumbnail">Create an thumbnail of a Video File</label>
+      <input type="checkbox" id="handbrake_thumbnail">
+      <div class="hiding">
+
+		
+		
     <div class="well">
       <h2>Shutter Encoder</h2>
        <!-- Shutter Encoder Tool -->
@@ -3235,7 +3242,7 @@ If the error message includes other parts of the command, such as a flag, that i
       <label class="recipe" for="shutterencoder_thumbnail">Create an thumbnail of a Video File</label>
       <input type="checkbox" id="shutterencoder_thumbnail">
       <div class="hiding">
-        <p>Shutter Encoder can create an thumbnail of a video file while the interface displays the video. One can manually toggle the timeline and select the exact time in the video for the thumbnail image. Select specifications under Image Creation in functions, which support JPEG, JPEG XL, and Image, and choose the 100% for the full image. Click start function. </p>
+        <p>Shutter Encoder can create an thumbnail of a video file while the interface displays the video. One can manually toggle the timeline and select the exact time in the video for the thumbnail image. Select specifications under <strong>Image Creation</strong> in functions, which support JPEG, JPEG XL, and Image, and choose the 100% for the full image. Click <strong>Start Function</strong>. </p>
         <p class="link"></p>
       </div>
       <!-- End Create Thumbnail -->
