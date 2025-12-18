@@ -373,7 +373,7 @@ If the error message includes other parts of the command, such as a flag, that i
         <li><code>-vf "fieldmatch, yadif, decimate"</code></li>
       </ul>
       <p>but <code>-vf fieldmatch, yadif, decimate</code> is not valid.</p>
-      <p>The ordering of the filters is significant. Video filters are applied in the order given, with the output of one filter being passed along as the input to the next filter in the chain. In the example above, <code>fieldmatch</code> reconstructs the original frames from the inverse telecined video, <code>yadif</code> deinterlaces (this is a failsafe in case any combed frames remain, for example if the source mixes telecined and real interlaced content), and <code>decimate</code> deletes duplicated frames. Clearly, it is not possible to delete duplicated frames before those frames are reconstructed.</p>
+      <p>The ordering of the filters is significant. Video filters are applied in the order given, with the output of one filter being passed along as the input to the next filter in the chain. In the example above, <code>fieldmatch</code> reconstructs the original frames from the inverse telecined video, <code>yadif</code> deinterlaces (this is a failsafe in case any combed frames remain, for example if the source mixes telecined and real <a href="interlaced">interlaced</a> content), and <code>decimate</code> deletes duplicated frames. Clearly, it is not possible to delete duplicated frames before those frames are reconstructed.</p>
       <h4>Notes</h4>
       <ul>
         <li><code>-vf</code> is an alias for <code>-filter:v</code></li>
