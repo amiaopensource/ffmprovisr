@@ -1447,105 +1447,105 @@
     <!-- ends Deinterlace video -->
 
     <!-- Deinterlace video fields -->
-    <!-- <label class="recipe" for="deinterlace_fields">Deinterlace video fields to frames</label>
+    <label class="recipe" for="deinterlace_fields">Desentrelazar campos de video a fotogramas</label>
     <input type="checkbox" id="deinterlace_fields">
     <div class="hiding">
-      <h5>Deinterlace video fields to frames</h5>
+      <h5>Desentrelazar campos de video a fotogramas</h5>
       <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -vf "idet,bwdif,format=yuv420p" <em>output_file</em></code></p>
-      <p>This command takes an interlaced input file and outputs a deinterlaced H.264 MP4, with each field separated into its own frame.  This is preferred for interlaced video that contains a lot of motion, as the double-rate output preserves the visual cadence of the source material.</p>
+      <p>Este comando toma un archivo de entrada entrelazado y genera un archivo MP4 H.264 desentrelazado, con cada campo separado en su propio fotograma. Esto es preferible para un video entrelazado que contenga mucho movimiento, ya que la salida de doble velocidad de fotogramas conserva el ritmo visual del material de origen.</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
-        <dt>-c:v libx264</dt><dd>tells FFmpeg to encode the video stream as H.264</dd>
-        <dt>-vf</dt><dd>video filtering will be used (<code>-vf</code> is an alias of <code>-filter:v</code>)</dd>
-        <dt>"</dt><dd>start of filtergraph (see below)</dd>
-        <dt>idet</dt><dd>detect interlaced video field order<br>
-         <a href="https://ffmpeg.org/ffmpeg-filters.html#idet" target="_blank">idet</a> will try to detect if the video is interlaced, and if so, what the order of the fields are (top-field-first, or bottom-field-first).  This is done to ensure the output of the deinterlacing filter is correct.</dd>
-        <dt>bwdif</dt><dd>deinterlacing filter (‘Bob Weaver Deinterlacing Filter’)<br>
-         By default, <a href="https://ffmpeg.org/ffmpeg-filters.html#bwdif-1" target="_blank">bwdif</a> will output one frame for each field, matching the visual cadence of interlaced video. </dd>
-        <dt>,</dt><dd>separates filters</dd>
-        <dt>format=yuv420p</dt><dd>chroma subsampling set to 4:2:0<br>
-        By default, <code>libx264</code> will use a chroma subsampling scheme that is the closest match to that of the input. This can result in Y′C<sub>B</sub>C<sub>R</sub> 4:2:0, 4:2:2, or 4:4:4 chroma subsampling. QuickTime and most other non-FFmpeg based players can’t decode H.264 files that are not 4:2:0, therefore it’s advisable to specify 4:2:0 chroma subsampling.</dd>
-        <dt>"</dt><dd>end of filtergraph</dd>
-        <dt><em>output file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt>-i <em>input file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
+        <dt>-c:v libx264</dt><dd>indica a FFmpeg que codifique el flujo de video como H.264</dd>
+        <dt>-vf</dt><dd>se utilizará el filtrado de video (<code>-vf</code> es un alias de <code>-filter:v</code>)</dd>
+        <dt>"</dt><dd>inicio del gráfico de filtros (ver a continuación)</dd>
+        <dt>idet</dt><dd>detecta el orden de los campos de video entrelazados<br>
+         <a href="https://ffmpeg.org/ffmpeg-filters.html#idet" target="_blank">idet</a> intentará detectar si el video está entrelazado y, en caso afirmativo, cuál es el orden de los campos (campo superior primero o campo inferior primero). Esto se hace para garantizar que la salida del filtro de desentrelazado sea correcta.</dd>
+        <dt>bwdif</dt><dd>filtro de desentrelazado (‘Filtro de desentrelazado de Bob Weaver’)<br>
+         Por default, <a href="https://ffmpeg.org/ffmpeg-filters.html#bwdif-1" target="_blank">bwdif</a> generará un fotograma por cada campo, coincidiendo con el ritmo visual del video entrelazado. </dd>
+        <dt>,</dt><dd>separa los filtros</dd>
+        <dt>format=yuv420p</dt><dd>submuestreo de croma configurado a 4:2:0<br>
+        Por default, <code>libx264</code> utilizará un esquema de submuestreo de croma que sea el que mejor se ajuste al de la entrada. Esto puede resultar en un submuestreo de croma Y′C<sub>B</sub>C<sub>R</sub> 4:2:0, 4:2:2, o 4:4:4. QuickTime y la mayoría de los reproductores que no se basan en FFmpeg no pueden decodificar archivos H.264 que no sean 4:2:0, por lo tanto, es recomendable especificar el submuestreo de croma 4:2:0.</dd>
+        <dt>"</dt><dd>fin del gráfico de filtros</dd>
+        <dt><em>output file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
-      <p><code>"idet,bwdif,format=yuv420p"</code> is an FFmpeg <a href="https://trac.ffmpeg.org/wiki/FilteringGuide#FiltergraphChainFilterrelationship" target="_blank">filtergraph</a>. Here the filtergraph is made up of one filter chain, which is itself made up of the three filters (separated by the comma).<br>
-      The enclosing quote marks are necessary when you use spaces within the filtergraph, e.g. <code>-vf "idet, bwdif, format=yuv420p"</code>, and are included above as an example of good practice.</p>
-      <p><strong>Note:</strong> bwdif also supports the older method of outputting one frame for each frame (thereby halving the number of output frames per second) with the syntax <code>bwdif=mode=send_frame</code>.  This can be used when the presentation device is not capable of reproducing 50 (PAL) or 60 (NTSC) frames per second.</p>
-      <p>For more H.264 encoding options, see the latter section of the <a href="#transcode_h264">encode H.264 command</a>.</p>
+      <p><code>"idet,bwdif,format=yuv420p"</code> es un <a href="https://trac.ffmpeg.org/wiki/FilteringGuide#FiltergraphChainFilterrelationship" target="_blank">gráfico de filtros</a> de FFmpeg. Aquí, el gráfico de filtros está compuesto por una cadena de filtros, que a su vez consta de tres filtros (separados por comas).<br>
+      Las comillas son necesarias cuando se utilizan espacios dentro del gráfico de filtros, por ejemplo, <code>-vf "idet, bwdif, format=yuv420p"</code>, y se incluyen arriba como ejemplo de práctica recomendable.</p>
+      <p><strong>Nota:</strong> bwdif también admite el método anterior de salida de un fotograma por cada fotograma (reduciendo así a la mitad el número de fotogramas de salida por segundo) con la sintaxis <code>bwdif=mode=send_frame</code>.  Esto puede ser útil cuando el dispositivo de visualización no es capaz de reproducir 50 (PAL) o 60 (NTSC) fotogramas por segundo.</p>
+      <p>Para obtener más opciones de codificación H.264, consulte la última sección del comando de <a href="#transcode_h264">codificación H.264</a>.</p>
       <div class="sample-image">
-        <h2>Example</h2>
-        <p>Before and after deinterlacing with bwdif:</p>
+        <h2>Ejemplo</h2>
+        <p>Antes y después del desentrelazado con bwdif:</p>
         <img src="img/interlaced_video_fields.png" alt="VLC screenshot of original interlaced video">
         <img src="img/deinterlaced_video_frames.png" alt="VLC screenshot of deinterlaced video">
       </div>
       <p class="link"></p>
-    </div> -->
+    </div>
     <!-- ends Deinterlace video fields -->
 
     <!-- Inverse telecine -->
-    <!-- <label class="recipe" for="inverse-telecine">Inverse telecine</label>
+    <label class="recipe" for="inverse-telecine">Telecine inverso</label>
     <input type="checkbox" id="inverse-telecine">
     <div class="hiding">
-      <h5>Inverse telecine a video file</h5>
+      <h5>Aplicar telecine inverso a un archivo de video</h5>
       <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -vf "fieldmatch,yadif,decimate" <em>output_file</em></code></p>
-      <p>The inverse telecine procedure reverses the <a href="https://en.wikipedia.org/wiki/Three-two_pull_down" target="_blank">3:2 pull down</a> process, restoring 29.97fps interlaced video to the 24fps frame rate of the original film source.</p>
+      <p>El procedimiento de telecine inverso revierte el proceso de conversión <a href="https://en.wikipedia.org/wiki/Three-two_pull_down" target="_blank">3:2</a>, restaurando el video entrelazado de 29.97 fps a la velocidad de 24 fps de la fuente original de la película.</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
-        <dt>-c:v libx264</dt><dd>encode video as H.264</dd>
-        <dt>-vf "fieldmatch,yadif,decimate"</dt><dd>applies these three video filters to the input video.<br>
-        <a href="https://ffmpeg.org/ffmpeg-filters.html#fieldmatch" target="_blank">Fieldmatch</a> is a field matching filter for inverse telecine - it reconstructs the progressive frames from a telecined stream.<br>
-        <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1" target="_blank">Yadif</a> (‘yet another deinterlacing filter’) deinterlaces the video. (Note that FFmpeg also includes several other deinterlacers).<br>
-        <a href="https://ffmpeg.org/ffmpeg-filters.html#decimate-1" target="_blank">Decimate</a> deletes duplicated frames.</dd>
-        <dt><em>output file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt>-i <em>input file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
+        <dt>-c:v libx264</dt><dd>codifica el video como H.264</dd>
+        <dt>-vf "fieldmatch,yadif,decimate"</dt><dd>aplica estos tres filtros de video al video de entrada.<br>
+        <a href="https://ffmpeg.org/ffmpeg-filters.html#fieldmatch" target="_blank">Fieldmatch</a> es un filtro de relación de campos para telecine inverso - reconstruye los fotogramas progresivos a partir de un flujo de telecine.<br>
+        <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1" target="_blank">Yadif</a> ('otro filtro de desentrelazado más') desentrelaza el video. (Tenga en cuenta que FFmpeg también incluye otros desentrelazadores).<br>
+        <a href="https://ffmpeg.org/ffmpeg-filters.html#decimate-1" target="_blank">Decimate</a> elimina los fotogramas duplicados.</dd>
+        <dt><em>output file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
-      <p><code>"fieldmatch,yadif,decimate"</code> is an FFmpeg <a href="https://trac.ffmpeg.org/wiki/FilteringGuide#FiltergraphChainFilterrelationship" target="_blank">filtergraph</a>. Here the filtergraph is made up of one filter chain, which is itself made up of the three filters (separated by commas).<br>
-      The enclosing quote marks are necessary when you use spaces within the filtergraph, e.g. <code>-vf "fieldmatch, yadif, decimate"</code>, and are included above as an example of good practice.</p>
-      <p>Note that if applying an inverse telecine procedure to a 29.97i file, the output framerate will actually be 23.976fps.</p>
-      <p>This command can also be used to restore other framerates.</p>
+      <p><code>"fieldmatch,yadif,decimate"</code> es un <a href="https://trac.ffmpeg.org/wiki/FilteringGuide#FiltergraphChainFilterrelationship" target="_blank">gráfico de filtros</a> de FFmpeg. En este caso, el gráfico de filtros está compuesto por una cadena de filtros, que a su vez está compuesta por los tres filtros (separados por comas).<br>
+      Las comillas son necesarias cuando se utilizan espacios dentro del gráfico de filtros, por ejemplo, <code>-vf "fieldmatch, yadif, decimate"</code>, y se incluyen arriba como ejemplo de práctica recomendable.</p>
+      <p>Tenga en cuenta que si se aplica un procedimiento de telecine inverso a un archivo de 29.97i, la velocidad de fotogramas de salida será de 23.976 fps.</p>
+      <p>Este comando también se puede utilizar para restaurar otras velocidades de fotogramas.</p>
       <div class="sample-image">
-        <h2>Example</h2>
-        <p>Before and after inverse telecine:</p>
+        <h2>Ejemplo</h2>
+        <p>Antes y después del telecine inverso:</p>
         <img src="img/ivtc_originalvideo.gif" alt="GIF of original video">
         <img src="img/ivtc_result.gif" alt="GIF of video after inverse telecine">
       </div>
       <p class="link"></p>
-    </div> -->
+    </div>
     <!-- ends Inverse telecine -->
 
     <!-- Set field order -->
-    <!-- <label class="recipe" for="set_field_order">Set field order for interlaced video</label>
+    <label class="recipe" for="set_field_order">Establecer el orden de los campos para video entrelazado</label>
     <input type="checkbox" id="set_field_order">
     <div class="hiding">
-      <h5>Change field order of an interlaced video</h5>
+      <h5>Cambiar el orden de los campos de un video entrelazado</h5>
       <p><code>ffmpeg -i <em>input_file</em> -c:v <em>video_codec</em> -filter:v setfield=tff <em>output_file</em></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
-        <dt>-filter:v setfield=tff</dt><dd>Sets the field order to top field first. Use <code>setfield=bff</code> for bottom field first.</dd>
-        <dt>-c:v <em>video_codec</em></dt><dd>As a video filter is used, it is not possible to use <code>-c copy</code>. The video must be re-encoded with whatever video codec is chosen, e.g. <code>ffv1</code>, <code>v210</code> or <code>prores</code>.</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
+        <dt>-filter:v setfield=tff</dt><dd>Establece el orden de los campos desde el primero superior (tff=top field first). Use <code>setfield=bff</code> para ordenar el campo inferior primero.</dd>
+        <dt>-c:v <em>video_codec</em></dt><dd>Dado que se utiliza un filtro de video, no es posible usar <code>-c copy</code>. El video debe recodificarse con el códec de video elegido, por ejemplo, <code>ffv1</code>, <code>v210</code> o <code>prores</code>.</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p class="link"></p>
-    </div> -->
+    </div>
     <!-- ends Set field order -->
 
     <!-- Check interlacement -->
-    <!-- <label class="recipe" for="check_interlacement">Identify interlacement patterns in a video file</label>
+    <label class="recipe" for="check_interlacement">Identificar patrones de entrelazado en un archivo de video</label>
     <input type="checkbox" id="check_interlacement">
     <div class="hiding">
-      <h5>Check video file interlacement patterns</h5>
+      <h5>Comprobar los patrones de entrelazado de un archivo de video</h5>
       <p><code>ffmpeg -i <em>input file</em> -filter:v idet -f null -</code></p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
-        <dt>-filter:v idet</dt><dd>This calls the <a href="https://ffmpeg.org/ffmpeg-filters.html#idet" target="_blank">idet (detect video interlacing type) filter</a>.</dd>
-        <dt>-f null</dt><dd>Video is decoded with the <code>null</code> muxer. This allows video decoding without creating an output file.</dd>
-        <dt>-</dt><dd>FFmpeg syntax requires a specified output, and <code>-</code> is just a place holder. No file is actually created.</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
+        <dt>-filter:v idet</dt><dd>Esto solicita el <a href="https://ffmpeg.org/ffmpeg-filters.html#idet" target="_blank">filtro idet (detectar el tipo de entrelazado de video)</a>.</dd>
+        <dt>-f null</dt><dd>El video se decodifica con el multiplexor <code>nulo</code>. Esto permite la decodificación de video sin crear un archivo de salida.</dd>
+        <dt>-</dt><dd>La sintaxis de FFmpeg requiere una salida especificada, y <code>-</code> imprime la salida en la pantalla (STDOUT) en lugar de crear un archivo.</dd>
       </dl>
       <p class="link"></p>
-    </div> -->
+    </div>
     <!-- ends Check interlacement -->
 
     <!-- </div>
