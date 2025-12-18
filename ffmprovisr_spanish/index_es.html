@@ -119,7 +119,7 @@
           <dt>ffmpeg</dt><dd>comando de inicio</dd>
           <dt>-i <em>input_file.ext</em></dt><dd>ruta y nombre del archivo de ingreso</dd>
           <dt><em>-indicador acción</em></dt><dd>le dice a FFmpeg que haga algo a través de un indicador y acción válida.</dd>
-          <dt><em>output_file.ext</em></dt><dd>ruta y nombre del archivo de salida.<br>
+          <dt><em>output_file.ext</em></dt><dd>ruta, nombre y extensión del archivo de salida.<br>
             Al ser esta la última parte del comando, el nombre del archivo no tiene un indicador que indique que es el archivo de salida.</dd>
         </dl>
         <p class="link"></p>
@@ -330,7 +330,7 @@
       <p>This command transcodes an input file into a deinterlaced Apple ProRes 422 LT file with 16-bit linear PCM encoded audio. The file is deinterlaced using the yadif filter (Yet Another De-Interlacing Filter).</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-c:v prores</dt><dd>tells FFmpeg to transcode the video stream into Apple ProRes 422</dd>
         <dt>-profile:v <em>1</em></dt><dd>Declares profile of ProRes you want to use. The profiles are explained below:
         <ul>
@@ -341,7 +341,7 @@
         </ul></dd>
         <dt>-vf yadif</dt><dd>Runs a deinterlacing video filter (yet another deinterlacing filter) on the new file. <code>-vf</code> is an alias for <code>-filter:v</code>.</dd>
         <dt>-c:a pcm_s16le</dt><dd>tells FFmpeg to encode the audio stream in 16-bit linear PCM</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida<br>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida<br>
         There are currently three possible containers for ProRes 422 and 4444 which are all supported by FFmpeg: QuickTime (<code>.mov</code>), Matroska (<code>.mkv</code>) and Material eXchange Format (<code>.mxf</code>).</dd>
       </dl>
       <p>FFmpeg comes with more than one ProRes encoder:</p>
@@ -397,7 +397,7 @@
       <p>Este comando transcodifica el archivo ingresado a H.264 usando la funcionalidad de codificación de This command takes an input file and transcodes it to H.264 using the encoding functionality of an Nvidia GPU (without transcoding the audio). If you're using H.264 with AAC or AC3 audio, you can output to an .mp4 file; if you're using HEVC and/or more exotic audio, you should output to .mkv. While Nvidia's fixed-function hardware can be 10x as performant as encoding on the CPU, it requires a few more parameters in order to optimize quality at lower bitrates.</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-c:v <em>h264_nvenc</em></dt><dd>tells FFmpeg to encode the video stream as H.264 using Nvidia's encoder.</dd>
         <dt>-preset <em>llhq</em></dt><dd>uses the "low latency, high quality" encoding preset, a good default when working with nvenc.</dd>
         <dt>-rc:v <em>vbr_hq</em></dt><dd>means "variable bitrate, high quality," allowing you to set a minimum and maximum bitrate for the encode.</dd>
@@ -405,7 +405,7 @@
         <dt>-b:v <em>8000k -maxrate:v 12000k</em></dt><dd>corresponds to a minimum bitrate of 8 megabits (8000k) per second, and a maximum of 12 megabits per second. nvenc is not as good at estimating bitrates as CPU-based encoders, and without this data, will occasionally choose a visibly lower bitrate. The 8-12 mbit range is generally a good one for high-quality 1080p h264.</dd>
         <dt>-profile:v <em>high</em></dt><dd>uses the "high quality" profile of h264, something that's been baked in to the spec for a long time so that older players can declare compatibility; almost all h264 video now uses high.</dd>
         <dt>-c:a <em>copy</em></dt><dd>will skip reencoding the audio stream, and copy the audio from the source file.</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p>In order to encode to HEVC instead, and optionally transcode the audio, you can try changing the command like this:</p>
       <p><code>ffmpeg -i <em>input_file</em> -c:v hevc_nvenc -preset llhq -rc:v vbr_hq -cq:v 19 -b:v 5000k -maxrate:v 8000k -profile:v main10 -c:a aac <em>output_file</em></code></p>
@@ -465,7 +465,7 @@
         <dt>-slicecrc 1</dt><dd>Añade información CRC (verificación de redundancia cíclica por sus siglas en inglés) para cada sección. Esto posibilita que el decodificador pueda detectar errores en el flujo de bits, en vez de decodificar secciones con errores. (Puedes leer más <a href="http://ndsr.nycdigital.org/diving-in-head-first/" target="_blank">aquí</a>).</dd>
         <dt>-slices 16</dt><dd>Cada fotograma es divido en 16 secciones. 16 es una buena solución intermedia entre el peso de archivo y el tiempo de codificación.</dd>
         <dt>-c:a copy</dt><dd>vuelve a codificar utilizando el mismo códec de audio</dd>
-        <dt><em>output_file</em>.mkv</dt><dd>ruta y nombre del archivo de salida. Usa la extensión <code>.mkv</code> para guardar tu archivo en contenedor Matroska.</dd>
+        <dt><em>output_file</em>.mkv</dt><dd>ruta, nombre y extensión del archivo de salida. Usa la extensión <code>.mkv</code> para guardar tu archivo en contenedor Matroska.</dd>
         <dt>-f framemd5</dt><dd>Decodifica el video con el mezclador framemd5 para generar checksums MD5 para cada fotograma del archivo ingresado. Esto permite verificar la compresión sin pérdida mediante comparación con los framemd5s del archivo de salida.</dd>
         <dt>-an</dt><dd>ignora la pista de audio al crear framemd5 (audio no)</dd>
         <dt><em>framemd5_output_file</em></dt><dd>ruta, nombre y extensión del archivo de framemd5.</dd>
@@ -490,7 +490,7 @@
         <dt>-c:v libx264</dt><dd>codifica el video en códec H.264</dd>
         <dt>-c:a aac</dt><dd>codifica el audio en códec AAC.<br>
           AAC es el códec más usado para pistas de audio en contenedores .mp4.</dd>
-        <dt><em>output_file.mp4</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt><em>output_file.mp4</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p>También es posible ajustar la calidad de archivo de salida al añadir los indicadores <strong>-crf</strong> y <strong>-preset</strong> junto con sus valores.</p>
       <p><code>ffmpeg -i concat:<em>input_file_1</em>\|<em>input_file_2</em>\|<em>input_file_3</em> -c:v libx264 -crf 18 -preset veryslow -c:a aac <em>output_file</em>.mp4</code></p>
@@ -517,11 +517,11 @@
       <p>This command takes an input file and transcodes it to H.265/HEVC in an .mp4 wrapper, keeping the audio codec the same as in the original file.</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-c:v libx265</dt><dd>tells FFmpeg to encode the video as H.265</dd>
         <dt>-pix_fmt yuv420p</dt><dd>libx265 will use a chroma subsampling scheme that is the closest match to that of the input. This can result in Y′C<sub>B</sub>C<sub>R</sub> 4:2:0, 4:2:2, or 4:4:4 chroma subsampling. For widest accessibility, it’s a good idea to specify 4:2:0 chroma subsampling.</dd>
         <dt>-c:a copy</dt><dd>tells FFmpeg not to change the audio codec</dd>
-        <dt><em>output file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt><em>output file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p>The libx265 encoding library defaults to a ‘medium’ preset for compression quality and a CRF of 28. CRF stands for ‘constant rate factor’ and determines the quality and file size of the resulting H.265 video. The CRF scale ranges from 0 (best quality [lossless]; largest file size) to 51 (worst quality; smallest file size).</p>
       <p>A CRF of 28 for H.265 can be considered a medium setting, <a href="https://trac.ffmpeg.org/wiki/Encode/H.265#ConstantRateFactorCRF" target="_blank">corresponding</a> to a CRF of 23 in <a href="#transcode_h264">encoding H.264</a>, but should result in about half the file size.</p>
@@ -544,10 +544,10 @@
       <p>This command takes an input file and transcodes it to Ogg/Theora in an .ogv wrapper with 690k video bitrate.</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-acodec libvorbis</dt><dd>tells FFmpeg to encode the audio using libvorbis</dd>
         <dt>-b:v 690k</dt><dd>specifies the 690k video bitrate</dd>
-        <dt><em>output file</em></dt><dd>ruta y nombre del archivo de salida (make sure to include the <code>.ogv</code> filename suffix)</dd>
+        <dt><em>output file</em></dt><dd>ruta, nombre y extensión del archivo de salida (make sure to include the <code>.ogv</code> filename suffix)</dd>
       </dl>
       <p>This recipe is based on <a href="http://paulrouget.com/e/converttohtml5video" target="_blank">Paul Rouget's recipes</a>.</p>
       <p class="link"></p>
@@ -592,18 +592,18 @@
       <p>This script allows you to generate two derivative audio files from a master while appending audio from a separate file (for example a copyright or institutional notice) to one of them.</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file (the master file)</dd>
-        <dt>-i <em>input_file_to_append</em></dt><dd>ruta y nombre del archivo de ingreso file (the file to be appended to access file)</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada (the master file)</dd>
+        <dt>-i <em>input_file_to_append</em></dt><dd>ruta, nombre y extensión del archivo de entrada (the file to be appended to access file)</dd>
         <dt>-filter_complex</dt><dd>enables the complex filtering to manage splitting the input to two audio streams</dd>
         <dt>[0:a:0]asplit=2[a][b];</dt><dd><code>asplit</code> allows audio streams to be split up for separate manipulation. This command splits the audio from the first input (the master file) into two streams "a" and "b"</dd>
         <dt>[b]afifo[bb];</dt><dd>this buffers the stream "b" to help prevent dropped samples and renames stream to "bb"</dd>
         <dt>[1:a:0][bb]concat=n=2:v=0:a=1[concatout]</dt><dd><code>concat</code> is used to join files. <code>n=2</code> tells the filter there are two inputs. <code>v=0:a=1</code> Tells the filter there are 0 video outputs and 1 audio output. This command appends the audio from the second input to the beginning of stream "bb" and names the output "concatout"</dd>
         <dt>-map "[a]"</dt><dd>this maps the unmodified audio stream to the first output</dd>
         <dt>-codec:a libmp3lame -dither_method triangular -qscale:a 2</dt><dd>sets up MP3 options (using constant quality)</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida (unmodified)</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida (unmodified)</dd>
         <dt>-map "[concatout]"</dt><dd>this maps the modified stream to the second output</dd>
         <dt>-codec:a libmp3lame -dither_method triangular -qscale:a 2</dt><dd>sets up MP3 options (using constant quality)</dd>
-        <dt><em>output_file_appended</em></dt><dd>ruta y nombre del archivo de salida (with appended notice)</dd>
+        <dt><em>output_file_appended</em></dt><dd>ruta, nombre y extensión del archivo de salida (with appended notice)</dd>
       </dl>
       <p class="link"></p>
     </div> -->
@@ -643,11 +643,11 @@
       <p><code>ffmpeg -i <em>input_file</em> -filter:v "pad=ih*16/9:ih:(ow-iw)/2:(oh-ih)/2" -c:a copy <em>output_file</em></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-filter:v "pad=ih*16/9:ih:(ow-iw)/2:(oh-ih)/2"</dt><dd>relleno de video<br>Esta fórmula independiente de la resolución en realidad está rellenando cualquier relación de aspecto en 16:9 por medio del formato pillarboxing, porque el filtro de vídeo utiliza valores relativos para el ancho de ingreso (iw), el alto de ingreso (ih), el ancho de salida (ow) y el alto de salida (oh).</dd>
         <dt>-c:a copy</dt><dd>vuelve a codificar utilizando el mismo códec de audio<br>
         Para videos sin sonido, puede reemplazar <code>-c:a copy</code> con <code>-an</code>.</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p class="link"></p>
     </div>
@@ -662,12 +662,12 @@
       <p><code>ffmpeg -i <em>input_file</em> -filter:v "pad=iw:iw*3/4:(ow-iw)/2:(oh-ih)/2" -c:a copy <em>output_file</em></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-filter:v "pad=iw:iw*3/4:(ow-iw)/2:(oh-ih)/2"</dt><dd>relleno de video<br>
          Esta fórmula independiente de la resolución en realidad está rellenando cualquier relación de aspecto en 4:3 por medio del formato letterboxing, porque el filtro de vídeo utiliza valores relativos para el ancho de ingreso (iw), el alto de ingreso (ih), el ancho de salida (ow) y el alto de salida (oh). (oh).</dd>
         <dt>-c:a copy</dt><dd>vuelve a codificar utilizando el mismo códec de audio<br>
         Para videos sin sonido, puede reemplazar <code>-c:a copy</code> con <code>-an</code>.</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p class="link"></p>
     </div>
@@ -681,11 +681,11 @@
       <p><code>ffmpeg -i <em>input_file</em> -filter:v "hflip,vflip" -c:a copy <em>output_file</em></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-filter:v "hflip,vflip"</dt><dd>voltea la imagen horizontal y verticalmente<br>Al usar solo uno de los parámetros hflip o vflip para filtrar, la imagen se voltea solo en ese axis Las comillas no son obligatorias.</dd>
         <dt>-c:a copy</dt><dd>vuelve a codificar utilizando el mismo códec de audio<br>
          Para videos sin sonido, puede reemplazar <code>-c:a copy</code> con <code>-an</code>.</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p class="link"></p>
     </div>
@@ -700,7 +700,7 @@
       <p><code>ffmpeg -i <em>input_file</em> -filter:v "colormatrix=bt601:bt709, scale=1440:1080:flags=lanczos, pad=1920:1080:240:0" -c:a copy <em>output_file</em></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-filter:v "colormatrix=bt601:bt709, scale=1440:1080:flags=lanczos, pad=1920:1080:240:0"</dt><dd>establecer matriz de color, escala de video y relleno<br>Se applican tres filtros:
           <ol>
             <li>Los coeficientes luma se modifican de vídeo SD (según Rec. 601) a vídeo HD (según Rec. 709) mediante una matriz de color. Tenga en cuenta que hoy Rec. 709 se utiliza a menudo también para SD y por lo tanto puede cancelar este parámetro.</li>
@@ -709,7 +709,7 @@
           </ol></dd>
         <dt>-c:a copy</dt><dd>vuelve a codificar utilizando el mismo códec de audio<br>
          Para videos sin sonido, puede reemplazar <code>-c:a copy</code> with <code>-an</code>.</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p>Si su archivo de inicio está entrelazado, querrá desentrelazarla antes de escalarlo. En ese caso, su comando se vería así:</p>
       <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -filter:v "yadif, colormatrix=bt601:bt709, scale=1440:1080:flags=lanczos, pad=1920:1080:240:0" -c:a copy <em>output_file</em></code></p>
@@ -726,10 +726,10 @@
       <p><code>ffmpeg -i <em>input_file</em> -c:v copy -aspect 4:3 <em>output_file</em></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-c:v copy</dt><dd>Copie todas las transmisiones de video asignadas.</dd>
         <dt>-aspect 4:3</dt><dd>Cambia la relación de aspecto para visionado a <code>4:3</code>. Experimente con otras relaciones de aspecto como <code>16:9</code>. Usado junto a <code>-c:v copy</code>, afectará la relación de aspecto guardada a nivel de contenedor, pero no la relación de aspecto guardada en cuadros codificados, si existen.</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p class="link"></p>
     </div>
@@ -744,12 +744,12 @@
       <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -vf colormatrix=src:dst <em>output_file</em></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-c:v libx264</dt><dd>tells FFmpeg to encode the video stream as H.264</dd>
         <dt>-vf colormatrix=<em>src</em>:<em>dst</em></dt><dd>the video filter <strong>colormatrix</strong> will be applied, with the given source and destination colorspaces.<br>
         Accepted values include <code>bt601</code> (Rec.601), <code>smpte170m</code> (Rec.601, 525-line/<a href="https://en.wikipedia.org/wiki/NTSC#NTSC-M" target="_blank">NTSC</a> version), <code>bt470bg</code> (Rec.601, 625-line/<a href="https://en.wikipedia.org/wiki/PAL#PAL-B.2FG.2FD.2FK.2FI" target="_blank">PAL</a> version), <code>bt709</code> (Rec.709), and <code>bt2020</code> (Rec.2020).<br>
         For example, to convert from Rec.601 to Rec.709, you would use <code>-vf colormatrix=bt601:bt709</code>.</dd>
-        <dt><em>output file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt><em>output file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p><strong>Note:</strong> Converting between colorspaces with FFmpeg can be done via either the <strong>colormatrix</strong> or <strong>colorspace</strong> filters, with colorspace allowing finer control (individual setting of colorspace, transfer characteristics, primaries, range, pixel format, etc). See <a href="https://trac.ffmpeg.org/wiki/colorspace" target="_blank">this</a> entry on the FFmpeg wiki, and the FFmpeg documentation for <a href="https://ffmpeg.org/ffmpeg-filters.html#colormatrix" target="_blank">colormatrix</a> and <a href="https://ffmpeg.org/ffmpeg-filters.html#colorspace" target="_blank">colorspace</a>.</p>
       <hr>
@@ -757,7 +757,7 @@
       <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -vf colormatrix=src:dst -color_primaries <em>val</em> -color_trc <em>val</em> -colorspace <em>val</em> <em>output_file</em></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-c:v libx264</dt><dd>encode video as H.264</dd>
         <dt>-vf colormatrix=<em>src</em>:<em>dst</em></dt><dd>the video filter <strong>colormatrix</strong> will be applied, with the given source and destination colorspaces.</dd>
         <dt>-color_primaries <em>val</em></dt><dd>tags video with the given color primaries.<br>
@@ -766,7 +766,7 @@
         Accepted values include <code>smpte170m</code> (Rec.601, 525-line/NTSC version), <code>gamma28</code> (Rec.601, 625-line/PAL version)<sup><a href="#fn1" id="ref1">1</a></sup>, <code>bt709</code> (Rec.709), <code>bt2020_10</code> (Rec.2020 10-bit), and <code>bt2020_12</code> (Rec.2020 12-bit).</dd>
         <dt>-colorspace <em>val</em></dt><dd>tags video as being in the given colourspace.<br>
         Accepted values include <code>smpte170m</code> (Rec.601, 525-line/NTSC version), <code>bt470bg</code> (Rec.601, 625-line/PAL version), <code>bt709</code> (Rec.709), <code>bt2020_cl</code> (Rec.2020 constant luminance), and <code>bt2020_ncl</code> (Rec.2020 non-constant luminance).</dd>
-        <dt><em>output file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt><em>output file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <h4>Examples</h4>
       <p>To Rec.601 (525-line/NTSC):</p>
@@ -797,7 +797,7 @@
       <p><code>ffmpeg -i <em>input_file</em> -r <em>output_fps</em> -filter_complex "[0:v]setpts=<em>input_fps</em>/<em>output_fps</em>*PTS[v]; [0:a]atempo=<em>output_fps</em>/<em>input_fps</em>[a]" -map "[v]" -map "[a]" <em>output_file</em></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-r <em>output_fps</em></dt><dd>sets the frame rate of the <em>output_file</em></dd>
         <dt>-filter_complex "[0:v]setpts=<em>input_fps</em>/<em>output_fps</em>*PTS[v]; [0:a]atempo=<em>output_fps</em>/<em>input_fps</em>[a]"</dt><dd>A complex filter is needed here, in order to handle video stream and the audio stream separately. The <code>setpts</code> video filter modifies the PTS (presentation time stamp) of the video stream, and the <code>atempo</code> audio filter modifies the speed of the audio stream while keeping the same sound pitch. Note that the parameter order for the image and for the sound are inverted:
         <ul>
@@ -807,7 +807,7 @@
         The different filters in a complex filter can be divided either by comma or semicolon. The quotation marks allow to insert a space between the filters for readability.</dd>
         <dt>-map "[v]"</dt><dd>maps the video stream and</dd>
         <dt>-map "[a]"</dt><dd>maps the audio stream together into:</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p class="link"></p>
     </div> -->
@@ -822,7 +822,7 @@
       <p>This command fades your video in and out. Change IN_POINT, OUT_POINT, and DURATION to the time in seconds (expressed as integers).</p>
       <dl>
           <dt>ffmpeg</dt><dd>inicia el commando</dd>
-          <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+          <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
           <dt>-filter:v "fade=in:st=IN_POINT:d=DURATION, fade=out:st=OUT_POINT:d=DURATION"</dt><dd>applies a video filter that fades your video in and out. <code>st</code> sets the start and <code>d</code> sets the duration.</dd>
           <dt>-filter:a "afade=in:st=IN_POINT:d=DURATION, afade=out:st=OUT_POINT:d=DURATION"</dt><dd>applies an audio filter that fades your video in and out. <code>st</code> sets the start and <code>d</code> sets the duration.</dd>
           <dt>-c:v <em>video_codec</em></dt><dd>as a video filter is used, it is not possible to use <code>-c copy</code>. The video must be re-encoded with whatever video codec is chosen, e.g. <code>ffv1</code>, <code>v210</code> or <code>prores</code>.</dd>
@@ -842,9 +842,9 @@
       <p>A command to slip the video channel approximate 2 frames (0.125 for a 25fps timeline) to align video and audio drift, if generated during video tape capture for example.</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-itsoffset 0.125</dt><dd>uses itsoffset command to set offset to 0.125 of a second. The offset time must be a time duration specification, see <a href="https://ffmpeg.org/ffmpeg-utils.html#time-duration-syntax" target="_blank">FFMPEG Utils Time Duration Syntax</a>.</dd>
-        <dt>-i <em>input_file</em></dt><dd>repeat ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input_file</em></dt><dd>repeat ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-map 1:v -map 0:a</dt><dd>selects the video channel for itsoffset command. To slip the audio channel reverse the selection to -map 0:v -map 1:a.</dd>
         <dt>-c copy</dt><dd>copies the encode settings of the input_file to the output_file</dd>
         <dt><em>output_file_resync</em></dt><dd>path, name and extension of the output_file</dd>
@@ -863,7 +863,7 @@
       <p><code>ffprobe <em>input_file</em> -show_streams</code></p>
       <dl>
         <dt>ffprobe</dt><dd>inicia el commando</dd>
-        <dt><em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt><em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-show_streams</dt><dd>Shows metadata of stream properties</dd>
       </dl>
       <p>Values that are set to 'unknown' and 'undetermined' may be unspecified within the stream. An unknown aspect ratio would be expressed as '0:1'. Streams with many unknown properties may have interoperability issues or not play as intended. In many cases, an unknown or undetermined value may be accurate because the information about the source is unclear, but often the value is intended to be known. In many cases the stream will played with an assumed value if undetermined (for instance a display_aspect_ratio of '0:1' may be played as 'WIDTH:HEIGHT'), but this may or may not be what is intended. Use carefully.</p>
@@ -872,11 +872,11 @@
       <p><code>ffmpeg -i <em>input_file</em> -c copy -map 0 -aspect DAR_NUM:DAR_DEN <em>output_file</em></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-c copy</dt><dd>Using stream copy for all streams</dd>
         <dt>-map 0</dt><dd>tells FFmpeg to map all streams of the input to the output.</dd>
         <dt>-aspect DAR_NUM:DAR_DEN</dt><dd>Replace DAR_NUM with the display aspect ratio numerator and DAR_DEN with the display aspect ratio denominator, such as <em>-aspect 4:3</em> or <em>-aspect 16:9</em>.</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <h2>Adding other stream properties.</h2>
       <p>Other properties may be clarified in a similar way. Replace <em>-aspect</em> and its value with other properties such as shown in the options below. Note that setting color values in QuickTime requires that <em>-movflags write_colr</em> is set.</p>
@@ -899,11 +899,11 @@
       <p>Este comando recorta el vídeo de ingreso a las dimensiones definidas.</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-vf "<em>width</em>:<em>height</em>"</dt><dd>Recorta el vídeo al ancho y alto significados (en píxeles).<br>
           De forma predeterminada, el área de recorte está centrada: es decir, la posición de la parte superior izquierda del área recortada está establecida en x = (<em>ancho_ingreso</em> - <em>ancho_salida</em>) / 2, y = <em>alto_ingreso</em> - <em>alto_salida</em>) / 2.
         </dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p>También es posible especificar la posición de recorte agregando las coordenadas x e y que representan la parte superior izquierda de su área recortada a su filtro de recorte, asi:</p>
       <p><code>ffmpeg -i <em>input_file</em> -vf "crop=<em>ancho</em>:<em>alto</em>[:<em>x_position</em>:<em>y_position</em>]" <em>output_file</em></code></p>
@@ -929,21 +929,21 @@
       <p>Un comando básico para alterar el tono del color a blanco y negro usando filter_complex (credito @FFMPEG via Twitter).</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-filter_complex hue=s=0</dt><dd>usa el comando filter_complex para establecer el tono en blanco y negro</dd>
         <dt>-c:a copy</dt><dd>copia la configuración de codificación del input_file al output_file</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p>Una alternativa que conserva la información de entrelazado para un archivo ProRes 422 HQ generado, por ejemplo, a partir de una cinta maestra (credito Dave Rice):</p>
       <p><code>ffmpeg -i <em>input_file</em> -c:v prores_ks -flags +ildct -map 0 -c:a copy -profile:v 3 -vf hue=s=0 <em>output_file</em></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-c:v prores_ks</dt><dd>codifica el vídeo a ProRes (prores_ks marca la secuencia como entrelazada, a diferencia de prores)</dd>
         <dt>-flags +ildct</dt><dd>garantiza que el output_file tenga codificación  entrelazada, utilizando la transformada de coseno discreta con reconocimiento de entrelazado</dd>
         <dt>-map 0</dt><dd>garantiza que ffmpeg asigne todos los flujos de document_ingreso a document_output</dd>
         <dt>-c:a copy</dt><dd>copia la configuración de codificación del input_file al output_file/dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p class="link"></p>
     </div>
@@ -1562,7 +1562,7 @@
       <p><code>ffmpeg -i <em>input_file</em> -vf drawtext="fontfile=<em>font_path</em>:fontsize=<em>font_size</em>:text=<em>watermark_text</em>:fontcolor=<em>font_color</em>:alpha=0.4:x=(w-text_w)/2:y=(h-text_h)/2" <em>output_file</em></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-vf drawtext=</dt><dd>This calls the drawtext filter with the following options:
         <dl>
           <dt>fontfile=<em>font_path</em></dt><dd>Set path to font. For example in macOS: <code>fontfile=/Library/Fonts/AppleGothic.ttf</code></dd>
@@ -1573,7 +1573,7 @@
           <dt>x=(w-text_w)/2:y=(h-text_h)/2</dt><dd>Sets <em>x</em> and <em>y</em> coordinates for the watermark. These relative values will centre your watermark regardless of video dimensions.</dd>
         </dl>
         Note: <code>-vf</code> is a shortcut for <code>-filter:v</code>.</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida.</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida.</dd>
       </dl>
       <p class="link"></p>
     </div> -->
@@ -1590,7 +1590,7 @@
         <dt>-i <em>input_video_file</em></dt><dd>ruta y nombre del archivo de ingreso video file</dd>
         <dt>-i <em>input_image_file</em></dt><dd>path, name and extension of the image file</dd>
         <dt>-filter_complex overlay=main_w-overlay_w-5:5</dt><dd>This calls the overlay filter and sets x and y coordinates for the position of the watermark on the video. Instead of hardcoding specific x and y coordinates, <code>main_w-overlay_w-5:5</code> uses relative coordinates to place the watermark in the upper right hand corner, based on the width of your input files. Please see the <a href="https://ffmpeg.org/ffmpeg-all.html#toc-Examples-102" target="_blank">FFmpeg documentation for more examples.</a></dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p class="link"></p>
     </div> -->
@@ -1604,7 +1604,7 @@
       <p><code>ffmpeg -i <em>input_file</em> -vf drawtext="fontfile=<em>font_path</em>:fontsize=<em>font_size</em>:timecode=<em>starting_timecode</em>:fontcolor=<em>font_colour</em>:box=1:boxcolor=<em>box_colour</em>:rate=<em>timecode_rate</em>:x=(w-text_w)/2:y=h/1.2" <em>output_file</em></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-vf drawtext=</dt><dd>This calls the drawtext filter with the following options:
         <dt>"</dt><dd>quotation mark to start drawtext filter command</dd>
         <dt>fontfile=<em>font_path</em></dt><dd>Set path to font. For example in macOS: <code>fontfile=/Library/Fonts/AppleGothic.ttf</code></dd>
@@ -1616,7 +1616,7 @@
         <dt>rate=<em>timecode_rate</em></dt><dd>Framerate of video. For example <code>25/1</code></dd>
         <dt>x=(w-text_w)/2:y=h/1.2</dt><dd>Sets <em>x</em> and <em>y</em> coordinates for the timecode. These relative values will horizontally centre your timecode in the bottom third regardless of video dimensions.</dd>
         <dt>"</dt><dd>quotation mark to end drawtext filter command</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida.</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida.</dd>
       </dl>
       <p>Note: <code>-vf</code> is a shortcut for <code>-filter:v</code>.</p>
       <p class="link"></p>
@@ -1631,11 +1631,11 @@
       <p><code>ffmpeg -i <em>input_file</em> -i <em>subtitles_file</em> -c copy -c:s mov_text <em>output_file</em></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-i <em>subtitles_file</em></dt><dd>path to subtitles file, e.g. <code>subtitles.srt</code></dd>
         <dt>-c copy</dt><dd>enable stream copy (no re-encode)</dd>
         <dt>-c:s mov_text</dt><dd>Encode subtitles using the <code>mov_text</code> codec. Note: The <code>mov_text</code> codec works for MP4 and MOV containers. For the MKV container, acceptable formats are <code>ASS</code>, <code>SRT</code>, and <code>SSA</code>.</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p>Note: <code>-c:s</code> is a shortcut for <code>-scodec</code></p>
       <p class="link"></p>
@@ -1655,10 +1655,10 @@
       <p>This command will grab a thumbnail 20 seconds into the video.</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-ss <em>00:00:20</em></dt><dd>seeks video file to 20 seconds into the video</dd>
         <dt>-vframes <em>1</em></dt><dd>sets the number of frames (in this example, one frame)</dd>
-        <dt><em>output file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt><em>output file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p class="link"></p>
     </div> -->
@@ -1673,10 +1673,10 @@
       <p>This will grab a thumbnail every minute and output sequential png files.</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-ss <em>00:00:20</em></dt><dd>seeks video file to 20 seconds into the video</dd>
         <dt>-vf fps=1/60</dt><dd>Creates a filtergraph to use for the streams. The rest of the command identifies filtering by frames per second, and sets the frames per second at 1/60 (which is one per minute). Omitting this will output all frames from the video.</dd>
-        <dt><em>output file</em></dt><dd>ruta y nombre del archivo de salida. In the example out%d.png where %d is a regular expression that adds a number (d is for digit) and increments with each frame (out1.png, out2.png, out3.png…). You may also chose a regular expression like out%04d.png which gives 4 digits with leading 0 (out0001.png, out0002.png, out0003.png, …).</dd>
+        <dt><em>output file</em></dt><dd>ruta, nombre y extensión del archivo de salida. In the example out%d.png where %d is a regular expression that adds a number (d is for digit) and increments with each frame (out1.png, out2.png, out3.png…). You may also chose a regular expression like out%04d.png which gives 4 digits with leading 0 (out0001.png, out0002.png, out0003.png, …).</dd>
       </dl>
       <p class="link"></p>
     </div> -->
@@ -1715,14 +1715,14 @@
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
         <dt>-ss <em>HH:MM:SS</em></dt><dd>starting point of the GIF. If a plain numerical value is used it will be interpreted as seconds</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-filter_complex "fps=<em>framerate</em>, scale=<em>width</em>:<em>height</em>, palettegen"</dt><dd>a complex filtergraph.<br>
         Firstly, the fps filter sets the frame rate.<br>
         Then the scale filter resizes the image. You can specify both the width and the height, or specify a value for one and use a scale value of <em>-1</em> for the other to preserve the aspect ratio. (For example, <code>500:-1</code> would create a GIF 500 pixels wide and with a height proportional to the original video). In the first script above, <code>:flags=lanczos</code> specifies that the Lanczos rescaling algorithm will be used to resize the image.<br>
         Lastly, the palettegen filter generates the palette.</dd>
         <dt>-t <em>3</em></dt><dd>duration in seconds (here 3; can be specified also with a full timestamp, i.e. here 00:00:03)</dd>
         <dt>-loop <em>6</em></dt><dd>sets the number of times to loop the GIF. A value of <em>-1</em> will disable looping. Omitting <em>-loop</em> will use the default, which will loop infinitely.</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p>The second command has a slightly different filtergraph, which breaks down as follows:</p>
       <dl>
@@ -1750,10 +1750,10 @@
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
         <dt>-f image2</dt><dd>forces the image file de-muxer for single image files</dd>
         <dt>-framerate 24</dt><dd>Sets the input framerate to 24 fps. The image2 demuxer defaults to 25 fps.</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file<br>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada<br>
         This must match the naming convention actually used! The regex %06d matches six digits long numbers, possibly with leading zeroes. This allows to read in ascending order, one image after the other, the full sequence inside one folder. For image sequences starting with 086400 (i.e. captured with a timecode starting at 01:00:00:00 and at 24 fps), add the flag <code>-start_number 086400</code> before <code>-i input_file_%06d.ext</code>. The extension for TIFF files is .tif or maybe .tiff; the extension for DPX files is .dpx (or eventually .cin for old files).</dd>
         <dt>-c:v v210</dt><dd>encodes an uncompressed 10-bit video stream</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p class="link"></p>
     </div> -->
@@ -1795,7 +1795,7 @@
       <dl>
         <dt>ffplay -f lavfi</dt><dd>inicia el commando and tells ffplay that you will be using the lavfi virtual device to create the input</dd>
         <dt>"</dt><dd>quotation mark to start the lavfi filtergraph</dd>
-        <dt>amovie=<em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>amovie=<em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>asplit=2[out1][a]</dt><dd>splits the audio stream in two. One of these [a] will be passed to the filter, and the other [out1] will be the audible stream.</dd>
         <dt>[a]abitscope=colors=purple|yellow[out0]</dt><dd>sends stream [a] into the abitscope filter, sets the colors for the channels to purple and yellow, and outputs the results to [out0]. This is what will be the visualization.</dd>
         <dt>"</dt><dd>quotation mark to end the lavfi filtergraph</dd>
@@ -1870,7 +1870,7 @@
       <p><code>ffplay <em>input_file</em> -vf "split=2[m][v], [v]vectorscope=b=0.7:m=color3:g=green[v], [m][v]overlay=x=W-w:y=H-h"</code></p>
       <dl>
         <dt>ffplay</dt><dd>inicia el commando</dd>
-        <dt><em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt><em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-vf</dt><dd>creates a filtergraph to use for the streams</dd>
         <dt>"</dt><dd>quotation mark to start filtergraph</dd>
         <dt>split=2[m][v]</dt><dd>Splits the input into two identical outputs and names them [m] and [v]</dd>
@@ -2057,7 +2057,7 @@
       <p>This decodes your video and prints any errors or found issues to the screen.</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-f null</dt><dd>Video is decoded with the <code>null</code> muxer. This allows video decoding without creating an output file.</dd>
         <dt>-</dt><dd>FFmpeg syntax requires a specified output, and <code>-</code> is just a place holder. No file is actually created.</dd>
       </dl>
@@ -2076,7 +2076,7 @@
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
         <dt>-report</dt><dd>Dump full command line and console output to a file named <em>ffmpeg-YYYYMMDD-HHMMSS.log</em> in the current directory. It also implies <code>-loglevel verbose</code>.</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-f null</dt><dd>Video is decoded with the <code>null</code> muxer. This allows video decoding without creating an output file.</dd>
         <dt>-</dt><dd>FFmpeg syntax requires a specified output, and <code>-</code> is just a place holder. No file is actually created.</dd>
       </dl>
@@ -2093,10 +2093,10 @@
       <p>This will create an MD5 checksum per video frame.</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-f framemd5</dt><dd>library used to calculate the MD5 checksums</dd>
         <dt>-an</dt><dd>ignores the audio stream (audio no)</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p>You may verify an MD5 checksum file created this way by using a <a href="scripts/check_video_framemd5.sh" target="_blank">Bash script</a>.</p>
       <p class="link"></p>
@@ -2119,11 +2119,11 @@
       <p><strong>Note:</strong> This filter transcodes audio to 16 bit PCM by default. The generated framemd5s will represent this value. Validating these framemd5s will require using the same default settings. Alternatively, when your file has another quantization rates (e.g. 24 bit), then you might add the audio codec <code>-c:a pcm_s24le</code> to the command, for compatibility reasons with other tools, like <a href="https://mediaarea.net/BWFMetaEdit" target="_blank">BWF MetaEdit</a>.</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-af "asetnsamples=n=<em>48000</em>"</dt><dd>the audio filter sets the sampling rate</dd>
         <dt>-f framemd5</dt><dd>library used to calculate the MD5 checksums</dd>
         <dt>-vn</dt><dd>ignores the video stream (video no)</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p>You may verify an MD5 checksum file created this way by using a <a href="scripts/check_audio_framemd5.sh" target="_blank">Bash script</a>.</p>
       <p class="link"></p>
@@ -2139,7 +2139,7 @@
       <p>This will create MD5 checksums for the first video and the first audio stream in a file. If only one of these is necessary (for example if used on a WAV file) either part of the command can be excluded to create the desired MD5 only. Use of this kind of checksum enables integrity of the A/V information to be verified independently of any changes to surrounding metadata.</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-map 0:v:0</dt><dd>selects the first video stream from the input</dd>
         <dt>-c:v copy</dt><dd>ensures that FFmpeg will not transcode the video to a different codec before generating the MD5</dd>
         <dt><em>output_file_1</em></dt><dd>is the output file for the video stream MD5. Example file extensions are <code>.md5</code> and <code>.txt</code></dd>
@@ -2162,7 +2162,7 @@
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
         <dt>-loglevel error</dt><dd>sets the verbosity of logging to show all errors</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-map 0:v:0</dt><dd>designated the first video stream as the stream on which to perform this hash generation operation. <code>-map 0</code> can be used to run the operation on all streams.</dd>
         <dt>-f hash -hash md5</dt><dd>produce a checksum hash, and set the hash algorithm to md5. See the official <a href="https://ffmpeg.org/ffmpeg-formats.html#hash" target="_blank">documentation on hash</a> for other algorithms.</dd>
         <dt>-</dt><dd>FFmpeg syntax requires a specified output, and <code>-</code> is just a place holder. No file is actually created.</dd>
@@ -2182,7 +2182,7 @@
       <p>The output is formatted for easily processing it further in any kind of programming/scripting language.</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+        <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
         <dt>-map 0</dt><dd>map ALL streams from input file to output. If you omit this, ffmpeg chooses only the first "best" (*) stream: 1 for audio, 1 for video (not all streams).</dd>
         <dt>-f streamhash -hash md5</dt><dd>produce a checksum hash per-stream, and set the hash algorithm to md5. See the official <a href="https://www.ffmpeg.org/ffmpeg-formats.html#streamhash-1" target="_blank">documentation on streamhash</a> for other algorithms and more details.</dd>
         <dt>-</dt><dd>FFmpeg syntax requires a specified output, and <code>-</code> is just a place holder. No file is actually created. Choose an output filename to write the hashcode lines into a textfile.</dd>
@@ -2289,7 +2289,7 @@
         <dt>-i mandelbrot=size=1280x720:rate=25</dt><dd>asks for the <a href="https://ffmpeg.org/ffmpeg-filters.html#mandelbrot" target="_blank">mandelbrot test filter</a> as input. Adjusting the <code>size</code> and <code>rate</code> options allows you to choose a specific frame size and framerate.</dd>
         <dt>-c:v libx264</dt><dd>transcodes video from rawvideo to H.264. Set <code>-pix_fmt</code> to <code>yuv420p</code> for greater H.264 compatibility with media players.</dd>
         <dt>-t 10</dt><dd>specifies recording time of 10 seconds</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida. Try different file extensions such as mkv, mov, mp4, or avi.</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida. Try different file extensions such as mkv, mov, mp4, or avi.</dd>
       </dl>
       <p class="link"></p>
     </div> -->
@@ -2307,7 +2307,7 @@
         <dt>-i smptebars=size=720x576:rate=25</dt><dd>asks for the <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc_002c-testsrc2_002c-yuvtestsrc" target="_blank">smptebars test filter</a> as input. Adjusting the <code>size</code> and <code>rate</code> options allows you to choose a specific frame size and framerate.</dd>
         <dt>-c:v prores</dt><dd>transcodes video from rawvideo to Apple ProRes 4:2:2.</dd>
         <dt>-t 10</dt><dd>specifies recording time of 10 seconds</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida. Try different file extensions such as mov or avi.</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida. Try different file extensions such as mov or avi.</dd>
       </dl>
       <p class="link"></p>
     </div> -->
@@ -2326,7 +2326,7 @@
           The different test patterns that can be generated are listed <a href="https://ffmpeg.org/ffmpeg-filters.html#allrgb_002c-allyuv_002c-color_002c-haldclutsrc_002c-nullsrc_002c-rgbtestsrc_002c-smptebars_002c-smptehdbars_002c-testsrc_002c-testsrc2_002c-yuvtestsrc" target="_blank">here</a>.</dd>
         <dt>-c:v v210</dt><dd>transcodes video from rawvideo to 10-bit Uncompressed Y′C<sub>B</sub>C<sub>R</sub> 4:2:2. Alter this setting to set your desired codec.</dd>
         <dt>-t 10</dt><dd>specifies recording time of 10 seconds</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida. Try different file extensions such as mkv, mov, mp4, or avi.</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida. Try different file extensions such as mkv, mov, mp4, or avi.</dd>
       </dl>
       <p class="link"></p>
     </div> -->
@@ -2376,7 +2376,7 @@
         <dt>-f lavfi</dt><dd>tells FFmpeg to use the <a href="https://ffmpeg.org/ffmpeg-devices.html#lavfi" target="_blank">Libavfilter</a> input virtual device</dd>
         <dt>-i "sine=frequency=1000:sample_rate=48000:duration=5"</dt><dd>Sets the signal to 1000 Hz, sampling at 48 kHz, and for 5 seconds</dd>
         <dt>-c:a pcm_s16le</dt><dd>encodes the audio codec in <code>pcm_s16le</code> (the default encoding for wav files). <code>pcm</code> represents pulse-code modulation format (raw bytes), <code>16</code> means 16 bits per sample, and <code>le</code> means "little endian"</dd>
-        <dt><em>output_file</em>.wav</dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt><em>output_file</em>.wav</dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p class="link"></p>
     </div> -->
@@ -2398,7 +2398,7 @@
         <dt>-c:a pcm_s16le</dt><dd>encodes the audio codec in <code>pcm_s16le</code> (the default encoding for wav files). <code>pcm</code> represents pulse-code modulation format (raw bytes), <code>16</code> means 16 bits per sample, and <code>le</code> means "little endian"</dd>
         <dt>-t 10</dt><dd>specifies recording time of 10 seconds</dd>
         <dt>-c:v ffv1</dt><dd>Encodes to <a href="https://en.wikipedia.org/wiki/FFV1" target="_blank">FFV1</a>. Alter this setting to set your desired codec.</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p class="link"></p>
     </div> -->
@@ -2416,7 +2416,7 @@
         <dt>-i <em>input_file</em></dt><dd>takes in a normal file</dd>
         <dt>-bsf noise=1</dt><dd>sets bitstream filters for all to 'noise'. Filters can be set on specific filters using syntax such as <code>-bsf:v</code> for video, <code>-bsf:a</code> for audio, etc. The <a href="https://ffmpeg.org/ffmpeg-bitstream-filters.html#noise" target="_blank">noise filter</a> intentionally damages the contents of packets without damaging the container. This sets the noise level to 1 but it could be left blank or any number above 0.</dd>
         <dt>-c copy</dt><dd>use stream copy mode to re-mux instead of re-encode</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p class="link"></p>
     </div> -->
@@ -2545,7 +2545,7 @@
           <dt>ffplay</dt><dd>inicia el commando</dd>
           <dt>-framerate 5</dt><dd>plays image sequence at rate of 5 images per second<br>
           <strong>Note:</strong> this low framerate will produce a slideshow effect.</dd>
-          <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file<br>
+          <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada<br>
           This must match the naming convention used! The regex %06d matches six-digit-long numbers, possibly with leading zeroes. This allows the full sequence to be read in ascending order, one image after the other.<br>
           The extension for TIFF files is .tif or maybe .tiff; the extension for DPX files is .dpx (or even .cin for old files). Screenshots are often in .png format.</dd>
         </dl>
@@ -2565,7 +2565,7 @@
         <p>This command splits the original input file into a video and audio stream. The -map command identifies which streams are mapped to which file. To ensure that you’re mapping the right streams to the right file, run ffprobe before writing the script to identify which streams are desired.</p>
         <dl>
           <dt>ffmpeg</dt><dd>inicia el commando</dd>
-          <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+          <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
           <dt>-map 0:v:0</dt><dd>grabs the first video stream and maps it into:</dd>
           <dt><em>video_output_file</em></dt><dd>path, name and extension of the video output file</dd>
           <dt>-map 0:a:0</dt><dd>grabs the first audio stream and maps it into:</dd>
@@ -2589,7 +2589,7 @@
           <dt>-map <em>0:v</em></dt><dd>selects the video streams from the first input file</dd>
           <dt>-map <em>1:a</em></dt><dd>selects the audio streams from the second input file</dd>
           <dt>-c copy</dt><dd>copies streams without re-encoding</dd>
-          <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+          <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
         </dl>
         <p><strong>Note:</strong> in the example above, the video input file is given prior to the audio input file. However, input files can be added any order, as long as they are indexed correctly when stream mapping with <code>-map</code>. See the entry on <a href="#stream-mapping">stream mapping</a>.</p>
         <h4>Variation:</h4>
@@ -2609,7 +2609,7 @@
         <p>This command will take any file and create an MPEG file that dvdauthor can use to create an ISO.</p>
         <dl>
           <dt>ffmpeg</dt><dd>inicia el commando</dd>
-          <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+          <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
           <dt>-aspect 4:3</dt><dd>declares the aspect ratio of the resulting video file. You can also use 16:9.</dd>
           <dt>-target ntsc-dvd</dt><dd>specifies the region for your DVD. This could be also pal-dvd.</dd>
           <dt><em>output_file</em>.mpg</dt><dd>path and name of the output file. The extension must be <code>.mpg</code></dd>
@@ -2648,7 +2648,7 @@
         <p>This command will draw a black box over a small area of the bottom of the frame, which can be used to cover up head switching noise.</p>
         <dl>
           <dt>ffmpeg</dt><dd>inicia el commando</dd>
-          <dt>-i <em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+          <dt>-i <em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
           <dt>-filter:v drawbox=</dt>
           <dd>This calls the drawtext filter with the following options:
             <dl>
@@ -2973,9 +2973,9 @@ Change the above data-target field, the hover-over description, the button text,
   <p>This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info!</p>
   <dl>
     <dt>ffmpeg</dt><dd>inicia el commando</dd>
-    <dt>-i <em>input file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
+    <dt>-i <em>input file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
     <dt>*****parameter*****</dt><dd>*****comments*****</dd>
-    <dt><em>output file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+    <dt><em>output file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
   </dl>
 </div> -->
 <!-- ends sample example -->
