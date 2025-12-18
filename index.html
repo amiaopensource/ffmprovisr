@@ -911,7 +911,7 @@ If the error message includes other parts of the command, such as a flag, that i
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
         <dt>-filter:v "colormatrix=bt601:bt709, scale=1440:1080:flags=lanczos, pad=1920:1080:240:0"</dt><dd>set colour matrix, video scaling and padding<br>Three filters are applied:
           <ol>
-            <li>The luma coefficients are modified from SD video (according to Rec. 601) to HD video (according to Rec. 709) by a color matrix. Note that today Rec. 709 is often used also for SD and therefore you may cancel this parameter.</li>
+            <li>The luma coefficients are modified from SD video (according to Rec. 601) to HD video (according to Rec. 709) by a <a href="colormatrix">color matrix</a>. Note that today Rec. 709 is often used also for SD and therefore you may cancel this parameter.</li>
             <li>The scaling filter (<code>scale=1440:1080</code>) works for both upscaling and downscaling. We use the Lanczos scaling algorithm (<code>flags=lanczos</code>), which is slower but gives better results than the default bilinear algorithm.</li>
             <li>The padding filter (<code>pad=1920:1080:240:0</code>) completes the transformation from SD to HD.</li>
           </ol></dd>
