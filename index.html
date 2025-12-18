@@ -2402,7 +2402,7 @@ If the error message includes other parts of the command, such as a flag, that i
       <h5>Get individual checksums for all video/audio streams ("Streamhash")</h5>
       <p><code>ffmpeg -i <em>input_file</em> -map 0 -f streamhash -hash md5 - -v quiet</code></p>
       <p>The outcome is very similar to that of "-f hash", except you get one hash per-stream, instead of one (summary) hash. Another benefit is that you don't have to know which streams, or how many to expect in the source file. This is very handy for hashing mixed born-digital material.</p>
-      <p>This script will perform a fixity check on all audio and video streams in the file and return one hashcode for each one.  This is useful for e.g. being able to change to container/codec format later on and validate it matches the original source.</p>
+      <p>This script will perform a fixity check on all audio and video streams in the file and return one <a href="hashcode">hashcode</a> for each one.  This is useful for e.g. being able to change to container/codec format later on and validate it matches the original source.</p>
       <p>The output is formatted for easily processing it further in any kind of programming/scripting language.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
