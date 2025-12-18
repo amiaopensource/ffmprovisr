@@ -2616,7 +2616,7 @@ If the error message includes other parts of the command, such as a flag, that i
     <input type="checkbox" id="smpte_bars_and_sine_wave">
     <div class="hiding">
       <h5>SMPTE bars + Sine wave audio</h5>
-      <p>Generate a SMPTE bars test video + a 1kHz sine wave as audio testsignal.</p>
+      <p>Generate a SMPTE bars test video + a 1kHz <a href="sinewave">sine wave</a> as audio testsignal.</p>
       <p><code>ffmpeg -f lavfi -i "smptebars=size=720x576:rate=25" -f lavfi -i "sine=frequency=1000:sample_rate=48000" -c:a pcm_s16le -t 10 -c:v ffv1 <em>output_file</em></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
