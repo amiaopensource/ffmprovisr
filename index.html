@@ -373,7 +373,7 @@ If the error message includes other parts of the command, such as a flag, that i
         <li><code>-vf "fieldmatch, yadif, decimate"</code></li>
       </ul>
       <p>but <code>-vf fieldmatch, yadif, decimate</code> is not valid.</p>
-      <p>The ordering of the filters is significant. Video filters are applied in the order given, with the output of one filter being passed along as the input to the next filter in the chain. In the example above, <code>fieldmatch</code> reconstructs the original frames from the inverse telecined video, <code>yadif</code> deinterlaces (this is a failsafe in case any combed frames remain, for example if the source mixes telecined and real <a href="interlaced">interlaced</a> content), and <code>decimate</code> deletes duplicated frames. Clearly, it is not possible to delete duplicated frames before those frames are reconstructed.</p>
+      <p>The ordering of the filters is significant. Video filters are applied in the order given, with the output of one filter being passed along as the input to the next filter in the chain. In the example above, <code>fieldmatch</code> reconstructs the original frames from the inverse telecined video, <code>yadif</code> deinterlaces (this is a failsafe in case any combed frames remain, for example if the source mixes telecined and real <a href="#interlaced">interlaced</a> content), and <code>decimate</code> deletes duplicated frames. Clearly, it is not possible to delete duplicated frames before those frames are reconstructed.</p>
       <h4>Notes</h4>
       <ul>
         <li><code>-vf</code> is an alias for <code>-filter:v</code></li>
@@ -656,7 +656,7 @@ If the error message includes other parts of the command, such as a flag, that i
         <dt>-slices 16</dt><dd>Each frame is split into 16 slices. 16 is a good trade-off between filesize and encoding time.</dd>
         <dt>-c:a copy</dt><dd>copies all mapped audio streams.</dd>
         <dt><em>output_file</em>.mkv</dt><dd>path and name of the output file. Use the <code>.mkv</code> extension to save your file in a Matroska container.</dd>
-        <dt>-f framemd5</dt><dd>Decodes video with the framemd5 muxer in order to generate MD5 <a href="checksum">checksums</a> for every frame of your input file. This allows you to verify losslessness when compared against the framemd5s of the output file.</dd>
+        <dt>-f framemd5</dt><dd>Decodes video with the framemd5 muxer in order to generate MD5 <a href="#checksum">checksums</a> for every frame of your input file. This allows you to verify losslessness when compared against the framemd5s of the output file.</dd>
         <dt>-an</dt><dd>ignores the audio stream when creating framemd5 (audio no)</dd>
         <dt><em>framemd5_output_file</em></dt><dd>path, name and extension of the framemd5 file.</dd>
       </dl>
@@ -767,7 +767,7 @@ If the error message includes other parts of the command, such as a flag, that i
       <p>A couple notes</p>
       <ul>
         <li>About ID3v2.3 tag: ID3v2.3 is better supported than ID3v2.4, FFmpeg's default ID3v2 setting.</li>
-        <li>About dither methods: FFmpeg comes with a variety of <a href="dither">dither</a> algorithms, outlined in the <a href="https://ffmpeg.org/ffmpeg-resampler.html" target="_blank">official docs</a>, though some may lead to unintended, drastic digital clipping on some systems.</li>
+        <li>About dither methods: FFmpeg comes with a variety of <a href="#dither">dither</a> algorithms, outlined in the <a href="https://ffmpeg.org/ffmpeg-resampler.html" target="_blank">official docs</a>, though some may lead to unintended, drastic digital clipping on some systems.</li>
       </ul>
       <h5>&#128203; Real-World Example</h5>
       <div class="real-world-content">
@@ -872,7 +872,7 @@ If the error message includes other parts of the command, such as a flag, that i
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
         <dt>-filter:v "pad=iw:iw*3/4:(ow-iw)/2:(oh-ih)/2"</dt><dd>video padding<br>
-        This resolution independent formula is actually <a href="padding">padding</a> any aspect ratio into 4:3 by letterboxing, because the video filter uses relative values for input width (iw), input height (ih), output width (ow) and output height (oh).</dd>
+        This resolution independent formula is actually <a href="#padding">padding</a> any aspect ratio into 4:3 by letterboxing, because the video filter uses relative values for input width (iw), input height (ih), output width (ow) and output height (oh).</dd>
         <dt>-c:a copy</dt><dd>re-encodes using the same audio codec<br>
         For silent videos you can replace <code>-c:a copy</code> by <code>-an</code>.</dd>
         <dt><em>output_file</em></dt><dd>path, name and extension of the output file</dd>
@@ -911,7 +911,7 @@ If the error message includes other parts of the command, such as a flag, that i
         <dt>-i <em>input_file</em></dt><dd>path, name and extension of the input file</dd>
         <dt>-filter:v "colormatrix=bt601:bt709, scale=1440:1080:flags=lanczos, pad=1920:1080:240:0"</dt><dd>set colour matrix, video scaling and padding<br>Three filters are applied:
           <ol>
-            <li>The luma coefficients are modified from SD video (according to Rec. 601) to HD video (according to Rec. 709) by a <a href="colormatrix">color matrix</a>. Note that today Rec. 709 is often used also for SD and therefore you may cancel this parameter.</li>
+            <li>The luma coefficients are modified from SD video (according to Rec. 601) to HD video (according to Rec. 709) by a <a href="#colormatrix">color matrix</a>. Note that today Rec. 709 is often used also for SD and therefore you may cancel this parameter.</li>
             <li>The scaling filter (<code>scale=1440:1080</code>) works for both upscaling and downscaling. We use the Lanczos scaling algorithm (<code>flags=lanczos</code>), which is slower but gives better results than the default bilinear algorithm.</li>
             <li>The padding filter (<code>pad=1920:1080:240:0</code>) completes the transformation from SD to HD.</li>
           </ol></dd>
@@ -2389,7 +2389,7 @@ If the error message includes other parts of the command, such as a flag, that i
     <div class="hiding">
       <h5>Get checksum for video/audio stream</h5>
       <p><code>ffmpeg -loglevel error -i <em>input_file</em> -map 0:v:0 -f hash -hash md5 -</code></p>
-      <p>This script will perform a <a href="fixity">fixity</a> check on a specified audio or video stream of the file, useful for checking that the content within a video has not changed even if the container format has changed.</p>
+      <p>This script will perform a <a href="#fixity">fixity</a> check on a specified audio or video stream of the file, useful for checking that the content within a video has not changed even if the container format has changed.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
         <dt>-loglevel error</dt><dd>sets the verbosity of logging to show all errors</dd>
@@ -2409,7 +2409,7 @@ If the error message includes other parts of the command, such as a flag, that i
       <h5>Get individual checksums for all video/audio streams ("Streamhash")</h5>
       <p><code>ffmpeg -i <em>input_file</em> -map 0 -f streamhash -hash md5 - -v quiet</code></p>
       <p>The outcome is very similar to that of "-f hash", except you get one hash per-stream, instead of one (summary) hash. Another benefit is that you don't have to know which streams, or how many to expect in the source file. This is very handy for hashing mixed born-digital material.</p>
-      <p>This script will perform a fixity check on all audio and video streams in the file and return one <a href="hashcode">hashcode</a> for each one.  This is useful for e.g. being able to change to container/codec format later on and validate it matches the original source.</p>
+      <p>This script will perform a fixity check on all audio and video streams in the file and return one <a href="#hashcode">hashcode</a> for each one.  This is useful for e.g. being able to change to container/codec format later on and validate it matches the original source.</p>
       <p>The output is formatted for easily processing it further in any kind of programming/scripting language.</p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -2623,7 +2623,7 @@ If the error message includes other parts of the command, such as a flag, that i
     <input type="checkbox" id="smpte_bars_and_sine_wave">
     <div class="hiding">
       <h5>SMPTE bars + Sine wave audio</h5>
-      <p>Generate a SMPTE bars test video + a 1kHz <a href="sinewave">sine wave</a> as audio testsignal.</p>
+      <p>Generate a SMPTE bars test video + a 1kHz <a href="#sinewave">sine wave</a> as audio testsignal.</p>
       <p><code>ffmpeg -f lavfi -i "smptebars=size=720x576:rate=25" -f lavfi -i "sine=frequency=1000:sample_rate=48000" -c:a pcm_s16le -t 10 -c:v ffv1 <em>output_file</em></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>starts the command</dd>
@@ -2840,7 +2840,7 @@ If the error message includes other parts of the command, such as a flag, that i
       <input type="checkbox" id="create_iso">
       <div class="hiding">
         <h5>Create ISO files for DVD access</h5>
-        <p>Create an <a href="ISO File">ISO file</a> that can be used to burn a DVD. Please note, you will have to install dvdauthor. To install dvd author using Homebrew run: <code>brew install dvdauthor</code></p>
+        <p>Create an <a href="#ISO File">ISO file</a> that can be used to burn a DVD. Please note, you will have to install dvdauthor. To install dvd author using Homebrew run: <code>brew install dvdauthor</code></p>
         <p><code>ffmpeg -i <em>input_file</em> -aspect <em>4:3</em> -target ntsc-dvd <em>output_file</em>.mpg</code></p>
         <p>This command will take any file and create an MPEG file that dvdauthor can use to create an ISO.</p>
         <dl>
