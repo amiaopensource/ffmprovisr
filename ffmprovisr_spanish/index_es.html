@@ -1412,38 +1412,38 @@
     <!-- ends NTSC to H.264 -->
 
     <!-- Deinterlace video -->
-    <!-- <label class="recipe" for="deinterlace">Deinterlace video</label>
+    <label class="recipe" for="deinterlace">Desentrelazar video</label>
     <input type="checkbox" id="deinterlace">
     <div class="hiding">
-      <h5>Deinterlace a video</h5>
+      <h5>Desentrelazar un video</h5>
       <p><code>ffmpeg -i <em>input_file</em> -c:v libx264 -vf "yadif,format=yuv420p" <em>output_file</em></code></p>
-      <p>This command takes an interlaced input file and outputs a deinterlaced H.264 MP4.</p>
+      <p>Este comando toma un archivo de entrada entrelazado y genera un archivo H.264 MP4 desentrelazado.</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt>-i <em>input file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
-        <dt>-c:v libx264</dt><dd>tells FFmpeg to encode the video stream as H.264</dd>
-        <dt>-vf</dt><dd>video filtering will be used (<code>-vf</code> is an alias of <code>-filter:v</code>)</dd>
-        <dt>"</dt><dd>start of filtergraph (see below)</dd>
-        <dt>yadif</dt><dd>deinterlacing filter (‘yet another deinterlacing filter’)<br>
-        By default, <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1" target="_blank">yadif</a> will output one frame for each frame. Outputting one frame for each <em>field</em> (thereby doubling the frame rate) with <code>yadif=1</code> may produce visually better results.</dd>
-        <dt>,</dt><dd>separates filters</dd>
-        <dt>format=yuv420p</dt><dd>chroma subsampling set to 4:2:0<br>
-        By default, <code>libx264</code> will use a chroma subsampling scheme that is the closest match to that of the input. This can result in Y′C<sub>B</sub>C<sub>R</sub> 4:2:0, 4:2:2, or 4:4:4 chroma subsampling. QuickTime and most other non-FFmpeg based players can’t decode H.264 files that are not 4:2:0, therefore it’s advisable to specify 4:2:0 chroma subsampling.</dd>
-        <dt>"</dt><dd>end of filtergraph</dd>
-        <dt><em>output file</em></dt><dd>ruta y nombre del archivo de salida</dd>
+        <dt>-i <em>input file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
+        <dt>-c:v libx264</dt><dd>indica a FFmpeg que codifique el flujo de video como H.264</dd>
+        <dt>-vf</dt><dd>se utilizará el filtrado de video (<code>-vf</code> es un alias de <code>-filter:v</code>)</dd>
+        <dt>"</dt><dd>inicio del gráfico de filtros (ver más abajo)</dd>
+        <dt>yadif</dt><dd>filtro de desentrelazado ('otro filtro de desentrelazado más')<br>
+        Por default, <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1" target="_blank">yadif</a> generará un fotograma de salida por cada fotograma. Generar un fotograma por cada <em>campo</em> (duplicando así la velocidad de fotogramas) con <code>yadif=1</code> puede producir mejores resultados visuales.</dd>
+        <dt>,</dt><dd>separa los filtros</dd>
+        <dt>format=yuv420p</dt><dd>submuestreo de croma configurado a 4:2:0<br>
+        Por default, <code>libx264</code> utilizará un esquema de submuestreo de croma que sea el que mejor se ajuste al de la entrada. Esto puede resultar en un submuestreo de croma Y′C<sub>B</sub>C<sub>R</sub> 4:2:0, 4:2:2, o 4:4:4. y la mayoría de los reproductores que no se basan en FFmpeg no pueden decodificar archivos H.264 que no sean 4:2:0, por lo tanto, es recomendable especificar el submuestreo de croma 4:2:0.</dd>
+        <dt>"</dt><dd>fin del gráfico de filtros</dd>
+        <dt><em>output file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
-      <p><code>"yadif,format=yuv420p"</code> is an FFmpeg <a href="https://trac.ffmpeg.org/wiki/FilteringGuide#FiltergraphChainFilterrelationship" target="_blank">filtergraph</a>. Here the filtergraph is made up of one filter chain, which is itself made up of the two filters (separated by the comma).<br>
-      The enclosing quote marks are necessary when you use spaces within the filtergraph, e.g. <code>-vf "yadif, format=yuv420p"</code>, and are included above as an example of good practice.</p>
-      <p><strong>Note:</strong> FFmpeg includes several deinterlacers apart from <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1" target="_blank">yadif</a>: <a href="https://ffmpeg.org/ffmpeg-filters.html#bwdif" target="_blank">bwdif</a>, <a href="https://ffmpeg.org/ffmpeg-filters.html#w3fdif" target="_blank">w3fdif</a>, <a href="https://ffmpeg.org/ffmpeg-filters.html#kerndeint" target="_blank">kerndeint</a>, and <a href="https://ffmpeg.org/ffmpeg-filters.html#nnedi" target="_blank">nnedi</a>.</p>
-      <p>For more H.264 encoding options, see the latter section of the <a href="#transcode_h264">encode H.264 command</a>.</p>
+      <p><code>"yadif,format=yuv420p"</code> es un <a href="https://trac.ffmpeg.org/wiki/FilteringGuide#FiltergraphChainFilterrelationship" target="_blank">gráfico de filtros</a> de FFmpeg. n este caso, el gráfico de filtros está compuesto por una cadena de filtros, que a su vez está compuesta por dos filtros (separados por la coma).<br>
+      Las comillas son necesarias cuando se utilizan espacios dentro del gráfico de filtros, por ejemplo, <code>-vf "yadif, format=yuv420p"</code>, y se incluyen arriba como ejemplo una práctica recomendable.</p>
+      <p><strong>Nota:</strong> FFmpeg incluye varios desentrelazadores además de <a href="https://ffmpeg.org/ffmpeg-filters.html#yadif-1" target="_blank">yadif</a>: <a href="https://ffmpeg.org/ffmpeg-filters.html#bwdif" target="_blank">bwdif</a>, <a href="https://ffmpeg.org/ffmpeg-filters.html#w3fdif" target="_blank">w3fdif</a>, <a href="https://ffmpeg.org/ffmpeg-filters.html#kerndeint" target="_blank">kerndeint</a>, y <a href="https://ffmpeg.org/ffmpeg-filters.html#nnedi" target="_blank">nnedi</a>.</p>
+      <p>Para obtener más opciones de codificación H.264, consulte la última sección del comando de <a href="#transcode_h264">codificación H.264</a>.</p>
       <div class="sample-image">
-        <h2>Example</h2>
-        <p>Before and after deinterlacing:</p>
+        <h2>Ejemplo</h2>
+        <p>Antes y después del desentrelazado:</p>
         <img src="img/interlaced_video.png" alt="VLC screenshot of original interlaced video">
         <img src="img/deinterlaced_video.png" alt="VLC screenshot of deinterlaced video">
       </div>
       <p class="link"></p>
-    </div> -->
+    </div>
     <!-- ends Deinterlace video -->
 
     <!-- Deinterlace video fields -->
