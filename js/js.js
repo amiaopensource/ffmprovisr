@@ -104,13 +104,6 @@ document.addEventListener("DOMContentLoaded", () => {
       // Find if the target is inside .hiding
       const hidden = target.closest(".hiding");
       if (hidden) {
-        // Open the checkbox toggle
-        const checkbox = document.querySelector("#Glossary");
-        if (checkbox) checkbox.checked = true;
-
-      // Find if the target is inside .hiding
-      const hidden = target.closest(".hiding");
-      if (hidden) {
         // Find the checkbox that controls this .hiding div
         const checkbox = hidden.previousElementSibling;
         if (checkbox && checkbox.type === 'checkbox') {
@@ -120,9 +113,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-      }
-    });
-  });
-});
-
-
