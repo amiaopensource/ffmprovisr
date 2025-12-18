@@ -2082,7 +2082,7 @@ If the error message includes other parts of the command, such as a flag, that i
     <label class="recipe" for="vectorscope">Vectorscope from video to screen</label>
     <input type="checkbox" id="vectorscope">
     <div class="hiding">
-      <h5>Plays vectorscope of video</h5>
+      <h5>Plays <a href="#vectorscope">vectorscope</a> of video</h5>
       <p><code>ffplay <em>input_file</em> -vf "split=2[m][v], [v]vectorscope=b=0.7:m=color3:g=green[v], [m][v]overlay=x=W-w:y=H-h"</code></p>
       <dl>
         <dt>ffplay</dt><dd>starts the command</dd>
