@@ -1763,7 +1763,7 @@ If the error message includes other parts of the command, such as a flag, that i
       </dl>
 	  <h5>&#128203; Real-World Example</h5>
       <div class="real-world-content">
-      <h6>Institution:Pacific Film Archive (PFA) at UC Berkeley</h6>
+      <h6>Institution: Pacific Film Archive (PFA) at UC Berkeley</h6>
       <p><strong>Context:</strong> PFA’s media archivist needs to determine which born-digital files are interlaced before creating access copies for screenings and online research access. The metadata does not clearly show whether the videos were captured as interlaced or progressive, and assuming all files are interlaced could lead to extra and unnecessary work. Missing interlaced files could cause artifacts in the final access copies.</p>
       <p><strong>Solution:</strong> Using FFmpeg’s interlace detection filter <code>-i filename.mp4 -vf idet -frames:v 500 -an -f rawvideo -y /dev/null</code> to see whether each video is interlaced or progressive. </p>
       <p><strong>Outcome:</strong>Videos that show a high number of TFF or BFF frames are flagged as interlaced, and the archivist decides on the best way to deinterlace them before creating H.264 access copies, ensuring smooth playback on modern progressive displays. Videos that appear mostly progressive are left as-is, saving time and preserving their quality. This approach allows PFA to quickly determine which files need extra processing and which are ready to use.</p>
