@@ -774,14 +774,14 @@ If the error message includes other parts of the command, such as a flag, that i
       <h6>Institution: WGBH</h6>
       <p><strong>Context:</strong> After WGBH ingested a sample 2TB production hard drive that included MP3 files from audio-only interviews, they created .mp3 proxies for all audio. While it might not have been necessary for the audio interviews that are already in .mp3 format, but it is easier to run a batch script on the whole drive for some of the stock footage rather than figuring out which one needs transcoding.</p>
       <p><strong>Solution:</strong> They run a FFmpeg command with a batch script for the hard drive, relevant command is listed here 
-      <pre><code>for i in `find . -type f | grep -i '\(mp3\|m4a\|wmv\|aif\|aac\|aiff\|wma\|wav\)$'`;
-	  do 
-    	  newDir=`dirname "$i"`;
-   	      mkdir -p "$outDir/$newDir";
+<pre><code>for i in `find . -type f | grep -i '\(mp3\|m4a\|wmv\|aif\|aac\|aiff\|wma\|wav\)$'`;
+do 
+    newDir=`dirname "$i"`;
+    mkdir -p "$outDir/$newDir";
     
-          ffmpeg -i "$i" -acodec libmp3lame -qscale:a 9 "$outDir/$newDir/$(basename $i)".mp3;
-      done;
-	  </code></pre>
+    ffmpeg -i "$i" -acodec libmp3lame -qscale:a 9 "$outDir/$newDir/$(basename $i)".mp3;
+done;
+</code></pre>
       <p>click <a href="https://github.com/WGBH/preservation-workflow/blob/gh-pages/create_audio_proxy.sh">here</a> for full documentation.</p>
       <p><strong>Outcome:</strong> The proxies can be viewed by internal producers in their local FileMaker database to help them better determine what they might want to use in a production. </p>
       <p>Check the <a href="https://journal.code4lib.org/articles/14244">blog</a> for more information on the case study.</p>
