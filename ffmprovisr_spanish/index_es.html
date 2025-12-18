@@ -1066,67 +1066,67 @@
     <!-- CD De-emphasis -->
 
     <!-- one pass loudnorm -->
-    <!-- <label class="recipe" for="loudnorm_one_pass">One Pass Loudness Normalization</label>
+    <label class="recipe" for="loudnorm_one_pass">Normalización de Sonoridad en Una Pasada</label>
     <input type="checkbox" id="loudnorm_one_pass">
     <div class="hiding">
-      <h5>One Pass Loudness Normalization</h5>
+      <h5>Normalización de Sonoridad en Una Pasada</h5>
       <p><code>ffmpeg -i <em>input_file</em> -af loudnorm=dual_mono=true -ar 48k <em>output_file</em></code></p>
-      <p>This will normalize the loudness of an input using one pass, which is quicker but less accurate than using two passes. This command uses the loudnorm filter defaults for target loudness. These defaults align well with PBS recommendations, but loudnorm does allow targeting of specific loudness levels. More information can be found at the <a href="https://ffmpeg.org/ffmpeg-filters.html#loudnorm" target="_blank">loudnorm documentation</a>.</p>
-      <p>Information about PBS loudness standards can be found in the <a href="https://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf" target="_blank">PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href="https://tech.ebu.ch/docs/r/r128-2014.pdf" target="_blank">EBU R 128</a> recommendation document.</p>
+      <p>Esto normalizará la sonoridad de la entrada en una sola pasada, lo que es más rápido pero menos preciso que usar dos pasadas. Este comando utiliza la configuración predeterminada del filtro loudnorm para el nivel de sonoridad objetivo. Estos valores predeterminados se ajustan bien a las recomendaciones de PBS, pero loudnorm también permite especificar niveles de sonoridad. Para obtener más información, consulte <a href="https://ffmpeg.org/ffmpeg-filters.html#loudnorm" target="_blank">documentación de loudnorm</a>.</p>
+      <p>Información sobre los estándares de sonoridad de PBS se puede encontrar en el documento de <a href="https://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf" target="_blank">Especificaciones Técnicas de Operación de PBS</a>. información sobre los estándares de sonoridad de la EBU se puede encontrar en el documento de recomendaciónes <a href="https://tech.ebu.ch/docs/r/r128-2014.pdf" target="_blank">EBU R 128</a>.</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt><em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
-        <dt>-af loudnorm</dt><dd>activates the loudnorm filter with default settings</dd>
-        <dt>dual_mono=true</dt><dd>(optional) Use this for mono files meant to be played back on stereo systems for correct loudness. Not necessary for multi-track inputs.</dd>
-        <dt>-ar 48k</dt><dd>Sets the output sample rate to 48 kHz. (The loudnorm filter upsamples to 192 kHz so it is best to manually set a desired output sample rate).</dd>
-        <dt><em>output_file</em></dt><dd>path, name and extension for output file</dd>
+        <dt><em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
+        <dt>-af loudnorm</dt><dd>activa el filtro loudnorm con configuraciones predeterminadas</dd>
+        <dt>dual_mono=true</dt><dd>(opcional) Utilice esta opción para archivos monofónicos que se reproducirán en sistemas estéreo, a fin de obtener el nivel de volumen correcto. No es necesario para entradas multipista.</dd>
+        <dt>-ar 48k</dt><dd>Establece la frecuencia de muestreo de salida a 48 kHz. (El filtro loudnorm realiza un sobremuestreo a 192 kHz, por lo que es recomendable configurar manualmente la frecuencia de muestreo de salida deseada).</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p class="link"></p>
-    </div> -->
+    </div>
     <!-- ends one pass loudnorm -->
 
     <!-- two pass loudnorm -->
-    <!-- <label class="recipe" for="loudnorm_two_pass">Two Pass Loudness Normalization</label>
+    <label class="recipe" for="loudnorm_two_pass">Normalización de Sonoridad en Dos Pasadas</label>
     <input type="checkbox" id="loudnorm_two_pass">
     <div class="hiding">
-      <h5>Two Pass Loudness Normalization</h5>
+      <h5>Normalización de Sonoridad en Dos Pasadas</h5>
       <p><code>ffmpeg -i <em>input_file</em> -af loudnorm=dual_mono=true:measured_I=<em>input_i</em>:measured_TP=<em>input_tp</em>:measured_LRA=<em>input_lra</em>:measured_thresh=<em>input_thresh</em>:offset=<em>target_offset</em>:linear=true -ar 48k <em>output_file</em></code></p>
-      <p>This command allows using the levels calculated using a <a href="#loudnorm_metadata">first pass of the loudnorm filter</a> to more accurately normalize loudness. This command uses the loudnorm filter defaults for target loudness. These defaults align well with PBS recommendations, but loudnorm does allow targeting of specific loudness levels. More information can be found at the <a href="https://ffmpeg.org/ffmpeg-filters.html#loudnorm" target="_blank">loudnorm documentation</a>.</p>
-      <p>Information about PBS loudness standards can be found in the <a href="https://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf" target="_blank">PBS Technical Operating Specifications</a> document. Information about EBU loudness standards can be found in the <a href="https://tech.ebu.ch/docs/r/r128-2014.pdf" target="_blank">EBU R 128</a> recommendation document.</p>
+      <p>Este comando permite utilizar los niveles calculados en <a href="#loudnorm_metadata">una primera pasada del filtro loudnorm</a> para normalizar la sonoridad con mayor precisión. Este comando utiliza los valores predeterminados del filtro loudnorm para el nivel de sonoridad objetivo. Estos valores predeterminados se ajustan bien a las recomendaciones de PBS, pero loudnorm también permite especificar niveles de sonoridad. Para obtener más información, consulte la <a href="https://ffmpeg.org/ffmpeg-filters.html#loudnorm" target="_blank">documentación de loudnorm</a>.</p>
+      <p>Información sobre los estándares de sonoridad de PBS se puede encontrar en el documento de <a href="https://www-tc.pbs.org/capt/Producing/TOS-2012-Pt2-Distribution.pdf" target="_blank">Especificaciones Técnicas de Operación de PBS</a>. información sobre los estándares de sonoridad de la EBU se puede encontrar en el documento de recomendaciónes <a href="https://tech.ebu.ch/docs/r/r128-2014.pdf" target="_blank">EBU R 128</a>.</p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt><em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
-        <dt>-af loudnorm</dt><dd>activates the loudnorm filter with default settings</dd>
-        <dt>dual_mono=true</dt><dd>(optional) use this for mono files meant to be played back on stereo systems for correct loudness. Not necessary for multi-track inputs.</dd>
-        <dt>measured_I=<em>input_i</em></dt><dd>use the 'input_i' value (integrated loudness) from the first pass in place of input_i</dd>
-        <dt>measured_TP=<em>input_tp</em></dt><dd>use the 'input_tp' value (true peak) from the first pass in place of input_tp</dd>
-        <dt>measured_LRA=<em>input_lra</em></dt><dd>use the 'input_lra' value (loudness range) from the first pass in place of input_lra</dd>
-        <dt>measured_LRA=<em>input_thresh</em></dt><dd>use the 'input_thresh' value (threshold) from the first pass in place of input_thresh</dd>
-        <dt>offset=<em>target_offset</em></dt><dd>use the 'target_offset' value (offset) from the first pass in place of target_offset</dd>
-        <dt>linear=true</dt><dd>tells loudnorm to use linear normalization</dd>
-        <dt>-ar 48k</dt><dd>Sets the output sample rate to 48 kHz. (The loudnorm filter upsamples to 192 kHz so it is best to manually set a desired output sample rate).</dd>
-        <dt><em>output_file</em></dt><dd>path, name and extension for output file</dd>
+        <dt><em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
+        <dt>-af loudnorm</dt><dd>activa el filtro loudnorm con configuraciones predeterminadas</dd>
+        <dt>dual_mono=true</dt><dd>(opcional) utilice esta opción para archivos monofónicos que se reproducirán en sistemas estéreo, a fin de obtener el nivel de volumen correcto. No es necesario para entradas multipista.</dd>
+        <dt>measured_I=<em>input_i</em></dt><dd>utilice el valor 'input_i' (sonoridad integrada) de la primera pasada en lugar de input_i</dd>
+        <dt>measured_TP=<em>input_tp</em></dt><dd>utilice el valor 'input_tp' (pico real) de la primera pasada en lugar de input_tp</dd>
+        <dt>measured_LRA=<em>input_lra</em></dt><dd>utilice el valor 'input_lra' (rango de sonoridad) de la primera pasada en lugar de input_lra</dd>
+        <dt>measured_LRA=<em>input_thresh</em></dt><dd>utilice el valor 'input_thresh' (umbral) de la primera pasada en lugar de input_thresh</dd>
+        <dt>offset=<em>target_offset</em></dt><dd>utilice el valor 'target_offset' (desplazamiento) de la primera pasada en lugar de target_offset</dd>
+        <dt>linear=true</dt><dd>indica a loudnorm que utilice la normalización lineal</dd>
+        <dt>-ar 48k</dt><dd>Establece la frecuencia de muestreo de salida a 48 kHz. (El filtro loudnorm realiza un sobremuestreo a 192 kHz, por lo que es recomendable configurar manualmente la frecuencia de muestreo de salida deseada).</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida</dd>
       </dl>
       <p class="link"></p>
-    </div> -->
+    </div>
     <!-- ends two pass loudnorm -->
 
     <!-- Fix A/V async 1 -->
-    <!-- <label class="recipe" for="avsync_aresample">Fix A/V sync issues by resampling audio</label>
+    <label class="recipe" for="avsync_aresample">Corregir Sincronización AV: Remuestreo de audio</label>
     <input type="checkbox" id="avsync_aresample">
     <div class="hiding">
-      <h5>Fix AV Sync: Resample audio</h5>
+      <h5>Corregir Sincronización AV: Remuestreo de audio</h5>
       <p><code>ffmpeg -i <em>input_file</em> -c:v copy -c:a pcm_s16le -af "aresample=async=1000" <em>output_file</em></code></p>
       <dl>
         <dt>ffmpeg</dt><dd>inicia el commando</dd>
-        <dt><em>input_file</em></dt><dd>ruta y nombre del archivo de ingreso file</dd>
-        <dt>-c:v copy</dt><dd>Copy all mapped video streams.</dd>
-        <dt>-c:a pcm_s16le</dt><dd>tells FFmpeg to encode the audio stream in 16-bit linear PCM (<a href="https://en.wikipedia.org/wiki/Endianness#Little-endian" target="_blank">little endian</a>)</dd>
-        <dt>-af "aresample=async=1000"</dt><dd>Uses the <a href="https://ffmpeg.org/ffmpeg-filters.html#aresample-1" target="_blank">aresample</a> filter to stretch/squeeze samples to given timestamps, with a maximum of 1000 samples per second compensation.</dd>
-        <dt><em>output_file</em></dt><dd>ruta y nombre del archivo de salida. Try different file extensions such as mkv, mov, mp4, or avi.</dd>
+        <dt><em>input_file</em></dt><dd>ruta, nombre y extensión del archivo de entrada</dd>
+        <dt>-c:v copy</dt><dd>copia todos los flujos de vídeo asignados</dd>
+        <dt>-c:a pcm_s16le</dt><dd>indica a FFmpeg que codifique el flujo de audio en formato PCM lineal de 16 bits (<a href="https://en.wikipedia.org/wiki/Endianness#Little-endian" target="_blank">little endian</a>)</dd>
+        <dt>-af "aresample=async=1000"</dt><dd>utiliza el filtro <a href="https://ffmpeg.org/ffmpeg-filters.html#aresample-1" target="_blank">aresample</a> estirar/comprimir las muestras según las marcas de tiempo indicadas, con una compensación máxima de 1000 muestras por segundo.</dd>
+        <dt><em>output_file</em></dt><dd>ruta, nombre y extensión del archivo de salida. Prueba diferentes extensiones de archivo como mkv, mov, mp4, or avi.</dd>
       </dl>
       <p class="link"></p>
-    </div> -->
+    </div>
     <!-- ends Fix A/V async 1 -->
 
     </div>
