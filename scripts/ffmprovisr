@@ -16,7 +16,7 @@ elif [[ "$(uname -s)" = "Linux" ]] ; then
     if ping -c 1 amiaopensource.github.io >/dev/null 2>&1 ; then
         ffmprovisr_path='https://amiaopensource.github.io/ffmprovisr/'
     else
-        ffmprovisr_path=$(find ~/.linuxbrew/Cellar/ffmprovisr -iname 'index.html' | sort -M | tail -n1)
+        ffmprovisr_path=$(find /home/linuxbrew/.linuxbrew/Cellar/ffmprovisr -iname 'index.html' | sort -M | tail -n1)
     fi
     xdg-open "${ffmprovisr_path}"
 else
