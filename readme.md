@@ -22,36 +22,9 @@ To facilitate better understanding of FFmpeg through collaborative sharing of us
 
 ## How do I see it?
 
-The code is found in the gh-pages branch (the default primary branch). Readme is right here. You can see the site live on [GitHub pages](http://amiaopensource.github.io/ffmprovisr).
+You can see the site live on [GitHub pages](https://amiaopensource.github.io/ffmprovisr/).
 
-You can also install the latest [release](https://github.com/amiaopensource/ffmprovisr/releases) on your computer with the two commands:
-```
-brew tap amiaopensource/amiaos
-brew install ffmprovisr
-```
-and then call it locally with the command:
-```
-ffmprovisr
-```
-This works currently under macOS, Linux and the Linux apps on Windows (Ubuntu and Debian tested). On classic Windows you can install the last [release](https://github.com/amiaopensource/ffmprovisr/releases) manually and the open `index.html` in a browser.
-
-### Parseable list of the commands
-
-A list of all recipes in an easily parseable [ASCII text](recipes.txt) format is provided as well. It contains for each recipe its title and command in the following format:
-
-```
-# title of recipe 1
-ffmpeg command 1
-# title of recipe 2
-ffmpeg command 2
-
-...
-
-# title of recipe n-1
-ffmpeg command n-1
-# title of recipe n
-ffmpeg command n
-```
+The code is found in the gh-pages branch (the default primary branch). Readme is right here.
 
 ## How do I contribute?
 
@@ -173,14 +146,14 @@ Last updated: 2019-12-11
 - [FFCommand_Engine](https://github.com/ColorlabMD/FFCommand_Engine): a tool for easier use of FFmpeg binaries
 - [QEMU QED](https://eaasi.gitlab.io/program_docs/qemu-qed/): instructions for using QEMU (Quick EMUlator), a command line application for computer emulation and virtualization
 - [MIAP-ZIM-Project](https://github.com/hmr9162-droid/MIAP-ZIM-Project/): motion image archiving tools made available as offline accesible .zim files (including ffmprovisr.zim and cable-bible.zim)
-- [Script Ahoy](http://dd388.github.io/crals/): Community Resource for Archivists and Librarians Scripting
+- [Script Ahoy](https://dd388.github.io/crals/): Community Resource for Archivists and Librarians Scripting
 - [sourcecaster](https://datapraxis.github.io/sourcecaster/): helps you use the command line to work through common challenges that come up when working with digital primary sources.
 
 ## Articles and mentions
 
 * 2019-09: **Andrew Weaver & Ashley Blewer**, [Sustainability through community: ffmprovisr and the Case for Collaborative Knowledge Transfer](https://ipres2019.org/static/pdf/iPres2019_paper_97.pdf) (PDF), iPRES 2019
   - Andrew Weaver [won](https://twitter.com/iPRES2019/status/1177136202144768000) iPres' Best First Time Contribution Award for his work on this paper :)
-* 2018-11: ffmprovisr is mentioned in [a job advert](http://web.library.emory.edu/documents/pa_staff_Audiovisual%20Conservator_Nov2018.pdf)!
+* 2018-11: ffmprovisr is mentioned in a job advert from Emory University, Atlanta, GA!
 * 2017-10: **Ashley Blewer & Katherine Nagels**, [ffmprovisr gets a redesign](https://bits.ashleyblewer.com/blog/2017/10/31/ffmprovisr-redesign/)
 * 2015-11: **AMIA & DLF Hack Day 2015**, [ffmprovsr](https://wiki.curatecamp.org/index.php/Association_of_Moving_Image_Archivists_&_Digital_Library_Federation_Hack_Day_2015#ffmprovsr) - the genesis of ffmprovisr (then spelled without the 'i')
 
