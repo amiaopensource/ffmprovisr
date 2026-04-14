@@ -36,6 +36,15 @@ To contribute to this project directly (and more quickly), clone this repository
 
 #### Guidelines for contributing
 
+##### General guidelines
+
+* Any large-scale change to the project should be first discussed via [opening an issue](https://github.com/amiaopensource/ffmprovisr/issues)
+* When submitting a code change, we prefer that each sub-change be committed separately
+  * example: new recipe and correction to an existing recipe in two separate commits
+* If your changes have a large scope and/or cover multiple areas of the project, we prefer these to be submitted as separate pull requests.
+
+##### Recipe-specific guidelines
+
 * Recipes should ideally do just one thing or solve one problem, to keep things as user-friendly as possible and to avoid unintended side-effects
 * Explanations and examples for recipes should be as generic as possible, to allow users to alter the command for their own use-case.
   * This may involve the use of `VARIABLE_NAMES`
