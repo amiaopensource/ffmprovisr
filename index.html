@@ -1135,6 +1135,27 @@ If the error message includes other parts of the command, such as a flag, that i
     </div>
     <!-- ends Fix A/V async 1 -->
 
+    <!-- Force Audio Sample Rate -->
+    <label class="recipe" for="force_audio_sr">Force Audio Sample Rate</label>
+    <input type="checkbox" id="force_audio_sr">
+    <div class="hiding">
+      <h5>Force audio sample rate in WAV file from 192 to 96 kHz</h5>
+      <p><code>ffmpeg -skip_initial_bytes 44 -f s24le -ar 96000 -ac 2 -i <em>input_file</em> -c copy -rf64 auto <em>output_file</em></code></p>
+      <p>This command will allow you to take a recording captured at 192 kHz and force it to 96 kHz. This can be useful when capturing tapes at double speed (for example a 1 7/8 IPS tape captured at 3.75 IPS). Note that any tapes captured in this way will have had EQ applied for the wrong playback speed and so, depending on needs, ideally would also have the capture EQ reversed and then the correct EQ applied digitally. EQ curves can often be found on <a href="https://web.archive.org/web/20260501215017/https://www.tapeheads.net/threads/1-7-8-tape-speed.79876/">audio forums</a>, and can be applied using tools such as the <a href="https://manual.audacityteam.org/man/filter_curve_eq.html">Audacity filter curve tool</a>.</p>
+      <dl>
+        <dt>ffmpeg</dt><dd>starts the command</dd>
+        <dt>-skip_initial_bytes 44</dt><dd>this tells FFmpeg to skip the initial 44 byte section of the input file that comprises the WAV header and to start reading from the raw PCM data.</dd>
+        <dt>-f s24le</dt><dd>tells FFmpeg to interpret the input PCM data as 24 bit little endian</dd>
+        <dt>-ar 96000</dt><dd>tells FFmpeg to interpret the input PCM data as 96 kHz</dd>
+        <dt>-ac 2</dt><dd>tells FFmpeg to interpret the input as stereo</dd>
+        <dt>-i <em>input_file_192kHz</em></dt><dd>path, name and extension of the 192 kHz input file</dd>
+        <dt>-c copy</dt><dd>tells FFmpeg to write the output file codec settings as-is (in this case forced to 96 kHz)</dd>
+        <dt>-rf64 auto</dt><dd>tells FFmpeg to automatically write the output file as RF64 if necessary</dd>
+        <dt><em>output_file_96kHz</em></dt><dd>path, name and extension of the 96 kHz output file</dd>
+      </dl>
+    </div>
+    <!-- end Force Audio Sample Rate -->
+
     </div>
     <div class="well">
     <h2 id="join-trim">Join, trim, or create an excerpt</h2>
@@ -2971,7 +2992,7 @@ If the error message includes other parts of the command, such as a flag, that i
   <input type="checkbox" id="*****unique name*****">
   <div class="hiding">
 Change the above data-target field, the hover-over description, the button text, and the below div ID
-  <h3>*****Longer title*****</h3>
+  <h5>*****Longer title*****</h5>
   <p><code>ffmpeg -i <em>input_file</em> *****code goes here***** <em>output_file</em></code></p>
   <p>This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info! This is all about info!</p>
   <dl>
