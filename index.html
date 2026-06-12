@@ -2852,6 +2852,29 @@ If the error message includes other parts of the command, such as a flag, that i
       </div>
       <!-- End About ImageMagick -->
 
+ <!-- Differences between IM version 6 and version 7-->
+      <label class="recipe" for="im-differences">Differences Between ImageMagick Version 6 and Version 7</label>
+      <input type="checkbox" id="im-differences">
+      <div class="hiding">
+        <h5>Differences Between ImageMagick Version 6 and Version 7</h5>
+        <p>ImageMagick currently maintains two versions of its software: version 6 and version 7. ImageMagick released version 7 in 2016, and the platform encourages its user base to upgrade to the latest version. However, version 6, sometimes referred to as Legacy ImageMagick, is still maintained. A patch for Legacy ImageMagick version 6 was released as recently as October 2025. A link to Legacy ImageMagick’s repository can be found <a href="https://github.com/ImageMagick/ImageMagick6">here</a>.</p><p>The structure of ImageMagick commands in the examples on ffmprovisr have primarily been formatted for compatibility with Legacy ImageMagick. While many commands that use <code>convert</code> and <code>mogrify</code> can still be executed in version 7, not all are guaranteed to work. Many version 7 commands follow a similar structure to those of version 6, but with <code>magick</code> being used to start commands rather than <code>convert</code> and <code>mogrify</code> in most cases. Version 7 commands can be found at the bottom of each ImageMagick example on ffmprovisr.</p>
+        <p>New ImageMagick users and current Legacy users considering upgrading should assess the differences between each version before choosing which one to install. Below are just a few of the differences users should be aware of.</p>
+        <p>Unlike Legacy ImageMagick, as a default, version 7 stores image pixels with High Dynamic Range Imaging (HDRI). This is typically with a bit depth up to Q16. To disable HDRI, the following command should be executed:</p>
+        <p><code>./configure --disable-hdri</code><p>
+        <p>Some Legacy ImageMagick command options are no longer supported by version 7, including but not limited to:
+          <dl><code>-maximum</code>
+            <code>-median</code>
+            <code>-minimum</code>
+            <code>-origin</code>
+            <code>-passphrase</code></dl>
+        <p>Lastly, those operating Legacy commands on older hardware should take steps to ensure version 7's compatibility with their current system. Saved scripts that leverage Legacy command structures may need to be individually updated.</p>
+        <p>For further reading on differences between ImageMagick versions, including a full list of deprecated Legacy command options, users can refer to the <a href="https://imagemagick.org/script/porting.php">Porting Guide</a> on ImageMagick’s website.</p>
+        <p class="link"></p>
+      </div>
+      <!-- Differences between IM Version 6 and Version 7-->
+
+
+      
       <!-- Compare two images -->
       <label class="recipe" for="im_compare">Compare two images</label>
       <input type="checkbox" id="im_compare">
@@ -2865,6 +2888,7 @@ If the error message includes other parts of the command, such as a flag, that i
           <dt><em>image1.ext image2.ext</em></dt><dd>takes two images as input</dd>
           <dt>null:</dt><dd>throws away the comparison image that would be generated</dd>
         </dl>
+        <p>★ImageMagick V7 command:<code>magick compare -metric ae <em>image1.ext image2.ext</em> null:</code></p>
         <p class="link"></p>
       </div>
       <!-- ends Compare two images -->
@@ -2874,8 +2898,8 @@ If the error message includes other parts of the command, such as a flag, that i
       <input type="checkbox" id="im_thumbs">
       <div class="hiding">
         <h5>Create thumbnails</h5>
-        <p>Creates thumbnails for all files in a folder and saves them in that folder.</p>
         <p><code>mogrify -resize 80x80 -format jpg -quality 75 -path thumbs *.jpg</code></p>
+        <p>Creates thumbnails for all files in a folder and saves them in that folder.</p>
         <dl>
           <dt>mogrify</dt><dd>starts the command</dd>
           <dt>-resize 80x80</dt><dd>resizes copies of original images to 80x80 pixels</dd>
@@ -2885,6 +2909,7 @@ If the error message includes other parts of the command, such as a flag, that i
           Note: You will have to make this folder if it doesn't already exist.</dd>
           <dt><em>*.jpg</em></dt><dd>The asterisk acts as a "wildcard" to be applied to every file in the directory.</dd>
         </dl>
+         <p>★ImageMagick V7 command:<code>magick mogrify -resize 80x80 -format jpg -quality 75 -path thumbs *.jpg</code></p>
         <p class="link"></p>
       </div>
       <!-- ends Create thumbnails -->
@@ -2902,6 +2927,7 @@ If the error message includes other parts of the command, such as a flag, that i
           <dt>-geometry +0+0</dt><dd>specifies to include no spacing around any of the tiles; they will be flush against each other</dd>
           <dt><em>output_grid.jpg</em></dt><dd>path and name of the output file</dd>
         </dl>
+         <p>★ImageMagick V7 command:<code>magick montage @<em>list.txt</em> -tile 6x12 -geometry +0+0 <em>output_grid.jpg</em></code></p>
         <p class="link"></p>
       </div>
       <!-- ends Create grid of images -->
@@ -2911,16 +2937,17 @@ If the error message includes other parts of the command, such as a flag, that i
       <input type="checkbox" id="im_sig_data">
       <div class="hiding">
         <h5>Get file signature data</h5>
-        <p><code>convert -verbose <em>input_file.ext</em> | grep -i signature </code></p>
+        <p><code>identify -verbose <em>input_file.ext</em> | grep -i signature </code></p>
         <p>Gets signature data from an image file, which is a hash that can be used to uniquely identify the image.</p>
         <dl>
-          <dt>convert</dt><dd>starts the command</dd>
+          <dt>identify</dt><dd>starts the command</dd>
           <dt>-verbose</dt><dd>sets verbose flag for collecting the most data</dd>
           <dt><em>input_file.ext</em></dt><dd>path and name of image file</dd>
           <dt>|</dt><dd>pipe the data into something else</dd>
           <dt>grep</dt><dd>starts the grep command</dd>
           <dt>-i signature</dt><dd>ignore case and search for the phrase "signature"</dd>
         </dl>
+        <p>★ImageMagick V7 command:<code>magick identify -verbose <em>input_file.ext</em> | grep -i signature </code></p>
         <p class="link"></p>
       </div>
       <!-- ends Get file signature data -->
@@ -2938,6 +2965,7 @@ If the error message includes other parts of the command, such as a flag, that i
           <dt>-strip</dt><dd>removes exif metadata</dd>
           <dt>*.jpg</dt><dd>applies command to all .jpgs in current folder</dd>
         </dl>
+        <p>★ImageMagick V7 command:<code>magick mogrify -path ./stripped/ -strip *.jpg</code></p>
         <p class="link"></p>
       </div>
       <!-- ends Remove exif data -->
@@ -2955,9 +2983,207 @@ If the error message includes other parts of the command, such as a flag, that i
           <dt>-resize 750</dt><dd>resizes the image to 750 pixels wide, retaining aspect ratio</dd>
           <dt><em>output_file.ext</em></dt><dd>path and name of the output file</dd>
         </dl>
+        <p>★ImageMagick V7 command:<code>magick <em>input_file.ext</em> -resize 750 <em>output_file.ext</em></code></p>
         <p class="link"></p>
       </div>
       <!-- ends Resize to width -->
+
+    <!-- Format conversion -->
+    <label class="recipe" for="im_fconversion">Format conversion</label>
+    <input type="checkbox" id="im_fconversion">
+    <div class="hiding">
+      <h5>Format conversion</h5>
+      <p><code>convert <em>input_file.png output_file.jpg</em></code></p>
+      <p>Converts a file from one format to another.</p>
+      <dl>
+        <dt>convert</dt><dd>starts the command</dd>
+        <dt><em>input_file.ext output_file.ext</em></dt><dd>takes the input file format and converts it to the output file format. Although this example uses .png to .jpg any format conversion combination can be used so long as the formats are supported by Image Magick.</dd>
+      </dl>
+      <p> ★ImageMagick V7 command: <code>magick <em>input_file.png output_file.jpg</em></code></p>
+      <p class="link"></p>
+    </div>
+    <!--ends Format conversion →
+
+
+      
+    <!-- Supported formats list-->
+    <label class="recipe" for="im_formatlist">Supported formats list</label>
+    <input type="checkbox" id="im_formatlist">
+    <div class="hiding">
+      <h5>Supported format list</h5>
+      <p><code> identify -list format</code></p>
+      <p>Displays a list of the formats supported by Image Magick.</p>
+      <dl>
+        <dt> identify </dt><dd>starts the command</dd>
+        <dt>-list format </dt><dd>displays a list of the formats supported by Image Magick.</dd>
+      </dl>
+      <p> ★ImageMagick V7 command: <code> magick identify -list format</code></p>
+      <p class="link"></p>
+    </div>
+    <!--ends Supported formats list -->
+
+    <!-- Detailed information about an image-->
+    <label class="recipe" for="im_verbose">Print detailed image information </label>
+    <input type="checkbox" id="im_verbose">
+    <div class="hiding">
+      <h5>Print detailed image information</h5>
+      <p><code>identify -verbose <em>input_image</em></code></p>
+      <p>Prints detailed information about the properties of a given image.</p>
+      <dl>
+        <dt> identify</dt><dd>starts the command</dd>
+        <dt>-verbose <em>input_image</em> </dt><dd>prints out detailed information of the given image file.</dd>
+      </dl>
+      <p>★ImageMagick V7 command: <code> magick identify -verbose <em>input_image</em></code></p>
+      <p class="link"></p>
+    </div>
+    <!-- Detailed information abount an image-->
+
+    <!-- Duplicate an image-->
+    <label class="recipe" for="im_duplicate">Duplicate an image</label>
+    <input type="checkbox" id="im_duplicate">
+    <div class="hiding">
+      <h5>Duplicate an image</h5>
+      <p><code>convert <em>input_image</em> -duplicate count <em>output_image</em></code></p>
+      <p>Duplicate an image one or more times.</p>
+      <dl>
+        <dt>convert</dt><dd>starts the command</dd>
+        <dt><em>input_image</em></dt><dd>the image file that is going to be duplicated.</dd>
+        <dt>-duplicate count <em>input_image</em> </dt><dd>duplicates the image. The amount of copies is based on the count number. The count starts with zero, so for one copy use zero.</dd>
+      </dl>
+      <p> ★ImageMagick V7 command: <code>magick <em>input_image</em> -duplicate count <em>output_image</em></code></p>
+      <p class="link"></p>
+  </div>
+  <!-- Duplicate an image -->
+
+  <!-- Control the compression quality when creating or saving an image-->
+  <label class="recipe" for="im_quality">Control compression quality of an image </label>
+  <input type="checkbox" id="im_quality">
+  <div class="hiding">
+    <h5>Control the compression quality of an image</h5>
+    <p><code>mogrify -quality value image_file.ext</code></p>
+    <p>Controls the compression quality of JPEG, PNG, HEIC, and WebP image files.</p>
+    <dl>
+      <dt>mogrify</dt><dd>starts the command</dd>
+      <dt>-quality value </dt><dd>sets the compression quality (1 to 100) of the image file. The default value for JPEG and MPEG files is 92. The default value for PNG and MNG files is 75.</dd>
+    </dl>
+    <p>★ImageMagick V7 command: <code> magick mogrify -quality value image_file.ext</code></p>
+    <p class="link"></p>
+  </div>
+  <!--Control the compression quality when creating or saving an image -->
+
+      <!-- Assign a label to an image -->
+      <label class="recipe" for="im_label">Assign a label to an image</label>
+      <input type="checkbox" id="im_label">
+      <div class="hiding">
+        <h5>Assign a label to an image</h5>
+        <p><code>mogrify -label “%m:%f %wx%h” <em>example.png</em></code></p>
+        <p>Assigns a label to the image as it is read.</p>
+        <dl>
+          <dt>mogrify</dt><dd>starts the command</dd>
+          <dt>-label “%wx%h” </dt><dd>assigns the label <code>480x216</code> (width and height) to the image <code><em>example.png.</em></code> Other attributes can be assigned as a label. Refer to the <a href="https://legacy.imagemagick.org/script/escape.php" target="_blank">Format and Print Image Properties</a> page for a complete list of single letter attribute percent escapes.</dd>
+          <dt><em>example.png</em></dt><dd>takes the image file input</dd>
+        </dl>
+        <p>★ImageMagick V7 command:<code>magick mogrify -label “%wx%h” <em>example.png</em></code></p>
+        <p class="link"></p>
+      </div>
+      <!-- Assign a label to an image -->
+      
+      <!-- Rotate degrees -->
+      <label class="recipe" for="im_rotate-degrees">Rotate <em>degrees</em></label>
+      <input type="checkbox" id="im_rotate-degrees">
+      <div class="hiding">
+        <h5>Rotate <em>degrees</em></h5>
+        <p><code>mogrify -rotate “-180>” <em>example1.png</em></code></p>
+        <p>Rotates an image by degrees specified.</p>
+        <dl>
+          <dt>convert</dt><dd>starts the command</dd>
+          <dt>-rotate “-180>” </dt><dd>rotates the image by 180 degrees, or any integer specified. Any blank space in the background after the image is rotated is filled in with the <code>background</code> color. If the image width is greater than the image height, use <code>></code> in the command. If the image width is less than height, use <code><</code>.</dd>
+          <dt><em>example1.png</em></dt><dd>takes the image file input.</dd>
+        </dl>
+        <p>★ImageMagick V7 command: <code>magick mogrify -rotate 180 <em>example1.png</em></code></p>
+        <p class="link"></p>
+      </div>
+      <!-- ends Rotate degrees -->
+
+      <!-- Auto Orient Image -->
+      <label class="recipe" for="im_auto-orient">Auto Orient Image</label>
+      <input type="checkbox" id="im_auto-orient">
+      <div class="hiding">
+        <h5>Auto Orient Image</h5>
+        <p><code>mogrify -auto-orient <em>input_image.jpg</em></code></p>
+        <p>Auto orients an image for suitable viewing.</p>
+        <dl>
+          <dt>mogrify</dt><dd>starts the command</dd>
+          <dt>-auto-orient</dt><dd>Reads and then resets the orientation setting of the EXIF image profile and then rotates the image 90 degrees to orient the image for correct viewing.</dd>
+          <dt><em>input_image.jpg</em></dt><dd>the image the user wishes to auto orient.</dd>
+        </dl>
+        <p> ★ImageMagick V7 command: <code> magick mogrify -auto-orient <em>input_image.jpg</em></code></p>
+        <p class="link"></p>
+      </div>
+      <!-- ends Auto Orient Image -->
+
+<!-- Version-->
+<label class="recipe" for="im_version">Check version of Imagemagick in use</label>
+<input type="checkbox" id="im_version">
+<div class="hiding">
+  <h5>Check version of Imagemagick in use </h5>
+  <p><code>convert -version</code></p>
+  <p>Output the version of Imagemagick in use, the image quality it is using, and origin date.</p>
+  <dl>
+    <dt>convert</dt><dd>starts the command</dd>
+    <dt>-version</dt><dd>After outputting the above information Image Magick will automatically exit the program.</dd>
+  </dl>
+  <p>★ImageMagick V7 command:<code>magick -version</code></p>
+  <p class="link"></p>
+</div>
+<!-- Version-->
+
+<!-- Adjoin images -->
+<label class="recipe" for="im_adjoin">Adjoin image files</label>
+<input type="checkbox" id="im_adjoin">
+<div class="hiding">
+  <h5>Adjoin image files.</h5>
+  <p><code>convert -adjoin <em>input_image1.ext input_image2.ext output_images.ext </em></code></p>
+  <p>Join images into a single multi-image file.</p>
+  <dl> 
+    <dt>convert</dt><dd>starts the command</dd>
+    <dt>-adjoin</dt><dd>Saves multiple input image files into a given output file</dd>
+    <dt><em>image1.ext image2.ext</em> </dt><dd>The input images. Note that file formats such as jpeg and png do not support multi-image files.</dd>
+    <dt><em>output_images.ext</em> </dt><dd>The output, a multi-image file.</dd>
+  </dl>
+  <p>★ImageMagick V7 command:<code>magick -adjoin <em>input_image1.ext input_image2.ext output_images.ext </em></code></p>
+  <p class="link"></p>
+</div> 
+<!-- Adjoin images -->
+
+      <!-- Command Definitions -->
+      <label class="recipe" for="im-cdefinitions">Command Definitions</label>
+      <input type="checkbox" id="im-cdefinitions">
+      <div class="hiding">
+        <h5>Command Definitions</h5>
+        <dt>Convert</dt><dd>The convert command is used to change the composition of an image (i.e. its format, size, position, etc.).</dd>
+        <dt>Identify: </dt><dd>The identify command is used to give basic information about image file(s) such as format, size, file name, or whether or not the file is incomplete or corrupt. </dd>
+        <dt>Mogrify:</dt><dd>The mogrify command is similar to the convert command, in that it modifies images, however, it does so to the original image file. This means the original image will be overwritten.</dd>
+        <dt>Montage:</dt><dd>The montage command creates a composite image out of multiple individual images.</dd>
+        <dt>Compare:</dt><dd>The compare command allows a user to see the differences between two input images.</dd>
+        <p class="link"></p>
+      </div>
+      <!--Command Definitions -->
+
+       <!-- Further Resources -->
+      <label class="recipe" for="im-resources">Further Resources</label>
+      <input type="checkbox" id="im-resources">
+      <div class="hiding">
+        <h5>Further Resources</h5>
+        <p>Links to more resources on ImageMagick and version 6.</p>
+        <p>The official website for version 6 can be found <a href="http://legacy.imagemagick.org" target="_blank">here</a>.</p>
+        <p>Another great resource that goes in-depth on the basic commands of ImageMagick 6 can be found <a href="https://legacy.imagemagick.org/Usage/basics/" target="_blank">here</a>.</p>
+        <p>There is also the <a href="https://www.reddit.com/r/imagemagick/" target="_blank" >Imagemagick subreddit</a> for community support.</p>
+        <p class="link"></p>
+      </div>
+      <!-- Further Resources-->
+
+      
     </div>
     <div class="well">
       <h2 id="flac">flac</h2>
