@@ -2967,89 +2967,90 @@ If the error message includes other parts of the command, such as a flag, that i
       </div>
       <!-- ends Resize to width -->
 
-<!-- Format conversion -->
-<label class="recipe" for="im_fconversion">Format conversion</label>
-<input type="checkbox" id="im_fconversion">
-<div class="hiding">
-<h5>Format conversion</h5>
-<p><code>convert <em>input_file.png output_file.jpg</em></code></p>
-<p>Converts a file from one format to another.</p>
-<dl>
-<dt>convert</dt><dd>starts the command</dd>
-<dt><em>input_file.ext output_file.ext</em></dt><dd>takes the input file format and converts it to the output file format. Although this example uses .png to .jpg any format conversion combination can be used so long as the formats are supported by Image Magick.</dd>
-</dl>
-<p> ★ImageMagick V7 command: <code>magick <em>input_file.png output_file.jpg</em></code></p>
-<p class="link"></p>
-</div>
-<!--ends Format conversion →
+    <!-- Format conversion -->
+    <label class="recipe" for="im_fconversion">Format conversion</label>
+    <input type="checkbox" id="im_fconversion">
+    <div class="hiding">
+      <h5>Format conversion</h5>
+      <p><code>convert <em>input_file.png output_file.jpg</em></code></p>
+      <p>Converts a file from one format to another.</p>
+      <dl>
+        <dt>convert</dt><dd>starts the command</dd>
+        <dt><em>input_file.ext output_file.ext</em></dt><dd>takes the input file format and converts it to the output file format. Although this example uses .png to .jpg any format conversion combination can be used so long as the formats are supported by Image Magick.</dd>
+      </dl>
+      <p> ★ImageMagick V7 command: <code>magick <em>input_file.png output_file.jpg</em></code></p>
+      <p class="link"></p>
+    </div>
+    <!--ends Format conversion →
 
 
       
-<!-- Supported formats list-->
-<label class="recipe" for="im_formatlist">Supported formats list</label>
-<input type="checkbox" id="im_formatlist">
-<div class="hiding">
-<h5>Supported format list</h5>
-<p><code> identify -list format</code></p>
-<p>Displays a list of the formats supported by Image Magick.</p>
-<dl>
-<dt> identify </dt><dd>starts the command</dd>
-<dt>-list format </dt><dd>displays a list of the formats supported by Image Magick.</dd>
-</dl>
-    <p> ★ImageMagick V7 command: <code> magick identify -list format</code></p>
-<p class="link"></p>
-</div>
-<!--ends Supported formats list -->
+    <!-- Supported formats list-->
+    <label class="recipe" for="im_formatlist">Supported formats list</label>
+    <input type="checkbox" id="im_formatlist">
+    <div class="hiding">
+      <h5>Supported format list</h5>
+      <p><code> identify -list format</code></p>
+      <p>Displays a list of the formats supported by Image Magick.</p>
+      <dl>
+        <dt> identify </dt><dd>starts the command</dd>
+        <dt>-list format </dt><dd>displays a list of the formats supported by Image Magick.</dd>
+      </dl>
+      <p> ★ImageMagick V7 command: <code> magick identify -list format</code></p>
+      <p class="link"></p>
+    </div>
+    <!--ends Supported formats list -->
 
-  <!-- Detailed information about an image-->
-<label class="recipe" for="im_verbose">Print detailed image information </label>
-<input type="checkbox" id="im_verbose">
-<div class="hiding">
-<h5>Print detailed image information</h5>
-<p><code>identify -verbose <em>input_image</em></code></p>
-<p>Prints detailed information about the properties of a given image.</p>
-<dl>
-<dt> identify</dt><dd>starts the command</dd>
-<dt>-verbose <em>input_image</em> </dt><dd>prints out detailed information of the given image file.</dd>
-</dl>
-  <p>★ImageMagick V7 command: <code> magick identify -verbose <em>input_image</em></code></p>
-<p class="link"></p>
-</div>
+    <!-- Detailed information about an image-->
+    <label class="recipe" for="im_verbose">Print detailed image information </label>
+    <input type="checkbox" id="im_verbose">
+    <div class="hiding">
+      <h5>Print detailed image information</h5>
+      <p><code>identify -verbose <em>input_image</em></code></p>
+      <p>Prints detailed information about the properties of a given image.</p>
+      <dl>
+        <dt> identify</dt><dd>starts the command</dd>
+        <dt>-verbose <em>input_image</em> </dt><dd>prints out detailed information of the given image file.</dd>
+      </dl>
+      <p>★ImageMagick V7 command: <code> magick identify -verbose <em>input_image</em></code></p>
+      <p class="link"></p>
+    </div>
+    <!-- Detailed information abount an image-->
 
-<!-- Duplicate an image-->
-<label class="recipe" for="im_duplicate">Duplicate an image</label>
-<input type="checkbox" id="im_duplicate">
-<div class="hiding">
-<h5>Duplicate an image</h5>
-<p><code>convert <em>input_image</em> -duplicate count <em>output_image</em></code></p>
-<p>Duplicate an image one or more times.</p>
-<dl>
-<dt>convert</dt><dd>starts the command</dd>
-<dt><em>input_image</em></dt><dd>the image file that is going to be duplicated.</dd>
-<dt>-duplicate count <em>input_image</em> </dt><dd>duplicates the image. The amount of copies is based on the count number. The count starts with zero, so for one copy use zero.</dd>
-</dl>
-  <p> ★ImageMagick V7 command: <code>magick <em>input_image</em> -duplicate count <em>output_image</em></code></p>
-<p class="link"></p>
-</div>
-<!-- Duplicate an image -->
+    <!-- Duplicate an image-->
+    <label class="recipe" for="im_duplicate">Duplicate an image</label>
+    <input type="checkbox" id="im_duplicate">
+    <div class="hiding">
+      <h5>Duplicate an image</h5>
+      <p><code>convert <em>input_image</em> -duplicate count <em>output_image</em></code></p>
+      <p>Duplicate an image one or more times.</p>
+      <dl>
+        <dt>convert</dt><dd>starts the command</dd>
+        <dt><em>input_image</em></dt><dd>the image file that is going to be duplicated.</dd>
+        <dt>-duplicate count <em>input_image</em> </dt><dd>duplicates the image. The amount of copies is based on the count number. The count starts with zero, so for one copy use zero.</dd>
+      </dl>
+      <p> ★ImageMagick V7 command: <code>magick <em>input_image</em> -duplicate count <em>output_image</em></code></p>
+      <p class="link"></p>
+  </div>
+  <!-- Duplicate an image -->
 
-      <!-- Control the compression quality when creating or saving an image-->
-<label class="recipe" for="im_quality">Control compression quality of an image </label>
-<input type="checkbox" id="im_quality">
-<div class="hiding">
-<h5>Control the compression quality of an image</h5>
-<p><code>mogrify -quality value image_file.ext</code></p>
-<p><p>Controls the compression quality of JPEG, PNG, HEIC, and WebP image files.</p>
-<dl>
-<dt>mogrify</dt><dd>starts the command</dd>
-<dt>-quality value </dt><dd>sets the compression quality (1 to 100) of the image file. The default value for JPEG and MPEG files is 92. The default value for PNG and MNG files is 75.</dd>
-</dl>
-  <p>★ImageMagick V7 command: <code> magick mogrify -quality value image_file.ext</code></p>
-<p class="link"></p>
-</div>
-<!--Control the compression quality when creating or saving an image -->
+  <!-- Control the compression quality when creating or saving an image-->
+  <label class="recipe" for="im_quality">Control compression quality of an image </label>
+  <input type="checkbox" id="im_quality">
+  <div class="hiding">
+    <h5>Control the compression quality of an image</h5>
+    <p><code>mogrify -quality value image_file.ext</code></p>
+    <p>Controls the compression quality of JPEG, PNG, HEIC, and WebP image files.</p>
+    <dl>
+      <dt>mogrify</dt><dd>starts the command</dd>
+      <dt>-quality value </dt><dd>sets the compression quality (1 to 100) of the image file. The default value for JPEG and MPEG files is 92. The default value for PNG and MNG files is 75.</dd>
+    </dl>
+    <p>★ImageMagick V7 command: <code> magick mogrify -quality value image_file.ext</code></p>
+    <p class="link"></p>
+  </div>
+  <!--Control the compression quality when creating or saving an image -->
 
-<!-- Assign a label to an image -->
+      <!-- Assign a label to an image -->
       <label class="recipe" for="im_label">Assign a label to an image</label>
       <input type="checkbox" id="im_label">
       <div class="hiding">
@@ -3061,10 +3062,11 @@ If the error message includes other parts of the command, such as a flag, that i
           <dt>-label “%wx%h” </dt><dd>assigns the label <code>480x216</code> (width and height) to the image <code><em>example.png.</em></code> Other attributes can be assigned as a label. Refer to the <a href="https://legacy.imagemagick.org/script/escape.php" target="_blank">Format and Print Image Properties</a> page for a complete list of single letter attribute percent escapes.</dd>
           <dt><em>example.png</em></dt><dd>takes the image file input</dd>
         </dl>
-          <p>★ImageMagick V7 command:<code>magick mogrify -label “%wx%h” <em>example.png</em></code></p>
+        <p>★ImageMagick V7 command:<code>magick mogrify -label “%wx%h” <em>example.png</em></code></p>
         <p class="link"></p>
       </div>
-
+      <!-- Assign a label to an image -->
+      
       <!-- Rotate degrees -->
       <label class="recipe" for="im_rotate-degrees">Rotate <em>degrees</em></label>
       <input type="checkbox" id="im_rotate-degrees">
@@ -3099,19 +3101,19 @@ If the error message includes other parts of the command, such as a flag, that i
       </div>
       <!-- ends Auto Orient Image -->
 
-      <!-- Version-->
+<!-- Version-->
 <label class="recipe" for="im_version">Check version of Imagemagick in use</label>
 <input type="checkbox" id="im_version">
 <div class="hiding">
-<h5>Check version of Imagemagick in use </h5>
-<p><code>convert -version</code></p>
-<p>Output the version of Imagemagick in use, the image quality it is using, and origin date.</p>
-<dl>
-<dt>convert</dt><dd>starts the command</dd>
-<dt>-version</dt><dd>After outputting the above information Image Magick will automatically exit the program.</dd>
-</dl>
+  <h5>Check version of Imagemagick in use </h5>
+  <p><code>convert -version</code></p>
+  <p>Output the version of Imagemagick in use, the image quality it is using, and origin date.</p>
+  <dl>
+    <dt>convert</dt><dd>starts the command</dd>
+    <dt>-version</dt><dd>After outputting the above information Image Magick will automatically exit the program.</dd>
+  </dl>
   <p>★ImageMagick V7 command:<code>magick -version</code></p>
-<p class="link"></p>
+  <p class="link"></p>
 </div>
 <!-- Version-->
 
@@ -3119,17 +3121,17 @@ If the error message includes other parts of the command, such as a flag, that i
 <label class="recipe" for="im_adjoin">Adjoin image files</label>
 <input type="checkbox" id="im_adjoin">
 <div class="hiding">
-<h5>Adjoin image files.</h5>
-<p><code>convert -adjoin <em>input_image1.ext input_image2.ext output_images.ext </em></code></p>
-<p>Join images into a single multi-image file.</p>
-<dl> 
-<dt>convert</dt><dd>starts the command</dd>
-<dt>-adjoin</dt><dd>Saves multiple input image files into a given output file</dd>
-<dt><em>image1.ext image2.ext</em> </dt><dd>The input images. Note that file formats such as jpeg and png do not support multi-image files.</dd>
-<dt><em>output_images.ext</em> </dt><dd>The output, a multi-image file.</dd>
-</dl>
+  <h5>Adjoin image files.</h5>
+  <p><code>convert -adjoin <em>input_image1.ext input_image2.ext output_images.ext </em></code></p>
+  <p>Join images into a single multi-image file.</p>
+  <dl> 
+    <dt>convert</dt><dd>starts the command</dd>
+    <dt>-adjoin</dt><dd>Saves multiple input image files into a given output file</dd>
+    <dt><em>image1.ext image2.ext</em> </dt><dd>The input images. Note that file formats such as jpeg and png do not support multi-image files.</dd>
+    <dt><em>output_images.ext</em> </dt><dd>The output, a multi-image file.</dd>
+  </dl>
   <p>★ImageMagick V7 command:<code>magick -adjoin <em>input_image1.ext input_image2.ext output_images.ext </em></code></p>
-<p class="link"></p>
+  <p class="link"></p>
 </div> 
 <!-- Adjoin images -->
 
@@ -3138,12 +3140,12 @@ If the error message includes other parts of the command, such as a flag, that i
       <input type="checkbox" id="im-cdefinitions">
       <div class="hiding">
         <h5>Command Definitions</h5>
-     <dt>Convert</dt><dd>The convert command is used to change the composition of an image (i.e. its format, size, position, etc.).</dd>
-     <dt>Identify: </dt><dd>The identify command is used to give basic information about image file(s) such as format, size, file name, or whether or not the file is incomplete or corrupt. </dd>
-     <dt>Mogrify:</dt><dd>The mogrify command is similar to the convert command, in that it modifies images, however, it does so to the original image file. This means the original image will be overwritten.</dd>
-     <dt>Montage:</dt><dd>The montage command creates a composite image out of multiple individual images.</dd>
-     <dt>Compare:</dt><dd>The compare command allows a user to see the differences between two input images.</dd>
-      <p class="link"></p>
+        <dt>Convert</dt><dd>The convert command is used to change the composition of an image (i.e. its format, size, position, etc.).</dd>
+        <dt>Identify: </dt><dd>The identify command is used to give basic information about image file(s) such as format, size, file name, or whether or not the file is incomplete or corrupt. </dd>
+        <dt>Mogrify:</dt><dd>The mogrify command is similar to the convert command, in that it modifies images, however, it does so to the original image file. This means the original image will be overwritten.</dd>
+        <dt>Montage:</dt><dd>The montage command creates a composite image out of multiple individual images.</dd>
+        <dt>Compare:</dt><dd>The compare command allows a user to see the differences between two input images.</dd>
+        <p class="link"></p>
       </div>
       <!--Command Definitions -->
 
